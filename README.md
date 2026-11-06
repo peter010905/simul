@@ -125,6 +125,29 @@ ros2 service call /slam_toolbox/deserialize_map slam_toolbox/srv/DeserializePose
 
 ## 실제 TurtleBot4
 
+현재 v13 후보의 탐색 코드·edge 가중치·RPP 설정을 함께 적용하려면 저장소 루트의
+`run_robot_policy.sh`를 사용합니다. 로봇의 기본 센서/베이스 bringup을 먼저 실행합니다.
+이 스크립트가 SLAM과 Nav2를 시작하므로 동일 namespace에 이미 있으면 점검 단계에서 종료합니다.
+아래 `ROBOT_DOMAIN`을 로봇에 설정된 ROS_DOMAIN_ID 숫자로 바꿉니다.
+
+```bash
+bash /home/peter/simul/run_robot_policy.sh --domain ROBOT_DOMAIN --build-only
+bash /home/peter/simul/run_robot_policy.sh --domain ROBOT_DOMAIN --check
+bash /home/peter/simul/run_robot_policy.sh --domain ROBOT_DOMAIN --start --rviz
+```
+
+`--start`를 생략하면 임무는 idle 상태이며 출력된 `mission/start` 서비스로 시작합니다.
+`mission/stop` 서비스로 정지할 수 있습니다. `--namespace`, `--rgb`, `--camera-info`, `--scan`,
+`--duration`, `--undock`을 지원하며 `--help`에 기본값을 표시합니다.
+RGB와 CameraInfo는 같은 영상에 해당해야 하며, 노트북과 로봇의 RMW·discovery 설정과 시각을 맞춥니다.
+이 실행기는 Jazzy의 `TwistStamped` 인터페이스를 사용합니다.
+
+배포용 코드는 `deployment/robot_v13`에 복사·빌드합니다.
+접근/마커 후속 관측의 센서 시각 비교를 ROS 시간으로 맞췄고, 임무 제한시간에는 단조 증가 시간을 유지합니다.
+실행 결과는 `results/robot_*`에 저장합니다. 다른 PC에서는 저장소를 복제하고 해당 경로의 스크립트를 실행합니다.
+v13은 개발 후보이며 실물 검증은 아직입니다. 앞서 기록한 작은 마커 관측 기준, 지도 관측 기억 손실,
+ID 충돌 해제와 접근 상태 표시 문제는 남아 있습니다.
+
 1. 로봇 위 노트북과 로봇을 LAN으로 연결하고 서로 통신되는 IP를 설정한다. 로봇의 ROS 배포판·RMW·ROS_DOMAIN_ID·discovery 설정을 맞추고 `ros2 topic list`로 확인한다. 노트북과 로봇 시간도 동기화한다.
 2. 로봇 기본 bringup을 실행한다. 기존 SLAM/Nav2가 실행 중이면 중복 실행하지 않는다. 노트북에서는 아래 공통 노드만 실행한다.
 3. `ros2 topic info -v /cmd_vel`, `ros2 topic list`, `ros2 run tf2_ros tf2_echo odom base_link`로 타입과 TF를 확인한다. 이 프로젝트는 공식 Jazzy 설정에 맞춰 TwistStamped를 사용한다.
