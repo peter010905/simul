@@ -1,7 +1,7 @@
 {
-  "updated_utc": "2026-11-06T01:32:09.507371+00:00",
+  "updated_utc": "2026-11-06T01:47:07.685555+00:00",
   "release_url": "https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11",
-  "uploaded_verified": 91,
+  "uploaded_verified": 92,
   "videos": [
     {
       "asset": "fix_v10_escape_regression3__9802005.mp4",
@@ -113,6 +113,22 @@
       "actual_approach_1_5m": true,
       "recording_frames": 1093,
       "recording_seconds": 218.6,
+      "uploaded_verified": true
+    },
+    {
+      "asset": "fix_v13_observation_regression6__9802014.mp4",
+      "local_path": "training_robust/native90/fix_v13_observation_regression6/episodes/9802014/video/mission.mp4",
+      "bytes": 16391970,
+      "sha256": "68020b456b89bc69a023afc3ddb9208a7edae9f0be27870516c9a936a5b74816",
+      "url": "https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fix_v13_observation_regression6__9802014.mp4",
+      "original_evaluator_success": false,
+      "reason": "timeout",
+      "elapsed_sim_seconds": 600.416,
+      "targets": 1,
+      "collisions": 0,
+      "actual_approach_1_5m": false,
+      "recording_frames": 3003,
+      "recording_seconds": 600.6,
       "uploaded_verified": true
     },
     {
@@ -1462,7 +1478,7 @@
   ],
   "skipped": [
     {
-      "path": "training_robust/native90/fix_v13_observation_regression6/episodes/9802014/video/mission.mp4",
+      "path": "training_robust/native90/fix_v13_observation_regression6/episodes/9802015/video/mission.mp4",
       "reason": "Final evaluation or recording metadata absent"
     },
     {
@@ -1471,6 +1487,10 @@
     },
     {
       "path": "training_robust/native90/marker_focus_v6_service_screen3/episodes/8600133/video/mission.mp4",
+      "reason": "Final evaluation or recording metadata absent"
+    },
+    {
+      "path": "training_robust/native90/route_v14_timecost_screen3/episodes/9802001/video/mission.mp4",
       "reason": "Final evaluation or recording metadata absent"
     },
     {

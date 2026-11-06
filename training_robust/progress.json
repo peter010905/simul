@@ -577,7 +577,7 @@
     "baseline_seconds": 3.618,
     "candidate_seconds": 20.074
   },
-  "updated_utc": "2026-11-06T01:31:29.808912+00:00",
+  "updated_utc": "2026-11-06T01:47:18.833418+00:00",
   "motion_v2_native_result": {
     "seed": 8600007,
     "success": true,
@@ -1092,5 +1092,17 @@
     "unit": "osp-route-v14-timecost.service",
     "tests_passed": 192,
     "workspace": "/home/peter/simul/training_robust/native90/runtime_route_v14_staging"
+  },
+  "additional_issues_audit": {
+    "report": "repository_snapshot/additional_issues.json",
+    "controlled_reproductions": 3,
+    "native_memory_loss_observed": true,
+    "runtime_fixes_applied": false,
+    "priorities": [
+      "Align coverage minimum-size prior with8cm scenario range",
+      "Prevent stale identity conflicts from indefinitely withholding valid IDs",
+      "Validate cautious spatial coverage retention",
+      "Make approach status use current targets"
+    ]
   }
 }

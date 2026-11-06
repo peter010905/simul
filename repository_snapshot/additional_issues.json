@@ -1,0 +1,117 @@
+{
+  "created_utc": "2026-11-06T01:46:34.332865+00:00",
+  "workspace": "training_robust/native90/runtime_route_v14_staging",
+  "small_marker_coverage": {
+    "kind": "controlled_code_reproduction",
+    "credited_faces": 1,
+    "marker_size_m": 0.08,
+    "distance_m": 3.5,
+    "approx_projected_pixels": 15.206743136913863,
+    "detector_min_pixels": 18,
+    "interpretation": "Coverage uses a0.12m prior even when the new development scenes contain0.08m markers. Native impact not yet measured."
+  },
+  "identity_recovery": {
+    "kind": "controlled_code_reproduction",
+    "initial_conflict": [
+      {
+        "ids": [
+          645,
+          1023
+        ],
+        "distance_m": 0.050000000000000044,
+        "counts": [
+          30,
+          11
+        ],
+        "winner": null
+      }
+    ],
+    "additional_correct_frames": 100,
+    "resolved_ids_after": [],
+    "interpretation": "30-frame cap prevents a3:1 winner against11 stale conflicting observations; no age-based release exists. This condition has not been established in completed native trials."
+  },
+  "status_consistency": {
+    "kind": "controlled_code_reproduction",
+    "displayed_verified_ids": [
+      1,
+      2,
+      3
+    ],
+    "actual_complete_predicate": false,
+    "interpretation": "Status uses historical target coordinates, while completion checks current coordinates. This is a reporting inconsistency, not evidence of false completion."
+  },
+  "coverage_memory_loss": {
+    "kind": "native_snapshot_replay",
+    "severe_pairs": 6,
+    "pairs": [
+      {
+        "episode": "9802001",
+        "before_seconds": 9.432,
+        "after_seconds": 20.432,
+        "previous_credited_faces": 45,
+        "retained_from_previous": 7,
+        "actual_later_credited_faces": 90,
+        "first_snapshot": "training_robust/native90/route_v14_timecost_screen3/episodes/9802001/policy_decisions/0000.npz",
+        "second_snapshot": "training_robust/native90/route_v14_timecost_screen3/episodes/9802001/policy_decisions/0001.npz"
+      },
+      {
+        "episode": "9802001",
+        "before_seconds": 89.932,
+        "after_seconds": 115.932,
+        "previous_credited_faces": 311,
+        "retained_from_previous": 129,
+        "actual_later_credited_faces": 78,
+        "first_snapshot": "training_robust/native90/route_v14_timecost_screen3/episodes/9802001/policy_decisions/0005.npz",
+        "second_snapshot": "training_robust/native90/route_v14_timecost_screen3/episodes/9802001/policy_decisions/0006.npz"
+      },
+      {
+        "episode": "9802001",
+        "before_seconds": 115.932,
+        "after_seconds": 136.932,
+        "previous_credited_faces": 78,
+        "retained_from_previous": 24,
+        "actual_later_credited_faces": 102,
+        "first_snapshot": "training_robust/native90/route_v14_timecost_screen3/episodes/9802001/policy_decisions/0006.npz",
+        "second_snapshot": "training_robust/native90/route_v14_timecost_screen3/episodes/9802001/policy_decisions/0007.npz"
+      },
+      {
+        "episode": "9802001",
+        "before_seconds": 160.432,
+        "after_seconds": 174.932,
+        "previous_credited_faces": 75,
+        "retained_from_previous": 12,
+        "actual_later_credited_faces": 53,
+        "first_snapshot": "training_robust/native90/route_v14_timecost_screen3/episodes/9802001/policy_decisions/0008.npz",
+        "second_snapshot": "training_robust/native90/route_v14_timecost_screen3/episodes/9802001/policy_decisions/0009.npz"
+      },
+      {
+        "episode": "9802001",
+        "before_seconds": 174.932,
+        "after_seconds": 182.932,
+        "previous_credited_faces": 53,
+        "retained_from_previous": 23,
+        "actual_later_credited_faces": 62,
+        "first_snapshot": "training_robust/native90/route_v14_timecost_screen3/episodes/9802001/policy_decisions/0009.npz",
+        "second_snapshot": "training_robust/native90/route_v14_timecost_screen3/episodes/9802001/policy_decisions/0010.npz"
+      },
+      {
+        "episode": "9802001",
+        "before_seconds": 182.932,
+        "after_seconds": 206.932,
+        "previous_credited_faces": 62,
+        "retained_from_previous": 6,
+        "actual_later_credited_faces": 7,
+        "first_snapshot": "training_robust/native90/route_v14_timecost_screen3/episodes/9802001/policy_decisions/0010.npz",
+        "second_snapshot": "training_robust/native90/route_v14_timecost_screen3/episodes/9802001/policy_decisions/0011.npz"
+      }
+    ],
+    "limitation": "Endpoint replay omits intermediate updates. Some invalidation is necessary after SLAM corrections; route/time penalty and safe retention rules remain unproven."
+  },
+  "source_hashes": {
+    "edge_policy.py": "b3b3b21e07e88648e253dc79d6880f9596e9e6730d95ed1d651d3a9251695e3c",
+    "coverage_resize.py": "50e9b4f9dab00b1a2a4feae5e27bc3c6e326e44ddf3012fa5fb885afa3c0142f",
+    "landmark_identity.py": "cb5f72c21d78b2e54ce534362ab22c7c5d984db44ecd86275b0a8d1c3dba1bee",
+    "marker_approach.py": "19aefe34ce51621475214bcdbbc7b4712fbb0c788f8a1dc344b7a654e941e307"
+  },
+  "runtime_sources_changed": false
+}

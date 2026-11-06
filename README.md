@@ -194,7 +194,7 @@ python3 scripts/publish_simulation_videos.py --upload
 
 ## 저장된 Gazebo 영상
 
-[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 91개
+[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 92개
 
 아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다.
 
@@ -209,6 +209,7 @@ python3 scripts/publish_simulation_videos.py --upload
 | [fix_v12_identity_regression1__9802012.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fix_v12_identity_regression1__9802012.mp4) | 성공 | 확인 | 55.195 |
 | [fix_v13_observation_regression6__9802001.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fix_v13_observation_regression6__9802001.mp4) | 성공 | 확인 | 210.411 |
 | [fix_v13_observation_regression6__9802011.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fix_v13_observation_regression6__9802011.mp4) | 성공 | 확인 | 218.153 |
+| [fix_v13_observation_regression6__9802014.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fix_v13_observation_regression6__9802014.mp4) | 실패 | 미달 | 600.416 |
 | [approach_rpp_v8_screen3__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/approach_rpp_v8_screen3__8600007.mp4) | 성공 | 확인 | 386.903 |
 | [approach_rpp_v8_screen3__8600133.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/approach_rpp_v8_screen3__8600133.mp4) | 실패 | 확인 | 600.0 |
 | [approach_rpp_v8_screen3__8600139.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/approach_rpp_v8_screen3__8600139.mp4) | 실패 | 확인 | 600.3 |
@@ -335,3 +336,31 @@ PYTHONPATH=src/osp_mission python3 training_robust/prepare_marker_size_curriculu
 이 수치는 입력 재생 결과이며 실제 주행 개선이나 완주율 향상을 뜻하지 않습니다.
 동일 배치3개에서 실제 Gazebo 비교를 진행합니다.
 [상세 진단과 비교 계획](repository_snapshot/route_timecost.json)
+
+## 추가 점검 결과 — 수정 전 확인 사항
+
+[재현 기록](repository_snapshot/additional_issues.json)은 실행 중인 v14 소스를 변경하지 않고 만든 읽기 전용 진단입니다.
+
+- **작은 마커 관측 완료 기준:** 크기 변동 배치는8cm까지 포함하지만 면 관측 신뢰도에는12cm 가정이 남아 있습니다.
+  정면3.5m의8cm 마커는 약15.2px(검출 최소18px)인데도 합성 입력에서 면 관측 완료가 재현됐습니다.
+  새로운 크기 범위의 실제 인식 성공을 아직 주장하지 않습니다.
+- **지도 갱신 중 관측 기억 손실:** v14 실제 입력 재생에서 이전 관측 면62개 중6개만 유지된 구간이 있었습니다.
+  SLAM 보정 후 일부 무효화는 필요하므로 모든 기억을 무조건 유지하는 수정은 적절하지 않습니다.
+  중복 탐색에 미치는 실제 영향과 보존 조건은 추가 검증이 필요합니다.
+- **상충 ID 보류의 해제 문제:** 관측 이력은 ID별30개로 제한되지만 우세 판정은3배를 요구합니다.
+  같은 위치의 잘못된 ID 관측이11개 쌓인 조건에서는 정상 ID를100프레임 더 봐도30:11에 머물러
+  둘 다 보류됩니다. 제어된 입력으로 재현했으며 완료된 실제 실험의 발생 사례로 확정한 것은 아닙니다.
+- **상태 표시와 완료 판정 불일치:** 접근 상태 표시는 과거 마커 위치, 완료 판정은 현재 위치를 사용합니다.
+  마커 추정 위치가10cm 수정되면 화면에는3개 접근 완료지만 내부 완료 조건은 거짓일 수 있습니다.
+  이는 상태 표시 결함이며 잘못된 완주를 인정했다는 뜻은 아닙니다.
+
+재현 명령:
+
+```bash
+python3 training_robust/audit_additional_issues.py \
+  --workspace training_robust/native90/runtime_route_v14_staging \
+  --campaign training_robust/native90/route_v14_timecost_screen3 \
+  --output repository_snapshot/additional_issues.json
+```
+
+실제 정책 입력 스냅샷은 로컬 실험 산출물로 보관합니다. 새 체크아웃에는 요약 재현 기록만 포함됩니다.
