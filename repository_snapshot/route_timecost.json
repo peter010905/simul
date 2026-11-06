@@ -1,0 +1,197 @@
+{
+  "status": "candidate_under_native_test",
+  "change": "Include requested scan duration in waypoint score",
+  "tests_not_native_success": true,
+  "offline_results": [
+    {
+      "seed": 9802011,
+      "actual_baseline_seconds": 218.153,
+      "actual_baseline_path_m": 27.68541897826661,
+      "actual_baseline_near_stationary_rotation_seconds": 80.988,
+      "scored_decisions": 10,
+      "changed": 6,
+      "baseline_full_scan_choices": 5,
+      "new_full_scan_choices": 1,
+      "replay_rows": [
+        {
+          "elapsed": 9.152999999999999,
+          "changed": true,
+          "old_scan_radians": 6.283185307179586,
+          "new_scan_radians": 1.0471975511965976,
+          "old_path_m": 0.6535534003319782,
+          "new_path_m": 0.694974757186514
+        },
+        {
+          "elapsed": 22.153,
+          "changed": true,
+          "old_scan_radians": 2.0943951023931953,
+          "new_scan_radians": 1.0471975511965976,
+          "old_path_m": 1.082842728610233,
+          "new_path_m": 1.1363961200015142
+        },
+        {
+          "elapsed": 49.653,
+          "changed": true,
+          "old_scan_radians": 2.0943951023931953,
+          "new_scan_radians": 1.0471975511965976,
+          "old_path_m": 3.1849242879508193,
+          "new_path_m": 3.0227922511788994
+        },
+        {
+          "elapsed": 69.153,
+          "changed": false,
+          "old_scan_radians": 6.283185307179586,
+          "new_scan_radians": 6.283185307179586,
+          "old_path_m": 1.2121320524181391,
+          "new_path_m": 1.2121320524181391
+        },
+        {
+          "elapsed": 83.153,
+          "changed": true,
+          "old_scan_radians": 6.283185307179586,
+          "new_scan_radians": 2.0943951023931953,
+          "old_path_m": 1.2207106963086614,
+          "new_path_m": 2.9662951345914674
+        },
+        {
+          "elapsed": 96.153,
+          "changed": true,
+          "old_scan_radians": 6.283185307179586,
+          "new_scan_radians": 2.0943951023931953,
+          "old_path_m": 0.47071068513279046,
+          "new_path_m": 3.8870058264297804
+        },
+        {
+          "elapsed": 106.653,
+          "changed": false,
+          "old_scan_radians": 1.0471975511965976,
+          "new_scan_radians": 1.0471975511965976,
+          "old_path_m": 5.0219300838332135,
+          "new_path_m": 5.0219300838332135
+        },
+        {
+          "elapsed": 129.153,
+          "changed": true,
+          "old_scan_radians": 6.283185307179586,
+          "new_scan_radians": 2.0943951023931953,
+          "old_path_m": 3.1192388620227924,
+          "new_path_m": 3.9213204019918693
+        },
+        {
+          "elapsed": 165.153,
+          "changed": false,
+          "old_scan_radians": 2.0943951023931953,
+          "new_scan_radians": 2.0943951023931953,
+          "old_path_m": 4.76274177076733,
+          "new_path_m": 4.76274177076733
+        },
+        {
+          "elapsed": 192.153,
+          "changed": false,
+          "old_scan_radians": 2.0943951023931953,
+          "new_scan_radians": 2.0943951023931953,
+          "old_path_m": 3.2778175081484884,
+          "new_path_m": 3.2778175081484884
+        }
+      ]
+    },
+    {
+      "seed": 9802001,
+      "actual_baseline_seconds": 210.411,
+      "actual_baseline_path_m": 35.97523049763976,
+      "actual_baseline_near_stationary_rotation_seconds": 54.87600000000004,
+      "scored_decisions": 10,
+      "changed": 5,
+      "baseline_full_scan_choices": 4,
+      "new_full_scan_choices": 1,
+      "replay_rows": [
+        {
+          "elapsed": 9.411,
+          "changed": true,
+          "old_scan_radians": 2.0943951023931953,
+          "new_scan_radians": 1.0471975511965976,
+          "old_path_m": 0.4914213635600584,
+          "new_path_m": 0.6656854348687239
+        },
+        {
+          "elapsed": 22.411,
+          "changed": false,
+          "old_scan_radians": 1.0471975511965976,
+          "new_scan_radians": 1.0471975511965976,
+          "old_path_m": 1.6849242655990777,
+          "new_path_m": 1.6849242655990777
+        },
+        {
+          "elapsed": 36.911,
+          "changed": false,
+          "old_scan_radians": 6.283185307179586,
+          "new_scan_radians": 6.283185307179586,
+          "old_path_m": 0.6328427219047102,
+          "new_path_m": 0.6328427219047102
+        },
+        {
+          "elapsed": 47.911,
+          "changed": true,
+          "old_scan_radians": 6.283185307179586,
+          "new_scan_radians": 2.0943951023931953,
+          "old_path_m": 3.3713203937962306,
+          "new_path_m": 2.6985281776350596
+        },
+        {
+          "elapsed": 67.911,
+          "changed": true,
+          "old_scan_radians": 6.283185307179586,
+          "new_scan_radians": 2.0943951023931953,
+          "old_path_m": 3.4612698887977493,
+          "new_path_m": 1.7949747735777912
+        },
+        {
+          "elapsed": 88.911,
+          "changed": false,
+          "old_scan_radians": 2.0943951023931953,
+          "new_scan_radians": 2.0943951023931953,
+          "old_path_m": 5.936143659829146,
+          "new_path_m": 5.936143659829146
+        },
+        {
+          "elapsed": 118.911,
+          "changed": true,
+          "old_scan_radians": 2.0943951023931953,
+          "new_scan_radians": 1.0471975511965976,
+          "old_path_m": 2.2091883421231495,
+          "new_path_m": 2.666295130121119
+        },
+        {
+          "elapsed": 131.911,
+          "changed": false,
+          "old_scan_radians": 2.0943951023931953,
+          "new_scan_radians": 2.0943951023931953,
+          "old_path_m": 3.628427178813968,
+          "new_path_m": 3.628427178813968
+        },
+        {
+          "elapsed": 152.411,
+          "changed": false,
+          "old_scan_radians": 2.0943951023931953,
+          "new_scan_radians": 2.0943951023931953,
+          "old_path_m": 7.884062160838251,
+          "new_path_m": 7.884062160838251
+        },
+        {
+          "elapsed": 184.911,
+          "changed": true,
+          "old_scan_radians": 6.283185307179586,
+          "new_scan_radians": 1.0471975511965976,
+          "old_path_m": 8.545332007912748,
+          "new_path_m": 5.171930086068387
+        }
+      ]
+    }
+  ],
+  "native_output": "/home/peter/simul/training_robust/native90/route_v14_timecost_screen3",
+  "native_episodes": 3,
+  "unit": "osp-route-v14-timecost.service",
+  "tests_passed": 192,
+  "workspace": "/home/peter/simul/training_robust/native90/runtime_route_v14_staging",
+  "native_status": "running_verified"
+}

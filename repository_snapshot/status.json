@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-06T01:05:01.647517+00:00",
+  "captured_utc": "2026-11-06T01:31:50.406538+00:00",
   "purpose": "Repository upload snapshot; not a live dashboard",
   "tests_passed_final": 189,
   "native_validation_complete": false,
@@ -9,7 +9,7 @@
       "workspace": "/home/peter/simul/training_robust/native90/runtime_fix_v10_escape_staging",
       "output": "/home/peter/simul/training_robust/native90/fix_v10_escape_regression3",
       "unit": "osp-fix-v10-escape.service",
-      "status": "running",
+      "status": "done",
       "completed_results": [
         {
           "seed": 9802005,
@@ -24,6 +24,14 @@
           "success": true,
           "reason": "all_targets_found",
           "elapsed_seconds": 345.245,
+          "targets": 3,
+          "collisions": 0
+        },
+        {
+          "seed": 9802018,
+          "success": false,
+          "reason": "timeout",
+          "elapsed_seconds": 600.477,
           "targets": 3,
           "collisions": 0
         }
@@ -68,7 +76,29 @@
       "workspace": "/home/peter/simul/training_robust/native90/runtime_fix_v13_observation_staging",
       "output": "/home/peter/simul/training_robust/native90/fix_v13_observation_regression6",
       "unit": "osp-fix-v13-observation.service",
-      "status": "prepared"
+      "status": "running",
+      "completed_results": [
+        {
+          "seed": 9802001,
+          "success": true,
+          "reason": "all_targets_found",
+          "elapsed_seconds": 210.411,
+          "targets": 3,
+          "collisions": 0
+        },
+        {
+          "seed": 9802011,
+          "success": true,
+          "reason": "all_targets_found",
+          "elapsed_seconds": 218.153,
+          "targets": 3,
+          "collisions": 0
+        }
+      ]
     }
+  ],
+  "additional_experiments": [
+    "marker_sizes.json",
+    "route_timecost.json"
   ]
 }

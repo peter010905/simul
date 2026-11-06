@@ -68,3 +68,7 @@ training_hidden/
 !/training_robust/native_diagnostics/native_search_v1_failure_analysis/analysis.json
 !/training_robust/native_diagnostics/native_search_v1_failure_analysis/replay.json
 !/training_robust/native_diagnostics/native_search_v1_failure_analysis/report_ko.txt
+
+!/training_robust/native90/runtime_route_v14_staging/
+/training_robust/native90/runtime_route_v14_staging/*
+!/training_robust/native90/runtime_route_v14_staging/src/

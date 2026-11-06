@@ -194,7 +194,7 @@ python3 scripts/publish_simulation_videos.py --upload
 
 ## 저장된 Gazebo 영상
 
-[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 88개
+[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 91개
 
 아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다.
 
@@ -204,8 +204,11 @@ python3 scripts/publish_simulation_videos.py --upload
 |---|---|---|---:|
 | [fix_v10_escape_regression3__9802005.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fix_v10_escape_regression3__9802005.mp4) | 성공 | 확인 | 335.45 |
 | [fix_v10_escape_regression3__9802009.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fix_v10_escape_regression3__9802009.mp4) | 성공 | 확인 | 345.245 |
+| [fix_v10_escape_regression3__9802018.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fix_v10_escape_regression3__9802018.mp4) | 실패 | 확인 | 600.477 |
 | [fix_v11_completion_regression1__9802000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fix_v11_completion_regression1__9802000.mp4) | 성공 | 확인 | 182.5 |
 | [fix_v12_identity_regression1__9802012.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fix_v12_identity_regression1__9802012.mp4) | 성공 | 확인 | 55.195 |
+| [fix_v13_observation_regression6__9802001.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fix_v13_observation_regression6__9802001.mp4) | 성공 | 확인 | 210.411 |
+| [fix_v13_observation_regression6__9802011.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fix_v13_observation_regression6__9802011.mp4) | 성공 | 확인 | 218.153 |
 | [approach_rpp_v8_screen3__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/approach_rpp_v8_screen3__8600007.mp4) | 성공 | 확인 | 386.903 |
 | [approach_rpp_v8_screen3__8600133.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/approach_rpp_v8_screen3__8600133.mp4) | 실패 | 확인 | 600.0 |
 | [approach_rpp_v8_screen3__8600139.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/approach_rpp_v8_screen3__8600139.mp4) | 실패 | 확인 | 600.3 |
@@ -318,3 +321,17 @@ PYTHONPATH=src/osp_mission python3 training_robust/prepare_marker_size_curriculu
 `--size-mode uniform`은 각 마커의 허용 범위에서 독립 균등 샘플링합니다.
 [크기 변동 Gazebo 검증 계획](repository_snapshot/marker_sizes.json)은5회이며 기존 수정본 회귀 검증 뒤에
 실행합니다. 배치 생성과 테스트 통과는 실제 Gazebo 인식 성공을 뜻하지 않습니다.
+
+## 이동·탐색 회전 비용 비교 후보(v14)
+
+경로 로그에서 목적지 도착 후360도 관측 회전 시간이 점수 계산에 포함되지 않음을 확인했습니다.
+최신 v13의 두 성공 사례는218.2초 중81.0초,210.4초 중54.9초를 거의 제자리에서 회전했습니다
+(실제 궤적 기준 선속도0.02m/s 미만·각속도0.15rad/s 초과; 전부 불필요한 회전이라는 뜻은 아님).
+
+`training_robust/native90/runtime_route_v14_staging`은 관측으로 얻을 정보의 점수에
+예정된 회전 시간(`abs(scan_angle)/0.85`)을 비용으로 추가한 비교 후보입니다.
+이동·방향전환 계수와 인식·접근·충돌 판정은 유지합니다.360도 관측도 정보 이득이 충분하면 선택합니다.
+테스트192개가 통과했으며, 저장 입력20개를 다시 평가했을 때360도 선택은9개에서2개로 줄었습니다.
+이 수치는 입력 재생 결과이며 실제 주행 개선이나 완주율 향상을 뜻하지 않습니다.
+동일 배치3개에서 실제 Gazebo 비교를 진행합니다.
+[상세 진단과 비교 계획](repository_snapshot/route_timecost.json)
