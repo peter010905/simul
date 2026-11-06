@@ -1,0 +1,68 @@
+{
+  "created_utc": "2026-11-06T01:08:36.508225+00:00",
+  "physical_size_range_m": [
+    0.08,
+    0.3
+  ],
+  "train_scenes": 40,
+  "validation_scenes": 20,
+  "sampling": "mixed shuffled thirds of each marker carrier feasible range",
+  "changes_during_episode": false,
+  "size_seed_independent_of_geometry": true,
+  "native_episodes_planned": 5,
+  "native_status": "queued_after_existing_regressions",
+  "native_output": "/home/peter/simul/training_robust/native90/marker_sizes_v1_native5",
+  "unit": "osp-marker-sizes-v1.service",
+  "scenarios": [
+    {
+      "seed": 9811000,
+      "sizes_m": [
+        0.27116792186781646,
+        0.22011297189666884,
+        0.11222841438273655
+      ],
+      "mount_profile": "walls",
+      "actual_obstacles": 8
+    },
+    {
+      "seed": 9811006,
+      "sizes_m": [
+        0.1710885822754307,
+        0.13720309880238657,
+        0.2926716202912759
+      ],
+      "mount_profile": "mixed",
+      "actual_obstacles": 12
+    },
+    {
+      "seed": 9811012,
+      "sizes_m": [
+        0.08980753761247745,
+        0.19980531252547412,
+        0.2379199165319652
+      ],
+      "mount_profile": "obstacles",
+      "actual_obstacles": 16
+    },
+    {
+      "seed": 9811018,
+      "sizes_m": [
+        0.25787417464470697,
+        0.16365594935114966,
+        0.08702790248188944
+      ],
+      "mount_profile": "hidden_obstacles",
+      "actual_obstacles": 24
+    },
+    {
+      "seed": 9811019,
+      "sizes_m": [
+        0.1632352114327414,
+        0.2525899683034589,
+        0.14047458913975963
+      ],
+      "mount_profile": "hidden_obstacles",
+      "actual_obstacles": 31
+    }
+  ]
+}

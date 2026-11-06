@@ -1,0 +1,853 @@
+{
+  "protocol": "independent_marker_sizes_v1",
+  "minimum_m": 0.08,
+  "maximum_m": 0.3,
+  "size_mode": "mixed",
+  "heldout_reserved_scenes_used": false,
+  "splits": {
+    "train": [
+      {
+        "seed": 9810000,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810000.yaml",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "walls",
+        "sizes_m": [
+          0.08721099163091124,
+          0.22648498592485594,
+          0.2891836333699573
+        ],
+        "size_seed": 19810000,
+        "sha256": "0eaa310a2c7315db3c72bc6122362b9f982aad440b60da6c3af9d9e110c20b63"
+      },
+      {
+        "seed": 9810001,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810001.yaml",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "walls",
+        "sizes_m": [
+          0.15003830605368895,
+          0.15652830486911712,
+          0.29132673370187784
+        ],
+        "size_seed": 19810001,
+        "sha256": "88e9566275c251871defd4ccda4cf275099a3781598d70ea6239a51f1d34f14f"
+      },
+      {
+        "seed": 9810002,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810002.yaml",
+        "requested_obstacles": 16,
+        "actual_obstacles": 16,
+        "mount_profile": "walls",
+        "sizes_m": [
+          0.1155744656351462,
+          0.2673869389652225,
+          0.17867620763033926
+        ],
+        "size_seed": 19810002,
+        "sha256": "700b3c5b04544beea0a60e593050875b39c35f002cdef31754ec7858fb1fc21a"
+      },
+      {
+        "seed": 9810003,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810003.yaml",
+        "requested_obstacles": 24,
+        "actual_obstacles": 24,
+        "mount_profile": "walls",
+        "sizes_m": [
+          0.1280186624551402,
+          0.29381529629846376,
+          0.17760003097050892
+        ],
+        "size_seed": 19810003,
+        "sha256": "07422a1a0166fcc3919af5087397dee54633d01c47031b528f6851747e55e922"
+      },
+      {
+        "seed": 9810004,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810004.yaml",
+        "requested_obstacles": 32,
+        "actual_obstacles": 31,
+        "mount_profile": "walls",
+        "sizes_m": [
+          0.09980959446148341,
+          0.24860853017109574,
+          0.17973492511647005
+        ],
+        "size_seed": 19810004,
+        "sha256": "ab16dc6f9ce639a311d5abf106b04a47aa7fdc404f750680cdda2d8f44e82bfc"
+      },
+      {
+        "seed": 9810005,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810005.yaml",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "mixed",
+        "sizes_m": [
+          0.2146708484791932,
+          0.11225104693197013,
+          0.2586791884748235
+        ],
+        "size_seed": 19810005,
+        "sha256": "5ddd86011a59be0ea5536d58ed5901a8d3b8e9b8f6f03669b203982a7dbcb6e8"
+      },
+      {
+        "seed": 9810006,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810006.yaml",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "mixed",
+        "sizes_m": [
+          0.12144592275341667,
+          0.283246905271284,
+          0.1626352148308356
+        ],
+        "size_seed": 19810006,
+        "sha256": "20d788fe804b033baebe4b26ae6561b1a3596a1e4c7974648a12f6a826c08567"
+      },
+      {
+        "seed": 9810007,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810007.yaml",
+        "requested_obstacles": 16,
+        "actual_obstacles": 16,
+        "mount_profile": "mixed",
+        "sizes_m": [
+          0.17516377294002533,
+          0.09229670627569259,
+          0.2761282450813862
+        ],
+        "size_seed": 19810007,
+        "sha256": "9e78f0919652d108dbce691fc786f0ab75e097e0818c149f912fec5cabf58e7c"
+      },
+      {
+        "seed": 9810008,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810008.yaml",
+        "requested_obstacles": 24,
+        "actual_obstacles": 23,
+        "mount_profile": "mixed",
+        "sizes_m": [
+          0.1024775568806487,
+          0.1542057772138638,
+          0.28998445647803345
+        ],
+        "size_seed": 19810008,
+        "sha256": "96469d69f59999057130b20904a47b30aa34b70f325433cd14728b5a9d83ab58"
+      },
+      {
+        "seed": 9810009,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810009.yaml",
+        "requested_obstacles": 32,
+        "actual_obstacles": 30,
+        "mount_profile": "mixed",
+        "sizes_m": [
+          0.15038823092306072,
+          0.2303553284201812,
+          0.19390888282319257
+        ],
+        "size_seed": 19810009,
+        "sha256": "acc441cc19de2670cace2546fc966797c565bad0814cf70705c6acb0877c0d87"
+      },
+      {
+        "seed": 9810010,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810010.yaml",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "obstacles",
+        "sizes_m": [
+          0.16699626948081145,
+          0.271511896081579,
+          0.09956444353172762
+        ],
+        "size_seed": 19810010,
+        "sha256": "4595b1ea70da990250fb5abf89ecd907bb1b0f2872498b066805f381122a7d5f"
+      },
+      {
+        "seed": 9810011,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810011.yaml",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "obstacles",
+        "sizes_m": [
+          0.19643445695806544,
+          0.23208915425938004,
+          0.14772156209966153
+        ],
+        "size_seed": 19810011,
+        "sha256": "07bf6f1c811fa48ba0f040230c0168169cbc90afa14f6b2a7e68c8b74e9b4ea6"
+      },
+      {
+        "seed": 9810012,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810012.yaml",
+        "requested_obstacles": 16,
+        "actual_obstacles": 16,
+        "mount_profile": "obstacles",
+        "sizes_m": [
+          0.22411652487494016,
+          0.22722691554171215,
+          0.11254868120450384
+        ],
+        "size_seed": 19810012,
+        "sha256": "49c9d6bf6550e01bcc1d77270a3c010445f8ebcf13f954e1b9b0f03a0fc8f7bc"
+      },
+      {
+        "seed": 9810013,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810013.yaml",
+        "requested_obstacles": 24,
+        "actual_obstacles": 24,
+        "mount_profile": "obstacles",
+        "sizes_m": [
+          0.299422036279512,
+          0.12882751453987148,
+          0.21787815768566599
+        ],
+        "size_seed": 19810013,
+        "sha256": "635169e1a4b04cc026dfaf3df36da339e59e703269cfea26d432f12231f57090"
+      },
+      {
+        "seed": 9810014,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810014.yaml",
+        "requested_obstacles": 32,
+        "actual_obstacles": 31,
+        "mount_profile": "obstacles",
+        "sizes_m": [
+          0.29333453753447797,
+          0.11598459643085965,
+          0.1844276792752675
+        ],
+        "size_seed": 19810014,
+        "sha256": "04a48b8811e0d5da5db2afe816b1003ec7e37bc2b13830f43f455ee701438aa6"
+      },
+      {
+        "seed": 9810015,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810015.yaml",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "hidden_obstacles",
+        "sizes_m": [
+          0.12388292556121995,
+          0.23993279750971935,
+          0.19739264180721022
+        ],
+        "size_seed": 19810015,
+        "sha256": "d449ce2e435acd448afef094fa10f6226e5b1e8ea68a2b23b5176608d571e9c6"
+      },
+      {
+        "seed": 9810016,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810016.yaml",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "hidden_obstacles",
+        "sizes_m": [
+          0.1287930834520415,
+          0.2301301017985677,
+          0.14997130228731043
+        ],
+        "size_seed": 19810016,
+        "sha256": "fd8c05282fe08d461d49727fd667673712de728df212e2406321c7039f420db1"
+      },
+      {
+        "seed": 9810017,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810017.yaml",
+        "requested_obstacles": 16,
+        "actual_obstacles": 16,
+        "mount_profile": "hidden_obstacles",
+        "sizes_m": [
+          0.10163152773206166,
+          0.1693518826485701,
+          0.23292377888217908
+        ],
+        "size_seed": 19810017,
+        "sha256": "5c0c2837d2decfdcaccecb8394e7a0c31b45f0319e2c1d92eb219c52be7e1366"
+      },
+      {
+        "seed": 9810018,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810018.yaml",
+        "requested_obstacles": 24,
+        "actual_obstacles": 24,
+        "mount_profile": "hidden_obstacles",
+        "sizes_m": [
+          0.21795448687960894,
+          0.254399417878662,
+          0.11778533161956119
+        ],
+        "size_seed": 19810018,
+        "sha256": "837dc2e880a13df541a5855189f9a288704a243a65cd38e734b7cf02f61d7df4"
+      },
+      {
+        "seed": 9810019,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810019.yaml",
+        "requested_obstacles": 32,
+        "actual_obstacles": 30,
+        "mount_profile": "hidden_obstacles",
+        "sizes_m": [
+          0.08527750739992346,
+          0.1666750904943245,
+          0.2562222844458345
+        ],
+        "size_seed": 19810019,
+        "sha256": "2275d565502f95e9bc3a3e317f24633e672327ffa5ede74bbe11ab3226cf2af0"
+      },
+      {
+        "seed": 9810020,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810020.yaml",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "walls",
+        "sizes_m": [
+          0.26610565589259244,
+          0.19358620749081845,
+          0.13987358384973383
+        ],
+        "size_seed": 19810020,
+        "sha256": "732256cecae3fb32850baa1b1c1d8e2288c583e36d8ca08cdd620d2376ec82ef"
+      },
+      {
+        "seed": 9810021,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810021.yaml",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "walls",
+        "sizes_m": [
+          0.09157007866361036,
+          0.26454602833581986,
+          0.2079155447340839
+        ],
+        "size_seed": 19810021,
+        "sha256": "866ce2b2eb518e6c70aafcec21fc545f93e310a7ff03cba6f6571be909f4d360"
+      },
+      {
+        "seed": 9810022,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810022.yaml",
+        "requested_obstacles": 16,
+        "actual_obstacles": 16,
+        "mount_profile": "walls",
+        "sizes_m": [
+          0.09084352855235474,
+          0.21914098197025184,
+          0.2636583475211735
+        ],
+        "size_seed": 19810022,
+        "sha256": "cafe57d0983de2465f3d92dadde80d5aa8b79b1b4d8b15813f07058866aa03ca"
+      },
+      {
+        "seed": 9810023,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810023.yaml",
+        "requested_obstacles": 24,
+        "actual_obstacles": 24,
+        "mount_profile": "walls",
+        "sizes_m": [
+          0.26861887829194775,
+          0.10988237271412585,
+          0.22320032345500795
+        ],
+        "size_seed": 19810023,
+        "sha256": "45d4ede7b6595b318eef9b126646b63192b10a8d6321e10fb02f9a6307856461"
+      },
+      {
+        "seed": 9810024,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810024.yaml",
+        "requested_obstacles": 32,
+        "actual_obstacles": 31,
+        "mount_profile": "walls",
+        "sizes_m": [
+          0.14611128388293487,
+          0.19753403324011515,
+          0.29955311853227456
+        ],
+        "size_seed": 19810024,
+        "sha256": "8757a969e0faaaccee8ca2674e3efeda55bad459874b7377483b778f1f1d9273"
+      },
+      {
+        "seed": 9810025,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810025.yaml",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "mixed",
+        "sizes_m": [
+          0.1047557125435538,
+          0.1575455909704216,
+          0.24374404743134997
+        ],
+        "size_seed": 19810025,
+        "sha256": "a89527893b190b77acffbe1f8bb2690641c0f8e6d2c39f73a36da0bc9de23b77"
+      },
+      {
+        "seed": 9810026,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810026.yaml",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "mixed",
+        "sizes_m": [
+          0.11922445425437314,
+          0.21027694365344762,
+          0.2319910764343373
+        ],
+        "size_seed": 19810026,
+        "sha256": "0e51eecf8d023a1324ec927cc638d55ec90335ce72a38845f5f536d4235b0224"
+      },
+      {
+        "seed": 9810027,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810027.yaml",
+        "requested_obstacles": 16,
+        "actual_obstacles": 16,
+        "mount_profile": "mixed",
+        "sizes_m": [
+          0.08406192814970828,
+          0.18059383861912293,
+          0.2853217407429843
+        ],
+        "size_seed": 19810027,
+        "sha256": "9b3e07999bc5e0137f1e7a4a1fcea3fec88d8e49bf28785741da006d12465a36"
+      },
+      {
+        "seed": 9810028,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810028.yaml",
+        "requested_obstacles": 24,
+        "actual_obstacles": 24,
+        "mount_profile": "mixed",
+        "sizes_m": [
+          0.19852125477283367,
+          0.27289090668092525,
+          0.14471285772967007
+        ],
+        "size_seed": 19810028,
+        "sha256": "5045baa79e54763f1955674d2aae1a3e448ae58544a57c6e024d190b47dc962c"
+      },
+      {
+        "seed": 9810029,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810029.yaml",
+        "requested_obstacles": 32,
+        "actual_obstacles": 32,
+        "mount_profile": "mixed",
+        "sizes_m": [
+          0.08685213399078166,
+          0.19345615281116718,
+          0.268153840612425
+        ],
+        "size_seed": 19810029,
+        "sha256": "d1a4c2345c6089b024ecd7bcc4d15c74660728a4bd87ebe5cdfb429ec8f4f9e6"
+      },
+      {
+        "seed": 9810030,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810030.yaml",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "obstacles",
+        "sizes_m": [
+          0.11742750856940382,
+          0.29316006404690415,
+          0.2246250043490352
+        ],
+        "size_seed": 19810030,
+        "sha256": "a513582db5b735eb2ccf83db67a585761c796fa8ba0142b8a5ea888cbb3bc3d0"
+      },
+      {
+        "seed": 9810031,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810031.yaml",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "obstacles",
+        "sizes_m": [
+          0.13939526076352846,
+          0.1583944433342555,
+          0.28667578589411424
+        ],
+        "size_seed": 19810031,
+        "sha256": "84bd3c486c26bd2155c3dafc533f1b567220c4fbfdded0abad20964390b1b05d"
+      },
+      {
+        "seed": 9810032,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810032.yaml",
+        "requested_obstacles": 16,
+        "actual_obstacles": 16,
+        "mount_profile": "obstacles",
+        "sizes_m": [
+          0.10474795181273142,
+          0.2067616939785819,
+          0.256050629656539
+        ],
+        "size_seed": 19810032,
+        "sha256": "be752666301eb0be5b91455acde7d9874430cfef50f45eb4d196a19787276365"
+      },
+      {
+        "seed": 9810033,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810033.yaml",
+        "requested_obstacles": 24,
+        "actual_obstacles": 24,
+        "mount_profile": "obstacles",
+        "sizes_m": [
+          0.25665735814693263,
+          0.1475828655014881,
+          0.18166119938614106
+        ],
+        "size_seed": 19810033,
+        "sha256": "1fa514bcd3faba5f841b4804bdbc3e9ce9467baa205c21a7685c483751216111"
+      },
+      {
+        "seed": 9810034,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810034.yaml",
+        "requested_obstacles": 32,
+        "actual_obstacles": 31,
+        "mount_profile": "obstacles",
+        "sizes_m": [
+          0.13456982152871863,
+          0.21647556879621493,
+          0.2459917065299826
+        ],
+        "size_seed": 19810034,
+        "sha256": "b54a017e3f1f1d22e46c2bd5014767eff71d8ba5b898706aa3b3f6de2d3f951b"
+      },
+      {
+        "seed": 9810035,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810035.yaml",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "hidden_obstacles",
+        "sizes_m": [
+          0.1586036365561226,
+          0.11160749914143693,
+          0.24001118551961986
+        ],
+        "size_seed": 19810035,
+        "sha256": "9a6d559692b9c38de13d011ae02fc85d7bd3aec43cd75a12e81f4b44512f330f"
+      },
+      {
+        "seed": 9810036,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810036.yaml",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "hidden_obstacles",
+        "sizes_m": [
+          0.16583097045482703,
+          0.13540103751937316,
+          0.2909281471172892
+        ],
+        "size_seed": 19810036,
+        "sha256": "ad1142f02c842ecaf6d47c1886011df8b247259ba06e0df1f614517f20676458"
+      },
+      {
+        "seed": 9810037,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810037.yaml",
+        "requested_obstacles": 16,
+        "actual_obstacles": 16,
+        "mount_profile": "hidden_obstacles",
+        "sizes_m": [
+          0.26519644461472064,
+          0.19668121967106011,
+          0.1223209692189264
+        ],
+        "size_seed": 19810037,
+        "sha256": "fa5a09deb824bdd960269e4200feb505cdb018f1fccc7d52e26501decba1c1fb"
+      },
+      {
+        "seed": 9810038,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810038.yaml",
+        "requested_obstacles": 24,
+        "actual_obstacles": 24,
+        "mount_profile": "hidden_obstacles",
+        "sizes_m": [
+          0.15195504970688967,
+          0.2659246238810534,
+          0.1782182115057141
+        ],
+        "size_seed": 19810038,
+        "sha256": "9365afcf0e82e282b7c83e1eb13b15c2b8d09308fb077f30fdefaf2de7668aed"
+      },
+      {
+        "seed": 9810039,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810039.yaml",
+        "requested_obstacles": 32,
+        "actual_obstacles": 31,
+        "mount_profile": "hidden_obstacles",
+        "sizes_m": [
+          0.09223446758063504,
+          0.20768349914524759,
+          0.2348827865242683
+        ],
+        "size_seed": 19810039,
+        "sha256": "54c27de9375123270dd0a6dbc61e98fe10ef4461987d9c134aeed9529df89b47"
+      }
+    ],
+    "validation": [
+      {
+        "seed": 9811000,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/validation/9811000.yaml",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "walls",
+        "sizes_m": [
+          0.27116792186781646,
+          0.22011297189666884,
+          0.11222841438273655
+        ],
+        "size_seed": 19811000,
+        "sha256": "1148914da80789ae12616b10ced84d4476c86f2bc3328daa217a49c6e8b9e0b5"
+      },
+      {
+        "seed": 9811001,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/validation/9811001.yaml",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "walls",
+        "sizes_m": [
+          0.29741227271628606,
+          0.19826355768477605,
+          0.10794542970746679
+        ],
+        "size_seed": 19811001,
+        "sha256": "3b1344b9f3fd4666937a8ffa8272da4c6d1355ec69a3cf3c4177d7ffdb0480cd"
+      },
+      {
+        "seed": 9811002,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/validation/9811002.yaml",
+        "requested_obstacles": 16,
+        "actual_obstacles": 16,
+        "mount_profile": "walls",
+        "sizes_m": [
+          0.16854781651404727,
+          0.246311010916684,
+          0.10816607711704952
+        ],
+        "size_seed": 19811002,
+        "sha256": "a4cd4d97b003e20521d449c34d5ef0ad252c3434da2119775c09439a706eeec4"
+      },
+      {
+        "seed": 9811003,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/validation/9811003.yaml",
+        "requested_obstacles": 24,
+        "actual_obstacles": 24,
+        "mount_profile": "walls",
+        "sizes_m": [
+          0.08261037360275003,
+          0.21893459303112212,
+          0.26627682211261994
+        ],
+        "size_seed": 19811003,
+        "sha256": "2561bfed86c5e5b63369bf5c62208709086aa3df64579f611137f0d769ad1779"
+      },
+      {
+        "seed": 9811004,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/validation/9811004.yaml",
+        "requested_obstacles": 32,
+        "actual_obstacles": 31,
+        "mount_profile": "walls",
+        "sizes_m": [
+          0.08397033868181117,
+          0.2491668141870652,
+          0.1740961800179825
+        ],
+        "size_seed": 19811004,
+        "sha256": "e528a98641e23468647a86b99f8c6392d7ab700733fda54e6a002aaf12367da9"
+      },
+      {
+        "seed": 9811005,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/validation/9811005.yaml",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "mixed",
+        "sizes_m": [
+          0.13445631983981618,
+          0.22120142698700884,
+          0.2682477349853235
+        ],
+        "size_seed": 19811005,
+        "sha256": "d1936488bb5e2c8eaa1073cf76f8e1d01c2a324e4beb839c0b99f4a49a6662a0"
+      },
+      {
+        "seed": 9811006,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/validation/9811006.yaml",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "mixed",
+        "sizes_m": [
+          0.1710885822754307,
+          0.13720309880238657,
+          0.2926716202912759
+        ],
+        "size_seed": 19811006,
+        "sha256": "ad582cf5c20826aad99ceb77291c7a5b77066feb66725e5afb58da5c13a36106"
+      },
+      {
+        "seed": 9811007,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/validation/9811007.yaml",
+        "requested_obstacles": 16,
+        "actual_obstacles": 16,
+        "mount_profile": "mixed",
+        "sizes_m": [
+          0.25075108520310047,
+          0.1576655318939258,
+          0.12441345008955566
+        ],
+        "size_seed": 19811007,
+        "sha256": "e1f3f279f297d33cb0ae24bbed4aeaccf31ac63530b32236d27cd58ff7a74a7f"
+      },
+      {
+        "seed": 9811008,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/validation/9811008.yaml",
+        "requested_obstacles": 24,
+        "actual_obstacles": 23,
+        "mount_profile": "mixed",
+        "sizes_m": [
+          0.2009765483690319,
+          0.27616607647435426,
+          0.12818135000462771
+        ],
+        "size_seed": 19811008,
+        "sha256": "320b600b825c30fb842d5afc129d1ce59f9cc7a087df533f16a2e432691e378e"
+      },
+      {
+        "seed": 9811009,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/validation/9811009.yaml",
+        "requested_obstacles": 32,
+        "actual_obstacles": 32,
+        "mount_profile": "mixed",
+        "sizes_m": [
+          0.11800547887566415,
+          0.22731863807923774,
+          0.16267007136833966
+        ],
+        "size_seed": 19811009,
+        "sha256": "6284eb71dd8cb75c38ff3d500cbf67c3ac4e6c0d430e6a71093b74f7aeed3090"
+      },
+      {
+        "seed": 9811010,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/validation/9811010.yaml",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "obstacles",
+        "sizes_m": [
+          0.15278671582719394,
+          0.26742235656374974,
+          0.1727956973412478
+        ],
+        "size_seed": 19811010,
+        "sha256": "4aadfd826a63aa81db7140107514cf449366587e88f8dcd3da6d7a7827070c0d"
+      },
+      {
+        "seed": 9811011,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/validation/9811011.yaml",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "obstacles",
+        "sizes_m": [
+          0.17755546180596227,
+          0.23437879768126568,
+          0.15261057057065996
+        ],
+        "size_seed": 19811011,
+        "sha256": "4357a0502be761c13819a2536b33ea272284c177f42ba54b45cc6fafbc995417"
+      },
+      {
+        "seed": 9811012,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/validation/9811012.yaml",
+        "requested_obstacles": 16,
+        "actual_obstacles": 16,
+        "mount_profile": "obstacles",
+        "sizes_m": [
+          0.08980753761247745,
+          0.19980531252547412,
+          0.2379199165319652
+        ],
+        "size_seed": 19811012,
+        "sha256": "996ca413a8fe0f58a8fcb385e18fc0b3b684be748f4275f7bdf44759213b2bbf"
+      },
+      {
+        "seed": 9811013,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/validation/9811013.yaml",
+        "requested_obstacles": 24,
+        "actual_obstacles": 24,
+        "mount_profile": "obstacles",
+        "sizes_m": [
+          0.28336502499132266,
+          0.09337969227613449,
+          0.18929423561826694
+        ],
+        "size_seed": 19811013,
+        "sha256": "fae5364882092a1ada492411b53feb499a278085a0a6429dc07dd076b2768299"
+      },
+      {
+        "seed": 9811014,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/validation/9811014.yaml",
+        "requested_obstacles": 32,
+        "actual_obstacles": 31,
+        "mount_profile": "obstacles",
+        "sizes_m": [
+          0.16387598173456772,
+          0.13831265583768923,
+          0.2409499189859926
+        ],
+        "size_seed": 19811014,
+        "sha256": "a800a8dc27352cd16d4756efeb4066820bff8608430a33041aba0c6279f7d569"
+      },
+      {
+        "seed": 9811015,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/validation/9811015.yaml",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "hidden_obstacles",
+        "sizes_m": [
+          0.12407974008801984,
+          0.27289229564275186,
+          0.16728065268957948
+        ],
+        "size_seed": 19811015,
+        "sha256": "d6e0d5a129fe591b4754ae553b5242da300794cad91c82ff44161af7a14b867b"
+      },
+      {
+        "seed": 9811016,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/validation/9811016.yaml",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "hidden_obstacles",
+        "sizes_m": [
+          0.23871428067538086,
+          0.12543660338194362,
+          0.16878994558456717
+        ],
+        "size_seed": 19811016,
+        "sha256": "44485451b236bd7d7f3754fa6f1caa8b67863673194f6118bbdc7da44fe46a37"
+      },
+      {
+        "seed": 9811017,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/validation/9811017.yaml",
+        "requested_obstacles": 16,
+        "actual_obstacles": 16,
+        "mount_profile": "hidden_obstacles",
+        "sizes_m": [
+          0.1946420379525144,
+          0.11852520391264512,
+          0.2900739976594123
+        ],
+        "size_seed": 19811017,
+        "sha256": "ee4a822a70b12f7eb500fcae815d348be9415a0cb142a5647af36ed9af803c9b"
+      },
+      {
+        "seed": 9811018,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/validation/9811018.yaml",
+        "requested_obstacles": 24,
+        "actual_obstacles": 24,
+        "mount_profile": "hidden_obstacles",
+        "sizes_m": [
+          0.25787417464470697,
+          0.16365594935114966,
+          0.08702790248188944
+        ],
+        "size_seed": 19811018,
+        "sha256": "47c678e268022e48a8c6336cb4cff7dc89f397f71954b91b8316a7d3f4e95925"
+      },
+      {
+        "seed": 9811019,
+        "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/validation/9811019.yaml",
+        "requested_obstacles": 32,
+        "actual_obstacles": 31,
+        "mount_profile": "hidden_obstacles",
+        "sizes_m": [
+          0.1632352114327414,
+          0.2525899683034589,
+          0.14047458913975963
+        ],
+        "size_seed": 19811019,
+        "sha256": "d631bbc3e69b0453922b1f6a9313bb940dcc6166b430f2b4cdb8e7aa76181655"
+      }
+    ]
+  }
+}

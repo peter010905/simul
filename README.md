@@ -294,3 +294,27 @@ python3 scripts/publish_simulation_videos.py --upload
 </details>
 
 <!-- SIMULATION_VIDEO_INDEX:END -->
+
+## 마커 크기 무작위화
+
+기존 배치는 마커 한 변12~30cm를 사용했습니다. 새 크기 변동 배치
+`scenarios_robust/marker_sizes_v1`은 기본 **8~30cm** 범위에서 크기를 생성합니다.
+크기는 검은 마커 정사각형의 한 변이며, 흰색 배경은 그1.25배입니다.
+벽·장애물·가려진 면의 배치40개(학습용)와20개(검증용),총180개 마커를 생성했습니다.
+각 마커의 부착면에 맞는 범위를3등분하고 작은·중간·큰 구간을 무작위로 배정합니다.
+좁은 부착면에서는 상한이 작아지며, 각 마커에 실제 적용한 크기와 상한을 YAML에 기록합니다.
+
+크기 난수 시드는 장애물 배치·ID·시작 위치와 독립적입니다. 한 회차 안에서는 물리적 크기가
+고정되고 다음 배치에서 달라집니다. 실제 검출기는 정답 크기를 전달받지 않고 RGB·깊이·LiDAR를 사용합니다.
+새 배치를 만들려면 기존 폴더와 겹치지 않는 출력 경로를 지정합니다:
+
+```bash
+PYTHONPATH=src/osp_mission python3 training_robust/prepare_marker_size_curriculum.py \
+  --output scenarios_robust/marker_sizes_v2 \
+  --minimum 0.08 --maximum 0.30 --size-mode mixed \
+  --seed 9820000 --size-seed 19820000
+```
+
+`--size-mode uniform`은 각 마커의 허용 범위에서 독립 균등 샘플링합니다.
+[크기 변동 Gazebo 검증 계획](repository_snapshot/marker_sizes.json)은5회이며 기존 수정본 회귀 검증 뒤에
+실행합니다. 배치 생성과 테스트 통과는 실제 Gazebo 인식 성공을 뜻하지 않습니다.

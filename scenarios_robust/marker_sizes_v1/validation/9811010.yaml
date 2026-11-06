@@ -1,0 +1,124 @@
+seed: 9811010
+randomize: false
+difficulty: 8
+start:
+- 1.2
+- 10.0
+- 0.8439391971229315
+targets:
+- x: 8.121799535507016
+  y: 2.665308405046956
+  yaw: 1.9206103957674725
+  size: 0.15278671582719394
+  mount: obstacle
+  carrier_obstacle: 6
+  id: 922
+  size_sampling_bounds_m:
+  - 0.08
+  - 0.3
+- x: 13.744137855870367
+  y: 2.389339778064597
+  yaw: -3.2822844762383907
+  size: 0.26742235656374974
+  mount: obstacle
+  carrier_obstacle: 2
+  id: 383
+  size_sampling_bounds_m:
+  - 0.08
+  - 0.3
+- x: 6.432427420888584
+  y: 9.581084307192741
+  yaw: 2.2662883690736466
+  size: 0.1727956973412478
+  mount: obstacle
+  carrier_obstacle: 5
+  id: 550
+  size_sampling_bounds_m:
+  - 0.08
+  - 0.3
+obstacles:
+- type: box
+  kind: box
+  x: 10.351422897118134
+  y: 6.728263597085409
+  sx: 0.9712212612495019
+  sy: 0.9733743620167097
+  radius: 0.2933357751713136
+  yaw: -1.0950781420967193
+  height: 1.1439127161901366
+- type: cylinder
+  kind: cylinder
+  x: 3.585922696268347
+  y: 8.456621162113757
+  sx: 1.659100976473289
+  sy: 0.16
+  radius: 0.2515887068971814
+  yaw: 2.2662883690736466
+  height: 0.6788733618122126
+- type: box
+  kind: rack
+  x: 14.070877198524915
+  y: 2.343064493498489
+  sx: 1.4427094613050386
+  sy: 0.55
+  radius: 0.21014192711412238
+  yaw: -1.7114881494434944
+  height: 0.732066384505393
+- type: box
+  kind: partition
+  x: 13.895783096008177
+  y: 7.844110168533005
+  sx: 2.3916406397082386
+  sy: 0.16
+  radius: 0.26576254302817987
+  yaw: -0.9249708559707304
+  height: 1.0630571194627256
+- type: box
+  kind: box
+  x: 4.684485976896378
+  y: 1.889924810171432
+  sx: 0.5256400101873168
+  sy: 0.44176659405186774
+  radius: 0.18017928082069204
+  yaw: -0.5199970777808658
+  height: 0.887200565748494
+- type: cylinder
+  kind: cylinder
+  x: 6.685342499050551
+  y: 9.278050951811972
+  sx: 2.789213644208384
+  sy: 0.16
+  radius: 0.33970907164011477
+  yaw: 1.5749355695866916
+  height: 0.753002805508402
+- type: box
+  kind: rack
+  x: 8.54691385093495
+  y: 1.500029980402309
+  sx: 2.3708030861993628
+  sy: 0.55
+  radius: 0.2677354156439554
+  yaw: -1.2209822578223206
+  height: 0.9958333547473638
+- type: box
+  kind: partition
+  x: 11.574719243901857
+  y: 4.566370034064079
+  sx: 2.045873069475103
+  sy: 0.16
+  radius: 0.3263631791731988
+  yaw: 1.2919886826662914
+  height: 0.6823632297220693
+task: robust_search_v1
+mount_profile: obstacles
+actual_obstacles: 8
+sensor_stress:
+  detection_dropout: 0.08
+  speed_limit: 0.2
+marker_size_randomization:
+  seed: 19811010
+  minimum_m: 0.08
+  maximum_m: 0.3
+  mode: mixed
+  unit: metres; black square side length; backing=1.25*size
+  changes_during_episode: false
