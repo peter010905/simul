@@ -1,0 +1,26 @@
+{
+  "exact_metrics": true,
+  "seed": 8500019,
+  "result": {
+    "seed": 8500019,
+    "difficulty": 32,
+    "found": 3,
+    "success": true,
+    "seconds": 518.0002169511399,
+    "collisions": 0,
+    "safety_stops": 1,
+    "distance": 67.12028619723162,
+    "decisions": 26,
+    "reward": 2235.819967457329,
+    "coverage": 0.936544200435063,
+    "mount_profile": "hidden_obstacles",
+    "actual_obstacles": 31,
+    "speed": 0.23,
+    "dropout": 0.2,
+    "approached": 3,
+    "travel_glances": 0,
+    "missing": []
+  },
+  "wall_seconds": 19.573208930902183,
+  "test_loaded": false
+}

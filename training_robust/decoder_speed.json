@@ -1,0 +1,41 @@
+{
+  "opencv": "4.6.0",
+  "threads": 1,
+  "environment": "synthetic_cpu_decoder_only",
+  "includes_ros": false,
+  "includes_depth": false,
+  "includes_rendering": false,
+  "note": "CPU headroom does not establish Gazebo real-time factor or real camera detection accuracy",
+  "rows": [
+    {
+      "width": 960,
+      "height": 720,
+      "frames": 72,
+      "median_ms": 152.83007151447237,
+      "p95_ms": 217.60780960321426,
+      "maximum_ms": 282.15458570048213,
+      "decoded": 216,
+      "expected": 216
+    },
+    {
+      "width": 1280,
+      "height": 960,
+      "frames": 72,
+      "median_ms": 280.0422552973032,
+      "p95_ms": 456.65247126016783,
+      "maximum_ms": 566.2096180021763,
+      "decoded": 213,
+      "expected": 216
+    },
+    {
+      "width": 1600,
+      "height": 1200,
+      "frames": 72,
+      "median_ms": 428.1875954475254,
+      "p95_ms": 654.141724226065,
+      "maximum_ms": 773.2644299976528,
+      "decoded": 216,
+      "expected": 216
+    }
+  ]
+}

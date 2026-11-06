@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "rows": [
+    {
+      "planner": "edge",
+      "exact_previous_metrics": true,
+      "seed": 8500019
+    },
+    {
+      "planner": "view_route",
+      "exact_previous_metrics": true,
+      "seed": 8500019
+    }
+  ],
+  "test_loaded": false
+}

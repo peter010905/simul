@@ -1,0 +1,171 @@
+{
+  "planner": "surface_endpoint",
+  "parameters": [
+    1.0,
+    1.204765992697077,
+    0.39116097662487975,
+    0.7812959734881743,
+    0.6473764656964455
+  ],
+  "validation": {
+    "episodes": 80,
+    "success_rate": 0.7875,
+    "mean_found": 2.7625,
+    "mean_seconds": 413.75846264295103,
+    "successful_mean_seconds": 363.5028097053347,
+    "collisions": 1,
+    "mean_reward": 558.4794806035574,
+    "by_obstacles": {
+      "8": {
+        "success_rate": 0.6875,
+        "episodes": 16
+      },
+      "12": {
+        "success_rate": 0.75,
+        "episodes": 16
+      },
+      "16": {
+        "success_rate": 0.875,
+        "episodes": 16
+      },
+      "24": {
+        "success_rate": 0.8125,
+        "episodes": 16
+      },
+      "32": {
+        "success_rate": 0.8125,
+        "episodes": 16
+      }
+    },
+    "by_mount": {
+      "hidden_obstacles": {
+        "episodes": 20,
+        "success_rate": 0.65,
+        "mean_found": 2.6,
+        "mean_seconds": 454.72852945927787,
+        "successful_mean_seconds": 376.5054299373505,
+        "collisions": 1,
+        "mean_reward": 493.16372058110835,
+        "by_obstacles": {
+          "8": {
+            "success_rate": 0.75,
+            "episodes": 4
+          },
+          "12": {
+            "success_rate": 0.5,
+            "episodes": 4
+          },
+          "16": {
+            "success_rate": 0.75,
+            "episodes": 4
+          },
+          "24": {
+            "success_rate": 0.75,
+            "episodes": 4
+          },
+          "32": {
+            "success_rate": 0.5,
+            "episodes": 4
+          }
+        }
+      },
+      "mixed": {
+        "episodes": 20,
+        "success_rate": 0.8,
+        "mean_found": 2.8,
+        "mean_seconds": 400.0968886451703,
+        "successful_mean_seconds": 350.1211108064628,
+        "collisions": 0,
+        "mean_reward": 570.1414667032245,
+        "by_obstacles": {
+          "8": {
+            "success_rate": 0.5,
+            "episodes": 4
+          },
+          "12": {
+            "success_rate": 0.75,
+            "episodes": 4
+          },
+          "16": {
+            "success_rate": 1.0,
+            "episodes": 4
+          },
+          "24": {
+            "success_rate": 0.75,
+            "episodes": 4
+          },
+          "32": {
+            "success_rate": 1.0,
+            "episodes": 4
+          }
+        }
+      },
+      "obstacles": {
+        "episodes": 20,
+        "success_rate": 0.7,
+        "mean_found": 2.65,
+        "mean_seconds": 455.9439747945306,
+        "successful_mean_seconds": 394.2056782779009,
+        "collisions": 0,
+        "mean_reward": 518.4524037808203,
+        "by_obstacles": {
+          "8": {
+            "success_rate": 0.5,
+            "episodes": 4
+          },
+          "12": {
+            "success_rate": 0.75,
+            "episodes": 4
+          },
+          "16": {
+            "success_rate": 0.75,
+            "episodes": 4
+          },
+          "24": {
+            "success_rate": 0.75,
+            "episodes": 4
+          },
+          "32": {
+            "success_rate": 0.75,
+            "episodes": 4
+          }
+        }
+      },
+      "walls": {
+        "episodes": 20,
+        "success_rate": 1.0,
+        "mean_found": 3.0,
+        "mean_seconds": 344.26445767282513,
+        "successful_mean_seconds": 344.26445767282513,
+        "collisions": 0,
+        "mean_reward": 652.1603313490762,
+        "by_obstacles": {
+          "8": {
+            "success_rate": 1.0,
+            "episodes": 4
+          },
+          "12": {
+            "success_rate": 1.0,
+            "episodes": 4
+          },
+          "16": {
+            "success_rate": 1.0,
+            "episodes": 4
+          },
+          "24": {
+            "success_rate": 1.0,
+            "episodes": 4
+          },
+          "32": {
+            "success_rate": 1.0,
+            "episodes": 4
+          }
+        }
+      }
+    },
+    "mean_approached": 2.2
+  },
+  "camera_hz": 5.0,
+  "training_episodes": 1440,
+  "initial_source": "training_robust/endpoint_cem/best_policy.json"
+}

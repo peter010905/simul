@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "features": [
+    "unknown_gain",
+    "near_surfaces",
+    "travel_cost",
+    "turn_cost",
+    "revisits",
+    "clearance",
+    "unobserved_surfaces",
+    "frontier"
+  ],
+  "parameters": [
+    0.25754315894896446,
+    3.8572476579084762,
+    -0.8348463583037881,
+    0.6638277087635384,
+    -2.889399855638035,
+    2.5612951937767003,
+    1.9181020432104463,
+    0.8910627255924686,
+    1.7799531791650738
+  ],
+  "algorithm": "retained_cem_weights",
+  "profile": "PDF assignment; legacy planner + 960x720 RGBD",
+  "selection_report": "training_assignment/final_report.json",
+  "note": "New 648-episode inspection-policy search did not replace these weights."
+}

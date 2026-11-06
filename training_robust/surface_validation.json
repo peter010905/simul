@@ -1,0 +1,1131 @@
+{
+  "environment": "2d_surrogate",
+  "planner": "surface",
+  "camera_width": 960,
+  "deadline": 600,
+  "parameters": [
+    1.0,
+    2.0,
+    1.0,
+    0.3,
+    1.0
+  ],
+  "scenario_hash": "48016514f92ac4021e2d3dbc5c0b84eb5874699a047b69a5b63155b1e9d0447d",
+  "summary": {
+    "episodes": 40,
+    "success_rate": 0.475,
+    "mean_found": 2.375,
+    "mean_seconds": 496.39390563160293,
+    "successful_mean_seconds": 381.8819065928484,
+    "collisions": 0,
+    "mean_reward": 417.42041415525966,
+    "by_obstacles": {
+      "8": {
+        "success_rate": 0.625,
+        "episodes": 8
+      },
+      "12": {
+        "success_rate": 0.625,
+        "episodes": 8
+      },
+      "16": {
+        "success_rate": 0.5,
+        "episodes": 8
+      },
+      "24": {
+        "success_rate": 0.375,
+        "episodes": 8
+      },
+      "32": {
+        "success_rate": 0.25,
+        "episodes": 8
+      }
+    },
+    "by_mount": {
+      "hidden_obstacles": {
+        "episodes": 10,
+        "success_rate": 0.3,
+        "mean_found": 2.0,
+        "mean_seconds": 555.8707181897928,
+        "successful_mean_seconds": 452.90239396597576,
+        "collisions": 0,
+        "mean_reward": 319.7033922715311,
+        "by_obstacles": {
+          "8": {
+            "success_rate": 1.0,
+            "episodes": 2
+          },
+          "12": {
+            "success_rate": 0.0,
+            "episodes": 2
+          },
+          "16": {
+            "success_rate": 0.5,
+            "episodes": 2
+          },
+          "24": {
+            "success_rate": 0.0,
+            "episodes": 2
+          },
+          "32": {
+            "success_rate": 0.0,
+            "episodes": 2
+          }
+        }
+      },
+      "mixed": {
+        "episodes": 10,
+        "success_rate": 0.4,
+        "mean_found": 2.4,
+        "mean_seconds": 486.9511378383042,
+        "successful_mean_seconds": 317.3778445957607,
+        "collisions": 0,
+        "mean_reward": 395.92932932425435,
+        "by_obstacles": {
+          "8": {
+            "success_rate": 0.5,
+            "episodes": 2
+          },
+          "12": {
+            "success_rate": 0.5,
+            "episodes": 2
+          },
+          "16": {
+            "success_rate": 0.5,
+            "episodes": 2
+          },
+          "24": {
+            "success_rate": 0.0,
+            "episodes": 2
+          },
+          "32": {
+            "success_rate": 0.5,
+            "episodes": 2
+          }
+        }
+      },
+      "obstacles": {
+        "episodes": 10,
+        "success_rate": 0.4,
+        "mean_found": 2.3,
+        "mean_seconds": 511.6210492179363,
+        "successful_mean_seconds": 379.0526230448407,
+        "collisions": 0,
+        "mean_reward": 386.3308426173096,
+        "by_obstacles": {
+          "8": {
+            "success_rate": 0.5,
+            "episodes": 2
+          },
+          "12": {
+            "success_rate": 1.0,
+            "episodes": 2
+          },
+          "16": {
+            "success_rate": 0.0,
+            "episodes": 2
+          },
+          "24": {
+            "success_rate": 0.5,
+            "episodes": 2
+          },
+          "32": {
+            "success_rate": 0.0,
+            "episodes": 2
+          }
+        }
+      },
+      "walls": {
+        "episodes": 10,
+        "success_rate": 0.8,
+        "mean_found": 2.8,
+        "mean_seconds": 431.1327172803787,
+        "successful_mean_seconds": 388.9158966004733,
+        "collisions": 0,
+        "mean_reward": 567.7180924079432,
+        "by_obstacles": {
+          "8": {
+            "success_rate": 0.5,
+            "episodes": 2
+          },
+          "12": {
+            "success_rate": 1.0,
+            "episodes": 2
+          },
+          "16": {
+            "success_rate": 1.0,
+            "episodes": 2
+          },
+          "24": {
+            "success_rate": 1.0,
+            "episodes": 2
+          },
+          "32": {
+            "success_rate": 0.5,
+            "episodes": 2
+          }
+        }
+      }
+    },
+    "mean_approached": 2.25
+  },
+  "rows": [
+    {
+      "seed": 8200000,
+      "difficulty": 8,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 70.25737944533482,
+      "decisions": 21,
+      "reward": 223.32,
+      "coverage": 0.9841931561577211,
+      "mount_profile": "walls",
+      "actual_obstacles": 8,
+      "speed": 0.2,
+      "dropout": 0.2,
+      "approached": 1,
+      "missing": [
+        {
+          "id": 325,
+          "mount": "wall",
+          "size": 0.1268334466624414,
+          "nearest": 2.2311076811304447,
+          "confirmations": 0
+        }
+      ]
+    },
+    {
+      "seed": 8200001,
+      "difficulty": 12,
+      "found": 3,
+      "success": true,
+      "seconds": 415.3553408535959,
+      "collisions": 0,
+      "safety_stops": 1,
+      "distance": 43.36812564314236,
+      "decisions": 16,
+      "reward": 651.1166988719606,
+      "coverage": 0.9850616640611429,
+      "mount_profile": "walls",
+      "actual_obstacles": 12,
+      "speed": 0.2,
+      "dropout": 0.2,
+      "approached": 2,
+      "missing": []
+    },
+    {
+      "seed": 8200002,
+      "difficulty": 16,
+      "found": 3,
+      "success": true,
+      "seconds": 362.27930064021325,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 42.05685905362744,
+      "decisions": 13,
+      "reward": 658.778104903968,
+      "coverage": 0.9824561403508771,
+      "mount_profile": "walls",
+      "actual_obstacles": 16,
+      "speed": 0.23476858977669002,
+      "dropout": 0.2,
+      "approached": 2,
+      "missing": []
+    },
+    {
+      "seed": 8200003,
+      "difficulty": 24,
+      "found": 3,
+      "success": true,
+      "seconds": 537.8981572216579,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 50.18038240720374,
+      "decisions": 18,
+      "reward": 630.0552764167513,
+      "coverage": 0.9617856522494355,
+      "mount_profile": "walls",
+      "actual_obstacles": 24,
+      "speed": 0.2,
+      "dropout": 0.08,
+      "approached": 1,
+      "missing": []
+    },
+    {
+      "seed": 8200004,
+      "difficulty": 32,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 69.22037429331638,
+      "decisions": 19,
+      "reward": 222.78,
+      "coverage": 0.9795032134792426,
+      "mount_profile": "walls",
+      "actual_obstacles": 31,
+      "speed": 0.222021381871015,
+      "dropout": 0.08,
+      "approached": 1,
+      "missing": [
+        {
+          "id": 569,
+          "mount": "wall",
+          "size": 0.22828186629752095,
+          "nearest": 2.1210372860490656,
+          "confirmations": 0
+        }
+      ]
+    },
+    {
+      "seed": 8200005,
+      "difficulty": 8,
+      "found": 3,
+      "success": true,
+      "seconds": 430.96449239391507,
+      "collisions": 0,
+      "safety_stops": 1,
+      "distance": 49.67899431542086,
+      "decisions": 14,
+      "reward": 649.4353261409128,
+      "coverage": 0.9907938162237276,
+      "mount_profile": "mixed",
+      "actual_obstacles": 8,
+      "speed": 0.23749599227498813,
+      "dropout": 0.2,
+      "approached": 1,
+      "missing": []
+    },
+    {
+      "seed": 8200006,
+      "difficulty": 12,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 81.58668178864934,
+      "decisions": 18,
+      "reward": 223.84,
+      "coverage": 0.988709397255515,
+      "mount_profile": "mixed",
+      "actual_obstacles": 12,
+      "speed": 0.22916402458438107,
+      "dropout": 0.08,
+      "approached": 3,
+      "missing": [
+        {
+          "id": 726,
+          "mount": "obstacle",
+          "size": 0.19994690033646806,
+          "nearest": 0.6721807636133666,
+          "confirmations": 0
+        }
+      ]
+    },
+    {
+      "seed": 8200007,
+      "difficulty": 16,
+      "found": 3,
+      "success": true,
+      "seconds": 381.2012201080647,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 47.70390599472181,
+      "decisions": 14,
+      "reward": 655.7798169837903,
+      "coverage": 0.9810665277054021,
+      "mount_profile": "mixed",
+      "actual_obstacles": 16,
+      "speed": 0.26,
+      "dropout": 0.2,
+      "approached": 2,
+      "missing": []
+    },
+    {
+      "seed": 8200008,
+      "difficulty": 24,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 1,
+      "distance": 65.98397483568068,
+      "decisions": 21,
+      "reward": 222.18,
+      "coverage": 0.9742921660587112,
+      "mount_profile": "mixed",
+      "actual_obstacles": 24,
+      "speed": 0.23,
+      "dropout": 0.2,
+      "approached": 2,
+      "missing": [
+        {
+          "id": 609,
+          "mount": "obstacle",
+          "size": 0.1307490464171077,
+          "nearest": 2.5200376270315115,
+          "confirmations": 0
+        }
+      ]
+    },
+    {
+      "seed": 8200009,
+      "difficulty": 32,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 63.48616413647452,
+      "decisions": 26,
+      "reward": 221.88,
+      "coverage": 0.9716866423484454,
+      "mount_profile": "mixed",
+      "actual_obstacles": 31,
+      "speed": 0.23,
+      "dropout": 0.2,
+      "approached": 3,
+      "missing": [
+        {
+          "id": 582,
+          "mount": "obstacle",
+          "size": 0.2321314841850486,
+          "nearest": 0.465224864771908,
+          "confirmations": 0
+        }
+      ]
+    },
+    {
+      "seed": 8200010,
+      "difficulty": 8,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 73.84486514840965,
+      "decisions": 18,
+      "reward": 224.0,
+      "coverage": 0.9900990099009901,
+      "mount_profile": "obstacles",
+      "actual_obstacles": 8,
+      "speed": 0.2,
+      "dropout": 0.08,
+      "approached": 3,
+      "missing": [
+        {
+          "id": 734,
+          "mount": "obstacle",
+          "size": 0.2681005376219317,
+          "nearest": 0.9631768791358455,
+          "confirmations": 0
+        }
+      ]
+    },
+    {
+      "seed": 8200011,
+      "difficulty": 12,
+      "found": 3,
+      "success": true,
+      "seconds": 320.91813787819393,
+      "collisions": 0,
+      "safety_stops": 1,
+      "distance": 38.96972649166528,
+      "decisions": 11,
+      "reward": 665.2222793182709,
+      "coverage": 0.9845405593190898,
+      "mount_profile": "obstacles",
+      "actual_obstacles": 12,
+      "speed": 0.2,
+      "dropout": 0.2,
+      "approached": 1,
+      "missing": []
+    },
+    {
+      "seed": 8200012,
+      "difficulty": 16,
+      "found": 1,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 1,
+      "distance": 68.96146683309294,
+      "decisions": 22,
+      "reward": 123.46000000000001,
+      "coverage": 0.9854090672225118,
+      "mount_profile": "obstacles",
+      "actual_obstacles": 16,
+      "speed": 0.23,
+      "dropout": 0.2,
+      "approached": 3,
+      "missing": [
+        {
+          "id": 55,
+          "mount": "obstacle",
+          "size": 0.29168827874376485,
+          "nearest": 1.5373547102638625,
+          "confirmations": 0
+        },
+        {
+          "id": 671,
+          "mount": "obstacle",
+          "size": 0.28420949703866205,
+          "nearest": 1.7398914679661004,
+          "confirmations": 0
+        }
+      ]
+    },
+    {
+      "seed": 8200013,
+      "difficulty": 24,
+      "found": 3,
+      "success": true,
+      "seconds": 405.98613255536634,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 47.936974924025954,
+      "decisions": 15,
+      "reward": 651.5020801166951,
+      "coverage": 0.9762028834462394,
+      "mount_profile": "obstacles",
+      "actual_obstacles": 24,
+      "speed": 0.26,
+      "dropout": 0.2,
+      "approached": 2,
+      "missing": []
+    },
+    {
+      "seed": 8200014,
+      "difficulty": 32,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 1,
+      "distance": 69.97685209761791,
+      "decisions": 23,
+      "reward": 222.10000000000002,
+      "coverage": 0.9735973597359736,
+      "mount_profile": "obstacles",
+      "actual_obstacles": 31,
+      "speed": 0.26,
+      "dropout": 0.08,
+      "approached": 3,
+      "missing": [
+        {
+          "id": 88,
+          "mount": "obstacle",
+          "size": 0.2904878864774273,
+          "nearest": 1.434114406164309,
+          "confirmations": 0
+        }
+      ]
+    },
+    {
+      "seed": 8200015,
+      "difficulty": 8,
+      "found": 3,
+      "success": true,
+      "seconds": 521.1105968314739,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 66.97401031080982,
+      "decisions": 16,
+      "reward": 635.8534104752789,
+      "coverage": 0.9902727114816745,
+      "mount_profile": "hidden_obstacles",
+      "actual_obstacles": 8,
+      "speed": 0.26,
+      "dropout": 0.08,
+      "approached": 2,
+      "missing": []
+    },
+    {
+      "seed": 8200016,
+      "difficulty": 12,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 65.89378361902178,
+      "decisions": 20,
+      "reward": 223.64,
+      "coverage": 0.9869723814486712,
+      "mount_profile": "hidden_obstacles",
+      "actual_obstacles": 12,
+      "speed": 0.2,
+      "dropout": 0.2,
+      "approached": 3,
+      "missing": [
+        {
+          "id": 260,
+          "mount": "obstacle",
+          "size": 0.27938688753311425,
+          "nearest": 0.43130515140142933,
+          "confirmations": 0
+        }
+      ]
+    },
+    {
+      "seed": 8200017,
+      "difficulty": 16,
+      "found": 1,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 1,
+      "distance": 68.41528150012263,
+      "decisions": 21,
+      "reward": 122.28,
+      "coverage": 0.975160673962133,
+      "mount_profile": "hidden_obstacles",
+      "actual_obstacles": 16,
+      "speed": 0.2,
+      "dropout": 0.2,
+      "approached": 3,
+      "missing": [
+        {
+          "id": 100,
+          "mount": "obstacle",
+          "size": 0.14548010701063013,
+          "nearest": 1.0228224023167816,
+          "confirmations": 0
+        },
+        {
+          "id": 435,
+          "mount": "obstacle",
+          "size": 0.24137232904205203,
+          "nearest": 0.5275028673890534,
+          "confirmations": 0
+        }
+      ]
+    },
+    {
+      "seed": 8200018,
+      "difficulty": 24,
+      "found": 1,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 61.7144621886214,
+      "decisions": 21,
+      "reward": 122.96000000000001,
+      "coverage": 0.9810665277054021,
+      "mount_profile": "hidden_obstacles",
+      "actual_obstacles": 24,
+      "speed": 0.2,
+      "dropout": 0.08,
+      "approached": 3,
+      "missing": [
+        {
+          "id": 781,
+          "mount": "obstacle",
+          "size": 0.12191738793460961,
+          "nearest": 0.4529765090768016,
+          "confirmations": 0
+        },
+        {
+          "id": 166,
+          "mount": "obstacle",
+          "size": 0.13298007005112336,
+          "nearest": 0.6474049837808006,
+          "confirmations": 2
+        }
+      ]
+    },
+    {
+      "seed": 8200019,
+      "difficulty": 32,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 71.50229728515981,
+      "decisions": 28,
+      "reward": 222.16,
+      "coverage": 0.9741184644780267,
+      "mount_profile": "hidden_obstacles",
+      "actual_obstacles": 30,
+      "speed": 0.25997764888908265,
+      "dropout": 0.2,
+      "approached": 3,
+      "missing": [
+        {
+          "id": 148,
+          "mount": "obstacle",
+          "size": 0.13769470722667124,
+          "nearest": 1.075167513897354,
+          "confirmations": 0
+        }
+      ]
+    },
+    {
+      "seed": 8200020,
+      "difficulty": 8,
+      "found": 3,
+      "success": true,
+      "seconds": 291.5479027035846,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 37.111856437098105,
+      "decisions": 9,
+      "reward": 670.0278145944623,
+      "coverage": 0.9880145909327774,
+      "mount_profile": "walls",
+      "actual_obstacles": 8,
+      "speed": 0.2,
+      "dropout": 0.2,
+      "approached": 2,
+      "missing": []
+    },
+    {
+      "seed": 8200021,
+      "difficulty": 12,
+      "found": 3,
+      "success": true,
+      "seconds": 434.9840400793759,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 48.98985362418516,
+      "decisions": 15,
+      "reward": 648.3123939880936,
+      "coverage": 0.9862775751259336,
+      "mount_profile": "walls",
+      "actual_obstacles": 12,
+      "speed": 0.2,
+      "dropout": 0.08,
+      "approached": 2,
+      "missing": []
+    },
+    {
+      "seed": 8200022,
+      "difficulty": 16,
+      "found": 3,
+      "success": true,
+      "seconds": 326.55955533969535,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 38.878076394231854,
+      "decisions": 12,
+      "reward": 661.4960666990457,
+      "coverage": 0.9595275317005385,
+      "mount_profile": "walls",
+      "actual_obstacles": 16,
+      "speed": 0.23,
+      "dropout": 0.08,
+      "approached": 1,
+      "missing": []
+    },
+    {
+      "seed": 8200023,
+      "difficulty": 24,
+      "found": 3,
+      "success": true,
+      "seconds": 272.0538917403526,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 33.45286281236285,
+      "decisions": 9,
+      "reward": 669.9119162389471,
+      "coverage": 0.961611950668751,
+      "mount_profile": "walls",
+      "actual_obstacles": 24,
+      "speed": 0.26,
+      "dropout": 0.08,
+      "approached": 2,
+      "missing": []
+    },
+    {
+      "seed": 8200024,
+      "difficulty": 32,
+      "found": 3,
+      "success": true,
+      "seconds": 470.6489842253109,
+      "collisions": 0,
+      "safety_stops": 1,
+      "distance": 53.10386998119531,
+      "decisions": 20,
+      "reward": 641.3826523662034,
+      "coverage": 0.9725551502518673,
+      "mount_profile": "walls",
+      "actual_obstacles": 30,
+      "speed": 0.23,
+      "dropout": 0.08,
+      "approached": 1,
+      "missing": []
+    },
+    {
+      "seed": 8200025,
+      "difficulty": 8,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 86.2039854315086,
+      "decisions": 23,
+      "reward": 224.04000000000002,
+      "coverage": 0.9904464130623589,
+      "mount_profile": "mixed",
+      "actual_obstacles": 8,
+      "speed": 0.26,
+      "dropout": 0.2,
+      "approached": 2,
+      "missing": [
+        {
+          "id": 720,
+          "mount": "obstacle",
+          "size": 0.16701714184798924,
+          "nearest": 0.9253747519543131,
+          "confirmations": 0
+        }
+      ]
+    },
+    {
+      "seed": 8200026,
+      "difficulty": 12,
+      "found": 3,
+      "success": true,
+      "seconds": 125.16907295445759,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 13.639242396175714,
+      "decisions": 3,
+      "reward": 667.2046390568314,
+      "coverage": 0.7467430953621678,
+      "mount_profile": "mixed",
+      "actual_obstacles": 12,
+      "speed": 0.2,
+      "dropout": 0.08,
+      "approached": 1,
+      "missing": []
+    },
+    {
+      "seed": 8200027,
+      "difficulty": 16,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 70.04307639684072,
+      "decisions": 19,
+      "reward": 223.62,
+      "coverage": 0.9867986798679867,
+      "mount_profile": "mixed",
+      "actual_obstacles": 16,
+      "speed": 0.2,
+      "dropout": 0.08,
+      "approached": 3,
+      "missing": [
+        {
+          "id": 93,
+          "mount": "obstacle",
+          "size": 0.23613468219870162,
+          "nearest": 1.2780483250670653,
+          "confirmations": 0
+        }
+      ]
+    },
+    {
+      "seed": 8200028,
+      "difficulty": 24,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 68.42441982498126,
+      "decisions": 23,
+      "reward": 222.07999999999998,
+      "coverage": 0.9734236581552892,
+      "mount_profile": "mixed",
+      "actual_obstacles": 24,
+      "speed": 0.23,
+      "dropout": 0.2,
+      "approached": 2,
+      "missing": [
+        {
+          "id": 763,
+          "mount": "obstacle",
+          "size": 0.25010148651810404,
+          "nearest": 0.6036804667021818,
+          "confirmations": 0
+        }
+      ]
+    },
+    {
+      "seed": 8200029,
+      "difficulty": 32,
+      "found": 3,
+      "success": true,
+      "seconds": 332.1765929266053,
+      "collisions": 0,
+      "safety_stops": 2,
+      "distance": 35.553090910357305,
+      "decisions": 13,
+      "reward": 649.2335110610093,
+      "coverage": 0.8603439291297551,
+      "mount_profile": "mixed",
+      "actual_obstacles": 32,
+      "speed": 0.22120192939459257,
+      "dropout": 0.2,
+      "approached": 3,
+      "missing": []
+    },
+    {
+      "seed": 8200030,
+      "difficulty": 8,
+      "found": 3,
+      "success": true,
+      "seconds": 402.30726201361585,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 57.94169880000419,
+      "decisions": 14,
+      "reward": 653.6339106979576,
+      "coverage": 0.9899253083203057,
+      "mount_profile": "obstacles",
+      "actual_obstacles": 8,
+      "speed": 0.24156361557202172,
+      "dropout": 0.08,
+      "approached": 2,
+      "missing": []
+    },
+    {
+      "seed": 8200031,
+      "difficulty": 12,
+      "found": 3,
+      "success": true,
+      "seconds": 386.9989597321866,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 52.058830454344545,
+      "decisions": 14,
+      "reward": 655.690156040172,
+      "coverage": 0.9878408893520931,
+      "mount_profile": "obstacles",
+      "actual_obstacles": 12,
+      "speed": 0.26,
+      "dropout": 0.2,
+      "approached": 3,
+      "missing": []
+    },
+    {
+      "seed": 8200032,
+      "difficulty": 16,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 67.09970591892996,
+      "decisions": 21,
+      "reward": 223.28,
+      "coverage": 0.9838457529963522,
+      "mount_profile": "obstacles",
+      "actual_obstacles": 16,
+      "speed": 0.23,
+      "dropout": 0.08,
+      "approached": 3,
+      "missing": [
+        {
+          "id": 1008,
+          "mount": "obstacle",
+          "size": 0.18606240230419024,
+          "nearest": 0.6567851497938834,
+          "confirmations": 2
+        }
+      ]
+    },
+    {
+      "seed": 8200033,
+      "difficulty": 24,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 1,
+      "distance": 67.91281151783467,
+      "decisions": 19,
+      "reward": 222.3,
+      "coverage": 0.9753343755428174,
+      "mount_profile": "obstacles",
+      "actual_obstacles": 24,
+      "speed": 0.23,
+      "dropout": 0.08,
+      "approached": 3,
+      "missing": [
+        {
+          "id": 1003,
+          "mount": "obstacle",
+          "size": 0.18961332972442563,
+          "nearest": 0.4627031783476734,
+          "confirmations": 0
+        }
+      ]
+    },
+    {
+      "seed": 8200034,
+      "difficulty": 32,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 1,
+      "distance": 70.47671929338924,
+      "decisions": 24,
+      "reward": 222.12,
+      "coverage": 0.973771061316658,
+      "mount_profile": "obstacles",
+      "actual_obstacles": 31,
+      "speed": 0.24129590932139064,
+      "dropout": 0.2,
+      "approached": 3,
+      "missing": [
+        {
+          "id": 111,
+          "mount": "obstacle",
+          "size": 0.2622281748514087,
+          "nearest": 1.5328089721476739,
+          "confirmations": 0
+        }
+      ]
+    },
+    {
+      "seed": 8200035,
+      "difficulty": 8,
+      "found": 3,
+      "success": true,
+      "seconds": 448.87764081265834,
+      "collisions": 0,
+      "safety_stops": 1,
+      "distance": 52.4586274262206,
+      "decisions": 13,
+      "reward": 646.7083538781012,
+      "coverage": 0.9904464130623589,
+      "mount_profile": "hidden_obstacles",
+      "actual_obstacles": 8,
+      "speed": 0.2,
+      "dropout": 0.2,
+      "approached": 3,
+      "missing": []
+    },
+    {
+      "seed": 8200036,
+      "difficulty": 12,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 79.91999067174903,
+      "decisions": 25,
+      "reward": 223.57999999999998,
+      "coverage": 0.986451276706618,
+      "mount_profile": "hidden_obstacles",
+      "actual_obstacles": 12,
+      "speed": 0.25527966781180006,
+      "dropout": 0.08,
+      "approached": 3,
+      "missing": [
+        {
+          "id": 588,
+          "mount": "obstacle",
+          "size": 0.16514126533985976,
+          "nearest": 1.1579762655402266,
+          "confirmations": 0
+        }
+      ]
+    },
+    {
+      "seed": 8200037,
+      "difficulty": 16,
+      "found": 3,
+      "success": true,
+      "seconds": 388.718944253795,
+      "collisions": 0,
+      "safety_stops": 1,
+      "distance": 38.667964778641675,
+      "decisions": 11,
+      "reward": 653.9321583619308,
+      "coverage": 0.9748132708007643,
+      "mount_profile": "hidden_obstacles",
+      "actual_obstacles": 16,
+      "speed": 0.2,
+      "dropout": 0.2,
+      "approached": 3,
+      "missing": []
+    },
+    {
+      "seed": 8200038,
+      "difficulty": 24,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 72.08972160266244,
+      "decisions": 19,
+      "reward": 223.14,
+      "coverage": 0.9826298419315616,
+      "mount_profile": "hidden_obstacles",
+      "actual_obstacles": 24,
+      "speed": 0.23,
+      "dropout": 0.2,
+      "approached": 2,
+      "missing": [
+        {
+          "id": 939,
+          "mount": "obstacle",
+          "size": 0.12364186053111041,
+          "nearest": 2.181259053748336,
+          "confirmations": 0
+        }
+      ]
+    },
+    {
+      "seed": 8200039,
+      "difficulty": 32,
+      "found": 1,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 60.952790213327354,
+      "decisions": 20,
+      "reward": 122.78,
+      "coverage": 0.9795032134792426,
+      "mount_profile": "hidden_obstacles",
+      "actual_obstacles": 31,
+      "speed": 0.2,
+      "dropout": 0.2,
+      "approached": 2,
+      "missing": [
+        {
+          "id": 519,
+          "mount": "obstacle",
+          "size": 0.13141151686137761,
+          "nearest": 2.017418401033854,
+          "confirmations": 0
+        },
+        {
+          "id": 403,
+          "mount": "obstacle",
+          "size": 0.1582722547291082,
+          "nearest": 0.4960712285211386,
+          "confirmations": 0
+        }
+      ]
+    }
+  ],
+  "wall_seconds": 15.240570655092597
+}

@@ -1,0 +1,832 @@
+{
+  "goal_status": "user_requested_resume_app_goal_still_paused",
+  "phase": "sequential_failure_fixes_native_regression",
+  "last_verified_utc": "2026-11-05T10:24:09.183042+00:00",
+  "jobs": [
+    {
+      "run": "training_robust/diverse_directional_cem",
+      "exec_session_id": null,
+      "completed": true,
+      "training_episodes": 2400,
+      "last_completed_generation": 9,
+      "planned_training_episodes": 2400,
+      "unique_training_layouts_used": 200,
+      "best_success": 0.7625,
+      "collisions": 0,
+      "source_matches_current_simulator": false
+    },
+    {
+      "run": "training_robust/diverse_endpoint_v4",
+      "exec_session_id": null,
+      "completed": true,
+      "training_episodes": 2400,
+      "last_completed_generation": 9,
+      "planned_training_episodes": 2400,
+      "unique_training_layouts_used": 200,
+      "best_success": 0.7875,
+      "collisions": 0,
+      "source_matches_current_simulator": false
+    },
+    {
+      "run": "training_robust/endpoint_prior_elites",
+      "exec_session_id": null,
+      "completed": false,
+      "training_episodes": 1680,
+      "last_completed_generation": 6,
+      "planned_training_episodes": 2400,
+      "unique_training_layouts_used": 140,
+      "best_success": 0.775,
+      "collisions": 0,
+      "source_matches_current_simulator": false,
+      "superseded": true
+    },
+    {
+      "run": "training_robust/directional_v4_elites",
+      "exec_session_id": null,
+      "completed": false,
+      "training_episodes": 480,
+      "last_completed_generation": 1,
+      "planned_training_episodes": 2400,
+      "unique_training_layouts_used": 40,
+      "best_success": 0.7625,
+      "collisions": 0,
+      "source_matches_current_simulator": false,
+      "superseded": true
+    }
+  ],
+  "default_scenario": "src/osp_mission/config/robust_demo.yaml",
+  "default_obstacles": 12,
+  "max_benchmark_obstacles": 32,
+  "training_layouts_original": 100,
+  "training_layouts_next_run": 400,
+  "sampling_next_run": "stratified_shuffled_without_replacement",
+  "validation_layouts": 160,
+  "test_set_evaluated": true,
+  "ros_surface_integration": "surface_endpoint_default_edge_comparison_option_unit_tested",
+  "gazebo_verified": false,
+  "next_actions": [
+    "Observe stage-isolated regression results; do not modify frozen stage sources while campaigns are running/queued.",
+    "After regressions, compare final candidate on fresh development layouts; holdout still unused."
+  ],
+  "ros_unit_tests_passed": 157,
+  "ros_directional_smoke": "native_communication_verified",
+  "common_validation": "training_robust/timing_v4",
+  "current_simulator_sha256": "3eaa8482d09ee3327d370f2f851bd3300a36004f3d5b94d9539a1d773f08f20f",
+  "additional_evaluation": {
+    "exec_session_id": null,
+    "output": "training_robust/timing_v4/directional_endpoint_weights.json",
+    "purpose": "Check transfer of endpoint weights to directional coverage on same validation set",
+    "completed": true,
+    "success_rate": 0.6625,
+    "collisions": 0,
+    "adopted": false
+  },
+  "default_planner": "surface_endpoint",
+  "default_policy": "src/osp_mission/config/surface_endpoint_policy.json",
+  "interruption_recovery": {
+    "original_session": 12553,
+    "exit_code": 143,
+    "reason": "unknown",
+    "resumed_session": 79419,
+    "next_generation_at_recovery": 5,
+    "original_physics_and_planner_verified": true,
+    "recovery_record": "training_robust/diverse_directional_cem/recoveries.json"
+  },
+  "experiments_not_adopted": {
+    "face_candidates_validation_success": 0.675,
+    "gaze_validation_success": 0.5375,
+    "gaze_training_20_success": 0.85,
+    "reason": "Lower held-out validation than the retained candidate"
+  },
+  "demo_2d": {
+    "source": "training_robust/current_demo_comparison.json",
+    "selected_seconds": 340.6190908301604,
+    "selected_found": 3,
+    "legacy_seconds": 600,
+    "legacy_found": 2,
+    "contacts": 0
+  },
+  "current_jobs": [
+    {
+      "unit": "osp-fix-v10-escape.service",
+      "workspace": "/home/peter/simul/training_robust/native90/runtime_fix_v10_escape_staging",
+      "output": "/home/peter/simul/training_robust/native90/fix_v10_escape_regression3",
+      "status": "running"
+    },
+    {
+      "unit": "osp-fix-v11-completion.service",
+      "workspace": "/home/peter/simul/training_robust/native90/runtime_fix_v11_completion_staging",
+      "output": "/home/peter/simul/training_robust/native90/fix_v11_completion_regression1",
+      "status": "running"
+    },
+    {
+      "unit": "osp-fix-v12-identity.service",
+      "workspace": "/home/peter/simul/training_robust/native90/runtime_fix_v12_identity_staging",
+      "output": "/home/peter/simul/training_robust/native90/fix_v12_identity_regression1",
+      "status": "prepared"
+    },
+    {
+      "unit": "osp-fix-v13-observation.service",
+      "workspace": "/home/peter/simul/training_robust/native90/runtime_fix_v13_observation_staging",
+      "output": "/home/peter/simul/training_robust/native90/fix_v13_observation_regression6",
+      "status": "prepared"
+    }
+  ],
+  "additional_results": {
+    "standoff_2_4_validation_success": 0.825,
+    "standoff_2_4_worst_mount": 0.7,
+    "standoff_2_4_collisions": 0,
+    "current_policy_90degree_frame_validation_success": 0.7375,
+    "prior_checkpoint_success": 0.775,
+    "prior_checkpoint_worst_mount": 0.7,
+    "prior_checkpoint_training_episodes": 1680
+  },
+  "default_unchanged": false,
+  "test_results": {
+    "source": "training_robust/frozen_generalization_v1/completed.json",
+    "unique_layouts": 100,
+    "episodes": 400,
+    "previous_success_by_frame": [
+      0.65,
+      0.66
+    ],
+    "candidate_success_by_frame": [
+      0.64,
+      0.68
+    ],
+    "candidate_adopted": false,
+    "collisions": 0,
+    "strong_2d_threshold_met": false,
+    "gazebo_verified": false
+  },
+  "gazebo_prepared_benchmark": "training_robust/gazebo_balanced20/manifest.json",
+  "decoder_timing_source": "training_robust/decoder_speed.json",
+  "validation_layouts_next_run": 160,
+  "new_evidence": {
+    "lidar_reference": "/opt/ros/jazzy/share/turtlebot4_description/urdf/sensors/rplidar.urdf.xacro",
+    "reference_beams": 640,
+    "legacy_surrogate_beams": 120,
+    "lidar_ablation": "training_robust/lidar_ablation/completed.json",
+    "v2_schedule": "training_robust/v2_schedule_audit.json",
+    "v2_train_layouts": 400,
+    "v2_validation_layouts": 160,
+    "unseen_test_reserved": [
+      8700000,
+      8700199
+    ],
+    "unseen_test_generated": false,
+    "raycast_acceleration": "training_robust/raycast_equivalence.json",
+    "raycast_random_differential_cases": 300,
+    "whole_trajectory_equivalence_cases": 4,
+    "gazebo_probe": "training_robust/gazebo_sensor_smoke/report.json",
+    "gazebo_probe_result": "host_sensors_measured_undock_canceled",
+    "initial_v2_validation_success": {
+      "endpoint": 0.725,
+      "edge": 0.74375
+    },
+    "initial_v2_validation_worst_mount": {
+      "endpoint": 0.575,
+      "edge": 0.625
+    },
+    "path_regression": "training_robust/path_geometry_regression.json",
+    "resolution_before": "training_robust/resolution_ablation/completed.json",
+    "resolution_after": "training_robust/path_resolution_corrected/completed.json",
+    "edge_ros_smoke": "training_robust/edge_ros_smoke.json",
+    "fine_validation": "training_robust/fidelity_validation/comparison.json",
+    "fine_validation_success": {
+      "endpoint": 0.75,
+      "edge": 0.78125
+    },
+    "fine_candidate_adopted": false,
+    "normal_cache_equivalence": "training_robust/normal_cache_equivalence.json",
+    "normal_cache_unit_test_log": "training_robust/normal_cache_full_tests.log",
+    "normal_cache_build_log": "training_robust/normal_cache_build.log",
+    "fine_failure_diagnostics": "training_robust/fidelity_validation/failure_diagnostics/completed.json",
+    "fine_failure_causes": {
+      "camera_never_aimed_at_readable_front": 16,
+      "too_few_confirmed_frames": 1,
+      "never_reached_readable_front": 18,
+      "readable_front_occluded": 2,
+      "never_within_pixel_range": 1
+    },
+    "view_route_screen": "training_robust/view_route_screen/completed.json",
+    "view_route_test_log": "training_robust/travel_glance_full_tests.log",
+    "runtime_scan_fix": "Successful spins now dwell for 1.5s and do not suppress nearby scans for 15s; blocked spins retain 30s retry suppression",
+    "travel_glance_screen": "training_robust/travel_glance_screen/completed.json",
+    "travel_glance_adopted": false,
+    "view_route_optimization_check": "training_robust/view_route_optimization_check.json",
+    "view_search_completed": "training_robust/view_search_completed.json",
+    "view_search_audit": "training_robust/view_search_coverage_audit.json",
+    "view_route_parameter_search": "training_robust/view_route_search_v1/completed.json",
+    "view_tour_screen": "training_robust/view_tour_screen/completed.json",
+    "view_time_diagnostic": "training_robust/view_time_diagnostic.json",
+    "latest_test_log": "training_robust/view_search_final_tests.log",
+    "latest_build_log": "training_robust/view_search_final_build.log",
+    "plane_coordinate_probe": "training_robust/plane_coordinate_probe.json",
+    "plane_screen": "training_robust/plane_view_screen/completed.json",
+    "plane_cylinder_probe": "training_robust/plane_cylinder_probe.json",
+    "plane_refactor_equivalence": "training_robust/plane_refactor_equivalence.json",
+    "symmetric_sampler_equivalence": "training_robust/symmetric_sampler_equivalence.json",
+    "geometry_screen": "training_robust/geometry_view_screen/completed.json",
+    "angular_sensitivity": "training_robust/angular_sensitivity/completed.json",
+    "runtime_metrics": "Actual Gazebo camera stable at 5 Hz; communication resolved",
+    "symmetric_validation": "training_robust/fidelity_validation/geometry_comparison.json",
+    "symmetric_validation_adopted": false,
+    "symmetric_validation_reason": "127/160 vs endpoint 120/160, but backside 28/40 vs 29/40, 32-obstacle 20/32 vs 23/32, and mean time worsens",
+    "symmetric_expansion": "training_robust/symmetric_expansion/completed.json",
+    "coverage_resize_fix": "Aligned unchanged physical cells preserve camera counts; 92 full tests and build pass; two fixed-map full episode metrics match before the change",
+    "geometry_study": "training_robust/geometry_study_summary.json",
+    "face_priority_diagnostic": "training_robust/face_priority_diagnostic/completed.json",
+    "execution_study": "training_robust/execution_study_summary.json",
+    "native_runtime_probe": "training_robust/gazebo_runtime_calibration/runtime_probes/20261104T204355_004287Z/evaluation.json",
+    "current_gazebo_probe": "training_robust/gazebo_runtime_calibration/runtime_probes/20261104T211510_211783Z/evaluation.json",
+    "undock_video_audit": "training_robust/undock_video_audit.json",
+    "permission_check": "training_robust/native_diagnostics/permission_camera_axis_audit.json",
+    "coverage_inputs": "training_robust/native_diagnostics/coverage_inputs/report.json",
+    "native_dock_trial": "training_robust/gazebo_runtime_calibration/runtime_probes/20261104T222026_963916Z/evaluation.json",
+    "lidar_rendering": "training_robust/native_diagnostics/lidar_rendering/",
+    "coverage_software": "training_robust/native_diagnostics/coverage_software/report.json",
+    "frontier_memory_tests": "training_robust/native_diagnostics/surface_matching_tests.log",
+    "surface_memory_replay": "training_robust/native_diagnostics/coverage_matching_comparison.json",
+    "software_renderer_baseline": {
+      "result": "training_robust/gazebo_runtime_calibration/runtime_probes/20261104T223456_851325Z/evaluation.json",
+      "targets": 2,
+      "collisions": 0,
+      "seconds": 600.356,
+      "success": false,
+      "marker_position_errors_m": {
+        "634": 11.984180633972903,
+        "744": 0.9252368418492315
+      }
+    },
+    "frontier_pretraining": {
+      "output": "training_robust/native90/frontier_pretraining_v1",
+      "completed": true,
+      "training_episodes": 240,
+      "unique_training_layouts": 40,
+      "validation_layouts": 40,
+      "best_validation_2d": 0.775,
+      "new_weights_adopted": false,
+      "outer_exec_exit_code": 143,
+      "note": "All 240 episode rows, both generations, final validation and completion marker verified; terminal wrapper exit 143 cause unknown"
+    },
+    "imu_rotation": "training_robust/native_diagnostics/imu_rotation_drift.json",
+    "imu_coordinates": "training_robust/native_diagnostics/imu_observation_coordinates.json",
+    "first_native_success": {
+      "output": "training_robust/native90/development_imu_v1/runtime_probes/20261104T230250_371315Z",
+      "seconds": 238.9,
+      "targets": 3,
+      "collisions": 0,
+      "max_coordinate_error_m": 0.04986771014886728,
+      "scope": "One development layout only"
+    },
+    "native_development_screen": {
+      "output": "training_robust/native90/development_imu_screen4",
+      "completed": 3,
+      "successes": 1,
+      "first_seconds": 117.2,
+      "first_max_error_m": 0.10077194530250407,
+      "artifact_audit": "training_robust/native90/development_imu_screen4/artifact_audit.json",
+      "second_reason": "timeout",
+      "second_targets": 2,
+      "second_collisions": 0,
+      "third_reason": "timeout",
+      "third_targets": 2,
+      "third_collisions": 0
+    },
+    "staged_runtime_v2": "training_robust/native90/runtime_v2_staging/candidate_notes.json",
+    "short_goal_probe": {
+      "output": "training_robust/native90/short_goal_baseline",
+      "status": "startup_failed",
+      "reason": "Both controller spawners exited before odom became available; robot_description never reached controller manager",
+      "included_in_mission_success_rate": false,
+      "next": "Retry sequentially after the active four-layout benchmark"
+    },
+    "mixed16_failure_geometry": "training_robust/native_diagnostics/mixed16_final_view_geometry.json",
+    "normal_resolution": "training_robust/native_diagnostics/normal_resolution_probe.json",
+    "low_pixel24": {
+      "output": "training_robust/native_diagnostics/low_pixel24/report.json",
+      "frames": 349,
+      "confirmed_candidates": 0,
+      "adopted": false
+    },
+    "low_pixel8_candidate16": {
+      "output": "training_robust/native_diagnostics/low_pixel8_candidate16/report.json",
+      "frames": 190,
+      "confirmed_candidates": 0,
+      "adopted": false
+    },
+    "edge_candidate_startup": {
+      "output": "training_robust/native90/edge_runtime_v2/runtime_probes/20261104T234253_265975Z/startup_audit.json",
+      "initial_full_spin_accepted": true,
+      "inactive_action_rejections": 0,
+      "mission_outcome_pending": true
+    }
+  },
+  "v2_training_chunks": {
+    "v2_endpoint": {
+      "generations": 2,
+      "training_episodes": 1280,
+      "unique_layouts": 160,
+      "planned_generations": 5,
+      "success": 0.725,
+      "source_matches_current": false,
+      "completed": false,
+      "chunk_completed": true,
+      "study_completed": false,
+      "frozen_resolution": 0.2,
+      "continuous_shortcuts": false
+    },
+    "v2_edge": {
+      "generations": 2,
+      "training_episodes": 1280,
+      "unique_layouts": 160,
+      "planned_generations": 5,
+      "success": 0.74375,
+      "source_matches_current": false,
+      "completed": false,
+      "chunk_completed": true,
+      "study_completed": false,
+      "frozen_resolution": 0.2,
+      "continuous_shortcuts": false
+    }
+  },
+  "build_passed": true,
+  "completed_current_phase_jobs": [
+    {
+      "run": "fidelity_validation/endpoint",
+      "completed": true,
+      "evaluations": 160,
+      "exec_session_id": null
+    },
+    {
+      "run": "fidelity_validation/edge",
+      "completed": true,
+      "evaluations": 160,
+      "exec_session_id": null
+    },
+    {
+      "run": "normal_cache_equivalence",
+      "completed": true,
+      "whole_trajectory_pairs": 2,
+      "exec_session_id": null
+    },
+    {
+      "run": "fidelity_validation/failure_diagnostics",
+      "completed": true,
+      "exact_replays": 35,
+      "exec_session_id": null
+    }
+  ],
+  "previous_goal_turn_classification": {
+    "classification": "progress",
+    "reason": "User resumed; verified frozen code and launched two independent systemd-managed native campaigns. Both are confirmed physically running with Nav2 and drive ready."
+  },
+  "previous_goal_turn_evidence": "Baseline native development screen now 1/3 successes, 8-obstacle success and 16/24-obstacle timeouts at two targets with zero collisions. Started an independent frozen edge/lifecycle/resolution candidate on failed 16-obstacle scene; initial full spin accepted with zero inactive action rejections. Low-pixel shadow decoders produced no additional targets, so production threshold retained. Remaining baseline 32-obstacle and candidate runs are confirmed live.",
+  "recovery_note": "Two exec sessions ended 143 for unknown reason. Frozen sources verified; recovery saves each finished episode and uses bounded batches.",
+  "goal_success_rate": 0.9,
+  "native_baseline": {
+    "success": false,
+    "reason": "timeout",
+    "targets": 0,
+    "collisions": 7,
+    "run": "training_robust/gazebo_runtime_calibration/runtime_probes/20261104T212834_425930Z"
+  },
+  "corrections": {
+    "large_image_transport": "32 MiB SHM segments on image nodes only; default 65 KB message buffers",
+    "memory_limit": "6 GiB RAM, 512 MiB swap per experiment via systemd scope",
+    "wheel_radius_multiplier": 0.974416,
+    "wheel_separation_multiplier": 1.070304,
+    "scan_turn_speed_rad_s": 0.55,
+    "render_backend": "software; scoped LIBGL_ALWAYS_SOFTWARE=1, no system driver changes",
+    "surface_memory": "nearest-cell subcell reprojection, unchanged local occupancy and separate face bins required",
+    "frontier_reward": "reachable free/unknown boundary only",
+    "state_estimation": "Wheel forward/lateral velocity + IMU angular rate EKF; no ground truth",
+    "assignment_start": "Fixed start pose; charging dock only with explicit start_docked option",
+    "contact_recovery": "Cancel non-undock action on contact; transform LiDAR to base for reverse clearance; next run only"
+  },
+  "coverage_retention_candidate": {
+    "workspace": "training_robust/native90/runtime_v3_staging",
+    "inputs": "training_robust/native_diagnostics/edge_coverage_retention16",
+    "comparison": "training_robust/native_diagnostics/edge_coverage_retention16/retention_comparison.json",
+    "native_validated": false,
+    "full_tests_passed_before_final_projection_refinement": 151,
+    "final_projection_tests_passed": 4,
+    "build_passed": true,
+    "replay_frames": 184,
+    "baseline_lost_records": 218,
+    "candidate_lost_records": 18,
+    "baseline_final_viewed": 131,
+    "candidate_final_viewed": 166,
+    "full_tests_passed": 152,
+    "focused_tests_passed": 5,
+    "prepared_campaign": "training_robust/native90/persistent_edge_v3_mixed16",
+    "native_started": true,
+    "early_native_evidence": {
+      "confirmed_previously_missed_id": 352,
+      "camera_observation_stamps": [
+        18.4,
+        20.2,
+        20.4
+      ],
+      "collisions": 0,
+      "complete_mission": false,
+      "source_files_verified": 118
+    },
+    "source_unchanged": true
+  },
+  "motion_candidate": {
+    "workspace": "training_robust/native90/runtime_motion_staging",
+    "prepared_campaign": "training_robust/native90/motion_v1_mixed16",
+    "forward_limit_m_s": 0.3,
+    "spin_limit_rad_s": 0.85,
+    "spin_acceleration_rad_s2": 1.8,
+    "physical_controller_limits_unchanged": true,
+    "build_passed": true,
+    "native_validated": false,
+    "marker_frame": "map_at_image_time",
+    "tests_passed": 149,
+    "coordinates_replay": "training_robust/native_diagnostics/marker_anchor_comparison.json",
+    "prepared_but_not_started": false,
+    "active_campaign": "native90/motion_v2_drive_ready_mixed16",
+    "frozen_source_files_verified": 119,
+    "native_completed": true,
+    "native_single_scene_success": true,
+    "native_generalization_verified": false
+  },
+  "native_edge_v2_result": {
+    "output": "/home/peter/simul/training_robust/native90/edge_runtime_v2/runtime_probes/20261104T234253_265975Z",
+    "completed": true,
+    "success": false,
+    "reason": "timeout",
+    "elapsed_seconds": 600.306,
+    "targets": 2,
+    "collisions": 0,
+    "max_position_error_m": 0.639592193861888,
+    "video_decode_audit": {
+      "frames": 3003,
+      "first_frame_decoded": true,
+      "last_frame_decoded": true
+    }
+  },
+  "latest_goal_turn_classification": {
+    "classification": "progress",
+    "evidence": [
+      "native90/marker_focus_v6_screen3/queued_launch.json",
+      "native90/marker_focus_v6_screen3/queued_source_hashes.json"
+    ],
+    "reason": "Revalidated two live native 32-obstacle runs and launched a source-verified queue that starts the prepared marker verification candidate automatically after the specific existing campaign exits."
+  },
+  "baseline_native_screen4": {
+    "complete": true,
+    "successes": 1,
+    "attempted": 4,
+    "source": "native90/development_imu_screen4/artifact_audit.json"
+  },
+  "persistent_v3_native_result": {
+    "completed": true,
+    "success": false,
+    "reason": "all_targets_found",
+    "targets": 3,
+    "elapsed_seconds": 358.113,
+    "collisions": 0,
+    "position_errors_m": {
+      "984": 0.6175324213983995,
+      "352": 0.8163116089420731,
+      "199": 0.12070933194539496
+    },
+    "audit": "native90/persistent_edge_v3_mixed16/artifact_audit.json"
+  },
+  "drive_startup_fix": {
+    "evidence": "native90/motion_v1_mixed16/drive_startup_intervention.json",
+    "invalid_trial_preserved": true,
+    "main_tests_passed": 149,
+    "main_build_passed": true,
+    "retry_domain": 95,
+    "retry_drive_active_verified": true,
+    "retry_measured_stationary_turn_rad_s": 0.8771731152243105
+  },
+  "dense_map_candidate": {
+    "workspace": "native90/runtime_v4_staging",
+    "campaign": "native90/persistent_map_v4_screen3",
+    "tests_passed": 154,
+    "build_passed": true,
+    "native_validated": false,
+    "drive_active_verified": true,
+    "frozen_source_files_verified": 121,
+    "first_scene_result": {
+      "seed": 8600007,
+      "success": false,
+      "reason": "timeout",
+      "targets": 1,
+      "seconds": 600.12,
+      "collisions": 0,
+      "audit": "native90/persistent_map_v4_screen3/artifact_audit.json"
+    },
+    "completed_scene_audit": "native90/persistent_map_v4_screen3/artifact_audit.json"
+  },
+  "shadow_decoder_result": {
+    "source": "native_diagnostics/low_pixel12_persistent16_start/comparison.json",
+    "frames": 1043,
+    "additional_confirmed_ids": [],
+    "production_threshold_pixels": 18
+  },
+  "default_policy_weights_unchanged": true,
+  "full_scan_candidate": {
+    "workspace": "native90/runtime_panorama_v5_staging",
+    "campaign": "native90/panorama_v5_screen2",
+    "tests_passed": 155,
+    "test_log": "native90/runtime_panorama_v5_staging/tests.log",
+    "build_passed": true,
+    "native_validated": false,
+    "controlled_short_goal_test_pending": false,
+    "native_started": true,
+    "goal_angle_threshold": 0.5,
+    "first_scene_result": {
+      "seed": 8600007,
+      "success": false,
+      "evaluator_success": false,
+      "seconds": 600.0,
+      "targets": 2,
+      "collisions": 0,
+      "coordinate_errors_m": {
+        "352": 0.009490944598095985,
+        "199": 0.10607190632313292
+      },
+      "video": {
+        "file": "/home/peter/simul/training_robust/native90/panorama_v5_screen2/episodes/8600007/video/mission.mp4",
+        "frames": 3000,
+        "fps": 5.0,
+        "verified": true
+      },
+      "errors": [
+        "Three distinct correct marker IDs are required",
+        "Mission did not find all targets"
+      ]
+    }
+  },
+  "short_goal_hypothesis": {
+    "evidence": "native_diagnostics/motion_first_short_goal.json",
+    "stall_seconds": 42.024,
+    "distance_m": 0.34,
+    "proposed_parameter": "GoalAngleCritic.threshold_to_consider",
+    "baseline": 0.5,
+    "candidate": 0.25,
+    "status": "proposed_change_rejected",
+    "comparison": "native_diagnostics/short_goal_configs_v2/comparison.json",
+    "baseline_seconds": 3.618,
+    "candidate_seconds": 20.074
+  },
+  "updated_utc": "2026-11-06T00:35:16.403157+00:00",
+  "motion_v2_native_result": {
+    "seed": 8600007,
+    "success": true,
+    "evaluator_success": true,
+    "seconds": 356.447,
+    "targets": 3,
+    "collisions": 0,
+    "coordinate_errors_m": {
+      "984": 0.011721158814143748,
+      "352": 0.05326526487248484,
+      "199": 0.04443888803863123
+    },
+    "video": {
+      "file": "/home/peter/simul/training_robust/native90/motion_v2_drive_ready_mixed16/episodes/8600007/video/mission.mp4",
+      "frames": 1783,
+      "fps": 5.0,
+      "verified": true
+    },
+    "errors": []
+  },
+  "marker_followup_candidate": {
+    "workspace": "native90/runtime_focus_v6_staging",
+    "tests_passed": 169,
+    "build_passed": true,
+    "native_validated": false,
+    "uses_only_accepted_rgb_observations": true,
+    "three_frame_confirmation_unchanged": true,
+    "prepared_campaign": "native90/marker_focus_v6_screen3",
+    "interrupt_nav_on_fresh_hint": true,
+    "per_id_interrupt_limit": 1,
+    "total_interrupt_limit": 6,
+    "evidence": "native_diagnostics/marker_hint_delay_v4.json",
+    "base": "successful_motion_v2",
+    "scan_schedule": "adaptive partial/full scans",
+    "coverage_memory": "ordinary edge memory",
+    "rebase_after_full_scan_failure": true,
+    "queued": false,
+    "exec_session_id": 34820,
+    "domain": 100,
+    "frozen_source_files": 124,
+    "workspace_locked": true,
+    "native_started": true,
+    "pid": 784992
+  },
+  "coverage_claim_audit": {
+    "source": "native_diagnostics/persistent_v4_surface_claims.json",
+    "missed_targets_faces_still_unviewed": true,
+    "premature_surface_credit_hypothesis_supported": false
+  },
+  "final_native_gate": {
+    "script": "training_robust/audit_final_native.py",
+    "reserved_scenes": 40,
+    "required_successes": 36,
+    "development_rejection_verified": true,
+    "heldout_campaign_started": false
+  },
+  "shadow_jobs": [],
+  "shadow_late_windows_completed": [
+    {
+      "output": "native_diagnostics/low_pixel12_panorama16_late",
+      "frames": 1261,
+      "additional_confirmed_ids": []
+    },
+    {
+      "output": "native_diagnostics/low_pixel12_persistent24_late",
+      "frames": 1421,
+      "additional_confirmed_ids": []
+    }
+  ],
+  "queued_jobs": [],
+  "latest_permission_recheck": {
+    "file": "training_robust/native_diagnostics/permission_recheck_20261105_0146.json",
+    "all_socket_checks_passed": true,
+    "live_ros_streams_verified": true,
+    "no_additional_user_permission_needed": true
+  },
+  "panorama32_success": {
+    "output": "training_robust/native90/panorama_v5_screen2/episodes/8600139",
+    "seconds": 293.6,
+    "targets": 3,
+    "collisions": 0,
+    "max_coordinate_error_m": 0.19595834868739156,
+    "video_verified": true,
+    "campaign_successes": 1,
+    "campaign_scenes": 2,
+    "scope": "Development layouts; does not establish held-out 90%",
+    "source_files_verified": 122
+  },
+  "latest_interruption_recovery": {
+    "original_campaign": "native90/persistent_map_v4_screen3",
+    "exit_code": 143,
+    "cause": "Unknown external termination; cgroup OOM counts zero",
+    "episode": "8600139",
+    "evaluation_complete": false,
+    "saved_partial_video_seconds": 258.0,
+    "original_artifacts_preserved": true,
+    "recovery_campaign": "native90/persistent_map_v4_recovery32",
+    "running_verified": true
+  },
+  "rpp_candidate": {
+    "workspace": "training_robust/native90/runtime_rpp_v7_staging",
+    "campaign": "training_robust/native90/rpp_v7_screen3",
+    "tests_passed": 149,
+    "build_passed": true,
+    "queued": true,
+    "exec_session_id": 2203,
+    "domain": 101,
+    "source_files": 119,
+    "workspace_locked": true,
+    "base": "successful_motion_v2",
+    "change": "Only FollowPath controller changes from MPPI to RPP",
+    "native_validated": false
+  },
+  "native_service_launch": {
+    "independent_of_exec_session": true,
+    "both_nav2_and_drive_ready": true,
+    "memory_limit_each_gib": 6,
+    "long_duration_stability_not_yet_proven": true
+  },
+  "required_approach_radius_m": 1.5,
+  "completion_conditions": [
+    "3correctIDs",
+    "3separate close accepted RGB frames per ID within estimated1.3m",
+    "Actual evaluator trajectory within1.5m of every true marker",
+    "Map position error<=0.5m",
+    "Zero contacts and <=600simseconds",
+    "Saved maps, marker CSV, and real video"
+  ],
+  "approach_candidate_tests_passed": 177,
+  "latest_native_summary": "native_diagnostics/approach_v8_status_20261105.json",
+  "latest_evaluator_fix": {
+    "cause": "Result JSON read before writer completed",
+    "atomic_write": true,
+    "partial_read_retry": true,
+    "candidate_tests_passed": 179,
+    "build_passed": true
+  },
+  "native_tournament": {
+    "output": "/home/peter/simul/training_robust/native90/native_search_v1",
+    "service_unit": "osp-native-search-v1.service",
+    "phase": "validation",
+    "status": "completed_needs_improvement",
+    "screen_episodes": 20,
+    "fresh_validation_episodes": 40,
+    "conditional_final_holdout_episodes": 40,
+    "max_total": 100,
+    "new_development_layouts": 25,
+    "candidates": [
+      "mppi_balanced",
+      "mppi_frontier",
+      "mppi_short_travel",
+      "rpp_balanced"
+    ],
+    "max_concurrency_including_existing_experiment": 2,
+    "reserved_holdout_threshold": "Only after best validation candidate>=18/20, freeze then evaluate40; final>=36/40",
+    "source_and_support_scripts_locked": true,
+    "completed": 60,
+    "running": [],
+    "startup_diagnostic": "/home/peter/simul/training_robust/native90/native_search_v1/startup_diagnostic.json",
+    "coordinator_resumed": true,
+    "screen_results": [
+      {
+        "candidate": "rpp_balanced",
+        "planned": 5,
+        "finished": 5,
+        "successes": 5,
+        "success_rate": 1.0,
+        "recognized": 15,
+        "approached": 15,
+        "mean_seconds": 456.60600000000005
+      },
+      {
+        "candidate": "mppi_frontier",
+        "planned": 5,
+        "finished": 5,
+        "successes": 5,
+        "success_rate": 1.0,
+        "recognized": 15,
+        "approached": 15,
+        "mean_seconds": 461.0242
+      },
+      {
+        "candidate": "mppi_short_travel",
+        "planned": 5,
+        "finished": 5,
+        "successes": 3,
+        "success_rate": 0.6,
+        "recognized": 12,
+        "approached": 14,
+        "mean_seconds": 472.89439999999996
+      },
+      {
+        "candidate": "mppi_balanced",
+        "planned": 5,
+        "finished": 5,
+        "successes": 2,
+        "success_rate": 0.4,
+        "recognized": 9,
+        "approached": 10,
+        "mean_seconds": 478.54619999999994
+      }
+    ],
+    "latest_note": "All 60 planned development episodes ended normally. Both finalists 9/20; holdout not launched because neither reached 18/20. No native tournament jobs running.",
+    "goal_verified": false,
+    "validation_results": [
+      {
+        "candidate": "rpp_balanced",
+        "planned": 20,
+        "finished": 20,
+        "successes": 9,
+        "success_rate": 0.45,
+        "recognized": 53,
+        "approached": 55,
+        "mean_seconds": 543.3761999999999
+      },
+      {
+        "candidate": "mppi_frontier",
+        "planned": 20,
+        "finished": 20,
+        "successes": 9,
+        "success_rate": 0.45,
+        "recognized": 47,
+        "approached": 49,
+        "mean_seconds": 518.50355
+      }
+    ]
+  },
+  "latest_failure_analysis": {
+    "report": "/home/peter/simul/training_robust/native_diagnostics/native_search_v1_failure_analysis/report_ko.txt",
+    "data": "/home/peter/simul/training_robust/native_diagnostics/native_search_v1_failure_analysis/analysis.json",
+    "categories": {
+      "extra_close_rgb_completion_gate": 5,
+      "missing_marker_observation_or_confirmation": 13,
+      "persistent_empty_candidate_spin_loop": 3,
+      "false_positive_extra_id": 1
+    },
+    "planner_empty_reproduced_trials": [
+      31,
+      39,
+      57
+    ],
+    "policy_fixes_native_validated": false
+  },
+  "sequential_fixes": {
+    "summary": "/home/peter/simul/training_robust/native90/sequential_fixes_v10_v13/implementation.json",
+    "state": "/home/peter/simul/training_robust/native90/sequential_fixes_v10_v13/sequence.json",
+    "supervisor_unit": "osp-fix-sequence.service",
+    "total_native_episodes": 11,
+    "implementation_complete": true,
+    "native_validation_complete": false
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "rows": [
+    {
+      "seed": 8500107,
+      "all_metrics_match": true
+    },
+    {
+      "seed": 8500139,
+      "all_metrics_match": true
+    }
+  ],
+  "note": "Fixed map episodes are unchanged by retaining coverage on SLAM map resize; this does not measure real Gazebo improvement",
+  "source_hashes": {
+    "coverage_resize.py": "6351f404d7711d27016401255d0a2fd25e696e16c9e1a02b1ba307b3a1cd6cf4",
+    "edge_policy.py": "844db3d54899936fc5809ed4b25e3e23f8a88c63e9d053da72df4d99cc394b26",
+    "surface_coverage.py": "57c7a0563d92379726023f686931dd590a680e66404250aabd40e1ffc50936ac"
+  }
+}

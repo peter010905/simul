@@ -1,0 +1,33 @@
+         3525202 function calls (3525164 primitive calls) in 20.027 seconds
+
+   Ordered by: cumulative time
+   List reduced from 236 to 25 due to restriction <25>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.049    0.049   20.027   20.027 /home/peter/simul/src/osp_mission/osp_mission/fast_sim.py:250(run)
+       19    0.046    0.002   19.951    1.050 /home/peter/simul/src/osp_mission/osp_mission/fast_sim.py:185(step)
+       19    5.529    0.291   16.777    0.883 /home/peter/simul/src/osp_mission/osp_mission/face_policy.py:56(options)
+    21967    6.413    0.000    7.854    0.000 /home/peter/simul/src/osp_mission/osp_mission/face_policy.py:13(make_scans)
+     3037    0.685    0.000    2.523    0.001 /home/peter/simul/src/osp_mission/osp_mission/fast_sim.py:108(scan)
+    24399    1.046    0.000    1.105    0.000 /home/peter/simul/src/osp_mission/osp_mission/directional_policy.py:25(direction_bins)
+    23196    0.710    0.000    0.918    0.000 /usr/lib/python3/dist-packages/numpy/core/function_base.py:24(linspace)
+   114209    0.280    0.000    0.836    0.000 /usr/lib/python3/dist-packages/numpy/core/fromnumeric.py:71(_wrapreduction)
+      357    0.275    0.001    0.745    0.002 /home/peter/simul/src/osp_mission/osp_mission/directional_policy.py:12(normals)
+     2012    0.019    0.000    0.737    0.000 /home/peter/simul/src/osp_mission/osp_mission/fast_sim.py:88(_normals)
+    87868    0.161    0.000    0.737    0.000 /usr/lib/python3/dist-packages/numpy/core/fromnumeric.py:2177(sum)
+   143611    0.652    0.000    0.652    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+     3037    0.465    0.000    0.597    0.000 /home/peter/simul/src/osp_mission/osp_mission/fast_sim.py:95(_lidar)
+     1903    0.014    0.000    0.527    0.000 /home/peter/simul/src/osp_mission/osp_mission/fast_sim.py:170(rotate)
+    22387    0.090    0.000    0.488    0.000 {built-in method builtins.sum}
+    89731    0.171    0.000    0.445    0.000 /usr/lib/python3/dist-packages/numpy/core/fromnumeric.py:1140(argmax)
+     1428    0.020    0.000    0.414    0.000 /usr/lib/python3/dist-packages/scipy/ndimage/_filters.py:280(gaussian_filter)
+   259597    0.348    0.000    0.398    0.000 /home/peter/simul/src/osp_mission/osp_mission/face_policy.py:116(<genexpr>)
+    28627    0.072    0.000    0.392    0.000 {built-in method builtins.max}
+       19    0.000    0.000    0.362    0.019 /home/peter/simul/src/osp_mission/osp_mission/face_policy.py:39(choose_timed)
+     2012    0.046    0.000    0.334    0.000 /usr/lib/python3/dist-packages/numpy/lib/arraysetops.py:138(unique)
+     2856    0.013    0.000    0.326    0.000 /usr/lib/python3/dist-packages/scipy/ndimage/_filters.py:211(gaussian_filter1d)
+   109983    0.308    0.000    0.320    0.000 /home/peter/simul/src/osp_mission/osp_mission/face_policy.py:41(score)
+    91743    0.099    0.000    0.282    0.000 /usr/lib/python3/dist-packages/numpy/core/fromnumeric.py:53(_wrapfunc)
+    22389    0.043    0.000    0.280    0.000 /usr/lib/python3/dist-packages/numpy/core/fromnumeric.py:2421(all)
+
+

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Fit several 960x720 RGBD frames in the shared segment. Keep ordinary
+     packet buffers to avoid multiplying megabytes across ROS endpoints. -->
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+  <profiles>
+    <transport_descriptors>
+      <transport_descriptor>
+        <transport_id>image_udp</transport_id>
+        <type>UDPv4</type>
+      </transport_descriptor>
+      <transport_descriptor>
+        <transport_id>image_shm</transport_id>
+        <type>SHM</type>
+        <segment_size>33554432</segment_size>
+        <maxMessageSize>65500</maxMessageSize>
+        <port_queue_capacity>1024</port_queue_capacity>
+      </transport_descriptor>
+    </transport_descriptors>
+    <participant profile_name="image_participant" is_default_profile="true">
+      <rtps>
+        <useBuiltinTransports>false</useBuiltinTransports>
+        <userTransports>
+          <transport_id>image_udp</transport_id>
+          <transport_id>image_shm</transport_id>
+        </userTransports>
+      </rtps>
+    </participant>
+  </profiles>
+</dds>

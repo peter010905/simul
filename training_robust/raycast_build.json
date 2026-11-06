@@ -1,0 +1,16 @@
+{
+  "command": [
+    "c++",
+    "-std=c++17",
+    "-O3",
+    "-ffp-contract=off",
+    "-fno-fast-math",
+    "-shared",
+    "-fPIC",
+    "/home/peter/simul/src/osp_mission/osp_mission/raycast.cpp",
+    "-o",
+    "/home/peter/simul/src/osp_mission/osp_mission/_raycast.so"
+  ],
+  "source_sha256": "7a35ab843c480fc3ba3a82af15385f734f28768a70f85dbca6a2a58d3ef80e04",
+  "library_sha256": "c298a1fe6c551cb2e0cd75ddef7344761f07713b43af6db581f22f13143c730c"
+}

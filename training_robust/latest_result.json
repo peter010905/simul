@@ -1,0 +1,1712 @@
+{
+  "goal_achieved": false,
+  "summary": "Host Gazebo sensors observed; mission canceled during undocking. Fixed ROS-time freshness and undock readiness, added actual camera/LiDAR/SLAM recording. Native post-fix run is pending.",
+  "environment": "2d_surrogate",
+  "default_planner": "surface_endpoint",
+  "default_policy": "src/osp_mission/config/surface_endpoint_policy.json",
+  "default_unchanged": true,
+  "default_obstacles": 12,
+  "benchmark_obstacles": [
+    8,
+    12,
+    16,
+    24,
+    32
+  ],
+  "training_pool": 400,
+  "validation_pool": 160,
+  "v2_training_chunks": {
+    "v2_endpoint": {
+      "generations": 2,
+      "training_episodes": 1280,
+      "unique_layouts": 160,
+      "planned_generations": 5,
+      "success": 0.725,
+      "source_matches_current": false,
+      "completed": false,
+      "chunk_completed": true,
+      "study_completed": false,
+      "frozen_resolution": 0.2,
+      "continuous_shortcuts": false
+    },
+    "v2_edge": {
+      "generations": 2,
+      "training_episodes": 1280,
+      "unique_layouts": 160,
+      "planned_generations": 5,
+      "success": 0.74375,
+      "source_matches_current": false,
+      "completed": false,
+      "chunk_completed": true,
+      "study_completed": false,
+      "frozen_resolution": 0.2,
+      "continuous_shortcuts": false
+    }
+  },
+  "fine_grid_validation": {
+    "split": "v2/validation",
+    "episodes_per_planner": 160,
+    "paired_geometries": true,
+    "new_test_loaded": false,
+    "gazebo_verified": false,
+    "adopted": false,
+    "reason": "Only five net successes; 32-obstacle stratum regresses from 23/32 to 18/32; independent v2 test remains untouched",
+    "paired": {
+      "gained": 23,
+      "lost": 18,
+      "both_failed": 17,
+      "mcnemar_exact_two_sided_p": 0.5327092552361137
+    },
+    "summaries": {
+      "endpoint": {
+        "success_rate": 0.75,
+        "mean_seconds": 430.62892746326327,
+        "successful_mean_seconds": 374.1719032843511,
+        "collisions": 0,
+        "mean_safety_stops": 0.30625,
+        "mean_found": 2.725,
+        "mean_approached": 2.075,
+        "by_obstacles": {
+          "8": 0.8125,
+          "12": 0.78125,
+          "16": 0.75,
+          "24": 0.6875,
+          "32": 0.71875
+        },
+        "by_mount": {
+          "hidden_obstacles": 0.725,
+          "mixed": 0.7,
+          "obstacles": 0.625,
+          "walls": 0.95
+        }
+      },
+      "edge": {
+        "success_rate": 0.78125,
+        "mean_seconds": 420.3148391380081,
+        "successful_mean_seconds": 370.0029940966505,
+        "collisions": 0,
+        "mean_safety_stops": 0.275,
+        "mean_found": 2.7625,
+        "mean_approached": 2.01875,
+        "by_obstacles": {
+          "8": 0.875,
+          "12": 0.78125,
+          "16": 0.875,
+          "24": 0.8125,
+          "32": 0.5625
+        },
+        "by_mount": {
+          "hidden_obstacles": 0.75,
+          "mixed": 0.725,
+          "obstacles": 0.7,
+          "walls": 0.95
+        }
+      }
+    }
+  },
+  "failure_causes": {
+    "camera_never_aimed_at_readable_front": 16,
+    "too_few_confirmed_frames": 1,
+    "never_reached_readable_front": 18,
+    "readable_front_occluded": 2,
+    "never_within_pixel_range": 1
+  },
+  "unit_tests_passed": 110,
+  "build_passed": true,
+  "gazebo_verified": false,
+  "gazebo_current_completed_missions": 0,
+  "gazebo_probe_result": "host_sensors_measured_undock_canceled",
+  "new_test_seed_range": [
+    8700000,
+    8700199
+  ],
+  "new_test_generated": false,
+  "live_jobs": [],
+  "historical_independent_test": {
+    "independent_test_evaluated": true,
+    "unique_test_layouts": 100,
+    "episodes": 400,
+    "same_geometries_repeated_across_frames": true,
+    "paired": [
+      {
+        "frame": 0,
+        "gained": 4,
+        "lost": 5,
+        "both_success": 60
+      },
+      {
+        "frame": 1,
+        "gained": 5,
+        "lost": 3,
+        "both_success": 63
+      }
+    ],
+    "accepted": false,
+    "strong_2d_threshold_met": false,
+    "gazebo_verified": false,
+    "results": [
+      {
+        "name": "previous",
+        "frame_quarter_turns": 0,
+        "summary": {
+          "episodes": 100,
+          "success_rate": 0.65,
+          "mean_found": 2.57,
+          "mean_seconds": 452.9821257808895,
+          "successful_mean_seconds": 373.81865504752244,
+          "collisions": 0,
+          "mean_reward": 495.75268113286654,
+          "by_obstacles": {
+            "8": {
+              "success_rate": 0.95,
+              "episodes": 20
+            },
+            "12": {
+              "success_rate": 0.8,
+              "episodes": 20
+            },
+            "16": {
+              "success_rate": 0.5,
+              "episodes": 20
+            },
+            "24": {
+              "success_rate": 0.6,
+              "episodes": 20
+            },
+            "32": {
+              "success_rate": 0.4,
+              "episodes": 20
+            }
+          },
+          "by_mount": {
+            "hidden_obstacles": {
+              "episodes": 25,
+              "success_rate": 0.44,
+              "mean_found": 2.28,
+              "mean_seconds": 514.3700379744517,
+              "successful_mean_seconds": 405.38644994193567,
+              "collisions": 0,
+              "mean_reward": 395.88129430383225,
+              "by_obstacles": {
+                "8": {
+                  "success_rate": 1.0,
+                  "episodes": 5
+                },
+                "12": {
+                  "success_rate": 0.6,
+                  "episodes": 5
+                },
+                "16": {
+                  "success_rate": 0.4,
+                  "episodes": 5
+                },
+                "24": {
+                  "success_rate": 0.2,
+                  "episodes": 5
+                },
+                "32": {
+                  "success_rate": 0.0,
+                  "episodes": 5
+                }
+              }
+            },
+            "mixed": {
+              "episodes": 25,
+              "success_rate": 0.6,
+              "mean_found": 2.56,
+              "mean_seconds": 482.08790983271683,
+              "successful_mean_seconds": 403.47984972119474,
+              "collisions": 0,
+              "mean_reward": 476.0996135250924,
+              "by_obstacles": {
+                "8": {
+                  "success_rate": 0.8,
+                  "episodes": 5
+                },
+                "12": {
+                  "success_rate": 0.6,
+                  "episodes": 5
+                },
+                "16": {
+                  "success_rate": 0.4,
+                  "episodes": 5
+                },
+                "24": {
+                  "success_rate": 0.8,
+                  "episodes": 5
+                },
+                "32": {
+                  "success_rate": 0.4,
+                  "episodes": 5
+                }
+              }
+            },
+            "obstacles": {
+              "episodes": 25,
+              "success_rate": 0.68,
+              "mean_found": 2.56,
+              "mean_seconds": 444.3759078252635,
+              "successful_mean_seconds": 371.14104091950514,
+              "collisions": 0,
+              "mean_reward": 504.06521382621054,
+              "by_obstacles": {
+                "8": {
+                  "success_rate": 1.0,
+                  "episodes": 5
+                },
+                "12": {
+                  "success_rate": 1.0,
+                  "episodes": 5
+                },
+                "16": {
+                  "success_rate": 0.4,
+                  "episodes": 5
+                },
+                "24": {
+                  "success_rate": 0.4,
+                  "episodes": 5
+                },
+                "32": {
+                  "success_rate": 0.6,
+                  "episodes": 5
+                }
+              }
+            },
+            "walls": {
+              "episodes": 25,
+              "success_rate": 0.88,
+              "mean_found": 2.88,
+              "mean_seconds": 371.0946474911263,
+              "successful_mean_seconds": 339.88028123991626,
+              "collisions": 0,
+              "mean_reward": 606.964602876331,
+              "by_obstacles": {
+                "8": {
+                  "success_rate": 1.0,
+                  "episodes": 5
+                },
+                "12": {
+                  "success_rate": 1.0,
+                  "episodes": 5
+                },
+                "16": {
+                  "success_rate": 0.8,
+                  "episodes": 5
+                },
+                "24": {
+                  "success_rate": 1.0,
+                  "episodes": 5
+                },
+                "32": {
+                  "success_rate": 0.6,
+                  "episodes": 5
+                }
+              }
+            }
+          },
+          "mean_approached": 2.2,
+          "success_wilson_95": [
+            0.5525444329688823,
+            0.7363575175690226
+          ]
+        },
+        "wall_seconds": 35.20664880797267
+      },
+      {
+        "name": "previous",
+        "frame_quarter_turns": 1,
+        "summary": {
+          "episodes": 100,
+          "success_rate": 0.66,
+          "mean_found": 2.58,
+          "mean_seconds": 442.34106565334173,
+          "successful_mean_seconds": 361.12282674748747,
+          "collisions": 0,
+          "mean_reward": 498.10264015199886,
+          "by_obstacles": {
+            "8": {
+              "success_rate": 0.65,
+              "episodes": 20
+            },
+            "12": {
+              "success_rate": 0.8,
+              "episodes": 20
+            },
+            "16": {
+              "success_rate": 0.6,
+              "episodes": 20
+            },
+            "24": {
+              "success_rate": 0.65,
+              "episodes": 20
+            },
+            "32": {
+              "success_rate": 0.6,
+              "episodes": 20
+            }
+          },
+          "by_mount": {
+            "hidden_obstacles": {
+              "episodes": 25,
+              "success_rate": 0.48,
+              "mean_found": 2.2,
+              "mean_seconds": 505.57274532195567,
+              "successful_mean_seconds": 403.2765527540742,
+              "collisions": 0,
+              "mean_reward": 396.38568820170667,
+              "by_obstacles": {
+                "8": {
+                  "success_rate": 0.4,
+                  "episodes": 5
+                },
+                "12": {
+                  "success_rate": 0.8,
+                  "episodes": 5
+                },
+                "16": {
+                  "success_rate": 0.2,
+                  "episodes": 5
+                },
+                "24": {
+                  "success_rate": 0.6,
+                  "episodes": 5
+                },
+                "32": {
+                  "success_rate": 0.4,
+                  "episodes": 5
+                }
+              }
+            },
+            "mixed": {
+              "episodes": 25,
+              "success_rate": 0.72,
+              "mean_found": 2.72,
+              "mean_seconds": 419.19090722722433,
+              "successful_mean_seconds": 348.87626003781156,
+              "collisions": 0,
+              "mean_reward": 535.2421639159164,
+              "by_obstacles": {
+                "8": {
+                  "success_rate": 0.6,
+                  "episodes": 5
+                },
+                "12": {
+                  "success_rate": 0.6,
+                  "episodes": 5
+                },
+                "16": {
+                  "success_rate": 0.8,
+                  "episodes": 5
+                },
+                "24": {
+                  "success_rate": 0.6,
+                  "episodes": 5
+                },
+                "32": {
+                  "success_rate": 1.0,
+                  "episodes": 5
+                }
+              }
+            },
+            "obstacles": {
+              "episodes": 25,
+              "success_rate": 0.56,
+              "mean_found": 2.56,
+              "mean_seconds": 463.66153134460086,
+              "successful_mean_seconds": 356.5384488296445,
+              "collisions": 0,
+              "mean_reward": 464.6771702983099,
+              "by_obstacles": {
+                "8": {
+                  "success_rate": 0.6,
+                  "episodes": 5
+                },
+                "12": {
+                  "success_rate": 0.8,
+                  "episodes": 5
+                },
+                "16": {
+                  "success_rate": 0.4,
+                  "episodes": 5
+                },
+                "24": {
+                  "success_rate": 0.6,
+                  "episodes": 5
+                },
+                "32": {
+                  "success_rate": 0.4,
+                  "episodes": 5
+                }
+              }
+            },
+            "walls": {
+              "episodes": 25,
+              "success_rate": 0.88,
+              "mean_found": 2.84,
+              "mean_seconds": 380.93907871958584,
+              "successful_mean_seconds": 351.06713490862035,
+              "collisions": 0,
+              "mean_reward": 596.1055381920621,
+              "by_obstacles": {
+                "8": {
+                  "success_rate": 1.0,
+                  "episodes": 5
+                },
+                "12": {
+                  "success_rate": 1.0,
+                  "episodes": 5
+                },
+                "16": {
+                  "success_rate": 1.0,
+                  "episodes": 5
+                },
+                "24": {
+                  "success_rate": 0.8,
+                  "episodes": 5
+                },
+                "32": {
+                  "success_rate": 0.6,
+                  "episodes": 5
+                }
+              }
+            }
+          },
+          "mean_approached": 2.12,
+          "success_wilson_95": [
+            0.562777288547249,
+            0.7453847920265163
+          ]
+        },
+        "wall_seconds": 34.215744183864444
+      },
+      {
+        "name": "candidate",
+        "frame_quarter_turns": 0,
+        "summary": {
+          "episodes": 100,
+          "success_rate": 0.64,
+          "mean_found": 2.55,
+          "mean_seconds": 460.8630196643672,
+          "successful_mean_seconds": 382.59846822557364,
+          "collisions": 0,
+          "mean_reward": 489.841347050345,
+          "by_obstacles": {
+            "8": {
+              "success_rate": 0.85,
+              "episodes": 20
+            },
+            "12": {
+              "success_rate": 0.75,
+              "episodes": 20
+            },
+            "16": {
+              "success_rate": 0.5,
+              "episodes": 20
+            },
+            "24": {
+              "success_rate": 0.55,
+              "episodes": 20
+            },
+            "32": {
+              "success_rate": 0.55,
+              "episodes": 20
+            }
+          },
+          "by_mount": {
+            "hidden_obstacles": {
+              "episodes": 25,
+              "success_rate": 0.44,
+              "mean_found": 2.24,
+              "mean_seconds": 526.6236416391697,
+              "successful_mean_seconds": 433.23554917993096,
+              "collisions": 0,
+              "mean_reward": 389.9368537541246,
+              "by_obstacles": {
+                "8": {
+                  "success_rate": 1.0,
+                  "episodes": 5
+                },
+                "12": {
+                  "success_rate": 0.6,
+                  "episodes": 5
+                },
+                "16": {
+                  "success_rate": 0.4,
+                  "episodes": 5
+                },
+                "24": {
+                  "success_rate": 0.0,
+                  "episodes": 5
+                },
+                "32": {
+                  "success_rate": 0.2,
+                  "episodes": 5
+                }
+              }
+            },
+            "mixed": {
+              "episodes": 25,
+              "success_rate": 0.6,
+              "mean_found": 2.56,
+              "mean_seconds": 491.3016763729476,
+              "successful_mean_seconds": 418.836127288246,
+              "collisions": 0,
+              "mean_reward": 474.73034854405785,
+              "by_obstacles": {
+                "8": {
+                  "success_rate": 0.6,
+                  "episodes": 5
+                },
+                "12": {
+                  "success_rate": 0.4,
+                  "episodes": 5
+                },
+                "16": {
+                  "success_rate": 0.6,
+                  "episodes": 5
+                },
+                "24": {
+                  "success_rate": 0.8,
+                  "episodes": 5
+                },
+                "32": {
+                  "success_rate": 0.6,
+                  "episodes": 5
+                }
+              }
+            },
+            "obstacles": {
+              "episodes": 25,
+              "success_rate": 0.64,
+              "mean_found": 2.52,
+              "mean_seconds": 452.825542824283,
+              "successful_mean_seconds": 370.0399106629421,
+              "collisions": 0,
+              "mean_reward": 487.78816857635763,
+              "by_obstacles": {
+                "8": {
+                  "success_rate": 0.8,
+                  "episodes": 5
+                },
+                "12": {
+                  "success_rate": 1.0,
+                  "episodes": 5
+                },
+                "16": {
+                  "success_rate": 0.4,
+                  "episodes": 5
+                },
+                "24": {
+                  "success_rate": 0.4,
+                  "episodes": 5
+                },
+                "32": {
+                  "success_rate": 0.6,
+                  "episodes": 5
+                }
+              }
+            },
+            "walls": {
+              "episodes": 25,
+              "success_rate": 0.88,
+              "mean_found": 2.88,
+              "mean_seconds": 372.7012178210683,
+              "successful_mean_seconds": 341.7059293421231,
+              "collisions": 0,
+              "mean_reward": 606.9100173268397,
+              "by_obstacles": {
+                "8": {
+                  "success_rate": 1.0,
+                  "episodes": 5
+                },
+                "12": {
+                  "success_rate": 1.0,
+                  "episodes": 5
+                },
+                "16": {
+                  "success_rate": 0.6,
+                  "episodes": 5
+                },
+                "24": {
+                  "success_rate": 1.0,
+                  "episodes": 5
+                },
+                "32": {
+                  "success_rate": 0.8,
+                  "episodes": 5
+                }
+              }
+            }
+          },
+          "mean_approached": 2.23,
+          "success_wilson_95": [
+            0.54235402451609,
+            0.7272877959859545
+          ]
+        },
+        "wall_seconds": 35.84793889941648
+      },
+      {
+        "name": "candidate",
+        "frame_quarter_turns": 1,
+        "summary": {
+          "episodes": 100,
+          "success_rate": 0.68,
+          "mean_found": 2.58,
+          "mean_seconds": 443.47298626135387,
+          "successful_mean_seconds": 369.81321509022627,
+          "collisions": 0,
+          "mean_reward": 504.36005206079705,
+          "by_obstacles": {
+            "8": {
+              "success_rate": 0.6,
+              "episodes": 20
+            },
+            "12": {
+              "success_rate": 0.75,
+              "episodes": 20
+            },
+            "16": {
+              "success_rate": 0.7,
+              "episodes": 20
+            },
+            "24": {
+              "success_rate": 0.75,
+              "episodes": 20
+            },
+            "32": {
+              "success_rate": 0.6,
+              "episodes": 20
+            }
+          },
+          "by_mount": {
+            "hidden_obstacles": {
+              "episodes": 25,
+              "success_rate": 0.4,
+              "mean_found": 2.08,
+              "mean_seconds": 509.66597710476753,
+              "successful_mean_seconds": 374.1649427619188,
+              "collisions": 0,
+              "mean_reward": 359.74450343428487,
+              "by_obstacles": {
+                "8": {
+                  "success_rate": 0.2,
+                  "episodes": 5
+                },
+                "12": {
+                  "success_rate": 0.6,
+                  "episodes": 5
+                },
+                "16": {
+                  "success_rate": 0.2,
+                  "episodes": 5
+                },
+                "24": {
+                  "success_rate": 0.6,
+                  "episodes": 5
+                },
+                "32": {
+                  "success_rate": 0.4,
+                  "episodes": 5
+                }
+              }
+            },
+            "mixed": {
+              "episodes": 25,
+              "success_rate": 0.8,
+              "mean_found": 2.8,
+              "mean_seconds": 420.92365827190076,
+              "successful_mean_seconds": 376.1545728398759,
+              "collisions": 0,
+              "mean_reward": 567.0598512592148,
+              "by_obstacles": {
+                "8": {
+                  "success_rate": 0.6,
+                  "episodes": 5
+                },
+                "12": {
+                  "success_rate": 0.6,
+                  "episodes": 5
+                },
+                "16": {
+                  "success_rate": 1.0,
+                  "episodes": 5
+                },
+                "24": {
+                  "success_rate": 0.8,
+                  "episodes": 5
+                },
+                "32": {
+                  "success_rate": 1.0,
+                  "episodes": 5
+                }
+              }
+            },
+            "obstacles": {
+              "episodes": 25,
+              "success_rate": 0.68,
+              "mean_found": 2.64,
+              "mean_seconds": 452.07320884675045,
+              "successful_mean_seconds": 382.46060124522126,
+              "collisions": 0,
+              "mean_reward": 511.80341867298745,
+              "by_obstacles": {
+                "8": {
+                  "success_rate": 0.6,
+                  "episodes": 5
+                },
+                "12": {
+                  "success_rate": 0.8,
+                  "episodes": 5
+                },
+                "16": {
+                  "success_rate": 0.8,
+                  "episodes": 5
+                },
+                "24": {
+                  "success_rate": 0.8,
+                  "episodes": 5
+                },
+                "32": {
+                  "success_rate": 0.4,
+                  "episodes": 5
+                }
+              }
+            },
+            "walls": {
+              "episodes": 25,
+              "success_rate": 0.84,
+              "mean_found": 2.8,
+              "mean_seconds": 391.22910082199667,
+              "successful_mean_seconds": 351.4632152642818,
+              "collisions": 0,
+              "mean_reward": 578.8324348767005,
+              "by_obstacles": {
+                "8": {
+                  "success_rate": 1.0,
+                  "episodes": 5
+                },
+                "12": {
+                  "success_rate": 1.0,
+                  "episodes": 5
+                },
+                "16": {
+                  "success_rate": 0.8,
+                  "episodes": 5
+                },
+                "24": {
+                  "success_rate": 0.8,
+                  "episodes": 5
+                },
+                "32": {
+                  "success_rate": 0.6,
+                  "episodes": 5
+                }
+              }
+            }
+          },
+          "mean_approached": 2.11,
+          "success_wilson_95": [
+            0.5833738138954789,
+            0.763308526750007
+          ]
+        },
+        "wall_seconds": 35.187237720005214
+      }
+    ]
+  },
+  "historical_training_runs": [
+    {
+      "run": "training_robust/diverse_directional_cem",
+      "exec_session_id": null,
+      "completed": true,
+      "training_episodes": 2400,
+      "last_completed_generation": 9,
+      "planned_training_episodes": 2400,
+      "unique_training_layouts_used": 200,
+      "best_success": 0.7625,
+      "collisions": 0,
+      "source_matches_current_simulator": false
+    },
+    {
+      "run": "training_robust/diverse_endpoint_v4",
+      "exec_session_id": null,
+      "completed": true,
+      "training_episodes": 2400,
+      "last_completed_generation": 9,
+      "planned_training_episodes": 2400,
+      "unique_training_layouts_used": 200,
+      "best_success": 0.7875,
+      "collisions": 0,
+      "source_matches_current_simulator": false
+    },
+    {
+      "run": "training_robust/endpoint_prior_elites",
+      "exec_session_id": null,
+      "completed": false,
+      "training_episodes": 1680,
+      "last_completed_generation": 6,
+      "planned_training_episodes": 2400,
+      "unique_training_layouts_used": 140,
+      "best_success": 0.775,
+      "collisions": 0,
+      "source_matches_current_simulator": false
+    },
+    {
+      "run": "training_robust/directional_v4_elites",
+      "exec_session_id": null,
+      "completed": false,
+      "training_episodes": 480,
+      "last_completed_generation": 1,
+      "planned_training_episodes": 2400,
+      "unique_training_layouts_used": 40,
+      "best_success": 0.7625,
+      "collisions": 0,
+      "source_matches_current_simulator": false
+    }
+  ],
+  "source_files": {
+    "src/osp_mission/osp_mission/scan_alignment.py": "cf1c68d78ce6eae65622590644fef31885b720f3ba3e9461e066b04ca4f5936a",
+    "src/osp_mission/osp_mission/surface_v2_policy.py": "2695940857446154dea065cb1cae232bd3687dda2adc9058d6c77ef8e1a20c0e",
+    "src/osp_mission/osp_mission/dashboard.py": "4e66c5e774f2710ca06c416f2f7339ff036620475eb152c3cd3262f8089c6612",
+    "src/osp_mission/osp_mission/view_tour_policy.py": "c78de8fd4121ab51c6143d55a8181a21faa5e44c3bdde44fbdd020f3017f65a9",
+    "src/osp_mission/osp_mission/face_mass.py": "9eefb802aaa1a55a8e7b1ac083541238d376f28339b04018991b1814ef76b0ef",
+    "src/osp_mission/osp_mission/detector.py": "464140fc7c0f55c828f0688a151bb39ac4ea41f417dcbd8ddeb5c24d208a4921",
+    "src/osp_mission/osp_mission/mission.py": "8827dfc8709fcae49047a29876a382b19f1fe1182b00af5e0b0085def0bf980c",
+    "src/osp_mission/osp_mission/train.py": "021485d29325b5338c3d02a117d531f4ab3fe218786706191d1f2436f3df4f38",
+    "src/osp_mission/osp_mission/policy.py": "7140d1347c2e5c7a1d7975296c571b1682d8825a4bcd58b7b2290688d9fd56ee",
+    "src/osp_mission/osp_mission/gazebo_eval.py": "2704d218781ec3b4ab8ca35741f4425da8a4d45c6586981edffac1172a08033e",
+    "src/osp_mission/osp_mission/edge_policy.py": "dc03843e4b12a7cada174bc4e8bfea9c13c2449ef2c5837cb2bbc0b8d916a2ce",
+    "src/osp_mission/osp_mission/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/osp_mission/osp_mission/fast_sim.py": "a57e51346feeb24da23ae44c14ff3cc9c7c045fc1a7865a05f2bf2c798ce4f3c",
+    "src/osp_mission/osp_mission/world.py": "6c48e1ec856ac0ceb601a39024d28f285658e7062a9a2495c3bad1480354c81b",
+    "src/osp_mission/osp_mission/angular_motion.py": "756c21d13763a6f23baf58b98dbd87c3bddc492c94d77b3d56310fb214718d63",
+    "src/osp_mission/osp_mission/normal_cache.py": "a92c09072a6ae85452562df6e3648aaf688895d3a694cfa504c98efc32ef67f6",
+    "src/osp_mission/osp_mission/travel_glance.py": "0878827f9d92b127586df639a099a5b0676e04af32f02140cb8476d5a1c7655b",
+    "src/osp_mission/osp_mission/time_budget.py": "80139966388080994850046c76ff12fbcfe85cf3752a8e7e96e9212813d26852",
+    "src/osp_mission/osp_mission/curriculum.py": "d85f75724bbbf7f51dfb2683e798aee5988c84fd1d71c3b74c5ac9a7f46798bd",
+    "src/osp_mission/osp_mission/face_policy.py": "9857af71e6e97e41a3152a903304de3466c262f11853f68ffd085a6a2277dcb5",
+    "src/osp_mission/osp_mission/scenarios.py": "9259bf1e82a6b525bf84d905226465140a183fbbc94e11dfd783907151940d37",
+    "src/osp_mission/osp_mission/frame_variation.py": "b923fbb56d2445d4f49594261ac99d13f9aee482fb96f0cc54582cbe35afa938",
+    "src/osp_mission/osp_mission/view_route_policy.py": "60d69a0bcb40c264c5a313d985e23e813b370bb135fa2bf67f5568c49b4b94aa",
+    "src/osp_mission/osp_mission/inspection_policy.py": "9b4923d05f9772a0cc88047579316cfb9c9dc60336c2454e86f90f7c9ae086b7",
+    "src/osp_mission/osp_mission/surface_balanced_policy.py": "dcde9d3a485abc4b0594da68f1e21e8f297568334c1be98fd7e735386e6508e1",
+    "src/osp_mission/osp_mission/surface_coverage.py": "57c7a0563d92379726023f686931dd590a680e66404250aabd40e1ffc50936ac",
+    "src/osp_mission/osp_mission/coverage_resize.py": "6351f404d7711d27016401255d0a2fd25e696e16c9e1a02b1ba307b3a1cd6cf4",
+    "src/osp_mission/osp_mission/directional_policy.py": "40c3d9010657b5c8c1480dce24ecae37ba6b088cab1f17fa3094e0501c51a80b",
+    "src/osp_mission/osp_mission/surface_endpoint_policy.py": "2c6a665d3a3496637a2c333fad9731ef06072253fc7fa886c69a7f9d32a7b229",
+    "src/osp_mission/osp_mission/plane_views.py": "ba4ca2e8f4903b89c951bcec99360fdba466c1ed86ff022cce3abad9ac328cb3",
+    "src/osp_mission/osp_mission/continual.py": "2467ffdc31e79eba6f18bf591b4bf7c98071b98e143cf47b86eb120ddcaaeaa2",
+    "src/osp_mission/osp_mission/frontier.py": "7321c0e65865322bec00737078028ff6bb663cd06116f0062cd3b6d6ffc78b2d",
+    "src/osp_mission/osp_mission/sensor_model.py": "56169f990b4ae71a174db14c327d5af433722d8ab622e621ab1e5df5364eaf4c",
+    "src/osp_mission/osp_mission/surface_policy.py": "aae6e675d22243e4bf61762a10af12d083b4d0e6f06da07171b7197b35de1dd3",
+    "src/osp_mission/osp_mission/raycast.py": "cc3369f75937464149f7513ca1c419e80a750a5ccbbb01ab96838f9d810add3b",
+    "src/osp_mission/osp_mission/assignment_scenarios.py": "81e371efe765b79f5bf83286772e4aa32470ce049862b332c31d7f73fc62857c",
+    "src/osp_mission/osp_mission/robust_scenarios.py": "f8f6683a773afedf6c08c9ad6f14b5f4ca8823b1fc9035685222d48909f722d8",
+    "src/osp_mission/osp_mission/path_geometry.py": "ba2c98f2af003b75d8f0c55e44113c51c19a2e186e3d4e05e58bea54b7175557",
+    "src/osp_mission/osp_mission/runtime_metrics.py": "390eb0c496c53e4223174cfc123ae5dd71fc55f33694ffee4de36c6232abe9a1"
+  },
+  "evidence": {
+    "lidar_reference": "/opt/ros/jazzy/share/turtlebot4_description/urdf/sensors/rplidar.urdf.xacro",
+    "reference_beams": 640,
+    "legacy_surrogate_beams": 120,
+    "lidar_ablation": "training_robust/lidar_ablation/completed.json",
+    "v2_schedule": "training_robust/v2_schedule_audit.json",
+    "v2_train_layouts": 400,
+    "v2_validation_layouts": 160,
+    "unseen_test_reserved": [
+      8700000,
+      8700199
+    ],
+    "unseen_test_generated": false,
+    "raycast_acceleration": "training_robust/raycast_equivalence.json",
+    "raycast_random_differential_cases": 300,
+    "whole_trajectory_equivalence_cases": 4,
+    "gazebo_probe": "training_robust/gazebo_sensor_smoke/report.json",
+    "gazebo_probe_result": "host_sensors_measured_undock_canceled",
+    "initial_v2_validation_success": {
+      "endpoint": 0.725,
+      "edge": 0.74375
+    },
+    "initial_v2_validation_worst_mount": {
+      "endpoint": 0.575,
+      "edge": 0.625
+    },
+    "path_regression": "training_robust/path_geometry_regression.json",
+    "resolution_before": "training_robust/resolution_ablation/completed.json",
+    "resolution_after": "training_robust/path_resolution_corrected/completed.json",
+    "edge_ros_smoke": "training_robust/edge_ros_smoke.json",
+    "fine_validation": "training_robust/fidelity_validation/comparison.json",
+    "fine_validation_success": {
+      "endpoint": 0.75,
+      "edge": 0.78125
+    },
+    "fine_candidate_adopted": false,
+    "normal_cache_equivalence": "training_robust/normal_cache_equivalence.json",
+    "normal_cache_unit_test_log": "training_robust/normal_cache_full_tests.log",
+    "normal_cache_build_log": "training_robust/normal_cache_build.log",
+    "fine_failure_diagnostics": "training_robust/fidelity_validation/failure_diagnostics/completed.json",
+    "fine_failure_causes": {
+      "camera_never_aimed_at_readable_front": 16,
+      "too_few_confirmed_frames": 1,
+      "never_reached_readable_front": 18,
+      "readable_front_occluded": 2,
+      "never_within_pixel_range": 1
+    },
+    "geometry_study": "training_robust/geometry_study_summary.json",
+    "execution_study": "training_robust/execution_study_summary.json",
+    "current_gazebo_probe": "training_robust/gazebo_runtime_calibration/runtime_probes/20261104T211510_211783Z/evaluation.json",
+    "undock_video_audit": "training_robust/undock_video_audit.json"
+  },
+  "latest_study": {
+    "goal_achieved": false,
+    "environment": "2d_surrogate",
+    "new_training_evaluations": 320,
+    "unique_training_layouts": 80,
+    "diagnostic_replays": 16,
+    "diagnostic_summary": {
+      "episodes": 16,
+      "exact_replays": true,
+      "missed_markers": 21,
+      "missed_with_any_candidate": 20,
+      "opportunity_decisions": 219,
+      "selected_wall_majority": 83,
+      "raw_top1": 1,
+      "capped_top1": 3,
+      "raw_top5": 9,
+      "capped_top5": 15,
+      "note": "Counterfactual scores on a fixed trajectory; not candidate-policy success, and potential visibility does not guarantee arrival or three decoded frames"
+    },
+    "execution_comparison": {
+      "environment": "2d_surrogate",
+      "split": "v2/train",
+      "evaluations": 320,
+      "unique_layouts": 80,
+      "validation_loaded": false,
+      "test_loaded": false,
+      "gazebo_verified": false,
+      "summaries": {
+        "surface_endpoint_baseline": {
+          "success_rate": 0.8375,
+          "mean_seconds": 422.62766629307544,
+          "successful_mean_seconds": 388.21213885740354,
+          "collisions": 0,
+          "mean_found": 2.7875,
+          "by_mount": {
+            "hidden_obstacles": 0.7,
+            "mixed": 0.8,
+            "obstacles": 0.85,
+            "walls": 1.0
+          },
+          "by_obstacles": {
+            "8": 0.875,
+            "12": 0.875,
+            "16": 0.8125,
+            "24": 0.8125,
+            "32": 0.8125
+          },
+          "by_frame": {
+            "0": 0.85,
+            "1": 0.85,
+            "2": 0.75,
+            "3": 0.9
+          },
+          "observation_alignment_seconds": 15.391244309701458,
+          "observation_sweep_seconds": 94.75339121484129,
+          "avoidable_alignment_radians": 5.13013120356475
+        },
+        "surface_endpoint_efficient": {
+          "success_rate": 0.7875,
+          "mean_seconds": 432.14523489342366,
+          "successful_mean_seconds": 386.85109192815696,
+          "collisions": 0,
+          "mean_found": 2.725,
+          "by_mount": {
+            "hidden_obstacles": 0.5,
+            "mixed": 0.9,
+            "obstacles": 0.75,
+            "walls": 1.0
+          },
+          "by_obstacles": {
+            "8": 0.875,
+            "12": 0.875,
+            "16": 0.625,
+            "24": 0.75,
+            "32": 0.8125
+          },
+          "by_frame": {
+            "0": 0.65,
+            "1": 0.85,
+            "2": 0.75,
+            "3": 0.9
+          },
+          "observation_alignment_seconds": 6.428496693623201,
+          "observation_sweep_seconds": 98.14022652620037,
+          "avoidable_alignment_radians": 6.1082641255226875
+        },
+        "symmetric_edge_baseline": {
+          "success_rate": 0.7875,
+          "mean_seconds": 415.3300860039129,
+          "successful_mean_seconds": 365.4985219097308,
+          "collisions": 0,
+          "mean_found": 2.7375,
+          "by_mount": {
+            "hidden_obstacles": 0.6,
+            "mixed": 0.8,
+            "obstacles": 0.8,
+            "walls": 0.95
+          },
+          "by_obstacles": {
+            "8": 0.875,
+            "12": 0.8125,
+            "16": 0.875,
+            "24": 0.625,
+            "32": 0.75
+          },
+          "by_frame": {
+            "0": 0.9,
+            "1": 0.8,
+            "2": 0.65,
+            "3": 0.8
+          },
+          "observation_alignment_seconds": 9.691312849315537,
+          "observation_sweep_seconds": 112.07539981183395,
+          "avoidable_alignment_radians": 3.493899434604289
+        },
+        "symmetric_edge_efficient": {
+          "success_rate": 0.7625,
+          "mean_seconds": 422.324883924005,
+          "successful_mean_seconds": 366.9834543265639,
+          "collisions": 0,
+          "mean_found": 2.6875,
+          "by_mount": {
+            "hidden_obstacles": 0.45,
+            "mixed": 0.85,
+            "obstacles": 0.85,
+            "walls": 0.9
+          },
+          "by_obstacles": {
+            "8": 0.875,
+            "12": 0.8125,
+            "16": 0.75,
+            "24": 0.75,
+            "32": 0.625
+          },
+          "by_frame": {
+            "0": 0.85,
+            "1": 0.75,
+            "2": 0.65,
+            "3": 0.8
+          },
+          "observation_alignment_seconds": 3.6620859819863556,
+          "observation_sweep_seconds": 114.1799058764129,
+          "avoidable_alignment_radians": 3.9372613166973016
+        }
+      },
+      "paired": {
+        "surface_endpoint": {
+          "gained": 3,
+          "lost": 7,
+          "both_failed": 10
+        },
+        "symmetric_edge": {
+          "gained": 3,
+          "lost": 5,
+          "both_failed": 14
+        }
+      }
+    },
+    "adopted": false,
+    "default_unchanged": true,
+    "new_validation_evaluations": 0,
+    "new_independent_test_loaded": false,
+    "tests_passed": 97,
+    "build_passed": true,
+    "gazebo_completed_missions": 0,
+    "gazebo_runtime_probe": "gazebo_runtime_calibration/runtime_probes/20261104T204355_004287Z/evaluation.json",
+    "actual_timing_measured": false,
+    "next_required_action": "Run the prepared single-scene runtime probe on a host where ROS networking and rendering are available; calibrate before further surrogate-only tuning",
+    "command": "bash /home/peter/simul/run_gazebo_runtime_probe.sh",
+    "current_jobs": [],
+    "updated_utc": "2026-11-04T20:46:31.730623+00:00"
+  },
+  "previous_view_study": {
+    "completed": true,
+    "adopted": false,
+    "total_evaluations": 540,
+    "unique_training_layouts": 100,
+    "contacts": 0,
+    "parameter_search": {
+      "episodes": 240,
+      "unique_layouts": 60,
+      "best_success": 0.725,
+      "control_success": 0.825
+    },
+    "runtime_fixes": [
+      "success scan cooldown removed; 1.5-second camera dwell",
+      "zero-angle scan waits without sending Spin",
+      "camera-period angular steps prevent skipped frames during fast rotation"
+    ],
+    "tests_passed": 77,
+    "build_passed": true,
+    "gazebo_verified": false,
+    "source_hashes": {
+      "surface_v2_policy.py": "2695940857446154dea065cb1cae232bd3687dda2adc9058d6c77ef8e1a20c0e",
+      "dashboard.py": "4e66c5e774f2710ca06c416f2f7339ff036620475eb152c3cd3262f8089c6612",
+      "view_tour_policy.py": "c78de8fd4121ab51c6143d55a8181a21faa5e44c3bdde44fbdd020f3017f65a9",
+      "detector.py": "464140fc7c0f55c828f0688a151bb39ac4ea41f417dcbd8ddeb5c24d208a4921",
+      "mission.py": "8827dfc8709fcae49047a29876a382b19f1fe1182b00af5e0b0085def0bf980c",
+      "train.py": "021485d29325b5338c3d02a117d531f4ab3fe218786706191d1f2436f3df4f38",
+      "policy.py": "7140d1347c2e5c7a1d7975296c571b1682d8825a4bcd58b7b2290688d9fd56ee",
+      "gazebo_eval.py": "0df7bc9499eb9f1bf680933c136d39c63c9e30eb97f9b7930cd58642dbc9e388",
+      "edge_policy.py": "7b8aba35db96b61132df463f2d0903f315828640ac6e13b2c25ba6192d3f1ae8",
+      "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fast_sim.py": "c21b8300a17298f204f8ddd483b63513ea0d06f63f72238fbe321b31f36b14b0",
+      "world.py": "6c48e1ec856ac0ceb601a39024d28f285658e7062a9a2495c3bad1480354c81b",
+      "normal_cache.py": "a92c09072a6ae85452562df6e3648aaf688895d3a694cfa504c98efc32ef67f6",
+      "travel_glance.py": "0878827f9d92b127586df639a099a5b0676e04af32f02140cb8476d5a1c7655b",
+      "time_budget.py": "80139966388080994850046c76ff12fbcfe85cf3752a8e7e96e9212813d26852",
+      "curriculum.py": "d85f75724bbbf7f51dfb2683e798aee5988c84fd1d71c3b74c5ac9a7f46798bd",
+      "face_policy.py": "9857af71e6e97e41a3152a903304de3466c262f11853f68ffd085a6a2277dcb5",
+      "scenarios.py": "9259bf1e82a6b525bf84d905226465140a183fbbc94e11dfd783907151940d37",
+      "frame_variation.py": "b923fbb56d2445d4f49594261ac99d13f9aee482fb96f0cc54582cbe35afa938",
+      "view_route_policy.py": "90bdb4a22428a658aca9edfb0949396a44f42c580990c039355424737eab4179",
+      "inspection_policy.py": "9b4923d05f9772a0cc88047579316cfb9c9dc60336c2454e86f90f7c9ae086b7",
+      "surface_balanced_policy.py": "dcde9d3a485abc4b0594da68f1e21e8f297568334c1be98fd7e735386e6508e1",
+      "surface_coverage.py": "1d58133038312a03152e4a7070b4bf9b057f83cedba2e3d3b2a6d7822f3c81a3",
+      "directional_policy.py": "40c3d9010657b5c8c1480dce24ecae37ba6b088cab1f17fa3094e0501c51a80b",
+      "surface_endpoint_policy.py": "2c6a665d3a3496637a2c333fad9731ef06072253fc7fa886c69a7f9d32a7b229",
+      "continual.py": "2467ffdc31e79eba6f18bf591b4bf7c98071b98e143cf47b86eb120ddcaaeaa2",
+      "frontier.py": "7321c0e65865322bec00737078028ff6bb663cd06116f0062cd3b6d6ffc78b2d",
+      "sensor_model.py": "56169f990b4ae71a174db14c327d5af433722d8ab622e621ab1e5df5364eaf4c",
+      "surface_policy.py": "aae6e675d22243e4bf61762a10af12d083b4d0e6f06da07171b7197b35de1dd3",
+      "raycast.py": "cc3369f75937464149f7513ca1c419e80a750a5ccbbb01ab96838f9d810add3b",
+      "assignment_scenarios.py": "81e371efe765b79f5bf83286772e4aa32470ce049862b332c31d7f73fc62857c",
+      "robust_scenarios.py": "f8f6683a773afedf6c08c9ad6f14b5f4ca8823b1fc9035685222d48909f722d8",
+      "path_geometry.py": "ba2c98f2af003b75d8f0c55e44113c51c19a2e186e3d4e05e58bea54b7175557"
+    }
+  },
+  "previous_geometry_study": {
+    "goal_achieved": false,
+    "environment": "2d_surrogate",
+    "training_split_evaluations": 860,
+    "training_evaluations_by_study": {
+      "plane_view_screen": 160,
+      "geometry_view_screen": 160,
+      "angular_sensitivity": 60,
+      "symmetric_expansion": 120,
+      "symmetric_weight_search": 360
+    },
+    "unique_training_geometries": 144,
+    "training_contacts": 0,
+    "development_evaluations": 160,
+    "training_pool": 400,
+    "development_pool": 160,
+    "independent_test_loaded": false,
+    "gazebo_verified": false,
+    "gazebo_completed_missions": 0,
+    "default_planner": "surface_endpoint",
+    "default_changed": false,
+    "weight_search": {
+      "completed": true,
+      "training_episodes": 360,
+      "unique_training_layouts": 80,
+      "validation_loaded": false,
+      "test_loaded": false,
+      "best_name": "elite_0",
+      "best_training": {
+        "episodes": 40,
+        "success_rate": 0.65,
+        "mean_found": 2.6,
+        "mean_seconds": 465.66812906485666,
+        "successful_mean_seconds": 393.3355831767025,
+        "collisions": 0,
+        "mean_reward": 2109.796280640271,
+        "by_obstacles": {
+          "8": {
+            "success_rate": 0.5,
+            "episodes": 8
+          },
+          "12": {
+            "success_rate": 0.875,
+            "episodes": 8
+          },
+          "16": {
+            "success_rate": 0.625,
+            "episodes": 8
+          },
+          "24": {
+            "success_rate": 0.875,
+            "episodes": 8
+          },
+          "32": {
+            "success_rate": 0.375,
+            "episodes": 8
+          }
+        },
+        "by_mount": {
+          "hidden_obstacles": {
+            "episodes": 10,
+            "success_rate": 0.5,
+            "mean_found": 2.3,
+            "mean_seconds": 554.5866924338716,
+            "successful_mean_seconds": 509.17338486774327,
+            "collisions": 0,
+            "mean_reward": 2031.1999961349193,
+            "by_obstacles": {
+              "8": {
+                "success_rate": 0.0,
+                "episodes": 2
+              },
+              "12": {
+                "success_rate": 1.0,
+                "episodes": 2
+              },
+              "16": {
+                "success_rate": 0.5,
+                "episodes": 2
+              },
+              "24": {
+                "success_rate": 0.5,
+                "episodes": 2
+              },
+              "32": {
+                "success_rate": 0.5,
+                "episodes": 2
+              }
+            }
+          },
+          "mixed": {
+            "episodes": 10,
+            "success_rate": 0.4,
+            "mean_found": 2.4,
+            "mean_seconds": 527.061294727763,
+            "successful_mean_seconds": 417.65323681940754,
+            "collisions": 0,
+            "mean_reward": 2015.1988057908354,
+            "by_obstacles": {
+              "8": {
+                "success_rate": 0.5,
+                "episodes": 2
+              },
+              "12": {
+                "success_rate": 0.5,
+                "episodes": 2
+              },
+              "16": {
+                "success_rate": 0.0,
+                "episodes": 2
+              },
+              "24": {
+                "success_rate": 1.0,
+                "episodes": 2
+              },
+              "32": {
+                "success_rate": 0.0,
+                "episodes": 2
+              }
+            }
+          },
+          "obstacles": {
+            "episodes": 10,
+            "success_rate": 0.8,
+            "mean_found": 2.8,
+            "mean_seconds": 421.541815696232,
+            "successful_mean_seconds": 376.92726962028985,
+            "collisions": 0,
+            "mean_reward": 2180.972727645565,
+            "by_obstacles": {
+              "8": {
+                "success_rate": 0.5,
+                "episodes": 2
+              },
+              "12": {
+                "success_rate": 1.0,
+                "episodes": 2
+              },
+              "16": {
+                "success_rate": 1.0,
+                "episodes": 2
+              },
+              "24": {
+                "success_rate": 1.0,
+                "episodes": 2
+              },
+              "32": {
+                "success_rate": 0.5,
+                "episodes": 2
+              }
+            }
+          },
+          "walls": {
+            "episodes": 10,
+            "success_rate": 0.9,
+            "mean_found": 2.9,
+            "mean_seconds": 359.4827134015603,
+            "successful_mean_seconds": 332.7585704461781,
+            "collisions": 0,
+            "mean_reward": 2211.813592989766,
+            "by_obstacles": {
+              "8": {
+                "success_rate": 1.0,
+                "episodes": 2
+              },
+              "12": {
+                "success_rate": 1.0,
+                "episodes": 2
+              },
+              "16": {
+                "success_rate": 1.0,
+                "episodes": 2
+              },
+              "24": {
+                "success_rate": 1.0,
+                "episodes": 2
+              },
+              "32": {
+                "success_rate": 0.5,
+                "episodes": 2
+              }
+            }
+          }
+        },
+        "mean_approached": 2.025
+      },
+      "endpoint_control": {
+        "episodes": 40,
+        "success_rate": 0.675,
+        "mean_found": 2.65,
+        "mean_seconds": 473.9568761378861,
+        "successful_mean_seconds": 413.2694461302017,
+        "collisions": 0,
+        "mean_reward": 2134.213968579317,
+        "by_obstacles": {
+          "8": {
+            "success_rate": 0.5,
+            "episodes": 8
+          },
+          "12": {
+            "success_rate": 1.0,
+            "episodes": 8
+          },
+          "16": {
+            "success_rate": 0.875,
+            "episodes": 8
+          },
+          "24": {
+            "success_rate": 0.5,
+            "episodes": 8
+          },
+          "32": {
+            "success_rate": 0.5,
+            "episodes": 8
+          }
+        },
+        "by_mount": {
+          "hidden_obstacles": {
+            "episodes": 10,
+            "success_rate": 0.6,
+            "mean_found": 2.5,
+            "mean_seconds": 535.5907724910383,
+            "successful_mean_seconds": 492.65128748506373,
+            "collisions": 0,
+            "mean_reward": 2088.937384126344,
+            "by_obstacles": {
+              "8": {
+                "success_rate": 0.5,
+                "episodes": 2
+              },
+              "12": {
+                "success_rate": 1.0,
+                "episodes": 2
+              },
+              "16": {
+                "success_rate": 1.0,
+                "episodes": 2
+              },
+              "24": {
+                "success_rate": 0.0,
+                "episodes": 2
+              },
+              "32": {
+                "success_rate": 0.5,
+                "episodes": 2
+              }
+            }
+          },
+          "mixed": {
+            "episodes": 10,
+            "success_rate": 0.5,
+            "mean_found": 2.5,
+            "mean_seconds": 484.6944411323404,
+            "successful_mean_seconds": 369.3888822646808,
+            "collisions": 0,
+            "mean_reward": 2064.131833830149,
+            "by_obstacles": {
+              "8": {
+                "success_rate": 0.5,
+                "episodes": 2
+              },
+              "12": {
+                "success_rate": 1.0,
+                "episodes": 2
+              },
+              "16": {
+                "success_rate": 0.5,
+                "episodes": 2
+              },
+              "24": {
+                "success_rate": 0.5,
+                "episodes": 2
+              },
+              "32": {
+                "success_rate": 0.0,
+                "episodes": 2
+              }
+            }
+          },
+          "obstacles": {
+            "episodes": 10,
+            "success_rate": 0.6,
+            "mean_found": 2.6,
+            "mean_seconds": 471.73295595345064,
+            "successful_mean_seconds": 386.22159325575103,
+            "collisions": 0,
+            "mean_reward": 2109.652056606982,
+            "by_obstacles": {
+              "8": {
+                "success_rate": 0.0,
+                "episodes": 2
+              },
+              "12": {
+                "success_rate": 1.0,
+                "episodes": 2
+              },
+              "16": {
+                "success_rate": 1.0,
+                "episodes": 2
+              },
+              "24": {
+                "success_rate": 0.5,
+                "episodes": 2
+              },
+              "32": {
+                "success_rate": 0.5,
+                "episodes": 2
+              }
+            }
+          },
+          "walls": {
+            "episodes": 10,
+            "success_rate": 1.0,
+            "mean_found": 3.0,
+            "mean_seconds": 403.8093349747153,
+            "successful_mean_seconds": 403.8093349747153,
+            "collisions": 0,
+            "mean_reward": 2274.134599753793,
+            "by_obstacles": {
+              "8": {
+                "success_rate": 1.0,
+                "episodes": 2
+              },
+              "12": {
+                "success_rate": 1.0,
+                "episodes": 2
+              },
+              "16": {
+                "success_rate": 1.0,
+                "episodes": 2
+              },
+              "24": {
+                "success_rate": 1.0,
+                "episodes": 2
+              },
+              "32": {
+                "success_rate": 1.0,
+                "episodes": 2
+              }
+            }
+          }
+        },
+        "mean_approached": 2.275
+      },
+      "better_than_endpoint_on_stage2": false,
+      "adopted": false,
+      "resumed_from_frozen_sources": true
+    },
+    "development_comparison": {
+      "environment": "2d_surrogate",
+      "split": "v2/validation",
+      "episodes_per_planner": 160,
+      "paired_geometries": true,
+      "test_loaded": false,
+      "gazebo_verified": false,
+      "summaries": {
+        "endpoint": {
+          "episodes": 160,
+          "success_rate": 0.75,
+          "mean_seconds": 430.62892746326327,
+          "successful_mean_seconds": 374.1719032843511,
+          "collisions": 0,
+          "mean_found": 2.725,
+          "mean_approached": 2.075,
+          "by_mount": {
+            "hidden_obstacles": 0.725,
+            "mixed": 0.7,
+            "obstacles": 0.625,
+            "walls": 0.95
+          },
+          "by_obstacles": {
+            "8": 0.8125,
+            "12": 0.78125,
+            "16": 0.75,
+            "24": 0.6875,
+            "32": 0.71875
+          },
+          "by_frame": {
+            "0": 0.725,
+            "1": 0.725,
+            "2": 0.7,
+            "3": 0.85
+          }
+        },
+        "edge": {
+          "episodes": 160,
+          "success_rate": 0.78125,
+          "mean_seconds": 420.3148391380081,
+          "successful_mean_seconds": 370.0029940966505,
+          "collisions": 0,
+          "mean_found": 2.7625,
+          "mean_approached": 2.01875,
+          "by_mount": {
+            "hidden_obstacles": 0.75,
+            "mixed": 0.725,
+            "obstacles": 0.7,
+            "walls": 0.95
+          },
+          "by_obstacles": {
+            "8": 0.875,
+            "12": 0.78125,
+            "16": 0.875,
+            "24": 0.8125,
+            "32": 0.5625
+          },
+          "by_frame": {
+            "0": 0.825,
+            "1": 0.725,
+            "2": 0.8,
+            "3": 0.775
+          }
+        },
+        "symmetric_edge": {
+          "episodes": 160,
+          "success_rate": 0.79375,
+          "mean_seconds": 434.17936678826936,
+          "successful_mean_seconds": 391.0921156387646,
+          "collisions": 0,
+          "mean_found": 2.7875,
+          "mean_approached": 2.08125,
+          "by_mount": {
+            "hidden_obstacles": 0.7,
+            "mixed": 0.775,
+            "obstacles": 0.725,
+            "walls": 0.975
+          },
+          "by_obstacles": {
+            "8": 0.875,
+            "12": 0.84375,
+            "16": 0.875,
+            "24": 0.75,
+            "32": 0.625
+          },
+          "by_frame": {
+            "0": 0.8,
+            "1": 0.825,
+            "2": 0.7,
+            "3": 0.85
+          }
+        }
+      },
+      "compared_with_endpoint": {
+        "endpoint": {
+          "gained": 0,
+          "lost": 0,
+          "both_failed": 40
+        },
+        "edge": {
+          "gained": 23,
+          "lost": 18,
+          "both_failed": 17
+        },
+        "symmetric_edge": {
+          "gained": 18,
+          "lost": 11,
+          "both_failed": 22
+        }
+      },
+      "note": "Development data for policy selection; repeated candidate comparisons are not an independent test"
+    },
+    "current_code_changes": [
+      "Geometry-based candidate samplers and faster equivalent symmetric sampling",
+      "Optional acceleration-limited angular sensitivity model; default unchanged",
+      "Actual Gazebo timing collector with missing-data flags",
+      "Preserve camera evidence only across exactly aligned unchanged SLAM cells"
+    ],
+    "tests_passed": 92,
+    "build_passed": true,
+    "regression_replays": "training_robust/coverage_resize_replay.json",
+    "no_remaining_jobs": true,
+    "updated_utc": "2026-11-04T20:23:09.556446+00:00"
+  },
+  "goal_status": "blocked",
+  "native_runtime_probe": {
+    "updated_utc": "2026-11-04T21:27:47.070612+00:00",
+    "probe": "training_robust/gazebo_runtime_calibration/runtime_probes/20261104T211510_211783Z",
+    "observed": {
+      "reason": "undock_failed",
+      "mission_elapsed_sim_seconds": 2.7590000000000003,
+      "real_time_factor": 0.3556782901978371,
+      "camera_samples": 3,
+      "stationary_turn_samples": 0,
+      "undock_cancel_request_in_launch_log": true,
+      "last_camera_stamp": 7.8,
+      "zero_command_stamp": 9.0,
+      "evaluator_receipt_gap_wall_seconds": 3.1741569992154837,
+      "stamp_gap_sim_seconds": 1.2000000000000002
+    },
+    "diagnosis": "Mission readiness could cancel Create 3 undocking when wall-clock camera freshness exceeded 2 s. Exact failed readiness condition/action status was not recorded in the old run.",
+    "fixes": [
+      "Use ROS message age for freshness",
+      "Keep autonomous undocking independent of camera/SLAM/Nav2 readiness; preserve scan and action watchdogs",
+      "Separate decoded-camera heartbeat from TF-dependent coverage, retry delayed coverage",
+      "Record undock status/is_docked/cancellation reason"
+    ],
+    "validation": {
+      "unit_tests_passed": 110,
+      "build_passed": true,
+      "sdf_valid": true,
+      "h264_encode_decode_fixture_passed": true,
+      "native_post_fix_run": false,
+      "actual_mission_video_produced": false
+    },
+    "recording": {
+      "command": "bash /home/peter/simul/run_gazebo_video.sh",
+      "default_scene_index": 16,
+      "obstacles": 12,
+      "mount_profile": "hidden_obstacles",
+      "output_suffix": "video/mission.mp4",
+      "same_failure_scene_command": "bash /home/peter/simul/run_gazebo_runtime_probe.sh --record-video"
+    },
+    "current_blocker": "Tool sandbox denies UDP socket creation; the host user run did receive real sensors, but a patched native run is still required.",
+    "source_sha256": {
+      "src/osp_mission/osp_mission/mission.py": "6196d05ef19bf01c53f1853e464ce790331eed78c918172c7f8cfc7f82d54820",
+      "src/osp_mission/osp_mission/record_video.py": "ffda902a0324942f50c0c0edd0910e1d7d5953ec191bc611d8e05a8291d867d3",
+      "src/osp_mission/osp_mission/world.py": "717b59afce29685803a70e390c0081e25c6c2eb3b1a09557c83f4aefe3bfb574",
+      "src/osp_mission/osp_mission/gazebo_eval.py": "b162eba7becb50a890d9ab01ba835793e621d9b1edd52145eea30f645130e572",
+      "src/osp_mission/launch/simulation.launch.py": "6ec48f521b383c1dd354dcc8deb50b936e654e27e4124adea486af86c7e5305e",
+      "src/osp_mission/setup.py": "1118bda1db373d349e3359113cd57d9a1516297070a64bd73c15e26ace953a76",
+      "training_robust/run_runtime_probe.py": "c0d84263d4de1fa4e24f5edaa5625b491f53fe2afdb47299691bd4af7295acc9",
+      "run_gazebo_video.sh": "3a08c8b2866a7e949e09f0e7d1752a750e13556c15097a99aac1971d49623f36"
+    }
+  }
+}

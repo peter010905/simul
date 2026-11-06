@@ -1,0 +1,82 @@
+{
+  "result": {
+    "seed": 8100001,
+    "difficulty": 12,
+    "found": 1,
+    "success": false,
+    "seconds": 600.0,
+    "collisions": 0,
+    "safety_stops": 40,
+    "distance": 3.816597899899738,
+    "decisions": 40,
+    "reward": 185.66,
+    "coverage": 0.38140524578773666
+  },
+  "first_stops": [
+    {
+      "x": 18.647142857142857,
+      "y": 4.933809523809525,
+      "nearest_observed_cell": [
+        49,
+        183
+      ],
+      "nearest_obstacle_center": 0.2975836169386576,
+      "collision_cell": [
+        49,
+        186
+      ]
+    },
+    {
+      "x": 18.641666666666666,
+      "y": 4.95,
+      "nearest_observed_cell": [
+        49,
+        183
+      ],
+      "nearest_obstacle_center": 0.2916666666666643,
+      "collision_cell": [
+        49,
+        186
+      ]
+    },
+    {
+      "x": 18.641666666666666,
+      "y": 5.050000000000001,
+      "nearest_observed_cell": [
+        50,
+        183
+      ],
+      "nearest_obstacle_center": 0.2916666666666643,
+      "collision_cell": [
+        50,
+        186
+      ]
+    },
+    {
+      "x": 18.641666666666666,
+      "y": 5.15,
+      "nearest_observed_cell": [
+        51,
+        183
+      ],
+      "nearest_obstacle_center": 0.2916666666666643,
+      "collision_cell": [
+        51,
+        186
+      ]
+    },
+    {
+      "x": 18.639655172413793,
+      "y": 5.198275862068966,
+      "nearest_observed_cell": [
+        51,
+        183
+      ],
+      "nearest_obstacle_center": 0.29365060491094697,
+      "collision_cell": [
+        51,
+        186
+      ]
+    }
+  ]
+}

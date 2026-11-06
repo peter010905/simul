@@ -1,0 +1,23 @@
+{
+  "planner": "edge",
+  "parameters": [
+    1.0,
+    2.0,
+    0.39116097662487975,
+    0.7812959734881743,
+    0.6473764656964455
+  ],
+  "status": "native_development_candidate_unverified",
+  "default": false,
+  "source": "v2_edge initial weights; mutable training checkpoints are not automatically deployed",
+  "changes": [
+    "IMU angular velocity fusion",
+    "Nav2 lifecycle activation required",
+    "Explicit boundary-face coverage",
+    "Resolution-scaled normal axis fallback",
+    "Motion setting comparison: 0.30 m/s forward and 0.85 rad/s observation spin",
+    "Store marker history in the map at image time; do not apply later odometry corrections to old landmarks",
+    "Require active diffdrive controller and fresh wheel odometry before mission start",
+    "Avoid redundant spawner parameter RPC already supplied by Gazebo"
+  ]
+}

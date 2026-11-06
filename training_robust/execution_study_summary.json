@@ -1,0 +1,172 @@
+{
+  "goal_achieved": false,
+  "environment": "2d_surrogate",
+  "new_training_evaluations": 320,
+  "unique_training_layouts": 80,
+  "diagnostic_replays": 16,
+  "diagnostic_summary": {
+    "episodes": 16,
+    "exact_replays": true,
+    "missed_markers": 21,
+    "missed_with_any_candidate": 20,
+    "opportunity_decisions": 219,
+    "selected_wall_majority": 83,
+    "raw_top1": 1,
+    "capped_top1": 3,
+    "raw_top5": 9,
+    "capped_top5": 15,
+    "note": "Counterfactual scores on a fixed trajectory; not candidate-policy success, and potential visibility does not guarantee arrival or three decoded frames"
+  },
+  "execution_comparison": {
+    "environment": "2d_surrogate",
+    "split": "v2/train",
+    "evaluations": 320,
+    "unique_layouts": 80,
+    "validation_loaded": false,
+    "test_loaded": false,
+    "gazebo_verified": false,
+    "summaries": {
+      "surface_endpoint_baseline": {
+        "success_rate": 0.8375,
+        "mean_seconds": 422.62766629307544,
+        "successful_mean_seconds": 388.21213885740354,
+        "collisions": 0,
+        "mean_found": 2.7875,
+        "by_mount": {
+          "hidden_obstacles": 0.7,
+          "mixed": 0.8,
+          "obstacles": 0.85,
+          "walls": 1.0
+        },
+        "by_obstacles": {
+          "8": 0.875,
+          "12": 0.875,
+          "16": 0.8125,
+          "24": 0.8125,
+          "32": 0.8125
+        },
+        "by_frame": {
+          "0": 0.85,
+          "1": 0.85,
+          "2": 0.75,
+          "3": 0.9
+        },
+        "observation_alignment_seconds": 15.391244309701458,
+        "observation_sweep_seconds": 94.75339121484129,
+        "avoidable_alignment_radians": 5.13013120356475
+      },
+      "surface_endpoint_efficient": {
+        "success_rate": 0.7875,
+        "mean_seconds": 432.14523489342366,
+        "successful_mean_seconds": 386.85109192815696,
+        "collisions": 0,
+        "mean_found": 2.725,
+        "by_mount": {
+          "hidden_obstacles": 0.5,
+          "mixed": 0.9,
+          "obstacles": 0.75,
+          "walls": 1.0
+        },
+        "by_obstacles": {
+          "8": 0.875,
+          "12": 0.875,
+          "16": 0.625,
+          "24": 0.75,
+          "32": 0.8125
+        },
+        "by_frame": {
+          "0": 0.65,
+          "1": 0.85,
+          "2": 0.75,
+          "3": 0.9
+        },
+        "observation_alignment_seconds": 6.428496693623201,
+        "observation_sweep_seconds": 98.14022652620037,
+        "avoidable_alignment_radians": 6.1082641255226875
+      },
+      "symmetric_edge_baseline": {
+        "success_rate": 0.7875,
+        "mean_seconds": 415.3300860039129,
+        "successful_mean_seconds": 365.4985219097308,
+        "collisions": 0,
+        "mean_found": 2.7375,
+        "by_mount": {
+          "hidden_obstacles": 0.6,
+          "mixed": 0.8,
+          "obstacles": 0.8,
+          "walls": 0.95
+        },
+        "by_obstacles": {
+          "8": 0.875,
+          "12": 0.8125,
+          "16": 0.875,
+          "24": 0.625,
+          "32": 0.75
+        },
+        "by_frame": {
+          "0": 0.9,
+          "1": 0.8,
+          "2": 0.65,
+          "3": 0.8
+        },
+        "observation_alignment_seconds": 9.691312849315537,
+        "observation_sweep_seconds": 112.07539981183395,
+        "avoidable_alignment_radians": 3.493899434604289
+      },
+      "symmetric_edge_efficient": {
+        "success_rate": 0.7625,
+        "mean_seconds": 422.324883924005,
+        "successful_mean_seconds": 366.9834543265639,
+        "collisions": 0,
+        "mean_found": 2.6875,
+        "by_mount": {
+          "hidden_obstacles": 0.45,
+          "mixed": 0.85,
+          "obstacles": 0.85,
+          "walls": 0.9
+        },
+        "by_obstacles": {
+          "8": 0.875,
+          "12": 0.8125,
+          "16": 0.75,
+          "24": 0.75,
+          "32": 0.625
+        },
+        "by_frame": {
+          "0": 0.85,
+          "1": 0.75,
+          "2": 0.65,
+          "3": 0.8
+        },
+        "observation_alignment_seconds": 3.6620859819863556,
+        "observation_sweep_seconds": 114.1799058764129,
+        "avoidable_alignment_radians": 3.9372613166973016
+      }
+    },
+    "paired": {
+      "surface_endpoint": {
+        "gained": 3,
+        "lost": 7,
+        "both_failed": 10
+      },
+      "symmetric_edge": {
+        "gained": 3,
+        "lost": 5,
+        "both_failed": 14
+      }
+    }
+  },
+  "adopted": false,
+  "default_unchanged": true,
+  "new_validation_evaluations": 0,
+  "new_independent_test_loaded": false,
+  "tests_passed": 97,
+  "build_passed": true,
+  "gazebo_completed_missions": 0,
+  "gazebo_runtime_probe": "gazebo_runtime_calibration/runtime_probes/20261104T204355_004287Z/evaluation.json",
+  "actual_timing_measured": false,
+  "next_required_action": "Run the prepared single-scene runtime probe on a host where ROS networking and rendering are available; calibrate before further surrogate-only tuning",
+  "command": "bash /home/peter/simul/run_gazebo_runtime_probe.sh",
+  "current_jobs": [],
+  "updated_utc": "2026-11-04T20:46:31.730623+00:00"
+}

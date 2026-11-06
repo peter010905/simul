@@ -1,0 +1,472 @@
+{
+  "goal_achieved": false,
+  "environment": "2d_surrogate",
+  "training_split_evaluations": 860,
+  "training_evaluations_by_study": {
+    "plane_view_screen": 160,
+    "geometry_view_screen": 160,
+    "angular_sensitivity": 60,
+    "symmetric_expansion": 120,
+    "symmetric_weight_search": 360
+  },
+  "unique_training_geometries": 144,
+  "training_contacts": 0,
+  "development_evaluations": 160,
+  "training_pool": 400,
+  "development_pool": 160,
+  "independent_test_loaded": false,
+  "gazebo_verified": false,
+  "gazebo_completed_missions": 0,
+  "default_planner": "surface_endpoint",
+  "default_changed": false,
+  "weight_search": {
+    "completed": true,
+    "training_episodes": 360,
+    "unique_training_layouts": 80,
+    "validation_loaded": false,
+    "test_loaded": false,
+    "best_name": "elite_0",
+    "best_training": {
+      "episodes": 40,
+      "success_rate": 0.65,
+      "mean_found": 2.6,
+      "mean_seconds": 465.66812906485666,
+      "successful_mean_seconds": 393.3355831767025,
+      "collisions": 0,
+      "mean_reward": 2109.796280640271,
+      "by_obstacles": {
+        "8": {
+          "success_rate": 0.5,
+          "episodes": 8
+        },
+        "12": {
+          "success_rate": 0.875,
+          "episodes": 8
+        },
+        "16": {
+          "success_rate": 0.625,
+          "episodes": 8
+        },
+        "24": {
+          "success_rate": 0.875,
+          "episodes": 8
+        },
+        "32": {
+          "success_rate": 0.375,
+          "episodes": 8
+        }
+      },
+      "by_mount": {
+        "hidden_obstacles": {
+          "episodes": 10,
+          "success_rate": 0.5,
+          "mean_found": 2.3,
+          "mean_seconds": 554.5866924338716,
+          "successful_mean_seconds": 509.17338486774327,
+          "collisions": 0,
+          "mean_reward": 2031.1999961349193,
+          "by_obstacles": {
+            "8": {
+              "success_rate": 0.0,
+              "episodes": 2
+            },
+            "12": {
+              "success_rate": 1.0,
+              "episodes": 2
+            },
+            "16": {
+              "success_rate": 0.5,
+              "episodes": 2
+            },
+            "24": {
+              "success_rate": 0.5,
+              "episodes": 2
+            },
+            "32": {
+              "success_rate": 0.5,
+              "episodes": 2
+            }
+          }
+        },
+        "mixed": {
+          "episodes": 10,
+          "success_rate": 0.4,
+          "mean_found": 2.4,
+          "mean_seconds": 527.061294727763,
+          "successful_mean_seconds": 417.65323681940754,
+          "collisions": 0,
+          "mean_reward": 2015.1988057908354,
+          "by_obstacles": {
+            "8": {
+              "success_rate": 0.5,
+              "episodes": 2
+            },
+            "12": {
+              "success_rate": 0.5,
+              "episodes": 2
+            },
+            "16": {
+              "success_rate": 0.0,
+              "episodes": 2
+            },
+            "24": {
+              "success_rate": 1.0,
+              "episodes": 2
+            },
+            "32": {
+              "success_rate": 0.0,
+              "episodes": 2
+            }
+          }
+        },
+        "obstacles": {
+          "episodes": 10,
+          "success_rate": 0.8,
+          "mean_found": 2.8,
+          "mean_seconds": 421.541815696232,
+          "successful_mean_seconds": 376.92726962028985,
+          "collisions": 0,
+          "mean_reward": 2180.972727645565,
+          "by_obstacles": {
+            "8": {
+              "success_rate": 0.5,
+              "episodes": 2
+            },
+            "12": {
+              "success_rate": 1.0,
+              "episodes": 2
+            },
+            "16": {
+              "success_rate": 1.0,
+              "episodes": 2
+            },
+            "24": {
+              "success_rate": 1.0,
+              "episodes": 2
+            },
+            "32": {
+              "success_rate": 0.5,
+              "episodes": 2
+            }
+          }
+        },
+        "walls": {
+          "episodes": 10,
+          "success_rate": 0.9,
+          "mean_found": 2.9,
+          "mean_seconds": 359.4827134015603,
+          "successful_mean_seconds": 332.7585704461781,
+          "collisions": 0,
+          "mean_reward": 2211.813592989766,
+          "by_obstacles": {
+            "8": {
+              "success_rate": 1.0,
+              "episodes": 2
+            },
+            "12": {
+              "success_rate": 1.0,
+              "episodes": 2
+            },
+            "16": {
+              "success_rate": 1.0,
+              "episodes": 2
+            },
+            "24": {
+              "success_rate": 1.0,
+              "episodes": 2
+            },
+            "32": {
+              "success_rate": 0.5,
+              "episodes": 2
+            }
+          }
+        }
+      },
+      "mean_approached": 2.025
+    },
+    "endpoint_control": {
+      "episodes": 40,
+      "success_rate": 0.675,
+      "mean_found": 2.65,
+      "mean_seconds": 473.9568761378861,
+      "successful_mean_seconds": 413.2694461302017,
+      "collisions": 0,
+      "mean_reward": 2134.213968579317,
+      "by_obstacles": {
+        "8": {
+          "success_rate": 0.5,
+          "episodes": 8
+        },
+        "12": {
+          "success_rate": 1.0,
+          "episodes": 8
+        },
+        "16": {
+          "success_rate": 0.875,
+          "episodes": 8
+        },
+        "24": {
+          "success_rate": 0.5,
+          "episodes": 8
+        },
+        "32": {
+          "success_rate": 0.5,
+          "episodes": 8
+        }
+      },
+      "by_mount": {
+        "hidden_obstacles": {
+          "episodes": 10,
+          "success_rate": 0.6,
+          "mean_found": 2.5,
+          "mean_seconds": 535.5907724910383,
+          "successful_mean_seconds": 492.65128748506373,
+          "collisions": 0,
+          "mean_reward": 2088.937384126344,
+          "by_obstacles": {
+            "8": {
+              "success_rate": 0.5,
+              "episodes": 2
+            },
+            "12": {
+              "success_rate": 1.0,
+              "episodes": 2
+            },
+            "16": {
+              "success_rate": 1.0,
+              "episodes": 2
+            },
+            "24": {
+              "success_rate": 0.0,
+              "episodes": 2
+            },
+            "32": {
+              "success_rate": 0.5,
+              "episodes": 2
+            }
+          }
+        },
+        "mixed": {
+          "episodes": 10,
+          "success_rate": 0.5,
+          "mean_found": 2.5,
+          "mean_seconds": 484.6944411323404,
+          "successful_mean_seconds": 369.3888822646808,
+          "collisions": 0,
+          "mean_reward": 2064.131833830149,
+          "by_obstacles": {
+            "8": {
+              "success_rate": 0.5,
+              "episodes": 2
+            },
+            "12": {
+              "success_rate": 1.0,
+              "episodes": 2
+            },
+            "16": {
+              "success_rate": 0.5,
+              "episodes": 2
+            },
+            "24": {
+              "success_rate": 0.5,
+              "episodes": 2
+            },
+            "32": {
+              "success_rate": 0.0,
+              "episodes": 2
+            }
+          }
+        },
+        "obstacles": {
+          "episodes": 10,
+          "success_rate": 0.6,
+          "mean_found": 2.6,
+          "mean_seconds": 471.73295595345064,
+          "successful_mean_seconds": 386.22159325575103,
+          "collisions": 0,
+          "mean_reward": 2109.652056606982,
+          "by_obstacles": {
+            "8": {
+              "success_rate": 0.0,
+              "episodes": 2
+            },
+            "12": {
+              "success_rate": 1.0,
+              "episodes": 2
+            },
+            "16": {
+              "success_rate": 1.0,
+              "episodes": 2
+            },
+            "24": {
+              "success_rate": 0.5,
+              "episodes": 2
+            },
+            "32": {
+              "success_rate": 0.5,
+              "episodes": 2
+            }
+          }
+        },
+        "walls": {
+          "episodes": 10,
+          "success_rate": 1.0,
+          "mean_found": 3.0,
+          "mean_seconds": 403.8093349747153,
+          "successful_mean_seconds": 403.8093349747153,
+          "collisions": 0,
+          "mean_reward": 2274.134599753793,
+          "by_obstacles": {
+            "8": {
+              "success_rate": 1.0,
+              "episodes": 2
+            },
+            "12": {
+              "success_rate": 1.0,
+              "episodes": 2
+            },
+            "16": {
+              "success_rate": 1.0,
+              "episodes": 2
+            },
+            "24": {
+              "success_rate": 1.0,
+              "episodes": 2
+            },
+            "32": {
+              "success_rate": 1.0,
+              "episodes": 2
+            }
+          }
+        }
+      },
+      "mean_approached": 2.275
+    },
+    "better_than_endpoint_on_stage2": false,
+    "adopted": false,
+    "resumed_from_frozen_sources": true
+  },
+  "development_comparison": {
+    "environment": "2d_surrogate",
+    "split": "v2/validation",
+    "episodes_per_planner": 160,
+    "paired_geometries": true,
+    "test_loaded": false,
+    "gazebo_verified": false,
+    "summaries": {
+      "endpoint": {
+        "episodes": 160,
+        "success_rate": 0.75,
+        "mean_seconds": 430.62892746326327,
+        "successful_mean_seconds": 374.1719032843511,
+        "collisions": 0,
+        "mean_found": 2.725,
+        "mean_approached": 2.075,
+        "by_mount": {
+          "hidden_obstacles": 0.725,
+          "mixed": 0.7,
+          "obstacles": 0.625,
+          "walls": 0.95
+        },
+        "by_obstacles": {
+          "8": 0.8125,
+          "12": 0.78125,
+          "16": 0.75,
+          "24": 0.6875,
+          "32": 0.71875
+        },
+        "by_frame": {
+          "0": 0.725,
+          "1": 0.725,
+          "2": 0.7,
+          "3": 0.85
+        }
+      },
+      "edge": {
+        "episodes": 160,
+        "success_rate": 0.78125,
+        "mean_seconds": 420.3148391380081,
+        "successful_mean_seconds": 370.0029940966505,
+        "collisions": 0,
+        "mean_found": 2.7625,
+        "mean_approached": 2.01875,
+        "by_mount": {
+          "hidden_obstacles": 0.75,
+          "mixed": 0.725,
+          "obstacles": 0.7,
+          "walls": 0.95
+        },
+        "by_obstacles": {
+          "8": 0.875,
+          "12": 0.78125,
+          "16": 0.875,
+          "24": 0.8125,
+          "32": 0.5625
+        },
+        "by_frame": {
+          "0": 0.825,
+          "1": 0.725,
+          "2": 0.8,
+          "3": 0.775
+        }
+      },
+      "symmetric_edge": {
+        "episodes": 160,
+        "success_rate": 0.79375,
+        "mean_seconds": 434.17936678826936,
+        "successful_mean_seconds": 391.0921156387646,
+        "collisions": 0,
+        "mean_found": 2.7875,
+        "mean_approached": 2.08125,
+        "by_mount": {
+          "hidden_obstacles": 0.7,
+          "mixed": 0.775,
+          "obstacles": 0.725,
+          "walls": 0.975
+        },
+        "by_obstacles": {
+          "8": 0.875,
+          "12": 0.84375,
+          "16": 0.875,
+          "24": 0.75,
+          "32": 0.625
+        },
+        "by_frame": {
+          "0": 0.8,
+          "1": 0.825,
+          "2": 0.7,
+          "3": 0.85
+        }
+      }
+    },
+    "compared_with_endpoint": {
+      "endpoint": {
+        "gained": 0,
+        "lost": 0,
+        "both_failed": 40
+      },
+      "edge": {
+        "gained": 23,
+        "lost": 18,
+        "both_failed": 17
+      },
+      "symmetric_edge": {
+        "gained": 18,
+        "lost": 11,
+        "both_failed": 22
+      }
+    },
+    "note": "Development data for policy selection; repeated candidate comparisons are not an independent test"
+  },
+  "current_code_changes": [
+    "Geometry-based candidate samplers and faster equivalent symmetric sampling",
+    "Optional acceleration-limited angular sensitivity model; default unchanged",
+    "Actual Gazebo timing collector with missing-data flags",
+    "Preserve camera evidence only across exactly aligned unchanged SLAM cells"
+  ],
+  "tests_passed": 92,
+  "build_passed": true,
+  "regression_replays": "training_robust/coverage_resize_replay.json",
+  "no_remaining_jobs": true,
+  "updated_utc": "2026-11-04T20:23:09.556446+00:00"
+}

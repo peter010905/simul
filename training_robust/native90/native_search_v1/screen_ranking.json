@@ -1,0 +1,42 @@
+[
+  {
+    "candidate": "rpp_balanced",
+    "planned": 5,
+    "finished": 5,
+    "successes": 5,
+    "success_rate": 1.0,
+    "recognized": 15,
+    "approached": 15,
+    "mean_seconds": 456.60600000000005
+  },
+  {
+    "candidate": "mppi_frontier",
+    "planned": 5,
+    "finished": 5,
+    "successes": 5,
+    "success_rate": 1.0,
+    "recognized": 15,
+    "approached": 15,
+    "mean_seconds": 461.0242
+  },
+  {
+    "candidate": "mppi_short_travel",
+    "planned": 5,
+    "finished": 5,
+    "successes": 3,
+    "success_rate": 0.6,
+    "recognized": 12,
+    "approached": 14,
+    "mean_seconds": 472.89439999999996
+  },
+  {
+    "candidate": "mppi_balanced",
+    "planned": 5,
+    "finished": 5,
+    "successes": 2,
+    "success_rate": 0.4,
+    "recognized": 9,
+    "approached": 10,
+    "mean_seconds": 478.54619999999994
+  }
+]

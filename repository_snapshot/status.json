@@ -1,0 +1,74 @@
+{
+  "captured_utc": "2026-11-06T00:55:25.562636+00:00",
+  "purpose": "Repository upload snapshot; not a live dashboard",
+  "tests_passed_final": 189,
+  "native_validation_complete": false,
+  "jobs": [
+    {
+      "name": "escape",
+      "workspace": "/home/peter/simul/training_robust/native90/runtime_fix_v10_escape_staging",
+      "output": "/home/peter/simul/training_robust/native90/fix_v10_escape_regression3",
+      "unit": "osp-fix-v10-escape.service",
+      "status": "running",
+      "completed_results": [
+        {
+          "seed": 9802005,
+          "success": true,
+          "reason": "all_targets_found",
+          "elapsed_seconds": 335.45,
+          "targets": 3,
+          "collisions": 0
+        },
+        {
+          "seed": 9802009,
+          "success": true,
+          "reason": "all_targets_found",
+          "elapsed_seconds": 345.245,
+          "targets": 3,
+          "collisions": 0
+        }
+      ]
+    },
+    {
+      "name": "completion",
+      "workspace": "/home/peter/simul/training_robust/native90/runtime_fix_v11_completion_staging",
+      "output": "/home/peter/simul/training_robust/native90/fix_v11_completion_regression1",
+      "unit": "osp-fix-v11-completion.service",
+      "status": "done",
+      "completed_results": [
+        {
+          "seed": 9802000,
+          "success": true,
+          "reason": "all_targets_found",
+          "elapsed_seconds": 182.5,
+          "targets": 3,
+          "collisions": 0
+        }
+      ]
+    },
+    {
+      "name": "identity",
+      "workspace": "/home/peter/simul/training_robust/native90/runtime_fix_v12_identity_staging",
+      "output": "/home/peter/simul/training_robust/native90/fix_v12_identity_regression1",
+      "unit": "osp-fix-v12-identity.service",
+      "status": "done",
+      "completed_results": [
+        {
+          "seed": 9802012,
+          "success": true,
+          "reason": "all_targets_found",
+          "elapsed_seconds": 55.195,
+          "targets": 3,
+          "collisions": 0
+        }
+      ]
+    },
+    {
+      "name": "observation",
+      "workspace": "/home/peter/simul/training_robust/native90/runtime_fix_v13_observation_staging",
+      "output": "/home/peter/simul/training_robust/native90/fix_v13_observation_regression6",
+      "unit": "osp-fix-v13-observation.service",
+      "status": "prepared"
+    }
+  ]
+}

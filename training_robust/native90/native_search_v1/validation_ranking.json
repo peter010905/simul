@@ -1,0 +1,22 @@
+[
+  {
+    "candidate": "rpp_balanced",
+    "planned": 20,
+    "finished": 20,
+    "successes": 9,
+    "success_rate": 0.45,
+    "recognized": 53,
+    "approached": 55,
+    "mean_seconds": 543.3761999999999
+  },
+  {
+    "candidate": "mppi_frontier",
+    "planned": 20,
+    "finished": 20,
+    "successes": 9,
+    "success_rate": 0.45,
+    "recognized": 47,
+    "approached": 49,
+    "mean_seconds": 518.50355
+  }
+]

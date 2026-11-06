@@ -1,0 +1,332 @@
+{
+  "purpose": "Reserved native Gazebo final evaluation. Do not use for tuning.",
+  "planned": 40,
+  "required_successes": 36,
+  "time_limit_sim_seconds": 600,
+  "success": "All3 correct IDs, all3 approached within1.5m, <=0.5m map errors, zero contacts, required artifacts and video",
+  "record_real_gazebo_video": true,
+  "episodes": [
+    {
+      "seed": 9700500,
+      "requested_obstacles": 8,
+      "actual_obstacles": 8,
+      "mount_profile": "walls",
+      "sha256": "4601bb8577e0f029ed922499c7f2918030c94afce9e949b7aa71e7cd335584ac",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700500.yaml"
+    },
+    {
+      "seed": 9700501,
+      "requested_obstacles": 12,
+      "actual_obstacles": 12,
+      "mount_profile": "walls",
+      "sha256": "980b9ffb629a3d177c9f8b4bc23cc85fdda6f9ee8748acb1ad28103429b94900",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700501.yaml"
+    },
+    {
+      "seed": 9700502,
+      "requested_obstacles": 16,
+      "actual_obstacles": 16,
+      "mount_profile": "walls",
+      "sha256": "87611fe6f854b9275bf9bd6a0a535f1bc2a2f22cd397ef7dc6f3086a2392ac05",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700502.yaml"
+    },
+    {
+      "seed": 9700503,
+      "requested_obstacles": 24,
+      "actual_obstacles": 24,
+      "mount_profile": "walls",
+      "sha256": "610c084062d6096a0560f0b27b7ef0a8656fdb8438ea0e6f67d4b3e338de228a",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700503.yaml"
+    },
+    {
+      "seed": 9700504,
+      "requested_obstacles": 32,
+      "actual_obstacles": 31,
+      "mount_profile": "walls",
+      "sha256": "2ae088536cea360cb9c1662492a1486bb713f2f5f570e42d364e701cb284d155",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700504.yaml"
+    },
+    {
+      "seed": 9700505,
+      "requested_obstacles": 8,
+      "actual_obstacles": 8,
+      "mount_profile": "mixed",
+      "sha256": "fa49ad77b9dbc8b467fe03eb01c8edb614f00dae4bbc024930fd7630acf0e118",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700505.yaml"
+    },
+    {
+      "seed": 9700506,
+      "requested_obstacles": 12,
+      "actual_obstacles": 12,
+      "mount_profile": "mixed",
+      "sha256": "3930b877013e3d7b3c3285e7f989ee1d5a84c3380157c39bd05dab578910e9bc",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700506.yaml"
+    },
+    {
+      "seed": 9700507,
+      "requested_obstacles": 16,
+      "actual_obstacles": 16,
+      "mount_profile": "mixed",
+      "sha256": "f668259b9bbbe3a38f3c45d4daa272cc9d3f4a8845c622a364e1b79c6de68985",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700507.yaml"
+    },
+    {
+      "seed": 9700508,
+      "requested_obstacles": 24,
+      "actual_obstacles": 24,
+      "mount_profile": "mixed",
+      "sha256": "f37efd65cbe4d979dc97e7ce67842e2355836bb7902b42cd008f13e69b170f31",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700508.yaml"
+    },
+    {
+      "seed": 9700509,
+      "requested_obstacles": 32,
+      "actual_obstacles": 31,
+      "mount_profile": "mixed",
+      "sha256": "13a44060c8f7e931ae1fef32318fa5fdc685d27cd0bbe8d6a8a3466d8abfe1a1",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700509.yaml"
+    },
+    {
+      "seed": 9700510,
+      "requested_obstacles": 8,
+      "actual_obstacles": 8,
+      "mount_profile": "obstacles",
+      "sha256": "795b5286c826f766888b74b7bc24aaaaf53868d427aa551855ca6ef27f29fd3f",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700510.yaml"
+    },
+    {
+      "seed": 9700511,
+      "requested_obstacles": 12,
+      "actual_obstacles": 12,
+      "mount_profile": "obstacles",
+      "sha256": "e2beda9e8e28d2a3bc13fb57546d35f6c1dc423a49b0a560b4440dd377bc43eb",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700511.yaml"
+    },
+    {
+      "seed": 9700512,
+      "requested_obstacles": 16,
+      "actual_obstacles": 16,
+      "mount_profile": "obstacles",
+      "sha256": "70062e5251cd9e75c8b40c8ee0b4d62e5aca257dabb206ce5c157c16d36636c2",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700512.yaml"
+    },
+    {
+      "seed": 9700513,
+      "requested_obstacles": 24,
+      "actual_obstacles": 24,
+      "mount_profile": "obstacles",
+      "sha256": "58954559a946c55e2179ab3bf7c51d6c4ff3c653f035a6226d4374b1a3e90700",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700513.yaml"
+    },
+    {
+      "seed": 9700514,
+      "requested_obstacles": 32,
+      "actual_obstacles": 31,
+      "mount_profile": "obstacles",
+      "sha256": "4194e124027a5bc3d4ab8d23b597abe20d10c016aeffe6ee8b13d1e057a38108",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700514.yaml"
+    },
+    {
+      "seed": 9700515,
+      "requested_obstacles": 8,
+      "actual_obstacles": 8,
+      "mount_profile": "hidden_obstacles",
+      "sha256": "04e13901cc52dc8ce82f337426adeecf139c2a2d7a17a3625c2bfd5f4a61a139",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700515.yaml"
+    },
+    {
+      "seed": 9700516,
+      "requested_obstacles": 12,
+      "actual_obstacles": 12,
+      "mount_profile": "hidden_obstacles",
+      "sha256": "37f763467779776a98282ff5ea1f81f77720283d05f36faeb7302230f2899b40",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700516.yaml"
+    },
+    {
+      "seed": 9700517,
+      "requested_obstacles": 16,
+      "actual_obstacles": 16,
+      "mount_profile": "hidden_obstacles",
+      "sha256": "52827ce46ec7ead8480c07c4a6e42dda04a38ec0fdaa368b5222a6d3c0fd58a7",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700517.yaml"
+    },
+    {
+      "seed": 9700518,
+      "requested_obstacles": 24,
+      "actual_obstacles": 24,
+      "mount_profile": "hidden_obstacles",
+      "sha256": "7cbe53fa4ff4773731ba1001b686080a5978fb3f7ec738ca630c6f6cf4004af5",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700518.yaml"
+    },
+    {
+      "seed": 9700519,
+      "requested_obstacles": 32,
+      "actual_obstacles": 30,
+      "mount_profile": "hidden_obstacles",
+      "sha256": "7e08c83eede13d6a018594da7eb2f33478b82b8fb75e2e414491c992f8b96d90",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700519.yaml"
+    },
+    {
+      "seed": 9700520,
+      "requested_obstacles": 8,
+      "actual_obstacles": 8,
+      "mount_profile": "walls",
+      "sha256": "e745da0a11e448cd5f7e64155aabc0be5e387724d88440135ae552acc836e6c4",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700520.yaml"
+    },
+    {
+      "seed": 9700521,
+      "requested_obstacles": 12,
+      "actual_obstacles": 12,
+      "mount_profile": "walls",
+      "sha256": "2a98d430091dd3a0ed4d54f15cc298bde2b6883ad51c7417111cd2d243844df7",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700521.yaml"
+    },
+    {
+      "seed": 9700522,
+      "requested_obstacles": 16,
+      "actual_obstacles": 16,
+      "mount_profile": "walls",
+      "sha256": "9e7a4350d807a64f526254caec10023cae2f27163c2189788802785ed4468f1b",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700522.yaml"
+    },
+    {
+      "seed": 9700523,
+      "requested_obstacles": 24,
+      "actual_obstacles": 23,
+      "mount_profile": "walls",
+      "sha256": "354070d1a6b90913588916f2dd84ab58cac5ffa117de5be824bd1e6ad0e671fa",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700523.yaml"
+    },
+    {
+      "seed": 9700524,
+      "requested_obstacles": 32,
+      "actual_obstacles": 32,
+      "mount_profile": "walls",
+      "sha256": "4013a5fd1ff8b43c7be4c392635a3d29ceb40d3f4bd793c60b27e9d6aa210753",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700524.yaml"
+    },
+    {
+      "seed": 9700525,
+      "requested_obstacles": 8,
+      "actual_obstacles": 8,
+      "mount_profile": "mixed",
+      "sha256": "6014b30384b95bc7040243d151d272c7f1ecd6a2f82644892ec133271407cb86",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700525.yaml"
+    },
+    {
+      "seed": 9700526,
+      "requested_obstacles": 12,
+      "actual_obstacles": 12,
+      "mount_profile": "mixed",
+      "sha256": "ce433a55b0521edeb3aa3dee5a972bf0075506db91000ce120b76fb14d83b854",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700526.yaml"
+    },
+    {
+      "seed": 9700527,
+      "requested_obstacles": 16,
+      "actual_obstacles": 16,
+      "mount_profile": "mixed",
+      "sha256": "df22491bf9e7d2820d88a0da1a4b4178781c6009b87f449b8b60cbf9f8f33b69",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700527.yaml"
+    },
+    {
+      "seed": 9700528,
+      "requested_obstacles": 24,
+      "actual_obstacles": 24,
+      "mount_profile": "mixed",
+      "sha256": "39e0cb2d4469d86b08b83932f29f5bb837c5d9a96e703761f81b43c2b4796512",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700528.yaml"
+    },
+    {
+      "seed": 9700529,
+      "requested_obstacles": 32,
+      "actual_obstacles": 32,
+      "mount_profile": "mixed",
+      "sha256": "bd25313774a5475ca5bc8b64e6d338effeb3a85404fb0b70aee2ac9522abe165",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700529.yaml"
+    },
+    {
+      "seed": 9700530,
+      "requested_obstacles": 8,
+      "actual_obstacles": 8,
+      "mount_profile": "obstacles",
+      "sha256": "5c633c9acc1ae127b0b4d96a018cbc220e46761623887bb5e13de76ed23d101e",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700530.yaml"
+    },
+    {
+      "seed": 9700531,
+      "requested_obstacles": 12,
+      "actual_obstacles": 12,
+      "mount_profile": "obstacles",
+      "sha256": "7619442a04ba9e89f1580fa2d1d8a500016e088eeec0c63b3ebc0af15e447965",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700531.yaml"
+    },
+    {
+      "seed": 9700532,
+      "requested_obstacles": 16,
+      "actual_obstacles": 16,
+      "mount_profile": "obstacles",
+      "sha256": "6fedbe22448e0ad8ac3c1e9872e1817b972c805be43aab486c4be21982252f5a",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700532.yaml"
+    },
+    {
+      "seed": 9700533,
+      "requested_obstacles": 24,
+      "actual_obstacles": 23,
+      "mount_profile": "obstacles",
+      "sha256": "09cc949ba79f2be355242e3a7949447a434888bf48e8e68c562b687896e15e54",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700533.yaml"
+    },
+    {
+      "seed": 9700534,
+      "requested_obstacles": 32,
+      "actual_obstacles": 32,
+      "mount_profile": "obstacles",
+      "sha256": "c2da529067dc37e4a0bbd83a79935e97eee67fda13e57f55834d0312fa488e45",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700534.yaml"
+    },
+    {
+      "seed": 9700535,
+      "requested_obstacles": 8,
+      "actual_obstacles": 8,
+      "mount_profile": "hidden_obstacles",
+      "sha256": "835466d82f05db82ceed67d775902582905e456cb2cb5c7275b056b881608f5c",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700535.yaml"
+    },
+    {
+      "seed": 9700536,
+      "requested_obstacles": 12,
+      "actual_obstacles": 12,
+      "mount_profile": "hidden_obstacles",
+      "sha256": "45ef26a51df0a55cf99d657b7f33f97d25cb8a3b751d8f08fbd060b33b67eb7c",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700536.yaml"
+    },
+    {
+      "seed": 9700537,
+      "requested_obstacles": 16,
+      "actual_obstacles": 16,
+      "mount_profile": "hidden_obstacles",
+      "sha256": "191b7e138e35328c7fd40900c27960e0abea044826f098edd6176107068fd4c5",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700537.yaml"
+    },
+    {
+      "seed": 9700538,
+      "requested_obstacles": 24,
+      "actual_obstacles": 24,
+      "mount_profile": "hidden_obstacles",
+      "sha256": "dedec58fcebc252614351438fee47f0873b3e352853b89d5b7c94c5a756f4851",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700538.yaml"
+    },
+    {
+      "seed": 9700539,
+      "requested_obstacles": 32,
+      "actual_obstacles": 30,
+      "mount_profile": "hidden_obstacles",
+      "sha256": "2108b1cd9adc92acd6bf49b6ae3819d49273f289298e06be8484bbd722e948e7",
+      "file": "/home/peter/simul/training_robust/native90/reserved_holdout/9700539.yaml"
+    }
+  ],
+  "approach_radius_m": 1.5,
+  "protocol_version": 2
+}

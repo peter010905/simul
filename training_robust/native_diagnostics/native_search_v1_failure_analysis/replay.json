@@ -1,0 +1,23 @@
+[
+  {
+    "trial": 31,
+    "snapshot": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/031_validation_mppi_frontier_9802005/episodes/9802005/policy_decisions/0003.npz",
+    "elapsed": 129.646,
+    "recorded": 0,
+    "replayed": 0
+  },
+  {
+    "trial": 39,
+    "snapshot": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/039_validation_mppi_frontier_9802009/episodes/9802009/policy_decisions/0006.npz",
+    "elapsed": 86.443,
+    "recorded": 0,
+    "replayed": 0
+  },
+  {
+    "trial": 57,
+    "snapshot": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/057_validation_mppi_frontier_9802018/episodes/9802018/policy_decisions/0004.npz",
+    "elapsed": 83.307,
+    "recorded": 0,
+    "replayed": 0
+  }
+]

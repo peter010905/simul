@@ -1,0 +1,169 @@
+{
+  "planner": "surface",
+  "parameters": [
+    1.0,
+    2.046510267691979,
+    0.5365121787506648,
+    1.0730496768646138,
+    0.6364751667406849
+  ],
+  "validation": {
+    "episodes": 40,
+    "success_rate": 0.65,
+    "mean_found": 2.525,
+    "mean_seconds": 466.686872780116,
+    "successful_mean_seconds": 394.90288120017834,
+    "collisions": 0,
+    "mean_reward": 488.60896908298275,
+    "by_obstacles": {
+      "8": {
+        "success_rate": 0.875,
+        "episodes": 8
+      },
+      "12": {
+        "success_rate": 0.75,
+        "episodes": 8
+      },
+      "16": {
+        "success_rate": 0.75,
+        "episodes": 8
+      },
+      "24": {
+        "success_rate": 0.5,
+        "episodes": 8
+      },
+      "32": {
+        "success_rate": 0.375,
+        "episodes": 8
+      }
+    },
+    "by_mount": {
+      "hidden_obstacles": {
+        "episodes": 10,
+        "success_rate": 0.4,
+        "mean_found": 2.0,
+        "mean_seconds": 574.8211137850464,
+        "successful_mean_seconds": 537.0527844626157,
+        "collisions": 0,
+        "mean_reward": 346.9308329322431,
+        "by_obstacles": {
+          "8": {
+            "success_rate": 1.0,
+            "episodes": 2
+          },
+          "12": {
+            "success_rate": 0.0,
+            "episodes": 2
+          },
+          "16": {
+            "success_rate": 1.0,
+            "episodes": 2
+          },
+          "24": {
+            "success_rate": 0.0,
+            "episodes": 2
+          },
+          "32": {
+            "success_rate": 0.0,
+            "episodes": 2
+          }
+        }
+      },
+      "mixed": {
+        "episodes": 10,
+        "success_rate": 0.7,
+        "mean_found": 2.7,
+        "mean_seconds": 411.9158768293549,
+        "successful_mean_seconds": 331.3083954705069,
+        "collisions": 0,
+        "mean_reward": 528.2486184755968,
+        "by_obstacles": {
+          "8": {
+            "success_rate": 0.5,
+            "episodes": 2
+          },
+          "12": {
+            "success_rate": 1.0,
+            "episodes": 2
+          },
+          "16": {
+            "success_rate": 1.0,
+            "episodes": 2
+          },
+          "24": {
+            "success_rate": 0.5,
+            "episodes": 2
+          },
+          "32": {
+            "success_rate": 0.5,
+            "episodes": 2
+          }
+        }
+      },
+      "obstacles": {
+        "episodes": 10,
+        "success_rate": 0.6,
+        "mean_found": 2.5,
+        "mean_seconds": 444.84473455296364,
+        "successful_mean_seconds": 341.4078909216061,
+        "collisions": 0,
+        "mean_reward": 472.21328981705545,
+        "by_obstacles": {
+          "8": {
+            "success_rate": 1.0,
+            "episodes": 2
+          },
+          "12": {
+            "success_rate": 1.0,
+            "episodes": 2
+          },
+          "16": {
+            "success_rate": 0.0,
+            "episodes": 2
+          },
+          "24": {
+            "success_rate": 0.5,
+            "episodes": 2
+          },
+          "32": {
+            "success_rate": 0.5,
+            "episodes": 2
+          }
+        }
+      },
+      "walls": {
+        "episodes": 10,
+        "success_rate": 0.9,
+        "mean_found": 2.9,
+        "mean_seconds": 435.16576595309914,
+        "successful_mean_seconds": 416.8508510589991,
+        "collisions": 0,
+        "mean_reward": 607.0431351070351,
+        "by_obstacles": {
+          "8": {
+            "success_rate": 1.0,
+            "episodes": 2
+          },
+          "12": {
+            "success_rate": 1.0,
+            "episodes": 2
+          },
+          "16": {
+            "success_rate": 1.0,
+            "episodes": 2
+          },
+          "24": {
+            "success_rate": 1.0,
+            "episodes": 2
+          },
+          "32": {
+            "success_rate": 0.5,
+            "episodes": 2
+          }
+        }
+      }
+    },
+    "mean_approached": 2.2
+  },
+  "training_episodes": 480
+}

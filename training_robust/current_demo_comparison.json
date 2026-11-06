@@ -1,0 +1,58 @@
+[
+  {
+    "seed": 8000001,
+    "difficulty": 12,
+    "found": 2,
+    "success": false,
+    "seconds": 600.0,
+    "collisions": 0,
+    "safety_stops": 0,
+    "distance": 67.89937234727738,
+    "decisions": 12,
+    "reward": 223.64,
+    "coverage": 0.9869723814486712,
+    "planner": "legacy"
+  },
+  {
+    "seed": 8000001,
+    "difficulty": 12,
+    "found": 3,
+    "success": true,
+    "seconds": 340.6190908301604,
+    "collisions": 0,
+    "safety_stops": 0,
+    "distance": 38.72455508838163,
+    "decisions": 10,
+    "reward": 662.1871363754759,
+    "coverage": 0.9838457529963522,
+    "planner": "surface_endpoint"
+  },
+  {
+    "seed": 8000001,
+    "difficulty": 12,
+    "found": 3,
+    "success": true,
+    "seconds": 574.4504849648022,
+    "collisions": 0,
+    "safety_stops": 0,
+    "distance": 66.5098168394062,
+    "decisions": 15,
+    "reward": 627.5124272552796,
+    "coverage": 0.98731978461004,
+    "planner": "directional"
+  },
+  {
+    "seed": 8000001,
+    "difficulty": 12,
+    "found": 2,
+    "success": false,
+    "seconds": 600.0,
+    "collisions": 0,
+    "safety_stops": 0,
+    "distance": 76.58141059740989,
+    "decisions": 25,
+    "reward": 223.62,
+    "coverage": 0.9867986798679867,
+    "planner": "gaze"
+  }
+]

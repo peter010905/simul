@@ -1,0 +1,17 @@
+[
+  {
+    "radius": 0.18,
+    "visible_boundary_faces": 32,
+    "generated_viewpoints": 0
+  },
+  {
+    "radius": 0.25,
+    "visible_boundary_faces": 40,
+    "generated_viewpoints": 0
+  },
+  {
+    "radius": 0.4,
+    "visible_boundary_faces": 64,
+    "generated_viewpoints": 58
+  }
+]

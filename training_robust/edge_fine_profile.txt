@@ -1,0 +1,32 @@
+         2036860 function calls (2036640 primitive calls) in 67.877 seconds
+
+   Ordered by: cumulative time
+   List reduced from 378 to 24 due to restriction <24>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000   67.877   67.877 evaluate.py:12(task)
+        1    0.008    0.008   67.705   67.705 fast_sim.py:292(run)
+       18    0.103    0.006   63.838    3.547 fast_sim.py:220(step)
+     3102    0.480    0.000   58.032    0.019 fast_sim.py:137(scan)
+     2311    1.949    0.001   53.229    0.023 edge_policy.py:70(observe)
+     2312    2.324    0.001   49.898    0.022 edge_policy.py:56(grid)
+      862    2.609    0.003   48.199    0.056 edge_policy.py:17(boundary_faces)
+      862   18.387    0.021   45.523    0.053 directional_policy.py:12(normals)
+     1443    0.032    0.000   24.489    0.017 fast_sim.py:205(rotate)
+     3448    0.166    0.000   23.600    0.007 _filters.py:280(gaussian_filter)
+     6896    0.161    0.000   22.044    0.003 _filters.py:211(gaussian_filter1d)
+     6896    0.201    0.000   20.543    0.003 _filters.py:84(correlate1d)
+     6896   20.211    0.003   20.211    0.003 {built-in method scipy.ndimage._nd_image.correlate1d}
+       18    2.512    0.140    8.643    0.480 edge_policy.py:98(options)
+     3102    0.086    0.000    4.161    0.001 fast_sim.py:126(_lidar)
+     2964    3.047    0.001    4.075    0.001 raycast.py:24(cast)
+     5586    2.604    0.000    3.977    0.001 edge_policy.py:37(visible)
+      862    3.103    0.004    3.181    0.004 function_base.py:972(gradient)
+    10452    0.172    0.000    1.345    0.000 _ni_support.py:74(_get_output)
+     6896    0.624    0.000    1.218    0.000 _filters.py:180(_gaussian_kernel1d)
+    17898    1.051    0.000    1.051    0.000 {built-in method numpy.zeros}
+       18    0.651    0.036    0.745    0.041 {scipy.sparse.csgraph._shortest_path.dijkstra}
+       18    0.241    0.013    0.731    0.041 policy.py:31(graph)
+    32506    0.647    0.000    0.647    0.000 {method 'astype' of 'numpy.ndarray' objects}
+
+

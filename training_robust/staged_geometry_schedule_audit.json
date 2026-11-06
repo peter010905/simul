@@ -1,0 +1,605 @@
+{
+  "unique_training_layouts": 80,
+  "frames_per_stratum": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "stages": [
+    {
+      "stage": 1,
+      "frames": {
+        "0": 10,
+        "1": 10,
+        "2": 10,
+        "3": 10
+      },
+      "mounts": {
+        "walls": 10,
+        "mixed": 10,
+        "obstacles": 10,
+        "hidden_obstacles": 10
+      }
+    },
+    {
+      "stage": 2,
+      "frames": {
+        "2": 10,
+        "3": 10,
+        "0": 10,
+        "1": 10
+      },
+      "mounts": {
+        "walls": 10,
+        "mixed": 10,
+        "obstacles": 10,
+        "hidden_obstacles": 10
+      }
+    }
+  ],
+  "rows": [
+    {
+      "stage": 1,
+      "seed": 8100060,
+      "mount": "walls",
+      "difficulty": 8,
+      "frame": 0
+    },
+    {
+      "stage": 1,
+      "seed": 8500021,
+      "mount": "walls",
+      "difficulty": 12,
+      "frame": 1
+    },
+    {
+      "stage": 1,
+      "seed": 8100002,
+      "mount": "walls",
+      "difficulty": 16,
+      "frame": 2
+    },
+    {
+      "stage": 1,
+      "seed": 8100043,
+      "mount": "walls",
+      "difficulty": 24,
+      "frame": 3
+    },
+    {
+      "stage": 1,
+      "seed": 8400084,
+      "mount": "walls",
+      "difficulty": 32,
+      "frame": 0
+    },
+    {
+      "stage": 1,
+      "seed": 8500085,
+      "mount": "mixed",
+      "difficulty": 8,
+      "frame": 1
+    },
+    {
+      "stage": 1,
+      "seed": 8400086,
+      "mount": "mixed",
+      "difficulty": 12,
+      "frame": 2
+    },
+    {
+      "stage": 1,
+      "seed": 8400087,
+      "mount": "mixed",
+      "difficulty": 16,
+      "frame": 3
+    },
+    {
+      "stage": 1,
+      "seed": 8100048,
+      "mount": "mixed",
+      "difficulty": 24,
+      "frame": 0
+    },
+    {
+      "stage": 1,
+      "seed": 8500129,
+      "mount": "mixed",
+      "difficulty": 32,
+      "frame": 1
+    },
+    {
+      "stage": 1,
+      "seed": 8500130,
+      "mount": "obstacles",
+      "difficulty": 8,
+      "frame": 2
+    },
+    {
+      "stage": 1,
+      "seed": 8400091,
+      "mount": "obstacles",
+      "difficulty": 12,
+      "frame": 3
+    },
+    {
+      "stage": 1,
+      "seed": 8100012,
+      "mount": "obstacles",
+      "difficulty": 16,
+      "frame": 0
+    },
+    {
+      "stage": 1,
+      "seed": 8500073,
+      "mount": "obstacles",
+      "difficulty": 24,
+      "frame": 1
+    },
+    {
+      "stage": 1,
+      "seed": 8500094,
+      "mount": "obstacles",
+      "difficulty": 32,
+      "frame": 2
+    },
+    {
+      "stage": 1,
+      "seed": 8500175,
+      "mount": "hidden_obstacles",
+      "difficulty": 8,
+      "frame": 3
+    },
+    {
+      "stage": 1,
+      "seed": 8100096,
+      "mount": "hidden_obstacles",
+      "difficulty": 12,
+      "frame": 0
+    },
+    {
+      "stage": 1,
+      "seed": 8500157,
+      "mount": "hidden_obstacles",
+      "difficulty": 16,
+      "frame": 1
+    },
+    {
+      "stage": 1,
+      "seed": 8500018,
+      "mount": "hidden_obstacles",
+      "difficulty": 24,
+      "frame": 2
+    },
+    {
+      "stage": 1,
+      "seed": 8400079,
+      "mount": "hidden_obstacles",
+      "difficulty": 32,
+      "frame": 3
+    },
+    {
+      "stage": 1,
+      "seed": 8500120,
+      "mount": "walls",
+      "difficulty": 8,
+      "frame": 1
+    },
+    {
+      "stage": 1,
+      "seed": 8100081,
+      "mount": "walls",
+      "difficulty": 12,
+      "frame": 2
+    },
+    {
+      "stage": 1,
+      "seed": 8400082,
+      "mount": "walls",
+      "difficulty": 16,
+      "frame": 3
+    },
+    {
+      "stage": 1,
+      "seed": 8400003,
+      "mount": "walls",
+      "difficulty": 24,
+      "frame": 0
+    },
+    {
+      "stage": 1,
+      "seed": 8500004,
+      "mount": "walls",
+      "difficulty": 32,
+      "frame": 1
+    },
+    {
+      "stage": 1,
+      "seed": 8400005,
+      "mount": "mixed",
+      "difficulty": 8,
+      "frame": 2
+    },
+    {
+      "stage": 1,
+      "seed": 8500026,
+      "mount": "mixed",
+      "difficulty": 12,
+      "frame": 3
+    },
+    {
+      "stage": 1,
+      "seed": 8500027,
+      "mount": "mixed",
+      "difficulty": 16,
+      "frame": 0
+    },
+    {
+      "stage": 1,
+      "seed": 8500108,
+      "mount": "mixed",
+      "difficulty": 24,
+      "frame": 1
+    },
+    {
+      "stage": 1,
+      "seed": 8100009,
+      "mount": "mixed",
+      "difficulty": 32,
+      "frame": 2
+    },
+    {
+      "stage": 1,
+      "seed": 8500050,
+      "mount": "obstacles",
+      "difficulty": 8,
+      "frame": 3
+    },
+    {
+      "stage": 1,
+      "seed": 8400071,
+      "mount": "obstacles",
+      "difficulty": 12,
+      "frame": 0
+    },
+    {
+      "stage": 1,
+      "seed": 8400032,
+      "mount": "obstacles",
+      "difficulty": 16,
+      "frame": 1
+    },
+    {
+      "stage": 1,
+      "seed": 8400053,
+      "mount": "obstacles",
+      "difficulty": 24,
+      "frame": 2
+    },
+    {
+      "stage": 1,
+      "seed": 8500114,
+      "mount": "obstacles",
+      "difficulty": 32,
+      "frame": 3
+    },
+    {
+      "stage": 1,
+      "seed": 8400035,
+      "mount": "hidden_obstacles",
+      "difficulty": 8,
+      "frame": 0
+    },
+    {
+      "stage": 1,
+      "seed": 8500056,
+      "mount": "hidden_obstacles",
+      "difficulty": 12,
+      "frame": 1
+    },
+    {
+      "stage": 1,
+      "seed": 8400097,
+      "mount": "hidden_obstacles",
+      "difficulty": 16,
+      "frame": 2
+    },
+    {
+      "stage": 1,
+      "seed": 8400018,
+      "mount": "hidden_obstacles",
+      "difficulty": 24,
+      "frame": 3
+    },
+    {
+      "stage": 1,
+      "seed": 8100059,
+      "mount": "hidden_obstacles",
+      "difficulty": 32,
+      "frame": 0
+    },
+    {
+      "stage": 2,
+      "seed": 8500080,
+      "mount": "walls",
+      "difficulty": 8,
+      "frame": 2
+    },
+    {
+      "stage": 2,
+      "seed": 8400001,
+      "mount": "walls",
+      "difficulty": 12,
+      "frame": 3
+    },
+    {
+      "stage": 2,
+      "seed": 8500122,
+      "mount": "walls",
+      "difficulty": 16,
+      "frame": 0
+    },
+    {
+      "stage": 2,
+      "seed": 8400083,
+      "mount": "walls",
+      "difficulty": 24,
+      "frame": 1
+    },
+    {
+      "stage": 2,
+      "seed": 8500024,
+      "mount": "walls",
+      "difficulty": 32,
+      "frame": 2
+    },
+    {
+      "stage": 2,
+      "seed": 8400025,
+      "mount": "mixed",
+      "difficulty": 8,
+      "frame": 3
+    },
+    {
+      "stage": 2,
+      "seed": 8100046,
+      "mount": "mixed",
+      "difficulty": 12,
+      "frame": 0
+    },
+    {
+      "stage": 2,
+      "seed": 8500187,
+      "mount": "mixed",
+      "difficulty": 16,
+      "frame": 1
+    },
+    {
+      "stage": 2,
+      "seed": 8500088,
+      "mount": "mixed",
+      "difficulty": 24,
+      "frame": 2
+    },
+    {
+      "stage": 2,
+      "seed": 8400049,
+      "mount": "mixed",
+      "difficulty": 32,
+      "frame": 3
+    },
+    {
+      "stage": 2,
+      "seed": 8500090,
+      "mount": "obstacles",
+      "difficulty": 8,
+      "frame": 0
+    },
+    {
+      "stage": 2,
+      "seed": 8100071,
+      "mount": "obstacles",
+      "difficulty": 12,
+      "frame": 1
+    },
+    {
+      "stage": 2,
+      "seed": 8100032,
+      "mount": "obstacles",
+      "difficulty": 16,
+      "frame": 2
+    },
+    {
+      "stage": 2,
+      "seed": 8500053,
+      "mount": "obstacles",
+      "difficulty": 24,
+      "frame": 3
+    },
+    {
+      "stage": 2,
+      "seed": 8400094,
+      "mount": "obstacles",
+      "difficulty": 32,
+      "frame": 0
+    },
+    {
+      "stage": 2,
+      "seed": 8500055,
+      "mount": "hidden_obstacles",
+      "difficulty": 8,
+      "frame": 1
+    },
+    {
+      "stage": 2,
+      "seed": 8500156,
+      "mount": "hidden_obstacles",
+      "difficulty": 12,
+      "frame": 2
+    },
+    {
+      "stage": 2,
+      "seed": 8500077,
+      "mount": "hidden_obstacles",
+      "difficulty": 16,
+      "frame": 3
+    },
+    {
+      "stage": 2,
+      "seed": 8500158,
+      "mount": "hidden_obstacles",
+      "difficulty": 24,
+      "frame": 0
+    },
+    {
+      "stage": 2,
+      "seed": 8400099,
+      "mount": "hidden_obstacles",
+      "difficulty": 32,
+      "frame": 1
+    },
+    {
+      "stage": 2,
+      "seed": 8400020,
+      "mount": "walls",
+      "difficulty": 8,
+      "frame": 3
+    },
+    {
+      "stage": 2,
+      "seed": 8400041,
+      "mount": "walls",
+      "difficulty": 12,
+      "frame": 0
+    },
+    {
+      "stage": 2,
+      "seed": 8500102,
+      "mount": "walls",
+      "difficulty": 16,
+      "frame": 1
+    },
+    {
+      "stage": 2,
+      "seed": 8500043,
+      "mount": "walls",
+      "difficulty": 24,
+      "frame": 2
+    },
+    {
+      "stage": 2,
+      "seed": 8400004,
+      "mount": "walls",
+      "difficulty": 32,
+      "frame": 3
+    },
+    {
+      "stage": 2,
+      "seed": 8400065,
+      "mount": "mixed",
+      "difficulty": 8,
+      "frame": 0
+    },
+    {
+      "stage": 2,
+      "seed": 8500086,
+      "mount": "mixed",
+      "difficulty": 12,
+      "frame": 1
+    },
+    {
+      "stage": 2,
+      "seed": 8500127,
+      "mount": "mixed",
+      "difficulty": 16,
+      "frame": 2
+    },
+    {
+      "stage": 2,
+      "seed": 8500168,
+      "mount": "mixed",
+      "difficulty": 24,
+      "frame": 3
+    },
+    {
+      "stage": 2,
+      "seed": 8100089,
+      "mount": "mixed",
+      "difficulty": 32,
+      "frame": 0
+    },
+    {
+      "stage": 2,
+      "seed": 8400050,
+      "mount": "obstacles",
+      "difficulty": 8,
+      "frame": 1
+    },
+    {
+      "stage": 2,
+      "seed": 8500111,
+      "mount": "obstacles",
+      "difficulty": 12,
+      "frame": 2
+    },
+    {
+      "stage": 2,
+      "seed": 8100072,
+      "mount": "obstacles",
+      "difficulty": 16,
+      "frame": 3
+    },
+    {
+      "stage": 2,
+      "seed": 8500173,
+      "mount": "obstacles",
+      "difficulty": 24,
+      "frame": 0
+    },
+    {
+      "stage": 2,
+      "seed": 8500154,
+      "mount": "obstacles",
+      "difficulty": 32,
+      "frame": 1
+    },
+    {
+      "stage": 2,
+      "seed": 8500035,
+      "mount": "hidden_obstacles",
+      "difficulty": 8,
+      "frame": 2
+    },
+    {
+      "stage": 2,
+      "seed": 8400056,
+      "mount": "hidden_obstacles",
+      "difficulty": 12,
+      "frame": 3
+    },
+    {
+      "stage": 2,
+      "seed": 8100097,
+      "mount": "hidden_obstacles",
+      "difficulty": 16,
+      "frame": 0
+    },
+    {
+      "stage": 2,
+      "seed": 8400078,
+      "mount": "hidden_obstacles",
+      "difficulty": 24,
+      "frame": 1
+    },
+    {
+      "stage": 2,
+      "seed": 8500079,
+      "mount": "hidden_obstacles",
+      "difficulty": 32,
+      "frame": 2
+    }
+  ],
+  "test_loaded": false,
+  "validation_loaded": false
+}

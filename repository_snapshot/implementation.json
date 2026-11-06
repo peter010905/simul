@@ -1,0 +1,79 @@
+{
+  "updated_utc": "2026-11-06T00:35:16.403157+00:00",
+  "implementation_complete": true,
+  "native_validation_complete": false,
+  "default_policy_promoted": false,
+  "changes": [
+    {
+      "version": "v10",
+      "change": "Known-free short escape corridor reconnects inflated start; destination clearance stays0.32m",
+      "tests_passed": 182,
+      "original_failed_snapshot_candidates": {
+        "31": 128,
+        "39": 113,
+        "57": 161
+      }
+    },
+    {
+      "version": "v11",
+      "change": "Confirmed IDs and independent fresh localization approach<=1.5m; near RGB reconfirmation optional",
+      "tests_passed": 183,
+      "offline_trace_replay_finished": 4,
+      "offline_trace_replay_total": 5,
+      "replay_is_not_native_success": true
+    },
+    {
+      "version": "v12",
+      "change": "Resolve conflicting IDs within0.12m using evidence dominance; ambiguous identities withheld, no ID whitelist",
+      "tests_passed": 186,
+      "replayed_trial44_extra_id_removed": true,
+      "replayed40_final_histories_correct_IDs_removed": 0
+    },
+    {
+      "version": "v13",
+      "change": "Close unseen-face viewpoints, bounded longer hint revisits, no-candidate backup, per-ID reject telemetry",
+      "tests_passed": 189,
+      "controller": "RPP",
+      "native_evaluation_pending": true
+    }
+  ],
+  "native_campaigns": [
+    {
+      "name": "escape",
+      "workspace": "/home/peter/simul/training_robust/native90/runtime_fix_v10_escape_staging",
+      "output": "/home/peter/simul/training_robust/native90/fix_v10_escape_regression3",
+      "unit": "osp-fix-v10-escape.service",
+      "status": "running",
+      "after": []
+    },
+    {
+      "name": "completion",
+      "workspace": "/home/peter/simul/training_robust/native90/runtime_fix_v11_completion_staging",
+      "output": "/home/peter/simul/training_robust/native90/fix_v11_completion_regression1",
+      "unit": "osp-fix-v11-completion.service",
+      "status": "running",
+      "after": []
+    },
+    {
+      "name": "identity",
+      "workspace": "/home/peter/simul/training_robust/native90/runtime_fix_v12_identity_staging",
+      "output": "/home/peter/simul/training_robust/native90/fix_v12_identity_regression1",
+      "unit": "osp-fix-v12-identity.service",
+      "status": "prepared",
+      "after": [
+        "completion"
+      ]
+    },
+    {
+      "name": "observation",
+      "workspace": "/home/peter/simul/training_robust/native90/runtime_fix_v13_observation_staging",
+      "output": "/home/peter/simul/training_robust/native90/fix_v13_observation_regression6",
+      "unit": "osp-fix-v13-observation.service",
+      "status": "prepared",
+      "after": [
+        "identity",
+        "escape"
+      ]
+    }
+  ]
+}

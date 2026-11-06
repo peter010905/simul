@@ -1,0 +1,36 @@
+/**:
+  ros__parameters:
+    use_sim_time: true
+    frequency: 62.0
+    sensor_timeout: 0.3
+    two_d_mode: true
+    publish_tf: true
+    publish_acceleration: false
+    print_diagnostics: true
+    map_frame: map
+    odom_frame: odom
+    base_link_frame: base_link
+    world_frame: odom
+    transform_time_offset: 0.0
+    transform_timeout: 0.0
+    # Encoders provide forward velocity and the nonholonomic lateral constraint.
+    # Their accumulated heading is deliberately not fused.
+    odom0: wheel/odom
+    odom0_config: [false, false, false,
+                   false, false, false,
+                   true, true, false,
+                   false, false, false,
+                   false, false, false]
+    odom0_queue_size: 10
+    odom0_differential: false
+    # Use measured angular velocity, never Gazebo world pose/orientation.
+    imu0: imu
+    imu0_config: [false, false, false,
+                 false, false, false,
+                 false, false, false,
+                 false, false, true,
+                 false, false, false]
+    imu0_queue_size: 10
+    imu0_differential: false
+    imu0_remove_gravitational_acceleration: false
+    use_control: false

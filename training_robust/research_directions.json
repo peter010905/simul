@@ -1,0 +1,24 @@
+{
+  "implemented": true,
+  "reason": "The current five-weight CEM did not improve either validation champion in two 640-episode generations; inspect global exploration order before running more unchanged searches",
+  "sources": [
+    {
+      "title": "Learning to Explore using Active Neural SLAM",
+      "url": "https://arxiv.org/abs/2004.05155",
+      "relevant_claim": "Modular learned global and local exploration policies can be combined with analytical planning."
+    },
+    {
+      "title": "FUEL: Fast UAV Exploration using Incremental Frontier Structure and Hierarchical Planning",
+      "url": "https://arxiv.org/abs/2010.11561",
+      "relevant_claim": "The planner combines a global exploration tour, local viewpoint refinement and trajectory planning."
+    }
+  ],
+  "inference": "A globally ordered surface-view tour is a candidate remedy for repeated greedy local inspection; these papers do not establish performance for this ground-robot marker task.",
+  "implemented_scope": "Experimental two-view overlap lookahead and set-cover/open-tour heuristic; not Active Neural SLAM or FUEL implementations",
+  "evidence": [
+    "training_robust/view_route_screen/completed.json",
+    "training_robust/view_route_search_v1/completed.json",
+    "training_robust/view_tour_screen/completed.json"
+  ],
+  "outcome": "These variants did not outperform the retained endpoint policy on training controls; broader hierarchical exploration remains an open direction"
+}

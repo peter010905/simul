@@ -1,0 +1,18 @@
+{
+  "random_scan_comparisons": 100,
+  "exact_equality": true,
+  "episodes": [
+    {
+      "seed": 8400019,
+      "unchanged_results_and_trace": true,
+      "before_seconds": 17.84299649577588,
+      "after_seconds": 9.86360670812428
+    },
+    {
+      "seed": 8400005,
+      "unchanged_results_and_trace": true,
+      "before_seconds": 9.84968815697357,
+      "after_seconds": 7.179840902797878
+    }
+  ]
+}

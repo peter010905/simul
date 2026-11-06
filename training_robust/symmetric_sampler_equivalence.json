@@ -1,0 +1,19 @@
+{
+  "randomized_cases": 120,
+  "exact_candidate_match": true,
+  "function_wall_seconds": {
+    "frozen": 5.583667611703277,
+    "optimized": 0.7948686350136995
+  },
+  "replays": [
+    {
+      "seed": 8500107,
+      "exact_metrics_match": true
+    },
+    {
+      "seed": 8500139,
+      "exact_metrics_match": true
+    }
+  ],
+  "note": "Timing is computation, not simulated mission speed"
+}

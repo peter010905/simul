@@ -1,0 +1,15 @@
+{
+  "settings": {
+    "view_standoff": 2.4,
+    "deadline_aware": true
+  },
+  "parameters": [
+    1.0,
+    1.204765992697077,
+    0.39116097662487975,
+    0.7812959734881743,
+    0.6473764656964455
+  ],
+  "starts_idle": true,
+  "transport_verified": false
+}

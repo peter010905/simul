@@ -1,0 +1,13 @@
+{
+  "planner": "directional",
+  "parameters": [
+    1.0,
+    3.38639904033944,
+    0.6112551463080941,
+    1.9374402427472013,
+    0.33852529819113647
+  ],
+  "camera_subscription": "mission/processed_camera",
+  "starts_idle": true,
+  "ready_without_sensors": false
+}

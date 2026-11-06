@@ -1,0 +1,2207 @@
+{
+  "created_utc": "2026-11-05T23:59:53.196527+00:00",
+  "root": "/home/peter/simul/training_robust/native90/native_search_v1",
+  "validation_episodes": 40,
+  "failed_episodes": 22,
+  "failure_categories": {
+    "extra_close_rgb_completion_gate": 5,
+    "missing_marker_observation_or_confirmation": 13,
+    "persistent_empty_candidate_spin_loop": 3,
+    "false_positive_extra_id": 1
+  },
+  "missing_marker_instances": 21,
+  "missing_marker_decoded_zero": 15,
+  "missing_marker_decoded_but_no_accepted": 5,
+  "missing_marker_partial_accepted": 1,
+  "missing_marker_actual_near": 5,
+  "evaluation_sha256": {
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/020_validation_rpp_balanced_9802000/episodes/9802000/evaluation.json": "38b6514d207f37121b0a48a607025d48f6802785cfc972daa2fa9e83b5c7b9df",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/021_validation_mppi_frontier_9802000/episodes/9802000/evaluation.json": "9cc936a4e43ea3c68b8a2176842edf9cf505960c1dd966548ff6596434bdbe0e",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/022_validation_rpp_balanced_9802001/episodes/9802001/evaluation.json": "7d947110b4baff09cd49a6864c8f34aba0069bd117c8ae15f8b3f7ddd56fcc77",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/023_validation_mppi_frontier_9802001/episodes/9802001/evaluation.json": "bddd2595a0cad04efb772c1aeba1c2c3dab2172541363856cfac6037bda08905",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/024_validation_rpp_balanced_9802002/episodes/9802002/evaluation.json": "5b96c6456215c7b660bd9013b3d4c158197f4561da18d6f2e96f8a74b83238ff",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/025_validation_mppi_frontier_9802002/episodes/9802002/evaluation.json": "64fb507bb4d657493f1253ae3d410cdafa496e2b430079bf6a26df2deba95f99",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/026_validation_rpp_balanced_9802003/episodes/9802003/evaluation.json": "ec4e13b5a0fe32ea67e1599e117b19e85e499881878e1e233c08f57068cad958",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/027_validation_mppi_frontier_9802003/episodes/9802003/evaluation.json": "ea62ecb9d964602e65f49c9cdcd81a03620540d195e64b910320b1d328b61fb8",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/028_validation_rpp_balanced_9802004/episodes/9802004/evaluation.json": "d986779879ff3cd755a3f0f763dfa0579fd54dd2d97032995b9e49c0e1da579e",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/029_validation_mppi_frontier_9802004/episodes/9802004/evaluation.json": "9c2ea5a166cb3eaa017b96edac7a5aa33ab720b963a25f08d263cf72f98e07b3",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/030_validation_rpp_balanced_9802005/episodes/9802005/evaluation.json": "69c35db288ab434a9a9928a975e8076e2e0e5641ca6ff5e1ee3fd10b734715fc",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/031_validation_mppi_frontier_9802005/episodes/9802005/evaluation.json": "ff063bb6b110a488b09878c44f66a9b3b1748a2eba03b60d81973521b603c63b",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/032_validation_rpp_balanced_9802006/episodes/9802006/evaluation.json": "d68f4175a73211ce7f644b80fcbbadd6c11da5d1861990acddb5578bf0c92b0e",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/033_validation_mppi_frontier_9802006/episodes/9802006/evaluation.json": "b7da7a9ee2d47a774f2816dbea4a68f3b13425890fe6d22b0f3360e9b302e9c9",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/034_validation_rpp_balanced_9802007/episodes/9802007/evaluation.json": "68e1ecaffa74de1a275922696e888e298c2fc97941f4a9072629beb80a82fc67",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/035_validation_mppi_frontier_9802007/episodes/9802007/evaluation.json": "ba4af79d8bcbb2cf311ab764098fdcf3c918bcf370d3eaa3a4ef40f8847a2b67",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/036_validation_rpp_balanced_9802008/episodes/9802008/evaluation.json": "6bfbb41971f9170d99f6291e50f736bb863b00aff22ba6c55aa2df0ba39d05bd",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/037_validation_mppi_frontier_9802008/episodes/9802008/evaluation.json": "3266b6a224bd94ed6733472cd47034f14402949ddfcc1361ea6924ddd01e4fef",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/038_validation_rpp_balanced_9802009/episodes/9802009/evaluation.json": "601ab2ccbe22fad36fc2674443fbe342f78e9e1ce471ceb8c37915c446fef7ee",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/039_validation_mppi_frontier_9802009/episodes/9802009/evaluation.json": "b0f69dc1f564c62b23fab086f23fcd5a7c31a325da7b7d0876790ee92917fb99",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/040_validation_rpp_balanced_9802010/episodes/9802010/evaluation.json": "9bbaf147d0b8a673e77cd1f61f7e497d877d37738ae9fc3b266d0c9a6fee0d24",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/041_validation_mppi_frontier_9802010/episodes/9802010/evaluation.json": "a50198f9a4d0d55008d5f0e0cca2fa518ea10b9d41bee1c6cfd0836d6a3b18e1",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/042_validation_rpp_balanced_9802011/episodes/9802011/evaluation.json": "64feb2347cbb6ed4601e4e3876dce610d5e941ec1a0857b846a543e69bc12929",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/043_validation_mppi_frontier_9802011/episodes/9802011/evaluation.json": "4bbbfc9643aa431b260c68a458936d194abc0579dd4fb85e28bd484c078ffbe2",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/044_validation_rpp_balanced_9802012/episodes/9802012/evaluation.json": "5a8b797b6472aec50b1f12665293a9794c39fc47e023e3c8d25d07f4bf27ca69",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/045_validation_mppi_frontier_9802012/episodes/9802012/evaluation.json": "f191ff00e19573d33e79832bfe2b2b22e0350e95f1d98937fe829ac932785608",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/046_validation_rpp_balanced_9802013/episodes/9802013/evaluation.json": "8dfc4a8dbfe3e6c5e4dcc7044a03b6f53e7f76e1d622f98cd3e918f43e2d347c",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/047_validation_mppi_frontier_9802013/episodes/9802013/evaluation.json": "8bf86cb0c5a9d79c70f834ce5fd4849eb0d9c67d5081c9fd2a4a78fd8e0d5e49",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/048_validation_rpp_balanced_9802014/episodes/9802014/evaluation.json": "c342c0e25b7b517c65acfbff386657d14c21634fab143d0f84d528e8939d56f3",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/049_validation_mppi_frontier_9802014/episodes/9802014/evaluation.json": "7761cb37ef68729f45780889f8424d23197032b2dfb9e95ca1a3c66d3c2890ed",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/050_validation_rpp_balanced_9802015/episodes/9802015/evaluation.json": "a4e97196fcffaf535fb499923d5ef1478ec1b2de2d9d16fb9838cf6d03dd9247",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/051_validation_mppi_frontier_9802015/episodes/9802015/evaluation.json": "51abadc63a1d9f70951df273e0934f888b2164a0cdb82826f738c76a66b2e6b2",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/052_validation_rpp_balanced_9802016/episodes/9802016/evaluation.json": "0a88b553f0479154b933f7aac087d913a9b044422ae646a36e439630f13ff502",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/053_validation_mppi_frontier_9802016/episodes/9802016/evaluation.json": "e265183c583a691c0f2ba3094268001e1edce42fe4b5e776d1ed641efee17cc7",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/054_validation_rpp_balanced_9802017/episodes/9802017/evaluation.json": "d0da09d96c3924db74d83e147f9ceef30fd575bbee817b61e359d7eba7c62924",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/055_validation_mppi_frontier_9802017/episodes/9802017/evaluation.json": "460ca18f4d5c831bdd2699a69cd17df43780edeacd0b95f4d64398bdefa17ec2",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/056_validation_rpp_balanced_9802018/episodes/9802018/evaluation.json": "30c5a6b4cc0d3707846a80b29bd932be0734938cc7b91cc84ef62e6f07074c00",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/057_validation_mppi_frontier_9802018/episodes/9802018/evaluation.json": "558dbdab5edd5c2f6c405fa249e1701410e898ac6a7e1c2d33f5b74b6bcb7e60",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/058_validation_rpp_balanced_9802019/episodes/9802019/evaluation.json": "3e75c4e8321f08cc0b0bd695a321601ffcce8fc5aa838cc71848850e14e742a3",
+    "/home/peter/simul/training_robust/native90/native_search_v1/jobs/059_validation_mppi_frontier_9802019/episodes/9802019/evaluation.json": "b844917a7b444f792a8e5972699eed2ca56bcc4c370a4345089f066cb478b564"
+  },
+  "episodes": [
+    {
+      "number": 20,
+      "candidate": "rpp_balanced",
+      "obstacles": 8,
+      "mount_profile": "walls",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/020_validation_rpp_balanced_9802000/episodes/9802000",
+      "success": true,
+      "reason": "all_targets_found",
+      "elapsed": 472.637,
+      "collisions": 0,
+      "expected_ids": [
+        236,
+        477,
+        485
+      ],
+      "found_ids": [
+        236,
+        477,
+        485
+      ],
+      "near_verified_ids": [
+        236,
+        477,
+        485
+      ],
+      "missing_ids": [],
+      "extra_ids": [],
+      "correct_positions": true,
+      "all_actual_approaches": true,
+      "path_length_m": 76.34035513497938,
+      "missing_details": [],
+      "extra_details": [],
+      "unverified_details": [],
+      "category": "success"
+    },
+    {
+      "number": 21,
+      "candidate": "mppi_frontier",
+      "obstacles": 8,
+      "mount_profile": "walls",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/021_validation_mppi_frontier_9802000/episodes/9802000",
+      "success": false,
+      "reason": "timeout",
+      "elapsed": 600.0,
+      "collisions": 0,
+      "expected_ids": [
+        236,
+        477,
+        485
+      ],
+      "found_ids": [
+        236,
+        477,
+        485
+      ],
+      "near_verified_ids": [
+        236,
+        485
+      ],
+      "missing_ids": [],
+      "extra_ids": [],
+      "correct_positions": true,
+      "all_actual_approaches": true,
+      "path_length_m": 114.8798653118829,
+      "missing_details": [],
+      "extra_details": [],
+      "unverified_details": [
+        {
+          "id": 477,
+          "closest_actual_m": 1.1564229322561972,
+          "accepted_evidence_count": 107,
+          "minimum_accepted_camera_planar_range_m": 1.446671109468991
+        }
+      ],
+      "decision_audit": {
+        "total": 33,
+        "empty": 0,
+        "singleton_island": 0,
+        "first_island_elapsed": null,
+        "last_island_elapsed": null,
+        "first_island": null
+      },
+      "spin_commands": 21,
+      "progress_failures": 0,
+      "followups": [
+        {
+          "stamp": 238.5,
+          "id": 485,
+          "point": [
+            -18.658639358751792,
+            3.5936097165631486
+          ],
+          "observer": [
+            -16.879996400863163,
+            6.92081132589612
+          ],
+          "goal": [
+            -17.57432414015293,
+            5.62197371415207,
+            -2.061720821953157
+          ],
+          "stationary": false,
+          "attempt": 1
+        }
+      ],
+      "category": "extra_close_rgb_completion_gate"
+    },
+    {
+      "number": 22,
+      "candidate": "rpp_balanced",
+      "obstacles": 12,
+      "mount_profile": "walls",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/022_validation_rpp_balanced_9802001/episodes/9802001",
+      "success": false,
+      "reason": "timeout",
+      "elapsed": 600.289,
+      "collisions": 0,
+      "expected_ids": [
+        172,
+        629,
+        964
+      ],
+      "found_ids": [
+        629,
+        964
+      ],
+      "near_verified_ids": [
+        629,
+        964
+      ],
+      "missing_ids": [
+        172
+      ],
+      "extra_ids": [],
+      "correct_positions": false,
+      "all_actual_approaches": false,
+      "path_length_m": 90.78831123660237,
+      "missing_details": [
+        {
+          "id": 172,
+          "size_m": 0.13062419371797096,
+          "closest_m": 7.6227311175778825,
+          "closest_sim_stamp": 67.957,
+          "closest_base_bearing_degrees": 2.697489213714578,
+          "closest_front_normal_cosine": 0.46249378071876024,
+          "closest_front_cone_m": 8.183689140664919,
+          "decoded_count": 5,
+          "accepted_evidence_count": 0,
+          "detector_confirmations": 0
+        }
+      ],
+      "extra_details": [],
+      "unverified_details": [],
+      "decision_audit": {
+        "total": 36,
+        "empty": 0,
+        "singleton_island": 0,
+        "first_island_elapsed": null,
+        "last_island_elapsed": null,
+        "first_island": null
+      },
+      "spin_commands": 21,
+      "progress_failures": 0,
+      "followups": [],
+      "category": "missing_marker_observation_or_confirmation"
+    },
+    {
+      "number": 23,
+      "candidate": "mppi_frontier",
+      "obstacles": 12,
+      "mount_profile": "walls",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/023_validation_mppi_frontier_9802001/episodes/9802001",
+      "success": false,
+      "reason": "timeout",
+      "elapsed": 600.118,
+      "collisions": 0,
+      "expected_ids": [
+        172,
+        629,
+        964
+      ],
+      "found_ids": [
+        629,
+        964
+      ],
+      "near_verified_ids": [
+        629,
+        964
+      ],
+      "missing_ids": [
+        172
+      ],
+      "extra_ids": [],
+      "correct_positions": false,
+      "all_actual_approaches": false,
+      "path_length_m": 98.90811245087089,
+      "missing_details": [
+        {
+          "id": 172,
+          "size_m": 0.13062419371797096,
+          "closest_m": 2.9489561254973045,
+          "closest_sim_stamp": 304.352,
+          "closest_base_bearing_degrees": -90.05105923413979,
+          "closest_front_normal_cosine": 0.9987870882398823,
+          "closest_front_cone_m": 2.9489561254973045,
+          "decoded_count": 47,
+          "accepted_evidence_count": 1,
+          "detector_confirmations": 1
+        }
+      ],
+      "extra_details": [],
+      "unverified_details": [],
+      "decision_audit": {
+        "total": 32,
+        "empty": 0,
+        "singleton_island": 0,
+        "first_island_elapsed": null,
+        "last_island_elapsed": null,
+        "first_island": null
+      },
+      "spin_commands": 30,
+      "progress_failures": 0,
+      "followups": [
+        {
+          "stamp": 320.5,
+          "id": 172,
+          "point": [
+            2.3837327854151074,
+            -12.052305680147715
+          ],
+          "observer": [
+            2.475321094210213,
+            -8.298030248538073
+          ],
+          "goal": [
+            2.5257875017279368,
+            -9.198188145511914,
+            -1.6205271411542845
+          ],
+          "stationary": false,
+          "attempt": 1
+        }
+      ],
+      "category": "missing_marker_observation_or_confirmation"
+    },
+    {
+      "number": 24,
+      "candidate": "rpp_balanced",
+      "obstacles": 16,
+      "mount_profile": "walls",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/024_validation_rpp_balanced_9802002/episodes/9802002",
+      "success": true,
+      "reason": "all_targets_found",
+      "elapsed": 546.3,
+      "collisions": 0,
+      "expected_ids": [
+        210,
+        352,
+        515
+      ],
+      "found_ids": [
+        210,
+        352,
+        515
+      ],
+      "near_verified_ids": [
+        210,
+        352,
+        515
+      ],
+      "missing_ids": [],
+      "extra_ids": [],
+      "correct_positions": true,
+      "all_actual_approaches": true,
+      "path_length_m": 80.48843286442494,
+      "missing_details": [],
+      "extra_details": [],
+      "unverified_details": [],
+      "category": "success"
+    },
+    {
+      "number": 25,
+      "candidate": "mppi_frontier",
+      "obstacles": 16,
+      "mount_profile": "walls",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/025_validation_mppi_frontier_9802002/episodes/9802002",
+      "success": false,
+      "reason": "timeout",
+      "elapsed": 600.245,
+      "collisions": 0,
+      "expected_ids": [
+        210,
+        352,
+        515
+      ],
+      "found_ids": [
+        210,
+        352,
+        515
+      ],
+      "near_verified_ids": [
+        210,
+        352
+      ],
+      "missing_ids": [],
+      "extra_ids": [],
+      "correct_positions": true,
+      "all_actual_approaches": true,
+      "path_length_m": 102.57737169253423,
+      "missing_details": [],
+      "extra_details": [],
+      "unverified_details": [
+        {
+          "id": 515,
+          "closest_actual_m": 1.1942060359121982,
+          "accepted_evidence_count": 84,
+          "minimum_accepted_camera_planar_range_m": 1.4099425391377753
+        }
+      ],
+      "decision_audit": {
+        "total": 36,
+        "empty": 0,
+        "singleton_island": 0,
+        "first_island_elapsed": null,
+        "last_island_elapsed": null,
+        "first_island": null
+      },
+      "spin_commands": 23,
+      "progress_failures": 0,
+      "followups": [
+        {
+          "stamp": 559.5,
+          "id": 515,
+          "point": [
+            -7.56582544980872,
+            14.491118627955492
+          ],
+          "observer": [
+            -4.733390174944345,
+            12.600660035849232
+          ],
+          "goal": [
+            -5.117674070993882,
+            12.90895415816575,
+            2.5678447168458134
+          ],
+          "stationary": false,
+          "attempt": 1
+        }
+      ],
+      "category": "extra_close_rgb_completion_gate"
+    },
+    {
+      "number": 26,
+      "candidate": "rpp_balanced",
+      "obstacles": 24,
+      "mount_profile": "walls",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/026_validation_rpp_balanced_9802003/episodes/9802003",
+      "success": true,
+      "reason": "all_targets_found",
+      "elapsed": 453.6,
+      "collisions": 0,
+      "expected_ids": [
+        252,
+        684,
+        920
+      ],
+      "found_ids": [
+        252,
+        684,
+        920
+      ],
+      "near_verified_ids": [
+        252,
+        684,
+        920
+      ],
+      "missing_ids": [],
+      "extra_ids": [],
+      "correct_positions": true,
+      "all_actual_approaches": true,
+      "path_length_m": 69.70515206010384,
+      "missing_details": [],
+      "extra_details": [],
+      "unverified_details": [],
+      "category": "success"
+    },
+    {
+      "number": 27,
+      "candidate": "mppi_frontier",
+      "obstacles": 24,
+      "mount_profile": "walls",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/027_validation_mppi_frontier_9802003/episodes/9802003",
+      "success": true,
+      "reason": "all_targets_found",
+      "elapsed": 431.25,
+      "collisions": 0,
+      "expected_ids": [
+        252,
+        684,
+        920
+      ],
+      "found_ids": [
+        252,
+        684,
+        920
+      ],
+      "near_verified_ids": [
+        252,
+        684,
+        920
+      ],
+      "missing_ids": [],
+      "extra_ids": [],
+      "correct_positions": true,
+      "all_actual_approaches": true,
+      "path_length_m": 76.39093992707159,
+      "missing_details": [],
+      "extra_details": [],
+      "unverified_details": [],
+      "category": "success"
+    },
+    {
+      "number": 28,
+      "candidate": "rpp_balanced",
+      "obstacles": 29,
+      "mount_profile": "walls",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/028_validation_rpp_balanced_9802004/episodes/9802004",
+      "success": false,
+      "reason": "timeout",
+      "elapsed": 600.103,
+      "collisions": 0,
+      "expected_ids": [
+        101,
+        364,
+        366
+      ],
+      "found_ids": [
+        101,
+        364,
+        366
+      ],
+      "near_verified_ids": [
+        364,
+        366
+      ],
+      "missing_ids": [],
+      "extra_ids": [],
+      "correct_positions": true,
+      "all_actual_approaches": true,
+      "path_length_m": 76.0617618759115,
+      "missing_details": [],
+      "extra_details": [],
+      "unverified_details": [
+        {
+          "id": 101,
+          "closest_actual_m": 1.246751004210362,
+          "accepted_evidence_count": 83,
+          "minimum_accepted_camera_planar_range_m": 1.3505094880661104
+        }
+      ],
+      "decision_audit": {
+        "total": 36,
+        "empty": 0,
+        "singleton_island": 0,
+        "first_island_elapsed": null,
+        "last_island_elapsed": null,
+        "first_island": null
+      },
+      "spin_commands": 30,
+      "progress_failures": 0,
+      "followups": [
+        {
+          "stamp": 389.5,
+          "id": 364,
+          "point": [
+            -19.406192363189497,
+            0.17351211748316508
+          ],
+          "observer": [
+            -15.817611623882295,
+            -3.3322552330772925
+          ],
+          "goal": [
+            -17.46646606618176,
+            -2.03298035311159,
+            2.2919434220664097
+          ],
+          "stationary": false,
+          "attempt": 1
+        }
+      ],
+      "category": "extra_close_rgb_completion_gate"
+    },
+    {
+      "number": 29,
+      "candidate": "mppi_frontier",
+      "obstacles": 29,
+      "mount_profile": "walls",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/029_validation_mppi_frontier_9802004/episodes/9802004",
+      "success": true,
+      "reason": "all_targets_found",
+      "elapsed": 579.1,
+      "collisions": 0,
+      "expected_ids": [
+        101,
+        364,
+        366
+      ],
+      "found_ids": [
+        101,
+        364,
+        366
+      ],
+      "near_verified_ids": [
+        101,
+        364,
+        366
+      ],
+      "missing_ids": [],
+      "extra_ids": [],
+      "correct_positions": true,
+      "all_actual_approaches": true,
+      "path_length_m": 100.58083543445935,
+      "missing_details": [],
+      "extra_details": [],
+      "unverified_details": [],
+      "category": "success"
+    },
+    {
+      "number": 30,
+      "candidate": "rpp_balanced",
+      "obstacles": 8,
+      "mount_profile": "mixed",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/030_validation_rpp_balanced_9802005/episodes/9802005",
+      "success": false,
+      "reason": "timeout",
+      "elapsed": 600.042,
+      "collisions": 0,
+      "expected_ids": [
+        355,
+        367,
+        753
+      ],
+      "found_ids": [
+        355,
+        367,
+        753
+      ],
+      "near_verified_ids": [
+        355,
+        753
+      ],
+      "missing_ids": [],
+      "extra_ids": [],
+      "correct_positions": true,
+      "all_actual_approaches": true,
+      "path_length_m": 90.15215148171231,
+      "missing_details": [],
+      "extra_details": [],
+      "unverified_details": [
+        {
+          "id": 367,
+          "closest_actual_m": 1.269057185304971,
+          "accepted_evidence_count": 330,
+          "minimum_accepted_camera_planar_range_m": 1.4407369614900578
+        }
+      ],
+      "decision_audit": {
+        "total": 32,
+        "empty": 0,
+        "singleton_island": 0,
+        "first_island_elapsed": null,
+        "last_island_elapsed": null,
+        "first_island": null
+      },
+      "spin_commands": 23,
+      "progress_failures": 0,
+      "followups": [],
+      "category": "extra_close_rgb_completion_gate"
+    },
+    {
+      "number": 31,
+      "candidate": "mppi_frontier",
+      "obstacles": 8,
+      "mount_profile": "mixed",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/031_validation_mppi_frontier_9802005/episodes/9802005",
+      "success": false,
+      "reason": "timeout",
+      "elapsed": 600.146,
+      "collisions": 0,
+      "expected_ids": [
+        355,
+        367,
+        753
+      ],
+      "found_ids": [],
+      "near_verified_ids": [],
+      "missing_ids": [
+        355,
+        367,
+        753
+      ],
+      "extra_ids": [],
+      "correct_positions": false,
+      "all_actual_approaches": false,
+      "path_length_m": 4.763368146958527,
+      "missing_details": [
+        {
+          "id": 355,
+          "size_m": 0.16786551886477113,
+          "closest_m": 12.635996827398868,
+          "closest_sim_stamp": 126.442,
+          "closest_base_bearing_degrees": -171.81835348368494,
+          "closest_front_normal_cosine": -0.9948770634725298,
+          "closest_front_cone_m": null,
+          "decoded_count": 0,
+          "accepted_evidence_count": 0,
+          "detector_confirmations": 0
+        },
+        {
+          "id": 367,
+          "size_m": 0.1767984402015398,
+          "closest_m": 17.473771606571677,
+          "closest_sim_stamp": 126.442,
+          "closest_base_bearing_degrees": -158.14121411948275,
+          "closest_front_normal_cosine": 0.9962415898200514,
+          "closest_front_cone_m": 17.473771606571677,
+          "decoded_count": 1,
+          "accepted_evidence_count": 0,
+          "detector_confirmations": 0
+        },
+        {
+          "id": 753,
+          "size_m": 0.2671450968486036,
+          "closest_m": 10.827973794984468,
+          "closest_sim_stamp": 126.442,
+          "closest_base_bearing_degrees": -155.80534076094548,
+          "closest_front_normal_cosine": -0.04885320570353059,
+          "closest_front_cone_m": null,
+          "decoded_count": 0,
+          "accepted_evidence_count": 0,
+          "detector_confirmations": 0
+        }
+      ],
+      "extra_details": [],
+      "unverified_details": [],
+      "decision_audit": {
+        "total": 98,
+        "empty": 95,
+        "singleton_island": 95,
+        "first_island_elapsed": 129.646,
+        "last_island_elapsed": 599.646,
+        "first_island": {
+          "elapsed": 129.646,
+          "candidates": 0,
+          "robot_cell": 0,
+          "clearance_m": 0.2500000037252903,
+          "connected_safe_cells": 1
+        }
+      },
+      "spin_commands": 100,
+      "progress_failures": 8,
+      "followups": [],
+      "category": "persistent_empty_candidate_spin_loop"
+    },
+    {
+      "number": 32,
+      "candidate": "rpp_balanced",
+      "obstacles": 12,
+      "mount_profile": "mixed",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/032_validation_rpp_balanced_9802006/episodes/9802006",
+      "success": true,
+      "reason": "all_targets_found",
+      "elapsed": 369.635,
+      "collisions": 0,
+      "expected_ids": [
+        93,
+        612,
+        832
+      ],
+      "found_ids": [
+        93,
+        612,
+        832
+      ],
+      "near_verified_ids": [
+        93,
+        612,
+        832
+      ],
+      "missing_ids": [],
+      "extra_ids": [],
+      "correct_positions": true,
+      "all_actual_approaches": true,
+      "path_length_m": 56.53198331652966,
+      "missing_details": [],
+      "extra_details": [],
+      "unverified_details": [],
+      "category": "success"
+    },
+    {
+      "number": 33,
+      "candidate": "mppi_frontier",
+      "obstacles": 12,
+      "mount_profile": "mixed",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/033_validation_mppi_frontier_9802006/episodes/9802006",
+      "success": true,
+      "reason": "all_targets_found",
+      "elapsed": 458.061,
+      "collisions": 0,
+      "expected_ids": [
+        93,
+        612,
+        832
+      ],
+      "found_ids": [
+        93,
+        612,
+        832
+      ],
+      "near_verified_ids": [
+        93,
+        612,
+        832
+      ],
+      "missing_ids": [],
+      "extra_ids": [],
+      "correct_positions": true,
+      "all_actual_approaches": true,
+      "path_length_m": 70.69376297098646,
+      "missing_details": [],
+      "extra_details": [],
+      "unverified_details": [],
+      "category": "success"
+    },
+    {
+      "number": 34,
+      "candidate": "rpp_balanced",
+      "obstacles": 16,
+      "mount_profile": "mixed",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/034_validation_rpp_balanced_9802007/episodes/9802007",
+      "success": true,
+      "reason": "all_targets_found",
+      "elapsed": 316.583,
+      "collisions": 0,
+      "expected_ids": [
+        317,
+        829,
+        938
+      ],
+      "found_ids": [
+        317,
+        829,
+        938
+      ],
+      "near_verified_ids": [
+        317,
+        829,
+        938
+      ],
+      "missing_ids": [],
+      "extra_ids": [],
+      "correct_positions": true,
+      "all_actual_approaches": true,
+      "path_length_m": 33.57889539435553,
+      "missing_details": [],
+      "extra_details": [],
+      "unverified_details": [],
+      "category": "success"
+    },
+    {
+      "number": 35,
+      "candidate": "mppi_frontier",
+      "obstacles": 16,
+      "mount_profile": "mixed",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/035_validation_mppi_frontier_9802007/episodes/9802007",
+      "success": false,
+      "reason": "timeout",
+      "elapsed": 600.4,
+      "collisions": 0,
+      "expected_ids": [
+        317,
+        829,
+        938
+      ],
+      "found_ids": [
+        317,
+        829
+      ],
+      "near_verified_ids": [
+        317,
+        829
+      ],
+      "missing_ids": [
+        938
+      ],
+      "extra_ids": [],
+      "correct_positions": false,
+      "all_actual_approaches": false,
+      "path_length_m": 104.82477556653828,
+      "missing_details": [
+        {
+          "id": 938,
+          "size_m": 0.18861551901692228,
+          "closest_m": 1.9589676031827554,
+          "closest_sim_stamp": 603.927,
+          "closest_base_bearing_degrees": -79.06279409807159,
+          "closest_front_normal_cosine": 0.33968010550349187,
+          "closest_front_cone_m": null,
+          "decoded_count": 0,
+          "accepted_evidence_count": 0,
+          "detector_confirmations": 0
+        }
+      ],
+      "extra_details": [],
+      "unverified_details": [],
+      "decision_audit": {
+        "total": 32,
+        "empty": 0,
+        "singleton_island": 0,
+        "first_island_elapsed": null,
+        "last_island_elapsed": null,
+        "first_island": null
+      },
+      "spin_commands": 23,
+      "progress_failures": 0,
+      "followups": [
+        {
+          "stamp": 22.5,
+          "id": 829,
+          "point": [
+            -0.24933305698675323,
+            2.7527669494770235
+          ],
+          "observer": [
+            -0.0290609279875872,
+            -0.052034819731121174
+          ],
+          "goal": [
+            0.2579776499592177,
+            -0.010039428819331894,
+            1.7523949024143024
+          ],
+          "stationary": true,
+          "attempt": 1
+        }
+      ],
+      "category": "missing_marker_observation_or_confirmation"
+    },
+    {
+      "number": 36,
+      "candidate": "rpp_balanced",
+      "obstacles": 24,
+      "mount_profile": "mixed",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/036_validation_rpp_balanced_9802008/episodes/9802008",
+      "success": true,
+      "reason": "all_targets_found",
+      "elapsed": 464.379,
+      "collisions": 0,
+      "expected_ids": [
+        100,
+        664,
+        1008
+      ],
+      "found_ids": [
+        100,
+        664,
+        1008
+      ],
+      "near_verified_ids": [
+        100,
+        664,
+        1008
+      ],
+      "missing_ids": [],
+      "extra_ids": [],
+      "correct_positions": true,
+      "all_actual_approaches": true,
+      "path_length_m": 71.30968966981492,
+      "missing_details": [],
+      "extra_details": [],
+      "unverified_details": [],
+      "category": "success"
+    },
+    {
+      "number": 37,
+      "candidate": "mppi_frontier",
+      "obstacles": 24,
+      "mount_profile": "mixed",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/037_validation_mppi_frontier_9802008/episodes/9802008",
+      "success": true,
+      "reason": "all_targets_found",
+      "elapsed": 237.3,
+      "collisions": 0,
+      "expected_ids": [
+        100,
+        664,
+        1008
+      ],
+      "found_ids": [
+        100,
+        664,
+        1008
+      ],
+      "near_verified_ids": [
+        100,
+        664,
+        1008
+      ],
+      "missing_ids": [],
+      "extra_ids": [],
+      "correct_positions": true,
+      "all_actual_approaches": true,
+      "path_length_m": 34.952567938194704,
+      "missing_details": [],
+      "extra_details": [],
+      "unverified_details": [],
+      "category": "success"
+    },
+    {
+      "number": 38,
+      "candidate": "rpp_balanced",
+      "obstacles": 31,
+      "mount_profile": "mixed",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/038_validation_rpp_balanced_9802009/episodes/9802009",
+      "success": false,
+      "reason": "timeout",
+      "elapsed": 600.0,
+      "collisions": 0,
+      "expected_ids": [
+        88,
+        536,
+        538
+      ],
+      "found_ids": [
+        88,
+        536
+      ],
+      "near_verified_ids": [
+        88,
+        536
+      ],
+      "missing_ids": [
+        538
+      ],
+      "extra_ids": [],
+      "correct_positions": false,
+      "all_actual_approaches": false,
+      "path_length_m": 77.76071173006947,
+      "missing_details": [
+        {
+          "id": 538,
+          "size_m": 0.25326729863867414,
+          "closest_m": 1.824336170724221,
+          "closest_sim_stamp": 593.447,
+          "closest_base_bearing_degrees": -59.88236191084576,
+          "closest_front_normal_cosine": -0.8865706074098438,
+          "closest_front_cone_m": 2.0959487567206567,
+          "decoded_count": 0,
+          "accepted_evidence_count": 0,
+          "detector_confirmations": 0
+        }
+      ],
+      "extra_details": [],
+      "unverified_details": [],
+      "decision_audit": {
+        "total": 33,
+        "empty": 0,
+        "singleton_island": 0,
+        "first_island_elapsed": null,
+        "last_island_elapsed": null,
+        "first_island": null
+      },
+      "spin_commands": 29,
+      "progress_failures": 0,
+      "followups": [],
+      "category": "missing_marker_observation_or_confirmation"
+    },
+    {
+      "number": 39,
+      "candidate": "mppi_frontier",
+      "obstacles": 31,
+      "mount_profile": "mixed",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/039_validation_mppi_frontier_9802009/episodes/9802009",
+      "success": false,
+      "reason": "timeout",
+      "elapsed": 600.443,
+      "collisions": 0,
+      "expected_ids": [
+        88,
+        536,
+        538
+      ],
+      "found_ids": [
+        88
+      ],
+      "near_verified_ids": [
+        88
+      ],
+      "missing_ids": [
+        536,
+        538
+      ],
+      "extra_ids": [],
+      "correct_positions": false,
+      "all_actual_approaches": false,
+      "path_length_m": 11.633255556397922,
+      "missing_details": [
+        {
+          "id": 536,
+          "size_m": 0.21499068062113824,
+          "closest_m": 1.588532187177327,
+          "closest_sim_stamp": 43.909,
+          "closest_base_bearing_degrees": 88.61284907855968,
+          "closest_front_normal_cosine": -0.999760176366329,
+          "closest_front_cone_m": null,
+          "decoded_count": 0,
+          "accepted_evidence_count": 0,
+          "detector_confirmations": 0
+        },
+        {
+          "id": 538,
+          "size_m": 0.25326729863867414,
+          "closest_m": 2.9270074425132266,
+          "closest_sim_stamp": 40.849,
+          "closest_base_bearing_degrees": 89.99089158575943,
+          "closest_front_normal_cosine": 0.11290400703062389,
+          "closest_front_cone_m": 3.1343994832014666,
+          "decoded_count": 0,
+          "accepted_evidence_count": 0,
+          "detector_confirmations": 0
+        }
+      ],
+      "extra_details": [],
+      "unverified_details": [],
+      "decision_audit": {
+        "total": 109,
+        "empty": 103,
+        "singleton_island": 103,
+        "first_island_elapsed": 86.443,
+        "last_island_elapsed": 596.443,
+        "first_island": {
+          "elapsed": 86.443,
+          "candidates": 0,
+          "robot_cell": 0,
+          "clearance_m": 0.26925824436898566,
+          "connected_safe_cells": 1
+        }
+      },
+      "spin_commands": 108,
+      "progress_failures": 0,
+      "followups": [],
+      "category": "persistent_empty_candidate_spin_loop"
+    },
+    {
+      "number": 40,
+      "candidate": "rpp_balanced",
+      "obstacles": 8,
+      "mount_profile": "obstacles",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/040_validation_rpp_balanced_9802010/episodes/9802010",
+      "success": true,
+      "reason": "all_targets_found",
+      "elapsed": 585.741,
+      "collisions": 0,
+      "expected_ids": [
+        420,
+        673,
+        775
+      ],
+      "found_ids": [
+        420,
+        673,
+        775
+      ],
+      "near_verified_ids": [
+        420,
+        673,
+        775
+      ],
+      "missing_ids": [],
+      "extra_ids": [],
+      "correct_positions": true,
+      "all_actual_approaches": true,
+      "path_length_m": 78.86068970473892,
+      "missing_details": [],
+      "extra_details": [],
+      "unverified_details": [],
+      "category": "success"
+    },
+    {
+      "number": 41,
+      "candidate": "mppi_frontier",
+      "obstacles": 8,
+      "mount_profile": "obstacles",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/041_validation_mppi_frontier_9802010/episodes/9802010",
+      "success": true,
+      "reason": "all_targets_found",
+      "elapsed": 492.0,
+      "collisions": 0,
+      "expected_ids": [
+        420,
+        673,
+        775
+      ],
+      "found_ids": [
+        420,
+        673,
+        775
+      ],
+      "near_verified_ids": [
+        420,
+        673,
+        775
+      ],
+      "missing_ids": [],
+      "extra_ids": [],
+      "correct_positions": true,
+      "all_actual_approaches": true,
+      "path_length_m": 76.93738755230552,
+      "missing_details": [],
+      "extra_details": [],
+      "unverified_details": [],
+      "category": "success"
+    },
+    {
+      "number": 42,
+      "candidate": "rpp_balanced",
+      "obstacles": 12,
+      "mount_profile": "obstacles",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/042_validation_rpp_balanced_9802011/episodes/9802011",
+      "success": false,
+      "reason": "timeout",
+      "elapsed": 600.012,
+      "collisions": 0,
+      "expected_ids": [
+        180,
+        286,
+        556
+      ],
+      "found_ids": [
+        286,
+        556
+      ],
+      "near_verified_ids": [
+        286,
+        556
+      ],
+      "missing_ids": [
+        180
+      ],
+      "extra_ids": [],
+      "correct_positions": false,
+      "all_actual_approaches": true,
+      "path_length_m": 89.72130887506381,
+      "missing_details": [
+        {
+          "id": 180,
+          "size_m": 0.1224087391066997,
+          "closest_m": 0.5737134855520235,
+          "closest_sim_stamp": 131.454,
+          "closest_base_bearing_degrees": 89.65133356544412,
+          "closest_front_normal_cosine": 0.7323754253419535,
+          "closest_front_cone_m": 0.5737134855520235,
+          "decoded_count": 5,
+          "accepted_evidence_count": 0,
+          "detector_confirmations": 0
+        }
+      ],
+      "extra_details": [],
+      "unverified_details": [],
+      "decision_audit": {
+        "total": 33,
+        "empty": 0,
+        "singleton_island": 0,
+        "first_island_elapsed": null,
+        "last_island_elapsed": null,
+        "first_island": null
+      },
+      "spin_commands": 26,
+      "progress_failures": 0,
+      "followups": [],
+      "category": "missing_marker_observation_or_confirmation"
+    },
+    {
+      "number": 43,
+      "candidate": "mppi_frontier",
+      "obstacles": 12,
+      "mount_profile": "obstacles",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/043_validation_mppi_frontier_9802011/episodes/9802011",
+      "success": true,
+      "reason": "all_targets_found",
+      "elapsed": 347.916,
+      "collisions": 0,
+      "expected_ids": [
+        180,
+        286,
+        556
+      ],
+      "found_ids": [
+        180,
+        286,
+        556
+      ],
+      "near_verified_ids": [
+        180,
+        286,
+        556
+      ],
+      "missing_ids": [],
+      "extra_ids": [],
+      "correct_positions": true,
+      "all_actual_approaches": true,
+      "path_length_m": 55.64981645184611,
+      "missing_details": [],
+      "extra_details": [],
+      "unverified_details": [],
+      "category": "success"
+    },
+    {
+      "number": 44,
+      "candidate": "rpp_balanced",
+      "obstacles": 16,
+      "mount_profile": "obstacles",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/044_validation_rpp_balanced_9802012/episodes/9802012",
+      "success": false,
+      "reason": "timeout",
+      "elapsed": 600.2,
+      "collisions": 0,
+      "expected_ids": [
+        249,
+        645,
+        961
+      ],
+      "found_ids": [
+        249,
+        645,
+        961,
+        1023
+      ],
+      "near_verified_ids": [
+        249,
+        645,
+        961,
+        1023
+      ],
+      "missing_ids": [],
+      "extra_ids": [
+        1023
+      ],
+      "correct_positions": true,
+      "all_actual_approaches": true,
+      "path_length_m": 84.03104025749163,
+      "missing_details": [],
+      "extra_details": [
+        {
+          "id": 1023,
+          "accepted_count": 5,
+          "median_map_xyz": [
+            6.627744272252872,
+            1.7028756581119162,
+            0.4970345037140955
+          ],
+          "distance_to_real_estimates_m": {
+            "249": 2.4182582259283874,
+            "961": 1.1159474436410708,
+            "645": 0.05281943570139665
+          }
+        }
+      ],
+      "unverified_details": [],
+      "decision_audit": {
+        "total": 39,
+        "empty": 0,
+        "singleton_island": 0,
+        "first_island_elapsed": null,
+        "last_island_elapsed": null,
+        "first_island": null
+      },
+      "spin_commands": 25,
+      "progress_failures": 0,
+      "followups": [
+        {
+          "stamp": 43.0,
+          "id": 645,
+          "point": [
+            6.680296079485614,
+            1.718730004427313
+          ],
+          "observer": [
+            0.987443962804915,
+            0.7438079287455895
+          ],
+          "goal": [
+            3.95754216194268,
+            0.8073823309893244,
+            0.3229939004949127
+          ],
+          "stationary": false,
+          "attempt": 1
+        },
+        {
+          "stamp": 116.0,
+          "id": 1023,
+          "point": [
+            6.63472440652478,
+            1.7046138374417086
+          ],
+          "observer": [
+            5.816940504433073,
+            1.3975918344477993
+          ],
+          "goal": [
+            5.902112500583131,
+            1.5273852677551694,
+            0.23735329728771692
+          ],
+          "stationary": true,
+          "attempt": 1
+        }
+      ],
+      "category": "false_positive_extra_id"
+    },
+    {
+      "number": 45,
+      "candidate": "mppi_frontier",
+      "obstacles": 16,
+      "mount_profile": "obstacles",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/045_validation_mppi_frontier_9802012/episodes/9802012",
+      "success": true,
+      "reason": "all_targets_found",
+      "elapsed": 118.532,
+      "collisions": 0,
+      "expected_ids": [
+        249,
+        645,
+        961
+      ],
+      "found_ids": [
+        249,
+        645,
+        961
+      ],
+      "near_verified_ids": [
+        249,
+        645,
+        961
+      ],
+      "missing_ids": [],
+      "extra_ids": [],
+      "correct_positions": true,
+      "all_actual_approaches": true,
+      "path_length_m": 18.35938462565114,
+      "missing_details": [],
+      "extra_details": [],
+      "unverified_details": [],
+      "category": "success"
+    },
+    {
+      "number": 46,
+      "candidate": "rpp_balanced",
+      "obstacles": 24,
+      "mount_profile": "obstacles",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/046_validation_rpp_balanced_9802013/episodes/9802013",
+      "success": true,
+      "reason": "all_targets_found",
+      "elapsed": 510.104,
+      "collisions": 0,
+      "expected_ids": [
+        56,
+        530,
+        656
+      ],
+      "found_ids": [
+        56,
+        530,
+        656
+      ],
+      "near_verified_ids": [
+        56,
+        530,
+        656
+      ],
+      "missing_ids": [],
+      "extra_ids": [],
+      "correct_positions": true,
+      "all_actual_approaches": true,
+      "path_length_m": 64.27239982184513,
+      "missing_details": [],
+      "extra_details": [],
+      "unverified_details": [],
+      "category": "success"
+    },
+    {
+      "number": 47,
+      "candidate": "mppi_frontier",
+      "obstacles": 24,
+      "mount_profile": "obstacles",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/047_validation_mppi_frontier_9802013/episodes/9802013",
+      "success": false,
+      "reason": "timeout",
+      "elapsed": 600.365,
+      "collisions": 0,
+      "expected_ids": [
+        56,
+        530,
+        656
+      ],
+      "found_ids": [
+        530,
+        656
+      ],
+      "near_verified_ids": [
+        530,
+        656
+      ],
+      "missing_ids": [
+        56
+      ],
+      "extra_ids": [],
+      "correct_positions": false,
+      "all_actual_approaches": false,
+      "path_length_m": 91.38618557599003,
+      "missing_details": [
+        {
+          "id": 56,
+          "size_m": 0.23717418573283444,
+          "closest_m": 2.145771495195424,
+          "closest_sim_stamp": 370.497,
+          "closest_base_bearing_degrees": 89.17823363623867,
+          "closest_front_normal_cosine": -0.893890722311189,
+          "closest_front_cone_m": 3.1382732826021473,
+          "decoded_count": 1,
+          "accepted_evidence_count": 0,
+          "detector_confirmations": 0
+        }
+      ],
+      "extra_details": [],
+      "unverified_details": [],
+      "decision_audit": {
+        "total": 33,
+        "empty": 0,
+        "singleton_island": 0,
+        "first_island_elapsed": null,
+        "last_island_elapsed": null,
+        "first_island": null
+      },
+      "spin_commands": 32,
+      "progress_failures": 0,
+      "followups": [],
+      "category": "missing_marker_observation_or_confirmation"
+    },
+    {
+      "number": 48,
+      "candidate": "rpp_balanced",
+      "obstacles": 32,
+      "mount_profile": "obstacles",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/048_validation_rpp_balanced_9802014/episodes/9802014",
+      "success": false,
+      "reason": "timeout",
+      "elapsed": 600.254,
+      "collisions": 0,
+      "expected_ids": [
+        444,
+        472,
+        852
+      ],
+      "found_ids": [
+        444,
+        472
+      ],
+      "near_verified_ids": [
+        444,
+        472
+      ],
+      "missing_ids": [
+        852
+      ],
+      "extra_ids": [],
+      "correct_positions": false,
+      "all_actual_approaches": false,
+      "path_length_m": 75.26438410533427,
+      "missing_details": [
+        {
+          "id": 852,
+          "size_m": 0.28462552030468125,
+          "closest_m": 2.8255081852104365,
+          "closest_sim_stamp": 317.065,
+          "closest_base_bearing_degrees": -92.3479764386746,
+          "closest_front_normal_cosine": -0.559141937691706,
+          "closest_front_cone_m": null,
+          "decoded_count": 0,
+          "accepted_evidence_count": 0,
+          "detector_confirmations": 0
+        }
+      ],
+      "extra_details": [],
+      "unverified_details": [],
+      "decision_audit": {
+        "total": 32,
+        "empty": 0,
+        "singleton_island": 0,
+        "first_island_elapsed": null,
+        "last_island_elapsed": null,
+        "first_island": null
+      },
+      "spin_commands": 28,
+      "progress_failures": 0,
+      "followups": [],
+      "category": "missing_marker_observation_or_confirmation"
+    },
+    {
+      "number": 49,
+      "candidate": "mppi_frontier",
+      "obstacles": 32,
+      "mount_profile": "obstacles",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/049_validation_mppi_frontier_9802014/episodes/9802014",
+      "success": false,
+      "reason": "timeout",
+      "elapsed": 600.213,
+      "collisions": 0,
+      "expected_ids": [
+        444,
+        472,
+        852
+      ],
+      "found_ids": [
+        444,
+        472
+      ],
+      "near_verified_ids": [
+        444,
+        472
+      ],
+      "missing_ids": [
+        852
+      ],
+      "extra_ids": [],
+      "correct_positions": false,
+      "all_actual_approaches": true,
+      "path_length_m": 76.39996460907935,
+      "missing_details": [
+        {
+          "id": 852,
+          "size_m": 0.28462552030468125,
+          "closest_m": 1.486082017419677,
+          "closest_sim_stamp": 589.355,
+          "closest_base_bearing_degrees": 89.85859568070951,
+          "closest_front_normal_cosine": -0.9938001440024898,
+          "closest_front_cone_m": null,
+          "decoded_count": 0,
+          "accepted_evidence_count": 0,
+          "detector_confirmations": 0
+        }
+      ],
+      "extra_details": [],
+      "unverified_details": [],
+      "decision_audit": {
+        "total": 26,
+        "empty": 0,
+        "singleton_island": 0,
+        "first_island_elapsed": null,
+        "last_island_elapsed": null,
+        "first_island": null
+      },
+      "spin_commands": 24,
+      "progress_failures": 11,
+      "followups": [],
+      "category": "missing_marker_observation_or_confirmation"
+    },
+    {
+      "number": 50,
+      "candidate": "rpp_balanced",
+      "obstacles": 8,
+      "mount_profile": "hidden_obstacles",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/050_validation_rpp_balanced_9802015/episodes/9802015",
+      "success": false,
+      "reason": "timeout",
+      "elapsed": 600.339,
+      "collisions": 0,
+      "expected_ids": [
+        370,
+        698,
+        909
+      ],
+      "found_ids": [
+        698,
+        909
+      ],
+      "near_verified_ids": [
+        698,
+        909
+      ],
+      "missing_ids": [
+        370
+      ],
+      "extra_ids": [],
+      "correct_positions": false,
+      "all_actual_approaches": true,
+      "path_length_m": 83.14558714476932,
+      "missing_details": [
+        {
+          "id": 370,
+          "size_m": 0.24430989523868446,
+          "closest_m": 1.4905641181293454,
+          "closest_sim_stamp": 320.234,
+          "closest_base_bearing_degrees": 90.33604469614913,
+          "closest_front_normal_cosine": -0.9296638989417556,
+          "closest_front_cone_m": null,
+          "decoded_count": 0,
+          "accepted_evidence_count": 0,
+          "detector_confirmations": 0
+        }
+      ],
+      "extra_details": [],
+      "unverified_details": [],
+      "decision_audit": {
+        "total": 32,
+        "empty": 0,
+        "singleton_island": 0,
+        "first_island_elapsed": null,
+        "last_island_elapsed": null,
+        "first_island": null
+      },
+      "spin_commands": 27,
+      "progress_failures": 0,
+      "followups": [],
+      "category": "missing_marker_observation_or_confirmation"
+    },
+    {
+      "number": 51,
+      "candidate": "mppi_frontier",
+      "obstacles": 8,
+      "mount_profile": "hidden_obstacles",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/051_validation_mppi_frontier_9802015/episodes/9802015",
+      "success": false,
+      "reason": "timeout",
+      "elapsed": 600.176,
+      "collisions": 0,
+      "expected_ids": [
+        370,
+        698,
+        909
+      ],
+      "found_ids": [
+        370,
+        698,
+        909
+      ],
+      "near_verified_ids": [
+        370,
+        698
+      ],
+      "missing_ids": [],
+      "extra_ids": [],
+      "correct_positions": true,
+      "all_actual_approaches": true,
+      "path_length_m": 93.74438596236065,
+      "missing_details": [],
+      "extra_details": [],
+      "unverified_details": [
+        {
+          "id": 909,
+          "closest_actual_m": 1.3713841510596938,
+          "accepted_evidence_count": 6,
+          "minimum_accepted_camera_planar_range_m": 2.9088257345185853
+        }
+      ],
+      "decision_audit": {
+        "total": 34,
+        "empty": 0,
+        "singleton_island": 0,
+        "first_island_elapsed": null,
+        "last_island_elapsed": null,
+        "first_island": null
+      },
+      "spin_commands": 32,
+      "progress_failures": 0,
+      "followups": [],
+      "category": "extra_close_rgb_completion_gate"
+    },
+    {
+      "number": 52,
+      "candidate": "rpp_balanced",
+      "obstacles": 12,
+      "mount_profile": "hidden_obstacles",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/052_validation_rpp_balanced_9802016/episodes/9802016",
+      "success": false,
+      "reason": "timeout",
+      "elapsed": 600.0,
+      "collisions": 0,
+      "expected_ids": [
+        78,
+        240,
+        706
+      ],
+      "found_ids": [
+        78,
+        706
+      ],
+      "near_verified_ids": [
+        78
+      ],
+      "missing_ids": [
+        240
+      ],
+      "extra_ids": [],
+      "correct_positions": false,
+      "all_actual_approaches": false,
+      "path_length_m": 87.28946751614185,
+      "missing_details": [
+        {
+          "id": 240,
+          "size_m": 0.2668611058923074,
+          "closest_m": 2.2447049070748473,
+          "closest_sim_stamp": 153.391,
+          "closest_base_bearing_degrees": -90.4489849061285,
+          "closest_front_normal_cosine": -0.46494680802055577,
+          "closest_front_cone_m": 7.141136228268428,
+          "decoded_count": 0,
+          "accepted_evidence_count": 0,
+          "detector_confirmations": 0
+        }
+      ],
+      "extra_details": [],
+      "unverified_details": [
+        {
+          "id": 706,
+          "closest_actual_m": 1.2135416957946312,
+          "accepted_evidence_count": 280,
+          "minimum_accepted_camera_planar_range_m": 1.3593837175131656
+        }
+      ],
+      "decision_audit": {
+        "total": 32,
+        "empty": 0,
+        "singleton_island": 0,
+        "first_island_elapsed": null,
+        "last_island_elapsed": null,
+        "first_island": null
+      },
+      "spin_commands": 28,
+      "progress_failures": 0,
+      "followups": [],
+      "category": "missing_marker_observation_or_confirmation"
+    },
+    {
+      "number": 53,
+      "candidate": "mppi_frontier",
+      "obstacles": 12,
+      "mount_profile": "hidden_obstacles",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/053_validation_mppi_frontier_9802016/episodes/9802016",
+      "success": true,
+      "reason": "all_targets_found",
+      "elapsed": 580.672,
+      "collisions": 0,
+      "expected_ids": [
+        78,
+        240,
+        706
+      ],
+      "found_ids": [
+        78,
+        240,
+        706
+      ],
+      "near_verified_ids": [
+        78,
+        240,
+        706
+      ],
+      "missing_ids": [],
+      "extra_ids": [],
+      "correct_positions": true,
+      "all_actual_approaches": true,
+      "path_length_m": 91.76579129889724,
+      "missing_details": [],
+      "extra_details": [],
+      "unverified_details": [],
+      "category": "success"
+    },
+    {
+      "number": 54,
+      "candidate": "rpp_balanced",
+      "obstacles": 16,
+      "mount_profile": "hidden_obstacles",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/054_validation_rpp_balanced_9802017/episodes/9802017",
+      "success": false,
+      "reason": "timeout",
+      "elapsed": 600.106,
+      "collisions": 0,
+      "expected_ids": [
+        150,
+        259,
+        809
+      ],
+      "found_ids": [
+        259,
+        809
+      ],
+      "near_verified_ids": [
+        809
+      ],
+      "missing_ids": [
+        150
+      ],
+      "extra_ids": [],
+      "correct_positions": false,
+      "all_actual_approaches": true,
+      "path_length_m": 89.03288449900046,
+      "missing_details": [
+        {
+          "id": 150,
+          "size_m": 0.2307422849817848,
+          "closest_m": 1.086352973840791,
+          "closest_sim_stamp": 564.085,
+          "closest_base_bearing_degrees": -3.6004637547372838,
+          "closest_front_normal_cosine": -0.5226954714686518,
+          "closest_front_cone_m": null,
+          "decoded_count": 0,
+          "accepted_evidence_count": 0,
+          "detector_confirmations": 0
+        }
+      ],
+      "extra_details": [],
+      "unverified_details": [
+        {
+          "id": 259,
+          "closest_actual_m": 0.6581098795634087,
+          "accepted_evidence_count": 77,
+          "minimum_accepted_camera_planar_range_m": 1.3502563472361901
+        }
+      ],
+      "decision_audit": {
+        "total": 31,
+        "empty": 0,
+        "singleton_island": 0,
+        "first_island_elapsed": null,
+        "last_island_elapsed": null,
+        "first_island": null
+      },
+      "spin_commands": 26,
+      "progress_failures": 0,
+      "followups": [],
+      "category": "missing_marker_observation_or_confirmation"
+    },
+    {
+      "number": 55,
+      "candidate": "mppi_frontier",
+      "obstacles": 16,
+      "mount_profile": "hidden_obstacles",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/055_validation_mppi_frontier_9802017/episodes/9802017",
+      "success": false,
+      "reason": "timeout",
+      "elapsed": 600.09,
+      "collisions": 0,
+      "expected_ids": [
+        150,
+        259,
+        809
+      ],
+      "found_ids": [
+        259,
+        809
+      ],
+      "near_verified_ids": [
+        259,
+        809
+      ],
+      "missing_ids": [
+        150
+      ],
+      "extra_ids": [],
+      "correct_positions": false,
+      "all_actual_approaches": true,
+      "path_length_m": 93.80875082431604,
+      "missing_details": [
+        {
+          "id": 150,
+          "size_m": 0.2307422849817848,
+          "closest_m": 0.5760615614778065,
+          "closest_sim_stamp": 199.325,
+          "closest_base_bearing_degrees": -90.21832378062872,
+          "closest_front_normal_cosine": 0.9772858706756723,
+          "closest_front_cone_m": 0.5760615614778065,
+          "decoded_count": 1,
+          "accepted_evidence_count": 0,
+          "detector_confirmations": 0
+        }
+      ],
+      "extra_details": [],
+      "unverified_details": [],
+      "decision_audit": {
+        "total": 28,
+        "empty": 0,
+        "singleton_island": 0,
+        "first_island_elapsed": null,
+        "last_island_elapsed": null,
+        "first_island": null
+      },
+      "spin_commands": 25,
+      "progress_failures": 4,
+      "followups": [
+        {
+          "stamp": 225.5,
+          "id": 809,
+          "point": [
+            16.908577972533536,
+            -5.94057975827636
+          ],
+          "observer": [
+            18.126700612465786,
+            -3.0276449020354885
+          ],
+          "goal": [
+            18.17930153515361,
+            -3.5964590854626266,
+            -2.0675460561617105
+          ],
+          "stationary": false,
+          "attempt": 1
+        }
+      ],
+      "category": "missing_marker_observation_or_confirmation"
+    },
+    {
+      "number": 56,
+      "candidate": "rpp_balanced",
+      "obstacles": 24,
+      "mount_profile": "hidden_obstacles",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/056_validation_rpp_balanced_9802018/episodes/9802018",
+      "success": false,
+      "reason": "timeout",
+      "elapsed": 600.477,
+      "collisions": 0,
+      "expected_ids": [
+        82,
+        408,
+        435
+      ],
+      "found_ids": [
+        82,
+        408
+      ],
+      "near_verified_ids": [
+        82,
+        408
+      ],
+      "missing_ids": [
+        435
+      ],
+      "extra_ids": [],
+      "correct_positions": false,
+      "all_actual_approaches": false,
+      "path_length_m": 82.42570461206002,
+      "missing_details": [
+        {
+          "id": 435,
+          "size_m": 0.26601302147090655,
+          "closest_m": 2.3703054378880912,
+          "closest_sim_stamp": 501.651,
+          "closest_base_bearing_degrees": -4.733949198243823,
+          "closest_front_normal_cosine": -0.999987331126655,
+          "closest_front_cone_m": null,
+          "decoded_count": 0,
+          "accepted_evidence_count": 0,
+          "detector_confirmations": 0
+        }
+      ],
+      "extra_details": [],
+      "unverified_details": [],
+      "decision_audit": {
+        "total": 31,
+        "empty": 0,
+        "singleton_island": 0,
+        "first_island_elapsed": null,
+        "last_island_elapsed": null,
+        "first_island": null
+      },
+      "spin_commands": 29,
+      "progress_failures": 0,
+      "followups": [],
+      "category": "missing_marker_observation_or_confirmation"
+    },
+    {
+      "number": 57,
+      "candidate": "mppi_frontier",
+      "obstacles": 24,
+      "mount_profile": "hidden_obstacles",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/057_validation_mppi_frontier_9802018/episodes/9802018",
+      "success": false,
+      "reason": "timeout",
+      "elapsed": 600.307,
+      "collisions": 0,
+      "expected_ids": [
+        82,
+        408,
+        435
+      ],
+      "found_ids": [],
+      "near_verified_ids": [],
+      "missing_ids": [
+        82,
+        408,
+        435
+      ],
+      "extra_ids": [],
+      "correct_positions": false,
+      "all_actual_approaches": false,
+      "path_length_m": 12.961886774829768,
+      "missing_details": [
+        {
+          "id": 82,
+          "size_m": 0.2305277985247487,
+          "closest_m": 10.906764599128962,
+          "closest_sim_stamp": 77.412,
+          "closest_base_bearing_degrees": -90.67104883690183,
+          "closest_front_normal_cosine": -0.6895612532950869,
+          "closest_front_cone_m": null,
+          "decoded_count": 0,
+          "accepted_evidence_count": 0,
+          "detector_confirmations": 0
+        },
+        {
+          "id": 408,
+          "size_m": 0.1912100662679928,
+          "closest_m": 8.266062377896974,
+          "closest_sim_stamp": 77.208,
+          "closest_base_bearing_degrees": -88.35660716260313,
+          "closest_front_normal_cosine": -0.7045647219642215,
+          "closest_front_cone_m": null,
+          "decoded_count": 0,
+          "accepted_evidence_count": 0,
+          "detector_confirmations": 0
+        },
+        {
+          "id": 435,
+          "size_m": 0.26601302147090655,
+          "closest_m": 10.736936268763527,
+          "closest_sim_stamp": 78.432,
+          "closest_base_bearing_degrees": -89.85178833317958,
+          "closest_front_normal_cosine": -0.8641294609520086,
+          "closest_front_cone_m": null,
+          "decoded_count": 0,
+          "accepted_evidence_count": 0,
+          "detector_confirmations": 0
+        }
+      ],
+      "extra_details": [],
+      "unverified_details": [],
+      "decision_audit": {
+        "total": 108,
+        "empty": 104,
+        "singleton_island": 104,
+        "first_island_elapsed": 83.307,
+        "last_island_elapsed": 598.307,
+        "first_island": {
+          "elapsed": 83.307,
+          "candidates": 0,
+          "robot_cell": 0,
+          "clearance_m": 0.2500000037252903,
+          "connected_safe_cells": 1
+        }
+      },
+      "spin_commands": 109,
+      "progress_failures": 0,
+      "followups": [],
+      "category": "persistent_empty_candidate_spin_loop"
+    },
+    {
+      "number": 58,
+      "candidate": "rpp_balanced",
+      "obstacles": 32,
+      "mount_profile": "hidden_obstacles",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/058_validation_rpp_balanced_9802019/episodes/9802019",
+      "success": true,
+      "reason": "all_targets_found",
+      "elapsed": 546.723,
+      "collisions": 0,
+      "expected_ids": [
+        44,
+        217,
+        470
+      ],
+      "found_ids": [
+        44,
+        217,
+        470
+      ],
+      "near_verified_ids": [
+        44,
+        217,
+        470
+      ],
+      "missing_ids": [],
+      "extra_ids": [],
+      "correct_positions": true,
+      "all_actual_approaches": true,
+      "path_length_m": 71.10964670547338,
+      "missing_details": [],
+      "extra_details": [],
+      "unverified_details": [],
+      "category": "success"
+    },
+    {
+      "number": 59,
+      "candidate": "mppi_frontier",
+      "obstacles": 32,
+      "mount_profile": "hidden_obstacles",
+      "episode": "/home/peter/simul/training_robust/native90/native_search_v1/jobs/059_validation_mppi_frontier_9802019/episodes/9802019",
+      "success": true,
+      "reason": "all_targets_found",
+      "elapsed": 522.737,
+      "collisions": 0,
+      "expected_ids": [
+        44,
+        217,
+        470
+      ],
+      "found_ids": [
+        44,
+        217,
+        470
+      ],
+      "near_verified_ids": [
+        44,
+        217,
+        470
+      ],
+      "missing_ids": [],
+      "extra_ids": [],
+      "correct_positions": true,
+      "all_actual_approaches": true,
+      "path_length_m": 77.67374961638674,
+      "missing_details": [],
+      "extra_details": [],
+      "unverified_details": [],
+      "category": "success"
+    }
+  ],
+  "limitations": [
+    "Decoded counts precede size, border, range, plane and consistency filters; per-ID rejection reasons were not recorded.",
+    "Composite RGB video is resized to a small panel. It cannot reproduce native 960-pixel detector thresholds or depth/TF rejection.",
+    "Nearest trajectory distance is not evidence of camera visibility. Base bearing and marker-side geometry omit camera offset and occlusion.",
+    "The five completion-gate cases remain original timeouts. No counterfactual completion time or improved success rate is asserted.",
+    "A safe-grid singleton diagnoses the planner connectivity failure, not physical impossibility of escape. No unsafe clearance reduction is tested here."
+  ]
+}

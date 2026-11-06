@@ -1,0 +1,69 @@
+{
+  "training_layouts": 200,
+  "unique_obstacle_geometries": 200,
+  "obstacle_counts": [
+    8,
+    12,
+    16,
+    24,
+    32
+  ],
+  "mount_profiles": [
+    "hidden_obstacles",
+    "mixed",
+    "obstacles",
+    "walls"
+  ],
+  "marker_size_range": [
+    0.12001741146136861,
+    0.2996926661899457
+  ],
+  "dropout_levels": [
+    0.08,
+    0.2
+  ],
+  "speed_limits": [
+    0.2,
+    0.23,
+    0.26
+  ],
+  "historical_audit": "training_robust/diversity_audit_previous.json",
+  "runs": {
+    "diverse_directional_cem": {
+      "completed_generations": 10,
+      "training_episodes": 2400,
+      "unique_layouts": 200,
+      "all_pool_layouts_used": true,
+      "no_repeats": true,
+      "independent_test_evaluated": false,
+      "schedule_file": "training_robust/diverse_directional_cem/coverage_audit.json"
+    },
+    "diverse_endpoint_v4": {
+      "completed_generations": 10,
+      "training_episodes": 2400,
+      "unique_layouts": 200,
+      "all_pool_layouts_used": true,
+      "no_repeats": true,
+      "independent_test_evaluated": false,
+      "schedule_file": "training_robust/diverse_endpoint_v4/coverage_audit.json"
+    },
+    "endpoint_prior_elites": {
+      "completed_generations": 7,
+      "training_episodes": 1680,
+      "unique_layouts": 140,
+      "all_pool_layouts_used": false,
+      "no_repeats": true,
+      "independent_test_evaluated": false,
+      "schedule_file": "training_robust/endpoint_prior_elites/coverage_audit.json"
+    },
+    "directional_v4_elites": {
+      "completed_generations": 2,
+      "training_episodes": 480,
+      "unique_layouts": 40,
+      "all_pool_layouts_used": false,
+      "no_repeats": true,
+      "independent_test_evaluated": false,
+      "schedule_file": "training_robust/directional_v4_elites/coverage_audit.json"
+    }
+  }
+}

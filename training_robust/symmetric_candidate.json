@@ -1,0 +1,10 @@
+{
+  "planner": "symmetric_edge",
+  "parameters": [1.0, 1.204765992697077, 0.39116097662487975, 0.7812959734881743, 0.6473764656964455],
+  "status": "frozen_training_selected_candidate_gazebo_unverified",
+  "default": false,
+  "selection_source": "training_robust/geometry_view_screen/symmetric_edge.json",
+  "selection_training_seeds": [8500100, 8500139],
+  "weight_source": "Existing surface_endpoint weights; structural candidate, no new weight learning",
+  "sampler_equivalence": "training_robust/symmetric_sampler_equivalence.json"
+}

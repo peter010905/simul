@@ -1,0 +1,53 @@
+[
+  {
+    "seed": 8200025,
+    "difficulty": 8,
+    "found": 2,
+    "success": false,
+    "seconds": 600.0,
+    "collisions": 0,
+    "safety_stops": 0,
+    "distance": 89.27536772958656,
+    "decisions": 21,
+    "reward": 224.04000000000002,
+    "coverage": 0.9904464130623589,
+    "full_scans": 6,
+    "chosen_scans": 21,
+    "drive_seconds": 343.3667989599483,
+    "non_drive_seconds": 256.6332010400517
+  },
+  {
+    "seed": 8200050,
+    "difficulty": 8,
+    "found": 2,
+    "success": false,
+    "seconds": 600.0,
+    "collisions": 0,
+    "safety_stops": 0,
+    "distance": 69.2890499643768,
+    "decisions": 20,
+    "reward": 223.94,
+    "coverage": 0.989577905158937,
+    "full_scans": 5,
+    "chosen_scans": 20,
+    "drive_seconds": 301.2567389755513,
+    "non_drive_seconds": 298.7432610244487
+  },
+  {
+    "seed": 8200071,
+    "difficulty": 12,
+    "found": 2,
+    "success": false,
+    "seconds": 600.0,
+    "collisions": 0,
+    "safety_stops": 0,
+    "distance": 84.63555116566582,
+    "decisions": 17,
+    "reward": 224.10000000000002,
+    "coverage": 0.9909675178044121,
+    "full_scans": 8,
+    "chosen_scans": 17,
+    "drive_seconds": 367.9806572420253,
+    "non_drive_seconds": 232.0193427579747
+  }
+]

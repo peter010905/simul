@@ -1,0 +1,19 @@
+{
+  "objective_achieved": false,
+  "required_full_gazebo_performance": "Missing: zero completed native Gazebo missions and no actual timing samples",
+  "robust_policy": "Incomplete: retained development validation 120/160; experimental 127/160 regresses difficult strata",
+  "same_barrier": "ROS UDP socket creation/getifaddrs denied; native Gazebo ROS participants cannot initialize",
+  "consecutive_goal_turns_with_unresolved_barrier": 3,
+  "turn_evidence": [
+    "Earlier 540-evaluation view/route study: Gazebo communication restriction unresolved",
+    "Previous 860-evaluation geometry study: zero Gazebo completions, runtime collector added but measurements unavailable",
+    "Current 320-evaluation execution study: correctly built/sourced actual launch reconfirms UDP/participant denial"
+  ],
+  "current_authoritative_probe": "training_robust/gazebo_runtime_calibration/runtime_probes/20261104T204355_004287Z/evaluation.json",
+  "current_authoritative_log": "training_robust/gazebo_runtime_calibration/runtime_probes/20261104T204355_004287Z/launch.log",
+  "local_progress_completed": "16 exact failure replays, 320 controlled comparisons, 97 tests, successful build, frozen balanced runtime scenes and a working launcher; all jobs terminal",
+  "why_external_state_is_now_required": "Further surrogate-only settings cannot be selected as a verified improvement for the requested Gazebo task without observing actual camera cadence, achieved motion and rendered detection. Tested structural/weight/execution variants have not passed the hard-case improvement criteria. The next required measurement cannot execute with the current transport permissions.",
+  "needed_action": "bash /home/peter/simul/run_gazebo_runtime_probe.sh",
+  "status_tool_called": true,
+  "returned_status": "blocked"
+}

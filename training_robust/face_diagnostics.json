@@ -1,0 +1,880 @@
+[
+  {
+    "seed": 8200009,
+    "targets": [
+      {
+        "target": {
+          "x": 3.5716376740667246,
+          "y": 9.64032378954709,
+          "yaw": 1.5802487605231859,
+          "size": 0.2321314841850486,
+          "mount": "obstacle",
+          "carrier_obstacle": 21,
+          "id": 582
+        },
+        "nearest": 1.323,
+        "nearest_front": null,
+        "near_front_samples": 0,
+        "in_fov_samples": 0,
+        "unoccluded_samples": 0,
+        "final_cell_occupied": true,
+        "final_viewed_bins": [],
+        "best_front_pose": [
+          1.2,
+          1.3,
+          1.2558471338649237,
+          0.0
+        ]
+      }
+    ],
+    "result": {
+      "seed": 8200009,
+      "difficulty": 32,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 73.82018799055437,
+      "decisions": 18,
+      "reward": 222.62,
+      "coverage": 0.9781136008337676
+    }
+  },
+  {
+    "seed": 8200012,
+    "targets": [
+      {
+        "target": {
+          "x": 16.216438119959133,
+          "y": 1.364081551192649,
+          "yaw": -2.262400974327007,
+          "size": 0.29168827874376485,
+          "mount": "obstacle",
+          "carrier_obstacle": 5,
+          "id": 55
+        },
+        "nearest": 1.696,
+        "nearest_front": 4.141,
+        "near_front_samples": 177,
+        "in_fov_samples": 12,
+        "unoccluded_samples": 0,
+        "final_cell_occupied": true,
+        "final_viewed_bins": [],
+        "best_front_pose": [
+          12.17450980392157,
+          2.2647058823529416,
+          -2.6011731533192286,
+          223.1813156139125
+        ]
+      },
+      {
+        "target": {
+          "x": 13.763851095709633,
+          "y": 1.1497789429194685,
+          "yaw": 4.401557253064502,
+          "size": 0.28420949703866205,
+          "mount": "obstacle",
+          "carrier_obstacle": 6,
+          "id": 671
+        },
+        "nearest": 1.774,
+        "nearest_front": null,
+        "near_front_samples": 0,
+        "in_fov_samples": 0,
+        "unoccluded_samples": 0,
+        "final_cell_occupied": true,
+        "final_viewed_bins": [],
+        "best_front_pose": [
+          1.2,
+          10.0,
+          -0.39278442370505884,
+          0.0
+        ]
+      }
+    ],
+    "result": {
+      "seed": 8200012,
+      "difficulty": 16,
+      "found": 1,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 72.16197574066923,
+      "decisions": 18,
+      "reward": 123.56,
+      "coverage": 0.9862775751259336
+    }
+  },
+  {
+    "seed": 8200015,
+    "targets": [
+      {
+        "target": {
+          "x": 15.997639619099676,
+          "y": 6.704670921051596,
+          "yaw": 2.033980874729706,
+          "size": 0.25405316563999614,
+          "mount": "obstacle",
+          "carrier_obstacle": 4,
+          "id": 232
+        },
+        "nearest": 2.592,
+        "nearest_front": 2.595,
+        "near_front_samples": 395,
+        "in_fov_samples": 13,
+        "unoccluded_samples": 0,
+        "final_cell_occupied": true,
+        "final_viewed_bins": [],
+        "best_front_pose": [
+          16.006060606060608,
+          9.3,
+          -3.141592653589787,
+          92.5034845779559
+        ]
+      }
+    ],
+    "result": {
+      "seed": 8200015,
+      "difficulty": 8,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 80.87270499788153,
+      "decisions": 19,
+      "reward": 224.01999999999998,
+      "coverage": 0.9902727114816745
+    }
+  },
+  {
+    "seed": 8200018,
+    "targets": [
+      {
+        "target": {
+          "x": 6.008190547595648,
+          "y": 2.552976235063612,
+          "yaw": -0.9974833209150569,
+          "size": 0.12191738793460961,
+          "mount": "obstacle",
+          "carrier_obstacle": 9,
+          "id": 781
+        },
+        "nearest": 0.985,
+        "nearest_front": 7.114,
+        "near_front_samples": 0,
+        "in_fov_samples": 0,
+        "unoccluded_samples": 0,
+        "final_cell_occupied": false,
+        "final_viewed_bins": [],
+        "best_front_pose": [
+          13.085365853658537,
+          3.275609756097561,
+          -1.051650212548373,
+          581.9676721940825
+        ]
+      },
+      {
+        "target": {
+          "x": 9.899360027959096,
+          "y": 1.947404667468505,
+          "yaw": -0.6470281869045875,
+          "size": 0.13298007005112336,
+          "mount": "obstacle",
+          "carrier_obstacle": 0,
+          "id": 166
+        },
+        "nearest": 2.943,
+        "nearest_front": 3.433,
+        "near_front_samples": 0,
+        "in_fov_samples": 0,
+        "unoccluded_samples": 0,
+        "final_cell_occupied": true,
+        "final_viewed_bins": [],
+        "best_front_pose": [
+          12.987804878048781,
+          3.446341463414634,
+          -1.051650212548373,
+          580.9844700296557
+        ]
+      }
+    ],
+    "result": {
+      "seed": 8200018,
+      "difficulty": 24,
+      "found": 1,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 67.60910853709503,
+      "decisions": 16,
+      "reward": 123.02,
+      "coverage": 0.9815876324474553
+    }
+  },
+  {
+    "seed": 8200019,
+    "targets": [
+      {
+        "target": {
+          "x": 9.350328759383627,
+          "y": 1.8275892537158642,
+          "yaw": -1.3553831572202597,
+          "size": 0.13769470722667124,
+          "mount": "obstacle",
+          "carrier_obstacle": 19,
+          "id": 148
+        },
+        "nearest": 1.267,
+        "nearest_front": 4.376,
+        "near_front_samples": 0,
+        "in_fov_samples": 0,
+        "unoccluded_samples": 0,
+        "final_cell_occupied": true,
+        "final_viewed_bins": [],
+        "best_front_pose": [
+          13.585714285714287,
+          0.7285714285714286,
+          -1.1071487177940833,
+          324.40583677437087
+        ]
+      }
+    ],
+    "result": {
+      "seed": 8200019,
+      "difficulty": 32,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 1,
+      "distance": 85.9377316224169,
+      "decisions": 18,
+      "reward": 222.5,
+      "coverage": 0.9770713913496613
+    }
+  },
+  {
+    "seed": 8200025,
+    "targets": [
+      {
+        "target": {
+          "x": 17.712593020502528,
+          "y": 9.562349546013857,
+          "yaw": 2.162264266941931,
+          "size": 0.16701714184798924,
+          "mount": "obstacle",
+          "carrier_obstacle": 1,
+          "id": 720
+        },
+        "nearest": 0.923,
+        "nearest_front": 3.622,
+        "near_front_samples": 0,
+        "in_fov_samples": 0,
+        "unoccluded_samples": 0,
+        "final_cell_occupied": true,
+        "final_viewed_bins": [
+          3,
+          4,
+          5
+        ],
+        "best_front_pose": [
+          14.100000000000001,
+          9.3,
+          -0.2606023917473834,
+          322.35480421158843
+        ]
+      }
+    ],
+    "result": {
+      "seed": 8200025,
+      "difficulty": 8,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 89.27536772958656,
+      "decisions": 21,
+      "reward": 224.04000000000002,
+      "coverage": 0.9904464130623589
+    }
+  },
+  {
+    "seed": 8200034,
+    "targets": [
+      {
+        "target": {
+          "x": 12.288362362751105,
+          "y": 3.505490215475368,
+          "yaw": 3.0496279359217366,
+          "size": 0.2622281748514087,
+          "mount": "obstacle",
+          "carrier_obstacle": 9,
+          "id": 111
+        },
+        "nearest": 0.554,
+        "nearest_front": 0.554,
+        "near_front_samples": 864,
+        "in_fov_samples": 13,
+        "unoccluded_samples": 2,
+        "final_cell_occupied": true,
+        "final_viewed_bins": [],
+        "best_front_pose": [
+          11.9,
+          3.9000000000000004,
+          -1.5707963267948983,
+          78.9875438922963
+        ]
+      }
+    ],
+    "result": {
+      "seed": 8200034,
+      "difficulty": 32,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 1,
+      "distance": 73.33512643351133,
+      "decisions": 18,
+      "reward": 221.98000000000002,
+      "coverage": 0.9725551502518673
+    }
+  },
+  {
+    "seed": 8200036,
+    "targets": [
+      {
+        "target": {
+          "x": 16.04350769534409,
+          "y": 4.280958551702131,
+          "yaw": 2.9243246611696607,
+          "size": 0.16514126533985976,
+          "mount": "obstacle",
+          "carrier_obstacle": 10,
+          "id": 588
+        },
+        "nearest": 1.171,
+        "nearest_front": 1.413,
+        "near_front_samples": 350,
+        "in_fov_samples": 98,
+        "unoccluded_samples": 0,
+        "final_cell_occupied": true,
+        "final_viewed_bins": [],
+        "best_front_pose": [
+          15.15,
+          3.1863636363636365,
+          -0.0906598872007498,
+          58.35172017025387
+        ]
+      }
+    ],
+    "result": {
+      "seed": 8200036,
+      "difficulty": 12,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 87.93090388310671,
+      "decisions": 20,
+      "reward": 223.72,
+      "coverage": 0.9876671877714087
+    }
+  },
+  {
+    "seed": 8200037,
+    "targets": [
+      {
+        "target": {
+          "x": 14.254637405219578,
+          "y": 5.402114263039023,
+          "yaw": 1.7134143686055454,
+          "size": 0.15878466366613275,
+          "mount": "obstacle",
+          "carrier_obstacle": 3,
+          "id": 46
+        },
+        "nearest": 0.702,
+        "nearest_front": 3.0,
+        "near_front_samples": 187,
+        "in_fov_samples": 8,
+        "unoccluded_samples": 0,
+        "final_cell_occupied": false,
+        "final_viewed_bins": [],
+        "best_front_pose": [
+          16.7,
+          7.140000000000001,
+          -1.5707963267948963,
+          471.0224175166921
+        ]
+      }
+    ],
+    "result": {
+      "seed": 8200037,
+      "difficulty": 16,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 66.58857605406492,
+      "decisions": 14,
+      "reward": 223.57999999999998,
+      "coverage": 0.986451276706618
+    }
+  },
+  {
+    "seed": 8200038,
+    "targets": [
+      {
+        "target": {
+          "x": 14.331488789748107,
+          "y": 1.682009445862335,
+          "yaw": 5.202590795927828,
+          "size": 0.23208983008491427,
+          "mount": "obstacle",
+          "carrier_obstacle": 10,
+          "id": 164
+        },
+        "nearest": 1.3,
+        "nearest_front": 2.525,
+        "near_front_samples": 62,
+        "in_fov_samples": 47,
+        "unoccluded_samples": 0,
+        "final_cell_occupied": true,
+        "final_viewed_bins": [],
+        "best_front_pose": [
+          16.855555555555554,
+          1.74,
+          2.0778948311872325,
+          257.8981033860956
+        ]
+      }
+    ],
+    "result": {
+      "seed": 8200038,
+      "difficulty": 24,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 2,
+      "distance": 72.22583557387736,
+      "decisions": 17,
+      "reward": 223.3,
+      "coverage": 0.9840194545770367
+    }
+  },
+  {
+    "seed": 8200039,
+    "targets": [
+      {
+        "target": {
+          "x": 8.466167501828378,
+          "y": 3.8323877656443477,
+          "yaw": -2.0161464245090217,
+          "size": 0.13141151686137761,
+          "mount": "obstacle",
+          "carrier_obstacle": 30,
+          "id": 519
+        },
+        "nearest": 0.581,
+        "nearest_front": 0.581,
+        "near_front_samples": 325,
+        "in_fov_samples": 0,
+        "unoccluded_samples": 0,
+        "final_cell_occupied": true,
+        "final_viewed_bins": [],
+        "best_front_pose": [
+          8.700000000000001,
+          3.3000000000000003,
+          -3.141592653589793,
+          138.49551871383252
+        ]
+      }
+    ],
+    "result": {
+      "seed": 8200039,
+      "difficulty": 32,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 1,
+      "distance": 65.62595889466125,
+      "decisions": 17,
+      "reward": 222.82,
+      "coverage": 0.9798506166406115
+    }
+  },
+  {
+    "seed": 8200050,
+    "targets": [
+      {
+        "target": {
+          "x": 18.72074620645537,
+          "y": 4.757734249991243,
+          "yaw": -0.5182694483204195,
+          "size": 0.29962383296645534,
+          "mount": "obstacle",
+          "carrier_obstacle": 1,
+          "id": 536
+        },
+        "nearest": 0.764,
+        "nearest_front": null,
+        "near_front_samples": 0,
+        "in_fov_samples": 0,
+        "unoccluded_samples": 0,
+        "final_cell_occupied": true,
+        "final_viewed_bins": [],
+        "best_front_pose": [
+          18.8,
+          10.0,
+          3.014139546100359,
+          0.0
+        ]
+      }
+    ],
+    "result": {
+      "seed": 8200050,
+      "difficulty": 8,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 69.2890499643768,
+      "decisions": 20,
+      "reward": 223.94,
+      "coverage": 0.989577905158937
+    }
+  },
+  {
+    "seed": 8200053,
+    "targets": [
+      {
+        "target": {
+          "x": 9.88925031107288,
+          "y": 7.571895582417044,
+          "yaw": -1.0025543853481103,
+          "size": 0.12216485122284133,
+          "mount": "obstacle",
+          "carrier_obstacle": 7,
+          "id": 630
+        },
+        "nearest": 2.328,
+        "nearest_front": 2.752,
+        "near_front_samples": 91,
+        "in_fov_samples": 0,
+        "unoccluded_samples": 0,
+        "final_cell_occupied": true,
+        "final_viewed_bins": [],
+        "best_front_pose": [
+          11.117391304347827,
+          5.108695652173914,
+          0.46364760900080615,
+          139.4513563049014
+        ]
+      }
+    ],
+    "result": {
+      "seed": 8200053,
+      "difficulty": 24,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 66.56741114629213,
+      "decisions": 19,
+      "reward": 220.84,
+      "coverage": 0.9626541601528574
+    }
+  },
+  {
+    "seed": 8200059,
+    "targets": [
+      {
+        "target": {
+          "x": 16.088100298779274,
+          "y": 1.9574060013348422,
+          "yaw": -2.817774748006621,
+          "size": 0.1313480388639402,
+          "mount": "obstacle",
+          "carrier_obstacle": 18,
+          "id": 85
+        },
+        "nearest": 0.681,
+        "nearest_front": 0.681,
+        "near_front_samples": 289,
+        "in_fov_samples": 0,
+        "unoccluded_samples": 0,
+        "final_cell_occupied": true,
+        "final_viewed_bins": [],
+        "best_front_pose": [
+          15.5,
+          2.3000000000000003,
+          -1.768191886644765,
+          86.28703099034911
+        ]
+      }
+    ],
+    "result": {
+      "seed": 8200059,
+      "difficulty": 32,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 68.90937897810615,
+      "decisions": 20,
+      "reward": 222.7,
+      "coverage": 0.9788084071565051
+    }
+  },
+  {
+    "seed": 8200065,
+    "targets": [
+      {
+        "target": {
+          "x": 8.969966927562995,
+          "y": 7.6310919969264885,
+          "yaw": -1.5054833463141892,
+          "size": 0.18164184058067476,
+          "mount": "obstacle",
+          "carrier_obstacle": 2,
+          "id": 954
+        },
+        "nearest": 1.469,
+        "nearest_front": 4.93,
+        "near_front_samples": 0,
+        "in_fov_samples": 0,
+        "unoccluded_samples": 0,
+        "final_cell_occupied": true,
+        "final_viewed_bins": [],
+        "best_front_pose": [
+          13.49622641509434,
+          5.677358490566038,
+          -1.7359450042095328,
+          513.2164390291761
+        ]
+      },
+      {
+        "target": {
+          "x": 1.9228773428484074,
+          "y": 2.258552373780971,
+          "yaw": 2.655198501774249,
+          "size": 0.17382221206301054,
+          "mount": "obstacle",
+          "carrier_obstacle": 0,
+          "id": 107
+        },
+        "nearest": 0.548,
+        "nearest_front": 0.548,
+        "near_front_samples": 82,
+        "in_fov_samples": 0,
+        "unoccluded_samples": 0,
+        "final_cell_occupied": true,
+        "final_viewed_bins": [],
+        "best_front_pose": [
+          1.3771929824561404,
+          2.303508771929825,
+          1.4940244355251258,
+          370.0847265672645
+        ]
+      }
+    ],
+    "result": {
+      "seed": 8200065,
+      "difficulty": 8,
+      "found": 1,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 76.2828860546013,
+      "decisions": 16,
+      "reward": 123.98,
+      "coverage": 0.9899253083203057
+    }
+  },
+  {
+    "seed": 8200070,
+    "targets": [
+      {
+        "target": {
+          "x": 4.8040510353196915,
+          "y": 7.6121278265806485,
+          "yaw": -0.8703615166294925,
+          "size": 0.2508104203720066,
+          "mount": "obstacle",
+          "carrier_obstacle": 6,
+          "id": 117
+        },
+        "nearest": 1.214,
+        "nearest_front": 2.002,
+        "near_front_samples": 342,
+        "in_fov_samples": 11,
+        "unoccluded_samples": 0,
+        "final_cell_occupied": true,
+        "final_viewed_bins": [],
+        "best_front_pose": [
+          6.754545454545455,
+          8.065454545454546,
+          -0.4228539261329236,
+          158.77368518694158
+        ]
+      }
+    ],
+    "result": {
+      "seed": 8200070,
+      "difficulty": 8,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 74.30024491760724,
+      "decisions": 16,
+      "reward": 223.96,
+      "coverage": 0.9897516067396214
+    }
+  },
+  {
+    "seed": 8200071,
+    "targets": [
+      {
+        "target": {
+          "x": 6.221065276980987,
+          "y": 1.2990085540007728,
+          "yaw": -1.4881045062393927,
+          "size": 0.14537074906812467,
+          "mount": "obstacle",
+          "carrier_obstacle": 5,
+          "id": 533
+        },
+        "nearest": 1.053,
+        "nearest_front": null,
+        "near_front_samples": 0,
+        "in_fov_samples": 0,
+        "unoccluded_samples": 0,
+        "final_cell_occupied": true,
+        "final_viewed_bins": [],
+        "best_front_pose": [
+          18.8,
+          10.0,
+          2.706195109779528,
+          0.0
+        ]
+      }
+    ],
+    "result": {
+      "seed": 8200071,
+      "difficulty": 12,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 0,
+      "distance": 84.63555116566582,
+      "decisions": 17,
+      "reward": 224.10000000000002,
+      "coverage": 0.9909675178044121
+    }
+  },
+  {
+    "seed": 8200073,
+    "targets": [
+      {
+        "target": {
+          "x": 2.518326961623313,
+          "y": 3.3805419829409153,
+          "yaw": 2.2209917028156276,
+          "size": 0.18117709313994498,
+          "mount": "obstacle",
+          "carrier_obstacle": 21,
+          "id": 241
+        },
+        "nearest": 0.418,
+        "nearest_front": 0.418,
+        "near_front_samples": 229,
+        "in_fov_samples": 0,
+        "unoccluded_samples": 0,
+        "final_cell_occupied": true,
+        "final_viewed_bins": [
+          0,
+          1,
+          2
+        ],
+        "best_front_pose": [
+          2.1,
+          3.38,
+          1.5707963267948948,
+          271.9167211235853
+        ]
+      }
+    ],
+    "result": {
+      "seed": 8200073,
+      "difficulty": 24,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 1,
+      "distance": 76.39631957067085,
+      "decisions": 19,
+      "reward": 222.82,
+      "coverage": 0.9798506166406115
+    }
+  },
+  {
+    "seed": 8200074,
+    "targets": [
+      {
+        "target": {
+          "x": 14.833658602306395,
+          "y": 5.210143765123968,
+          "yaw": -1.4303748296072678,
+          "size": 0.12749449711846433,
+          "mount": "obstacle",
+          "carrier_obstacle": 14,
+          "id": 282
+        },
+        "nearest": 1.572,
+        "nearest_front": 3.662,
+        "near_front_samples": 89,
+        "in_fov_samples": 19,
+        "unoccluded_samples": 0,
+        "final_cell_occupied": true,
+        "final_viewed_bins": [],
+        "best_front_pose": [
+          14.207447396825689,
+          1.6024824656085626,
+          0.321750554396643,
+          600.0
+        ]
+      }
+    ],
+    "result": {
+      "seed": 8200074,
+      "difficulty": 32,
+      "found": 2,
+      "success": false,
+      "seconds": 600.0,
+      "collisions": 0,
+      "safety_stops": 2,
+      "distance": 70.30268746952791,
+      "decisions": 17,
+      "reward": 221.86,
+      "coverage": 0.971512940767761
+    }
+  }
+]

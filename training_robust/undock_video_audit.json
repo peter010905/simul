@@ -1,0 +1,50 @@
+{
+  "updated_utc": "2026-11-04T21:27:47.070612+00:00",
+  "probe": "training_robust/gazebo_runtime_calibration/runtime_probes/20261104T211510_211783Z",
+  "observed": {
+    "reason": "undock_failed",
+    "mission_elapsed_sim_seconds": 2.7590000000000003,
+    "real_time_factor": 0.3556782901978371,
+    "camera_samples": 3,
+    "stationary_turn_samples": 0,
+    "undock_cancel_request_in_launch_log": true,
+    "last_camera_stamp": 7.8,
+    "zero_command_stamp": 9.0,
+    "evaluator_receipt_gap_wall_seconds": 3.1741569992154837,
+    "stamp_gap_sim_seconds": 1.2000000000000002
+  },
+  "diagnosis": "Mission readiness could cancel Create 3 undocking when wall-clock camera freshness exceeded 2 s. Exact failed readiness condition/action status was not recorded in the old run.",
+  "fixes": [
+    "Use ROS message age for freshness",
+    "Keep autonomous undocking independent of camera/SLAM/Nav2 readiness; preserve scan and action watchdogs",
+    "Separate decoded-camera heartbeat from TF-dependent coverage, retry delayed coverage",
+    "Record undock status/is_docked/cancellation reason"
+  ],
+  "validation": {
+    "unit_tests_passed": 110,
+    "build_passed": true,
+    "sdf_valid": true,
+    "h264_encode_decode_fixture_passed": true,
+    "native_post_fix_run": false,
+    "actual_mission_video_produced": false
+  },
+  "recording": {
+    "command": "bash /home/peter/simul/run_gazebo_video.sh",
+    "default_scene_index": 16,
+    "obstacles": 12,
+    "mount_profile": "hidden_obstacles",
+    "output_suffix": "video/mission.mp4",
+    "same_failure_scene_command": "bash /home/peter/simul/run_gazebo_runtime_probe.sh --record-video"
+  },
+  "current_blocker": "Tool sandbox denies UDP socket creation; the host user run did receive real sensors, but a patched native run is still required.",
+  "source_sha256": {
+    "src/osp_mission/osp_mission/mission.py": "6196d05ef19bf01c53f1853e464ce790331eed78c918172c7f8cfc7f82d54820",
+    "src/osp_mission/osp_mission/record_video.py": "ffda902a0324942f50c0c0edd0910e1d7d5953ec191bc611d8e05a8291d867d3",
+    "src/osp_mission/osp_mission/world.py": "717b59afce29685803a70e390c0081e25c6c2eb3b1a09557c83f4aefe3bfb574",
+    "src/osp_mission/osp_mission/gazebo_eval.py": "b162eba7becb50a890d9ab01ba835793e621d9b1edd52145eea30f645130e572",
+    "src/osp_mission/launch/simulation.launch.py": "6ec48f521b383c1dd354dcc8deb50b936e654e27e4124adea486af86c7e5305e",
+    "src/osp_mission/setup.py": "1118bda1db373d349e3359113cd57d9a1516297070a64bd73c15e26ace953a76",
+    "training_robust/run_runtime_probe.py": "c0d84263d4de1fa4e24f5edaa5625b491f53fe2afdb47299691bd4af7295acc9",
+    "run_gazebo_video.sh": "3a08c8b2866a7e949e09f0e7d1752a750e13556c15097a99aac1971d49623f36"
+  }
+}

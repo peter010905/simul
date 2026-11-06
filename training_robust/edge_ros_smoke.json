@@ -1,0 +1,18 @@
+{
+  "planner": "edge",
+  "parameters": [
+    1.0,
+    1.204765992697077,
+    0.39116097662487975,
+    0.7812959734881743,
+    0.6473764656964455
+  ],
+  "coverage_shape": [
+    4,
+    40,
+    60
+  ],
+  "candidate_count": 12,
+  "starts_idle": true,
+  "transport_verified": false
+}

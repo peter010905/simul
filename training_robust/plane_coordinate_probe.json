@@ -1,0 +1,20 @@
+{
+  "synthetic_geometry_only": true,
+  "rows": [
+    {
+      "sampler": "grid",
+      "before_count": 133,
+      "after_count": 135,
+      "exactly_matching_cells": 20,
+      "symmetric_difference": 228
+    },
+    {
+      "sampler": "plane",
+      "before_count": 265,
+      "after_count": 265,
+      "exactly_matching_cells": 265,
+      "symmetric_difference": 0
+    }
+  ],
+  "not_a_success_rate_benchmark": true
+}

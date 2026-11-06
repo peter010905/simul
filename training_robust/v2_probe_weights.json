@@ -1,0 +1,169 @@
+{
+  "planner": "surface",
+  "parameters": [
+    1.0,
+    0.9553333517207547,
+    0.7163095320406193,
+    0.6902045204262242,
+    0.5516603683295664
+  ],
+  "validation": {
+    "episodes": 40,
+    "success_rate": 0.65,
+    "mean_found": 2.475,
+    "mean_seconds": 502.83835652068467,
+    "successful_mean_seconds": 450.52054849336093,
+    "collisions": 0,
+    "mean_reward": 478.59674652189733,
+    "by_obstacles": {
+      "8": {
+        "success_rate": 0.75,
+        "episodes": 8
+      },
+      "12": {
+        "success_rate": 0.875,
+        "episodes": 8
+      },
+      "16": {
+        "success_rate": 0.75,
+        "episodes": 8
+      },
+      "24": {
+        "success_rate": 0.5,
+        "episodes": 8
+      },
+      "32": {
+        "success_rate": 0.375,
+        "episodes": 8
+      }
+    },
+    "by_mount": {
+      "hidden_obstacles": {
+        "episodes": 10,
+        "success_rate": 0.5,
+        "mean_found": 2.2,
+        "mean_seconds": 566.4065953115809,
+        "successful_mean_seconds": 532.8131906231619,
+        "collisions": 0,
+        "mean_reward": 398.06701070326284,
+        "by_obstacles": {
+          "8": {
+            "success_rate": 1.0,
+            "episodes": 2
+          },
+          "12": {
+            "success_rate": 0.5,
+            "episodes": 2
+          },
+          "16": {
+            "success_rate": 1.0,
+            "episodes": 2
+          },
+          "24": {
+            "success_rate": 0.0,
+            "episodes": 2
+          },
+          "32": {
+            "success_rate": 0.0,
+            "episodes": 2
+          }
+        }
+      },
+      "mixed": {
+        "episodes": 10,
+        "success_rate": 0.6,
+        "mean_found": 2.5,
+        "mean_seconds": 497.71928078432495,
+        "successful_mean_seconds": 429.5321346405414,
+        "collisions": 0,
+        "mean_reward": 464.4201078823513,
+        "by_obstacles": {
+          "8": {
+            "success_rate": 0.5,
+            "episodes": 2
+          },
+          "12": {
+            "success_rate": 1.0,
+            "episodes": 2
+          },
+          "16": {
+            "success_rate": 0.5,
+            "episodes": 2
+          },
+          "24": {
+            "success_rate": 0.5,
+            "episodes": 2
+          },
+          "32": {
+            "success_rate": 0.5,
+            "episodes": 2
+          }
+        }
+      },
+      "obstacles": {
+        "episodes": 10,
+        "success_rate": 0.7,
+        "mean_found": 2.4,
+        "mean_seconds": 485.79014078684884,
+        "successful_mean_seconds": 436.8430582669269,
+        "collisions": 0,
+        "mean_reward": 489.81547888197275,
+        "by_obstacles": {
+          "8": {
+            "success_rate": 1.0,
+            "episodes": 2
+          },
+          "12": {
+            "success_rate": 1.0,
+            "episodes": 2
+          },
+          "16": {
+            "success_rate": 0.5,
+            "episodes": 2
+          },
+          "24": {
+            "success_rate": 0.5,
+            "episodes": 2
+          },
+          "32": {
+            "success_rate": 0.5,
+            "episodes": 2
+          }
+        }
+      },
+      "walls": {
+        "episodes": 10,
+        "success_rate": 0.8,
+        "mean_found": 2.8,
+        "mean_seconds": 461.4374091999836,
+        "successful_mean_seconds": 426.7967614999796,
+        "collisions": 0,
+        "mean_reward": 562.0843886200025,
+        "by_obstacles": {
+          "8": {
+            "success_rate": 0.5,
+            "episodes": 2
+          },
+          "12": {
+            "success_rate": 1.0,
+            "episodes": 2
+          },
+          "16": {
+            "success_rate": 1.0,
+            "episodes": 2
+          },
+          "24": {
+            "success_rate": 1.0,
+            "episodes": 2
+          },
+          "32": {
+            "success_rate": 0.5,
+            "episodes": 2
+          }
+        }
+      }
+    },
+    "mean_approached": 2.2
+  },
+  "training_episodes": 1200
+}
