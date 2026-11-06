@@ -1,5 +1,11 @@
 # OSP Final Project — ROS 2 Jazzy
 
+[**시뮬레이션 영상 다운로드 — GitHub Release**](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11)
+
+비공개 저장소 권한이 있는 GitHub 계정으로 로그인하면 영상을 받을 수 있습니다.
+전체 영상 목록과 당시 평가 결과는 [영상 메타데이터](repository_snapshot/videos.json)에 기록합니다.
+
+
 > **2026-11-06 업로드 기준:** 아래 과거 기록과 별도로 최신 수정본은
 > `training_robust/native90/runtime_fix_v13_observation_staging/src/osp_mission`에 있습니다.
 > 제자리 회전 복구, ID 인식과 독립적인 **1.5m 접근 판정**, 동일 위치의 상충 ID 처리,
@@ -168,3 +174,123 @@ python3 -m pytest src/osp_mission/test -q
 시뮬레이션의 현재 기본값은 `planner:=surface_endpoint`와 `config/surface_endpoint_policy.json`이다. 실제로 처리된 RGB와 신선한 LiDAR·TF가 있어야 표면 관측을 누적한다. 이전 정책은 `planner:=legacy`로 비교할 수 있다. 도크 이탈 취소 문제는 수정했고, 현재는 LiDAR 렌더링과 IMU 기반 회전 추정을 수정한 환경에서 탐색 성능과 마커 좌표 정확도를 검증하고 있다.
 
 실제 Gazebo 관찰 화면·로봇 카메라·LiDAR와 SLAM 지도 확장을 함께 녹화하려면 호스트 터미널에서 `bash /home/peter/simul/run_gazebo_video.sh`를 실행한다. 장애물 12개와 장애물 뒷면 마커 3개 배치이며, 출력 폴더의 `video/mission.mp4`에 저장한다. 같은 실패 배치 재검사는 `bash /home/peter/simul/run_gazebo_runtime_probe.sh --record-video`다. 자세한 검증 범위와 결과 위치는 [TRAINING.md](TRAINING.md)의 첫 절에 있다.
+
+## GitHub 유지보수 및 영상 추가
+
+작업 완료 시 관련 검증 → 변경 검토 → 커밋 → `main` 푸시를 수행합니다.
+이 지침은 [AGENTS.md](AGENTS.md)에 저장했습니다. 별도의 상시 자동 코드 배포 작업은 설정하지 않았습니다.
+
+완료된 Gazebo 영상은 다음 명령으로 Release에 추가합니다. 이미 업로드한 파일은 SHA-256을
+대조하고 건너뛰며, 최종 평가나 정상적으로 마감된 영상이 없는 실행은 보류합니다.
+
+```bash
+python3 scripts/publish_simulation_videos.py --upload
+```
+
+명령 실행 후 갱신된 `repository_snapshot/videos.json`과 영상 목록을 검토하고 커밋합니다.
+전체 실험 영상은 Git 이력에 넣지 않고 Release 자산으로 관리합니다.
+
+<!-- SIMULATION_VIDEO_INDEX:START -->
+
+## 저장된 Gazebo 영상
+
+[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 88개
+
+아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다.
+
+<details><summary>전체 영상과 평가 결과 펼치기</summary>
+
+| 영상 | 당시 평가 | 실제 1.5m 접근 | 시간(시뮬레이션 초) |
+|---|---|---|---:|
+| [fix_v10_escape_regression3__9802005.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fix_v10_escape_regression3__9802005.mp4) | 성공 | 확인 | 335.45 |
+| [fix_v10_escape_regression3__9802009.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fix_v10_escape_regression3__9802009.mp4) | 성공 | 확인 | 345.245 |
+| [fix_v11_completion_regression1__9802000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fix_v11_completion_regression1__9802000.mp4) | 성공 | 확인 | 182.5 |
+| [fix_v12_identity_regression1__9802012.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fix_v12_identity_regression1__9802012.mp4) | 성공 | 확인 | 55.195 |
+| [approach_rpp_v8_screen3__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/approach_rpp_v8_screen3__8600007.mp4) | 성공 | 확인 | 386.903 |
+| [approach_rpp_v8_screen3__8600133.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/approach_rpp_v8_screen3__8600133.mp4) | 실패 | 확인 | 600.0 |
+| [approach_rpp_v8_screen3__8600139.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/approach_rpp_v8_screen3__8600139.mp4) | 실패 | 확인 | 600.3 |
+| [approach_v8_screen3__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/approach_v8_screen3__8600007.mp4) | 성공 | 확인 | 512.519 |
+| [approach_v9_io_remaining2__8600133.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/approach_v9_io_remaining2__8600133.mp4) | 실패 | 확인 | 600.467 |
+| [approach_v9_io_remaining2__8600139.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/approach_v9_io_remaining2__8600139.mp4) | 성공 | 확인 | 524.0 |
+| [development_frontier_v1__runtime_probes__20261104T225516_124417Z.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/development_frontier_v1__runtime_probes__20261104T225516_124417Z.mp4) | 실패 | 미달 | 136.514 |
+| [development_imu_screen4__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/development_imu_screen4__8600007.mp4) | 실패 | 미달 | 600.049 |
+| [development_imu_screen4__8600040.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/development_imu_screen4__8600040.mp4) | 성공 | 미달 | 117.2 |
+| [development_imu_screen4__8600133.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/development_imu_screen4__8600133.mp4) | 실패 | 미달 | 600.0 |
+| [development_imu_screen4__8600139.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/development_imu_screen4__8600139.mp4) | 실패 | 미달 | 600.1 |
+| [development_imu_v1__runtime_probes__20261104T230250_371315Z.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/development_imu_v1__runtime_probes__20261104T230250_371315Z.mp4) | 성공 | 미달 | 238.9 |
+| [edge_runtime_v2__runtime_probes__20261104T234253_265975Z.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/edge_runtime_v2__runtime_probes__20261104T234253_265975Z.mp4) | 실패 | 미달 | 600.306 |
+| [marker_focus_v6_screen3__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/marker_focus_v6_screen3__8600007.mp4) | 실패 | 자료 없음 | 242.819 |
+| [marker_focus_v6_service_screen3__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/marker_focus_v6_service_screen3__8600007.mp4) | 실패 | 미달 | 347.089 |
+| [motion_v1_mixed16__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/motion_v1_mixed16__8600007.mp4) | 실패 | 미달 | 68.797 |
+| [motion_v2_drive_ready_mixed16__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/motion_v2_drive_ready_mixed16__8600007.mp4) | 성공 | 확인 | 356.447 |
+| [native_search_v1__001_screen_mppi_frontier_9801000__9801000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__001_screen_mppi_frontier_9801000__9801000.mp4) | 성공 | 확인 | 303.6 |
+| [native_search_v1__002_screen_mppi_short_travel_9801000__9801000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__002_screen_mppi_short_travel_9801000__9801000.mp4) | 성공 | 확인 | 408.815 |
+| [native_search_v1__003_screen_rpp_balanced_9801000__9801000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__003_screen_rpp_balanced_9801000__9801000.mp4) | 성공 | 확인 | 552.611 |
+| [native_search_v1__004_screen_mppi_balanced_9801001__9801001.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__004_screen_mppi_balanced_9801001__9801001.mp4) | 성공 | 확인 | 285.139 |
+| [native_search_v1__005_screen_mppi_frontier_9801001__9801001.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__005_screen_mppi_frontier_9801001__9801001.mp4) | 성공 | 확인 | 559.059 |
+| [native_search_v1__006_screen_mppi_short_travel_9801001__9801001.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__006_screen_mppi_short_travel_9801001__9801001.mp4) | 성공 | 확인 | 331.753 |
+| [native_search_v1__007_screen_rpp_balanced_9801001__9801001.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__007_screen_rpp_balanced_9801001__9801001.mp4) | 성공 | 확인 | 268.557 |
+| [native_search_v1__008_screen_mppi_balanced_9801002__9801002.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__008_screen_mppi_balanced_9801002__9801002.mp4) | 성공 | 확인 | 307.203 |
+| [native_search_v1__009_screen_mppi_frontier_9801002__9801002.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__009_screen_mppi_frontier_9801002__9801002.mp4) | 성공 | 확인 | 449.9 |
+| [native_search_v1__010_screen_mppi_short_travel_9801002__9801002.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__010_screen_mppi_short_travel_9801002__9801002.mp4) | 성공 | 확인 | 423.604 |
+| [native_search_v1__011_screen_rpp_balanced_9801002__9801002.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__011_screen_rpp_balanced_9801002__9801002.mp4) | 성공 | 확인 | 456.284 |
+| [native_search_v1__012_screen_mppi_balanced_9801003__9801003.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__012_screen_mppi_balanced_9801003__9801003.mp4) | 실패 | 확인 | 600.0 |
+| [native_search_v1__013_screen_mppi_frontier_9801003__9801003.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__013_screen_mppi_frontier_9801003__9801003.mp4) | 성공 | 확인 | 419.7 |
+| [native_search_v1__014_screen_mppi_short_travel_9801003__9801003.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__014_screen_mppi_short_travel_9801003__9801003.mp4) | 실패 | 확인 | 600.0 |
+| [native_search_v1__015_screen_rpp_balanced_9801003__9801003.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__015_screen_rpp_balanced_9801003__9801003.mp4) | 성공 | 확인 | 489.978 |
+| [native_search_v1__016_screen_mppi_balanced_9801004__9801004.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__016_screen_mppi_balanced_9801004__9801004.mp4) | 실패 | 미달 | 600.389 |
+| [native_search_v1__017_screen_mppi_frontier_9801004__9801004.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__017_screen_mppi_frontier_9801004__9801004.mp4) | 성공 | 확인 | 572.862 |
+| [native_search_v1__018_screen_mppi_short_travel_9801004__9801004.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__018_screen_mppi_short_travel_9801004__9801004.mp4) | 실패 | 미달 | 600.3 |
+| [native_search_v1__019_screen_rpp_balanced_9801004__9801004.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__019_screen_rpp_balanced_9801004__9801004.mp4) | 성공 | 확인 | 515.6 |
+| [native_search_v1__020_validation_rpp_balanced_9802000__9802000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__020_validation_rpp_balanced_9802000__9802000.mp4) | 성공 | 확인 | 472.637 |
+| [native_search_v1__021_validation_mppi_frontier_9802000__9802000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__021_validation_mppi_frontier_9802000__9802000.mp4) | 실패 | 확인 | 600.0 |
+| [native_search_v1__022_validation_rpp_balanced_9802001__9802001.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__022_validation_rpp_balanced_9802001__9802001.mp4) | 실패 | 미달 | 600.289 |
+| [native_search_v1__023_validation_mppi_frontier_9802001__9802001.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__023_validation_mppi_frontier_9802001__9802001.mp4) | 실패 | 미달 | 600.118 |
+| [native_search_v1__024_validation_rpp_balanced_9802002__9802002.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__024_validation_rpp_balanced_9802002__9802002.mp4) | 성공 | 확인 | 546.3 |
+| [native_search_v1__025_validation_mppi_frontier_9802002__9802002.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__025_validation_mppi_frontier_9802002__9802002.mp4) | 실패 | 확인 | 600.245 |
+| [native_search_v1__026_validation_rpp_balanced_9802003__9802003.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__026_validation_rpp_balanced_9802003__9802003.mp4) | 성공 | 확인 | 453.6 |
+| [native_search_v1__027_validation_mppi_frontier_9802003__9802003.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__027_validation_mppi_frontier_9802003__9802003.mp4) | 성공 | 확인 | 431.25 |
+| [native_search_v1__028_validation_rpp_balanced_9802004__9802004.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__028_validation_rpp_balanced_9802004__9802004.mp4) | 실패 | 확인 | 600.103 |
+| [native_search_v1__029_validation_mppi_frontier_9802004__9802004.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__029_validation_mppi_frontier_9802004__9802004.mp4) | 성공 | 확인 | 579.1 |
+| [native_search_v1__030_validation_rpp_balanced_9802005__9802005.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__030_validation_rpp_balanced_9802005__9802005.mp4) | 실패 | 확인 | 600.042 |
+| [native_search_v1__031_validation_mppi_frontier_9802005__9802005.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__031_validation_mppi_frontier_9802005__9802005.mp4) | 실패 | 미달 | 600.146 |
+| [native_search_v1__032_validation_rpp_balanced_9802006__9802006.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__032_validation_rpp_balanced_9802006__9802006.mp4) | 성공 | 확인 | 369.635 |
+| [native_search_v1__033_validation_mppi_frontier_9802006__9802006.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__033_validation_mppi_frontier_9802006__9802006.mp4) | 성공 | 확인 | 458.061 |
+| [native_search_v1__034_validation_rpp_balanced_9802007__9802007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__034_validation_rpp_balanced_9802007__9802007.mp4) | 성공 | 확인 | 316.583 |
+| [native_search_v1__035_validation_mppi_frontier_9802007__9802007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__035_validation_mppi_frontier_9802007__9802007.mp4) | 실패 | 미달 | 600.4 |
+| [native_search_v1__036_validation_rpp_balanced_9802008__9802008.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__036_validation_rpp_balanced_9802008__9802008.mp4) | 성공 | 확인 | 464.379 |
+| [native_search_v1__037_validation_mppi_frontier_9802008__9802008.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__037_validation_mppi_frontier_9802008__9802008.mp4) | 성공 | 확인 | 237.3 |
+| [native_search_v1__038_validation_rpp_balanced_9802009__9802009.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__038_validation_rpp_balanced_9802009__9802009.mp4) | 실패 | 미달 | 600.0 |
+| [native_search_v1__039_validation_mppi_frontier_9802009__9802009.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__039_validation_mppi_frontier_9802009__9802009.mp4) | 실패 | 미달 | 600.443 |
+| [native_search_v1__040_validation_rpp_balanced_9802010__9802010.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__040_validation_rpp_balanced_9802010__9802010.mp4) | 성공 | 확인 | 585.741 |
+| [native_search_v1__041_validation_mppi_frontier_9802010__9802010.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__041_validation_mppi_frontier_9802010__9802010.mp4) | 성공 | 확인 | 492.0 |
+| [native_search_v1__042_validation_rpp_balanced_9802011__9802011.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__042_validation_rpp_balanced_9802011__9802011.mp4) | 실패 | 확인 | 600.012 |
+| [native_search_v1__043_validation_mppi_frontier_9802011__9802011.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__043_validation_mppi_frontier_9802011__9802011.mp4) | 성공 | 확인 | 347.916 |
+| [native_search_v1__044_validation_rpp_balanced_9802012__9802012.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__044_validation_rpp_balanced_9802012__9802012.mp4) | 실패 | 확인 | 600.2 |
+| [native_search_v1__045_validation_mppi_frontier_9802012__9802012.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__045_validation_mppi_frontier_9802012__9802012.mp4) | 성공 | 확인 | 118.532 |
+| [native_search_v1__046_validation_rpp_balanced_9802013__9802013.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__046_validation_rpp_balanced_9802013__9802013.mp4) | 성공 | 확인 | 510.104 |
+| [native_search_v1__047_validation_mppi_frontier_9802013__9802013.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__047_validation_mppi_frontier_9802013__9802013.mp4) | 실패 | 미달 | 600.365 |
+| [native_search_v1__048_validation_rpp_balanced_9802014__9802014.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__048_validation_rpp_balanced_9802014__9802014.mp4) | 실패 | 미달 | 600.254 |
+| [native_search_v1__049_validation_mppi_frontier_9802014__9802014.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__049_validation_mppi_frontier_9802014__9802014.mp4) | 실패 | 확인 | 600.213 |
+| [native_search_v1__050_validation_rpp_balanced_9802015__9802015.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__050_validation_rpp_balanced_9802015__9802015.mp4) | 실패 | 확인 | 600.339 |
+| [native_search_v1__051_validation_mppi_frontier_9802015__9802015.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__051_validation_mppi_frontier_9802015__9802015.mp4) | 실패 | 확인 | 600.176 |
+| [native_search_v1__052_validation_rpp_balanced_9802016__9802016.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__052_validation_rpp_balanced_9802016__9802016.mp4) | 실패 | 미달 | 600.0 |
+| [native_search_v1__053_validation_mppi_frontier_9802016__9802016.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__053_validation_mppi_frontier_9802016__9802016.mp4) | 성공 | 확인 | 580.672 |
+| [native_search_v1__054_validation_rpp_balanced_9802017__9802017.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__054_validation_rpp_balanced_9802017__9802017.mp4) | 실패 | 확인 | 600.106 |
+| [native_search_v1__055_validation_mppi_frontier_9802017__9802017.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__055_validation_mppi_frontier_9802017__9802017.mp4) | 실패 | 확인 | 600.09 |
+| [native_search_v1__056_validation_rpp_balanced_9802018__9802018.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__056_validation_rpp_balanced_9802018__9802018.mp4) | 실패 | 미달 | 600.477 |
+| [native_search_v1__057_validation_mppi_frontier_9802018__9802018.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__057_validation_mppi_frontier_9802018__9802018.mp4) | 실패 | 미달 | 600.307 |
+| [native_search_v1__058_validation_rpp_balanced_9802019__9802019.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__058_validation_rpp_balanced_9802019__9802019.mp4) | 성공 | 확인 | 546.723 |
+| [native_search_v1__059_validation_mppi_frontier_9802019__9802019.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__059_validation_mppi_frontier_9802019__9802019.mp4) | 성공 | 확인 | 522.737 |
+| [panorama_v5_screen2__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/panorama_v5_screen2__8600007.mp4) | 실패 | 미달 | 600.0 |
+| [panorama_v5_screen2__8600139.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/panorama_v5_screen2__8600139.mp4) | 성공 | 미달 | 293.6 |
+| [persistent_edge_v3_mixed16__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/persistent_edge_v3_mixed16__8600007.mp4) | 실패 | 미달 | 358.113 |
+| [persistent_map_v4_recovery32__8600139.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/persistent_map_v4_recovery32__8600139.mp4) | 실패 | 미달 | 600.464 |
+| [persistent_map_v4_screen3__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/persistent_map_v4_screen3__8600007.mp4) | 실패 | 미달 | 600.12 |
+| [persistent_map_v4_screen3__8600133.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/persistent_map_v4_screen3__8600133.mp4) | 실패 | 미달 | 600.305 |
+| [persistent_map_v4_screen3__8600139.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/persistent_map_v4_screen3__8600139.mp4) | 실패 | 자료 없음 | 257.887 |
+| [rpp_v7_service_screen3__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/rpp_v7_service_screen3__8600007.mp4) | 실패 | 미달 | 347.66799999999995 |
+
+</details>
+
+<!-- SIMULATION_VIDEO_INDEX:END -->
