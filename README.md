@@ -217,7 +217,7 @@ python3 scripts/publish_simulation_videos.py --upload
 
 ## 저장된 Gazebo 영상
 
-[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 92개
+[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 103개
 
 아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다.
 
@@ -230,9 +230,12 @@ python3 scripts/publish_simulation_videos.py --upload
 | [fix_v10_escape_regression3__9802018.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fix_v10_escape_regression3__9802018.mp4) | 실패 | 확인 | 600.477 |
 | [fix_v11_completion_regression1__9802000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fix_v11_completion_regression1__9802000.mp4) | 성공 | 확인 | 182.5 |
 | [fix_v12_identity_regression1__9802012.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fix_v12_identity_regression1__9802012.mp4) | 성공 | 확인 | 55.195 |
+| [fix_v13_observation_regression6__9801004.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fix_v13_observation_regression6__9801004.mp4) | 성공 | 확인 | 555.6 |
 | [fix_v13_observation_regression6__9802001.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fix_v13_observation_regression6__9802001.mp4) | 성공 | 확인 | 210.411 |
 | [fix_v13_observation_regression6__9802011.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fix_v13_observation_regression6__9802011.mp4) | 성공 | 확인 | 218.153 |
 | [fix_v13_observation_regression6__9802014.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fix_v13_observation_regression6__9802014.mp4) | 실패 | 미달 | 600.416 |
+| [fix_v13_observation_regression6__9802015.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fix_v13_observation_regression6__9802015.mp4) | 실패 | 미달 | 600.269 |
+| [fix_v13_observation_regression6__9802017.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fix_v13_observation_regression6__9802017.mp4) | 실패 | 미달 | 600.411 |
 | [approach_rpp_v8_screen3__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/approach_rpp_v8_screen3__8600007.mp4) | 성공 | 확인 | 386.903 |
 | [approach_rpp_v8_screen3__8600133.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/approach_rpp_v8_screen3__8600133.mp4) | 실패 | 확인 | 600.0 |
 | [approach_rpp_v8_screen3__8600139.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/approach_rpp_v8_screen3__8600139.mp4) | 실패 | 확인 | 600.3 |
@@ -248,6 +251,11 @@ python3 scripts/publish_simulation_videos.py --upload
 | [edge_runtime_v2__runtime_probes__20261104T234253_265975Z.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/edge_runtime_v2__runtime_probes__20261104T234253_265975Z.mp4) | 실패 | 미달 | 600.306 |
 | [marker_focus_v6_screen3__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/marker_focus_v6_screen3__8600007.mp4) | 실패 | 자료 없음 | 242.819 |
 | [marker_focus_v6_service_screen3__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/marker_focus_v6_service_screen3__8600007.mp4) | 실패 | 미달 | 347.089 |
+| [marker_sizes_v1_native5__9811000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/marker_sizes_v1_native5__9811000.mp4) | 성공 | 확인 | 285.242 |
+| [marker_sizes_v1_native5__9811006.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/marker_sizes_v1_native5__9811006.mp4) | 성공 | 확인 | 370.5 |
+| [marker_sizes_v1_native5__9811012.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/marker_sizes_v1_native5__9811012.mp4) | 성공 | 확인 | 255.3 |
+| [marker_sizes_v1_native5__9811018.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/marker_sizes_v1_native5__9811018.mp4) | 실패 | 미달 | 600.383 |
+| [marker_sizes_v1_native5__9811019.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/marker_sizes_v1_native5__9811019.mp4) | 실패 | 미달 | 600.261 |
 | [motion_v1_mixed16__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/motion_v1_mixed16__8600007.mp4) | 실패 | 미달 | 68.797 |
 | [motion_v2_drive_ready_mixed16__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/motion_v2_drive_ready_mixed16__8600007.mp4) | 성공 | 확인 | 356.447 |
 | [native_search_v1__001_screen_mppi_frontier_9801000__9801000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__001_screen_mppi_frontier_9801000__9801000.mp4) | 성공 | 확인 | 303.6 |
@@ -316,6 +324,9 @@ python3 scripts/publish_simulation_videos.py --upload
 | [persistent_map_v4_screen3__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/persistent_map_v4_screen3__8600007.mp4) | 실패 | 미달 | 600.12 |
 | [persistent_map_v4_screen3__8600133.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/persistent_map_v4_screen3__8600133.mp4) | 실패 | 미달 | 600.305 |
 | [persistent_map_v4_screen3__8600139.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/persistent_map_v4_screen3__8600139.mp4) | 실패 | 자료 없음 | 257.887 |
+| [route_v14_timecost_screen3__9802001.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/route_v14_timecost_screen3__9802001.mp4) | 성공 | 확인 | 394.932 |
+| [route_v14_timecost_screen3__9802011.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/route_v14_timecost_screen3__9802011.mp4) | 성공 | 확인 | 302.6 |
+| [route_v14_timecost_screen3__9802014.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/route_v14_timecost_screen3__9802014.mp4) | 실패 | 미달 | 600.151 |
 | [rpp_v7_service_screen3__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/rpp_v7_service_screen3__8600007.mp4) | 실패 | 미달 | 347.66799999999995 |
 
 </details>
@@ -387,3 +398,27 @@ python3 training_robust/audit_additional_issues.py \
 ```
 
 실제 정책 입력 스냅샷은 로컬 실험 산출물로 보관합니다. 새 체크아웃에는 요약 재현 기록만 포함됩니다.
+
+## SLAM + Nav2 파라미터 학습 — 2026-11-09
+
+`slam_nav2_search_v1`은 실제 Gazebo에서 `slam_toolbox`와 Nav2 RPP를 실행하는 개발용 탐색입니다.
+v13 기준, 지도 갱신과 주행을 보수적으로 조정한 후보, frontier 가중치를 높인 후보의 세 조합을 비교합니다.
+공통으로 센서 시각 비교를 ROS 시간으로 맞추고 관측 신뢰도의 최소 마커 크기를8cm로 수정했습니다.
+
+장애물8/16/24개와 벽·장애물·뒷면 부착을 섞은 훈련 배치3개에서9회 비교하고,
+1위 후보를 별도12/24/32개 배치3개에서 검증합니다. 마커 크기는8–30cm입니다.
+최대2개 Gazebo 실행과 각6GiB 메모리 제한을 사용하며 영상과 평가 결과를 저장합니다.
+평가는 정확한 ID3개, 각1.5m 접근, 좌표 오차0.5m 이하, 충돌0회,600초 이내 완료입니다.
+후보 선택은 가중치와 SLAM/Nav2 설정의 제한된 파라미터 탐색이며 결과 확인 후 별도 배치 검증이 필요합니다.
+독립40개 holdout은 사용하지 않습니다. 기본 실물 실행기는 계속 v13 후보를 가리킵니다.
+
+[학습 시작 시점의 구성과 진행 상태](repository_snapshot/slam_nav2_search.json)
+
+```bash
+python3 training_robust/prepare_slam_nav2_search.py --output training_robust/native90/NEW_SEARCH
+```
+
+새 경로에서 후보별 `colcon build`를 마친 후 `native_tournament.py NEW_SEARCH`로 실행합니다.
+현재 실행은 `osp-slam-nav2-search-v1.service`가 감독하며 로컬 `state.json`에 진행을 기록합니다.
+최근 완료된 v13 회귀 실험은3/6, v14 회전 비용 비교는2/3, 마커 크기 변동 실험은3/5 성공했습니다.
+v14는 공통 성공 배치 두 개에서 v13보다 느렸습니다. 이 개발 배치 결과를 일반 완주율로 해석할 수는 없습니다.

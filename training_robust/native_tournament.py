@@ -128,7 +128,15 @@ def main():
                 ranked=ranking(state['jobs'],names,state['phase']);save(root/f'{state["phase"]}_ranking.json',ranked)
                 if state['phase']=='screen':
                     state['phase']='validation'
-                    add_jobs(root,state,config,'validation',[v['candidate'] for v in ranked[:2]],config['validation_scenes'])
+                    finalists=config.get('validation_finalists',2)
+                    add_jobs(root,state,config,'validation',[v['candidate'] for v in ranked[:finalists]],config['validation_scenes'])
+                elif state['phase']=='validation' and not config.get('holdout_enabled',True):
+                    state.update(status='completed_development_search',goal_verified=False)
+                    selected=config['candidates'][ranked[0]['candidate']]
+                    save(root/'selected_candidate.json',dict(candidate=ranked[0],
+                        workspace=selected['workspace'],policy=selected['policy'],
+                        status='development_selection_requires_broader_validation',
+                        reserved_holdout_used=False))
                 elif state['phase']=='validation' and ranked[0]['success_rate']>=.9:
                     state['phase']='holdout';state['frozen_final_candidate']=ranked[0]['candidate']
                     reserved=json.loads(Path(config['reserved_manifest']).read_text())

@@ -1,0 +1,187 @@
+{
+  "captured_utc": "2026-11-09T06:13:35.372721+00:00",
+  "status": "running",
+  "phase": "screen",
+  "environment": "gazebo_harmonic",
+  "algorithm": "Bounded black-box search over exploration weights, SLAM settings and Nav2 RPP settings",
+  "campaign": "/home/peter/simul/training_robust/native90/slam_nav2_search_v1",
+  "service": "osp-slam-nav2-search-v1.service",
+  "screen_episodes": 9,
+  "validation_episodes": 3,
+  "max_native_concurrency": 2,
+  "memory_max_per_native_service_gib": 6,
+  "tests_passed": 192,
+  "tests_skipped": 1,
+  "shared_fixes": [
+    "Sensor evidence uses ROS time",
+    "Coverage prior lowered from12cm to8cm"
+  ],
+  "candidates": {
+    "control": {
+      "changes": [
+        "ROS time for sensor evidence",
+        "8cm conservative coverage prior"
+      ],
+      "parameters": [
+        1.0,
+        1.204765992697077,
+        0.39116097662487975,
+        0.7812959734881743,
+        0.6473764656964455
+      ]
+    },
+    "stable_map": {
+      "changes": [
+        "ROS time for sensor evidence",
+        "8cm conservative coverage prior",
+        "0.5s map update",
+        "5cm/0.05rad SLAM motion thresholds",
+        "0.25m/12s progress checker",
+        "RPP 0.24m/s, 0.65rad/s"
+      ],
+      "parameters": [
+        1.0,
+        1.204765992697077,
+        0.39116097662487975,
+        0.7812959734881743,
+        0.6473764656964455
+      ]
+    },
+    "frontier_balanced": {
+      "changes": [
+        "ROS time for sensor evidence",
+        "8cm conservative coverage prior",
+        "0.5s map update",
+        "5cm/0.05rad SLAM motion thresholds",
+        "0.25m/12s progress checker",
+        "RPP 0.3m/s, 0.75rad/s",
+        "2x frontier gain",
+        "1.25x travel cost"
+      ],
+      "parameters": [
+        1.0,
+        2.409531985394154,
+        0.4889512207810997,
+        0.7812959734881743,
+        0.6473764656964455
+      ]
+    }
+  },
+  "train_scenes": [
+    {
+      "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810000.yaml",
+      "seed": 9810000,
+      "requested_obstacles": 8,
+      "actual_obstacles": 8,
+      "mount_profile": "walls",
+      "sha256": "0eaa310a2c7315db3c72bc6122362b9f982aad440b60da6c3af9d9e110c20b63"
+    },
+    {
+      "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810012.yaml",
+      "seed": 9810012,
+      "requested_obstacles": 16,
+      "actual_obstacles": 16,
+      "mount_profile": "obstacles",
+      "sha256": "49c9d6bf6550e01bcc1d77270a3c010445f8ebcf13f954e1b9b0f03a0fc8f7bc"
+    },
+    {
+      "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/train/9810018.yaml",
+      "seed": 9810018,
+      "requested_obstacles": 24,
+      "actual_obstacles": 24,
+      "mount_profile": "hidden_obstacles",
+      "sha256": "837dc2e880a13df541a5855189f9a288704a243a65cd38e734b7cf02f61d7df4"
+    }
+  ],
+  "validation_scenes": [
+    {
+      "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/validation/9811006.yaml",
+      "seed": 9811006,
+      "requested_obstacles": 12,
+      "actual_obstacles": 12,
+      "mount_profile": "mixed",
+      "sha256": "ad582cf5c20826aad99ceb77291c7a5b77066feb66725e5afb58da5c13a36106"
+    },
+    {
+      "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/validation/9811013.yaml",
+      "seed": 9811013,
+      "requested_obstacles": 24,
+      "actual_obstacles": 24,
+      "mount_profile": "obstacles",
+      "sha256": "fae5364882092a1ada492411b53feb499a278085a0a6429dc07dd076b2768299"
+    },
+    {
+      "file": "/home/peter/simul/scenarios_robust/marker_sizes_v1/validation/9811019.yaml",
+      "seed": 9811019,
+      "requested_obstacles": 32,
+      "actual_obstacles": 31,
+      "mount_profile": "hidden_obstacles",
+      "sha256": "d631bbc3e69b0453922b1f6a9313bb940dcc6166b430f2b4cdb8e7aa76181655"
+    }
+  ],
+  "completed_jobs": 0,
+  "running_jobs": [
+    {
+      "number": 0,
+      "candidate": "control",
+      "seed": 9810000,
+      "unit": "osp-nativesearch-nov09-slam-nav2-v1-000.service"
+    },
+    {
+      "number": 1,
+      "candidate": "stable_map",
+      "seed": 9810000,
+      "unit": "osp-nativesearch-nov09-slam-nav2-v1-001.service"
+    }
+  ],
+  "evaluation": {
+    "correct_ids": 3,
+    "approach_m": 1.5,
+    "coordinate_error_m": 0.5,
+    "contacts": 0,
+    "sim_seconds": 600,
+    "record_video": true
+  },
+  "reserved_holdout_used": false,
+  "default_policy_promoted": false,
+  "known_remaining_issues": [
+    "Coverage memory loss during map changes",
+    "Stale identity conflict recovery",
+    "Approach status display consistency"
+  ],
+  "previous_completed_experiments": {
+    "fix_v13_observation_regression6": {
+      "environment": "gazebo_harmonic",
+      "planned": 6,
+      "attempted": 6,
+      "completed_missions": 6,
+      "successful_missions": 3,
+      "infrastructure_failures": 0,
+      "complete": true,
+      "success_rate_over_attempted": 0.5,
+      "record_video": true
+    },
+    "route_v14_timecost_screen3": {
+      "environment": "gazebo_harmonic",
+      "planned": 3,
+      "attempted": 3,
+      "completed_missions": 3,
+      "successful_missions": 2,
+      "infrastructure_failures": 0,
+      "complete": true,
+      "success_rate_over_attempted": 0.6666666666666666,
+      "record_video": true
+    },
+    "marker_sizes_v1_native5": {
+      "environment": "gazebo_harmonic",
+      "planned": 5,
+      "attempted": 5,
+      "completed_missions": 5,
+      "successful_missions": 3,
+      "infrastructure_failures": 0,
+      "complete": true,
+      "success_rate_over_attempted": 0.6,
+      "record_video": true
+    }
+  }
+}

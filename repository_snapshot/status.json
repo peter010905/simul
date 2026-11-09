@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-06T01:31:50.406538+00:00",
+  "captured_utc": "2026-11-09T06:13:35.372721+00:00",
   "purpose": "Repository upload snapshot; not a live dashboard",
   "tests_passed_final": 189,
   "native_validation_complete": false,
@@ -76,7 +76,7 @@
       "workspace": "/home/peter/simul/training_robust/native90/runtime_fix_v13_observation_staging",
       "output": "/home/peter/simul/training_robust/native90/fix_v13_observation_regression6",
       "unit": "osp-fix-v13-observation.service",
-      "status": "running",
+      "status": "done",
       "completed_results": [
         {
           "seed": 9802001,
@@ -93,6 +93,38 @@
           "elapsed_seconds": 218.153,
           "targets": 3,
           "collisions": 0
+        },
+        {
+          "seed": 9802014,
+          "success": false,
+          "reason": "timeout",
+          "elapsed_seconds": 600.416,
+          "targets": 1,
+          "collisions": 0
+        },
+        {
+          "seed": 9802015,
+          "success": false,
+          "reason": "timeout",
+          "elapsed_seconds": 600.269,
+          "targets": 2,
+          "collisions": 0
+        },
+        {
+          "seed": 9802017,
+          "success": false,
+          "reason": "timeout",
+          "elapsed_seconds": 600.411,
+          "targets": 1,
+          "collisions": 0
+        },
+        {
+          "seed": 9801004,
+          "success": true,
+          "reason": "all_targets_found",
+          "elapsed_seconds": 555.6,
+          "targets": 3,
+          "collisions": 0
         }
       ]
     }
@@ -100,5 +132,7 @@
   "additional_experiments": [
     "marker_sizes.json",
     "route_timecost.json"
-  ]
+  ],
+  "latest_training": "slam_nav2_search.json",
+  "previous_regressions_complete": true
 }

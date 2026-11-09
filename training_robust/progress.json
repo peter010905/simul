@@ -577,7 +577,7 @@
     "baseline_seconds": 3.618,
     "candidate_seconds": 20.074
   },
-  "updated_utc": "2026-11-06T01:47:18.833418+00:00",
+  "updated_utc": "2026-11-09T06:13:35.372721+00:00",
   "motion_v2_native_result": {
     "seed": 8600007,
     "success": true,
@@ -1104,5 +1104,13 @@
       "Validate cautious spatial coverage retention",
       "Make approach status use current targets"
     ]
+  },
+  "slam_nav2_native_search": {
+    "report": "repository_snapshot/slam_nav2_search.json",
+    "status": "running",
+    "service": "osp-slam-nav2-search-v1.service",
+    "planned_native_episodes": 12,
+    "completed_native_episodes": 0,
+    "default_policy_promoted": false
   }
 }
