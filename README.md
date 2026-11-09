@@ -217,7 +217,7 @@ python3 scripts/publish_simulation_videos.py --upload
 
 ## 저장된 Gazebo 영상
 
-[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 103개
+[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 105개
 
 아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다.
 
@@ -328,6 +328,8 @@ python3 scripts/publish_simulation_videos.py --upload
 | [route_v14_timecost_screen3__9802011.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/route_v14_timecost_screen3__9802011.mp4) | 성공 | 확인 | 302.6 |
 | [route_v14_timecost_screen3__9802014.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/route_v14_timecost_screen3__9802014.mp4) | 실패 | 미달 | 600.151 |
 | [rpp_v7_service_screen3__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/rpp_v7_service_screen3__8600007.mp4) | 실패 | 미달 | 347.66799999999995 |
+| [slam_nav2_search_v1__000_screen_control_9810000__9810000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/slam_nav2_search_v1__000_screen_control_9810000__9810000.mp4) | 실패 | 미달 | 600.221 |
+| [slam_nav2_search_v1__001_screen_stable_map_9810000__9810000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/slam_nav2_search_v1__001_screen_stable_map_9810000__9810000.mp4) | 실패 | 미달 | 600.151 |
 
 </details>
 
@@ -420,5 +422,7 @@ python3 training_robust/prepare_slam_nav2_search.py --output training_robust/nat
 
 새 경로에서 후보별 `colcon build`를 마친 후 `native_tournament.py NEW_SEARCH`로 실행합니다.
 현재 실행은 `osp-slam-nav2-search-v1.service`가 감독하며 로컬 `state.json`에 진행을 기록합니다.
+첫 훈련 배치의 기준 설정은2개 인식·접근, 지도 안정화 후보는1개 인식·접근 후600초 시간 초과였습니다.
+두 실행 모두 충돌0회이며, 최초 완료2회에서 완주는0회입니다. 나머지 비교는 진행 중입니다.
 최근 완료된 v13 회귀 실험은3/6, v14 회전 비용 비교는2/3, 마커 크기 변동 실험은3/5 성공했습니다.
 v14는 공통 성공 배치 두 개에서 v13보다 느렸습니다. 이 개발 배치 결과를 일반 완주율로 해석할 수는 없습니다.

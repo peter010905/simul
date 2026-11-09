@@ -577,7 +577,7 @@
     "baseline_seconds": 3.618,
     "candidate_seconds": 20.074
   },
-  "updated_utc": "2026-11-09T06:13:35.372721+00:00",
+  "updated_utc": "2026-11-09T06:44:05.145101+00:00",
   "motion_v2_native_result": {
     "seed": 8600007,
     "success": true,
@@ -1110,7 +1110,7 @@
     "status": "running",
     "service": "osp-slam-nav2-search-v1.service",
     "planned_native_episodes": 12,
-    "completed_native_episodes": 0,
+    "completed_native_episodes": 2,
     "default_policy_promoted": false
   }
 }

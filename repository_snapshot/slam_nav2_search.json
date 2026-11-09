@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-09T06:13:35.372721+00:00",
+  "captured_utc": "2026-11-09T06:44:05.145101+00:00",
   "status": "running",
   "phase": "screen",
   "environment": "gazebo_harmonic",
@@ -119,19 +119,85 @@
       "sha256": "d631bbc3e69b0453922b1f6a9313bb940dcc6166b430f2b4cdb8e7aa76181655"
     }
   ],
-  "completed_jobs": 0,
+  "completed_jobs": 2,
   "running_jobs": [
     {
-      "number": 0,
-      "candidate": "control",
+      "number": 2,
+      "candidate": "frontier_balanced",
       "seed": 9810000,
-      "unit": "osp-nativesearch-nov09-slam-nav2-v1-000.service"
+      "unit": "osp-nativesearch-nov09-slam-nav2-v1-002.service",
+      "observed_status": {
+        "state": "running",
+        "approached_ids": [],
+        "targets": 0,
+        "collisions": 0,
+        "elapsed_seconds": 36.391,
+        "active_action": "nav",
+        "readiness_reason": "",
+        "sensor_interruptions": 0,
+        "nav2_lifecycle": {
+          "controller_server": 3,
+          "planner_server": 3,
+          "behavior_server": 3,
+          "bt_navigator": 3
+        },
+        "drive_controllers": {
+          "diffdrive_controller": "active",
+          "joint_state_broadcaster": "active"
+        },
+        "confirmed_surface_cells": 133,
+        "confirmed_face_anchors": 0,
+        "reassociated_face_records": 0,
+        "camera_diagnostics": {
+          "received": 198,
+          "late": 2,
+          "invalid_calibration": 0,
+          "duplicate": 0,
+          "accepted": 196,
+          "coverage_updates": 194,
+          "tf_waits": 1
+        }
+      },
+      "wall_seconds": 120.32820964511484
     },
     {
-      "number": 1,
-      "candidate": "stable_map",
-      "seed": 9810000,
-      "unit": "osp-nativesearch-nov09-slam-nav2-v1-001.service"
+      "number": 3,
+      "candidate": "control",
+      "seed": 9810012,
+      "unit": "osp-nativesearch-nov09-slam-nav2-v1-003.service",
+      "observed_status": {
+        "state": "idle",
+        "approached_ids": [],
+        "targets": 0,
+        "collisions": 0,
+        "elapsed_seconds": 0.0,
+        "active_action": "",
+        "readiness_reason": "scan_stale",
+        "sensor_interruptions": 0,
+        "nav2_lifecycle": {
+          "controller_server": 3,
+          "planner_server": 3,
+          "behavior_server": 3,
+          "bt_navigator": 3
+        },
+        "drive_controllers": {
+          "diffdrive_controller": "active",
+          "joint_state_broadcaster": "active"
+        },
+        "confirmed_surface_cells": 5,
+        "confirmed_face_anchors": 0,
+        "reassociated_face_records": 0,
+        "camera_diagnostics": {
+          "received": 164,
+          "late": 0,
+          "invalid_calibration": 0,
+          "duplicate": 0,
+          "accepted": 164,
+          "coverage_updates": 162,
+          "tf_waits": 1
+        }
+      },
+      "wall_seconds": 105.24404610367492
     }
   ],
   "evaluation": {
@@ -183,5 +249,29 @@
       "success_rate_over_attempted": 0.6,
       "record_video": true
     }
-  }
+  },
+  "completed_results": [
+    {
+      "number": 0,
+      "candidate": "control",
+      "seed": 9810000,
+      "success": false,
+      "targets": 2,
+      "approached": 2,
+      "seconds": 600.221,
+      "infrastructure_failure": false,
+      "reason": "timeout"
+    },
+    {
+      "number": 1,
+      "candidate": "stable_map",
+      "seed": 9810000,
+      "success": false,
+      "targets": 1,
+      "approached": 1,
+      "seconds": 600.151,
+      "infrastructure_failure": false,
+      "reason": "timeout"
+    }
+  ]
 }

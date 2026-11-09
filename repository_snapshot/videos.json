@@ -1,7 +1,7 @@
 {
-  "updated_utc": "2026-11-09T06:13:19.585996+00:00",
+  "updated_utc": "2026-11-09T06:44:46.226702+00:00",
   "release_url": "https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11",
-  "uploaded_verified": 103,
+  "uploaded_verified": 105,
   "videos": [
     {
       "asset": "fix_v10_escape_regression3__9802005.mp4",
@@ -1650,6 +1650,38 @@
       "recording_frames": 1737,
       "recording_seconds": 347.4,
       "uploaded_verified": true
+    },
+    {
+      "asset": "slam_nav2_search_v1__000_screen_control_9810000__9810000.mp4",
+      "local_path": "training_robust/native90/slam_nav2_search_v1/jobs/000_screen_control_9810000/episodes/9810000/video/mission.mp4",
+      "bytes": 21263214,
+      "sha256": "066830465d87954e46f66116716871fb4e5389563bd91bdf25f6f5ac152d249c",
+      "url": "https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/slam_nav2_search_v1__000_screen_control_9810000__9810000.mp4",
+      "original_evaluator_success": false,
+      "reason": "timeout",
+      "elapsed_sim_seconds": 600.221,
+      "targets": 2,
+      "collisions": 0,
+      "actual_approach_1_5m": false,
+      "recording_frames": 3003,
+      "recording_seconds": 600.6,
+      "uploaded_verified": true
+    },
+    {
+      "asset": "slam_nav2_search_v1__001_screen_stable_map_9810000__9810000.mp4",
+      "local_path": "training_robust/native90/slam_nav2_search_v1/jobs/001_screen_stable_map_9810000/episodes/9810000/video/mission.mp4",
+      "bytes": 21054973,
+      "sha256": "81d0811c90bb6b271a0214d9715c09e311a2fcac0cafaffc96fb7f36cea67e58",
+      "url": "https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/slam_nav2_search_v1__001_screen_stable_map_9810000__9810000.mp4",
+      "original_evaluator_success": false,
+      "reason": "timeout",
+      "elapsed_sim_seconds": 600.151,
+      "targets": 1,
+      "collisions": 0,
+      "actual_approach_1_5m": false,
+      "recording_frames": 3003,
+      "recording_seconds": 600.6,
+      "uploaded_verified": true
     }
   ],
   "skipped": [
@@ -1663,6 +1695,10 @@
     },
     {
       "path": "training_robust/native90/rpp_v7_service_screen3/episodes/8600133/video/mission.mp4",
+      "reason": "Final evaluation or recording metadata absent"
+    },
+    {
+      "path": "training_robust/native90/slam_nav2_search_v1/jobs/002_screen_frontier_balanced_9810000/episodes/9810000/video/mission.mp4",
       "reason": "Final evaluation or recording metadata absent"
     }
   ],
