@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T19:57:26.588670+00:00",
+  "captured_utc": "2026-11-12T21:05:41.759724+00:00",
   "purpose": "Repository upload snapshot; not a live dashboard",
   "tests_passed_final": 189,
   "native_validation_complete": false,
@@ -137,26 +137,25 @@
   "previous_regressions_complete": true,
   "latest_change": {
     "date": "2026-11-13",
-    "name": "circle188.674s3IDs3approaches0contacts_failed_coordinate_error0.685m;localization_drift_isolated;SLAM_heading_prior_candidate_built_and_queued",
-    "status": "active_learning;heading_prior_native_pending",
+    "name": "Calibrated_camera_gain230tests;heading_prior247.622sfailed_two_positions;raw_encoder_bias_measured_and_fixed_velocity_candidate235tests_plus_actual_ROS_fusion",
+    "status": "velocity_candidate204.2s_original_benchmark_passed;exact1.5m_credit_audit_failed_for337;CEM_running",
     "generalization_verified": false
   },
   "latest_recording": {
     "date": "2026-11-13",
-    "evidence_type": "new_native_Gazebo_fresh_L_shape_probe",
-    "summary": "bounded_gain_candidate.json",
-    "scenario_seed": 1160000404,
-    "obstacles": 16,
-    "success": true,
-    "elapsed_sim_seconds": 197.4,
+    "evidence_type": "new_native_fixed_velocity_calibration_circle_diagnostic",
+    "scenario_seed": 1163000000,
+    "original_benchmark_success": true,
+    "full_completion_audit_passed": false,
+    "elapsed_sim_seconds": 204.2,
     "targets": 3,
     "collisions": 0,
     "correct_ids": true,
-    "all_actual_approaches_within_1_5m": true,
     "correct_positions": true,
+    "all_three_physical_credits_verified": false,
+    "approach_margin_report": "approach_margin_diagnosis.json",
     "hardware_validated": false,
-    "production_promoted": false,
-    "matched_baseline_comparison": false
+    "production_promoted": false
   },
   "active_supervision": {
     "current_campaign": "spatial_cem_v5",
@@ -206,5 +205,10 @@
   "latest_built_startup_candidate": "/home/peter/simul/training_robust/native90/reacquisition_startup_v2/runtime",
   "startup_candidate_runtime_tests_passed": 231,
   "localization_drift_diagnosis": "localization_drift_diagnosis.json",
-  "heading_prior_candidate": "heading_prior_candidate.json"
+  "heading_prior_candidate": "heading_prior_candidate.json",
+  "calibrated_gain_candidate": "calibrated_gain_candidate.json",
+  "rooms_missed_view_diagnosis": "rooms_missed_view_diagnosis.json",
+  "velocity_calibration_candidate": "velocity_calibration_candidate.json",
+  "motion_calibration_study": "motion_calibration_study.json",
+  "approach_margin_diagnosis": "approach_margin_diagnosis.json"
 }

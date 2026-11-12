@@ -1,9 +1,9 @@
 {
-  "captured_utc": "2026-11-12T19:57:26.588670+00:00",
-  "evidence_type": "staged_SLAM_configuration_ablation_queued_for_native",
+  "captured_utc": "2026-11-12T20:42:50.319937+00:00",
+  "evidence_type": "finalized_native_same_scene_heading_prior_ablation",
   "diagnostic": "/home/peter/simul/training_robust/native90/heading_prior_regression_v1",
   "workspace": "/home/peter/simul/training_robust/native90/heading_prior_v1/runtime",
-  "job_status": "prepared",
+  "job_status": "done",
   "source_hashes": {
     "setup.cfg": "fb522f4576d5429cb1cde1c49f0433cf9fd3181da3862b2f5e3a2ce9798a2003",
     "package.xml": "db6280bcd27e643036d56216dd977326d40dcf79ba21c8786370b8ef7dc3ecc6",
@@ -173,7 +173,7 @@
   },
   "runtime_tests_passed": 231,
   "build_passed": true,
-  "native_effective_heading_prior_verified": false,
+  "native_effective_heading_prior_verified": true,
   "native_success_verified": false,
   "training_samples": false,
   "generalization_verified": false,
@@ -193,5 +193,75 @@
     "Heading penalty acts on scan matches;other mapping and odometry errors may remain",
     "No ground truth reaches robot policy;counterfactual correction is analysis only",
     "Current CEM runtime stages,weights,prepared maps and all existing jobs remain frozen"
-  ]
+  ],
+  "status": "completed_heading_prior_regression",
+  "native_outcome": {
+    "success": false,
+    "targets": 3,
+    "approached": 3,
+    "contacts": 0,
+    "seconds": 247.622,
+    "infrastructure_failure": false,
+    "reason": "all_targets_found"
+  },
+  "native_coordinate_audit": {
+    "available": true,
+    "correct_ids": true,
+    "correct_positions": false,
+    "position_tolerance_m": 0.5,
+    "position_errors_m": {
+      "337": 0.11394139901965226,
+      "523": 0.5526172878576323,
+      "534": 0.5527161617930548
+    },
+    "expected_ids": [
+      337,
+      523,
+      534
+    ],
+    "found_ids": [
+      337,
+      523,
+      534
+    ],
+    "closest_approach_m": {
+      "337": 1.1453146487629657,
+      "523": 1.1755046861832656,
+      "534": 1.459108384709903
+    },
+    "approached_within_1_5m": 3,
+    "approach_radius_m": 1.5,
+    "all_approached": true,
+    "approached_within_2m": 3,
+    "world_to_map": [
+      -12.768416462432596,
+      -4.714675476143231,
+      -0.04824875089024681
+    ],
+    "trajectory_samples": 1219
+  },
+  "native_profile": {
+    "domain": 117,
+    "parameters": {
+      "slam_toolbox": {
+        "angle_variance_penalty": 0.05,
+        "minimum_angle_penalty": 0.5
+      }
+    },
+    "errors": {},
+    "complete": true,
+    "source": "Read-only ROS GetParameters services",
+    "heading_prior_gate_passed": true
+  },
+  "startup_sequence_audit": {
+    "evidence_type": "native_startup_report_and_wall_timestamped_ROS_log",
+    "episode": "/home/peter/simul/training_robust/native90/heading_prior_regression_v1/case_0/episodes/1163000000",
+    "readiness_report_passed": true,
+    "readiness_wall_epoch_s": 1794513997.2140703,
+    "first_controller_log_wall_epoch_s": 1794513998.9823468,
+    "nav2_started_after_readiness_verified": true,
+    "caveat": "Startup ordering alone is not mission success or generalization evidence"
+  },
+  "native_drift_report": "heading_prior_native_drift.json",
+  "next_action": "Investigate raw encoder versus EKF velocity;heading prior alone did not pass all marker position criteria"
 }

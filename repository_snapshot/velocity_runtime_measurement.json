@@ -1,0 +1,26 @@
+{
+  "evidence_type": "live_native_sensor_capture_frozen_segment_analysis",
+  "before": {
+    "eligible_windows": 56,
+    "median_raw_encoder_ratio": 1.2445280865892676,
+    "median_actual_EKF_ratio": 1.2334222017414516,
+    "raw_rmse_m_s": 0.08300553876353851,
+    "actual_EKF_rmse_m_s": 0.07665762158379905
+  },
+  "calibrated_native": {
+    "eligible_windows": 78,
+    "median_raw_encoder_ratio": 1.1870924230493292,
+    "median_actual_EKF_ratio": 0.9223055833692668,
+    "raw_rmse_m_s": 0.06617618501194972,
+    "actual_EKF_rmse_m_s": 0.029216194882594075
+  },
+  "source_sha256": "5b8966bfbfd307894991d4ec3882a92b7de3050f10ea7b8f2918802ba75e5e5f",
+  "source": "/home/peter/simul/training_robust/native90/velocity_runtime_measurement_v1/calibrated_native.csv",
+  "capture_complete_mission": false,
+  "native_pose_or_mission_success_verified": false,
+  "ground_truth_only_used_by_evaluator": true,
+  "limits": [
+    "Unpaired trajectory segments;not a mission-speed or generalization comparison",
+    "Native trajectory continues;no policy or trial outcome is changed"
+  ]
+}

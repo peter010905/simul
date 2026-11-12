@@ -1,0 +1,43 @@
+{
+  "snapshot_metadata": [
+    {
+      "native_pid": 1454504,
+      "native_output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00015_train_g0_2",
+      "domain": 114,
+      "complete": false,
+      "counts": {
+        "ekf": 8665,
+        "ground_truth": 4262,
+        "imu": 9019,
+        "wheel": 8812
+      },
+      "source": "Read-only raw wheel/odom,filtered odom,imu,and independent evaluator ground truth",
+      "ground_truth_available_to_policy": false,
+      "recorder_sha256": "abd8b148c9f5d7343be95612be59fddf715ba0757d4dec3bf421f3423c3600e9",
+      "frozen_snapshot_wall_epoch_s": 1794515521.0970438,
+      "live_source": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00015_train_g0_2/episodes/1163001515/motion_calibration_1794515114847795662.csv",
+      "snapshot_complete_mission": false
+    },
+    {
+      "native_pid": 1458109,
+      "native_output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00016_train_g0_2",
+      "domain": 115,
+      "complete": false,
+      "counts": {
+        "imu": 9275,
+        "ekf": 8852,
+        "ground_truth": 4339,
+        "wheel": 9002
+      },
+      "source": "Read-only raw wheel/odom,filtered odom,imu,and independent evaluator ground truth",
+      "ground_truth_available_to_policy": false,
+      "recorder_sha256": "abd8b148c9f5d7343be95612be59fddf715ba0757d4dec3bf421f3423c3600e9",
+      "frozen_snapshot_wall_epoch_s": 1794515521.102214,
+      "live_source": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00016_train_g0_2/episodes/1163001616/motion_calibration_1794515114872191796.csv",
+      "snapshot_complete_mission": false
+    }
+  ],
+  "training_shape": "triangle",
+  "validation_shape": "trapezoid",
+  "calibration_validation_is_not_reserved_holdout": true
+}

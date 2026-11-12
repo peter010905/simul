@@ -1,0 +1,116 @@
+{
+  "captured_utc": "2026-11-12T21:05:41.759724+00:00",
+  "evidence_type": "finalized_native_exact_credit_timestamp_audit",
+  "original_benchmark_success": true,
+  "original_native_outcome": {
+    "success": true,
+    "targets": 3,
+    "approached": 3,
+    "contacts": 0,
+    "seconds": 204.2,
+    "infrastructure_failure": false,
+    "reason": "all_targets_found"
+  },
+  "closest_actual_distances_m": {
+    "337": 1.4837727226047355,
+    "523": 1.3505333247729978,
+    "534": 1.3818376942212165
+  },
+  "physical_credit_audit": {
+    "evidence_type": "independent_GT_at_saved_policy_credit_timestamps",
+    "episode": "/home/peter/simul/training_robust/native90/velocity_calibration_regression_v1/case_0/episodes/1163000000",
+    "required_actual_radius_m": 1.5,
+    "ground_truth_available_to_policy": false,
+    "registered_speed_bound_m_s": 0.6,
+    "sampling_limit": "Between samples the upper distance bound assumes speed<=0.6m/s; segment speeds above it or gaps>0.30s are unverified",
+    "historical_closest_pass_alone_is_sufficient": false,
+    "all_three_physical_credits_verified": false,
+    "all_three_recognition_and_approach_events_logged": true,
+    "rows": [
+      {
+        "id": 337,
+        "id_confirmed_in_journal": true,
+        "estimated_approach_in_journal": true,
+        "map_pose_credit": {
+          "verified": false,
+          "stamp_sim_s": 210.48,
+          "actual_distance_m": 1.51120930967839,
+          "conservative_distance_upper_m": 1.5181703732916199,
+          "bracketing_stamps_sim_s": [
+            210.462,
+            210.496
+          ],
+          "registered_speed_bound_m_s": 0.6,
+          "method": "interpolated_GT_with_speed_margin",
+          "reason": "credited_pose_outside_radius_or_insufficient_sampling_margin",
+          "trajectory_source": "fine_evaluator_trace"
+        },
+        "range_witness_physical_samples": [],
+        "range_witness_verified": false,
+        "physical_credit_verified": false
+      },
+      {
+        "id": 523,
+        "id_confirmed_in_journal": true,
+        "estimated_approach_in_journal": true,
+        "map_pose_credit": {
+          "verified": true,
+          "stamp_sim_s": 55.968,
+          "actual_distance_m": 1.3526184009019933,
+          "conservative_distance_upper_m": 1.3537651597472398,
+          "bracketing_stamps_sim_s": [
+            55.966,
+            56.0
+          ],
+          "registered_speed_bound_m_s": 0.6,
+          "method": "interpolated_GT_with_speed_margin",
+          "reason": null,
+          "trajectory_source": "fine_evaluator_trace"
+        },
+        "range_witness_physical_samples": [],
+        "range_witness_verified": false,
+        "physical_credit_verified": true
+      },
+      {
+        "id": 534,
+        "id_confirmed_in_journal": true,
+        "estimated_approach_in_journal": true,
+        "map_pose_credit": {
+          "verified": true,
+          "stamp_sim_s": 71.986,
+          "actual_distance_m": 1.3821941904431483,
+          "conservative_distance_upper_m": 1.3857941211038547,
+          "bracketing_stamps_sim_s": [
+            71.98,
+            72.014
+          ],
+          "registered_speed_bound_m_s": 0.6,
+          "method": "interpolated_GT_with_speed_margin",
+          "reason": null,
+          "trajectory_source": "fine_evaluator_trace"
+        },
+        "range_witness_physical_samples": [],
+        "range_witness_verified": false,
+        "physical_credit_verified": true
+      }
+    ],
+    "source_sha256": {
+      "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163000000.yaml": "2b3c6332c436766ff0ce294bd02dfa453110b1b8c5db94e7649411ac787ed015",
+      "/home/peter/simul/training_robust/native90/velocity_calibration_regression_v1/case_0/episodes/1163000000/evaluation.json": "a11939b35c01346317f289964d34fb99d5904b78686b8f424b0905279b1ced36",
+      "/home/peter/simul/training_robust/native90/velocity_calibration_regression_v1/case_0/episodes/1163000000/ground_truth_trajectory.csv": "625a8212b788fe852c8333ebfd5e8de45a4b40c0f947cc46a2b7046962c9a9e2",
+      "/home/peter/simul/training_robust/native90/velocity_calibration_regression_v1/case_0/episodes/1163000000/marker_events.jsonl": "b9bc31ca8da453d46d913f4423e91499de66a0f9426e70a035ce3fe61e350b29",
+      "/home/peter/simul/training_robust/native90/velocity_calibration_regression_v1/case_0/episodes/1163000000/evaluator_gt_fine_1794516106305271870.csv": "981996a68c606493e37dae3fcea83c5c05cdf81167a1989f16c89791fdb75763"
+    }
+  },
+  "full_completion_audit_passed": false,
+  "reason": "ID337 credit timestamp actual1.511209m exceeds1.5m;later closest1.483773m does not prove the earlier credit",
+  "actual_rule_radius_m": 1.5,
+  "production_promoted": false,
+  "policy_or_original_result_changed": false,
+  "next_required_change": "Require three confirmed readable near-body sensor frames with an inner margin;prevent map-pose credit at1.5m from ending the task early;approach goals must account for Nav2 stopping tolerance",
+  "limits": [
+    "Original evaluator and video keep their original success result",
+    "A small distance error is still insufficient for the strict1.5m credit requirement",
+    "No evaluator ground truth will be supplied to the policy"
+  ]
+}

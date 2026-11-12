@@ -1111,11 +1111,12 @@
   },
   "spatial_curriculum": "repository_snapshot/spatial_curriculum.json",
   "dashboard": "http://127.0.0.1:8765",
-  "latest_goal_turn_evidence": "Progress:13freshtrainingtrials10passed;freshL358.222s/0contacts/maxerror0.036m;U59.812s/0contacts;F2circle188.674s3exactIDs/3physicalcredits/0contactsbutcoordinate3370.685mfail;fineGTcounterfactualisolatedlocalizationdrift(rawmedian0.682mvsrelative0.00938m);config-onlyheadingpriorcandidate231tests+buildpassedandqueued;originalnativeCEMrunscontinue",
+  "latest_goal_turn_evidence": "Progress: camera-gain230test stage;new circle403.502s success;room camera-direction miss;heading-only trial failed positions;raw encoder bias identified and0.78 input235tests+realROS fusion verified;native204.2s passed original3ID/closest1.5m/map/zero-contact audit,but exact credit for337 was1.511m and full completion is not verified;original CEM source/state preserved and fresh-map training continues",
   "latest_navigation_diagnosis": "repository_snapshot/local_navigation_diagnosis.json",
   "current_native_supervisor": "osp-spatial-cem-v5.service",
   "next_training_driver": "spatial_native_curriculum_v5.py",
   "fine_evaluator_observer": "osp-spatial-evaluator-observer-v1.service",
   "physical_credit_auditor": "training_robust/audit_approach_evidence.py",
-  "priority_diagnostic": "osp-heading-prior-v1.service"
+  "priority_diagnostic": "osp-velocity-calibration-v1.service",
+  "next_priority": "Three confirmed readable near-body range observations with an inner approach margin;prevent early map-pose completion"
 }

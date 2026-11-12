@@ -1,0 +1,134 @@
+{
+  "evidence_type": "finalized_native_sensor_replay_with_evaluator_only_counterfactual_pose",
+  "episode": "/home/peter/simul/training_robust/native90/heading_prior_regression_v1/case_0/episodes/1163000000",
+  "native_success": false,
+  "native_seconds": 247.622,
+  "native_coordinate_errors_m": {
+    "337": 0.11394139901965226,
+    "523": 0.5526172878576323,
+    "534": 0.5527161617930548
+  },
+  "by_id": {
+    "337": {
+      "recorded_map_marker_error_m": {
+        "samples": 166,
+        "minimum": 0.03648362877478825,
+        "median": 0.0685502462296946,
+        "p90": 0.13545693930475772,
+        "maximum": 0.14926572320137002
+      },
+      "counterfactual_pose_corrected_marker_error_m": {
+        "samples": 166,
+        "minimum": 0.0008244310056739948,
+        "median": 0.006232825710262912,
+        "p90": 0.017545441097128495,
+        "maximum": 0.11653312717183414
+      },
+      "robot_map_position_error_m": {
+        "samples": 166,
+        "minimum": 0.0025254152505281586,
+        "median": 0.04024171613826624,
+        "p90": 0.10414068585444393,
+        "maximum": 0.10983712770341732
+      },
+      "robot_map_heading_error_deg": {
+        "samples": 166,
+        "minimum": 0.2124258730489609,
+        "median": 0.5799335536955935,
+        "p90": 1.2022275999139374,
+        "maximum": 1.7233240348364458
+      },
+      "observed_stamp_range_sim_s": [
+        21.2,
+        137.0
+      ]
+    },
+    "523": {
+      "recorded_map_marker_error_m": {
+        "samples": 39,
+        "minimum": 0.5137704328747065,
+        "median": 0.5482262565851167,
+        "p90": 0.5763624290146918,
+        "maximum": 0.5765361976617899
+      },
+      "counterfactual_pose_corrected_marker_error_m": {
+        "samples": 39,
+        "minimum": 0.0011186772184293545,
+        "median": 0.002919687619614359,
+        "p90": 0.009063457557217845,
+        "maximum": 0.040585770699279294
+      },
+      "robot_map_position_error_m": {
+        "samples": 39,
+        "minimum": 0.43183931602600933,
+        "median": 0.46309317737641653,
+        "p90": 0.49122915129222705,
+        "maximum": 0.49128157254620153
+      },
+      "robot_map_heading_error_deg": {
+        "samples": 39,
+        "minimum": 2.6620944744063686,
+        "median": 3.548981497677471,
+        "p90": 3.7491884563681186,
+        "maximum": 3.945006407963497
+      },
+      "observed_stamp_range_sim_s": [
+        219.8,
+        247.2
+      ]
+    },
+    "534": {
+      "recorded_map_marker_error_m": {
+        "samples": 57,
+        "minimum": 0.4785953511740486,
+        "median": 0.5485382146017097,
+        "p90": 0.5580644499693139,
+        "maximum": 0.5666021052474263
+      },
+      "counterfactual_pose_corrected_marker_error_m": {
+        "samples": 57,
+        "minimum": 0.0002562976596579451,
+        "median": 0.0031810383338599217,
+        "p90": 0.009022763805229955,
+        "maximum": 0.029129674260503228
+      },
+      "robot_map_position_error_m": {
+        "samples": 57,
+        "minimum": 0.4332488018473217,
+        "median": 0.48759424726784234,
+        "p90": 0.5007477515510474,
+        "maximum": 0.5048209476440216
+      },
+      "robot_map_heading_error_deg": {
+        "samples": 57,
+        "minimum": 3.4150433624398375,
+        "median": 3.606680099654596,
+        "p90": 3.750151673931754,
+        "maximum": 4.253158221553021
+      },
+      "observed_stamp_range_sim_s": [
+        218.4,
+        253.8
+      ]
+    }
+  },
+  "fine_trajectory_segment_sim_s": [
+    1.698,
+    254.046
+  ],
+  "policy_or_result_modified": false,
+  "ground_truth_supplied_to_policy": false,
+  "limits": [
+    "Pose correction is a diagnostic counterfactual,not a deployed fix or native success",
+    "Map poses are interpolated from coarse audit samples;rapid motion or SLAM jumps add interpolation uncertainty",
+    "Observations outside finalized fine trajectory coverage are omitted,not extrapolated",
+    "Small counterfactual error supports localization drift as dominant;it does not prove a particular SLAM setting will fix it"
+  ],
+  "source_sha256": {
+    "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163000000.yaml": "2b3c6332c436766ff0ce294bd02dfa453110b1b8c5db94e7649411ac787ed015",
+    "/home/peter/simul/training_robust/native90/heading_prior_regression_v1/case_0/episodes/1163000000/evaluation.json": "01983ff650d0d0d58e3d7f7671c540f4804752b159a65d303a8cf7dd047d1aa4",
+    "/home/peter/simul/training_robust/native90/heading_prior_regression_v1/case_0/episodes/1163000000/marker_observations.json": "e208bb6bd0f62af7c064ee77d95a3a88eb9e41fb1c0c3122c38ea400f6584320",
+    "/home/peter/simul/training_robust/native90/heading_prior_regression_v1/case_0/episodes/1163000000/pose_trace.csv": "aa4070cb93606f9a004b1d7ab5e7b2cb0f819da460b84597b5973902279e88b0",
+    "/home/peter/simul/training_robust/native90/heading_prior_regression_v1/case_0/episodes/1163000000/evaluator_gt_fine_1794513993698054642.csv": "9ed767db17a10bb1025db705f60f9ceb9dad3f2d3cd0fc86e99e9da4f48a5703"
+  }
+}

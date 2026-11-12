@@ -1,0 +1,55 @@
+{
+  "evidence_type": "offline_2D_camera_geometry_at_recorded_image_stamps",
+  "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00013_train_g0_1/episodes/1163001313",
+  "rows": [
+    {
+      "id": 220,
+      "decoded_frames": 93,
+      "modeled_readable_in_fov_frames_before_occlusion": 102,
+      "maximum_predicted_pixels_in_front_fov": 115.96276128405695,
+      "minimum_bearing_error_deg_when_predicted_readable": 0.18004688380675157,
+      "closest_camera_distance_m": 0.5284952046428638,
+      "bearing_error_deg_at_closest": 90.77234546449898
+    },
+    {
+      "id": 101,
+      "decoded_frames": 0,
+      "modeled_readable_in_fov_frames_before_occlusion": 0,
+      "maximum_predicted_pixels_in_front_fov": 1.2822846264959642,
+      "minimum_bearing_error_deg_when_predicted_readable": 62.91864131545815,
+      "closest_camera_distance_m": 0.7466147918489361,
+      "bearing_error_deg_at_closest": -88.28536432688931
+    },
+    {
+      "id": 134,
+      "decoded_frames": 127,
+      "modeled_readable_in_fov_frames_before_occlusion": 98,
+      "maximum_predicted_pixels_in_front_fov": 54.097099033393434,
+      "minimum_bearing_error_deg_when_predicted_readable": 0.025544874177858067,
+      "closest_camera_distance_m": 1.124120191472367,
+      "bearing_error_deg_at_closest": -89.25032540597937
+    }
+  ],
+  "inferred_camera_extrinsic_xy_m": [
+    -0.059600006402707725,
+    1.0649619179049774e-07
+  ],
+  "inferred_camera_yaw_offset_rad": -2.199251955659065e-06,
+  "actual_horizontal_half_fov_deg": 35.80986219567645,
+  "source_sha256": {
+    "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163001313.yaml": "363d9c4f111e06c18513e911dc9411ccc1fe1e1d6d49e0277b656b58ebb3186b",
+    "/home/peter/simul/training_robust/native90/calibrated_gain_v1/native_camera_calibration.json": "1a5bb787f8c2f64cbc4a7503e1edc933625407d6bb665d7b61be1ba95db3641c",
+    "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00013_train_g0_1/episodes/1163001313/pose_trace.csv": "deed6cb83de15ff10dc773d43cf67be20fc9c388c9728c776d3b435bcd1f763b",
+    "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00013_train_g0_1/episodes/1163001313/marker_observations.json": "d8079c6244f6744dd5c263983d0d9b6923a3c6ebe5b81e524995bd99e56b368b",
+    "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00013_train_g0_1/episodes/1163001313/runtime_trace.csv": "702eefe0b20210ca34218dd1345d9a342f446d4148010a67cd45c2d4cd42e5c9",
+    "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00013_train_g0_1/episodes/1163001313/evaluation.json": "b3a65ff4b93dc0c0b12b2c1cff4e4df8324eab5a7c8fef49d86a281a3b66bb60",
+    "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00013_train_g0_1/episodes/1163001313/evaluator_gt_fine_1794512707128045996.csv": "6a4fd501f87f71842711bd6adb92d88035dcc6be05d3824da27294c8f8c43dcc"
+  },
+  "ground_truth_used_only_by_evaluator": true,
+  "policy_or_result_modified": false,
+  "limits": [
+    "Pinhole edge size is approximate;occlusion,3D corner projection and image decoder behavior are not simulated",
+    "Camera extrinsics are inferred from accepted observations and interpolated audit poses",
+    "This diagnoses missed viewing direction;it is not a counterfactual mission success or speed result"
+  ]
+}
