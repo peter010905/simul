@@ -1,6 +1,6 @@
 {
-  "captured_utc": "2026-11-12T14:10:57.100578+00:00",
-  "status": "running_regression",
+  "captured_utc": "2026-11-12T14:18:38.416016+00:00",
+  "status": "completed_regression_requires_fresh_map_validation",
   "candidate_workspace": "/home/peter/simul/training_robust/native90/small_marker_followup_v2/runtime",
   "supervisor": "osp-small-marker-regression-v2.service",
   "baseline_campaign": "training_robust/native90/fresh_map_cem_v1",
@@ -45,27 +45,104 @@
   "production_promoted": false,
   "state_file": "/home/peter/simul/training_robust/native90/small_marker_followup_v2/regression/regression_state.json",
   "baseline_results": "tf_navigation_failure.json",
-  "running_case_observations": [
+  "native_diagnostic_successes": 2,
+  "native_diagnostic_episodes": 2,
+  "diagnostic_improvement_verified": true,
+  "native_generalization_verified": false,
+  "paired_results": [
     {
-      "case": "case_1",
-      "state": "running",
-      "elapsed_seconds": 191.2,
-      "targets": 3,
-      "approached_ids": [
-        174,
-        773
-      ],
-      "collisions": 0
+      "seed": 1121200000,
+      "baseline": {
+        "success": false,
+        "targets": 3,
+        "approached": 2,
+        "contacts": 0,
+        "seconds": 600.455,
+        "infrastructure_failure": false,
+        "reason": "timeout"
+      },
+      "candidate": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 282.519,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      },
+      "independent_audit": {
+        "seed": 1121200000,
+        "success": true,
+        "evaluator_success": true,
+        "seconds": 282.519,
+        "targets": 3,
+        "collisions": 0,
+        "coordinate_errors_m": {
+          "754": 0.00987920164178336,
+          "739": 0.09119311933542633,
+          "934": 0.08096067293053164
+        },
+        "required_approach_m": 1.5,
+        "closest_approach_m": {
+          "934": 1.4159438780016738,
+          "739": 1.4034810268338251,
+          "754": 1.4320188934846312
+        },
+        "video": {
+          "file": "/home/peter/simul/training_robust/native90/small_marker_followup_v2/regression/case_0/episodes/1121200000/video/mission.mp4",
+          "frames": 1416,
+          "fps": 5.0,
+          "verified": true
+        },
+        "errors": []
+      }
     },
     {
-      "case": "case_0",
-      "state": "running",
-      "elapsed_seconds": 206.519,
-      "targets": 2,
-      "approached_ids": [
-        754
-      ],
-      "collisions": 0
+      "seed": 1121200101,
+      "baseline": {
+        "success": false,
+        "targets": 1,
+        "approached": 1,
+        "contacts": 0,
+        "seconds": 600.309,
+        "infrastructure_failure": false,
+        "reason": "timeout"
+      },
+      "candidate": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 193.2,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      },
+      "independent_audit": {
+        "seed": 1121200101,
+        "success": true,
+        "evaluator_success": true,
+        "seconds": 193.2,
+        "targets": 3,
+        "collisions": 0,
+        "coordinate_errors_m": {
+          "776": 0.07231678240914728,
+          "773": 0.08443895437630079,
+          "174": 0.04717508479039536
+        },
+        "required_approach_m": 1.5,
+        "closest_approach_m": {
+          "773": 1.093031720808733,
+          "776": 1.4109668377327458,
+          "174": 1.435648939350985
+        },
+        "video": {
+          "file": "/home/peter/simul/training_robust/native90/small_marker_followup_v2/regression/case_1/episodes/1121200101/video/mission.mp4",
+          "frames": 968,
+          "fps": 5.0,
+          "verified": true
+        },
+        "errors": []
+      }
     }
   ]
 }

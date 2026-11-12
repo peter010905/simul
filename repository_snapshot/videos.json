@@ -1,7 +1,7 @@
 {
-  "updated_utc": "2026-11-12T14:05:55.837236+00:00",
+  "updated_utc": "2026-11-12T14:14:00.275013+00:00",
   "release_url": "https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11",
-  "uploaded_verified": 117,
+  "uploaded_verified": 119,
   "videos": [
     {
       "asset": "fix_v10_escape_regression3__9802005.mp4",
@@ -1874,6 +1874,38 @@
       "recording_frames": 3003,
       "recording_seconds": 600.6,
       "uploaded_verified": true
+    },
+    {
+      "asset": "small_marker_followup_v2__regression__case_0__1121200000.mp4",
+      "local_path": "training_robust/native90/small_marker_followup_v2/regression/case_0/episodes/1121200000/video/mission.mp4",
+      "bytes": 9791129,
+      "sha256": "6938dd411431f8c66d2ff539df8d302612ad7fec666cdb1d5f761bfb592142b6",
+      "url": "https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/small_marker_followup_v2__regression__case_0__1121200000.mp4",
+      "original_evaluator_success": true,
+      "reason": "all_targets_found",
+      "elapsed_sim_seconds": 282.519,
+      "targets": 3,
+      "collisions": 0,
+      "actual_approach_1_5m": true,
+      "recording_frames": 1416,
+      "recording_seconds": 283.2,
+      "uploaded_verified": true
+    },
+    {
+      "asset": "small_marker_followup_v2__regression__case_1__1121200101.mp4",
+      "local_path": "training_robust/native90/small_marker_followup_v2/regression/case_1/episodes/1121200101/video/mission.mp4",
+      "bytes": 7736890,
+      "sha256": "c065759743edd44493315cafc046a0736664c5ee0b2e32bb8cf617c7f868d572",
+      "url": "https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/small_marker_followup_v2__regression__case_1__1121200101.mp4",
+      "original_evaluator_success": true,
+      "reason": "all_targets_found",
+      "elapsed_sim_seconds": 193.2,
+      "targets": 3,
+      "collisions": 0,
+      "actual_approach_1_5m": true,
+      "recording_frames": 968,
+      "recording_seconds": 193.6,
+      "uploaded_verified": true
     }
   ],
   "skipped": [
@@ -1887,14 +1919,6 @@
     },
     {
       "path": "training_robust/native90/rpp_v7_service_screen3/episodes/8600133/video/mission.mp4",
-      "reason": "Final evaluation or recording metadata absent"
-    },
-    {
-      "path": "training_robust/native90/small_marker_followup_v2/regression/case_0/episodes/1121200000/video/mission.mp4",
-      "reason": "Final evaluation or recording metadata absent"
-    },
-    {
-      "path": "training_robust/native90/small_marker_followup_v2/regression/case_1/episodes/1121200101/video/mission.mp4",
       "reason": "Final evaluation or recording metadata absent"
     }
   ],

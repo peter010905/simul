@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T14:08:22.008394+00:00",
+  "captured_utc": "2026-11-12T14:18:38.416016+00:00",
   "status": "running",
   "generation": 0,
   "phase": "train",
@@ -49,7 +49,37 @@
     "curriculum_and_marker_journal_passed": 6,
     "build": "passed"
   },
-  "running_jobs": [],
+  "running_jobs": [
+    {
+      "number": 2,
+      "seed": 1121200202,
+      "unit": "osp-freshmap-nov12-v1-00002.service",
+      "observed_status": {
+        "state": "running",
+        "elapsed_seconds": 101.8,
+        "targets": 2,
+        "approached_ids": [
+          701,
+          964
+        ],
+        "collisions": 0
+      }
+    },
+    {
+      "number": 3,
+      "seed": 1121200303,
+      "unit": "osp-freshmap-nov12-v1-00003.service",
+      "observed_status": {
+        "state": "running",
+        "elapsed_seconds": 99.4,
+        "targets": 1,
+        "approached_ids": [
+          713
+        ],
+        "collisions": 0
+      }
+    }
+  ],
   "completed_training_jobs": 2,
   "goal_status": "active",
   "generalization_improvement_verified": false,
@@ -61,9 +91,9 @@
   ],
   "occupancy_diversity_audit": "fresh_map_diversity.json",
   "diversity_regression_checks_passed": 2,
-  "status_detail": "First2training jobs timed out;small-marker diagnostic regressions are running before CEM resumes",
+  "status_detail": "Small-marker diagnostic comparison completed2/2success;new-map native jobs and queued TF comparison continue",
   "active_supervisor": "osp-small-marker-regression-v2.service",
-  "pending_diagnostic": "small_marker_followup.json",
+  "pending_diagnostic": "tf_navigation_failure.json",
   "completed_results": [
     {
       "number": 0,

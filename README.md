@@ -217,7 +217,7 @@ python3 scripts/publish_simulation_videos.py --upload
 
 ## 저장된 Gazebo 영상
 
-[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 117개
+[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 119개
 
 아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다.
 
@@ -342,6 +342,8 @@ python3 scripts/publish_simulation_videos.py --upload
 | [slam_nav2_search_v1__009_validation_frontier_balanced_9811006__9811006.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/slam_nav2_search_v1__009_validation_frontier_balanced_9811006__9811006.mp4) | 성공 | 확인 | 287.908 |
 | [slam_nav2_search_v1__010_validation_frontier_balanced_9811013__9811013.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/slam_nav2_search_v1__010_validation_frontier_balanced_9811013__9811013.mp4) | 성공 | 확인 | 428.354 |
 | [slam_nav2_search_v1__011_validation_frontier_balanced_9811019__9811019.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/slam_nav2_search_v1__011_validation_frontier_balanced_9811019__9811019.mp4) | 실패 | 확인 | 600.083 |
+| [small_marker_followup_v2__regression__case_0__1121200000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/small_marker_followup_v2__regression__case_0__1121200000.mp4) | 성공 | 확인 | 282.519 |
+| [small_marker_followup_v2__regression__case_1__1121200101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/small_marker_followup_v2__regression__case_1__1121200101.mp4) | 성공 | 확인 | 193.2 |
 
 </details>
 
@@ -572,3 +574,10 @@ runtime 테스트200개 통과·1개 skip, 감독 서비스 테스트2개 통과
 이후 연속 새 맵 학습 감독기를 다시 재개합니다. 회차·맵·마커·가중치·영상 기록을 보존하며
 동시 Gazebo 실행은 최대2개입니다.
 [실패 로그 집계와 TF 후보](repository_snapshot/tf_navigation_failure.json).
+
+작은 마커 재확인 후보의 두 진단 비교는 모두 독립 감사를 통과했습니다.
+기존600초 timeout 두 배치를 같은 맵·같은 가중치에서 각각282.519초와193.2초에 완주했습니다.
+세 ID·각1.5m 실제 접근·지도 오차0.5m 이하·접촉0회를 모두 충족했고 영상도 게시했습니다.
+이 결과는 이미 관찰한 두 배치의 진단 개선이며, 새 맵 전반의 완주율 검증은 계속 필요합니다.
+비워진 자리에 새 맵 훈련을 재개했고, TF 비교 감독기가 활성화된 새 훈련 주행을 끝까지 유지한 뒤
+시간 설정 후보를 비교합니다. 현재 상태는 각 감독기와 로컬 state 파일로 확인합니다.
