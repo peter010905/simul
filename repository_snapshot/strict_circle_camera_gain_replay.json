@@ -1,0 +1,266 @@
+{
+  "evidence_type": "offline_retained_endpoint_replay_of_finalized_native_circle_inputs",
+  "rows": [
+    {
+      "snapshot": "/home/peter/simul/training_robust/native90/strict_approach_regression_v1/case_0/episodes/1163000000/policy_decisions/0000.npz",
+      "snapshot_sha256": "9e9265a2a80fe7639f255b4ea70f66170440c8b1dd2fe142286799e0f134e6b9",
+      "elapsed_sim_s": 4.632,
+      "recorded_selected": [
+        -0.6563531420309401,
+        0.5318532136555918,
+        -1.925798162783766
+      ],
+      "legacy_replay": {
+        "candidates": 21,
+        "xy": [
+          -0.6563531420309401,
+          0.5318532136555918
+        ],
+        "features": [
+          0.10000000149011612,
+          5.0,
+          0.8778174723857018,
+          0.03561008352997552,
+          0.11098512351021249
+        ]
+      },
+      "calibrated_replay": {
+        "candidates": 21,
+        "xy": [
+          -0.6563531420309401,
+          0.5318532136555918
+        ],
+        "features": [
+          0.10000000149011612,
+          5.0,
+          0.8778174723857018,
+          0.03561008352997552,
+          0.11098512351021249
+        ]
+      },
+      "legacy_point_matches_recording": true,
+      "selected_point_changed": false
+    },
+    {
+      "snapshot": "/home/peter/simul/training_robust/native90/strict_approach_regression_v1/case_0/episodes/1163000000/policy_decisions/0009.npz",
+      "snapshot_sha256": "f60f7bad43ccf44d06380602493f7f5aac22d7939ec02fbf8e78a1b6b15a9827",
+      "elapsed_sim_s": 154.132,
+      "recorded_selected": [
+        -4.3887603902189944,
+        9.134458525793146,
+        0.5235987755982991
+      ],
+      "legacy_replay": {
+        "candidates": 344,
+        "xy": [
+          -4.3887603902189944,
+          9.134458525793146
+        ],
+        "features": [
+          3.300000049173832,
+          4.6666667362054195,
+          6.832590282593965,
+          0.48047055401091265,
+          3.5797310859179074e-29
+        ]
+      },
+      "calibrated_replay": {
+        "candidates": 343,
+        "xy": [
+          -2.7887603663771365,
+          6.384458484814954
+        ],
+        "features": [
+          0.800000011920929,
+          5.0,
+          6.590559257309123,
+          0.6976266910852598,
+          2.7084638505622602e-24
+        ]
+      },
+      "legacy_point_matches_recording": true,
+      "selected_point_changed": true
+    },
+    {
+      "snapshot": "/home/peter/simul/training_robust/native90/strict_approach_regression_v1/case_0/episodes/1163000000/policy_decisions/0014.npz",
+      "snapshot_sha256": "8f2b7d234963414721445decc4d6f3260625a1592d70a656c1815268319acc1d",
+      "elapsed_sim_s": 244.633,
+      "recorded_selected": [
+        -10.198063279710073,
+        5.434458470658851,
+        2.335870145848779
+      ],
+      "legacy_replay": {
+        "candidates": 337,
+        "xy": [
+          -10.198063279710073,
+          5.434458470658851
+        ],
+        "features": [
+          4.300000064074993,
+          0.0,
+          1.8935029124698322,
+          0.3513905307250753,
+          0.013638794893946177
+        ]
+      },
+      "calibrated_replay": {
+        "candidates": 333,
+        "xy": [
+          -10.198063279710073,
+          5.434458470658851
+        ],
+        "features": [
+          3.1000000461935997,
+          0.0,
+          1.8935029124698322,
+          0.3513905307250753,
+          0.013638794893946177
+        ]
+      },
+      "legacy_point_matches_recording": true,
+      "selected_point_changed": false
+    },
+    {
+      "snapshot": "/home/peter/simul/training_robust/native90/strict_approach_regression_v1/case_0/episodes/1163000000/policy_decisions/0019.npz",
+      "snapshot_sha256": "bd6632c67c5b00074f4c4e0ef2a0dbe4c7077d80dde25c50ac134069535d9844",
+      "elapsed_sim_s": 310.132,
+      "recorded_selected": [
+        -9.412836318664969,
+        -0.015941332858509405,
+        -3.1080670390286964
+      ],
+      "legacy_replay": {
+        "candidates": 326,
+        "xy": [
+          -9.412836318664969,
+          -0.015941332858509405
+        ],
+        "features": [
+          5.000000074505806,
+          0.0,
+          0.8621320472027327,
+          0.25602185920739595,
+          1.5205382012659516
+        ]
+      },
+      "calibrated_replay": {
+        "candidates": 322,
+        "xy": [
+          -9.412836318664969,
+          -0.015941332858509405
+        ],
+        "features": [
+          3.7500000558793545,
+          0.0,
+          0.8621320472027327,
+          0.25602185920739595,
+          1.5205382012659516
+        ]
+      },
+      "legacy_point_matches_recording": true,
+      "selected_point_changed": false
+    },
+    {
+      "snapshot": "/home/peter/simul/training_robust/native90/strict_approach_regression_v1/case_0/episodes/1163000000/policy_decisions/0024.npz",
+      "snapshot_sha256": "c61a19f864cc1aac63df3f313a47743b11d7e6e06d8ee09836439e238076e3b8",
+      "elapsed_sim_s": 363.632,
+      "recorded_selected": [
+        -6.662836277686775,
+        -3.2220374933620013,
+        -0.8864624194563842
+      ],
+      "legacy_replay": {
+        "candidates": 321,
+        "xy": [
+          -6.662836277686775,
+          -3.2220374933620013
+        ],
+        "features": [
+          5.700000084936619,
+          0.0,
+          1.4020815489097738,
+          1.0721249270168576,
+          0.09930833322038225
+        ]
+      },
+      "calibrated_replay": {
+        "candidates": 318,
+        "xy": [
+          -6.8128362799219495,
+          -3.122037491871885
+        ],
+        "features": [
+          3.200000047683716,
+          0.0,
+          1.2399495121378539,
+          0.5711610310722559,
+          0.1963875648138047
+        ]
+      },
+      "legacy_point_matches_recording": true,
+      "selected_point_changed": true
+    },
+    {
+      "snapshot": "/home/peter/simul/training_robust/native90/strict_approach_regression_v1/case_0/episodes/1163000000/policy_decisions/0030.npz",
+      "snapshot_sha256": "9fe4ca073778717cb81532a6496ab81932fd459bcdade6408ae01ae27da51522",
+      "elapsed_sim_s": 444.132,
+      "recorded_selected": [
+        1.8871638497181529,
+        0.5779625632624112,
+        -1.4398966328953218
+      ],
+      "legacy_replay": {
+        "candidates": 328,
+        "xy": [
+          1.8871638497181529,
+          0.5779625632624112
+        ],
+        "features": [
+          6.150000091642141,
+          0.0,
+          5.142640763750596,
+          0.17070150698701614,
+          0.11873030551214023
+        ]
+      },
+      "calibrated_replay": {
+        "candidates": 325,
+        "xy": [
+          2.037163851953327,
+          -0.3720374508936919
+        ],
+        "features": [
+          3.8500000573694706,
+          0.0,
+          4.371930074147462,
+          0.22199757471170845,
+          0.16466902053260823
+        ]
+      },
+      "legacy_point_matches_recording": true,
+      "selected_point_changed": true
+    }
+  ],
+  "snapshots": 6,
+  "changed_selected_points": 3,
+  "legacy_replay_agreements": 6,
+  "empty_new_candidate_sets": 0,
+  "ground_truth_used": false,
+  "policy_or_original_result_changed": false,
+  "new_trajectory_or_success_simulated": false,
+  "source_sha256": {
+    "/home/peter/simul/training_robust/native90/strict_approach_v1/runtime/src/osp_mission/osp_mission/edge_policy.py": "0a0743eada4d67822015bc8c43447b0b3537f928744bab9e17740954c2f7fca8",
+    "/home/peter/simul/training_robust/native90/strict_calibrated_gain_v1/runtime/src/osp_mission/osp_mission/edge_policy.py": "56ca772647b74d33c6035eb63a16c6c92fbb7ee4fb0b6463e4e6f111e9e5dd0c"
+  },
+  "calibration_source": "/home/peter/simul/training_robust/native90/calibrated_gain_v1/native_camera_calibration.json",
+  "calibration_sha256": "1a5bb787f8c2f64cbc4a7503e1edc933625407d6bb665d7b61be1ba95db3641c",
+  "focal_px": 665.2950122399816,
+  "limits": [
+    "Retained endpoints and recorded odom-memory cost held fixed;heading-dependent memory is not rerun",
+    "Legacy arm includes full-circle gain;candidate combines bounded sector and calibrated readable range",
+    "Six evenly indexed non-marker decisions,not a population statistic",
+    "Shared960x720camera calibration directly measured in prior native job13",
+    "No new frames,recognition,mission duration or success rate simulated"
+  ]
+}

@@ -2,7 +2,7 @@
 
 > **2026-11-13 현재:** 실제 Gazebo에서 **원형·삼각형·사다리꼴·직사각형·L자·U자·다중 방**의
 > 외곽 벽과 주행 공간까지 바꾸며 학습합니다. `spatial_cem_v5`의 훈련 맵28개는 외곽선·점유 격자가 서로 다릅니다.
-> 완료된 훈련20회 중11회가 원래 벤치 기준을 통과했습니다. CEM 세대 학습과 독립 일반화 시험은 아직 미완료이며 실사용 정책으로 승격하지 않았습니다.
+> 완료된 훈련22회 중11회가 원래 벤치 기준을 통과했습니다. CEM 세대 학습과 독립 일반화 시험은 아직 미완료이며 실사용 정책으로 승격하지 않았습니다.
 > [공간·학습·기준·실행 상태](repository_snapshot/spatial_curriculum.json) · [외곽선 중복 감사](repository_snapshot/spatial_geometry_v5.json).
 >
 > **최근 실제 결과:** 새 L자·장애물26개는358.222초, U자는59.812초에 세 ID·각 실제1.5m 접근·정확한 지도 위치·충돌0회를 통과했습니다.
@@ -19,11 +19,21 @@
 > 실제 파라미터·입력 경로·바닥 센서·Nav2 설정을 확인했고 기존 벤치에서는204.200초에 세 ID·좌표 기준·충돌0회를 통과했습니다.
 > 추가 감사에서는 마지막 ID337의 접근 완료 판정 시 실제 거리가1.511m였습니다. 이후1.484m까지 갔지만 이력만으로 앞선 판정을 검증하지 않습니다.
 > 지도상 근접만으로 완료하지 않고, 확인된 ID의 몸체 기준1.3m 내 센서 관측3프레임을 요구하는 새 후보를 만들었습니다.
-> 접근 목표는0.75–0.90m로 잡아 Nav2 정지 허용 오차에 여유를 주며 전체247개 테스트·빌드 후 실제 Gazebo에서 검증 중입니다.
-> [근거리 완료 후보](repository_snapshot/strict_approach_candidate.json).
+> 접근 목표는0.75–0.90m로 잡아 Nav2 정지 허용 오차에 여유를 주며 전체247개 테스트·빌드 후 원형 Gazebo 비교를496.132초에 통과했습니다.
+> 세 ID·실제1.5m 접근·지도 위치·충돌0회를 확인했고 좌표 오차는최대6.94cm였습니다.
+> 세 마커의 근거리 관측9개를 실제 궤적으로 다시 검사했으며 샘플 간 이동 여유를 더해도 모두1.271m 이내였습니다.
+> [근거리 완료 후보와 실제 영상](repository_snapshot/strict_approach_candidate.json).
+> 탐색 시간은 아직 부족합니다. 두 번째 ID 뒤 마지막 ID까지385.5초가 걸렸고 전체496.1초는 속도 개선 증거가 아닙니다.
+> 완료 실행의 저장 입력6개를 재생해 기존 선택6개를 모두 재현했고, 보상 수정 후보는3개 선택을 바꿨습니다. 실제 시간·인식 향상은 새 주행에서 검증합니다.
+> [관측 보상 재생과 한계](repository_snapshot/strict_circle_camera_gain_replay.json).
 > bounded 시야 보상과 실제 카메라 거리 보정까지 결합한 후보는253개 테스트를 통과했습니다.
-> 서로 다른 새7종 공간은 외곽·점유·접근 가능성 검사를 통과했고, 근거리 완료 검증을 통과하면 별도 학습용 Gazebo 시험이 이어집니다.
+> 서로 다른 새7종 공간은 외곽·점유·접근 가능성 검사를 통과했습니다. 근거리 완료 검증을 통과해 첫 새 원형·장애물12개에서 실제 주행 중입니다.
+> 실제 보정 입력·바닥 센서·Nav2 설정과 카메라 초점거리665.3px·관측 인정 거리2.513m를 확인했습니다.
+> 새7종 공간의 마커21개 모두에는 안전한 근거리 접근 위치가 있었습니다. [평가용 기하 검사](repository_snapshot/strict_standoff_geometry_audit.json).
 > [새 공간 시험과 진입 조건](repository_snapshot/spatial_calibrated_screen.json). 실제 일반화·속도·재방문 개선은 아직 검증 전입니다.
+> 기존 bounded 관측 보상만 적용한 다른 원형은265.224초에 세 ID·실제 접근을 달성했지만 좌표 오차70.0cm로 실패했습니다.
+> 해당 ID의 관측을 실제 자세로 평가용 재생하면 오차 중앙값69.9cm→2.0mm여서 위치 추정 문제를 지지합니다. 이 보정을 정책에 전달하지 않습니다.
+> [기존 소스의 새 좌표 실패](repository_snapshot/bounded_gain_circle_localization_failure.json). 새 결합 후보의 공간별 검증을 계속합니다.
 > [정밀 접근 감사](repository_snapshot/approach_margin_diagnosis.json).
 > [센서 재생 측정과 한계](repository_snapshot/motion_calibration_study.json) · [실제 검증 상태](repository_snapshot/velocity_calibration_candidate.json).
 > 기존 주행은 보존했고 실제 실행 자리 확보 후 CEM 감독기가 재개됐습니다. 최대 두 native 실행을 유지합니다.
@@ -267,7 +277,7 @@ python3 scripts/publish_simulation_videos.py --upload
 
 ## 저장된 Gazebo 영상
 
-[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 161개
+[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 164개
 
 아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다. 환경 오류로 종료한 영상은 정책 학습 표본에서 제외합니다.
 
@@ -433,6 +443,9 @@ python3 scripts/publish_simulation_videos.py --upload
 | [spatial_cem_v5__00016_train_g0_2__1163001616.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v5__00016_train_g0_2__1163001616.mp4) | 실패 | 미달 | 600.447 |
 | [spatial_cem_v5__00017_train_g0_2__1163001717.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v5__00017_train_g0_2__1163001717.mp4) | 실패 | 확인 | 600.1 |
 | [spatial_cem_v5__00018_train_g0_2__1163001818.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v5__00018_train_g0_2__1163001818.mp4) | 실패 | 미달 | 600.4 |
+| [spatial_cem_v5__00020_train_g0_2__1163002020.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v5__00020_train_g0_2__1163002020.mp4) | 실패 | 확인 | 600.376 |
+| [spatial_cem_v5__00021_train_g0_3__1163002121.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v5__00021_train_g0_3__1163002121.mp4) | 실패 | 확인 | 265.224 |
+| [strict_approach_regression_v1__case_0__1163000000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/strict_approach_regression_v1__case_0__1163000000.mp4) | 성공 | 확인 | 496.132 |
 | [tf_restamp_v1__regression__case_0__1121200000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_0__1121200000.mp4) | 성공 | 확인 | 231.867 |
 | [tf_restamp_v1__regression__case_1__1121200101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_1__1121200101.mp4) | 성공 | 확인 | 229.859 |
 | [velocity_calibration_regression_v1__case_0__1163000000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/velocity_calibration_regression_v1__case_0__1163000000.mp4) | 성공 | 확인 | 204.2 |

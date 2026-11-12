@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T21:35:35.047860+00:00",
+  "captured_utc": "2026-11-12T21:57:22.164669+00:00",
   "purpose": "Repository upload snapshot; not a live dashboard",
   "tests_passed_final": 189,
   "native_validation_complete": false,
@@ -137,23 +137,29 @@
   "previous_regressions_complete": true,
   "latest_change": {
     "date": "2026-11-13",
-    "name": "Strict sensor-proof approach247tests;combined camera gain253tests;new7shape screen gated by exact physical completion",
-    "status": "strict_candidate_live_Gazebo;fresh7shape_screen_waiting_for_prerequisite",
+    "name": "Native sensor-proof approach496.132s full3ID/1.5m/map/zero-contact pass;new7shape calibrated-gain engineering screen activated",
+    "status": "strict_circle_full_pass;new253test_source_live_in_fresh_circle12obstacles",
     "generalization_verified": false
   },
   "latest_recording": {
     "date": "2026-11-13",
-    "evidence_type": "new_native_fixed_velocity_calibration_circle_diagnostic",
+    "evidence_type": "new_native_sensor_proof_circle_regression",
     "scenario_seed": 1163000000,
     "original_benchmark_success": true,
-    "full_completion_audit_passed": false,
-    "elapsed_sim_seconds": 204.2,
+    "full_completion_audit_passed": true,
+    "elapsed_sim_seconds": 496.132,
     "targets": 3,
     "collisions": 0,
     "correct_ids": true,
     "correct_positions": true,
-    "all_three_physical_credits_verified": false,
-    "approach_margin_report": "approach_margin_diagnosis.json",
+    "all_three_physical_credits_verified": true,
+    "maximum_physical_witness_distance_upper_m": 1.2707388159836266,
+    "position_errors_m": {
+      "337": 0.06492599828571329,
+      "523": 0.06934559636986032,
+      "534": 0.021050847588733674
+    },
+    "report": "strict_approach_candidate.json",
     "hardware_validated": false,
     "production_promoted": false
   },
@@ -164,10 +170,13 @@
     "evaluator_observer": "osp-spatial-evaluator-observer-v1.service",
     "priority_diagnostic": "osp-strict-approach-v1.service",
     "diagnostic_evaluator": "osp-strict-approach-evaluator-v1.service",
-    "CEM_dispatch": "running;automatic_resume_verified",
-    "priority_diagnostic_status": "running_fresh_space_probe",
+    "CEM_dispatch": "resumed_after_verified_new_source_nativePID",
+    "priority_diagnostic_status": "completed_full_case_pass",
     "fresh_shape_screen": "osp-spatial-calibrated-screen-v1.service",
-    "conditional_fresh_triangle_probe": "osp-calibrated-triangle-probe-v1.service"
+    "conditional_fresh_triangle_probe": "osp-calibrated-triangle-probe-v1.service",
+    "conditional_fresh_triangle_status": "not_needed_seven_shape_screen_proceeds",
+    "fresh_shape_screen_status": "first_new_space_native_running",
+    "fresh_shape_evaluator": "osp-spatial-calibrated-evaluator-v1.service"
   },
   "pending_tf_comparison": {
     "status": "completed",
@@ -215,5 +224,8 @@
   "approach_margin_diagnosis": "approach_margin_diagnosis.json",
   "strict_approach_candidate": "strict_approach_candidate.json",
   "spatial_calibrated_screen": "spatial_calibrated_screen.json",
-  "latest_startup_failure_evidence": "latest_startup_failure_evidence.json"
+  "latest_startup_failure_evidence": "latest_startup_failure_evidence.json",
+  "strict_circle_camera_gain_replay": "strict_circle_camera_gain_replay.json",
+  "strict_standoff_geometry_audit": "strict_standoff_geometry_audit.json",
+  "bounded_gain_circle_localization_failure": "bounded_gain_circle_localization_failure.json"
 }
