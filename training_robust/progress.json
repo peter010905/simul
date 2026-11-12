@@ -65,9 +65,9 @@
   "ros_surface_integration": "surface_endpoint_default_edge_comparison_option_unit_tested",
   "gazebo_verified": false,
   "next_actions": [
-    "Preserve currentcircle/trianglenative runs;verifyeffective inputs each episode",
-    "Continue3source/weightCEM onfreshspaces andretainID/approach/videojournals",
-    "Collect fullgeneration ranking,pairedshapevalidation,42freshspacefinal,and40PDFreservedfinalbeforeproduction"
+    "Fix SLAM lifecycle startup fallback in a new immutable runtime; preserve failedstartuptrial",
+    "Validate seed-recovery candidate natively before incorporating it into future source search",
+    "Continue currentCEMtrialswithallpreparednewspaces,rawID/approachjournals,andoriginalindependentgates"
   ],
   "ros_unit_tests_passed": 157,
   "ros_directional_smoke": "native_communication_verified",
@@ -109,15 +109,15 @@
   },
   "current_jobs": [
     {
-      "number": 0,
-      "unit": "osp-spatial-nov13-space5-00000.service",
-      "domain": 114,
+      "number": 7,
+      "unit": "osp-spatial-nov13-space5-00007.service",
+      "domain": 115,
       "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime"
     },
     {
-      "number": 3,
-      "unit": "osp-spatial-nov13-space5-00003.service",
-      "domain": 115,
+      "number": 8,
+      "unit": "osp-spatial-nov13-space5-00008.service",
+      "domain": 114,
       "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime"
     }
   ],
@@ -1111,10 +1111,11 @@
   },
   "spatial_curriculum": "repository_snapshot/spatial_curriculum.json",
   "dashboard": "http://127.0.0.1:8765",
-  "latest_goal_turn_evidence": "2of28newCEMtrainingepisodescompletedandindependentlypassed:triangle408.346s,trapezoid52.779s;circleandrectanglerunning;fineGT29.4simHz;3priorcreditstampspassedaddedphysicalaudit;trianglesupplementaryexacttimestampboundinconclusive,notamissionfailure",
+  "latest_goal_turn_evidence": "First7newshape trainingepisodesfinished:6passed,1circle600.222timeout;circleID337seedlockdiagnosedwith169decoded/134rejects/0.688mfirsterror;223testrecoverycandidatestaged;nativeattemptneverstartedbecauseSLAM/mapTFstartupfailed;originalCEMautomaticallyresumedwithsamefrozenstate",
   "latest_navigation_diagnosis": "repository_snapshot/local_navigation_diagnosis.json",
   "current_native_supervisor": "osp-spatial-cem-v5.service",
   "next_training_driver": "spatial_native_curriculum_v5.py",
   "fine_evaluator_observer": "osp-spatial-evaluator-observer-v1.service",
-  "physical_credit_auditor": "training_robust/audit_approach_evidence.py"
+  "physical_credit_auditor": "training_robust/audit_approach_evidence.py",
+  "priority_diagnostic": "osp-seed-reacquisition-regression-v1.service"
 }

@@ -1,0 +1,52 @@
+{
+  "captured_utc": "2026-11-12T19:02:46.415773+00:00",
+  "evidence_type": "actual_native_startup_failure_before_mission",
+  "episode": "/home/peter/simul/training_robust/native90/reacquisition_regression_v1/case_0/episodes/1163000000",
+  "mission_started": false,
+  "policy_quality_result_available": false,
+  "wall_seconds": 180.00144086312503,
+  "raw_reason": "startup_failure",
+  "last_status": {
+    "state": "idle",
+    "approached_ids": [],
+    "targets": 0,
+    "collisions": 0,
+    "elapsed_seconds": 0.0,
+    "active_action": "",
+    "readiness_reason": "",
+    "sensor_interruptions": 0,
+    "nav2_lifecycle": {
+      "controller_server": 3,
+      "planner_server": 2,
+      "behavior_server": 2,
+      "bt_navigator": 2
+    },
+    "drive_controllers": {
+      "diffdrive_controller": "active",
+      "joint_state_broadcaster": "active"
+    },
+    "confirmed_surface_cells": 0,
+    "confirmed_face_anchors": 0,
+    "reassociated_face_records": 0,
+    "camera_diagnostics": {
+      "received": 321,
+      "late": 1,
+      "invalid_calibration": 0,
+      "duplicate": 0,
+      "accepted": 320,
+      "coverage_updates": 0,
+      "tf_waits": 0
+    }
+  },
+  "observed_log_events": [
+    "slam_toolbox configure response could not be delivered to its client",
+    "No SLAM activation event observed in launch log",
+    "global_costmap activation failed because map frame did not exist",
+    "Nav2 lifecycle bringup aborted; mission stayed idle"
+  ],
+  "root_cause_inference": "SLAM activation did not complete in the launch sequence; exact SLAM GetState response was not captured before shutdown",
+  "next_action": "Stage bounded idempotent SLAM lifecycle startup recovery in a new runtime; preserve this failed run",
+  "training_sample": false,
+  "original_CEM_automatically_resumed": true,
+  "original_CEM_records_preserved": true
+}

@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T18:20:34.392708+00:00",
+  "captured_utc": "2026-11-12T19:02:46.415773+00:00",
   "purpose": "Repository upload snapshot; not a live dashboard",
   "tests_passed_final": 189,
   "native_validation_complete": false,
@@ -137,8 +137,8 @@
   "previous_regressions_complete": true,
   "latest_change": {
     "date": "2026-11-13",
-    "name": "fresh_triangle408.346s_and_trapezoid52.779s_passed;fine_evaluator_capture",
-    "status": "spatial_cem_v5_generation0;2of28finished;circle_and_rectangle_running",
+    "name": "first7freshshape_trials6successes;seed_recovery_native_blocked_at_startup",
+    "status": "CEMresumed_running;startup_repair_required_before_recovery_validation",
     "generalization_verified": false
   },
   "latest_recording": {
@@ -162,7 +162,11 @@
     "current_campaign": "spatial_cem_v5",
     "coordinator": "osp-spatial-cem-v5.service",
     "dashboard": "osp-robot-dashboard.service",
-    "evaluator_observer": "osp-spatial-evaluator-observer-v1.service"
+    "evaluator_observer": "osp-spatial-evaluator-observer-v1.service",
+    "priority_diagnostic": "osp-seed-reacquisition-regression-v1.service",
+    "diagnostic_evaluator": "osp-reacquisition-evaluator-observer-v1.service",
+    "CEM_dispatch": "running;automatic_resume_verified",
+    "priority_diagnostic_status": "completed_startup_failure;no_policy_result"
   },
   "pending_tf_comparison": {
     "status": "completed",
@@ -192,5 +196,9 @@
   "bounded_gain_candidate": "bounded_gain_candidate.json",
   "current_champion_runtime": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
   "physical_credit_verification": "physical_credit_verification.json",
-  "latest_observability_change": "Saved approach credits independently verified;fine actual-pose traces measured29.4simHz;future completedCEMepisodes automatically analyzed"
+  "latest_observability_change": "Saved approach credits independently verified;fine actual-pose traces measured29.4simHz;future completedCEMepisodes automatically analyzed",
+  "landmark_seed_diagnosis": "landmark_seed_diagnosis.json",
+  "latest_built_recovery_candidate": "/home/peter/simul/training_robust/native90/reacquisition_v1/runtime",
+  "recovery_candidate_tests_passed": 223,
+  "reacquisition_startup_failure": "reacquisition_startup_failure.json"
 }
