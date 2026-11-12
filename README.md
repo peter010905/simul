@@ -530,3 +530,21 @@ python3 training_robust/prepare_continual_native.py training_robust/native90/NEW
 # 생성된 runtime에서 colcon build를 마친 뒤 감독기를 실행합니다.
 python3 training_robust/continual_native_curriculum.py training_robust/native90/NEW_FRESH_MAP_RUN
 ```
+
+## 작은 마커 후보 재확인 실험 — 2026-11-12
+
+새 훈련 맵의 첫2회에서10–17px 후보가 반복 검출돼도18px 인식 기준 때문에
+근접 관측 후보로 전달되지 않는 동작을 확인했습니다. 별도 후보 runtime에서는10px 이상 후보를
+거리·수직면·3프레임 위치 일관성으로 걸러 가까이서 확인할 관측 힌트를 발행합니다.
+인식은 기존과 같이18px 이상 관측 이력3개로 확정합니다.
+작은 후보는 인식 이력·마커 지도·접근 완료 판정에 들어가지 않습니다.
+
+현재2회 Gazebo 주행은 끝까지 유지하고, 이후 같은 맵·같은 가중치에서 진단 비교2회를 실행합니다.
+이 비교는 훈련 샘플에 넣지 않습니다. 비교 후 연속 학습 감독 서비스를 자동으로 재개합니다.
+systemd 임시 서비스 정의가 정지 후 사라지면 같은 설정으로 감독 서비스를 다시 생성합니다.
+동시 Gazebo 실행은 최대2개, 각6GiB입니다.
+
+runtime 테스트200개 통과·1개 skip, 감독 서비스 테스트2개 통과와 colcon build 성공입니다.
+14px 영상은 관측 힌트만 생성하고,24px 영상도3회 관측 후 ID를 확정하는 경로를 검증했습니다.
+실제 Gazebo에서의 시간 단축·완주 개선은 추가 검증이 필요합니다.
+[구성과 진단 비교 범위](repository_snapshot/small_marker_followup.json).

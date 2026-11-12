@@ -1,0 +1,47 @@
+{
+  "captured_utc": "2026-11-12T13:51:00.091047+00:00",
+  "status": "waiting_for_current_native_pair",
+  "candidate_workspace": "/home/peter/simul/training_robust/native90/small_marker_followup_v2/runtime",
+  "supervisor": "osp-small-marker-regression-v2.service",
+  "baseline_campaign": "training_robust/native90/fresh_map_cem_v1",
+  "purpose": "Diagnose low-pixel marker follow-up while preserving strict recognition",
+  "evidence": {
+    "observed_candidate_sizes_pixels": [
+      17,
+      10
+    ],
+    "note": "Decoded image candidates below18px were rejected before producing inspection hints. Candidate IDs are not independently verified yet."
+  },
+  "change": {
+    "provisional_min_edge_pixels": 10,
+    "recognition_min_edge_pixels": 18,
+    "stable_frames_for_cue": 3,
+    "max_frame_gap_s": 1.0,
+    "max_position_change_m": 0.25,
+    "cue_publish_cooldown_s": 2.0,
+    "candidate_topic": "mission/marker_candidates",
+    "provisional_observations_enter_recognition_history": false,
+    "confirmation_requires_original_high_resolution_history": true,
+    "vertical_plane_and_range_filters_preserved": true
+  },
+  "checks": {
+    "runtime_tests_passed": 200,
+    "runtime_tests_skipped": 1,
+    "supervisor_tests_passed": 2,
+    "registered_depth_image_pipeline_test": "14px frames create inspection cues;24px frames still require3 observations to publish ID;horizontal patterns rejected",
+    "transient_coordinator_resume": "Recreate missing systemd transient unit with the same limits"
+  },
+  "experiment": {
+    "diagnostic_regressions": 2,
+    "reuses_first_two_training_layouts": true,
+    "counted_as_training_samples": false,
+    "weights_match_each_baseline": true,
+    "maximum_native_concurrency": 2,
+    "native_memory_limit_gib": 6,
+    "current_pair_finishes_without_interruption": true,
+    "automatic_cem_resume_after_comparison": true
+  },
+  "native_improvement_verified": false,
+  "production_promoted": false,
+  "state_file": "/home/peter/simul/training_robust/native90/small_marker_followup_v2/regression/regression_state.json"
+}

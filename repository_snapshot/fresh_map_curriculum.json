@@ -1,10 +1,10 @@
 {
-  "captured_utc": "2026-11-12T13:37:01.108382+00:00",
+  "captured_utc": "2026-11-12T13:51:00.091047+00:00",
   "status": "running",
   "generation": 0,
   "phase": "train",
   "service": "osp-fresh-map-cem-v1.service",
-  "main_pid": 1236687,
+  "main_pid": 0,
   "campaign": "/home/peter/simul/training_robust/native90/fresh_map_cem_v1",
   "method": "CEM over exploration weights, with actual Gazebo SLAM/Nav2 episodes",
   "training_map_reuse_allowed": false,
@@ -56,7 +56,7 @@
       "unit": "osp-freshmap-nov12-v1-00000.service",
       "observed_status": {
         "state": "running",
-        "elapsed_seconds": 182.455,
+        "elapsed_seconds": 446.45599999999996,
         "targets": 2,
         "approached_ids": [
           739,
@@ -73,7 +73,7 @@
       "unit": "osp-freshmap-nov12-v1-00001.service",
       "observed_status": {
         "state": "running",
-        "elapsed_seconds": 180.809,
+        "elapsed_seconds": 444.309,
         "targets": 1,
         "approached_ids": [
           174
@@ -94,5 +94,8 @@
     "Approach status display"
   ],
   "occupancy_diversity_audit": "fresh_map_diversity.json",
-  "diversity_regression_checks_passed": 2
+  "diversity_regression_checks_passed": 2,
+  "status_detail": "Current native pair running;CEM coordinator temporarily inactive while regression supervisor waits and runs2diagnostic comparisons",
+  "active_supervisor": "osp-small-marker-regression-v2.service",
+  "pending_diagnostic": "small_marker_followup.json"
 }
