@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T17:48:18.068957+00:00",
+  "captured_utc": "2026-11-12T17:55:13.970271+00:00",
   "purpose": "Repository upload snapshot; not a live dashboard",
   "tests_passed_final": 189,
   "native_validation_complete": false,
@@ -137,41 +137,31 @@
   "previous_regressions_complete": true,
   "latest_change": {
     "date": "2026-11-13",
-    "name": "audited_local_map_fix270.5s_and_bounded_gain_fresh_L_shape_probe",
-    "status": "candidate_A_passed;candidate_B_and_new_L_shape_running",
+    "name": "two_navigation_candidates_passed_and_fresh_L197.4s;3source_newmap_learning_active",
+    "status": "spatial_cem_v5_generation0_running",
     "generalization_verified": false
   },
   "latest_recording": {
-    "date": "2026-11-12",
-    "evidence_type": "new_native_gazebo_demonstration",
-    "summary": "low_rotation_video.json",
-    "candidate": "bounded_observation_rotation",
-    "scenario_seed": 8000001,
-    "obstacles": 12,
+    "date": "2026-11-13",
+    "evidence_type": "new_native_Gazebo_fresh_L_shape_probe",
+    "summary": "bounded_gain_candidate.json",
+    "scenario_seed": 1160000404,
+    "obstacles": 16,
     "success": true,
-    "elapsed_sim_seconds": 494.534,
+    "elapsed_sim_seconds": 197.4,
     "targets": 3,
     "collisions": 0,
     "correct_ids": true,
     "all_actual_approaches_within_1_5m": true,
     "correct_positions": true,
-    "public_upload_authorized_by_user": true,
     "hardware_validated": false,
     "production_promoted": false,
     "matched_baseline_comparison": false
   },
   "active_supervision": {
-    "current_campaign": "navigation_regression_v1",
-    "coordinator": "osp-navigation-regression-v1.service",
-    "dashboard": "osp-robot-dashboard.service",
-    "previous_campaign": "spatial_cem_v3",
-    "previous_dispatch": "held_for_navigation_regression",
-    "current_campaigns": [
-      "navigation_regression_v1",
-      "bounded_gain_fresh_probe_v1"
-    ],
-    "additional_coordinator": "osp-bounded-gain-fresh-probe-v1.service",
-    "readonly_probe_capture": "osp-navigation-probe-capture-v1.service"
+    "current_campaign": "spatial_cem_v5",
+    "coordinator": "osp-spatial-cem-v5.service",
+    "dashboard": "osp-robot-dashboard.service"
   },
   "pending_tf_comparison": {
     "status": "completed",
@@ -183,13 +173,14 @@
     "report": "tf_navigation_failure.json"
   },
   "pending_curriculum_upgrade": {
-    "status": "waiting_for_final_navigation_ablation",
-    "candidate_successor": "spatial_cem_v5",
-    "source_search_driver_prepared": true,
-    "current_native_runs_preserved": true
+    "status": "started",
+    "successor": "spatial_cem_v5",
+    "source_variants": 3,
+    "new_exteriors": 28,
+    "maximum_native_concurrency": 2
   },
   "dashboard": "dashboard.json",
-  "spatial_geometry": "spatial_geometry_v3.json",
+  "spatial_geometry": "spatial_geometry_v5.json",
   "revisit_analysis": "revisit_analysis.json",
   "latest_candidate_tests_passed": 226,
   "latest_candidate_tests_skipped": 0,
@@ -197,5 +188,6 @@
   "production_promoted": false,
   "floor_diagnosis": "floor_pose_diagnosis.json",
   "local_navigation_diagnosis": "local_navigation_diagnosis.json",
-  "bounded_gain_candidate": "bounded_gain_candidate.json"
+  "bounded_gain_candidate": "bounded_gain_candidate.json",
+  "current_champion_runtime": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime"
 }

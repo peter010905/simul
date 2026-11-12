@@ -65,9 +65,9 @@
   "ros_surface_integration": "surface_endpoint_default_edge_comparison_option_unit_tested",
   "gazebo_verified": false,
   "next_actions": [
-    "Preserve and audit native ablation B",
-    "Collect fresh L-shape bounded-gain native probe without including it in training",
-    "After finalized ablation, start3-source coefficient search across28new exteriors;all original independent gates retained"
+    "Preserve currentcircle/trianglenative runs;verifyeffective inputs each episode",
+    "Continue3source/weightCEM onfreshspaces andretainID/approach/videojournals",
+    "Collect fullgeneration ranking,pairedshapevalidation,42freshspacefinal,and40PDFreservedfinalbeforeproduction"
   ],
   "ros_unit_tests_passed": 157,
   "ros_directional_smoke": "native_communication_verified",
@@ -109,14 +109,16 @@
   },
   "current_jobs": [
     {
-      "number": 1,
-      "unit": "osp-navigation-regression-v1-1.service",
-      "domain": 117
+      "number": 0,
+      "unit": "osp-spatial-nov13-space5-00000.service",
+      "domain": 114,
+      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime"
     },
     {
-      "number": 0,
-      "unit": "osp-bounded-gain-fresh-probe-v1-native.service",
-      "domain": 118
+      "number": 1,
+      "unit": "osp-spatial-nov13-space5-00001.service",
+      "domain": 115,
+      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime"
     }
   ],
   "additional_results": {
@@ -1109,8 +1111,8 @@
   },
   "spatial_curriculum": "repository_snapshot/spatial_curriculum.json",
   "dashboard": "http://127.0.0.1:8765",
-  "latest_goal_turn_evidence": "A independently completed known failed circle270.5s vs600.2timeout;zero contacts/all3IDs/actual1.5m/correct positions;24obstacle rectangle completed588.901s;Bstill running;new bounded-gain candidate running on fresh Lshape16obstacles",
+  "latest_goal_turn_evidence": "NativeA270.5s,B504.602s onpreviouslyfailedcircle,both3IDs/actual1.5m/positions/0contacts;freshL16E197.4sindependentlypassed;3sourceCEMlaunched28uniqueexteriors;0completednewgenerations;generalizationunproven",
   "latest_navigation_diagnosis": "repository_snapshot/local_navigation_diagnosis.json",
-  "current_native_supervisor": "osp-navigation-regression-v1.service",
+  "current_native_supervisor": "osp-spatial-cem-v5.service",
   "next_training_driver": "spatial_native_curriculum_v5.py"
 }

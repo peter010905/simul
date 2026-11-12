@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T17:48:18.068957+00:00",
+  "captured_utc": "2026-11-12T17:55:13.970271+00:00",
   "code_finding": "Default edge gain can reward360degree coverage while actual observation sweep is capped120degrees",
   "measurements": [
     {
@@ -48,7 +48,7 @@
   "production_promoted": false,
   "generalization_verified": false,
   "fresh_space_native_probe": {
-    "status": "running_fresh_space_probe",
+    "status": "completed_fresh_space_probe",
     "training_samples": false,
     "generalization_verified": false,
     "jobs": [
@@ -72,7 +72,7 @@
             "area_m2": 176.70697297937332
           }
         },
-        "status": "running",
+        "status": "done",
         "domain": 118,
         "parameters": [
           1.0,
@@ -83,12 +83,22 @@
         ],
         "unit": "osp-bounded-gain-fresh-probe-v1-native.service",
         "floor_sensor_gate": true,
-        "runtime_configuration_gate": true
+        "runtime_configuration_gate": true,
+        "outcome": {
+          "success": true,
+          "targets": 3,
+          "approached": 3,
+          "contacts": 0,
+          "seconds": 197.4,
+          "infrastructure_failure": false,
+          "reason": "all_targets_found"
+        },
+        "completed_utc": "2026-11-12T17:53:15.986819+00:00"
       }
     ]
   },
   "upcoming_source_search": {
-    "status": "prepared_driver_not_launched_waiting_for_final_native_regression",
+    "status": "running",
     "driver": "training_robust/spatial_native_curriculum_v5.py",
     "sources": [
       "live_costmap_v1",
@@ -99,11 +109,13 @@
     "each_training_layout_unique": true,
     "weight_candidates_per_generation": 4,
     "champion_source_tracked_through_all_gates": true,
-    "starting_source": "Fastest independently successful native diagnostic arm",
+    "starting_source": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
     "validation": "7shape pilot;28paired validation;42fresh exterior final;40original PDF final",
-    "production_promoted": false
+    "production_promoted": false,
+    "campaign": "spatial_cem_v5",
+    "coordinator_unit": "osp-spatial-cem-v5.service"
   },
-  "scope_note": "Fewer scored degrees and unit tests do not prove faster native completion; fresh native probe is in progress",
+  "scope_note": "FreshLprobe passedallactualcriteria197.4s;no matchedbaseline,soitdoesnotprovespeedgain. Broadfresh-map learningandheldoutgatesremaininprogress.",
   "discarded_investigation": "Old root source used12cm coverage; actual running source already used8cm. No size-coverage patch or native trial was applied",
   "actual_native_gain_routing_observed": {
     "evidence_type": "actual_native_recorded_policy_inputs",
@@ -117,5 +129,31 @@
     "floor_sensor_gate": true,
     "runtime_configuration_gate": true,
     "not_a_final_mission_result": true
+  },
+  "fresh_space_independent_audit": {
+    "seed": 1160000404,
+    "success": true,
+    "evaluator_success": true,
+    "seconds": 197.4,
+    "targets": 3,
+    "collisions": 0,
+    "coordinate_errors_m": {
+      "683": 0.045919696000711184,
+      "189": 0.030105260861778563,
+      "670": 0.0018388476496418898
+    },
+    "required_approach_m": 1.5,
+    "closest_approach_m": {
+      "683": 1.4382003035327313,
+      "670": 1.4653605072618854,
+      "189": 1.143393617525205
+    },
+    "video": {
+      "file": "/home/peter/simul/training_robust/native90/bounded_gain_fresh_probe_v1/case_0/episodes/1160000404/video/mission.mp4",
+      "frames": 988,
+      "fps": 5.0,
+      "verified": true
+    },
+    "errors": []
   }
 }
