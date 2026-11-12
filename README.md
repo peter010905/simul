@@ -1,55 +1,31 @@
 # OSP Final Project — ROS 2 Jazzy
 
-> **2026-11-13 최신:** [로컬 로봇 대시보드](http://127.0.0.1:8765)에서 실제 RGB 카메라,
-> SLAM·LiDAR, ID 인식/1.5m 접근 기록, 로그와 완료 영상을 확인할 수 있습니다.
-> 실행: `bash scripts/run_robot_dashboard.sh start`.
-> [사용·관리 방법](dashboard/README.md) · [공간 다양화 학습 상태](repository_snapshot/spatial_curriculum.json).
-> 현재 `spatial_cem_v5`는 **원형·삼각형·사다리꼴·직사각형·L자·U자·다중 방**으로
-> 실제 Gazebo 외곽 벽과 주행 공간을 바꿉니다. 기존 PDF 공간의 내부 장애물만 바꾸던
-> `fresh_map_cem_v2`와 구분합니다. 새 학습과 재방문 억제는 검증 중이며 실사용 정책으로 승격하지 않았습니다.
-> 공간 초판 `spatial_cem_v1`의 바닥 렌더링 좌표 오류를 발견해 두 실행을 정상 종료·보존하고
-> 학습 표본에서 제외했습니다. 수정한 실제 원형·삼각형의 바닥 센서4개가 모두 정상 응답하며,
-> 매 새 실행에도 이 검사를 적용합니다. [진단과 검증 범위](repository_snapshot/floor_pose_diagnosis.json).
-
-> **주행 지도 수정 검증:** 기존 원형600.2초 실패 장면을 같은 맵·가중치에서270.500초에 완주했습니다.
-> 세 ID·각 실제1.5m 접근·지도 오차0.5m 이내·충돌0회를 독립 평가와 최종 영상으로 확인했습니다.
-> 탐색 불가 결정은201회에서0회, 가장 긴 정지는356.694초에서2.040초였습니다.
-> 접근 기록 보존 후보도 같은 장면을504.602초에 통과했습니다. 전체 재방문 감소는 아직 검증되지 않았습니다.
-> 수정 전 별도 사다리꼴·장애물16개와 직사각형·24개 장면은 각각470.371초·588.901초에 통과했습니다.
-> [측정과 검증 범위](repository_snapshot/local_navigation_diagnosis.json).
+> **2026-11-13 현재:** 실제 Gazebo에서 **원형·삼각형·사다리꼴·직사각형·L자·U자·다중 방**의
+> 외곽 벽과 주행 공간까지 바꾸며 학습합니다. `spatial_cem_v5`의 훈련 맵28개는 외곽선·점유 격자가 서로 다릅니다.
+> 완료된 훈련13회 중10회가 기준을 통과했습니다. CEM 세대 학습과 독립 일반화 시험은 아직 미완료이며 실사용 정책으로 승격하지 않았습니다.
+> [공간·학습·기준·실행 상태](repository_snapshot/spatial_curriculum.json) · [외곽선 중복 감사](repository_snapshot/spatial_geometry_v5.json).
 >
-> **시간 최적화 후보:** 360도 관측 이득으로 점수를 주면서 실제 회전은 최대120도로 제한하던 불일치를
-> 제거한 후보는 새 L자 공간·장애물16개에서197.400초에 모든 평가 기준을 통과했습니다.
-> 다른 크기·배치의 장면이므로 이 시간만으로 기존 후보보다 빠르다고 판단하지 않습니다.
-> 새 학습 `spatial_cem_v5`는 코드 후보3종과 가중치를 함께 비교하며, 우승 코드 경로를 최종 검증까지 유지합니다.
-> 서로 다른 외곽선·점유 격자28개와 기존 감사된 공간 외곽선의 중복 없음도 확인했고 실제 Gazebo학습2회가 시작됐습니다.
-> [후보·새 공간·검증 상태](repository_snapshot/bounded_gain_candidate.json).
-> 새 공간 전반의 성공률·시간 개선 검증과CEM 새 세대 학습은 아직 완료되지 않았습니다.
-> **접근 검증 보강:** 완료3회는 접근으로 기록한 정확한TF/카메라 시각의 실제 위치도1.5m 이내였습니다.
-> 별도 읽기 전용 평가기가 현재 주행의 실제 위치를 시뮬레이션 시간 기준 약29Hz로 저장하고, 완료 후ID별 접근·정지·재방문을 분석합니다.
-> 정책·시나리오·CEM 점수는 바꾸지 않습니다. [판정 방법과 증거](repository_snapshot/physical_credit_verification.json).
-> 새CEM의 삼각형·장애물12개는408.346초, 사다리꼴·장애물16개는52.779초에 원래 평가 기준을 통과했습니다.
-> 다른 배치의 시간 차이는 정책 간 시간 개선 폭으로 해석하지 않습니다.
-> 추가 시각 감사의 보수적 거리 상한이 경계에 걸리면 미확인으로 남기며, 이를 실제 접근 실패로 단정하지 않습니다.
-> 첫7/28회는6회 완주·1회 원형 timeout입니다. 이는 훈련 표본의 기술 통계이며 독립 일반화 성공률이 아닙니다.
-> 원형의ID337은169회 해독됐지만 최초1회 위치가 약0.688m 빗나간 채134회 위치 불일치로 거절됐습니다.
-> 미확정 초기 위치를 새 읽기 가능한3프레임 합의로 회복하는 후보를 별도 준비했고223개 테스트를 통과했습니다.
-> U자387.504초·다중방387.000초도 원래 기준을 통과했습니다.
-> 수정 후보의 첫 native비교는 임무 전SLAM/Nav2활성화에서 실패해 정책 성능 결과로 쓰지 않았습니다.
-> 원래CEM감독기는 자동으로 재개됐고 새 맵 주행2회가 계속됩니다. [시작 실패와 다음 검증](repository_snapshot/reacquisition_startup_failure.json).
-> [실패 증거·수정 범위·검증 대기 상태](repository_snapshot/landmark_seed_diagnosis.json).
+> **최근 실제 결과:** 새 L자·장애물26개는358.222초, U자는59.812초에 세 ID·각 실제1.5m 접근·정확한 지도 위치·충돌0회를 통과했습니다.
+> L자 좌표 오차는 최대3.6cm였습니다. 사다리꼴507.100초와 L자358.222초는 접근 판정 시각의 실제 위치도 세 ID 모두1.5m 안쪽으로 추가 확인했습니다.
+> 배치와 크기가 다르므로 시간 차이만으로 정책 개선 폭을 판단하지 않습니다. [ID별 실제 접근 증거](repository_snapshot/physical_credit_verification.json).
 >
-> **시작 절차 보완 후보:** SLAM 상태를 조회해 필요한 단계만 실행하고, 지도·TF·신선한 LiDAR가 준비된 뒤
-> 표준 Nav2를 시작하는 별도 후보가 기존 기능을 포함한231개 테스트를 통과했습니다.
-> 실제 ROS 서비스/TF를 쓰는 모의 SLAM 테스트도 포함하며 Gazebo 완주 검증과 구분합니다.
-> 같은 실패 원형 장면의 새 native 비교가 시작됐습니다. SLAM 준비는 실제 벽시계4.327초에 끝났고,
-> Nav2의 첫 로그는 그 뒤였습니다. 바닥 센서·실제 설정 검사도 통과했으며 임무 완주 결과는 대기 중입니다.
-> 기존 주행은 보존했고 새 시험이 실행 자리를 확보한 뒤 원래 CEM 감독기가 자동 재개됐습니다.
-> [수정 범위와 실제 검증 상태](repository_snapshot/startup_guard_candidate.json).
-> 두 번째 원형 timeout은 충돌 감시 노드의 heartbeat 손실 후 Nav2가 비활성화되어 약594초 정지한 사례입니다.
-> heartbeat 손실의 내부 원인은 아직 미확인입니다. 위 시작 절차로 해결됐다고 판단하지 않습니다.
-> [원본 로그와 정지 측정](repository_snapshot/runtime_failure_diagnosis.json).
-> 새 사다리꼴·장애물16개 주행도507.100초에 세 ID·각 실제1.5m 접근·충돌0회로 통과했습니다.
+> **현재 고치는 문제:** 원형 비교 후보는188.674초에 세 ID·각 실제1.5m 접근·충돌0회를 달성했지만 ID337 좌표 오차68.5cm로 실패했습니다.
+> 실제 자세를 사용한 평가용 재생에서는 관측 오차 중앙값이68.2cm에서9.4mm로 줄어, 위치 추정 오차가 주원인으로 보입니다.
+> 해당 보정은 분석에만 쓰며 정책에는 실제 위치를 전달하지 않습니다. [진단과 한계](repository_snapshot/localization_drift_diagnosis.json).
+> SLAM 방향 이탈 벌점의 설정 두 개만 바꾼 후보가231개 테스트·빌드를 통과했고 같은 원형 비교 시험을 기다립니다.
+> 기존 주행은 보존하고 최대 두 native 실행을 유지합니다. [새 후보와 검증 상태](repository_snapshot/heading_prior_candidate.json).
+>
+> **재방문과 런타임:** odom 기준 관측 기억·반복 목표 억제와 실제 경로 감사를 사용합니다.
+> L자의 재통과 거리20.1%에는 필요한 통로 왕복도 포함됩니다. 전체 재방문 감소는 아직 입증되지 않았습니다.
+> 이전 원형의 주행 불능은 rolling local costmap에서 정적인 SLAM 격자를 제외한 같은 맵·가중치 비교에서600.2초 실패→270.500초 성공으로 개선됐습니다.
+> [주행 지도 비교](repository_snapshot/local_navigation_diagnosis.json) · [bounded 관측 이득 후보](repository_snapshot/bounded_gain_candidate.json).
+> SLAM 상태·지도·TF·LiDAR를 확인한 뒤 Nav2를 시작하는 후보는 실제 준비 순서를 확인했습니다.
+> [시작 검증·실패 결과](repository_snapshot/startup_guard_candidate.json) · [미확정 초기 위치 고정 문제](repository_snapshot/landmark_seed_diagnosis.json).
+> 별도 원형의 heartbeat 손실 원인은 미확인입니다. 향후 중단 시 스레드 대기·메모리 계수를 기록합니다.
+> [런타임 실패 증거](repository_snapshot/runtime_failure_diagnosis.json) · [이전 바닥 좌표 오류와 환경 검증](repository_snapshot/floor_pose_diagnosis.json).
+>
+> [로컬 로봇 대시보드](http://127.0.0.1:8765)에서 RGB 카메라·SLAM·LiDAR·ID/접근 로그와 완료 영상을 확인합니다.
+> 실행: `bash scripts/run_robot_dashboard.sh start`. [사용·관리 방법](dashboard/README.md).
 
 [**시뮬레이션 영상 다운로드 — GitHub Release**](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11)
 
@@ -268,7 +244,7 @@ python3 scripts/publish_simulation_videos.py --upload
 
 ## 저장된 Gazebo 영상
 
-[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 150개
+[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 153개
 
 아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다. 환경 오류로 종료한 영상은 정책 학습 표본에서 제외합니다.
 
@@ -390,6 +366,7 @@ python3 scripts/publish_simulation_videos.py --upload
 | [persistent_map_v4_screen3__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/persistent_map_v4_screen3__8600007.mp4) | 실패 | 미달 | 600.12 |
 | [persistent_map_v4_screen3__8600133.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/persistent_map_v4_screen3__8600133.mp4) | 실패 | 미달 | 600.305 |
 | [persistent_map_v4_screen3__8600139.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/persistent_map_v4_screen3__8600139.mp4) | 실패 | 자료 없음 | 257.887 |
+| [reacquisition_startup_regression_v2__case_0__1163000000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/reacquisition_startup_regression_v2__case_0__1163000000.mp4) | 실패 | 확인 | 188.674 |
 | [route_v14_timecost_screen3__9802001.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/route_v14_timecost_screen3__9802001.mp4) | 성공 | 확인 | 394.932 |
 | [route_v14_timecost_screen3__9802011.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/route_v14_timecost_screen3__9802011.mp4) | 성공 | 확인 | 302.6 |
 | [route_v14_timecost_screen3__9802014.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/route_v14_timecost_screen3__9802014.mp4) | 실패 | 미달 | 600.151 |
@@ -424,6 +401,8 @@ python3 scripts/publish_simulation_videos.py --upload
 | [spatial_cem_v5__00007_train_g0_1__1163000707.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v5__00007_train_g0_1__1163000707.mp4) | 실패 | 미달 | 600.269 |
 | [spatial_cem_v5__00008_train_g0_1__1163000808.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v5__00008_train_g0_1__1163000808.mp4) | 성공 | 확인 | 358.712 |
 | [spatial_cem_v5__00009_train_g0_1__1163000909.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v5__00009_train_g0_1__1163000909.mp4) | 성공 | 확인 | 507.1 |
+| [spatial_cem_v5__00011_train_g0_1__1163001111.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v5__00011_train_g0_1__1163001111.mp4) | 성공 | 확인 | 358.222 |
+| [spatial_cem_v5__00012_train_g0_1__1163001212.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v5__00012_train_g0_1__1163001212.mp4) | 성공 | 확인 | 59.812 |
 | [tf_restamp_v1__regression__case_0__1121200000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_0__1121200000.mp4) | 성공 | 확인 | 231.867 |
 | [tf_restamp_v1__regression__case_1__1121200101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_1__1121200101.mp4) | 성공 | 확인 | 229.859 |
 

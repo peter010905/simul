@@ -75,7 +75,7 @@ def observe(root):
                 physical_credits_verified=sum(r['physical_credit_audit']['all_three_physical_credits_verified'] for r in rows)))
         report=dict(captured_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),
             purpose='Read-only ongoing CEM/evaluator observatory; never a robot policy input',
-            campaign_status=state['status'],generation=state['generation'],phase=state['phase'],
+            campaign_status=state['status'],generation=state.get('generation'),phase=state['phase'],
             job_status_counts=dict(Counter(j['status'] for j in state['jobs'])),live=live,
             completed_analyses=len(analyses),groups=summary,observation_errors=errors,
             marker_log_files=[row['log_files']['marker_events'] for row in analyses.values()],

@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T19:37:07.316082+00:00",
+  "captured_utc": "2026-11-12T19:57:26.588670+00:00",
   "client_date": "2026-11-13",
   "status": "native_spatial_source_and_weight_learning_running",
   "goal_status": "active",
@@ -921,39 +921,55 @@
       "role": "1",
       "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
       "domain": 115,
+      "status": "done",
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 358.222,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      }
+    },
+    {
+      "number": 12,
+      "role": "1",
+      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
+      "domain": 114,
+      "status": "done",
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 59.812,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      }
+    },
+    {
+      "number": 13,
+      "role": "1",
+      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
+      "domain": 114,
       "status": "running",
       "floor_sensor_gate": true,
       "runtime_configuration_gate": true,
       "outcome": null
     },
     {
-      "number": 12,
-      "role": "1",
-      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
-      "domain": null,
-      "status": "prepared",
-      "floor_sensor_gate": null,
-      "runtime_configuration_gate": null,
-      "outcome": null
-    },
-    {
-      "number": 13,
-      "role": "1",
-      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
-      "domain": null,
-      "status": "prepared",
-      "floor_sensor_gate": null,
-      "runtime_configuration_gate": null,
-      "outcome": null
-    },
-    {
       "number": 14,
       "role": "2",
       "workspace": "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime",
-      "domain": null,
-      "status": "prepared",
-      "floor_sensor_gate": null,
-      "runtime_configuration_gate": null,
+      "domain": 115,
+      "status": "running",
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
       "outcome": null
     },
     {
@@ -1087,7 +1103,7 @@
       "outcome": null
     }
   ],
-  "completed_spatial_training_episodes": 11,
+  "completed_spatial_training_episodes": 13,
   "completed_cem_generations": 0,
   "generalization_verified": false,
   "revisit_reduction_verified": false,
@@ -1479,13 +1495,65 @@
         "Recorded collisions are nonzero or unavailable",
         "Actual video sources or first/last frame decoding failed"
       ]
+    },
+    {
+      "seed": 1163001111,
+      "success": true,
+      "evaluator_success": true,
+      "seconds": 358.222,
+      "targets": 3,
+      "collisions": 0,
+      "coordinate_errors_m": {
+        "642": 0.027416088970828062,
+        "501": 0.012135962140224948,
+        "222": 0.03606234212352358
+      },
+      "required_approach_m": 1.5,
+      "closest_approach_m": {
+        "642": 1.4207466534516229,
+        "501": 1.1251266289787352,
+        "222": 1.2949787309533805
+      },
+      "video": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00011_train_g0_1/episodes/1163001111/video/mission.mp4",
+        "frames": 1793,
+        "fps": 5.0,
+        "verified": true
+      },
+      "errors": []
+    },
+    {
+      "seed": 1163001212,
+      "success": true,
+      "evaluator_success": true,
+      "seconds": 59.812,
+      "targets": 3,
+      "collisions": 0,
+      "coordinate_errors_m": {
+        "49": 0.027511103931037853,
+        "490": 0.004685685469507696,
+        "277": 0.025356234355813256
+      },
+      "required_approach_m": 1.5,
+      "closest_approach_m": {
+        "277": 1.4418216182510708,
+        "490": 0.945444060230522,
+        "49": 1.457287143926781
+      },
+      "video": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00012_train_g0_1/episodes/1163001212/video/mission.mp4",
+        "frames": 300,
+        "fps": 5.0,
+        "verified": true
+      },
+      "errors": []
     }
   ],
   "evaluator_observer": "physical_credit_verification.json",
-  "priority_diagnostic": "startup_guard_candidate.json",
+  "priority_diagnostic": "heading_prior_candidate.json",
   "coordinator_resumed_after_one_slot_diagnostic": true,
   "runtime_failure_diagnosis": "runtime_failure_diagnosis.json",
   "counts_are_descriptive_training_samples_not_independent_success_probability": true,
-  "coordinator_slot_reservation": "Diagnostic claimed actual native PID;original CEM dispatcher resumed automatically;max2 native processes observed",
-  "completed_successes": 8
+  "coordinator_slot_reservation": "Current native CEM runs preserved;dispatcher reserves next free slot for SLAM heading-prior diagnostic and resumes after actual native PID is claimed",
+  "completed_successes": 10
 }

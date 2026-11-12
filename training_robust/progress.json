@@ -1111,11 +1111,11 @@
   },
   "spatial_curriculum": "repository_snapshot/spatial_curriculum.json",
   "dashboard": "http://127.0.0.1:8765",
-  "latest_goal_turn_evidence": "Progress:231runtime tests+7orchestration/audit tests+1realROS lost-ack testpassed;actualGazeboSLAMready4.327wallseconds;firstNav2controllerlogafterready;floor/profilegatespassed;actualdetector3confirmations/18px;CEMresumedatnativePIDhandoff;freshtrapezoid507.1s3IDs/3actualapproaches/0contacts;missionrecoveryresultpending",
+  "latest_goal_turn_evidence": "Progress:13freshtrainingtrials10passed;freshL358.222s/0contacts/maxerror0.036m;U59.812s/0contacts;F2circle188.674s3exactIDs/3physicalcredits/0contactsbutcoordinate3370.685mfail;fineGTcounterfactualisolatedlocalizationdrift(rawmedian0.682mvsrelative0.00938m);config-onlyheadingpriorcandidate231tests+buildpassedandqueued;originalnativeCEMrunscontinue",
   "latest_navigation_diagnosis": "repository_snapshot/local_navigation_diagnosis.json",
   "current_native_supervisor": "osp-spatial-cem-v5.service",
   "next_training_driver": "spatial_native_curriculum_v5.py",
   "fine_evaluator_observer": "osp-spatial-evaluator-observer-v1.service",
   "physical_credit_auditor": "training_robust/audit_approach_evidence.py",
-  "priority_diagnostic": "osp-seed-startup-v2.service"
+  "priority_diagnostic": "osp-heading-prior-v1.service"
 }

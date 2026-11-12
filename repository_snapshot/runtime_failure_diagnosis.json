@@ -49,5 +49,26 @@
     "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00007_train_g0_1/episodes/1163000707/launch.log": "a5278deba58d7fee7e86c02f7aabe6d0738ba39c1e8ddf33d306a01459786abc",
     "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00007_train_g0_1/episodes/1163000707/evaluation.json": "4480d8663c672724b1519b5c2b760012571636653be93e6a7a1f426899fbb88d",
     "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00007_train_g0_1/episodes/1163000707/pose_trace.csv": "662719187c821a2eeb9ec315ab9f20c38b65a34ff11dd90da111a9d2ad0e198b"
+  },
+  "live_failure_evidence_recorder": {
+    "unit": "osp-native-failure-evidence-v1.service",
+    "source": "training_robust/capture_native_failures.py",
+    "status": "active_actual_PID_verified",
+    "read_only": true,
+    "capture_delays_wall_s": [
+      0,
+      5,
+      20
+    ],
+    "native_identity_binding": "systemd native PID and exact benchmark output path",
+    "smoke_test": {
+      "verified_native_pid": true,
+      "processes_captured": 62,
+      "collision_monitor_thread_wait_channels_available": true,
+      "kernel_stacks": "PermissionError;not available",
+      "current_native_oom_events": 0
+    },
+    "scope": "Evidence capture only;no policy/source/process restart or ROS commands",
+    "root_cause_resolved": false
   }
 }

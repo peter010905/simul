@@ -426,5 +426,16 @@
   "generalization_verified": false,
   "production_promoted": false,
   "startup_failure": "reacquisition_startup_failure.json",
-  "next_action": "Fix startup lifecycle in a new stage before another native recovery trial;do not weaken ID thresholds or overwrite the failed experiment"
+  "next_action": "Fix startup lifecycle in a new stage before another native recovery trial;do not weaken ID thresholds or overwrite the failed experiment",
+  "followup_native_result": {
+    "report": "startup_guard_candidate.json",
+    "success": false,
+    "seconds": 188.674,
+    "three_ids": true,
+    "three_actual_approaches": true,
+    "contacts": 0,
+    "marker337_error_m": 0.6854420944082903,
+    "seed_recovery_triggered": false,
+    "updated_diagnosis": "Initial unconfirmed seed lock remains a real defect,but this run has consistent biased map observations caused mainly by robot localization error;unconfirmed-seed recovery cannot fix that"
+  }
 }

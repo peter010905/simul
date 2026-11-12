@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T19:37:07.316082+00:00",
+  "captured_utc": "2026-11-12T19:57:26.588670+00:00",
   "purpose": "Repository upload snapshot; not a live dashboard",
   "tests_passed_final": 189,
   "native_validation_complete": false,
@@ -137,8 +137,8 @@
   "previous_regressions_complete": true,
   "latest_change": {
     "date": "2026-11-13",
-    "name": "state_driven_SLAM_startup_231tests;native_same_circle_trial_queued",
-    "status": "native_startup_verified;floor_and_effective_profile_passed;mission_pending",
+    "name": "circle188.674s3IDs3approaches0contacts_failed_coordinate_error0.685m;localization_drift_isolated;SLAM_heading_prior_candidate_built_and_queued",
+    "status": "active_learning;heading_prior_native_pending",
     "generalization_verified": false
   },
   "latest_recording": {
@@ -204,5 +204,7 @@
   "startup_guard_candidate": "startup_guard_candidate.json",
   "runtime_failure_diagnosis": "runtime_failure_diagnosis.json",
   "latest_built_startup_candidate": "/home/peter/simul/training_robust/native90/reacquisition_startup_v2/runtime",
-  "startup_candidate_runtime_tests_passed": 231
+  "startup_candidate_runtime_tests_passed": 231,
+  "localization_drift_diagnosis": "localization_drift_diagnosis.json",
+  "heading_prior_candidate": "heading_prior_candidate.json"
 }

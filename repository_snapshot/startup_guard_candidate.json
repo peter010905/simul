@@ -1,10 +1,10 @@
 {
-  "captured_utc": "2026-11-12T19:37:07.316082+00:00",
+  "captured_utc": "2026-11-12T19:57:26.588670+00:00",
   "evidence_type": "native_Gazebo_startup_observed;mission_outcome_pending",
   "workspace": "/home/peter/simul/training_robust/native90/reacquisition_startup_v2/runtime",
   "diagnostic": "/home/peter/simul/training_robust/native90/reacquisition_startup_regression_v2",
-  "status": "running_fresh_space_probe",
-  "job_status": "running",
+  "status": "completed_startup_and_seed_regression",
+  "job_status": "done",
   "source_hashes": {
     "setup.cfg": "fb522f4576d5429cb1cde1c49f0433cf9fd3181da3862b2f5e3a2ce9798a2003",
     "package.xml": "db6280bcd27e643036d56216dd977326d40dcf79ba21c8786370b8ef7dc3ecc6",
@@ -178,7 +178,7 @@
   "native_seed_recovery_verified": false,
   "generalization_verified": false,
   "production_promoted": false,
-  "caveat": "Native startup is verified in this run;mission success,seed recovery and generalization remain pending",
+  "caveat": "188.674s three-ID/three-approach/zero-contact diagnostic failed marker337 coordinate error0.685442m;seed recovery never triggered;not a successful policy",
   "additional_real_ROS_lost_ack_test": {
     "passed": 1,
     "source": "scripts/test_startup_guard_lost_ack.py",
@@ -264,5 +264,63 @@
     "status": "original_CEM_resumed",
     "original_native_runs_preserved": true,
     "new_slot_claimed_by": "osp-seed-startup-v2-native.service"
-  }
+  },
+  "fine_evaluator_observer": {
+    "unit": "osp-startup-v2-evaluator-observer.service",
+    "status": "active_actual_PID_verified",
+    "bug": "Diagnostic state has no CEM generation;read-only observer previously raised KeyError",
+    "fix": "Allow absent generation without changing benchmark state or score",
+    "restart_scope": "Observer only;native mission was not stopped",
+    "first_fine_sample_sim_s": 52.207,
+    "full_mission_fine_coverage": false
+  },
+  "native_success": false,
+  "native_result": {
+    "success": false,
+    "targets": 3,
+    "approached": 3,
+    "contacts": 0,
+    "seconds": 188.674,
+    "infrastructure_failure": false,
+    "reason": "all_targets_found"
+  },
+  "native_coordinate_audit": {
+    "available": true,
+    "correct_ids": true,
+    "correct_positions": false,
+    "position_tolerance_m": 0.5,
+    "position_errors_m": {
+      "337": 0.6854420944082903,
+      "523": 0.057891663722129755,
+      "534": 0.09423018455569117
+    },
+    "expected_ids": [
+      337,
+      523,
+      534
+    ],
+    "found_ids": [
+      337,
+      523,
+      534
+    ],
+    "closest_approach_m": {
+      "337": 1.4444150631725807,
+      "523": 1.2683434564428093,
+      "534": 1.3998155314209086
+    },
+    "approached_within_1_5m": 3,
+    "approach_radius_m": 1.5,
+    "all_approached": true,
+    "approached_within_2m": 3,
+    "world_to_map": [
+      -12.766217336469545,
+      -4.720624920484232,
+      -0.047782764119845375
+    ],
+    "trajectory_samples": 935
+  },
+  "seed_reacquisitions": [],
+  "native_all_three_physical_credits_verified": true,
+  "localization_drift_report": "localization_drift_diagnosis.json"
 }

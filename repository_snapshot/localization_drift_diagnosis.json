@@ -1,0 +1,115 @@
+{
+  "evidence_type": "finalized_native_sensor_replay_with_evaluator_only_counterfactual_pose",
+  "episode": "/home/peter/simul/training_robust/native90/reacquisition_startup_regression_v2/case_0/episodes/1163000000",
+  "native_success": false,
+  "native_seconds": 188.674,
+  "native_coordinate_errors_m": {
+    "337": 0.6854420944082903,
+    "523": 0.057891663722129755,
+    "534": 0.09423018455569117
+  },
+  "by_id": {
+    "337": {
+      "recorded_map_marker_error_m": {
+        "samples": 120,
+        "minimum": 0.6287101605383842,
+        "median": 0.6820157776763007,
+        "p90": 0.7342079259568547,
+        "maximum": 0.7492122397384302
+      },
+      "counterfactual_pose_corrected_marker_error_m": {
+        "samples": 120,
+        "minimum": 0.000948238442275496,
+        "median": 0.009381839213065579,
+        "p90": 0.02181079955294036,
+        "maximum": 0.04364212862975002
+      },
+      "robot_map_position_error_m": {
+        "samples": 120,
+        "minimum": 0.22035382820064714,
+        "median": 0.5564234282038545,
+        "p90": 0.6628298963519891,
+        "maximum": 0.67689705204545
+      },
+      "robot_map_heading_error_deg": {
+        "samples": 120,
+        "minimum": 3.729591279107218,
+        "median": 4.660548024010943,
+        "p90": 5.062914916633784,
+        "maximum": 5.148044650154878
+      },
+      "observed_stamp_range_sim_s": [
+        148.2,
+        195.8
+      ]
+    },
+    "523": {
+      "recorded_map_marker_error_m": {
+        "samples": 25,
+        "minimum": 0.04863083763420561,
+        "median": 0.05647847806464067,
+        "p90": 0.08631496653705815,
+        "maximum": 0.09647115951282678
+      },
+      "counterfactual_pose_corrected_marker_error_m": {
+        "samples": 25,
+        "minimum": 0.0005296598638127859,
+        "median": 0.002969638152703099,
+        "p90": 0.0040162907539700666,
+        "maximum": 0.0106305536719815
+      },
+      "robot_map_position_error_m": {
+        "samples": 25,
+        "minimum": 0.049014001131793675,
+        "median": 0.05516978985362117,
+        "p90": 0.0802297293398031,
+        "maximum": 0.09188561331403258
+      },
+      "robot_map_heading_error_deg": {
+        "samples": 25,
+        "minimum": 0.047819938123481946,
+        "median": 0.40126308329591015,
+        "p90": 0.4707927395418246,
+        "maximum": 0.4931965473205478
+      },
+      "observed_stamp_range_sim_s": [
+        59.0,
+        69.6
+      ]
+    },
+    "534": {
+      "recorded_map_marker_error_m": {
+        "samples": 0
+      },
+      "counterfactual_pose_corrected_marker_error_m": {
+        "samples": 0
+      },
+      "robot_map_position_error_m": {
+        "samples": 0
+      },
+      "robot_map_heading_error_deg": {
+        "samples": 0
+      },
+      "observed_stamp_range_sim_s": null
+    }
+  },
+  "fine_trajectory_segment_sim_s": [
+    52.207,
+    196.095
+  ],
+  "policy_or_result_modified": false,
+  "ground_truth_supplied_to_policy": false,
+  "limits": [
+    "Pose correction is a diagnostic counterfactual,not a deployed fix or native success",
+    "Map poses are interpolated from coarse audit samples;rapid motion or SLAM jumps add interpolation uncertainty",
+    "Observations outside finalized fine trajectory coverage are omitted,not extrapolated",
+    "Small counterfactual error supports localization drift as dominant;it does not prove a particular SLAM setting will fix it"
+  ],
+  "source_sha256": {
+    "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163000000.yaml": "2b3c6332c436766ff0ce294bd02dfa453110b1b8c5db94e7649411ac787ed015",
+    "/home/peter/simul/training_robust/native90/reacquisition_startup_regression_v2/case_0/episodes/1163000000/evaluation.json": "2f79a4f52858aeb90d86125dea88ac36a658c7d4b18b46c9abc15259fab2825e",
+    "/home/peter/simul/training_robust/native90/reacquisition_startup_regression_v2/case_0/episodes/1163000000/marker_observations.json": "8209c166a198068a35561d5acd4ba9a09dfe17ca1f4b1203bd6b7d7656aec95e",
+    "/home/peter/simul/training_robust/native90/reacquisition_startup_regression_v2/case_0/episodes/1163000000/pose_trace.csv": "5f98d2bbe4ff625f921e1ddb1495f8216cfd0c18616dfa2e5755ef666185b42a",
+    "/home/peter/simul/training_robust/native90/reacquisition_startup_regression_v2/case_0/episodes/1163000000/evaluator_gt_fine_1794512308359523323.csv": "a81457ed73c4e7c444076f8e3a31b2a2b59c97ddb6117cded1dfbe63ea02712f"
+  }
+}

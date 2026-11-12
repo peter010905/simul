@@ -758,5 +758,188 @@
       "video": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00002_train_g0_0/episodes/1163000202/video/mission.mp4",
       "evaluation": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00002_train_g0_0/episodes/1163000202/evaluation.json"
     }
-  }
+  },
+  "latest_fresh_space_credits": [
+    {
+      "number": 9,
+      "analysis": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00009_train_g0_1/observer_analysis.json",
+      "physical_credit_audit": {
+        "evidence_type": "independent_GT_at_saved_policy_credit_timestamps",
+        "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00009_train_g0_1/episodes/1163000909",
+        "required_actual_radius_m": 1.5,
+        "ground_truth_available_to_policy": false,
+        "registered_speed_bound_m_s": 0.6,
+        "sampling_limit": "Between samples the upper distance bound assumes speed<=0.6m/s; segment speeds above it or gaps>0.30s are unverified",
+        "historical_closest_pass_alone_is_sufficient": false,
+        "all_three_physical_credits_verified": true,
+        "all_three_recognition_and_approach_events_logged": true,
+        "rows": [
+          {
+            "id": 743,
+            "id_confirmed_in_journal": true,
+            "estimated_approach_in_journal": true,
+            "map_pose_credit": {
+              "verified": true,
+              "stamp_sim_s": 63.989,
+              "actual_distance_m": 1.4086105785571466,
+              "conservative_distance_upper_m": 1.4128647744745366,
+              "bracketing_stamps_sim_s": [
+                63.982,
+                64.016
+              ],
+              "registered_speed_bound_m_s": 0.6,
+              "method": "interpolated_GT_with_speed_margin",
+              "reason": null,
+              "trajectory_source": "fine_evaluator_trace"
+            },
+            "range_witness_physical_samples": [],
+            "range_witness_verified": false,
+            "physical_credit_verified": true
+          },
+          {
+            "id": 417,
+            "id_confirmed_in_journal": true,
+            "estimated_approach_in_journal": true,
+            "map_pose_credit": {
+              "verified": true,
+              "stamp_sim_s": 511.991,
+              "actual_distance_m": 1.4916377988673633,
+              "conservative_distance_upper_m": 1.4959349813347123,
+              "bracketing_stamps_sim_s": [
+                511.966,
+                512.0
+              ],
+              "registered_speed_bound_m_s": 0.6,
+              "method": "interpolated_GT_with_speed_margin",
+              "reason": null,
+              "trajectory_source": "fine_evaluator_trace"
+            },
+            "range_witness_physical_samples": [],
+            "range_witness_verified": false,
+            "physical_credit_verified": true
+          },
+          {
+            "id": 889,
+            "id_confirmed_in_journal": true,
+            "estimated_approach_in_journal": true,
+            "map_pose_credit": {
+              "verified": true,
+              "stamp_sim_s": 64.496,
+              "actual_distance_m": 0.9549115925483769,
+              "conservative_distance_upper_m": 0.9573286524804887,
+              "bracketing_stamps_sim_s": [
+                64.492,
+                64.526
+              ],
+              "registered_speed_bound_m_s": 0.6,
+              "method": "interpolated_GT_with_speed_margin",
+              "reason": null,
+              "trajectory_source": "fine_evaluator_trace"
+            },
+            "range_witness_physical_samples": [],
+            "range_witness_verified": false,
+            "physical_credit_verified": true
+          }
+        ],
+        "source_sha256": {
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163000909.yaml": "4c0c728154d5b6494380c52bcf2443be9777a17954dbbd6a293b5ec019f14960",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00009_train_g0_1/episodes/1163000909/evaluation.json": "c2e5407cc990634149daae48043d9b29238651dd98b4fe52d62de4af59a686f1",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00009_train_g0_1/episodes/1163000909/ground_truth_trajectory.csv": "43f6f5e3acc3ed28bf6368b4bb8ddaaf611b60a254e8653bbae9e2ea7da3e04f",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00009_train_g0_1/episodes/1163000909/marker_events.jsonl": "da4a0fe10b21e0ea9f46e8202d006a6b94df0177228a7b28d37a81e1b37d3869",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00009_train_g0_1/episodes/1163000909/evaluator_gt_fine_1794510722907370393.csv": "adc6a4b38dd35528d2079a36f3be8228d3f773ae719c1f7f621aac139088f632"
+        }
+      }
+    },
+    {
+      "number": 11,
+      "analysis": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00011_train_g0_1/observer_analysis.json",
+      "physical_credit_audit": {
+        "evidence_type": "independent_GT_at_saved_policy_credit_timestamps",
+        "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00011_train_g0_1/episodes/1163001111",
+        "required_actual_radius_m": 1.5,
+        "ground_truth_available_to_policy": false,
+        "registered_speed_bound_m_s": 0.6,
+        "sampling_limit": "Between samples the upper distance bound assumes speed<=0.6m/s; segment speeds above it or gaps>0.30s are unverified",
+        "historical_closest_pass_alone_is_sufficient": false,
+        "all_three_physical_credits_verified": true,
+        "all_three_recognition_and_approach_events_logged": true,
+        "rows": [
+          {
+            "id": 642,
+            "id_confirmed_in_journal": true,
+            "estimated_approach_in_journal": true,
+            "map_pose_credit": {
+              "verified": true,
+              "stamp_sim_s": 362.48,
+              "actual_distance_m": 1.4485925119403726,
+              "conservative_distance_upper_m": 1.4498863796154227,
+              "bracketing_stamps_sim_s": [
+                362.449,
+                362.483
+              ],
+              "registered_speed_bound_m_s": 0.6,
+              "method": "interpolated_GT_with_speed_margin",
+              "reason": null,
+              "trajectory_source": "fine_evaluator_trace"
+            },
+            "range_witness_physical_samples": [],
+            "range_witness_verified": false,
+            "physical_credit_verified": true
+          },
+          {
+            "id": 501,
+            "id_confirmed_in_journal": true,
+            "estimated_approach_in_journal": true,
+            "map_pose_credit": {
+              "verified": true,
+              "stamp_sim_s": 42.48,
+              "actual_distance_m": 1.1251704033377583,
+              "conservative_distance_upper_m": 1.1281704958723613,
+              "bracketing_stamps_sim_s": [
+                42.475,
+                42.509
+              ],
+              "registered_speed_bound_m_s": 0.6,
+              "method": "interpolated_GT_with_speed_margin",
+              "reason": null,
+              "trajectory_source": "fine_evaluator_trace"
+            },
+            "range_witness_physical_samples": [],
+            "range_witness_verified": false,
+            "physical_credit_verified": true
+          },
+          {
+            "id": 222,
+            "id_confirmed_in_journal": true,
+            "estimated_approach_in_journal": true,
+            "map_pose_credit": {
+              "verified": true,
+              "stamp_sim_s": 208.976,
+              "actual_distance_m": 1.2951312235422416,
+              "conservative_distance_upper_m": 1.296931345445526,
+              "bracketing_stamps_sim_s": [
+                208.973,
+                209.007
+              ],
+              "registered_speed_bound_m_s": 0.6,
+              "method": "interpolated_GT_with_speed_margin",
+              "reason": null,
+              "trajectory_source": "fine_evaluator_trace"
+            },
+            "range_witness_physical_samples": [],
+            "range_witness_verified": false,
+            "physical_credit_verified": true
+          }
+        ],
+        "source_sha256": {
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163001111.yaml": "58fc78eca3aa2a51c5fbff7f4d424ff5c5d138261c83301a7581bf5ae02fbbb2",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00011_train_g0_1/episodes/1163001111/evaluation.json": "848b9a665e30032de39991cd513eb7bcb6005574ded091f6a8b2314c51d76361",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00011_train_g0_1/episodes/1163001111/ground_truth_trajectory.csv": "95d310c6b4fe9f8bc529bdaa4ea4814d2f665a305b147f0b0b669122c6e92652",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00011_train_g0_1/episodes/1163001111/marker_events.jsonl": "2658c579f14cffa00a3fb6e69e01b61c784b3b1ab74eb6d4d0d86a5f4af9193c",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00011_train_g0_1/episodes/1163001111/evaluator_gt_fine_1794511434569710802.csv": "a3be40f7f2236fa62c1f3943717384ae612cda695cd7d54d1ccbda35c7194403"
+        }
+      }
+    }
+  ],
+  "latest_additional_credit_audits_captured_utc": "2026-11-12T19:46:09.220111+00:00"
 }
