@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T17:55:13.970271+00:00",
+  "captured_utc": "2026-11-12T18:20:34.392708+00:00",
   "client_date": "2026-11-13",
   "status": "native_spatial_source_and_weight_learning_running",
   "goal_status": "active",
@@ -725,19 +725,57 @@
       "domain": 114,
       "status": "running",
       "floor_sensor_gate": true,
-      "runtime_configuration_gate": true
+      "runtime_configuration_gate": true,
+      "outcome": null
     },
     {
       "number": 1,
       "role": "0",
       "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
       "domain": 115,
+      "status": "done",
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 408.346,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      }
+    },
+    {
+      "number": 2,
+      "role": "0",
+      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
+      "domain": 115,
+      "status": "done",
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 52.778999999999996,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      }
+    },
+    {
+      "number": 3,
+      "role": "0",
+      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
+      "domain": 115,
       "status": "running",
       "floor_sensor_gate": true,
-      "runtime_configuration_gate": true
+      "runtime_configuration_gate": true,
+      "outcome": null
     }
   ],
-  "completed_spatial_training_episodes": 0,
+  "completed_spatial_training_episodes": 2,
   "completed_cem_generations": 0,
   "generalization_verified": false,
   "revisit_reduction_verified": false,
@@ -834,5 +872,60 @@
       "complete": true,
       "source": "Read-only ROS GetParameters services"
     }
-  ]
+  ],
+  "completed_generation0_audits": [
+    {
+      "seed": 1163000101,
+      "success": true,
+      "evaluator_success": true,
+      "seconds": 408.346,
+      "targets": 3,
+      "collisions": 0,
+      "coordinate_errors_m": {
+        "786": 0.008691616286094404,
+        "76": 0.017735645891141776,
+        "90": 0.036319036712209964
+      },
+      "required_approach_m": 1.5,
+      "closest_approach_m": {
+        "786": 1.0681346577120225,
+        "90": 0.9357709926585045,
+        "76": 0.574456037464059
+      },
+      "video": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00001_train_g0_0/episodes/1163000101/video/mission.mp4",
+        "frames": 2043,
+        "fps": 5.0,
+        "verified": true
+      },
+      "errors": []
+    },
+    {
+      "seed": 1163000202,
+      "success": true,
+      "evaluator_success": true,
+      "seconds": 52.778999999999996,
+      "targets": 3,
+      "collisions": 0,
+      "coordinate_errors_m": {
+        "923": 0.05063300615221672,
+        "1005": 0.010982150916266618,
+        "831": 0.016837212216813568
+      },
+      "required_approach_m": 1.5,
+      "closest_approach_m": {
+        "831": 1.402359141573995,
+        "1005": 0.7824904495050001,
+        "923": 1.4287270327722876
+      },
+      "video": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00002_train_g0_0/episodes/1163000202/video/mission.mp4",
+        "frames": 265,
+        "fps": 5.0,
+        "verified": true
+      },
+      "errors": []
+    }
+  ],
+  "evaluator_observer": "physical_credit_verification.json"
 }

@@ -1,7 +1,7 @@
 {
-  "updated_utc": "2026-11-12T17:55:59.515747+00:00",
+  "updated_utc": "2026-11-12T18:21:22.051118+00:00",
   "release_url": "https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11",
-  "uploaded_verified": 140,
+  "uploaded_verified": 142,
   "videos": [
     {
       "asset": "fix_v10_escape_regression3__9802005.mp4",
@@ -2216,6 +2216,38 @@
       "uploaded_verified": true
     },
     {
+      "asset": "spatial_cem_v5__00001_train_g0_0__1163000101.mp4",
+      "local_path": "training_robust/native90/spatial_cem_v5/jobs/00001_train_g0_0/episodes/1163000101/video/mission.mp4",
+      "bytes": 9619062,
+      "sha256": "876d907983f7f17a49fa7c0e09ad493f3c8f7823898bb0f8fe7d8871e62a9da2",
+      "url": "https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v5__00001_train_g0_0__1163000101.mp4",
+      "original_evaluator_success": true,
+      "reason": "all_targets_found",
+      "elapsed_sim_seconds": 408.346,
+      "targets": 3,
+      "collisions": 0,
+      "actual_approach_1_5m": true,
+      "recording_frames": 2043,
+      "recording_seconds": 408.6,
+      "uploaded_verified": true
+    },
+    {
+      "asset": "spatial_cem_v5__00002_train_g0_0__1163000202.mp4",
+      "local_path": "training_robust/native90/spatial_cem_v5/jobs/00002_train_g0_0/episodes/1163000202/video/mission.mp4",
+      "bytes": 1864127,
+      "sha256": "12b2a527a3bbeb8422eabcdfcac41915f06d1c15d0dbd6b230ce15c4736f528c",
+      "url": "https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v5__00002_train_g0_0__1163000202.mp4",
+      "original_evaluator_success": true,
+      "reason": "all_targets_found",
+      "elapsed_sim_seconds": 52.778999999999996,
+      "targets": 3,
+      "collisions": 0,
+      "actual_approach_1_5m": true,
+      "recording_frames": 265,
+      "recording_seconds": 53.0,
+      "uploaded_verified": true
+    },
+    {
       "asset": "tf_restamp_v1__regression__case_0__1121200000.mp4",
       "local_path": "training_robust/native90/tf_restamp_v1/regression/case_0/episodes/1121200000/video/mission.mp4",
       "bytes": 7248198,
@@ -2266,7 +2298,7 @@
       "reason": "Final evaluation or recording metadata absent"
     },
     {
-      "path": "training_robust/native90/spatial_cem_v5/jobs/00001_train_g0_0/episodes/1163000101/video/mission.mp4",
+      "path": "training_robust/native90/spatial_cem_v5/jobs/00003_train_g0_0/episodes/1163000303/video/mission.mp4",
       "reason": "Final evaluation or recording metadata absent"
     }
   ],

@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T17:55:13.970271+00:00",
+  "captured_utc": "2026-11-12T18:20:34.392708+00:00",
   "purpose": "Repository upload snapshot; not a live dashboard",
   "tests_passed_final": 189,
   "native_validation_complete": false,
@@ -137,8 +137,8 @@
   "previous_regressions_complete": true,
   "latest_change": {
     "date": "2026-11-13",
-    "name": "two_navigation_candidates_passed_and_fresh_L197.4s;3source_newmap_learning_active",
-    "status": "spatial_cem_v5_generation0_running",
+    "name": "fresh_triangle408.346s_and_trapezoid52.779s_passed;fine_evaluator_capture",
+    "status": "spatial_cem_v5_generation0;2of28finished;circle_and_rectangle_running",
     "generalization_verified": false
   },
   "latest_recording": {
@@ -161,7 +161,8 @@
   "active_supervision": {
     "current_campaign": "spatial_cem_v5",
     "coordinator": "osp-spatial-cem-v5.service",
-    "dashboard": "osp-robot-dashboard.service"
+    "dashboard": "osp-robot-dashboard.service",
+    "evaluator_observer": "osp-spatial-evaluator-observer-v1.service"
   },
   "pending_tf_comparison": {
     "status": "completed",
@@ -189,5 +190,7 @@
   "floor_diagnosis": "floor_pose_diagnosis.json",
   "local_navigation_diagnosis": "local_navigation_diagnosis.json",
   "bounded_gain_candidate": "bounded_gain_candidate.json",
-  "current_champion_runtime": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime"
+  "current_champion_runtime": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
+  "physical_credit_verification": "physical_credit_verification.json",
+  "latest_observability_change": "Saved approach credits independently verified;fine actual-pose traces measured29.4simHz;future completedCEMepisodes automatically analyzed"
 }

@@ -115,8 +115,8 @@
       "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime"
     },
     {
-      "number": 1,
-      "unit": "osp-spatial-nov13-space5-00001.service",
+      "number": 3,
+      "unit": "osp-spatial-nov13-space5-00003.service",
       "domain": 115,
       "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime"
     }
@@ -1111,8 +1111,10 @@
   },
   "spatial_curriculum": "repository_snapshot/spatial_curriculum.json",
   "dashboard": "http://127.0.0.1:8765",
-  "latest_goal_turn_evidence": "NativeA270.5s,B504.602s onpreviouslyfailedcircle,both3IDs/actual1.5m/positions/0contacts;freshL16E197.4sindependentlypassed;3sourceCEMlaunched28uniqueexteriors;0completednewgenerations;generalizationunproven",
+  "latest_goal_turn_evidence": "2of28newCEMtrainingepisodescompletedandindependentlypassed:triangle408.346s,trapezoid52.779s;circleandrectanglerunning;fineGT29.4simHz;3priorcreditstampspassedaddedphysicalaudit;trianglesupplementaryexacttimestampboundinconclusive,notamissionfailure",
   "latest_navigation_diagnosis": "repository_snapshot/local_navigation_diagnosis.json",
   "current_native_supervisor": "osp-spatial-cem-v5.service",
-  "next_training_driver": "spatial_native_curriculum_v5.py"
+  "next_training_driver": "spatial_native_curriculum_v5.py",
+  "fine_evaluator_observer": "osp-spatial-evaluator-observer-v1.service",
+  "physical_credit_auditor": "training_robust/audit_approach_evidence.py"
 }
