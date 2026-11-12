@@ -1,0 +1,121 @@
+{
+  "captured_utc": "2026-11-12T17:48:18.068957+00:00",
+  "code_finding": "Default edge gain can reward360degree coverage while actual observation sweep is capped120degrees",
+  "measurements": [
+    {
+      "seed": 1159000202,
+      "shape": "trapezoid",
+      "selected_scan_angle_counts_deg": {
+        "120": 5,
+        "0": 5,
+        "360": 19
+      },
+      "actual_observation_turn_max_deg": 120.0,
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 470.371,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      }
+    },
+    {
+      "seed": 1159000303,
+      "shape": "rectangle",
+      "selected_scan_angle_counts_deg": {
+        "120": 6,
+        "60": 5,
+        "360": 29,
+        "0": 4
+      },
+      "actual_observation_turn_max_deg": 120.0,
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 588.901,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      }
+    }
+  ],
+  "change": "Remove automatic full-circle reward fallback; preserve bounded110degree scored sector and real camera evidence",
+  "runtime": "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime",
+  "runtime_tests_passed": 226,
+  "production_promoted": false,
+  "generalization_verified": false,
+  "fresh_space_native_probe": {
+    "status": "running_fresh_space_probe",
+    "training_samples": false,
+    "generalization_verified": false,
+    "jobs": [
+      {
+        "number": 0,
+        "phase": "diagnostic",
+        "role": "candidate",
+        "workspace": "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime",
+        "output": "/home/peter/simul/training_robust/native90/bounded_gain_fresh_probe_v1/case_0",
+        "scenario": {
+          "file": "/home/peter/simul/training_robust/native90/bounded_gain_fresh_probe_v1/scenarios/1160000404.yaml",
+          "seed": 1160000404,
+          "sha256": "feab5d57a377874abc3a60d7010d6fbbc54f47b2c888e17085681e0f234a94fa",
+          "mount_profile": "mixed",
+          "requested_obstacles": 16,
+          "actual_obstacles": 16,
+          "arena": {
+            "shape": "l_shape",
+            "width_m": 18.58358365665447,
+            "height_m": 12.379580402959881,
+            "area_m2": 176.70697297937332
+          }
+        },
+        "status": "running",
+        "domain": 118,
+        "parameters": [
+          1.0,
+          2.409531985394154,
+          0.4889512207810997,
+          0.7812959734881743,
+          0.6473764656964455
+        ],
+        "unit": "osp-bounded-gain-fresh-probe-v1-native.service",
+        "floor_sensor_gate": true,
+        "runtime_configuration_gate": true
+      }
+    ]
+  },
+  "upcoming_source_search": {
+    "status": "prepared_driver_not_launched_waiting_for_final_native_regression",
+    "driver": "training_robust/spatial_native_curriculum_v5.py",
+    "sources": [
+      "live_costmap_v1",
+      "approach_witness_v1",
+      "bounded_gain_v1"
+    ],
+    "training_episodes_per_generation": 28,
+    "each_training_layout_unique": true,
+    "weight_candidates_per_generation": 4,
+    "champion_source_tracked_through_all_gates": true,
+    "starting_source": "Fastest independently successful native diagnostic arm",
+    "validation": "7shape pilot;28paired validation;42fresh exterior final;40original PDF final",
+    "production_promoted": false
+  },
+  "scope_note": "Fewer scored degrees and unit tests do not prove faster native completion; fresh native probe is in progress",
+  "discarded_investigation": "Old root source used12cm coverage; actual running source already used8cm. No size-coverage patch or native trial was applied",
+  "actual_native_gain_routing_observed": {
+    "evidence_type": "actual_native_recorded_policy_inputs",
+    "decisions": 9,
+    "selected_requested_angles_deg": {
+      "120": 7,
+      "0": 2
+    },
+    "max_candidate_angle_deg": 120,
+    "full_circle_candidates": 0,
+    "floor_sensor_gate": true,
+    "runtime_configuration_gate": true,
+    "not_a_final_mission_result": true
+  }
+}

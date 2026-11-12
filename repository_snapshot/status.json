@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T17:24:13.146975+00:00",
+  "captured_utc": "2026-11-12T17:48:18.068957+00:00",
   "purpose": "Repository upload snapshot; not a live dashboard",
   "tests_passed_final": 189,
   "native_validation_complete": false,
@@ -137,8 +137,8 @@
   "previous_regressions_complete": true,
   "latest_change": {
     "date": "2026-11-13",
-    "name": "local_map_deadlock_and_approach_revisit_diagnosed",
-    "status": "local_map_candidate_running;actual_ROS_settings_and_floor_inputs_verified;trapezoid_predecessor_passed470.371s",
+    "name": "audited_local_map_fix270.5s_and_bounded_gain_fresh_L_shape_probe",
+    "status": "candidate_A_passed;candidate_B_and_new_L_shape_running",
     "generalization_verified": false
   },
   "latest_recording": {
@@ -165,7 +165,13 @@
     "coordinator": "osp-navigation-regression-v1.service",
     "dashboard": "osp-robot-dashboard.service",
     "previous_campaign": "spatial_cem_v3",
-    "previous_dispatch": "held_for_navigation_regression"
+    "previous_dispatch": "held_for_navigation_regression",
+    "current_campaigns": [
+      "navigation_regression_v1",
+      "bounded_gain_fresh_probe_v1"
+    ],
+    "additional_coordinator": "osp-bounded-gain-fresh-probe-v1.service",
+    "readonly_probe_capture": "osp-navigation-probe-capture-v1.service"
   },
   "pending_tf_comparison": {
     "status": "completed",
@@ -177,18 +183,19 @@
     "report": "tf_navigation_failure.json"
   },
   "pending_curriculum_upgrade": {
-    "status": "waiting_for_finalized_navigation_diagnostic",
-    "candidate_successor": "spatial_cem_v4",
-    "active_service": "osp-navigation-regression-v1.service",
+    "status": "waiting_for_final_navigation_ablation",
+    "candidate_successor": "spatial_cem_v5",
+    "source_search_driver_prepared": true,
     "current_native_runs_preserved": true
   },
   "dashboard": "dashboard.json",
   "spatial_geometry": "spatial_geometry_v3.json",
   "revisit_analysis": "revisit_analysis.json",
-  "latest_candidate_tests_passed": 224,
+  "latest_candidate_tests_passed": 226,
   "latest_candidate_tests_skipped": 0,
-  "latest_candidate_runtime": "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime",
+  "latest_candidate_runtime": "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime",
   "production_promoted": false,
   "floor_diagnosis": "floor_pose_diagnosis.json",
-  "local_navigation_diagnosis": "local_navigation_diagnosis.json"
+  "local_navigation_diagnosis": "local_navigation_diagnosis.json",
+  "bounded_gain_candidate": "bounded_gain_candidate.json"
 }

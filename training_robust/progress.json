@@ -65,9 +65,9 @@
   "ros_surface_integration": "surface_endpoint_default_edge_comparison_option_unit_tested",
   "gazebo_verified": false,
   "next_actions": [
-    "Preserve the two running v3 native episodes to completion",
-    "Compare two frozen collision-map/approach-evidence candidates on the independently preserved failed circle",
-    "Only an independently successful diagnostic candidate may seed the next fresh exterior campaign; no production promotion"
+    "Preserve and audit native ablation B",
+    "Collect fresh L-shape bounded-gain native probe without including it in training",
+    "After finalized ablation, start3-source coefficient search across28new exteriors;all original independent gates retained"
   ],
   "ros_unit_tests_passed": 157,
   "ros_directional_smoke": "native_communication_verified",
@@ -109,14 +109,14 @@
   },
   "current_jobs": [
     {
-      "number": 3,
-      "unit": "osp-spatial-nov13-space3-00003.service",
-      "domain": 114
+      "number": 1,
+      "unit": "osp-navigation-regression-v1-1.service",
+      "domain": 117
     },
     {
       "number": 0,
-      "unit": "osp-navigation-regression-v1-0.service",
-      "domain": 116
+      "unit": "osp-bounded-gain-fresh-probe-v1-native.service",
+      "domain": 118
     }
   ],
   "additional_results": {
@@ -1109,7 +1109,8 @@
   },
   "spatial_curriculum": "repository_snapshot/spatial_curriculum.json",
   "dashboard": "http://127.0.0.1:8765",
-  "latest_goal_turn_evidence": "Native local-map deadlock measured6lethal footprint cells despite nearest live hit1.05m;two confirmed-range witnesses recovered in separate offline replay;actual new local-map ROS parameters and4cliff inputs verified;trapezoid16obstacles470.371s independently passed;generalization and revisit reduction unverified",
+  "latest_goal_turn_evidence": "A independently completed known failed circle270.5s vs600.2timeout;zero contacts/all3IDs/actual1.5m/correct positions;24obstacle rectangle completed588.901s;Bstill running;new bounded-gain candidate running on fresh Lshape16obstacles",
   "latest_navigation_diagnosis": "repository_snapshot/local_navigation_diagnosis.json",
-  "current_native_supervisor": "osp-navigation-regression-v1.service"
+  "current_native_supervisor": "osp-navigation-regression-v1.service",
+  "next_training_driver": "spatial_native_curriculum_v5.py"
 }

@@ -11,14 +11,18 @@
 > 학습 표본에서 제외했습니다. 수정한 실제 원형·삼각형의 바닥 센서4개가 모두 정상 응답하며,
 > 매 새 실행에도 이 검사를 적용합니다. [진단과 검증 범위](repository_snapshot/floor_pose_diagnosis.json).
 
-> **추가 진단:** 새 원형 실행에서 실제 LiDAR와 달리 주행용 지도에 로봇 위치가 장애물로 남는 현상과,
-> SLAM 좌표 보정 후 이미 접근한 ID를 다시 선택하는 현상을 확인했습니다.
-> 진행 중인 두 주행을 보존하고, 주행용 지도 수정 후보와 근접 관측 기록 보존 후보를 같은 실패 장면에서 비교합니다.
-> 로그 재생과 새 Gazebo 성과를 구분하며 아직 개선된 완주율로 보고하지 않습니다.
-> [측정·후보·검증 범위](repository_snapshot/local_navigation_diagnosis.json).
-> 주행 지도 후보는 실제 ROS 설정과 바닥 센서 검사를 통과해 실행 중입니다. 수정 전 별도 사다리꼴·장애물16개
-> 학습 장면은470.371초에 세 ID·각 실제1.5m 접근·지도 오차1.0–8.9cm·충돌0회로 완주했습니다.
-> 한 장면의 성공이며 새 공간 전체 성공률이나 재방문 감소 검증을 뜻하지 않습니다.
+> **주행 지도 수정 검증:** 기존 원형600.2초 실패 장면을 같은 맵·가중치에서270.500초에 완주했습니다.
+> 세 ID·각 실제1.5m 접근·지도 오차0.5m 이내·충돌0회를 독립 평가와 최종 영상으로 확인했습니다.
+> 탐색 불가 결정은201회에서0회, 가장 긴 정지는356.694초에서2.040초였습니다.
+> 접근 기록 보존 후보의 동일 장면 비교는 진행 중이며, 전체 재방문 감소는 아직 검증되지 않았습니다.
+> 수정 전 별도 사다리꼴·장애물16개와 직사각형·24개 장면은 각각470.371초·588.901초에 통과했습니다.
+> [측정과 검증 범위](repository_snapshot/local_navigation_diagnosis.json).
+>
+> **시간 최적화 후보:** 360도 관측 이득으로 점수를 주면서 실제 회전은 최대120도로 제한하던 불일치를
+> 제거한 후보를 새 L자 공간·장애물16개에서 주행 중입니다. 실제 설정·바닥 센서 검사를 통과했습니다.
+> 다음 학습 감독기는 코드 후보3종과 가중치를 함께 비교하고 우승 코드 경로를 최종 검증까지 유지하도록 준비했습니다.
+> [후보·새 공간·검증 상태](repository_snapshot/bounded_gain_candidate.json).
+> 새 공간 전반의 성공률·시간 개선 검증과CEM 새 세대 학습은 아직 완료되지 않았습니다.
 
 [**시뮬레이션 영상 다운로드 — GitHub Release**](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11)
 
@@ -237,7 +241,7 @@ python3 scripts/publish_simulation_videos.py --upload
 
 ## 저장된 Gazebo 영상
 
-[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 136개
+[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 138개
 
 아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다. 환경 오류로 종료한 영상은 정책 학습 표본에서 제외합니다.
 
@@ -349,6 +353,7 @@ python3 scripts/publish_simulation_videos.py --upload
 | [native_search_v1__057_validation_mppi_frontier_9802018__9802018.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__057_validation_mppi_frontier_9802018__9802018.mp4) | 실패 | 미달 | 600.307 |
 | [native_search_v1__058_validation_rpp_balanced_9802019__9802019.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__058_validation_rpp_balanced_9802019__9802019.mp4) | 성공 | 확인 | 546.723 |
 | [native_search_v1__059_validation_mppi_frontier_9802019__9802019.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/native_search_v1__059_validation_mppi_frontier_9802019__9802019.mp4) | 성공 | 확인 | 522.737 |
+| [navigation_regression_v1__case_0__1159000000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/navigation_regression_v1__case_0__1159000000.mp4) | 성공 | 확인 | 270.5 |
 | [panorama_v5_screen2__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/panorama_v5_screen2__8600007.mp4) | 실패 | 미달 | 600.0 |
 | [panorama_v5_screen2__8600139.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/panorama_v5_screen2__8600139.mp4) | 성공 | 미달 | 293.6 |
 | [persistent_edge_v3_mixed16__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/persistent_edge_v3_mixed16__8600007.mp4) | 실패 | 미달 | 358.113 |
@@ -379,6 +384,7 @@ python3 scripts/publish_simulation_videos.py --upload
 | [spatial_cem_v2__00001_train_g0_0__1148000101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v2__00001_train_g0_0__1148000101.mp4) | 실패 | 미달 | 600.019 |
 | [spatial_cem_v3__00000_train_g0_0__1159000000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v3__00000_train_g0_0__1159000000.mp4) | 실패 | 미달 | 600.2 |
 | [spatial_cem_v3__00002_train_g0_0__1159000202.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v3__00002_train_g0_0__1159000202.mp4) | 성공 | 확인 | 470.371 |
+| [spatial_cem_v3__00003_train_g0_0__1159000303.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v3__00003_train_g0_0__1159000303.mp4) | 성공 | 확인 | 588.901 |
 | [tf_restamp_v1__regression__case_0__1121200000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_0__1121200000.mp4) | 성공 | 확인 | 231.867 |
 | [tf_restamp_v1__regression__case_1__1121200101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_1__1121200101.mp4) | 성공 | 확인 | 229.859 |
 

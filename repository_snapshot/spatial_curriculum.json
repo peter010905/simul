@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T17:24:13.146975+00:00",
+  "captured_utc": "2026-11-12T17:48:18.068957+00:00",
   "client_date": "2026-11-13",
   "status": "held_for_navigation_regression",
   "goal_status": "active",
@@ -476,7 +476,7 @@
     "/home/peter/simul/src/osp_mission/osp_mission/robust_scenarios.py": "f8f6683a773afedf6c08c9ad6f14b5f4ca8823b1fc9035685222d48909f722d8",
     "/home/peter/simul/src/osp_mission/osp_mission/scenarios.py": "9259bf1e82a6b525bf84d905226465140a183fbbc94e11dfd783907151940d37"
   },
-  "completed_spatial_training_episodes": 2,
+  "completed_spatial_training_episodes": 3,
   "completed_cem_generations": 0,
   "generalization_verified": false,
   "revisit_reduction_verified": false,
@@ -572,6 +572,60 @@
         "verified": true
       },
       "errors": []
+    },
+    {
+      "seed": 1159000303,
+      "success": true,
+      "evaluator_success": true,
+      "seconds": 588.901,
+      "targets": 3,
+      "collisions": 0,
+      "coordinate_errors_m": {
+        "152": 0.0185835400430617,
+        "259": 0.11003494762404166,
+        "835": 0.04956260952853793
+      },
+      "required_approach_m": 1.5,
+      "closest_approach_m": {
+        "152": 0.8498857379836318,
+        "259": 1.4315612815753367,
+        "835": 1.3705479605169961
+      },
+      "video": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v3/jobs/00003_train_g0_0/episodes/1159000303/video/mission.mp4",
+        "frames": 2945,
+        "fps": 5.0,
+        "verified": true
+      },
+      "errors": []
     }
-  ]
+  ],
+  "new_navigation_regression_candidate_A": {
+    "seed": 1159000000,
+    "success": true,
+    "evaluator_success": true,
+    "seconds": 270.5,
+    "targets": 3,
+    "collisions": 0,
+    "coordinate_errors_m": {
+      "856": 0.13532555240303284,
+      "25": 0.39940776238482345,
+      "910": 0.12256316773701097
+    },
+    "required_approach_m": 1.5,
+    "closest_approach_m": {
+      "910": 1.3940939136891906,
+      "856": 1.165775833695709,
+      "25": 1.449081359174509
+    },
+    "video": {
+      "file": "/home/peter/simul/training_robust/native90/navigation_regression_v1/case_0/episodes/1159000000/video/mission.mp4",
+      "frames": 1353,
+      "fps": 5.0,
+      "verified": true
+    },
+    "errors": []
+  },
+  "next_training_driver": "spatial_native_curriculum_v5.py",
+  "source_search_prepared_not_started": true
 }
