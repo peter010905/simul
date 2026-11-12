@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T14:55:51.120130+00:00",
+  "captured_utc": "2026-11-12T15:53:13.555654+00:00",
   "purpose": "Repository upload snapshot; not a live dashboard",
   "tests_passed_final": 189,
   "native_validation_complete": false,
@@ -133,28 +133,13 @@
     "marker_sizes.json",
     "route_timecost.json"
   ],
-  "latest_training": "fresh_map_curriculum.json",
+  "latest_training": "spatial_curriculum.json",
   "previous_regressions_complete": true,
   "latest_change": {
-    "date": "2026-11-12",
-    "name": "bounded_observation_rotation",
-    "status": "single_scene_verified_candidate",
-    "original_benchmarks": "preserved; no original result changed",
-    "offline_validation": {
-      "root_tests_passed": 174,
-      "staged_candidate_tests_passed": 194,
-      "hardware_adapter_tests_passed": 4,
-      "synthetic_sweep_degrees": {
-        "left_unseen": 105,
-        "right_unseen": -105,
-        "all_inspected": 0
-      }
-    },
-    "new_gazebo_results": "low_rotation_video.json",
-    "hardware_validated": false,
-    "default_hardware_candidate": "v13 unchanged",
-    "opt_in_flag": "--low-rotation",
-    "notes": "A new recorded native Gazebo development scene passed; no matched baseline comparison, robustness rate or hardware validation."
+    "date": "2026-11-13",
+    "name": "outer_space_randomization_and_revisit_memory",
+    "status": "native_learning_in_progress",
+    "generalization_verified": false
   },
   "latest_recording": {
     "date": "2026-11-12",
@@ -175,7 +160,31 @@
     "production_promoted": false,
     "matched_baseline_comparison": false
   },
-  "active_supervision": "fresh_map_successor.json",
-  "pending_tf_comparison": "tf_navigation_failure.json",
-  "pending_curriculum_upgrade": "fresh_map_successor.json"
+  "active_supervision": {
+    "current_campaign": "spatial_cem_v1",
+    "coordinator": "osp-spatial-cem-v1.service",
+    "dashboard": "osp-robot-dashboard.service",
+    "previous_curriculum": "superseded;completed native results preserved"
+  },
+  "pending_tf_comparison": {
+    "status": "completed",
+    "native_cases": 2,
+    "pose_tf_errors_after": [
+      0,
+      0
+    ],
+    "report": "tf_navigation_failure.json"
+  },
+  "pending_curriculum_upgrade": {
+    "status": "completed",
+    "successor": "spatial_cem_v1",
+    "active_service": "osp-spatial-cem-v1.service"
+  },
+  "dashboard": "dashboard.json",
+  "spatial_geometry": "spatial_geometry.json",
+  "revisit_analysis": "revisit_analysis.json",
+  "latest_candidate_tests_passed": 210,
+  "latest_candidate_tests_skipped": 1,
+  "latest_candidate_runtime": "training_robust/native90/spatial_cem_v1/runtime",
+  "production_promoted": false
 }

@@ -1,0 +1,70 @@
+{
+  "captured_utc": "2026-11-12T15:53:13.555654+00:00",
+  "scope": "Original PDF Gazebo trajectories; no physical-robot run was inspected",
+  "baseline_measurements": [
+    {
+      "episode": "/home/peter/simul/training_robust/native90/fresh_map_cem_v2/jobs/00000_train_g0_0/episodes/1123200000",
+      "source": "Independent Gazebo ground-truth trajectory; evaluator only",
+      "path_distance_m": 76.55944860069638,
+      "distance_in_returned_cells_m": 5.633105787919817,
+      "returned_distance_fraction": 0.07357819173045321,
+      "cell_reentries_after_15_sim_seconds": 13,
+      "cell_size_m": 0.6,
+      "minimum_path_step_m": 0.2,
+      "navigation_goals": 47,
+      "repeated_map_goals_within_0_8m_excluding_last_two": 3,
+      "limits": [
+        "Returned cells include necessary corridor transit and marker approach; this is not waste distance",
+        "Repeated goals use SLAM map coordinates and may be affected by frame correction",
+        "These are simulation measurements, not observations from a physical robot"
+      ]
+    },
+    {
+      "episode": "/home/peter/simul/training_robust/native90/fresh_map_cem_v2/jobs/00002_train_g0_2/episodes/1123200202",
+      "source": "Independent Gazebo ground-truth trajectory; evaluator only",
+      "path_distance_m": 65.2660105386618,
+      "distance_in_returned_cells_m": 12.964023582232011,
+      "returned_distance_fraction": 0.19863361457572892,
+      "cell_reentries_after_15_sim_seconds": 24,
+      "cell_size_m": 0.6,
+      "minimum_path_step_m": 0.2,
+      "navigation_goals": 46,
+      "repeated_map_goals_within_0_8m_excluding_last_two": 4,
+      "limits": [
+        "Returned cells include necessary corridor transit and marker approach; this is not waste distance",
+        "Repeated goals use SLAM map coordinates and may be affected by frame correction",
+        "These are simulation measurements, not observations from a physical robot"
+      ]
+    },
+    {
+      "episode": "/home/peter/simul/training_robust/native90/fresh_map_cem_v2/jobs/00001_train_g0_1/episodes/1123200101",
+      "source": "Independent Gazebo ground-truth trajectory; evaluator only",
+      "path_distance_m": 58.92820740043732,
+      "distance_in_returned_cells_m": 9.939433373201341,
+      "returned_distance_fraction": 0.16867021434505028,
+      "cell_reentries_after_15_sim_seconds": 18,
+      "cell_size_m": 0.6,
+      "minimum_path_step_m": 0.2,
+      "navigation_goals": 20,
+      "repeated_map_goals_within_0_8m_excluding_last_two": 0,
+      "limits": [
+        "Returned cells include necessary corridor transit and marker approach; this is not waste distance",
+        "Repeated goals use SLAM map coordinates and may be affected by frame correction",
+        "These are simulation measurements, not observations from a physical robot"
+      ]
+    }
+  ],
+  "code_findings": [
+    "Exploration remembers destination exclusions rather than the full traveled path",
+    "When no choices remain, exclusions are reduced to the latest5 destinations",
+    "Map-coordinate-only history may shift after SLAM corrections"
+  ],
+  "candidate_changes": [
+    "Mission-long odometry-anchored traveled-cell and successful-view memory",
+    "Suppress same-location/same-direction low-frontier views for150 sim seconds",
+    "Keep new directions/new frontier/marker approach eligible",
+    "No hard ban on necessary corridor transit",
+    "Log actual selected goals and memory metrics in exploration_memory.jsonl"
+  ],
+  "native_improvement_verified": false
+}

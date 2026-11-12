@@ -1,7 +1,7 @@
 {
-  "goal_status": "user_requested_resume_app_goal_still_paused",
-  "phase": "sequential_failure_fixes_native_regression",
-  "last_verified_utc": "2026-11-05T10:24:09.183042+00:00",
+  "goal_status": "active",
+  "phase": "native_spatial_cem_learning",
+  "last_verified_utc": "2026-11-12T15:53:13.555654+00:00",
   "jobs": [
     {
       "run": "training_robust/diverse_directional_cem",
@@ -108,28 +108,14 @@
   },
   "current_jobs": [
     {
-      "unit": "osp-fix-v10-escape.service",
-      "workspace": "/home/peter/simul/training_robust/native90/runtime_fix_v10_escape_staging",
-      "output": "/home/peter/simul/training_robust/native90/fix_v10_escape_regression3",
-      "status": "running"
+      "name": "circle",
+      "unit": "osp-spatial-nov13-space-00000.service",
+      "domain": 114
     },
     {
-      "unit": "osp-fix-v11-completion.service",
-      "workspace": "/home/peter/simul/training_robust/native90/runtime_fix_v11_completion_staging",
-      "output": "/home/peter/simul/training_robust/native90/fix_v11_completion_regression1",
-      "status": "running"
-    },
-    {
-      "unit": "osp-fix-v12-identity.service",
-      "workspace": "/home/peter/simul/training_robust/native90/runtime_fix_v12_identity_staging",
-      "output": "/home/peter/simul/training_robust/native90/fix_v12_identity_regression1",
-      "status": "prepared"
-    },
-    {
-      "unit": "osp-fix-v13-observation.service",
-      "workspace": "/home/peter/simul/training_robust/native90/runtime_fix_v13_observation_staging",
-      "output": "/home/peter/simul/training_robust/native90/fix_v13_observation_regression6",
-      "status": "prepared"
+      "name": "triangle",
+      "unit": "osp-spatial-nov13-space-00001.service",
+      "domain": 115
     }
   ],
   "additional_results": {
@@ -469,14 +455,7 @@
       "last_frame_decoded": true
     }
   },
-  "latest_goal_turn_classification": {
-    "classification": "progress",
-    "evidence": [
-      "native90/marker_focus_v6_screen3/queued_launch.json",
-      "native90/marker_focus_v6_screen3/queued_source_hashes.json"
-    ],
-    "reason": "Revalidated two live native 32-obstacle runs and launched a source-verified queue that starts the prepared marker verification candidate automatically after the specific existing campaign exits."
-  },
+  "latest_goal_turn_classification": "native exterior-space training started; goal not yet achieved",
   "baseline_native_screen4": {
     "complete": true,
     "successes": 1,
@@ -577,7 +556,7 @@
     "baseline_seconds": 3.618,
     "candidate_seconds": 20.074
   },
-  "updated_utc": "2026-11-12T14:55:51.120130+00:00",
+  "updated_utc": "2026-11-12T15:53:13.555654+00:00",
   "motion_v2_native_result": {
     "seed": 8600007,
     "success": true,
@@ -1139,9 +1118,9 @@
     "generalization_verified": false
   },
   "fresh_map_successor": {
-    "snapshot": "repository_snapshot/fresh_map_successor.json",
-    "service": "osp-fresh-map-v2-upgrade.service",
-    "status": "draining_original_jobs",
-    "goal_verified": false
-  }
+    "status": "superseded_by_spatial_cem_v1",
+    "report": "repository_snapshot/spatial_curriculum.json"
+  },
+  "spatial_curriculum": "repository_snapshot/spatial_curriculum.json",
+  "dashboard": "http://127.0.0.1:8765"
 }

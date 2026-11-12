@@ -1,5 +1,13 @@
 # OSP Final Project — ROS 2 Jazzy
 
+> **2026-11-13 최신:** [로컬 로봇 대시보드](http://127.0.0.1:8765)에서 실제 RGB 카메라,
+> SLAM·LiDAR, ID 인식/1.5m 접근 기록, 로그와 완료 영상을 확인할 수 있습니다.
+> 실행: `bash scripts/run_robot_dashboard.sh start`.
+> [사용·관리 방법](dashboard/README.md) · [공간 다양화 학습 상태](repository_snapshot/spatial_curriculum.json).
+> `spatial_cem_v1`은 **원형·삼각형·사다리꼴·직사각형·L자·U자·다중 방**으로
+> 실제 Gazebo 외곽 벽과 주행 공간을 바꿉니다. 기존 PDF 공간의 내부 장애물만 바꾸던
+> `fresh_map_cem_v2`와 구분합니다. 새 학습과 재방문 억제는 검증 중이며 실사용 정책으로 승격하지 않았습니다.
+
 [**시뮬레이션 영상 다운로드 — GitHub Release**](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11)
 
 비공개 저장소 권한이 있는 GitHub 계정으로 로그인하면 영상을 받을 수 있습니다.
@@ -217,7 +225,7 @@ python3 scripts/publish_simulation_videos.py --upload
 
 ## 저장된 Gazebo 영상
 
-[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 123개
+[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 128개
 
 아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다.
 
@@ -253,6 +261,11 @@ python3 scripts/publish_simulation_videos.py --upload
 | [fresh_map_cem_v1__00001_train_g0_1__1121200101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fresh_map_cem_v1__00001_train_g0_1__1121200101.mp4) | 실패 | 미달 | 600.309 |
 | [fresh_map_cem_v1__00002_train_g0_2__1121200202.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fresh_map_cem_v1__00002_train_g0_2__1121200202.mp4) | 실패 | 확인 | 600.3 |
 | [fresh_map_cem_v1__00003_train_g0_3__1121200303.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fresh_map_cem_v1__00003_train_g0_3__1121200303.mp4) | 성공 | 확인 | 317.4 |
+| [fresh_map_cem_v1__00004_train_g0_0__1121200404.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fresh_map_cem_v1__00004_train_g0_0__1121200404.mp4) | 성공 | 확인 | 362.907 |
+| [fresh_map_cem_v1__00005_train_g0_1__1121200505.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fresh_map_cem_v1__00005_train_g0_1__1121200505.mp4) | 성공 | 확인 | 318.301 |
+| [fresh_map_cem_v2__00000_train_g0_0__1123200000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fresh_map_cem_v2__00000_train_g0_0__1123200000.mp4) | 성공 | 확인 | 581.66 |
+| [fresh_map_cem_v2__00001_train_g0_1__1123200101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fresh_map_cem_v2__00001_train_g0_1__1123200101.mp4) | 성공 | 확인 | 325.378 |
+| [fresh_map_cem_v2__00002_train_g0_2__1123200202.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fresh_map_cem_v2__00002_train_g0_2__1123200202.mp4) | 성공 | 확인 | 541.282 |
 | [low_rotation_video_20261112__episode_8000001.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/low_rotation_video_20261112__episode_8000001.mp4) | 성공 | 확인 | 494.534 |
 | [marker_focus_v6_screen3__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/marker_focus_v6_screen3__8600007.mp4) | 실패 | 자료 없음 | 242.819 |
 | [marker_focus_v6_service_screen3__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/marker_focus_v6_service_screen3__8600007.mp4) | 실패 | 미달 | 347.089 |
@@ -608,6 +621,32 @@ TF 설정은 짝지은 PAR-2가 개선되고, 접촉·인프라 실패가 없으
 기존 코드의 추가 새 맵 회차(seed1121200303)는317.4초 완주와 독립 감사를 통과했습니다.
 317.4초 회차는 기존 탐색 코드를 사용했습니다.
 [학습 전환 계획·검증·현재 관측 결과](repository_snapshot/fresh_map_successor.json).
+
+## 외곽 공간 다양화와 재방문 억제 — 2026-11-13
+
+`spatial_cem_v1`은 각 세대에서 후보 4개를 서로 다른 공간 7종씩, 총28개 실제 Gazebo
+주행으로 평가합니다. 공간 크기·외곽 다각형·방 연결·출발점·장애물·마커 부착 면과
+ID·8–30cm 크기를 함께 바꿉니다. 원형의 충돌 벽은 닫힌48분할 다각형 근사입니다.
+첫28개는 **외곽 형상28개, 점유 지도28개가 모두 고유**하고 세 마커의 접근 가능성을
+오프라인 기하 검사로 확인했습니다. 이 검사는 완주 성능을 증명하지 않습니다.
+
+새 후보는 실제 ROS odom에 주행 이력을 고정하여 SLAM 지도 좌표 보정 이후에도 방문 이력을
+유지합니다. 최근 성공적으로 도착한 같은 위치·같은 관측 방향의 저정보 탐색을 억제하고,
+새 frontier·다른 관측 방향·마커 확인/접근은 허용합니다. 통로를 다시 지나는 행위는 금지하지
+않습니다. `exploration_memory.jsonl`에 이동 거리·재방문 추정 거리·억제한 후보 수를 남깁니다.
+재방문 거리에는 필요한 통과도 포함되며 그대로 낭비 거리로 해석하지 않습니다.
+
+형태별 약점이 전체 평균에 숨지 않게 파일럿7종, 쌍대 검증28개(각 형태 최소3/4),
+새 공간 독립 시험42개(각 형태 최소5/6)와 원래 PDF 공간 독립 시험40개를 순서대로 둡니다.
+쌍대 검증은 성공률90% 이상, 접촉0회와 이전 정책 대비 PAR-2 시간20% 이상 개선을 요구합니다.
+각 임무는 정확한ID3개·실제1.5m 접근·지도 오차0.5m 이하·접촉0회·600초 이내를 따로 감사합니다.
+Gazebo 동시 실행은 최대2개이며 각 실행의6GiB 메모리 제한을 유지합니다.
+
+기존 실행과 소스는 보존합니다. 활성 캠페인의 `configuration.json`에 등록한 runtime과
+driver/환경 생성기 해시는 고정됩니다. 추가 변경은 새 후보/새 버전으로 준비해야 합니다.
+새 후보와 비교 기준 runtime은 각각 **210개 테스트 통과·1개 skip 및 빌드 성공**입니다.
+[형태별 구성과 실행 증거](repository_snapshot/spatial_curriculum.json) ·
+[재방문 분석의 범위](repository_snapshot/revisit_analysis.json).
 
 TF 설정만 바꾼 진단 비교도231.867초·229.859초에 모두 완주했고, 독립 감사를 통과했습니다.
 관련 로봇 위치 변환 오류는 기존72회·31회에서 두 비교 모두0회로 줄었습니다.

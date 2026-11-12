@@ -1,7 +1,7 @@
 {
-  "captured_utc": "2026-11-12T14:55:51.120130+00:00",
-  "status": "draining_original_jobs",
-  "service": "osp-fresh-map-v2-upgrade.service",
+  "captured_utc": "2026-11-12T15:53:13.555654+00:00",
+  "status": "superseded_by_spatial_cem_v1",
+  "service": "osp-spatial-cem-v1.service",
   "source_campaign": "/home/peter/simul/training_robust/native90/fresh_map_cem_v1",
   "destination_campaign": "/home/peter/simul/training_robust/native90/fresh_map_cem_v2",
   "source_runtime": "small_marker_followup_v2/runtime",
@@ -211,5 +211,7 @@
     "osp-freshmap-nov12-v1-00005.service"
   ],
   "selected_combination": "Audited small-marker follow-up plus restamp_tf=true",
-  "actual_selected_runtime_build_and_tests": "201passed,1skipped"
+  "actual_selected_runtime_build_and_tests": "201passed,1skipped",
+  "successor_campaign": "/home/peter/simul/training_robust/native90/spatial_cem_v1",
+  "prior_handoff": "fresh_map_cem_v2 started and three native runs completed before scope correction"
 }

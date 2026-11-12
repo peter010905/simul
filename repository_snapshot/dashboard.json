@@ -1,0 +1,33 @@
+{
+  "captured_utc": "2026-11-12T15:53:13.555654+00:00",
+  "url": "http://127.0.0.1:8765",
+  "service": "osp-robot-dashboard.service",
+  "installed_enabled": true,
+  "scope": "Loopback-only read-only local dashboard; no cloud publication",
+  "live_rgb": "ROS read-only observer capped at1 wall fps; stale frames labelled and recording fallback used",
+  "map_source": "Actual recorder SLAM/LiDAR composite; updated every25 samples",
+  "status_poll_wall_seconds": 3,
+  "video_finalization_required": true,
+  "video_features": [
+    "search",
+    "result filter",
+    "playback",
+    "HTTP Range seeking",
+    "download"
+  ],
+  "robot_commands_published": false,
+  "tests_passed": 14,
+  "browser_verified": [
+    "live RGB and SLAM map",
+    "completed independent audit replaces stale live status",
+    "actual MP4 loaded/playing (paused=false,currentTime>0)",
+    "ROS and marker event logs"
+  ],
+  "service_limits": {
+    "memory_high_mib": 512,
+    "memory_max_mib": 768,
+    "cpu_quota_percent": 60,
+    "nice": 10
+  },
+  "automatic_github_upload": false
+}

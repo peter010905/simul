@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>OSP · Robot Observatory</title>
+  <meta name="description" content="Gazebo 로봇의 카메라, 지도, 학습 기록과 시뮬레이션 영상을 확인하는 로컬 관제실">
+  <link rel="stylesheet" href="/style.css"><script defer src="/app.js"></script>
+</head>
+<body>
+<aside class="sidebar">
+  <a class="brand" href="#live"><span class="brand-icon">◈</span><span>OSP<span class="brand-sub">ROBOT OBSERVATORY</span></span></a>
+  <div class="nav-label">WORKSPACE</div>
+  <nav aria-label="주요 화면">
+    <button class="nav-item active" data-tab="live"><span>◉</span>실시간 관제 <i class="live-dot"></i></button>
+    <button class="nav-item" data-tab="videos"><span>▷</span>영상 보관함 <b id="video-count">—</b></button>
+    <button class="nav-item" data-tab="logs"><span>≡</span>실행 로그</button>
+  </nav>
+  <div class="side-session"><div class="nav-label">CURRENT CAMPAIGN</div><strong id="side-campaign">데이터 연결 중</strong><p id="side-progress">실제 Gazebo 실험을 불러옵니다.</p><div class="progress-track"><span id="campaign-progress"></span></div></div>
+  <div class="side-bottom"><span class="status-dot" id="connection-dot"></span><span id="connection">로컬 서버 연결 중</span><small>Gazebo Harmonic · ROS 2 Jazzy<br>SLAM Toolbox + Navigation2</small></div>
+</aside>
+<div class="workspace">
+  <header class="topbar"><span class="breadcrumb">WORKSPACE <span>/</span> <b id="breadcrumb">실시간 관제</b></span><span class="top-right"><span class="local-tag">LOCAL</span><time id="wall-clock">—</time></span></header>
+  <main>
+    <div class="page-heading"><div><div class="eyebrow">YOUR ROBOT, IN VIEW</div><h1 id="page-title">로봇 관제실<span class="title-dot">.</span></h1><p id="page-description">로봇이 보는 화면부터 마커를 찾는 순간까지, 실제 실험의 흐름을 확인하세요.</p></div><div class="heading-actions"><span id="refresh-label" class="refresh-label">3초마다 상태 갱신</span><button id="refresh" class="button small">↻ 새로고침</button></div></div>
+    <div id="error-banner" class="banner" hidden></div>
+    <section id="live-tab" class="tab-panel">
+      <div class="selection-bar"><div class="select-field"><label for="campaign">캠페인</label><select id="campaign"></select></div><div class="select-field run-select"><label for="job">실험 실행</label><select id="job"></select></div><label class="follow-label"><input type="checkbox" id="auto-follow" checked> 실행 따라가기</label><div class="run-badge" id="run-badge">연결 중</div></div>
+      <div id="shape-summary" class="shape-summary" aria-label="공간 형태별 실험 진행"></div>
+      <div class="stats-row">
+        <article class="stat"><span class="stat-label">정확한 ID 인식 <span>◈</span></span><div class="stat-number"><span id="stat-targets">—</span><small>/ 3</small></div><div id="recognized-chips" class="chips"></div></article>
+        <article class="stat"><span class="stat-label">1.5m 접근 <span>◎</span></span><div class="stat-number"><span id="stat-approached">—</span><small>/ 3</small></div><span id="approach-note" class="stat-note">주행 중 위치 추정 기준</span></article>
+        <article class="stat"><span class="stat-label">시뮬레이션 경과 <span>◷</span></span><div class="stat-number"><span id="stat-time">—</span><small>s</small></div><span id="time-note" class="stat-note">제한 600초 · 실제 시간과 구분</span></article>
+        <article class="stat"><span class="stat-label">접촉 횟수 <span>◇</span></span><div class="stat-number" id="contact-stat"><span id="stat-contacts">—</span><small>회</small></div><span id="contact-note" class="stat-note">충돌 없이 탐색 중</span></article>
+      </div>
+      <div class="view-grid">
+        <article class="panel camera-panel"><div class="panel-heading"><h2>로봇 시점 <span class="pill" id="camera-mode">대기</span></h2><button class="icon-button" id="fullscreen" title="로봇 카메라 전체 화면" aria-label="로봇 카메라 전체 화면">⛶</button></div><div class="camera-stage" id="camera-stage"><img id="robot-frame" alt="실제 로봇 RGB 카메라 화면"><div class="image-empty">실제 카메라 프레임을 기다립니다.</div><div class="camera-hud"><span>RGB CAMERA</span><span id="camera-stamp">—</span></div></div><div class="panel-footer"><span><span class="status-dot"></span><span id="camera-source">ROS 카메라 연결 중</span></span><span id="camera-age">—</span></div></article>
+        <article class="panel map-panel"><div class="panel-heading"><h2>SLAM & LiDAR</h2><span class="subtle" id="map-age">저장 프레임</span></div><div class="map-stage"><img id="map-frame" alt="실제 SLAM 지도와 LiDAR 관측, 주행 경로"><div class="image-empty">지도 생성을 기다립니다.</div></div><div class="panel-footer map-legend"><span><i class="legend-line green"></i>이동 경로</span><span><i class="legend-line cyan"></i>LiDAR</span><span><i class="legend-marker"></i>인식 마커</span></div></article>
+      </div>
+      <div class="lower-grid">
+        <article class="panel overview-panel"><div class="panel-heading"><h2>Gazebo 관찰 카메라</h2><span class="subtle">실제 시뮬레이션</span></div><div class="overview-stage"><img id="overview-frame" alt="Gazebo 공간을 바라보는 실제 관찰 카메라"><div class="image-empty">렌더링 프레임 대기</div></div><div class="panel-footer"><span id="scene-info">—</span><a id="open-composite" target="_blank" rel="noopener">종합 화면 ↗</a></div></article>
+        <article class="panel events-panel"><div class="panel-heading"><h2>마커 이벤트</h2><span class="subtle">인식 → 접근</span></div><div id="events" class="event-list"><p class="empty-copy">아직 기록된 마커 이벤트가 없습니다.</p></div></article>
+        <article class="panel telemetry-panel"><div class="panel-heading"><h2>런타임 상태</h2><span class="subtle" id="domain-label">ROS</span></div><dl id="telemetry" class="telemetry"></dl><div class="telemetry-note" id="readiness">상태 정보를 기다립니다.</div></article>
+      </div>
+      <article class="panel audit-panel"><div><h2 id="audit-title">독립 검증은 실험 종료 후 표시됩니다.</h2><p id="audit-note">성공 기준: 정확한 ID 3개 · 실제 거리 ≤1.5m · 지도 오차 ≤0.5m · 접촉 0회 · 600초 이내</p></div><div id="audit-details"></div></article>
+      <div class="section-heading"><h2>최근 완료 영상 <span id="recent-count"></span></h2><button class="text-button" data-tab="videos">보관함 전체 보기 ↗</button></div><div id="recent-videos" class="video-grid"></div>
+    </section>
+    <section id="videos-tab" class="tab-panel" hidden><div class="archive-toolbar"><div><h2>실험 영상 아카이브</h2><p>종료·저장 확인을 마친 실제 Gazebo 녹화만 표시합니다.</p></div><div class="filter-fields"><input id="video-search" type="search" placeholder="실험 이름·시드 검색" aria-label="영상 검색"><select id="video-filter" aria-label="영상 결과 필터"><option value="all">모든 결과</option><option value="passed">현재 기준 통과</option><option value="failed">미통과 / 검증 부족</option></select></div></div><p class="archive-note" id="archive-count"></p><div id="archive-videos" class="video-grid archive-grid"></div><button id="more-videos" class="button load-more" hidden>더 보기</button></section>
+    <section id="logs-tab" class="tab-panel" hidden><div class="selection-bar"><div><h2>선택한 실험 로그</h2><p id="log-job">실시간 관제에서 실행을 선택하세요.</p></div><div class="filter-fields"><select id="log-source" aria-label="로그 종류"><option value="launch">ROS / Gazebo</option><option value="benchmark">벤치마크 실행</option><option value="events">마커 이벤트 JSONL</option></select><button id="copy-log" class="button small">복사</button><button id="download-log" class="button small">다운로드 ↓</button></div></div><div class="log-toolbar"><span><i class="live-dot"></i> 최근 160줄 · 3초마다 갱신</span><label><input id="log-follow" type="checkbox" checked> 마지막 줄 따라가기</label></div><pre id="log-output" tabindex="0">로그를 불러오는 중입니다.</pre><div class="artifacts"><h3>실험 파일</h3><div id="artifact-links"></div></div></section>
+    <footer>OSP ROBOT OBSERVATORY <span>관측 전용 · 실제 Gazebo 데이터 · 학습 프로세스와 독립 실행</span></footer>
+  </main>
+</div>
+<dialog id="video-dialog"><div class="player-heading"><div><span class="eyebrow">SIMULATION RECORDING</span><h2 id="player-title">실험 영상</h2></div><button id="close-player" class="icon-button" aria-label="영상 닫기">✕</button></div><video id="player" controls playsinline preload="metadata"></video><div class="player-footer"><span id="player-info"></span><a id="download-video" class="button small">영상 다운로드 ↓</a></div></dialog>
+</body></html>
