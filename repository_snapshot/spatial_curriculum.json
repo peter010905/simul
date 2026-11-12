@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T19:02:46.415773+00:00",
+  "captured_utc": "2026-11-12T19:32:42.983293+00:00",
   "client_date": "2026-11-13",
   "status": "native_spatial_source_and_weight_learning_running",
   "goal_status": "active",
@@ -849,13 +849,39 @@
       "role": "1",
       "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
       "domain": 115,
-      "status": "running",
+      "status": "done",
       "floor_sensor_gate": true,
       "runtime_configuration_gate": true,
-      "outcome": null
+      "outcome": {
+        "success": false,
+        "targets": 0,
+        "approached": 0,
+        "contacts": 0,
+        "seconds": 600.269,
+        "infrastructure_failure": false,
+        "reason": "timeout"
+      }
     },
     {
       "number": 8,
+      "role": "1",
+      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
+      "domain": 114,
+      "status": "done",
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 358.712,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      }
+    },
+    {
+      "number": 9,
       "role": "1",
       "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
       "domain": 114,
@@ -863,9 +889,197 @@
       "floor_sensor_gate": true,
       "runtime_configuration_gate": true,
       "outcome": null
+    },
+    {
+      "number": 10,
+      "role": "1",
+      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
+      "domain": 115,
+      "status": "done",
+      "floor_sensor_gate": null,
+      "runtime_configuration_gate": null,
+      "outcome": {
+        "success": false,
+        "targets": 0,
+        "approached": 0,
+        "contacts": 0,
+        "seconds": 600.0,
+        "infrastructure_failure": true,
+        "reason": "native_input_or_effective_configuration_unverified"
+      }
+    },
+    {
+      "number": 11,
+      "role": "1",
+      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
+      "domain": 115,
+      "status": "running",
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "outcome": null
+    },
+    {
+      "number": 12,
+      "role": "1",
+      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
+      "domain": null,
+      "status": "prepared",
+      "floor_sensor_gate": null,
+      "runtime_configuration_gate": null,
+      "outcome": null
+    },
+    {
+      "number": 13,
+      "role": "1",
+      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
+      "domain": null,
+      "status": "prepared",
+      "floor_sensor_gate": null,
+      "runtime_configuration_gate": null,
+      "outcome": null
+    },
+    {
+      "number": 14,
+      "role": "2",
+      "workspace": "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime",
+      "domain": null,
+      "status": "prepared",
+      "floor_sensor_gate": null,
+      "runtime_configuration_gate": null,
+      "outcome": null
+    },
+    {
+      "number": 15,
+      "role": "2",
+      "workspace": "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime",
+      "domain": null,
+      "status": "prepared",
+      "floor_sensor_gate": null,
+      "runtime_configuration_gate": null,
+      "outcome": null
+    },
+    {
+      "number": 16,
+      "role": "2",
+      "workspace": "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime",
+      "domain": null,
+      "status": "prepared",
+      "floor_sensor_gate": null,
+      "runtime_configuration_gate": null,
+      "outcome": null
+    },
+    {
+      "number": 17,
+      "role": "2",
+      "workspace": "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime",
+      "domain": null,
+      "status": "prepared",
+      "floor_sensor_gate": null,
+      "runtime_configuration_gate": null,
+      "outcome": null
+    },
+    {
+      "number": 18,
+      "role": "2",
+      "workspace": "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime",
+      "domain": null,
+      "status": "prepared",
+      "floor_sensor_gate": null,
+      "runtime_configuration_gate": null,
+      "outcome": null
+    },
+    {
+      "number": 19,
+      "role": "2",
+      "workspace": "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime",
+      "domain": null,
+      "status": "prepared",
+      "floor_sensor_gate": null,
+      "runtime_configuration_gate": null,
+      "outcome": null
+    },
+    {
+      "number": 20,
+      "role": "2",
+      "workspace": "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime",
+      "domain": null,
+      "status": "prepared",
+      "floor_sensor_gate": null,
+      "runtime_configuration_gate": null,
+      "outcome": null
+    },
+    {
+      "number": 21,
+      "role": "3",
+      "workspace": "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime",
+      "domain": null,
+      "status": "prepared",
+      "floor_sensor_gate": null,
+      "runtime_configuration_gate": null,
+      "outcome": null
+    },
+    {
+      "number": 22,
+      "role": "3",
+      "workspace": "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime",
+      "domain": null,
+      "status": "prepared",
+      "floor_sensor_gate": null,
+      "runtime_configuration_gate": null,
+      "outcome": null
+    },
+    {
+      "number": 23,
+      "role": "3",
+      "workspace": "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime",
+      "domain": null,
+      "status": "prepared",
+      "floor_sensor_gate": null,
+      "runtime_configuration_gate": null,
+      "outcome": null
+    },
+    {
+      "number": 24,
+      "role": "3",
+      "workspace": "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime",
+      "domain": null,
+      "status": "prepared",
+      "floor_sensor_gate": null,
+      "runtime_configuration_gate": null,
+      "outcome": null
+    },
+    {
+      "number": 25,
+      "role": "3",
+      "workspace": "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime",
+      "domain": null,
+      "status": "prepared",
+      "floor_sensor_gate": null,
+      "runtime_configuration_gate": null,
+      "outcome": null
+    },
+    {
+      "number": 26,
+      "role": "3",
+      "workspace": "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime",
+      "domain": null,
+      "status": "prepared",
+      "floor_sensor_gate": null,
+      "runtime_configuration_gate": null,
+      "outcome": null
+    },
+    {
+      "number": 27,
+      "role": "3",
+      "workspace": "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime",
+      "domain": null,
+      "status": "prepared",
+      "floor_sensor_gate": null,
+      "runtime_configuration_gate": null,
+      "outcome": null
     }
   ],
-  "completed_spatial_training_episodes": 7,
+  "completed_spatial_training_episodes": 10,
   "completed_cem_generations": 0,
   "generalization_verified": false,
   "revisit_reduction_verified": false,
@@ -1149,9 +1363,94 @@
         "verified": true
       },
       "errors": []
+    },
+    {
+      "seed": 1163000707,
+      "success": false,
+      "evaluator_success": false,
+      "seconds": 600.269,
+      "targets": 0,
+      "collisions": 0,
+      "coordinate_errors_m": {},
+      "required_approach_m": 1.5,
+      "closest_approach_m": {
+        "429": 9.635984530313651,
+        "64": 7.80342815536746,
+        "516": 12.996004142566358
+      },
+      "video": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00007_train_g0_1/episodes/1163000707/video/mission.mp4",
+        "frames": 3002,
+        "fps": 5.0,
+        "verified": true
+      },
+      "errors": [
+        "Actual trajectory must approach every marker within 1.5 m",
+        "Three distinct correct marker IDs are required",
+        "Mission did not find all targets",
+        "Mission exceeded 600 seconds"
+      ]
+    },
+    {
+      "seed": 1163000808,
+      "success": true,
+      "evaluator_success": true,
+      "seconds": 358.712,
+      "targets": 3,
+      "collisions": 0,
+      "coordinate_errors_m": {
+        "425": 0.027037613113749564,
+        "339": 0.010823339051169733,
+        "764": 0.047656780198299734
+      },
+      "required_approach_m": 1.5,
+      "closest_approach_m": {
+        "764": 0.9398427262023672,
+        "425": 0.6073106559242953,
+        "339": 0.5569526714250214
+      },
+      "video": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00008_train_g0_1/episodes/1163000808/video/mission.mp4",
+        "frames": 1795,
+        "fps": 5.0,
+        "verified": true
+      },
+      "errors": []
+    },
+    {
+      "seed": 1163001010,
+      "success": false,
+      "evaluator_success": false,
+      "seconds": null,
+      "targets": null,
+      "collisions": null,
+      "coordinate_errors_m": {},
+      "required_approach_m": 1.5,
+      "closest_approach_m": {
+        "760": null,
+        "691": null,
+        "973": null
+      },
+      "video": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00010_train_g0_1/episodes/1163001010/video/mission.mp4",
+        "frames": 0,
+        "fps": 0.0,
+        "verified": false
+      },
+      "errors": [
+        "Actual trajectory must approach every marker within 1.5 m",
+        "Exactly one mission result directory is required",
+        "Mission did not find all targets",
+        "Mission exceeded 600 seconds",
+        "Recorded collisions are nonzero or unavailable",
+        "Actual video sources or first/last frame decoding failed"
+      ]
     }
   ],
   "evaluator_observer": "physical_credit_verification.json",
-  "priority_diagnostic": "landmark_seed_diagnosis.json",
-  "coordinator_resumed_after_one_slot_diagnostic": true
+  "priority_diagnostic": "startup_guard_candidate.json",
+  "coordinator_resumed_after_one_slot_diagnostic": true,
+  "runtime_failure_diagnosis": "runtime_failure_diagnosis.json",
+  "counts_are_descriptive_training_samples_not_independent_success_probability": true,
+  "coordinator_slot_reservation": "Original dispatcher held only until diagnostic actually claims one slot;existing two native runs preserved"
 }

@@ -1,0 +1,53 @@
+{
+  "captured_utc": "2026-11-12T19:32:42.983293+00:00",
+  "evidence_type": "finalized_native_Gazebo_logs_and_independent_trajectory",
+  "campaign": "/home/peter/simul/training_robust/native90/spatial_cem_v5",
+  "job": 7,
+  "seed": 1163000707,
+  "shape": "circle",
+  "recorded_outcome": {
+    "success": false,
+    "targets": 0,
+    "approached": 0,
+    "contacts": 0,
+    "seconds": 600.269,
+    "infrastructure_failure": false,
+    "reason": "timeout"
+  },
+  "failure_classification": "runtime_navigation_safety_node_heartbeat_loss_then_lifecycle_shutdown",
+  "underlying_heartbeat_loss_cause": "unresolved;process stack and transport evidence not captured before native ended",
+  "log_evidence": [
+    "[lifecycle_manager-57] [ERROR] [1794509629.369739987] [lifecycle_manager_navigation]: CRITICAL FAILURE: SERVER collision_monitor IS DOWN after not receiving a heartbeat for 4000 ms. Shutting down related nodes.",
+    "[lifecycle_manager-57] [INFO] [1794509629.718225868] [lifecycle_manager_navigation]: \u001b[34m\u001b[1mDeactivating bt_navigator\u001b[0m\u001b[0m",
+    "[lifecycle_manager-57] [INFO] [1794509629.904396327] [lifecycle_manager_navigation]: \u001b[34m\u001b[1mDeactivating collision_monitor\u001b[0m\u001b[0m",
+    "[bt_navigator-52] [INFO] [1794509631.423964773] [bt_navigator]: Action server is inactive. Rejecting the goal."
+  ],
+  "motion": {
+    "observed_sim_s": 602.225,
+    "stationary_sim_s": 597.533,
+    "stationary_turn_sim_s": 2.856,
+    "longest_stationary_interval_s": 593.861,
+    "caveat": "Stationary camera verification and observation turns can be necessary; not automatically wasted time"
+  },
+  "path_distance_m": 0.22310941002690562,
+  "final_nav2_lifecycle": {
+    "controller_server": 3,
+    "planner_server": 3,
+    "behavior_server": 3,
+    "bt_navigator": 2
+  },
+  "decoded_id_64": 2971,
+  "all_id_64_frames_below_recognition_threshold": true,
+  "frozen_campaign_outcome_or_score_modified": false,
+  "limits": [
+    "This is a runtime halt, not evidence that circular geometry alone is unlearnable",
+    "A heartbeat alarm does not identify DDS, CPU overload or a callback deadlock as its root cause",
+    "Startup sequencing candidate addresses earlier missing SLAM activation;it does not yet demonstrate repair of this heartbeat loss",
+    "Frozen CEM retains its registered conservative PAR2 failure penalty including infrastructure failures"
+  ],
+  "source_sha256": {
+    "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00007_train_g0_1/episodes/1163000707/launch.log": "a5278deba58d7fee7e86c02f7aabe6d0738ba39c1e8ddf33d306a01459786abc",
+    "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00007_train_g0_1/episodes/1163000707/evaluation.json": "4480d8663c672724b1519b5c2b760012571636653be93e6a7a1f426899fbb88d",
+    "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00007_train_g0_1/episodes/1163000707/pose_trace.csv": "662719187c821a2eeb9ec315ab9f20c38b65a34ff11dd90da111a9d2ad0e198b"
+  }
+}

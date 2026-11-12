@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T19:02:46.415773+00:00",
+  "captured_utc": "2026-11-12T19:32:42.983293+00:00",
   "purpose": "Repository upload snapshot; not a live dashboard",
   "tests_passed_final": 189,
   "native_validation_complete": false,
@@ -137,8 +137,8 @@
   "previous_regressions_complete": true,
   "latest_change": {
     "date": "2026-11-13",
-    "name": "first7freshshape_trials6successes;seed_recovery_native_blocked_at_startup",
-    "status": "CEMresumed_running;startup_repair_required_before_recovery_validation",
+    "name": "state_driven_SLAM_startup_231tests;native_same_circle_trial_queued",
+    "status": "active_goal;native_comparison_pending",
     "generalization_verified": false
   },
   "latest_recording": {
@@ -200,5 +200,7 @@
   "landmark_seed_diagnosis": "landmark_seed_diagnosis.json",
   "latest_built_recovery_candidate": "/home/peter/simul/training_robust/native90/reacquisition_v1/runtime",
   "recovery_candidate_tests_passed": 223,
-  "reacquisition_startup_failure": "reacquisition_startup_failure.json"
+  "reacquisition_startup_failure": "reacquisition_startup_failure.json",
+  "startup_guard_candidate": "startup_guard_candidate.json",
+  "runtime_failure_diagnosis": "runtime_failure_diagnosis.json"
 }

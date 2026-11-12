@@ -38,6 +38,8 @@ training_hidden/
 !/training_robust/policy_candidates/
 /training_robust/policy_candidates/*
 !/training_robust/policy_candidates/landmark_reacquisition.py
+!/training_robust/policy_candidates/startup_state.py
+!/training_robust/policy_candidates/startup_guard.py
 !/training_robust/native90/
 !/training_robust/native_diagnostics/
 /training_robust/native90/*
