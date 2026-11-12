@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T14:05:07.735992+00:00",
+  "captured_utc": "2026-11-12T14:47:05.934593+00:00",
   "evidence_type": "Completed native Gazebo failures and version-matched upstream source inspection",
   "installed_versions": {
     "slam_toolbox": "2.8.5",
@@ -116,7 +116,7 @@
     "https://raw.githubusercontent.com/ros-navigation/navigation2/jazzy/nav2_regulated_pure_pursuit_controller/src/path_handler.cpp"
   ],
   "interpretation": "Repeated Nav2 TF errors aborted approaches. Restamping the map->odom correction is a candidate remedy; native benefit is not yet verified.",
-  "native_candidate_test_started": false,
+  "native_candidate_test_started": true,
   "checks": {
     "runtime_tests_passed": 198,
     "runtime_tests_skipped": 1,
@@ -125,5 +125,40 @@
   },
   "queued_service": "osp-tf-restamp-regression-v1.service",
   "queue_dependency": "osp-small-marker-regression-v2.service",
-  "candidate_test_status": "queued;will wait for two confirmed live resumed CEM jobs and let those finish before TF regressions"
+  "candidate_test_status": "running_regression",
+  "actual_slam_parameter_checks": {
+    "domain116_restamp_tf": true,
+    "domain117_restamp_tf": true
+  },
+  "running_cases": [
+    {
+      "number": 0,
+      "unit": "osp-tf-restamp-v1-0.service",
+      "status": "running",
+      "observed_status": {
+        "state": "running",
+        "elapsed_seconds": 169.367,
+        "targets": 2,
+        "approached_ids": [
+          739,
+          754
+        ],
+        "collisions": 0
+      }
+    },
+    {
+      "number": 1,
+      "unit": "osp-tf-restamp-v1-1.service",
+      "status": "running",
+      "observed_status": {
+        "state": "running",
+        "elapsed_seconds": 168.859,
+        "targets": 1,
+        "approached_ids": [
+          174
+        ],
+        "collisions": 0
+      }
+    }
+  ]
 }

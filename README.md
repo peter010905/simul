@@ -217,7 +217,7 @@ python3 scripts/publish_simulation_videos.py --upload
 
 ## 저장된 Gazebo 영상
 
-[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 119개
+[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 120개
 
 아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다.
 
@@ -251,6 +251,7 @@ python3 scripts/publish_simulation_videos.py --upload
 | [edge_runtime_v2__runtime_probes__20261104T234253_265975Z.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/edge_runtime_v2__runtime_probes__20261104T234253_265975Z.mp4) | 실패 | 미달 | 600.306 |
 | [fresh_map_cem_v1__00000_train_g0_0__1121200000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fresh_map_cem_v1__00000_train_g0_0__1121200000.mp4) | 실패 | 미달 | 600.455 |
 | [fresh_map_cem_v1__00001_train_g0_1__1121200101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fresh_map_cem_v1__00001_train_g0_1__1121200101.mp4) | 실패 | 미달 | 600.309 |
+| [fresh_map_cem_v1__00003_train_g0_3__1121200303.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fresh_map_cem_v1__00003_train_g0_3__1121200303.mp4) | 성공 | 확인 | 317.4 |
 | [low_rotation_video_20261112__episode_8000001.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/low_rotation_video_20261112__episode_8000001.mp4) | 성공 | 확인 | 494.534 |
 | [marker_focus_v6_screen3__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/marker_focus_v6_screen3__8600007.mp4) | 실패 | 자료 없음 | 242.819 |
 | [marker_focus_v6_service_screen3__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/marker_focus_v6_service_screen3__8600007.mp4) | 실패 | 미달 | 347.089 |
@@ -581,3 +582,26 @@ runtime 테스트200개 통과·1개 skip, 감독 서비스 테스트2개 통과
 이 결과는 이미 관찰한 두 배치의 진단 개선이며, 새 맵 전반의 완주율 검증은 계속 필요합니다.
 비워진 자리에 새 맵 훈련을 재개했고, TF 비교 감독기가 활성화된 새 훈련 주행을 끝까지 유지한 뒤
 시간 설정 후보를 비교합니다. 현재 상태는 각 감독기와 로컬 state 파일로 확인합니다.
+
+## 검증된 재확인 코드를 다음 새 맵 학습으로 이전 — 2026-11-12
+
+두 진단 비교에서 성공한 코드를 `fresh_map_cem_v2`의 출발점으로 삼는 전환 서비스를 준비했습니다.
+TF 비교 종료 후 실제 오류 수·시간 비용·접촉·좌표 결과로 `restamp_tf` 반영 여부를 정합니다.
+TF 설정은 짝지은 PAR-2가 개선되고, 접촉·인프라 실패가 없으며, 각 배치의 로봇 위치 변환 오류가
+절반 이하이고 관측된 ID·좌표가 평가 기준을 충족할 때 함께 적용합니다.
+이후 결합 runtime을 빌드·테스트하고 현재 주행을 끝까지 유지한 뒤 감독기를 교체합니다.
+
+이전 실행 결과는 보존하고 최신 가중치 분포를 이어받습니다. 완료된 훈련 세대가 있으면 그 결과도
+분포 갱신에 반영합니다. 새 학습은 seed1123200000부터 시작하고, 첫20개 맵의 점유 격자가
+새 세대 내부와 이전 학습 맵 사이에서 겹치지 않는지 검사합니다.
+최대2개 native 실행·각6GiB, 시간 비용과 정확한 ID3개·실제1.5m 접근·좌표0.5m·무접촉·600초 기준을 유지합니다.
+최종 독립 평가에 이미 사용한 배치를 다시 쓰지 않도록 사용 여부도 이전합니다.
+
+준비·TF 선택·안전한 감독기 전환·시작 실패 복구 테스트5개가 통과했습니다.
+재확인과 TF 시간 변경을 결합한 소스는 colcon 빌드와201개 테스트 통과·1개 skip을 확인했습니다.
+이는 새 맵에서 개선 효과가 검증됐다는 뜻이 아니며, 새로운 CEM 학습과 짝지은 검증으로 평가합니다.
+실제 전환은 `osp-fresh-map-v2-upgrade.service`, 진행 기록은 기존 campaign의
+`successor_transition.json`과 `successor_transition.log`에서 확인합니다.
+기존 코드의 추가 새 맵 회차(seed1121200303)는317.4초 완주와 독립 감사를 통과했습니다.
+그 결과는 재확인 후보의 새 맵 성능과 구분해 보관합니다.
+[학습 전환 계획·검증·현재 관측 결과](repository_snapshot/fresh_map_successor.json).

@@ -1,7 +1,7 @@
 {
-  "updated_utc": "2026-11-12T14:14:00.275013+00:00",
+  "updated_utc": "2026-11-12T14:36:34.570144+00:00",
   "release_url": "https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11",
-  "uploaded_verified": 119,
+  "uploaded_verified": 120,
   "videos": [
     {
       "asset": "fix_v10_escape_regression3__9802005.mp4",
@@ -417,6 +417,22 @@
       "actual_approach_1_5m": false,
       "recording_frames": 3003,
       "recording_seconds": 600.6,
+      "uploaded_verified": true
+    },
+    {
+      "asset": "fresh_map_cem_v1__00003_train_g0_3__1121200303.mp4",
+      "local_path": "training_robust/native90/fresh_map_cem_v1/jobs/00003_train_g0_3/episodes/1121200303/video/mission.mp4",
+      "bytes": 11495251,
+      "sha256": "ea8a82571a950023de044d703bf9d92b69b8fa4612603cdd25e55006e761fdcc",
+      "url": "https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fresh_map_cem_v1__00003_train_g0_3__1121200303.mp4",
+      "original_evaluator_success": true,
+      "reason": "all_targets_found",
+      "elapsed_sim_seconds": 317.4,
+      "targets": 3,
+      "collisions": 0,
+      "actual_approach_1_5m": true,
+      "recording_frames": 1588,
+      "recording_seconds": 317.6,
       "uploaded_verified": true
     },
     {
@@ -1911,6 +1927,10 @@
   "skipped": [
     {
       "path": "training_robust/native90/approach_v8_screen3/episodes/8600133/video/mission.mp4",
+      "reason": "Final evaluation or recording metadata absent"
+    },
+    {
+      "path": "training_robust/native90/fresh_map_cem_v1/jobs/00002_train_g0_2/episodes/1121200202/video/mission.mp4",
       "reason": "Final evaluation or recording metadata absent"
     },
     {

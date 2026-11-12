@@ -1,0 +1,173 @@
+{
+  "captured_utc": "2026-11-12T14:47:05.934593+00:00",
+  "status": "waiting_for_tf_comparison",
+  "service": "osp-fresh-map-v2-upgrade.service",
+  "source_campaign": "/home/peter/simul/training_robust/native90/fresh_map_cem_v1",
+  "destination_campaign": "/home/peter/simul/training_robust/native90/fresh_map_cem_v2",
+  "source_runtime": "small_marker_followup_v2/runtime",
+  "perception_basis": "Both paired native regressions independently audited successful",
+  "tf_adoption_gate": [
+    "Paired PAR-2 lower than baseline",
+    "Zero contacts and infrastructure failures",
+    "Correct subset of IDs and<=0.5m coordinate errors",
+    "At least50% fewer robot-pose TF errors per case"
+  ],
+  "new_training_seed": 1123200000,
+  "new_run_id": "nov12-v2",
+  "handoff": [
+    "Wait for actual TF comparison service termination",
+    "Verify perception source hashes and native audit files",
+    "Build and test selected combined runtime",
+    "Allow the current native pair to finish",
+    "Preserve old results and transfer latest learned distribution",
+    "Generate20new maps and reject occupancy reuse within the new cohort or against the parent",
+    "Launch the new CEM coordinator"
+  ],
+  "constraints": {
+    "maximum_native_concurrency": 2,
+    "native_memory_max_gib": 6,
+    "goal_status": "active",
+    "production_promoted": false
+  },
+  "checks": {
+    "combined_runtime_tests_passed": 201,
+    "combined_runtime_tests_skipped": 1,
+    "combined_runtime_build": "passed",
+    "preparer_selection_and_handoff_tests_passed": 5,
+    "handoff_failure_recovery": "Original native results preserved;original coordinator lock released before rollback restart"
+  },
+  "learned_policy_generalization_verified": false,
+  "observed_parent_native_audits": [
+    {
+      "number": 0,
+      "metadata_status": "done",
+      "audit": {
+        "seed": 1121200000,
+        "success": false,
+        "evaluator_success": false,
+        "seconds": 600.455,
+        "targets": 3,
+        "collisions": 0,
+        "coordinate_errors_m": {
+          "754": 0.0154040123497213,
+          "739": 0.02301116277040631,
+          "934": 0.03675329807602857
+        },
+        "required_approach_m": 1.5,
+        "closest_approach_m": {
+          "934": 4.5271965657484,
+          "739": 1.432973566456596,
+          "754": 1.2801084179266426
+        },
+        "video": {
+          "file": "/home/peter/simul/training_robust/native90/fresh_map_cem_v1/jobs/00000_train_g0_0/episodes/1121200000/video/mission.mp4",
+          "frames": 3003,
+          "fps": 5.0,
+          "verified": true
+        },
+        "errors": [
+          "Actual trajectory must approach every marker within 1.5 m",
+          "Mission did not find all targets",
+          "Mission exceeded 600 seconds"
+        ]
+      }
+    },
+    {
+      "number": 1,
+      "metadata_status": "done",
+      "audit": {
+        "seed": 1121200101,
+        "success": false,
+        "evaluator_success": false,
+        "seconds": 600.309,
+        "targets": 1,
+        "collisions": 0,
+        "coordinate_errors_m": {
+          "174": 0.014893695635957332
+        },
+        "required_approach_m": 1.5,
+        "closest_approach_m": {
+          "773": 7.382404813747568,
+          "776": 6.3242848196838475,
+          "174": 1.2340805229299434
+        },
+        "video": {
+          "file": "/home/peter/simul/training_robust/native90/fresh_map_cem_v1/jobs/00001_train_g0_1/episodes/1121200101/video/mission.mp4",
+          "frames": 3003,
+          "fps": 5.0,
+          "verified": true
+        },
+        "errors": [
+          "Actual trajectory must approach every marker within 1.5 m",
+          "Three distinct correct marker IDs are required",
+          "Mission did not find all targets",
+          "Mission exceeded 600 seconds"
+        ]
+      }
+    },
+    {
+      "number": 2,
+      "metadata_status": "done",
+      "audit": {
+        "seed": 1121200202,
+        "success": false,
+        "evaluator_success": false,
+        "seconds": 600.3,
+        "targets": 2,
+        "collisions": 0,
+        "coordinate_errors_m": {
+          "964": 0.05520969552117923,
+          "701": 0.00183056869893029
+        },
+        "required_approach_m": 1.5,
+        "closest_approach_m": {
+          "701": 1.0575882780406485,
+          "827": 1.293754842042029,
+          "964": 1.238910114652383
+        },
+        "video": {
+          "file": "/home/peter/simul/training_robust/native90/fresh_map_cem_v1/jobs/00002_train_g0_2/episodes/1121200202/video/mission.mp4",
+          "frames": 3003,
+          "fps": 5.0,
+          "verified": true
+        },
+        "errors": [
+          "Three distinct correct marker IDs are required",
+          "Mission did not find all targets",
+          "Mission exceeded 600 seconds"
+        ]
+      }
+    },
+    {
+      "number": 3,
+      "metadata_status": "done",
+      "audit": {
+        "seed": 1121200303,
+        "success": true,
+        "evaluator_success": true,
+        "seconds": 317.4,
+        "targets": 3,
+        "collisions": 0,
+        "coordinate_errors_m": {
+          "617": 0.11299162849919041,
+          "713": 0.022863357485409058,
+          "78": 0.15840632632073604
+        },
+        "required_approach_m": 1.5,
+        "closest_approach_m": {
+          "617": 1.4383953974663743,
+          "713": 1.127204573036886,
+          "78": 1.4387010094648416
+        },
+        "video": {
+          "file": "/home/peter/simul/training_robust/native90/fresh_map_cem_v1/jobs/00003_train_g0_3/episodes/1121200303/video/mission.mp4",
+          "frames": 1588,
+          "fps": 5.0,
+          "verified": true
+        },
+        "errors": []
+      }
+    }
+  ],
+  "orchestration_correction": "Stopped the duplicate original CEM dispatcher while the TF regression supervisor owns the current native pair. Native jobs were preserved."
+}

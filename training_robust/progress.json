@@ -577,7 +577,7 @@
     "baseline_seconds": 3.618,
     "candidate_seconds": 20.074
   },
-  "updated_utc": "2026-11-12T14:18:38.416016+00:00",
+  "updated_utc": "2026-11-12T14:47:05.934593+00:00",
   "motion_v2_native_result": {
     "seed": 8600007,
     "success": true,
@@ -1120,7 +1120,7 @@
     "generation": 0,
     "unique_training_maps": 20,
     "goal_verified": false,
-    "completed_training_jobs": 2
+    "completed_training_jobs": 4
   },
   "small_marker_followup": {
     "snapshot": "repository_snapshot/small_marker_followup.json",
@@ -1133,7 +1133,13 @@
   },
   "tf_navigation_timing": {
     "snapshot": "repository_snapshot/tf_navigation_failure.json",
-    "status": "candidate_queued",
+    "status": "running_regression",
     "native_improvement_verified": false
+  },
+  "fresh_map_successor": {
+    "snapshot": "repository_snapshot/fresh_map_successor.json",
+    "service": "osp-fresh-map-v2-upgrade.service",
+    "status": "waiting_for_tf_comparison",
+    "goal_verified": false
   }
 }

@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T14:18:38.416016+00:00",
+  "captured_utc": "2026-11-12T14:47:05.934593+00:00",
   "status": "running",
   "generation": 0,
   "phase": "train",
@@ -49,38 +49,8 @@
     "curriculum_and_marker_journal_passed": 6,
     "build": "passed"
   },
-  "running_jobs": [
-    {
-      "number": 2,
-      "seed": 1121200202,
-      "unit": "osp-freshmap-nov12-v1-00002.service",
-      "observed_status": {
-        "state": "running",
-        "elapsed_seconds": 101.8,
-        "targets": 2,
-        "approached_ids": [
-          701,
-          964
-        ],
-        "collisions": 0
-      }
-    },
-    {
-      "number": 3,
-      "seed": 1121200303,
-      "unit": "osp-freshmap-nov12-v1-00003.service",
-      "observed_status": {
-        "state": "running",
-        "elapsed_seconds": 99.4,
-        "targets": 1,
-        "approached_ids": [
-          713
-        ],
-        "collisions": 0
-      }
-    }
-  ],
-  "completed_training_jobs": 2,
+  "running_jobs": [],
+  "completed_training_jobs": 4,
   "goal_status": "active",
   "generalization_improvement_verified": false,
   "production_promoted": false,
@@ -91,8 +61,8 @@
   ],
   "occupancy_diversity_audit": "fresh_map_diversity.json",
   "diversity_regression_checks_passed": 2,
-  "status_detail": "Small-marker diagnostic comparison completed2/2success;new-map native jobs and queued TF comparison continue",
-  "active_supervisor": "osp-small-marker-regression-v2.service",
+  "status_detail": "First4fresh-map training episodes finished;TF-only native regressions are running;successor preparation waits for their results",
+  "active_supervisor": "osp-tf-restamp-regression-v1.service",
   "pending_diagnostic": "tf_navigation_failure.json",
   "completed_results": [
     {
@@ -116,6 +86,139 @@
       "seconds": 600.309,
       "infrastructure_failure": false,
       "reason": "timeout"
+    }
+  ],
+  "successor_report": "fresh_map_successor.json",
+  "observed_native_results": [
+    {
+      "number": 0,
+      "metadata_status": "done",
+      "audit": {
+        "seed": 1121200000,
+        "success": false,
+        "evaluator_success": false,
+        "seconds": 600.455,
+        "targets": 3,
+        "collisions": 0,
+        "coordinate_errors_m": {
+          "754": 0.0154040123497213,
+          "739": 0.02301116277040631,
+          "934": 0.03675329807602857
+        },
+        "required_approach_m": 1.5,
+        "closest_approach_m": {
+          "934": 4.5271965657484,
+          "739": 1.432973566456596,
+          "754": 1.2801084179266426
+        },
+        "video": {
+          "file": "/home/peter/simul/training_robust/native90/fresh_map_cem_v1/jobs/00000_train_g0_0/episodes/1121200000/video/mission.mp4",
+          "frames": 3003,
+          "fps": 5.0,
+          "verified": true
+        },
+        "errors": [
+          "Actual trajectory must approach every marker within 1.5 m",
+          "Mission did not find all targets",
+          "Mission exceeded 600 seconds"
+        ]
+      }
+    },
+    {
+      "number": 1,
+      "metadata_status": "done",
+      "audit": {
+        "seed": 1121200101,
+        "success": false,
+        "evaluator_success": false,
+        "seconds": 600.309,
+        "targets": 1,
+        "collisions": 0,
+        "coordinate_errors_m": {
+          "174": 0.014893695635957332
+        },
+        "required_approach_m": 1.5,
+        "closest_approach_m": {
+          "773": 7.382404813747568,
+          "776": 6.3242848196838475,
+          "174": 1.2340805229299434
+        },
+        "video": {
+          "file": "/home/peter/simul/training_robust/native90/fresh_map_cem_v1/jobs/00001_train_g0_1/episodes/1121200101/video/mission.mp4",
+          "frames": 3003,
+          "fps": 5.0,
+          "verified": true
+        },
+        "errors": [
+          "Actual trajectory must approach every marker within 1.5 m",
+          "Three distinct correct marker IDs are required",
+          "Mission did not find all targets",
+          "Mission exceeded 600 seconds"
+        ]
+      }
+    },
+    {
+      "number": 2,
+      "metadata_status": "done",
+      "audit": {
+        "seed": 1121200202,
+        "success": false,
+        "evaluator_success": false,
+        "seconds": 600.3,
+        "targets": 2,
+        "collisions": 0,
+        "coordinate_errors_m": {
+          "964": 0.05520969552117923,
+          "701": 0.00183056869893029
+        },
+        "required_approach_m": 1.5,
+        "closest_approach_m": {
+          "701": 1.0575882780406485,
+          "827": 1.293754842042029,
+          "964": 1.238910114652383
+        },
+        "video": {
+          "file": "/home/peter/simul/training_robust/native90/fresh_map_cem_v1/jobs/00002_train_g0_2/episodes/1121200202/video/mission.mp4",
+          "frames": 3003,
+          "fps": 5.0,
+          "verified": true
+        },
+        "errors": [
+          "Three distinct correct marker IDs are required",
+          "Mission did not find all targets",
+          "Mission exceeded 600 seconds"
+        ]
+      }
+    },
+    {
+      "number": 3,
+      "metadata_status": "done",
+      "audit": {
+        "seed": 1121200303,
+        "success": true,
+        "evaluator_success": true,
+        "seconds": 317.4,
+        "targets": 3,
+        "collisions": 0,
+        "coordinate_errors_m": {
+          "617": 0.11299162849919041,
+          "713": 0.022863357485409058,
+          "78": 0.15840632632073604
+        },
+        "required_approach_m": 1.5,
+        "closest_approach_m": {
+          "617": 1.4383953974663743,
+          "713": 1.127204573036886,
+          "78": 1.4387010094648416
+        },
+        "video": {
+          "file": "/home/peter/simul/training_robust/native90/fresh_map_cem_v1/jobs/00003_train_g0_3/episodes/1121200303/video/mission.mp4",
+          "frames": 1588,
+          "fps": 5.0,
+          "verified": true
+        },
+        "errors": []
+      }
     }
   ]
 }
