@@ -1,3 +1,4 @@
+from osp_mission.observation_sweep import select as select_observation_sweep
 from osp_mission.result_io import write_result
 from osp_mission.marker_approach import MarkerApproach
 """Nonblocking mission state machine; start is explicitly signalled by service."""
@@ -93,6 +94,27 @@ class Mission(Node):
         self.started=0.; self.save_proc=None; self.serialize_future=None; self.save_deadline=0.
         self.create_timer(.5,self.tick)
 
+    def observation_turn(self):
+        # Older planners keep a bounded inspection; edge planners use camera evidence.
+        if not self.edge_mode:
+            requested=(2*math.pi/3 if self.initial_scan else self.next_scan_angle) if self.surface_mode or self.inspect else scan_angle(self.weights)
+            return math.copysign(min(abs(requested),2*math.pi/3),requested)
+        calibration=getattr(self,'inspection_camera',None)
+        if self.map is None or calibration is None:return 0.
+        try:
+            tr=self.tf.lookup_transform(self.p('map_frame'),self.inspection_camera_frame,Time())
+            q=tr.transform.rotation
+            heading=math.atan2(2*(q.y*q.z-q.w*q.x),2*(q.x*q.z+q.w*q.y))
+            m=self.map;data=np.asarray(m.data).reshape(m.info.height,m.info.width)
+            origin=(m.info.origin.position.x,m.info.origin.position.y)
+            viewed=self.coverage.grid(data,m.info.resolution,origin)
+            # Observation coverage still requires exact camera TF and real decoded frames.
+            return select_observation_sweep(data,m.info.resolution,origin,
+                (tr.transform.translation.x,tr.transform.translation.y,heading),viewed,*calibration)
+        except Exception as exc:
+            self.get_logger().debug(f'Observation sweep unavailable: {exc}')
+            return 0.
+
     def load_configuration(self,path):
         if self.p('planner')=='surface_endpoint':return surface_endpoint_policy.load_configuration(path)
         return self.policy_load(path),{}
@@ -153,6 +175,8 @@ class Mission(Node):
         # A decoded frame is alive even if its exact-time TF has not arrived yet.
         # Only observe_camera() may credit inspected surfaces.
         self.camera_stamp=seconds;self.pending_camera=m
+        self.inspection_camera=(float(m.k[0]),2*math.atan(m.width/(2*m.k[0])))
+        self.inspection_camera_frame=m.header.frame_id
         self.camera_diagnostics['accepted']+=1
         self.observe_camera()
     def observe_camera(self):
@@ -298,7 +322,7 @@ class Mission(Node):
             self.get_logger().warning(f'{self.kind} paused for {self.cancel_reason}; retaining the unfinished goal')
             return
         if self.kind=='nav':
-            self.excluded.append(self.destination); self.scan_after=True
+            self.excluded.append(self.destination); self.scan_after=result.status==4
         elif self.kind=='spin' and result.status!=4:
             self.spin_blocked_until=self.now()+30.; self.scan_after=False; self.recovery_pending=True
             self.get_logger().warning('Spin blocked; suppressing retries for 30 s and checking a safe retreat')
@@ -391,8 +415,9 @@ class Mission(Node):
         if self.scan_after and self.now()<self.spin_blocked_until: self.scan_after=False
         if self.scan_after:
             self.scan_after=False; goal=Spin.Goal()
-            goal.target_yaw=(2*math.pi if self.initial_scan else self.next_scan_angle) if self.surface_mode else (2*math.pi if self.initial_scan else 2*math.pi/3) if self.inspect else scan_angle(self.weights)
-            self.initial_scan=False; goal.time_allowance.sec=45
+            goal.target_yaw=self.observation_turn()
+            self.initial_scan=False; goal.time_allowance.sec=15
+            self.get_logger().info(f'Bounded observation turn: {math.degrees(goal.target_yaw):.0f} deg')
             if abs(goal.target_yaw)<1e-6:
                 self.plan_after=self.now()+1.5; self.zero(); return
             self.send(self.spin,goal,'spin'); return

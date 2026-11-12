@@ -17,11 +17,13 @@ dry_run=false
 start=false
 rviz=false
 undock=false
+low_rotation=false
 
 usage() {
     cat <<'HELP'
 Usage: bash run_robot_policy.sh --domain ROBOT_DOMAIN [options]
 
+  --low-rotation       Use the unverified bounded-observation candidate
   --build              Copy v13 and build an isolated hardware runtime
   --build-only         Build, then exit without connecting to the robot
   --check              Check robot discovery and topic types, then exit
@@ -59,6 +61,7 @@ while (($#)); do
                 --duration) duration="$2" ;;
             esac
             shift 2 ;;
+        --low-rotation) low_rotation=true; shift ;;
         --build) build=true; shift ;;
         --build-only) build=true; build_only=true; shift ;;
         --check) check=true; shift ;;
@@ -79,6 +82,7 @@ export OPENBLAS_NUM_THREADS=1
 
 source_dir="$repo_dir/training_robust/native90/runtime_fix_v13_observation_staging/src/osp_mission"
 [[ -f "$source_dir/osp_mission/mission.py" ]] || fail "Missing v13 source at $source_dir"
+if $low_rotation; then runtime_dir="$repo_dir/deployment/robot_low_rotation"; fi
 command=(ros2 launch osp_mission robot.launch.py
     use_sim_time:=false require_drive_controller:=false planner:=edge
     "namespace:=$namespace" "rgb_topic:=$rgb_topic" "camera_info_topic:=$camera_info_topic"
@@ -88,7 +92,11 @@ command=(ros2 launch osp_mission robot.launch.py
     "nav2_params:=$runtime_dir/nav2_robot_active.yaml"
     "output_dir:=$repo_dir/results/robot_$(date +%Y%m%dT%H%M%S)_$$")
 service_prefix="/${namespace:+$namespace/}mission"
-printf 'Candidate v13 hardware adapter, ROS_DOMAIN_ID=%s\n' "$domain"
+if $low_rotation; then
+    printf 'Unverified low-rotation candidate, ROS_DOMAIN_ID=%s\n' "$domain"
+else
+    printf 'Candidate v13 hardware adapter, ROS_DOMAIN_ID=%s\n' "$domain"
+fi
 printf 'Launch command '; printf '%q ' "${command[@]}"; printf '\n'
 printf 'Start: ROS_DOMAIN_ID=%s ros2 service call %s/start std_srvs/srv/Trigger "{}"\n' "$domain" "$service_prefix"
 printf 'Stop:  ROS_DOMAIN_ID=%s ros2 service call %s/stop std_srvs/srv/Trigger "{}"\n' "$domain" "$service_prefix"
@@ -100,8 +108,17 @@ if $build; then
     mkdir -p "$runtime_dir"
     exec 9>"$runtime_dir/build.lock"
     flock -n 9 || fail 'This runtime is already being built or used.'
-    /usr/bin/python3 "$repo_dir/scripts/prepare_robot_runtime.py" \
-        --source "$source_dir" --destination "$runtime_dir"
+    if $low_rotation; then
+        # The preparer refuses an existing directory, preserving candidate runtimes.
+        if [[ ! -d "$runtime_dir/src" ]]; then
+            /usr/bin/python3 "$repo_dir/scripts/prepare_low_rotation_runtime.py" --destination "$runtime_dir/candidate"
+            mv "$runtime_dir/candidate/src" "$runtime_dir/src"
+            rmdir "$runtime_dir/candidate"
+        fi
+    else
+        /usr/bin/python3 "$repo_dir/scripts/prepare_robot_runtime.py" \
+            --source "$source_dir" --destination "$runtime_dir"
+    fi
     colcon --log-base "$runtime_dir/log" build \
         --base-paths "$runtime_dir/src/osp_mission" --packages-select osp_mission \
         --build-base "$runtime_dir/build" --install-base "$runtime_dir/install"

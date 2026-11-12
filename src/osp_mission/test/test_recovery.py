@@ -36,6 +36,9 @@ def scan_owner():
                           surface_mode=True,initial_scan=False,next_scan_angle=math.pi/3,
                           spin=object(),zero=lambda:None,
                           send=lambda client,goal,kind:sent.append((goal,kind)))
+    owner.edge_mode=False;owner.inspect=False
+    owner.observation_turn=lambda:Mission.observation_turn(owner)
+    owner.get_logger=lambda:SimpleNamespace(info=lambda message:None)
     return owner,sent
 
 
@@ -112,3 +115,13 @@ def test_contact_cancels_action_and_does_not_resume_or_scan(kind):
     assert not owner.scan_after and owner.resume_action is None
     assert owner.recovery_pending==(kind!='backup')
     assert owner.spin_blocked_until==130. and owner.plan_after==100.5
+
+
+@pytest.mark.parametrize('status,scan',[(4,True),(5,False),(6,False)])
+def test_only_successful_arrivals_trigger_observation(status,scan):
+    owner=SimpleNamespace(goal_handle=object(),state='running',kind='nav',
+        excluded=[],destination=(1.,2.),scan_after=True)
+    future=Future();future.set_result(SimpleNamespace(status=status))
+    Mission.completed(owner,future)
+    assert owner.scan_after is scan
+    assert owner.excluded==[(1.,2.)]

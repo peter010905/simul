@@ -134,5 +134,26 @@
     "route_timecost.json"
   ],
   "latest_training": "slam_nav2_search.json",
-  "previous_regressions_complete": true
+  "previous_regressions_complete": true,
+  "latest_change": {
+    "date": "2026-11-12",
+    "name": "bounded_observation_rotation",
+    "status": "unverified_candidate",
+    "original_benchmarks": "preserved; no original result changed",
+    "offline_validation": {
+      "root_tests_passed": 174,
+      "staged_candidate_tests_passed": 194,
+      "hardware_adapter_tests_passed": 4,
+      "synthetic_sweep_degrees": {
+        "left_unseen": 105,
+        "right_unseen": -105,
+        "all_inspected": 0
+      }
+    },
+    "new_gazebo_results": null,
+    "hardware_validated": false,
+    "default_hardware_candidate": "v13 unchanged",
+    "opt_in_flag": "--low-rotation",
+    "notes": "Observation sweeps at most 120 degrees; uses observed map, processed camera calibration and uninspected faces only. No claim of improved completion rate or elapsed time."
+  }
 }
