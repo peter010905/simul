@@ -1,7 +1,7 @@
 {
-  "captured_utc": "2026-11-12T16:38:44.102643+00:00",
+  "captured_utc": "2026-11-12T17:20:55.114541+00:00",
   "client_date": "2026-11-13",
-  "status": "native_spatial_learning_running",
+  "status": "held_for_navigation_regression",
   "goal_status": "active",
   "production_promoted": false,
   "campaign": "/home/peter/simul/training_robust/native90/spatial_cem_v3",
@@ -476,7 +476,7 @@
     "/home/peter/simul/src/osp_mission/osp_mission/robust_scenarios.py": "f8f6683a773afedf6c08c9ad6f14b5f4ca8823b1fc9035685222d48909f722d8",
     "/home/peter/simul/src/osp_mission/osp_mission/scenarios.py": "9259bf1e82a6b525bf84d905226465140a183fbbc94e11dfd783907151940d37"
   },
-  "completed_spatial_training_episodes": 0,
+  "completed_spatial_training_episodes": 1,
   "completed_cem_generations": 0,
   "generalization_verified": false,
   "revisit_reduction_verified": false,
@@ -542,5 +542,8 @@
     "Initial weights inherited; no completed new CEM generation yet",
     "Every candidate/reference run audits actual ROS settings with role-specific acknowledgement timeout",
     "The previous candidate Gazebo profile measured20ms and was superseded without changing its live sources or raw results"
-  ]
+  ],
+  "completed_infrastructure_failures": 1,
+  "current_dispatch": "Previous native jobs preserved; new dispatch owned by navigation_regression_v1",
+  "navigation_diagnosis": "local_navigation_diagnosis.json"
 }

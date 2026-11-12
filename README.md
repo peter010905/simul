@@ -11,6 +11,12 @@
 > 학습 표본에서 제외했습니다. 수정한 실제 원형·삼각형의 바닥 센서4개가 모두 정상 응답하며,
 > 매 새 실행에도 이 검사를 적용합니다. [진단과 검증 범위](repository_snapshot/floor_pose_diagnosis.json).
 
+> **추가 진단:** 새 원형 실행에서 실제 LiDAR와 달리 주행용 지도에 로봇 위치가 장애물로 남는 현상과,
+> SLAM 좌표 보정 후 이미 접근한 ID를 다시 선택하는 현상을 확인했습니다.
+> 진행 중인 두 주행을 보존하고, 주행용 지도 수정 후보와 근접 관측 기록 보존 후보를 같은 실패 장면에서 비교합니다.
+> 로그 재생과 새 Gazebo 성과를 구분하며 아직 개선된 완주율로 보고하지 않습니다.
+> [측정·후보·검증 범위](repository_snapshot/local_navigation_diagnosis.json).
+
 [**시뮬레이션 영상 다운로드 — GitHub Release**](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11)
 
 비공개 저장소 권한이 있는 GitHub 계정으로 로그인하면 영상을 받을 수 있습니다.
@@ -228,7 +234,7 @@ python3 scripts/publish_simulation_videos.py --upload
 
 ## 저장된 Gazebo 영상
 
-[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 133개
+[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 135개
 
 아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다. 환경 오류로 종료한 영상은 정책 학습 표본에서 제외합니다.
 
@@ -367,6 +373,8 @@ python3 scripts/publish_simulation_videos.py --upload
 | [spatial_cem_v1__00000_train_g0_0__1136000000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v1__00000_train_g0_0__1136000000.mp4) | 환경 오류 | 미달 | 372.574 |
 | [spatial_cem_v1__00001_train_g0_0__1136000101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v1__00001_train_g0_0__1136000101.mp4) | 환경 오류 | 미달 | 375.854 |
 | [spatial_cem_v2__00000_train_g0_0__1148000000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v2__00000_train_g0_0__1148000000.mp4) | 성공 | 확인 | 139.266 |
+| [spatial_cem_v2__00001_train_g0_0__1148000101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v2__00001_train_g0_0__1148000101.mp4) | 실패 | 미달 | 600.019 |
+| [spatial_cem_v3__00000_train_g0_0__1159000000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v3__00000_train_g0_0__1159000000.mp4) | 실패 | 미달 | 600.2 |
 | [tf_restamp_v1__regression__case_0__1121200000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_0__1121200000.mp4) | 성공 | 확인 | 231.867 |
 | [tf_restamp_v1__regression__case_1__1121200101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_1__1121200101.mp4) | 성공 | 확인 | 229.859 |
 

@@ -65,8 +65,9 @@
   "ros_surface_integration": "surface_endpoint_default_edge_comparison_option_unit_tested",
   "gazebo_verified": false,
   "next_actions": [
-    "Observe stage-isolated regression results; do not modify frozen stage sources while campaigns are running/queued.",
-    "After regressions, compare final candidate on fresh development layouts; holdout still unused."
+    "Preserve the two running v3 native episodes to completion",
+    "Compare two frozen collision-map/approach-evidence candidates on the independently preserved failed circle",
+    "Only an independently successful diagnostic candidate may seed the next fresh exterior campaign; no production promotion"
   ],
   "ros_unit_tests_passed": 157,
   "ros_directional_smoke": "native_communication_verified",
@@ -108,8 +109,13 @@
   },
   "current_jobs": [
     {
-      "number": 0,
-      "unit": "osp-spatial-nov13-space3-00000.service",
+      "number": 2,
+      "unit": "osp-spatial-nov13-space3-00002.service",
+      "domain": 115
+    },
+    {
+      "number": 3,
+      "unit": "osp-spatial-nov13-space3-00003.service",
       "domain": 114
     }
   ],
@@ -1103,5 +1109,7 @@
   },
   "spatial_curriculum": "repository_snapshot/spatial_curriculum.json",
   "dashboard": "http://127.0.0.1:8765",
-  "latest_goal_turn_evidence": "Two independently audited native circle/triangle completions after correcting visual floor pose;fresh28exteriors prepared;actual ROS1000ms acknowledgement,current policy,600s deadline,restamp_tf verified in new training run"
+  "latest_goal_turn_evidence": "Two independently audited native circle/triangle completions after correcting visual floor pose;fresh28exteriors prepared;actual ROS1000ms acknowledgement,current policy,600s deadline,restamp_tf verified in new training run",
+  "latest_navigation_diagnosis": "repository_snapshot/local_navigation_diagnosis.json",
+  "current_native_supervisor": "osp-navigation-regression-v1.service"
 }

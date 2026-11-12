@@ -1,0 +1,170 @@
+{
+  "captured_utc": "2026-11-12T17:18:45.564239+00:00",
+  "previous_goal_turn_classification": "progress",
+  "evidence_type": "actual_native_gazebo_failure_and_separate_offline_sensor_replay",
+  "failed_episode": "/home/peter/simul/training_robust/native90/spatial_cem_v3/jobs/00000_train_g0_0/episodes/1159000000",
+  "baseline": {
+    "success": false,
+    "seconds": 600.2,
+    "ids": 2,
+    "actual_approaches": 2,
+    "contacts": 0,
+    "position_errors_for_found_ids_m": {
+      "910": 0.36189688830757943,
+      "856": 0.14908674840788833
+    },
+    "actual_closest_m": {
+      "910": 1.3937581955305933,
+      "856": 1.1899927165173836,
+      "25": 10.950361191864063
+    }
+  },
+  "observed_local_map": {
+    "costmap_frame": "odom",
+    "footprint_lethal_cells": 6,
+    "rear_sweep_lethal_cells": 8,
+    "live_scan_rear_sweep_hits": 0,
+    "live_scan_min_hit_distance_from_base_m": 1.0501425626527914,
+    "note": "Costmap cells and raw scan are observed ROS inputs, not scenario ground truth"
+  },
+  "observed_revisit": "ID910 approached earlier, selected again at222.2sim seconds after SLAM map-coordinate correction",
+  "offline_replay": {
+    "evidence_type": "offline_replay_of_recorded_sensor_inputs",
+    "new_native_experiment": false,
+    "training_sample": false,
+    "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v3/jobs/00000_train_g0_0/episodes/1159000000",
+    "workspace": "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime",
+    "confirmed_ids": [
+      856,
+      910
+    ],
+    "observations_replayed": 313,
+    "range_witness_evidence": {
+      "910": {
+        "source": "three_confirmed_readable_near_odom_observations",
+        "conservative_radius_m": 1.4,
+        "observations": [
+          {
+            "stamp": 50.2,
+            "distance_m": 1.3874150154688636,
+            "robot_odom": [
+              -0.2025197153456809,
+              0.7158848083731287
+            ],
+            "point_odom": [
+              -1.0630125588261456,
+              1.8042195415629554
+            ]
+          },
+          {
+            "stamp": 50.4,
+            "distance_m": 1.3815448847213103,
+            "robot_odom": [
+              -0.20689486364146975,
+              0.7196730327120242
+            ],
+            "point_odom": [
+              -1.0627196048190084,
+              1.804214539934324
+            ]
+          },
+          {
+            "stamp": 50.6,
+            "distance_m": 1.3827643029544572,
+            "robot_odom": [
+              -0.20690428698268137,
+              0.7196769041351546
+            ],
+            "point_odom": [
+              -1.0588940520429204,
+              1.8087822974547012
+            ]
+          }
+        ]
+      },
+      "856": {
+        "source": "three_confirmed_readable_near_odom_observations",
+        "conservative_radius_m": 1.4,
+        "observations": [
+          {
+            "stamp": 119.6,
+            "distance_m": 1.381391524596884,
+            "robot_odom": [
+              7.658592744015359,
+              -5.0738746481681165
+            ],
+            "point_odom": [
+              8.190906711793897,
+              -6.348584177408395
+            ]
+          },
+          {
+            "stamp": 119.8,
+            "distance_m": 1.3751228660932306,
+            "robot_odom": [
+              7.663704471137351,
+              -5.07845428893402
+            ],
+            "point_odom": [
+              8.190672702164719,
+              -6.348598918627957
+            ]
+          },
+          {
+            "stamp": 120.0,
+            "distance_m": 1.3593576220760506,
+            "robot_odom": [
+              7.679376975425085,
+              -5.09081766189723
+            ],
+            "point_odom": [
+              8.192593460614054,
+              -6.349571801523605
+            ]
+          }
+        ]
+      }
+    },
+    "odom_pose_source": "Interpolation of recorded odometry at the observation timestamp",
+    "ground_truth_positions_used": false,
+    "confirmation_clock_upper_bound": 5.263,
+    "source_sha256": {
+      "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime/src/osp_mission/osp_mission/marker_approach.py": "4d09fa7109c1c75ceec94cc3081794979cf76c0ba6214b1685626b3b65569687",
+      "/home/peter/simul/training_robust/native90/spatial_cem_v3/jobs/00000_train_g0_0/episodes/1159000000/pose_trace.csv": "f52f87574e873d84f8b7d7ad6d676483e8050f87e9b60ef25d0bde70a3ac10b6",
+      "/home/peter/simul/training_robust/native90/spatial_cem_v3/jobs/00000_train_g0_0/episodes/1159000000/marker_events.jsonl": "b18cf0e14d0071175dd44a642d78106f95efbc6576d7ef28ec4124429c97a5fb",
+      "/home/peter/simul/training_robust/native90/spatial_cem_v3/jobs/00000_train_g0_0/episodes/1159000000/marker_observations.json": "1f14c4971dfd7b1506c1965c277c779a81d64409ff83e13f6124b006a56f80e0"
+    }
+  },
+  "candidates": [
+    {
+      "name": "live_costmap_v1",
+      "runtime_tests_passed": 218,
+      "change": "Local rolling map omits static SLAM layer; global SLAM, live obstacles, inflation and collision checks retained"
+    },
+    {
+      "name": "approach_witness_v1",
+      "runtime_tests_passed": 224,
+      "change": "Additionally latch3 confirmed readable odom-relative observations within1.40m with camera/LiDAR agreement; clear on ID retraction"
+    }
+  ],
+  "native_regression": {
+    "status": "waiting_for_current_native_runs",
+    "campaign": "navigation_regression_v1",
+    "same_failed_seed": 1159000000,
+    "training_samples": false
+  },
+  "successor": "Fresh28exteriors only if a finalized independent native audit passes",
+  "generalization_verified": false,
+  "revisit_reduction_verified": false,
+  "production_promoted": false,
+  "remaining_issues": [
+    "One predecessor trial failed Nav2 lifecycle startup; not a navigation success/failure sample",
+    "Current two predecessor natives remain running to preserve complete evidence"
+  ],
+  "observed_slam_transform_change": {
+    "clock_sim_seconds": 247.84,
+    "translation_delta_m": 2.298,
+    "rotation_delta_rad": 0.275,
+    "note": "Map/odom transform change derived from recorded TF poses; timing correlation, not proof of root cause"
+  }
+}
