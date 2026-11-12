@@ -1,0 +1,414 @@
+{
+  "evidence": "Scenario collision/support geometry rasterized at0.10m; this is not an observed SLAM map or mission outcome",
+  "training_episodes": 20,
+  "unique_occupancy_maps": 20,
+  "no_reused_occupancy": true,
+  "requested_obstacle_counts": [
+    8,
+    12,
+    16,
+    24,
+    32
+  ],
+  "mount_profiles": [
+    "hidden_obstacles",
+    "mixed",
+    "obstacles",
+    "walls"
+  ],
+  "distinct_start_positions": 20,
+  "start_xy_min_m": [
+    0.825,
+    0.975
+  ],
+  "start_xy_max_m": [
+    19.125,
+    9.975
+  ],
+  "boundary_m": [
+    20.15,
+    11.35
+  ],
+  "rows": [
+    {
+      "job": 0,
+      "generation": 0,
+      "seed": 1121200000,
+      "requested_obstacles": 8,
+      "actual_obstacles": 8,
+      "mount_profile": "walls",
+      "start": [
+        6.225,
+        8.475,
+        2.2875091202792355
+      ],
+      "marker_sizes_m": [
+        0.1316442404063881,
+        0.18165338109263246,
+        0.25226174672677176
+      ],
+      "occupancy_sha256": "382cc96cb03dd217ba1e359b533e344bf8c0cfd9277d3228871e4d4ddf847dd9"
+    },
+    {
+      "job": 1,
+      "generation": 0,
+      "seed": 1121200101,
+      "requested_obstacles": 8,
+      "actual_obstacles": 8,
+      "mount_profile": "walls",
+      "start": [
+        17.025,
+        0.975,
+        -1.7484177242486132
+      ],
+      "marker_sizes_m": [
+        0.20903747258738575,
+        0.13845279037269526,
+        0.29113549977733216
+      ],
+      "occupancy_sha256": "7b82279fd033049ffe5156b2a23169de1111cebbb2ae19919267120932c1c398"
+    },
+    {
+      "job": 2,
+      "generation": 0,
+      "seed": 1121200202,
+      "requested_obstacles": 8,
+      "actual_obstacles": 8,
+      "mount_profile": "walls",
+      "start": [
+        6.375,
+        5.925,
+        1.7944922919542297
+      ],
+      "marker_sizes_m": [
+        0.15646290536934154,
+        0.08993721552791108,
+        0.2371267938159876
+      ],
+      "occupancy_sha256": "ae987c2b84349e4043aec96445a6233ff1a9b6a7c6c3cc0cc08ee31d78b2b2d0"
+    },
+    {
+      "job": 3,
+      "generation": 0,
+      "seed": 1121200303,
+      "requested_obstacles": 8,
+      "actual_obstacles": 8,
+      "mount_profile": "walls",
+      "start": [
+        6.5249999999999995,
+        9.225,
+        -1.3545401802728598
+      ],
+      "marker_sizes_m": [
+        0.10907434859096309,
+        0.21658087369962548,
+        0.29782538128534525
+      ],
+      "occupancy_sha256": "4dec24b743c53dcb24d4e286ad691fa9a8d31cfef52648061e8e22651577580e"
+    },
+    {
+      "job": 4,
+      "generation": 0,
+      "seed": 1121200404,
+      "requested_obstacles": 12,
+      "actual_obstacles": 12,
+      "mount_profile": "mixed",
+      "start": [
+        1.7249999999999999,
+        9.975,
+        0.07385188874483584
+      ],
+      "marker_sizes_m": [
+        0.2008414580274457,
+        0.29918916135658463,
+        0.13188672247356167
+      ],
+      "occupancy_sha256": "ff3d11c6f41599b5704c81856da2f1726bb5e17d1205ed8760a6dc920f8fd109"
+    },
+    {
+      "job": 5,
+      "generation": 0,
+      "seed": 1121200505,
+      "requested_obstacles": 12,
+      "actual_obstacles": 12,
+      "mount_profile": "mixed",
+      "start": [
+        5.175,
+        7.125,
+        -2.3713687791968123
+      ],
+      "marker_sizes_m": [
+        0.2527178415347381,
+        0.20881366574810062,
+        0.1138523826530914
+      ],
+      "occupancy_sha256": "14ec1a1c5477ec72e6ddec0ba3ac29b185a75a7db1b5a02f87555aeb83487b88"
+    },
+    {
+      "job": 6,
+      "generation": 0,
+      "seed": 1121200606,
+      "requested_obstacles": 12,
+      "actual_obstacles": 12,
+      "mount_profile": "mixed",
+      "start": [
+        5.0249999999999995,
+        5.7749999999999995,
+        -3.06755381269219
+      ],
+      "marker_sizes_m": [
+        0.1979720329883514,
+        0.2637440404788492,
+        0.08767043331432432
+      ],
+      "occupancy_sha256": "84f8c6c109b9cc431a784e23e36c7bb733955cba13b5f8c46d66f12e3c7af7bc"
+    },
+    {
+      "job": 7,
+      "generation": 0,
+      "seed": 1121200707,
+      "requested_obstacles": 12,
+      "actual_obstacles": 12,
+      "mount_profile": "mixed",
+      "start": [
+        14.774999999999999,
+        1.7249999999999999,
+        3.1267161099515954
+      ],
+      "marker_sizes_m": [
+        0.25943189347986323,
+        0.13494684243935468,
+        0.21293469289728395
+      ],
+      "occupancy_sha256": "0359f923b6e21c40b6245db4104edeb597bdc91857164d91f72189aedebc14a3"
+    },
+    {
+      "job": 8,
+      "generation": 0,
+      "seed": 1121200808,
+      "requested_obstacles": 16,
+      "actual_obstacles": 16,
+      "mount_profile": "obstacles",
+      "start": [
+        10.875,
+        1.125,
+        -2.986894469582276
+      ],
+      "marker_sizes_m": [
+        0.1542443705743386,
+        0.26652860956396285,
+        0.1113535857675427
+      ],
+      "occupancy_sha256": "a881d39609b826fd3c280cd9702bc45738a3ef634a11da9516a4ccf0037b3577"
+    },
+    {
+      "job": 9,
+      "generation": 0,
+      "seed": 1121200909,
+      "requested_obstacles": 16,
+      "actual_obstacles": 16,
+      "mount_profile": "obstacles",
+      "start": [
+        6.075,
+        1.425,
+        -2.0209153136344384
+      ],
+      "marker_sizes_m": [
+        0.143363882618976,
+        0.2817871500676544,
+        0.17286537773400665
+      ],
+      "occupancy_sha256": "eb04d5bd9e83c8e31bd1099e959923040080d93253e63ba9fca55a065231ba11"
+    },
+    {
+      "job": 10,
+      "generation": 0,
+      "seed": 1121201010,
+      "requested_obstacles": 16,
+      "actual_obstacles": 16,
+      "mount_profile": "obstacles",
+      "start": [
+        3.9749999999999996,
+        3.225,
+        1.2496268653590326
+      ],
+      "marker_sizes_m": [
+        0.2768424036590613,
+        0.19904841194672462,
+        0.11723819571922878
+      ],
+      "occupancy_sha256": "b35427bf70b98432b47064c098e7fffb1c0f72211f0d34040d8952df4de980bd"
+    },
+    {
+      "job": 11,
+      "generation": 0,
+      "seed": 1121201111,
+      "requested_obstacles": 16,
+      "actual_obstacles": 16,
+      "mount_profile": "obstacles",
+      "start": [
+        4.575,
+        4.425,
+        2.871372520272951
+      ],
+      "marker_sizes_m": [
+        0.19267046972892715,
+        0.2963215625815248,
+        0.09237404372479523
+      ],
+      "occupancy_sha256": "362a83a71433cf550d5f55d38b171ad980de694ad310ba1c56d1c2da82e197ba"
+    },
+    {
+      "job": 12,
+      "generation": 0,
+      "seed": 1121201212,
+      "requested_obstacles": 24,
+      "actual_obstacles": 24,
+      "mount_profile": "hidden_obstacles",
+      "start": [
+        0.825,
+        9.375,
+        -2.9627536203836318
+      ],
+      "marker_sizes_m": [
+        0.0884672389258837,
+        0.2065323631804345,
+        0.27812658897526277
+      ],
+      "occupancy_sha256": "9eca7588f6fcd17a7c93627619ea80fcf288f74b963868b01167551835c37ba5"
+    },
+    {
+      "job": 13,
+      "generation": 0,
+      "seed": 1121201313,
+      "requested_obstacles": 24,
+      "actual_obstacles": 24,
+      "mount_profile": "hidden_obstacles",
+      "start": [
+        2.175,
+        3.375,
+        -0.7847266872042602
+      ],
+      "marker_sizes_m": [
+        0.21038405372347352,
+        0.14186445367544345,
+        0.27770194821206573
+      ],
+      "occupancy_sha256": "21789aac5a8eb7bf636ee81c55a738f805d26f78745e6baa1459334f3b117494"
+    },
+    {
+      "job": 14,
+      "generation": 0,
+      "seed": 1121201414,
+      "requested_obstacles": 24,
+      "actual_obstacles": 24,
+      "mount_profile": "hidden_obstacles",
+      "start": [
+        17.025,
+        8.325,
+        -2.837536337144959
+      ],
+      "marker_sizes_m": [
+        0.11783427079156825,
+        0.2680287146302417,
+        0.17406169856644535
+      ],
+      "occupancy_sha256": "d3427c612c17aa0862f7f6f7d0c5ed52528b838b45220867c3f0b3814669d54f"
+    },
+    {
+      "job": 15,
+      "generation": 0,
+      "seed": 1121201515,
+      "requested_obstacles": 24,
+      "actual_obstacles": 24,
+      "mount_profile": "hidden_obstacles",
+      "start": [
+        19.125,
+        6.975,
+        -1.4920674622109795
+      ],
+      "marker_sizes_m": [
+        0.18943626199467162,
+        0.1435887378892029,
+        0.2687200238679614
+      ],
+      "occupancy_sha256": "d4f769a76c0925e3075897885d8207d9ac8753a9072c499d75a951202ae71269"
+    },
+    {
+      "job": 16,
+      "generation": 0,
+      "seed": 1121201616,
+      "requested_obstacles": 32,
+      "actual_obstacles": 31,
+      "mount_profile": "walls",
+      "start": [
+        8.174999999999999,
+        9.225,
+        -2.6499706830475054
+      ],
+      "marker_sizes_m": [
+        0.2678979162582342,
+        0.1389176784679528,
+        0.18034541303852908
+      ],
+      "occupancy_sha256": "16192f6438e0e828738a43ee25d39edbda00e1dd12405af04c2ba4ee377f1811"
+    },
+    {
+      "job": 17,
+      "generation": 0,
+      "seed": 1121201717,
+      "requested_obstacles": 32,
+      "actual_obstacles": 32,
+      "mount_profile": "walls",
+      "start": [
+        4.425,
+        1.125,
+        -2.1927763496176444
+      ],
+      "marker_sizes_m": [
+        0.21836573420702232,
+        0.09537297027211294,
+        0.27369801458497806
+      ],
+      "occupancy_sha256": "12dd9936a6d31593936af7d6a6413760cf30ea542b9b6b819ee2714552ede147"
+    },
+    {
+      "job": 18,
+      "generation": 0,
+      "seed": 1121201818,
+      "requested_obstacles": 32,
+      "actual_obstacles": 31,
+      "mount_profile": "walls",
+      "start": [
+        6.825,
+        2.025,
+        0.6219296849208424
+      ],
+      "marker_sizes_m": [
+        0.09210198895056028,
+        0.2223947533931273,
+        0.2642626996192658
+      ],
+      "occupancy_sha256": "70c9be2175c1d527cca06a465a6634024bbe2f08f9e28fd6351e686cd04468a5"
+    },
+    {
+      "job": 19,
+      "generation": 0,
+      "seed": 1121201919,
+      "requested_obstacles": 32,
+      "actual_obstacles": 31,
+      "mount_profile": "walls",
+      "start": [
+        19.125,
+        2.3249999999999997,
+        -0.38121735028769077
+      ],
+      "marker_sizes_m": [
+        0.1739672455928175,
+        0.12636453728521185,
+        0.23294315676256638
+      ],
+      "occupancy_sha256": "9d829754f25bd7d710590c0b5535700cdccd58f94ad7999daf54bcc652a1100a"
+    }
+  ]
+}

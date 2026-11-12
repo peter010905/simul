@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T13:30:40.256913+00:00",
+  "captured_utc": "2026-11-12T13:37:01.108382+00:00",
   "status": "running",
   "generation": 0,
   "phase": "train",
@@ -56,9 +56,10 @@
       "unit": "osp-freshmap-nov12-v1-00000.service",
       "observed_status": {
         "state": "running",
-        "elapsed_seconds": 59.955,
-        "targets": 1,
+        "elapsed_seconds": 182.455,
+        "targets": 2,
         "approached_ids": [
+          739,
           754
         ],
         "collisions": 0,
@@ -72,7 +73,7 @@
       "unit": "osp-freshmap-nov12-v1-00001.service",
       "observed_status": {
         "state": "running",
-        "elapsed_seconds": 59.309,
+        "elapsed_seconds": 180.809,
         "targets": 1,
         "approached_ids": [
           174
@@ -91,5 +92,7 @@
     "Coverage retention under map changes",
     "Stale identity conflict recovery",
     "Approach status display"
-  ]
+  ],
+  "occupancy_diversity_audit": "fresh_map_diversity.json",
+  "diversity_regression_checks_passed": 2
 }
