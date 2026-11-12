@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T19:32:42.983293+00:00",
+  "captured_utc": "2026-11-12T19:37:07.316082+00:00",
   "purpose": "Repository upload snapshot; not a live dashboard",
   "tests_passed_final": 189,
   "native_validation_complete": false,
@@ -138,7 +138,7 @@
   "latest_change": {
     "date": "2026-11-13",
     "name": "state_driven_SLAM_startup_231tests;native_same_circle_trial_queued",
-    "status": "active_goal;native_comparison_pending",
+    "status": "native_startup_verified;floor_and_effective_profile_passed;mission_pending",
     "generalization_verified": false
   },
   "latest_recording": {
@@ -202,5 +202,7 @@
   "recovery_candidate_tests_passed": 223,
   "reacquisition_startup_failure": "reacquisition_startup_failure.json",
   "startup_guard_candidate": "startup_guard_candidate.json",
-  "runtime_failure_diagnosis": "runtime_failure_diagnosis.json"
+  "runtime_failure_diagnosis": "runtime_failure_diagnosis.json",
+  "latest_built_startup_candidate": "/home/peter/simul/training_robust/native90/reacquisition_startup_v2/runtime",
+  "startup_candidate_runtime_tests_passed": 231
 }

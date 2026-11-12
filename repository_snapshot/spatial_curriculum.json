@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T19:32:42.983293+00:00",
+  "captured_utc": "2026-11-12T19:37:07.316082+00:00",
   "client_date": "2026-11-13",
   "status": "native_spatial_source_and_weight_learning_running",
   "goal_status": "active",
@@ -885,10 +885,18 @@
       "role": "1",
       "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
       "domain": 114,
-      "status": "running",
+      "status": "done",
       "floor_sensor_gate": true,
       "runtime_configuration_gate": true,
-      "outcome": null
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 507.1,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      }
     },
     {
       "number": 10,
@@ -1079,7 +1087,7 @@
       "outcome": null
     }
   ],
-  "completed_spatial_training_episodes": 10,
+  "completed_spatial_training_episodes": 11,
   "completed_cem_generations": 0,
   "generalization_verified": false,
   "revisit_reduction_verified": false,
@@ -1418,6 +1426,32 @@
       "errors": []
     },
     {
+      "seed": 1163000909,
+      "success": true,
+      "evaluator_success": true,
+      "seconds": 507.1,
+      "targets": 3,
+      "collisions": 0,
+      "coordinate_errors_m": {
+        "417": 0.018003725049265354,
+        "889": 0.05133120581565305,
+        "743": 0.052853665604079066
+      },
+      "required_approach_m": 1.5,
+      "closest_approach_m": {
+        "743": 1.4076080714453825,
+        "417": 1.0116468604630326,
+        "889": 0.9551405437063358
+      },
+      "video": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00009_train_g0_1/episodes/1163000909/video/mission.mp4",
+        "frames": 2537,
+        "fps": 5.0,
+        "verified": true
+      },
+      "errors": []
+    },
+    {
       "seed": 1163001010,
       "success": false,
       "evaluator_success": false,
@@ -1452,5 +1486,6 @@
   "coordinator_resumed_after_one_slot_diagnostic": true,
   "runtime_failure_diagnosis": "runtime_failure_diagnosis.json",
   "counts_are_descriptive_training_samples_not_independent_success_probability": true,
-  "coordinator_slot_reservation": "Original dispatcher held only until diagnostic actually claims one slot;existing two native runs preserved"
+  "coordinator_slot_reservation": "Diagnostic claimed actual native PID;original CEM dispatcher resumed automatically;max2 native processes observed",
+  "completed_successes": 8
 }

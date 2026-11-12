@@ -1111,7 +1111,7 @@
   },
   "spatial_curriculum": "repository_snapshot/spatial_curriculum.json",
   "dashboard": "http://127.0.0.1:8765",
-  "latest_goal_turn_evidence": "231runtime tests passed including real ROS lifecycle/map/TF/scan mocks;7orchestration/audit tests passed;new native same-circle startup+seed test queued without stopping existing two native runs;second circle timeout diagnosed as collision_monitor heartbeat loss followed by Nav2 deactivation;underlying loss cause unresolved",
+  "latest_goal_turn_evidence": "Progress:231runtime tests+7orchestration/audit tests+1realROS lost-ack testpassed;actualGazeboSLAMready4.327wallseconds;firstNav2controllerlogafterready;floor/profilegatespassed;actualdetector3confirmations/18px;CEMresumedatnativePIDhandoff;freshtrapezoid507.1s3IDs/3actualapproaches/0contacts;missionrecoveryresultpending",
   "latest_navigation_diagnosis": "repository_snapshot/local_navigation_diagnosis.json",
   "current_native_supervisor": "osp-spatial-cem-v5.service",
   "next_training_driver": "spatial_native_curriculum_v5.py",

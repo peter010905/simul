@@ -1,10 +1,10 @@
 {
-  "captured_utc": "2026-11-12T19:32:42.983293+00:00",
-  "evidence_type": "staged_source_build_and_ROS_service_TF_tests;native_diagnostic_queued",
+  "captured_utc": "2026-11-12T19:37:07.316082+00:00",
+  "evidence_type": "native_Gazebo_startup_observed;mission_outcome_pending",
   "workspace": "/home/peter/simul/training_robust/native90/reacquisition_startup_v2/runtime",
   "diagnostic": "/home/peter/simul/training_robust/native90/reacquisition_startup_regression_v2",
-  "status": "running",
-  "job_status": "prepared",
+  "status": "running_fresh_space_probe",
+  "job_status": "running",
   "source_hashes": {
     "setup.cfg": "fb522f4576d5429cb1cde1c49f0433cf9fd3181da3862b2f5e3a2ce9798a2003",
     "package.xml": "db6280bcd27e643036d56216dd977326d40dcf79ba21c8786370b8ef7dc3ecc6",
@@ -174,14 +174,95 @@
   "ground_truth_available_to_policy": false,
   "max_native_benchmarks": 2,
   "original_native_runs_preserved": true,
-  "native_startup_ordering_verified": false,
+  "native_startup_ordering_verified": true,
   "native_seed_recovery_verified": false,
   "generalization_verified": false,
   "production_promoted": false,
-  "caveat": "Test readiness and native readiness are separate;queued trial is not a completion result",
+  "caveat": "Native startup is verified in this run;mission success,seed recovery and generalization remain pending",
   "additional_real_ROS_lost_ack_test": {
     "passed": 1,
     "source": "scripts/test_startup_guard_lost_ack.py",
     "description": "Actual ChangeState reply withheld;local deadline expires;GetState observes active with only one ACTIVATE request;paused ROS clock does not stall readiness timer"
+  },
+  "native_startup_guard": {
+    "success": true,
+    "reason": "slam_active_map_tf_scan_ready",
+    "finished_wall_epoch_s": 1794512153.7875876,
+    "elapsed_wall_s": 4.327494015917182,
+    "observed_slam_state": 3,
+    "transitions": {
+      "1": 1,
+      "3": 1
+    },
+    "events": [
+      {
+        "event": "state_observed",
+        "elapsed_wall_s": 2.5771213648840785,
+        "state": 1
+      },
+      {
+        "event": "transition_requested",
+        "elapsed_wall_s": 2.6080954195931554,
+        "from_state": 1,
+        "transition": 1
+      },
+      {
+        "event": "transition_response",
+        "elapsed_wall_s": 2.8281366107985377,
+        "success": true
+      },
+      {
+        "event": "state_observed",
+        "elapsed_wall_s": 3.3271734416484833,
+        "state": 2
+      },
+      {
+        "event": "transition_requested",
+        "elapsed_wall_s": 3.3295523799024522,
+        "from_state": 2,
+        "transition": 3
+      },
+      {
+        "event": "transition_response",
+        "elapsed_wall_s": 3.577112373895943,
+        "success": true
+      },
+      {
+        "event": "state_observed",
+        "elapsed_wall_s": 4.077222524676472,
+        "state": 3
+      },
+      {
+        "event": "finished",
+        "elapsed_wall_s": 4.327082000672817,
+        "success": true,
+        "reason": "slam_active_map_tf_scan_ready"
+      }
+    ],
+    "map_ready": true,
+    "nav2_released_after_readiness": true
+  },
+  "native_startup_sequence_audit": {
+    "evidence_type": "native_startup_report_and_wall_timestamped_ROS_log",
+    "episode": "/home/peter/simul/training_robust/native90/reacquisition_startup_regression_v2/case_0/episodes/1163000000",
+    "readiness_report_passed": true,
+    "readiness_wall_epoch_s": 1794512153.7875876,
+    "first_controller_log_wall_epoch_s": 1794512155.8381991,
+    "nav2_started_after_readiness_verified": true,
+    "caveat": "Startup ordering alone is not mission success or generalization evidence"
+  },
+  "native_floor_sensor_gate": true,
+  "native_effective_configuration_gate": true,
+  "observed_detector_parameters": {
+    "node": "/aruco_detector",
+    "domain": 116,
+    "confirmations": 3,
+    "min_marker_pixels": 18,
+    "source": "read_only_ros2_param_get"
+  },
+  "dispatch_handoff": {
+    "status": "original_CEM_resumed",
+    "original_native_runs_preserved": true,
+    "new_slot_claimed_by": "osp-seed-startup-v2-native.service"
   }
 }

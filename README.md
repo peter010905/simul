@@ -42,11 +42,14 @@
 > **시작 절차 보완 후보:** SLAM 상태를 조회해 필요한 단계만 실행하고, 지도·TF·신선한 LiDAR가 준비된 뒤
 > 표준 Nav2를 시작하는 별도 후보가 기존 기능을 포함한231개 테스트를 통과했습니다.
 > 실제 ROS 서비스/TF를 쓰는 모의 SLAM 테스트도 포함하며 Gazebo 완주 검증과 구분합니다.
-> 기존 두 주행을 보존한 채 같은 실패 원형 장면의 새 native 비교를 대기열에 넣었습니다.
+> 같은 실패 원형 장면의 새 native 비교가 시작됐습니다. SLAM 준비는 실제 벽시계4.327초에 끝났고,
+> Nav2의 첫 로그는 그 뒤였습니다. 바닥 센서·실제 설정 검사도 통과했으며 임무 완주 결과는 대기 중입니다.
+> 기존 주행은 보존했고 새 시험이 실행 자리를 확보한 뒤 원래 CEM 감독기가 자동 재개됐습니다.
 > [수정 범위와 실제 검증 상태](repository_snapshot/startup_guard_candidate.json).
 > 두 번째 원형 timeout은 충돌 감시 노드의 heartbeat 손실 후 Nav2가 비활성화되어 약594초 정지한 사례입니다.
 > heartbeat 손실의 내부 원인은 아직 미확인입니다. 위 시작 절차로 해결됐다고 판단하지 않습니다.
 > [원본 로그와 정지 측정](repository_snapshot/runtime_failure_diagnosis.json).
+> 새 사다리꼴·장애물16개 주행도507.100초에 세 ID·각 실제1.5m 접근·충돌0회로 통과했습니다.
 
 [**시뮬레이션 영상 다운로드 — GitHub Release**](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11)
 
@@ -265,7 +268,7 @@ python3 scripts/publish_simulation_videos.py --upload
 
 ## 저장된 Gazebo 영상
 
-[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 149개
+[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 150개
 
 아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다. 환경 오류로 종료한 영상은 정책 학습 표본에서 제외합니다.
 
@@ -420,6 +423,7 @@ python3 scripts/publish_simulation_videos.py --upload
 | [spatial_cem_v5__00006_train_g0_0__1163000606.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v5__00006_train_g0_0__1163000606.mp4) | 성공 | 확인 | 387.0 |
 | [spatial_cem_v5__00007_train_g0_1__1163000707.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v5__00007_train_g0_1__1163000707.mp4) | 실패 | 미달 | 600.269 |
 | [spatial_cem_v5__00008_train_g0_1__1163000808.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v5__00008_train_g0_1__1163000808.mp4) | 성공 | 확인 | 358.712 |
+| [spatial_cem_v5__00009_train_g0_1__1163000909.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v5__00009_train_g0_1__1163000909.mp4) | 성공 | 확인 | 507.1 |
 | [tf_restamp_v1__regression__case_0__1121200000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_0__1121200000.mp4) | 성공 | 확인 | 231.867 |
 | [tf_restamp_v1__regression__case_1__1121200101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_1__1121200101.mp4) | 성공 | 확인 | 229.859 |
 
