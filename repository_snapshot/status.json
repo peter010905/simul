@@ -138,7 +138,7 @@
   "latest_change": {
     "date": "2026-11-12",
     "name": "bounded_observation_rotation",
-    "status": "unverified_candidate",
+    "status": "single_scene_verified_candidate",
     "original_benchmarks": "preserved; no original result changed",
     "offline_validation": {
       "root_tests_passed": 174,
@@ -150,10 +150,29 @@
         "all_inspected": 0
       }
     },
-    "new_gazebo_results": null,
+    "new_gazebo_results": "low_rotation_video.json",
     "hardware_validated": false,
     "default_hardware_candidate": "v13 unchanged",
     "opt_in_flag": "--low-rotation",
-    "notes": "Observation sweeps at most 120 degrees; uses observed map, processed camera calibration and uninspected faces only. No claim of improved completion rate or elapsed time."
+    "notes": "A new recorded native Gazebo development scene passed; no matched baseline comparison, robustness rate or hardware validation."
+  },
+  "latest_recording": {
+    "date": "2026-11-12",
+    "evidence_type": "new_native_gazebo_demonstration",
+    "summary": "low_rotation_video.json",
+    "candidate": "bounded_observation_rotation",
+    "scenario_seed": 8000001,
+    "obstacles": 12,
+    "success": true,
+    "elapsed_sim_seconds": 494.534,
+    "targets": 3,
+    "collisions": 0,
+    "correct_ids": true,
+    "all_actual_approaches_within_1_5m": true,
+    "correct_positions": true,
+    "public_upload_authorized_by_user": true,
+    "hardware_validated": false,
+    "production_promoted": false,
+    "matched_baseline_comparison": false
   }
 }

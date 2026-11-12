@@ -217,7 +217,7 @@ python3 scripts/publish_simulation_videos.py --upload
 
 ## 저장된 Gazebo 영상
 
-[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 105개
+[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 106개
 
 아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다.
 
@@ -249,6 +249,7 @@ python3 scripts/publish_simulation_videos.py --upload
 | [development_imu_screen4__8600139.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/development_imu_screen4__8600139.mp4) | 실패 | 미달 | 600.1 |
 | [development_imu_v1__runtime_probes__20261104T230250_371315Z.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/development_imu_v1__runtime_probes__20261104T230250_371315Z.mp4) | 성공 | 미달 | 238.9 |
 | [edge_runtime_v2__runtime_probes__20261104T234253_265975Z.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/edge_runtime_v2__runtime_probes__20261104T234253_265975Z.mp4) | 실패 | 미달 | 600.306 |
+| [low_rotation_video_20261112__episode_8000001.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/low_rotation_video_20261112__episode_8000001.mp4) | 성공 | 확인 | 494.534 |
 | [marker_focus_v6_screen3__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/marker_focus_v6_screen3__8600007.mp4) | 실패 | 자료 없음 | 242.819 |
 | [marker_focus_v6_service_screen3__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/marker_focus_v6_service_screen3__8600007.mp4) | 실패 | 미달 | 347.089 |
 | [marker_sizes_v1_native5__9811000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/marker_sizes_v1_native5__9811000.mp4) | 성공 | 확인 | 285.242 |
@@ -454,5 +455,28 @@ bash run_robot_policy.sh --domain ROBOT_DOMAIN --low-rotation --rviz --start
 
 `ROBOT_DOMAIN`은 실제 로봇 ROS 도메인 숫자로 바꿉니다. `--build-only`는 로봇을 움직이지 않습니다.
 후보 소스는 `deployment/robot_low_rotation/`에 분리해 보관하며 재빌드 시 덮어쓰지 않습니다.
-아직 세 마커의 정확한 ID·각1.5m 접근·올바른 지도 좌표·무충돌600초 완주를 검증한 후보는 아닙니다.
-새 시뮬레이션 창이나 자동 benchmark는 이 변경에서 시작하지 않았습니다.
+이 코드 변경 당시에는 세 마커의 정확한 ID·각1.5m 접근·올바른 지도 좌표·무충돌600초 완주를 검증하지 않았습니다.
+이후 수행한 새 Gazebo 녹화 결과는 아래 항목에 별도로 기록합니다.
+
+
+## 회전 감소 후보의 새 Gazebo 녹화 — 2026-11-12
+
+장애물12개, 장애물 뒤에 숨긴 마커3개가 있는 개발 배치(seed8000001)에서
+회전 감소 후보를 **새로 실행하고 녹화**했습니다. 재생·과거 로그의 재평가가 아닙니다.
+
+- 완료 시간:494.534초(약8분15초), 접촉0회.
+- 실제 ID283·337·388을 모두 인식했습니다.
+- 평가용 정답 좌표에 대한 실제 최소 접근 거리:각1.216m·0.858m·0.562m로 모두1.5m 이내입니다.
+- 지도 위치 오차:각7.1cm·1.8cm·1.9cm입니다(허용0.5m).
+- 관측 회전 요청34회 중5회 생략, 나머지 요청은 모두 최대120도 이내였습니다.
+  이는 관측용 회전 요청이며 Nav2 이동 중 방향 변경까지 합친 총 회전량은 아닙니다.
+- 영상:1280×720,5fps,495초. 2,475프레임 전체 디코딩 및 세 영상 소스 수신을 확인했습니다.
+
+한 개발 배치의 성공입니다. 같은 배치의 기존 후보와 대조 실험을 하지 않았으므로
+시간 단축·완주율 향상을 입증한 것으로 해석하지 않습니다. 실물 기본 후보는 계속v13이며
+production 승격은 하지 않았습니다. 평가용 정답은 정책에 전달하지 않았습니다.
+
+[새 실행 결과와 영상 검증](repository_snapshot/low_rotation_video.json).
+소유자의 이번 요청에 따라 공개 GitHub Release 업로드를 허용받았습니다.
+
+[이번 회전 감소 후보의 8분15초 영상 다운로드](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/low_rotation_video_20261112__episode_8000001.mp4)

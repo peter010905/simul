@@ -32,10 +32,15 @@ def main():
     parser.add_argument('--repo',default='peter010905/simul')
     parser.add_argument('--tag',default='simulation-videos-2026-11')
     parser.add_argument('--upload',action='store_true')
+    parser.add_argument('--only-upload',type=Path,action='append',default=[],
+                        help='Upload only these video paths; preserve the complete index')
     args=parser.parse_args()
     root=Path(__file__).resolve().parents[1]
     gh=shutil.which('gh') or str(Path.home()/'.local/bin/gh')
     base=root/'training_robust/native90'
+    selected={p.resolve() for p in args.only_upload}
+    repository=json.loads(command([gh,'api',f'repos/{args.repo}']))
+    private=repository['private']
     release=json.loads(command([gh,'api',f'repos/{args.repo}/releases/tags/{args.tag}']))
     def assets():
         pages=json.loads(command([gh,'api','--paginate','--slurp',f'repos/{args.repo}/releases/{release["id"]}/assets?per_page=100']))
@@ -66,7 +71,7 @@ def main():
                 item=remote[name]
                 if item['size']!=size or item.get('digest')!='sha256:'+sha:
                     raise RuntimeError('Remote asset differs or lacks hash verification; preserving it: '+name)
-            elif args.upload:
+            elif args.upload and (not selected or video.resolve() in selected):
                 target=Path(temp)/name
                 os.link(video,target)
                 subprocess.run([gh,'release','upload',args.tag,str(target),'--repo',args.repo],check=True,capture_output=True,text=True)
@@ -89,11 +94,11 @@ def main():
         item['uploaded_verified']=bool(a and a['size']==item['bytes'] and a.get('digest')=='sha256:'+item['sha256'])
     report=dict(updated_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),release_url=release['html_url'],
         uploaded_verified=sum(e['uploaded_verified'] for e in entries),videos=entries,skipped=skipped,
-        note='Original evaluator success may use an older protocol; actual 1.5m approach is listed separately. Login required for private release downloads.')
+        repository_private=private,note='Original evaluator success may use an older protocol; actual 1.5m approach is listed separately. '+('Login required for private release downloads.' if private else 'Public release downloads; uploads authorized by the repository owner.'))
     path=root/'repository_snapshot/videos.json';path.write_text(json.dumps(report,indent=2)+'\n')
     lines=['<!doctype html><html lang="ko"><meta charset="utf-8"><title>Gazebo videos</title>',
            '<style>body{font:15px sans-serif;max-width:1200px;margin:32px auto}td,th{padding:8px;border-bottom:1px solid #ddd;text-align:left}a{color:#1763ad}</style>',
-           '<h1>Gazebo 영상 목록</h1><p>비공개 저장소 권한이 있는 GitHub 계정으로 로그인해야 다운로드할 수 있습니다. 성공 여부는 당시 평가 기준입니다. 실제 1.5m 접근 여부를 별도로 확인하세요.</p>',
+           '<h1>Gazebo 영상 목록</h1><p>'+('비공개 저장소 권한이 있는 GitHub 계정으로 로그인해야 다운로드할 수 있습니다. ' if private else '소유자가 공개 업로드를 허용한 영상입니다. ')+ '성공 여부는 당시 평가 기준입니다. 실제 1.5m 접근 여부를 별도로 확인하세요.</p>',
            '<table><tr><th>영상</th><th>당시 평가</th><th>실제 1.5m 접근</th><th>시뮬레이션 시간</th></tr>']
     for e in entries:
         if not e['uploaded_verified']:continue
@@ -119,7 +124,10 @@ def main():
     else:content+='\n'+block+'\n'
     readme.write_text(content)
     print(json.dumps(dict(uploaded_verified=report['uploaded_verified'],eligible=len(entries),skipped=len(skipped))),flush=True)
-    if args.upload and report['uploaded_verified']!=len(entries):raise RuntimeError('Not all videos were verified remotely')
+    requested=[e for e in entries if not selected or (root/e['local_path']).resolve() in selected]
+    if args.upload and (any(not e['uploaded_verified'] for e in requested) or
+                        selected-{(root/e['local_path']).resolve() for e in requested}):
+        raise RuntimeError('Not all requested videos were finalized and verified remotely')
 
 
 if __name__=='__main__':main()

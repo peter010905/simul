@@ -1,0 +1,44 @@
+{
+  "date": "2026-11-12",
+  "candidate": "bounded_observation_rotation",
+  "evidence_type": "new_native_gazebo_demonstration",
+  "scenario_seed": 8000001,
+  "obstacles": 12,
+  "target_placement": "hidden_obstacles",
+  "success": true,
+  "elapsed_sim_seconds": 494.534,
+  "targets": 3,
+  "collisions": 0,
+  "ids": [
+    283,
+    337,
+    388
+  ],
+  "closest_approach_m": {
+    "388": 0.5619583263288783,
+    "337": 0.857615781345377,
+    "283": 1.2157803039280557
+  },
+  "position_errors_m": {
+    "388": 0.01935895157431069,
+    "337": 0.018344647574281798,
+    "283": 0.07145452861228209
+  },
+  "bounded_observation_turns": {
+    "requests": 34,
+    "skipped": 5,
+    "maximum_abs_degrees": 120.0
+  },
+  "video": {
+    "local_path": "training_robust/native90/low_rotation_video_20261112/episode_8000001/video/mission.mp4",
+    "frames": 2475,
+    "decoded_frames": 2475,
+    "fps": 5.0,
+    "seconds": 495.0,
+    "sha256": "41d9f965771666bec763d40922c5ec4509145f91fb68b6cc1781c8e6d31a4aa9",
+    "complete_visual_sources": true,
+    "release_url": "https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/low_rotation_video_20261112__episode_8000001.mp4",
+    "uploaded_verified": true
+  },
+  "limitations": "One development scene only; no matched baseline comparison and no hardware validation. Not a production promotion."
+}
