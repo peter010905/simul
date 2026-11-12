@@ -1,7 +1,7 @@
 {
-  "updated_utc": "2026-11-12T17:19:43.252151+00:00",
+  "updated_utc": "2026-11-12T17:24:20.180083+00:00",
   "release_url": "https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11",
-  "uploaded_verified": 135,
+  "uploaded_verified": 136,
   "videos": [
     {
       "asset": "fix_v10_escape_regression3__9802005.mp4",
@@ -2136,6 +2136,22 @@
       "uploaded_verified": true
     },
     {
+      "asset": "spatial_cem_v3__00002_train_g0_0__1159000202.mp4",
+      "local_path": "training_robust/native90/spatial_cem_v3/jobs/00002_train_g0_0/episodes/1159000202/video/mission.mp4",
+      "bytes": 12810106,
+      "sha256": "0429b77f4d69ad0e1c694b91d8910c3092d1f1d872a106c6c7fa7b5c7b447992",
+      "url": "https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v3__00002_train_g0_0__1159000202.mp4",
+      "original_evaluator_success": true,
+      "reason": "all_targets_found",
+      "elapsed_sim_seconds": 470.371,
+      "targets": 3,
+      "collisions": 0,
+      "actual_approach_1_5m": true,
+      "recording_frames": 2352,
+      "recording_seconds": 470.4,
+      "uploaded_verified": true
+    },
+    {
       "asset": "tf_restamp_v1__regression__case_0__1121200000.mp4",
       "local_path": "training_robust/native90/tf_restamp_v1/regression/case_0/episodes/1121200000/video/mission.mp4",
       "bytes": 7248198,
@@ -2178,11 +2194,11 @@
       "reason": "Final evaluation or recording metadata absent"
     },
     {
-      "path": "training_robust/native90/rpp_v7_service_screen3/episodes/8600133/video/mission.mp4",
+      "path": "training_robust/native90/navigation_regression_v1/case_0/episodes/1159000000/video/mission.mp4",
       "reason": "Final evaluation or recording metadata absent"
     },
     {
-      "path": "training_robust/native90/spatial_cem_v3/jobs/00002_train_g0_0/episodes/1159000202/video/mission.mp4",
+      "path": "training_robust/native90/rpp_v7_service_screen3/episodes/8600133/video/mission.mp4",
       "reason": "Final evaluation or recording metadata absent"
     },
     {

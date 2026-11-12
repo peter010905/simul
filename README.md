@@ -16,6 +16,9 @@
 > 진행 중인 두 주행을 보존하고, 주행용 지도 수정 후보와 근접 관측 기록 보존 후보를 같은 실패 장면에서 비교합니다.
 > 로그 재생과 새 Gazebo 성과를 구분하며 아직 개선된 완주율로 보고하지 않습니다.
 > [측정·후보·검증 범위](repository_snapshot/local_navigation_diagnosis.json).
+> 주행 지도 후보는 실제 ROS 설정과 바닥 센서 검사를 통과해 실행 중입니다. 수정 전 별도 사다리꼴·장애물16개
+> 학습 장면은470.371초에 세 ID·각 실제1.5m 접근·지도 오차1.0–8.9cm·충돌0회로 완주했습니다.
+> 한 장면의 성공이며 새 공간 전체 성공률이나 재방문 감소 검증을 뜻하지 않습니다.
 
 [**시뮬레이션 영상 다운로드 — GitHub Release**](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11)
 
@@ -234,7 +237,7 @@ python3 scripts/publish_simulation_videos.py --upload
 
 ## 저장된 Gazebo 영상
 
-[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 135개
+[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 136개
 
 아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다. 환경 오류로 종료한 영상은 정책 학습 표본에서 제외합니다.
 
@@ -375,6 +378,7 @@ python3 scripts/publish_simulation_videos.py --upload
 | [spatial_cem_v2__00000_train_g0_0__1148000000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v2__00000_train_g0_0__1148000000.mp4) | 성공 | 확인 | 139.266 |
 | [spatial_cem_v2__00001_train_g0_0__1148000101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v2__00001_train_g0_0__1148000101.mp4) | 실패 | 미달 | 600.019 |
 | [spatial_cem_v3__00000_train_g0_0__1159000000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v3__00000_train_g0_0__1159000000.mp4) | 실패 | 미달 | 600.2 |
+| [spatial_cem_v3__00002_train_g0_0__1159000202.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v3__00002_train_g0_0__1159000202.mp4) | 성공 | 확인 | 470.371 |
 | [tf_restamp_v1__regression__case_0__1121200000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_0__1121200000.mp4) | 성공 | 확인 | 231.867 |
 | [tf_restamp_v1__regression__case_1__1121200101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_1__1121200101.mp4) | 성공 | 확인 | 229.859 |
 

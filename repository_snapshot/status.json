@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T17:18:45.564872+00:00",
+  "captured_utc": "2026-11-12T17:24:13.146975+00:00",
   "purpose": "Repository upload snapshot; not a live dashboard",
   "tests_passed_final": 189,
   "native_validation_complete": false,
@@ -138,7 +138,7 @@
   "latest_change": {
     "date": "2026-11-13",
     "name": "local_map_deadlock_and_approach_revisit_diagnosed",
-    "status": "two_frozen_candidates_built;native_regression_waiting_for_slots",
+    "status": "local_map_candidate_running;actual_ROS_settings_and_floor_inputs_verified;trapezoid_predecessor_passed470.371s",
     "generalization_verified": false
   },
   "latest_recording": {

@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T17:18:45.564239+00:00",
+  "captured_utc": "2026-11-12T17:24:13.146975+00:00",
   "previous_goal_turn_classification": "progress",
   "evidence_type": "actual_native_gazebo_failure_and_separate_offline_sensor_replay",
   "failed_episode": "/home/peter/simul/training_robust/native90/spatial_cem_v3/jobs/00000_train_g0_0/episodes/1159000000",
@@ -148,10 +148,24 @@
     }
   ],
   "native_regression": {
-    "status": "waiting_for_current_native_runs",
+    "status": "running_navigation_regression",
     "campaign": "navigation_regression_v1",
     "same_failed_seed": 1159000000,
-    "training_samples": false
+    "training_samples": false,
+    "jobs": [
+      {
+        "number": 0,
+        "status": "running",
+        "floor_sensor_gate": true,
+        "runtime_configuration_gate": true
+      },
+      {
+        "number": 1,
+        "status": "prepared",
+        "floor_sensor_gate": null,
+        "runtime_configuration_gate": null
+      }
+    ]
   },
   "successor": "Fresh28exteriors only if a finalized independent native audit passes",
   "generalization_verified": false,
@@ -166,5 +180,71 @@
     "translation_delta_m": 2.298,
     "rotation_delta_rad": 0.275,
     "note": "Map/odom transform change derived from recorded TF poses; timing correlation, not proof of root cause"
+  },
+  "additional_predecessor_native_audit": {
+    "seed": 1159000202,
+    "success": true,
+    "evaluator_success": true,
+    "seconds": 470.371,
+    "targets": 3,
+    "collisions": 0,
+    "coordinate_errors_m": {
+      "777": 0.01657929204119759,
+      "620": 0.010199642119863366,
+      "454": 0.08947214660436822
+    },
+    "required_approach_m": 1.5,
+    "closest_approach_m": {
+      "454": 0.5034776449210276,
+      "620": 0.4977401080687136,
+      "777": 0.6505972220234367
+    },
+    "video": {
+      "file": "/home/peter/simul/training_robust/native90/spatial_cem_v3/jobs/00002_train_g0_0/episodes/1159000202/video/mission.mp4",
+      "frames": 2352,
+      "fps": 5.0,
+      "verified": true
+    },
+    "errors": []
+  },
+  "verified_candidate_effective_configuration": {
+    "domain": 116,
+    "parameters": {
+      "mission": {
+        "policy_file": "/home/peter/simul/training_robust/native90/navigation_regression_v1/case_0/policy.json",
+        "duration": 600.0,
+        "planner": "edge"
+      },
+      "controller_server": {
+        "FollowPath.use_collision_detection": true
+      },
+      "local_costmap/local_costmap": {
+        "plugins": [
+          "voxel_layer",
+          "inflation_layer"
+        ],
+        "global_frame": "odom",
+        "rolling_window": true
+      },
+      "global_costmap/global_costmap": {
+        "plugins": [
+          "static_layer",
+          "obstacle_layer",
+          "inflation_layer"
+        ],
+        "global_frame": "map"
+      },
+      "slam_toolbox": {
+        "restamp_tf": true,
+        "use_sim_time": true
+      },
+      "bt_navigator": {
+        "default_server_timeout": 1000,
+        "use_sim_time": true
+      }
+    },
+    "errors": {},
+    "complete": true,
+    "source": "Read-only ROS GetParameters services"
   }
 }
