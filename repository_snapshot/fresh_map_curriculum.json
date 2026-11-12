@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T14:47:05.934593+00:00",
+  "captured_utc": "2026-11-12T14:55:51.120130+00:00",
   "status": "running",
   "generation": 0,
   "phase": "train",
@@ -61,9 +61,9 @@
   ],
   "occupancy_diversity_audit": "fresh_map_diversity.json",
   "diversity_regression_checks_passed": 2,
-  "status_detail": "First4fresh-map training episodes finished;TF-only native regressions are running;successor preparation waits for their results",
-  "active_supervisor": "osp-tf-restamp-regression-v1.service",
-  "pending_diagnostic": "tf_navigation_failure.json",
+  "status_detail": "Current original native pair finishes before launching the tested combined successor runtime",
+  "active_supervisor": "osp-fresh-map-v2-upgrade.service",
+  "pending_diagnostic": null,
   "completed_results": [
     {
       "number": 0,

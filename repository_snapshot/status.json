@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T14:36:09.090421+00:00",
+  "captured_utc": "2026-11-12T14:55:51.120130+00:00",
   "purpose": "Repository upload snapshot; not a live dashboard",
   "tests_passed_final": 189,
   "native_validation_complete": false,
@@ -175,7 +175,7 @@
     "production_promoted": false,
     "matched_baseline_comparison": false
   },
-  "active_supervision": "tf_navigation_failure.json",
+  "active_supervision": "fresh_map_successor.json",
   "pending_tf_comparison": "tf_navigation_failure.json",
   "pending_curriculum_upgrade": "fresh_map_successor.json"
 }

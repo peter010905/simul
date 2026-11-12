@@ -217,7 +217,7 @@ python3 scripts/publish_simulation_videos.py --upload
 
 ## 저장된 Gazebo 영상
 
-[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 120개
+[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 123개
 
 아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다.
 
@@ -251,6 +251,7 @@ python3 scripts/publish_simulation_videos.py --upload
 | [edge_runtime_v2__runtime_probes__20261104T234253_265975Z.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/edge_runtime_v2__runtime_probes__20261104T234253_265975Z.mp4) | 실패 | 미달 | 600.306 |
 | [fresh_map_cem_v1__00000_train_g0_0__1121200000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fresh_map_cem_v1__00000_train_g0_0__1121200000.mp4) | 실패 | 미달 | 600.455 |
 | [fresh_map_cem_v1__00001_train_g0_1__1121200101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fresh_map_cem_v1__00001_train_g0_1__1121200101.mp4) | 실패 | 미달 | 600.309 |
+| [fresh_map_cem_v1__00002_train_g0_2__1121200202.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fresh_map_cem_v1__00002_train_g0_2__1121200202.mp4) | 실패 | 확인 | 600.3 |
 | [fresh_map_cem_v1__00003_train_g0_3__1121200303.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fresh_map_cem_v1__00003_train_g0_3__1121200303.mp4) | 성공 | 확인 | 317.4 |
 | [low_rotation_video_20261112__episode_8000001.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/low_rotation_video_20261112__episode_8000001.mp4) | 성공 | 확인 | 494.534 |
 | [marker_focus_v6_screen3__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/marker_focus_v6_screen3__8600007.mp4) | 실패 | 자료 없음 | 242.819 |
@@ -345,6 +346,8 @@ python3 scripts/publish_simulation_videos.py --upload
 | [slam_nav2_search_v1__011_validation_frontier_balanced_9811019__9811019.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/slam_nav2_search_v1__011_validation_frontier_balanced_9811019__9811019.mp4) | 실패 | 확인 | 600.083 |
 | [small_marker_followup_v2__regression__case_0__1121200000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/small_marker_followup_v2__regression__case_0__1121200000.mp4) | 성공 | 확인 | 282.519 |
 | [small_marker_followup_v2__regression__case_1__1121200101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/small_marker_followup_v2__regression__case_1__1121200101.mp4) | 성공 | 확인 | 193.2 |
+| [tf_restamp_v1__regression__case_0__1121200000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_0__1121200000.mp4) | 성공 | 확인 | 231.867 |
+| [tf_restamp_v1__regression__case_1__1121200101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_1__1121200101.mp4) | 성공 | 확인 | 229.859 |
 
 </details>
 
@@ -599,9 +602,17 @@ TF 설정은 짝지은 PAR-2가 개선되고, 접촉·인프라 실패가 없으
 
 준비·TF 선택·안전한 감독기 전환·시작 실패 복구 테스트5개가 통과했습니다.
 재확인과 TF 시간 변경을 결합한 소스는 colcon 빌드와201개 테스트 통과·1개 skip을 확인했습니다.
-이는 새 맵에서 개선 효과가 검증됐다는 뜻이 아니며, 새로운 CEM 학습과 짝지은 검증으로 평가합니다.
+새 맵 개선 효과는 새로운 CEM 학습과 짝지은 검증으로 평가합니다.
 실제 전환은 `osp-fresh-map-v2-upgrade.service`, 진행 기록은 기존 campaign의
 `successor_transition.json`과 `successor_transition.log`에서 확인합니다.
 기존 코드의 추가 새 맵 회차(seed1121200303)는317.4초 완주와 독립 감사를 통과했습니다.
-그 결과는 재확인 후보의 새 맵 성능과 구분해 보관합니다.
+317.4초 회차는 기존 탐색 코드를 사용했습니다.
 [학습 전환 계획·검증·현재 관측 결과](repository_snapshot/fresh_map_successor.json).
+
+TF 설정만 바꾼 진단 비교도231.867초·229.859초에 모두 완주했고, 독립 감사를 통과했습니다.
+관련 로봇 위치 변환 오류는 기존72회·31회에서 두 비교 모두0회로 줄었습니다.
+실제 SLAM 노드에서 `restamp_tf=true`가 적용된 것도 ROS 파라미터 조회로 확인했습니다.
+시간 비용·좌표·ID·접촉 기준을 충족해 다음 학습에는 재확인 코드와 이 시간 설정을 함께 넣기로 선택했습니다.
+선택된 실제 다음 runtime도 빌드와201개 테스트 통과·1개 skip을 마쳤고,
+현재 활성 주행을 종료한 뒤 새로운20개 맵의 학습을 시작하도록 전환 서비스가 진행 중입니다.
+이 두 비교는 기존 배치의 진단 결과이며, 결합 후보의 새 맵 일반화 성능은 계속 검증합니다.

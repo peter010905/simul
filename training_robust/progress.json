@@ -577,7 +577,7 @@
     "baseline_seconds": 3.618,
     "candidate_seconds": 20.074
   },
-  "updated_utc": "2026-11-12T14:47:05.934593+00:00",
+  "updated_utc": "2026-11-12T14:55:51.120130+00:00",
   "motion_v2_native_result": {
     "seed": 8600007,
     "success": true,
@@ -1126,20 +1126,22 @@
     "snapshot": "repository_snapshot/small_marker_followup.json",
     "status": "completed_regression",
     "supervisor": "osp-small-marker-regression-v2.service",
-    "native_improvement_verified": false,
+    "native_improvement_verified": true,
     "diagnostic_successes": 2,
     "diagnostic_episodes": 2,
     "generalization_verified": false
   },
   "tf_navigation_timing": {
     "snapshot": "repository_snapshot/tf_navigation_failure.json",
-    "status": "running_regression",
-    "native_improvement_verified": false
+    "status": "completed_diagnostic_2_of_2_success",
+    "native_improvement_verified": true,
+    "native_diagnostic_improvement_verified": true,
+    "generalization_verified": false
   },
   "fresh_map_successor": {
     "snapshot": "repository_snapshot/fresh_map_successor.json",
     "service": "osp-fresh-map-v2-upgrade.service",
-    "status": "waiting_for_tf_comparison",
+    "status": "draining_original_jobs",
     "goal_verified": false
   }
 }

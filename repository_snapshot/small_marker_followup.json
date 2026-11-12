@@ -41,7 +41,7 @@
     "current_pair_finishes_without_interruption": true,
     "automatic_cem_resume_after_comparison": true
   },
-  "native_improvement_verified": false,
+  "native_improvement_verified": true,
   "production_promoted": false,
   "state_file": "/home/peter/simul/training_robust/native90/small_marker_followup_v2/regression/regression_state.json",
   "baseline_results": "tf_navigation_failure.json",
@@ -144,5 +144,6 @@
         "errors": []
       }
     }
-  ]
+  ],
+  "native_improvement_scope": "Two paired diagnostic scenes only"
 }

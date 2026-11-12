@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T14:47:05.934593+00:00",
+  "captured_utc": "2026-11-12T14:55:51.120130+00:00",
   "evidence_type": "Completed native Gazebo failures and version-matched upstream source inspection",
   "installed_versions": {
     "slam_toolbox": "2.8.5",
@@ -115,7 +115,7 @@
     "https://raw.githubusercontent.com/SteveMacenski/slam_toolbox/2.8.5/src/slam_toolbox_common.cpp",
     "https://raw.githubusercontent.com/ros-navigation/navigation2/jazzy/nav2_regulated_pure_pursuit_controller/src/path_handler.cpp"
   ],
-  "interpretation": "Repeated Nav2 TF errors aborted approaches. Restamping the map->odom correction is a candidate remedy; native benefit is not yet verified.",
+  "interpretation": "The TF-only candidate passed both paired diagnostic scenes and had zero robot-pose TF errors there. Combined-runtime generalization on fresh maps remains unverified.",
   "native_candidate_test_started": true,
   "checks": {
     "runtime_tests_passed": 198,
@@ -125,40 +125,145 @@
   },
   "queued_service": "osp-tf-restamp-regression-v1.service",
   "queue_dependency": "osp-small-marker-regression-v2.service",
-  "candidate_test_status": "running_regression",
+  "candidate_test_status": "completed_regression_requires_fresh_map_validation",
   "actual_slam_parameter_checks": {
     "domain116_restamp_tf": true,
     "domain117_restamp_tf": true
   },
-  "running_cases": [
+  "native_diagnostic_improvement_verified": true,
+  "native_generalization_verified": false,
+  "paired_results": [
     {
       "number": 0,
-      "unit": "osp-tf-restamp-v1-0.service",
-      "status": "running",
-      "observed_status": {
-        "state": "running",
-        "elapsed_seconds": 169.367,
-        "targets": 2,
-        "approached_ids": [
-          739,
-          754
-        ],
-        "collisions": 0
+      "baseline": {
+        "success": false,
+        "targets": 3,
+        "approached": 2,
+        "contacts": 0,
+        "seconds": 600.455,
+        "infrastructure_failure": false,
+        "reason": "timeout"
+      },
+      "candidate": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 231.867,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      },
+      "audit": {
+        "seed": 1121200000,
+        "success": true,
+        "evaluator_success": true,
+        "seconds": 231.867,
+        "targets": 3,
+        "collisions": 0,
+        "coordinate_errors_m": {
+          "754": 0.014163552960746437,
+          "739": 0.04036731608785486,
+          "934": 0.0723136192302612
+        },
+        "required_approach_m": 1.5,
+        "closest_approach_m": {
+          "934": 1.461040243857239,
+          "739": 1.4278264052577594,
+          "754": 1.2611187502895087
+        },
+        "video": {
+          "file": "/home/peter/simul/training_robust/native90/tf_restamp_v1/regression/case_0/episodes/1121200000/video/mission.mp4",
+          "frames": 1160,
+          "fps": 5.0,
+          "verified": true
+        },
+        "errors": []
       }
     },
     {
       "number": 1,
-      "unit": "osp-tf-restamp-v1-1.service",
-      "status": "running",
-      "observed_status": {
-        "state": "running",
-        "elapsed_seconds": 168.859,
+      "baseline": {
+        "success": false,
         "targets": 1,
-        "approached_ids": [
-          174
-        ],
-        "collisions": 0
+        "approached": 1,
+        "contacts": 0,
+        "seconds": 600.309,
+        "infrastructure_failure": false,
+        "reason": "timeout"
+      },
+      "candidate": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 229.859,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      },
+      "audit": {
+        "seed": 1121200101,
+        "success": true,
+        "evaluator_success": true,
+        "seconds": 229.859,
+        "targets": 3,
+        "collisions": 0,
+        "coordinate_errors_m": {
+          "776": 0.04268816015268462,
+          "773": 0.060039428538506176,
+          "174": 0.008091594393446444
+        },
+        "required_approach_m": 1.5,
+        "closest_approach_m": {
+          "773": 1.3146261691673409,
+          "776": 1.4513382563912571,
+          "174": 1.2802265566790159
+        },
+        "video": {
+          "file": "/home/peter/simul/training_robust/native90/tf_restamp_v1/regression/case_1/episodes/1121200101/video/mission.mp4",
+          "frames": 1150,
+          "fps": 5.0,
+          "verified": true
+        },
+        "errors": []
       }
     }
-  ]
+  ],
+  "selection_for_successor": {
+    "enabled": true,
+    "reason": "Require lower paired PAR-2,zero contacts,safe landmarks,and>=50% fewer pose TF errors per case",
+    "baseline": {
+      "episodes": 2,
+      "successes": 0,
+      "success_rate": 0.0,
+      "contacts": 0,
+      "par2_seconds": 1200.0,
+      "mean_confirmed": 2.0
+    },
+    "candidate": {
+      "episodes": 2,
+      "successes": 2,
+      "success_rate": 1.0,
+      "contacts": 0,
+      "par2_seconds": 230.863,
+      "mean_confirmed": 3.0
+    },
+    "cases": [
+      {
+        "seed": 1121200000,
+        "before_tf_errors": 72,
+        "after_tf_errors": 0,
+        "safe_ids": true,
+        "safe_positions": true
+      },
+      {
+        "seed": 1121200101,
+        "before_tf_errors": 31,
+        "after_tf_errors": 0,
+        "safe_ids": true,
+        "safe_positions": true
+      }
+    ]
+  },
+  "native_improvement_verified": true,
+  "native_improvement_scope": "Two paired diagnostic scenes only"
 }
