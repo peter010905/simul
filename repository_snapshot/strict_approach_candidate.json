@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T21:21:17.060788+00:00",
+  "captured_utc": "2026-11-12T21:35:35.047860+00:00",
   "evidence_type": "new_candidate_full_tests_and_live_native_regression",
   "workspace": "/home/peter/simul/training_robust/native90/strict_approach_v1/runtime",
   "diagnostic": "/home/peter/simul/training_robust/native90/strict_approach_regression_v1",
@@ -224,5 +224,40 @@
   "native_result_pending": true,
   "generalization_verified": false,
   "production_promoted": false,
-  "live_result_is_not_final_success": true
+  "live_result_is_not_final_success": true,
+  "live_status_before_final_evaluation": {
+    "state": "running",
+    "approached_ids": [
+      523,
+      534
+    ],
+    "targets": 2,
+    "collisions": 0,
+    "elapsed_seconds": 371.632,
+    "active_action": "spin",
+    "readiness_reason": "",
+    "sensor_interruptions": 0,
+    "nav2_lifecycle": {
+      "controller_server": 3,
+      "planner_server": 3,
+      "behavior_server": 3,
+      "bt_navigator": 3
+    },
+    "drive_controllers": {
+      "diffdrive_controller": "active",
+      "joint_state_broadcaster": "active"
+    },
+    "confirmed_surface_cells": 105,
+    "confirmed_face_anchors": 0,
+    "reassociated_face_records": 0,
+    "camera_diagnostics": {
+      "received": 1875,
+      "late": 0,
+      "invalid_calibration": 0,
+      "duplicate": 0,
+      "accepted": 1875,
+      "coverage_updates": 1859,
+      "tf_waits": 12
+    }
+  }
 }

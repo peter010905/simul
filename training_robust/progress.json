@@ -1,7 +1,7 @@
 {
   "goal_status": "active",
   "phase": "native_spatial_cem_v3",
-  "last_verified_utc": "2026-11-12T16:38:44.102643+00:00",
+  "last_verified_utc": "2026-11-12T21:35:35.047860+00:00",
   "jobs": [
     {
       "run": "training_robust/diverse_directional_cem",
@@ -559,7 +559,7 @@
     "baseline_seconds": 3.618,
     "candidate_seconds": 20.074
   },
-  "updated_utc": "2026-11-12T21:21:17.060788+00:00",
+  "updated_utc": "2026-11-12T21:35:35.047860+00:00",
   "motion_v2_native_result": {
     "seed": 8600007,
     "success": true,
@@ -1111,12 +1111,12 @@
   },
   "spatial_curriculum": "repository_snapshot/spatial_curriculum.json",
   "dashboard": "http://127.0.0.1:8765",
-  "latest_goal_turn_evidence": "Progress: strict near-range completion247tests and liveGazebo;combined bounded calibrated camera gain253tests and seven new exterior/topology maps verified offline;CEM remains active;dashboard reflects exact-credit failures;production/generalization not verified",
+  "latest_goal_turn_evidence": "Progress: strict sensor-frame approach247tests/liveGazebo;combined calibrated bounded camera gain253tests;7fresh physical spaces and conditional freshtriangle audited/queued;2exactIDs approached sofar,0contacts;oldUstartupfailure response/TF sequence captured withOOM counters0;original CEM sources/driverhashes preserved;GitHub161verifiedvideos;production/generalization notverified",
   "latest_navigation_diagnosis": "repository_snapshot/local_navigation_diagnosis.json",
   "current_native_supervisor": "osp-spatial-cem-v5.service",
   "next_training_driver": "spatial_native_curriculum_v5.py",
   "fine_evaluator_observer": "osp-spatial-evaluator-observer-v1.service",
   "physical_credit_auditor": "training_robust/audit_approach_evidence.py",
   "priority_diagnostic": "osp-strict-approach-v1.service",
-  "next_priority": "Finish exact-credit sensor-proof native regression;then automatically screen253test candidate in7fresh physical spaces"
+  "next_priority": "Finish current strict approach run;on full pass screen7fresh shapes;on failure launch the newtriangle camera-gain engineering probe after the other dispatcher terminates"
 }

@@ -2,7 +2,7 @@
 
 > **2026-11-13 현재:** 실제 Gazebo에서 **원형·삼각형·사다리꼴·직사각형·L자·U자·다중 방**의
 > 외곽 벽과 주행 공간까지 바꾸며 학습합니다. `spatial_cem_v5`의 훈련 맵28개는 외곽선·점유 격자가 서로 다릅니다.
-> 완료된 훈련19회 중11회가 기준을 통과했습니다. CEM 세대 학습과 독립 일반화 시험은 아직 미완료이며 실사용 정책으로 승격하지 않았습니다.
+> 완료된 훈련20회 중11회가 원래 벤치 기준을 통과했습니다. CEM 세대 학습과 독립 일반화 시험은 아직 미완료이며 실사용 정책으로 승격하지 않았습니다.
 > [공간·학습·기준·실행 상태](repository_snapshot/spatial_curriculum.json) · [외곽선 중복 감사](repository_snapshot/spatial_geometry_v5.json).
 >
 > **최근 실제 결과:** 새 L자·장애물26개는358.222초, U자는59.812초에 세 ID·각 실제1.5m 접근·정확한 지도 위치·충돌0회를 통과했습니다.
@@ -43,6 +43,8 @@
 > SLAM 상태·지도·TF·LiDAR를 확인한 뒤 Nav2를 시작하는 후보는 실제 준비 순서를 확인했습니다.
 > [시작 검증·실패 결과](repository_snapshot/startup_guard_candidate.json) · [미확정 초기 위치 고정 문제](repository_snapshot/landmark_seed_diagnosis.json).
 > 별도 원형의 heartbeat 손실 원인은 미확인입니다. 향후 중단 시 스레드 대기·메모리 계수를 기록합니다.
+> 새 U자 실행에서도 SLAM 상태 응답 손실 뒤 지도 TF가 없어 시작하지 못하는 문제가 재현됐습니다. 당시 메모리 제한 도달·OOM 카운터는0이었습니다.
+> [새 시작 실패의 실제 프로세스 증거](repository_snapshot/latest_startup_failure_evidence.json). 새 후보의 상태 기반 시작 검사로 검증을 이어갑니다.
 > [런타임 실패 증거](repository_snapshot/runtime_failure_diagnosis.json) · [이전 바닥 좌표 오류와 환경 검증](repository_snapshot/floor_pose_diagnosis.json).
 >
 > [로컬 로봇 대시보드](http://127.0.0.1:8765)에서 RGB 카메라·SLAM·LiDAR·ID/접근 로그와 완료 영상을 확인합니다.

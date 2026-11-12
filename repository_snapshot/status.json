@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T21:21:17.060788+00:00",
+  "captured_utc": "2026-11-12T21:35:35.047860+00:00",
   "purpose": "Repository upload snapshot; not a live dashboard",
   "tests_passed_final": 189,
   "native_validation_complete": false,
@@ -166,7 +166,8 @@
     "diagnostic_evaluator": "osp-strict-approach-evaluator-v1.service",
     "CEM_dispatch": "running;automatic_resume_verified",
     "priority_diagnostic_status": "running_fresh_space_probe",
-    "fresh_shape_screen": "osp-spatial-calibrated-screen-v1.service"
+    "fresh_shape_screen": "osp-spatial-calibrated-screen-v1.service",
+    "conditional_fresh_triangle_probe": "osp-calibrated-triangle-probe-v1.service"
   },
   "pending_tf_comparison": {
     "status": "completed",
@@ -213,5 +214,6 @@
   "motion_calibration_study": "motion_calibration_study.json",
   "approach_margin_diagnosis": "approach_margin_diagnosis.json",
   "strict_approach_candidate": "strict_approach_candidate.json",
-  "spatial_calibrated_screen": "spatial_calibrated_screen.json"
+  "spatial_calibrated_screen": "spatial_calibrated_screen.json",
+  "latest_startup_failure_evidence": "latest_startup_failure_evidence.json"
 }

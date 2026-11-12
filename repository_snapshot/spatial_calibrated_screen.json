@@ -356,5 +356,17 @@
     "Offline reachable geometry is not native success",
     "One candidate trial per newshape is engineering feedback,not generalization qualification",
     "Revisit reduction and faster completion require actual native evidence"
-  ]
+  ],
+  "conditional_fresh_triangle_probe": {
+    "root": "/home/peter/simul/training_robust/native90/calibrated_triangle_probe_v1",
+    "unit": "osp-calibrated-triangle-probe-v1.service",
+    "status": "waiting_for_approach_only_result",
+    "purpose": "If approach-only circle fails,continue camera-gain engineering feedback on a newtriangle;only after seven-shape dispatcher has terminated without launching",
+    "new_exterior_and_occupancy_audited": true,
+    "scenario_seed": 1171400101,
+    "obstacles": 16,
+    "native_result_pending": true,
+    "generalization_verified": false,
+    "launcher_coordination_tests_passed": 3
+  }
 }

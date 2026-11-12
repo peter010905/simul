@@ -1,0 +1,67 @@
+{
+  "captured_utc": "2026-11-12T21:30:58.154862+00:00",
+  "evidence_type": "finalized_native_startup_failure_with_live_process_cgroup_capture",
+  "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00019_train_g0_2/episodes/1163001919",
+  "scenario_seed": 1163001919,
+  "old_workspace": "approach_witness_v1/runtime",
+  "final_reason": "startup_failure",
+  "policy_mission_started": false,
+  "log_sequence": [
+    "[async_slam_toolbox_node-46] [INFO] [1794518540.476746884] [slam_toolbox]: Configuring",
+    "[async_slam_toolbox_node-46] [WARN] [1794518541.368470704] [slam_toolbox.rclcpp]: failed to send response to /slam_toolbox/change_state (timeout): client will not receive response, at ./src/rmw_response.cpp:153, at ./src/rcl/service.c:400",
+    "[planner_server-49] [ERROR] [1794518693.198412793] [global_costmap.global_costmap]: Failed to activate global_costmap because transform from base_link to map did not become available before timeout",
+    "[lifecycle_manager-57] [ERROR] [1794518693.203754537] [lifecycle_manager_navigation]: Failed to bring up all requested nodes. Aborting bringup."
+  ],
+  "slam_activating_message_observed": false,
+  "inference": "SLAM configure ran but lifecycle response delivery timed out;activation was not observed and mapTF remained unavailable,soNav2 bringup aborted",
+  "underlying_transport_timeout_cause_proven": false,
+  "live_captures": [
+    {
+      "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00019_train_g0_2/runtime_failure_capture/at_00_wall_seconds.json",
+      "verified_native_pid": true,
+      "native_pid": 1497211,
+      "memory_events": {
+        "low": 0,
+        "high": 0,
+        "max": 0,
+        "oom": 0,
+        "oom_kill": 0,
+        "oom_group_kill": 0,
+        "sock_throttled": 0
+      },
+      "memory_current_bytes": 2894766080,
+      "memory_peak_bytes": 2938826752,
+      "processes": 62
+    },
+    {
+      "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00019_train_g0_2/runtime_failure_capture/at_05_wall_seconds.json",
+      "verified_native_pid": true,
+      "native_pid": 1497211,
+      "memory_events": {
+        "low": 0,
+        "high": 0,
+        "max": 0,
+        "oom": 0,
+        "oom_kill": 0,
+        "oom_group_kill": 0,
+        "sock_throttled": 0
+      },
+      "memory_current_bytes": 2899914752,
+      "memory_peak_bytes": 2938826752,
+      "processes": 62
+    }
+  ],
+  "OOM_kill_observed": false,
+  "benchmark_cleanup": "Native benchmark finalized startup_failure and stopped the launched ROS/Gazebo group;exit-2messages are consistent withSIGINT cleanup,not evidence by themselves of spontaneous failures",
+  "elapsed600_is": "Conservative scorer failure sentinel;not a completed600sim-second policy mission",
+  "mitigation_already_staged": "State-driven SLAM startup guard in strict_approach_v1 and strict_calibrated_gain_v1;query actual lifecycle state after missing acknowledgements,then requiremap/TF/scan beforeNav2",
+  "mitigation_generalization_verified": false,
+  "ground_truth_available_to_policy": false,
+  "source_sha256": {
+    "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00019_train_g0_2/episodes/1163001919/launch.log": "f0bbfc5c85e37f85236511992a49ba712d7929f9aacca9ae91f7e98150cb7206",
+    "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00019_train_g0_2/episodes/1163001919/evaluation.json": "7088c5cf8f2d1a1ab41da2ac682e62ebd91b08420c6fcb768a2e4ba3ac6fac5d",
+    "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00019_train_g0_2/service.log": "7bbb645b7f8135d6508eb4b24982fd0a5d4e90262eed2ffb2f08a31060c09056",
+    "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00019_train_g0_2/runtime_failure_capture/at_00_wall_seconds.json": "867453e99bb27036a789c548fa957deb6cd70a946e3768b23f92b31b404ba664",
+    "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00019_train_g0_2/runtime_failure_capture/at_05_wall_seconds.json": "b0195f3b4cf8c27d8a4f401f47ee0284589209b0387c5b70bce5beefbeb49667"
+  }
+}

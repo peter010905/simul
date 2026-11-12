@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T21:23:25.596079+00:00",
+  "captured_utc": "2026-11-12T21:35:35.047860+00:00",
   "client_date": "2026-11-13",
   "status": "native_spatial_source_and_weight_learning_running",
   "goal_status": "active",
@@ -1065,19 +1065,27 @@
       "role": "2",
       "workspace": "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime",
       "domain": 114,
-      "status": "running",
+      "status": "done",
       "floor_sensor_gate": null,
       "runtime_configuration_gate": null,
-      "outcome": null
+      "outcome": {
+        "success": false,
+        "targets": 0,
+        "approached": 0,
+        "contacts": 0,
+        "seconds": 600.0,
+        "infrastructure_failure": true,
+        "reason": "native_input_or_effective_configuration_unverified"
+      }
     },
     {
       "number": 20,
       "role": "2",
       "workspace": "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime",
-      "domain": null,
-      "status": "prepared",
-      "floor_sensor_gate": null,
-      "runtime_configuration_gate": null,
+      "domain": 115,
+      "status": "running",
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
       "outcome": null
     },
     {
@@ -1151,7 +1159,7 @@
       "outcome": null
     }
   ],
-  "completed_spatial_training_episodes": 19,
+  "completed_spatial_training_episodes": 20,
   "completed_cem_generations": 0,
   "generalization_verified": false,
   "revisit_reduction_verified": false,
@@ -1767,6 +1775,35 @@
         "Mission did not find all targets",
         "Mission exceeded 600 seconds"
       ]
+    },
+    {
+      "seed": 1163001919,
+      "success": false,
+      "evaluator_success": false,
+      "seconds": null,
+      "targets": null,
+      "collisions": null,
+      "coordinate_errors_m": {},
+      "required_approach_m": 1.5,
+      "closest_approach_m": {
+        "435": null,
+        "465": null,
+        "640": null
+      },
+      "video": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00019_train_g0_2/episodes/1163001919/video/mission.mp4",
+        "frames": 0,
+        "fps": 0.0,
+        "verified": false
+      },
+      "errors": [
+        "Actual trajectory must approach every marker within 1.5 m",
+        "Exactly one mission result directory is required",
+        "Mission did not find all targets",
+        "Mission exceeded 600 seconds",
+        "Recorded collisions are nonzero or unavailable",
+        "Actual video sources or first/last frame decoding failed"
+      ]
     }
   ],
   "evaluator_observer": "physical_credit_verification.json",
@@ -1776,5 +1813,6 @@
   "counts_are_descriptive_training_samples_not_independent_success_probability": true,
   "coordinator_slot_reservation": "Strict approach diagnostic claimed actual native PID;original CEM dispatcher resumed;max2native verified",
   "completed_successes": 11,
-  "fresh_shape_candidate_screen": "spatial_calibrated_screen.json"
+  "fresh_shape_candidate_screen": "spatial_calibrated_screen.json",
+  "latest_infrastructure_failure": "latest_startup_failure_evidence.json"
 }
