@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T21:05:41.759724+00:00",
+  "captured_utc": "2026-11-12T21:21:17.060788+00:00",
   "purpose": "Repository upload snapshot; not a live dashboard",
   "tests_passed_final": 189,
   "native_validation_complete": false,
@@ -137,8 +137,8 @@
   "previous_regressions_complete": true,
   "latest_change": {
     "date": "2026-11-13",
-    "name": "Calibrated_camera_gain230tests;heading_prior247.622sfailed_two_positions;raw_encoder_bias_measured_and_fixed_velocity_candidate235tests_plus_actual_ROS_fusion",
-    "status": "velocity_candidate204.2s_original_benchmark_passed;exact1.5m_credit_audit_failed_for337;CEM_running",
+    "name": "Strict sensor-proof approach247tests;combined camera gain253tests;new7shape screen gated by exact physical completion",
+    "status": "strict_candidate_live_Gazebo;fresh7shape_screen_waiting_for_prerequisite",
     "generalization_verified": false
   },
   "latest_recording": {
@@ -162,10 +162,11 @@
     "coordinator": "osp-spatial-cem-v5.service",
     "dashboard": "osp-robot-dashboard.service",
     "evaluator_observer": "osp-spatial-evaluator-observer-v1.service",
-    "priority_diagnostic": "osp-seed-reacquisition-regression-v1.service",
-    "diagnostic_evaluator": "osp-reacquisition-evaluator-observer-v1.service",
+    "priority_diagnostic": "osp-strict-approach-v1.service",
+    "diagnostic_evaluator": "osp-strict-approach-evaluator-v1.service",
     "CEM_dispatch": "running;automatic_resume_verified",
-    "priority_diagnostic_status": "completed_startup_failure;no_policy_result"
+    "priority_diagnostic_status": "running_fresh_space_probe",
+    "fresh_shape_screen": "osp-spatial-calibrated-screen-v1.service"
   },
   "pending_tf_comparison": {
     "status": "completed",
@@ -186,16 +187,16 @@
   "dashboard": "dashboard.json",
   "spatial_geometry": "spatial_geometry_v5.json",
   "revisit_analysis": "revisit_analysis.json",
-  "latest_candidate_tests_passed": 226,
+  "latest_candidate_tests_passed": 253,
   "latest_candidate_tests_skipped": 0,
-  "latest_candidate_runtime": "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime",
+  "latest_candidate_runtime": "/home/peter/simul/training_robust/native90/strict_calibrated_gain_v1/runtime",
   "production_promoted": false,
   "floor_diagnosis": "floor_pose_diagnosis.json",
   "local_navigation_diagnosis": "local_navigation_diagnosis.json",
   "bounded_gain_candidate": "bounded_gain_candidate.json",
   "current_champion_runtime": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
   "physical_credit_verification": "physical_credit_verification.json",
-  "latest_observability_change": "Saved approach credits independently verified;fine actual-pose traces measured29.4simHz;future completedCEMepisodes automatically analyzed",
+  "latest_observability_change": "Dashboard job/details/video now reflect failed exact-credit audits even when original benchmark passed;17dashboard tests passed",
   "landmark_seed_diagnosis": "landmark_seed_diagnosis.json",
   "latest_built_recovery_candidate": "/home/peter/simul/training_robust/native90/reacquisition_v1/runtime",
   "recovery_candidate_tests_passed": 223,
@@ -210,5 +211,7 @@
   "rooms_missed_view_diagnosis": "rooms_missed_view_diagnosis.json",
   "velocity_calibration_candidate": "velocity_calibration_candidate.json",
   "motion_calibration_study": "motion_calibration_study.json",
-  "approach_margin_diagnosis": "approach_margin_diagnosis.json"
+  "approach_margin_diagnosis": "approach_margin_diagnosis.json",
+  "strict_approach_candidate": "strict_approach_candidate.json",
+  "spatial_calibrated_screen": "spatial_calibrated_screen.json"
 }

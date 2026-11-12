@@ -559,7 +559,7 @@
     "baseline_seconds": 3.618,
     "candidate_seconds": 20.074
   },
-  "updated_utc": "2026-11-12T16:38:44.102643+00:00",
+  "updated_utc": "2026-11-12T21:21:17.060788+00:00",
   "motion_v2_native_result": {
     "seed": 8600007,
     "success": true,
@@ -1111,12 +1111,12 @@
   },
   "spatial_curriculum": "repository_snapshot/spatial_curriculum.json",
   "dashboard": "http://127.0.0.1:8765",
-  "latest_goal_turn_evidence": "Progress: camera-gain230test stage;new circle403.502s success;room camera-direction miss;heading-only trial failed positions;raw encoder bias identified and0.78 input235tests+realROS fusion verified;native204.2s passed original3ID/closest1.5m/map/zero-contact audit,but exact credit for337 was1.511m and full completion is not verified;original CEM source/state preserved and fresh-map training continues",
+  "latest_goal_turn_evidence": "Progress: strict near-range completion247tests and liveGazebo;combined bounded calibrated camera gain253tests and seven new exterior/topology maps verified offline;CEM remains active;dashboard reflects exact-credit failures;production/generalization not verified",
   "latest_navigation_diagnosis": "repository_snapshot/local_navigation_diagnosis.json",
   "current_native_supervisor": "osp-spatial-cem-v5.service",
   "next_training_driver": "spatial_native_curriculum_v5.py",
   "fine_evaluator_observer": "osp-spatial-evaluator-observer-v1.service",
   "physical_credit_auditor": "training_robust/audit_approach_evidence.py",
-  "priority_diagnostic": "osp-velocity-calibration-v1.service",
-  "next_priority": "Three confirmed readable near-body range observations with an inner approach margin;prevent early map-pose completion"
+  "priority_diagnostic": "osp-strict-approach-v1.service",
+  "next_priority": "Finish exact-credit sensor-proof native regression;then automatically screen253test candidate in7fresh physical spaces"
 }

@@ -96,6 +96,8 @@ function renderDetail(d) {
   auditPanel.classList.toggle('passed',Boolean(d.audit?.passed));auditPanel.classList.toggle('failed',Boolean(d.audit&&!d.audit.passed));
   $('audit-title').textContent=d.audit ? d.audit.passed ? '독립 검증 통과 · 세 ID와 실제 접근을 모두 확인했습니다.' : '이 실행은 현재 성공 기준을 충족하지 못했습니다.' : '독립 검증은 실험 종료 후 표시됩니다.';
   $('audit-note').textContent=d.audit ? `${d.reason} · 좌표 허용 오차 0.5m · 실제 접근 반경 1.5m · 제한 600초` : '성공 기준: 정확한 ID 3개 · 실제 거리 ≤1.5m · 지도 오차 ≤0.5m · 접촉 0회 · 600초 이내';
+  if(d.audit?.physical_credit_verified===false){$('audit-title').textContent='접근 완료 시점의 실제 거리 검증을 통과하지 못했습니다.';$('audit-note').textContent+=' · 이후 최근접 거리만으로 이전 완료 판정을 인정하지 않습니다.';}
+  else if(d.audit?.physical_credit_verified===true){$('audit-note').textContent+=' · 완료 기록 시점 실제 거리도 검증했습니다.';}
   if(d.environment_invalidation.policy_training_sample_valid===false){$('audit-title').textContent='시뮬레이션 환경 오류 · 정책 학습 표본에서 제외했습니다.';$('audit-note').textContent=d.environment_invalidation.reason;}
   $('audit-details').innerHTML=d.audit ? Object.entries(d.audit.closest_approach_m).map(([id,distance])=>`<div class="audit-details-row">ID ${esc(id)} &nbsp; 실제 최근접 ${format(distance,2)}m &nbsp; 좌표 오차 ${format(d.audit.position_errors_m[id],3)}m</div>`).join('') : '';
   $('log-job').textContent=`${d.campaign} / #${d.number} / Seed ${d.seed}`;

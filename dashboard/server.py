@@ -52,7 +52,7 @@ def tail(path, limit=160, max_bytes=65536):
         return ''
 
 
-def evaluate(result):
+def evaluate(result, physical_credit=None):
     """Current rubric, never infer verified success from an old success flag."""
     audit = result.get('ground_truth_audit', {})
     verified = audit.get('available') is True
@@ -63,7 +63,13 @@ def evaluate(result):
                   and result.get('targets') == 3 and result.get('collisions') == 0
                   and 0 < result.get('elapsed_seconds', 9999) <= 600
                   and result.get('reason') == 'all_targets_found')
-    return {'available': verified, 'passed': passed,
+    physical_verified = (physical_credit or {}).get('all_three_physical_credits_verified')
+    if not isinstance(physical_verified, bool):
+        physical_verified = None
+    return {'available': verified, 'passed': passed and physical_verified is not False,
+            'original_benchmark_passed': passed,
+            'physical_credit_verified': physical_verified,
+            'physical_credit_audit': physical_credit,
             'found_ids': audit.get('found_ids', []),
             'closest_approach_m': audit.get('closest_approach_m', {}),
             'position_errors_m': audit.get('position_errors_m', {}),
@@ -164,13 +170,14 @@ class Observatory:
                 scenario = job.get('scenario', {})
                 live = read_json(episode / 'live_status.json') if episode else {}
                 result = read_json(episode / 'evaluation.json') if episode else {}
+                physical_credit = read_json(output / 'observer_analysis.json').get('physical_credit_audit')
                 invalidation = read_json(output / 'environment_invalidation.json')
                 service = services.get(job.get('unit'), {})
                 active = service.get('ActiveState') == 'active'
                 if result and invalidation.get('policy_training_sample_valid') is False:
                     status = 'invalid_environment'
                 elif result:
-                    status = 'passed' if evaluate(result)['passed'] else 'failed'
+                    status = 'passed' if evaluate(result, physical_credit)['passed'] else 'failed'
                 elif active:
                     status = 'running' if live else 'starting'
                 elif episode:
@@ -193,7 +200,7 @@ class Observatory:
                 jobs.append(row)
                 campaign_jobs.append(row)
                 paths[identifier] = {'output': output, 'episode': episode, 'job': row,
-                                     'live': live, 'result': result}
+                                     'live': live, 'result': result, 'physical_credit': physical_credit}
             completed = [j for j in campaign_jobs if j['state'] in ('passed', 'failed', 'invalid_environment')]
             campaigns.append({'id': campaign_id, 'status': state.get('status'),
                               'generation': state.get('generation', 0), 'phase': state.get('phase'),
@@ -233,7 +240,8 @@ class Observatory:
             if not video.is_file() or not recording.get('frames') or not result:
                 continue
             identifier = key(video)
-            audit = evaluate(result)
+            physical_credit = read_json(video.parent.parent.parent.parent / 'observer_analysis.json').get('physical_credit_audit')
+            audit = evaluate(result, physical_credit)
             environment_valid = read_json(video.parent.parent.parent.parent / 'environment_invalidation.json').get('policy_training_sample_valid')
             row = {'id': identifier, 'name': old.get('asset', str(video.relative_to(self.native)).replace('/episodes/', ' / ').replace('/video/mission.mp4', '')),
                    'seconds': result.get('elapsed_seconds'), 'targets': result.get('targets'),
@@ -309,7 +317,7 @@ class Observatory:
                 except ValueError:
                     pass
         status = live.get('status', {})
-        audit = evaluate(result) if result else None
+        audit = evaluate(result, entry.get('physical_credit')) if result else None
         invalidation = read_json(entry['output'] / 'environment_invalidation.json')
         if audit and invalidation.get('policy_training_sample_valid') is False:
             audit['raw_rubric_passed'] = audit['passed']

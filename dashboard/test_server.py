@@ -83,6 +83,34 @@ def test_unfinalized_recording_is_not_a_playable_video(store):
     assert len(obs.snapshot['videos']) == 1
 
 
+def test_failed_exact_credit_audit_overrides_original_pass_in_job_and_video(store):
+    obs, output, episode = store
+    save(episode/'evaluation.json', result())
+    save(output/'observer_analysis.json', {'physical_credit_audit': {
+        'all_three_physical_credits_verified': False}})
+    save(episode/'video/recording.json', {'frames': 5})
+    (episode/'video/mission.mp4').write_bytes(b'0123456789')
+    obs.refresh()
+    detail = obs.detail(server.key(output))
+    assert detail['state'] == 'failed'
+    assert detail['audit']['original_benchmark_passed']
+    assert detail['audit']['physical_credit_verified'] is False
+    assert not detail['audit']['passed']
+    assert not obs.snapshot['videos'][0]['passed']
+
+
+def test_successful_credit_audit_is_visible_without_rewriting_original_result(store):
+    obs, output, episode = store
+    save(episode/'evaluation.json', result())
+    save(output/'observer_analysis.json', {'physical_credit_audit': {
+        'all_three_physical_credits_verified': True}})
+    obs.refresh()
+    detail = obs.detail(server.key(output))
+    assert detail['state'] == 'passed'
+    assert detail['audit']['physical_credit_verified'] is True
+    assert json.loads((episode/'evaluation.json').read_text()) == result()
+
+
 def test_invalid_environment_is_never_a_valid_policy_success(store):
     obs, output, episode = store
     save(episode / 'evaluation.json',result())
