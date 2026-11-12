@@ -1,0 +1,451 @@
+{
+  "evidence_type": "frozen_partial_native_sensor_replay_not_new_native_policy_performance",
+  "source_episode": "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_0/case_0/episodes/1171300000",
+  "captured_segment_complete_episode": false,
+  "study_manifest": "/home/peter/simul/training_robust/native90/witness_dropout_study_v1/manifest.json",
+  "baseline": {
+    "module": "/home/peter/simul/training_robust/native90/strict_calibrated_gain_v1/runtime/src/osp_mission/osp_mission/marker_approach.py",
+    "module_sha256": "79c6bdbb463bad13defef3e6c03cccbe41c100c19626ac8791906290365bb55a",
+    "id": 848,
+    "rows": [
+      {
+        "stamp_sim_s": 190.0,
+        "body_relative_distance_m": 2.0679385699520703,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 190.4,
+        "body_relative_distance_m": 1.9396751943010195,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 190.8,
+        "body_relative_distance_m": 1.824352641572583,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 191.2,
+        "body_relative_distance_m": 1.7005008443911085,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 191.4,
+        "body_relative_distance_m": 1.6398877274359287,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 191.6,
+        "body_relative_distance_m": 1.5767327212186315,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 191.8,
+        "body_relative_distance_m": 1.5207201044941694,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 192.0,
+        "body_relative_distance_m": 1.4591634737840833,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 192.2,
+        "body_relative_distance_m": 1.4000913380174043,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 192.6,
+        "body_relative_distance_m": 1.2975936642553898,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 192.8,
+        "body_relative_distance_m": 1.2489786938384226,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 193.0,
+        "body_relative_distance_m": 1.209733373114321,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 193.2,
+        "body_relative_distance_m": 1.1727980395115034,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 193.4,
+        "body_relative_distance_m": 1.1397188142552634,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 193.6,
+        "body_relative_distance_m": 1.1109982080917495,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 193.8,
+        "body_relative_distance_m": 1.0824133906289748,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 194.0,
+        "body_relative_distance_m": 1.06624063117944,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 194.2,
+        "body_relative_distance_m": 1.0630839972209076,
+        "lidar_depth_gap_m": 0.005357461024011025,
+        "pending_valid_frames": 1
+      },
+      {
+        "stamp_sim_s": 196.2,
+        "body_relative_distance_m": 1.0618446050548067,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 196.4,
+        "body_relative_distance_m": 1.04848236698494,
+        "lidar_depth_gap_m": 0.007427920136413771,
+        "pending_valid_frames": 1
+      },
+      {
+        "stamp_sim_s": 196.6,
+        "body_relative_distance_m": 1.020976788698474,
+        "lidar_depth_gap_m": 0.0069726900043691085,
+        "pending_valid_frames": 2
+      },
+      {
+        "stamp_sim_s": 196.8,
+        "body_relative_distance_m": 0.9958122102081125,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 197.0,
+        "body_relative_distance_m": 0.972823870504407,
+        "lidar_depth_gap_m": 0.13772076808780556,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 197.2,
+        "body_relative_distance_m": 0.9447572280170794,
+        "lidar_depth_gap_m": 0.05044447815111379,
+        "pending_valid_frames": 1
+      },
+      {
+        "stamp_sim_s": 197.4,
+        "body_relative_distance_m": 0.9160684476437625,
+        "lidar_depth_gap_m": 0.028274541605890265,
+        "pending_valid_frames": 2
+      },
+      {
+        "stamp_sim_s": 197.6,
+        "body_relative_distance_m": 0.8798622138312595,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 197.8,
+        "body_relative_distance_m": 0.8341074023965044,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      }
+    ],
+    "verified": false,
+    "first_verified_stamp_sim_s": null,
+    "first_proof": null,
+    "maximum_pending_valid_frames": 2,
+    "ground_truth_inputs": false
+  },
+  "candidate": {
+    "module": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime/src/osp_mission/osp_mission/marker_approach.py",
+    "module_sha256": "045b0981b85dc060af786df30d4c6df053f169efa464a1f474bf448c437f5a17",
+    "id": 848,
+    "rows": [
+      {
+        "stamp_sim_s": 190.0,
+        "body_relative_distance_m": 2.0679385699520703,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 190.4,
+        "body_relative_distance_m": 1.9396751943010195,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 190.8,
+        "body_relative_distance_m": 1.824352641572583,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 191.2,
+        "body_relative_distance_m": 1.7005008443911085,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 191.4,
+        "body_relative_distance_m": 1.6398877274359287,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 191.6,
+        "body_relative_distance_m": 1.5767327212186315,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 191.8,
+        "body_relative_distance_m": 1.5207201044941694,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 192.0,
+        "body_relative_distance_m": 1.4591634737840833,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 192.2,
+        "body_relative_distance_m": 1.4000913380174043,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 192.6,
+        "body_relative_distance_m": 1.2975936642553898,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 192.8,
+        "body_relative_distance_m": 1.2489786938384226,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 193.0,
+        "body_relative_distance_m": 1.209733373114321,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 193.2,
+        "body_relative_distance_m": 1.1727980395115034,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 193.4,
+        "body_relative_distance_m": 1.1397188142552634,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 193.6,
+        "body_relative_distance_m": 1.1109982080917495,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 193.8,
+        "body_relative_distance_m": 1.0824133906289748,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 194.0,
+        "body_relative_distance_m": 1.06624063117944,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 194.2,
+        "body_relative_distance_m": 1.0630839972209076,
+        "lidar_depth_gap_m": 0.005357461024011025,
+        "pending_valid_frames": 1
+      },
+      {
+        "stamp_sim_s": 196.2,
+        "body_relative_distance_m": 1.0618446050548067,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 0
+      },
+      {
+        "stamp_sim_s": 196.4,
+        "body_relative_distance_m": 1.04848236698494,
+        "lidar_depth_gap_m": 0.007427920136413771,
+        "pending_valid_frames": 1
+      },
+      {
+        "stamp_sim_s": 196.6,
+        "body_relative_distance_m": 1.020976788698474,
+        "lidar_depth_gap_m": 0.0069726900043691085,
+        "pending_valid_frames": 2
+      },
+      {
+        "stamp_sim_s": 196.8,
+        "body_relative_distance_m": 0.9958122102081125,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 2
+      },
+      {
+        "stamp_sim_s": 197.0,
+        "body_relative_distance_m": 0.972823870504407,
+        "lidar_depth_gap_m": 0.13772076808780556,
+        "pending_valid_frames": 2
+      },
+      {
+        "stamp_sim_s": 197.2,
+        "body_relative_distance_m": 0.9447572280170794,
+        "lidar_depth_gap_m": 0.05044447815111379,
+        "pending_valid_frames": 3
+      },
+      {
+        "stamp_sim_s": 197.4,
+        "body_relative_distance_m": 0.9160684476437625,
+        "lidar_depth_gap_m": 0.028274541605890265,
+        "pending_valid_frames": 3
+      },
+      {
+        "stamp_sim_s": 197.6,
+        "body_relative_distance_m": 0.8798622138312595,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 3
+      },
+      {
+        "stamp_sim_s": 197.8,
+        "body_relative_distance_m": 0.8341074023965044,
+        "lidar_depth_gap_m": null,
+        "pending_valid_frames": 2
+      }
+    ],
+    "verified": true,
+    "first_verified_stamp_sim_s": 197.2,
+    "first_proof": {
+      "source": "three_confirmed_readable_near_odom_observations",
+      "conservative_radius_m": 1.3,
+      "time_window_sim_s": 1.0,
+      "observations": [
+        {
+          "stamp": 196.4,
+          "distance_m": 1.04848236698494,
+          "robot_odom": [
+            -5.115889557519052,
+            4.548471009439517
+          ],
+          "point_odom": [
+            -6.133832006116763,
+            4.799684952566166
+          ]
+        },
+        {
+          "stamp": 196.6,
+          "distance_m": 1.020976788698474,
+          "robot_odom": [
+            -5.138829684119496,
+            4.554786204902101
+          ],
+          "point_odom": [
+            -6.130080183482797,
+            4.799359405750136
+          ]
+        },
+        {
+          "stamp": 197.2,
+          "distance_m": 0.9447572280170794,
+          "robot_odom": [
+            -5.205442656575018,
+            4.586370475112718
+          ],
+          "point_odom": [
+            -6.126097688652208,
+            4.798409461625727
+          ]
+        }
+      ]
+    },
+    "maximum_pending_valid_frames": 3,
+    "ground_truth_inputs": false
+  },
+  "independent_physical_audit": {
+    "rows": [
+      {
+        "verified": true,
+        "stamp_sim_s": 196.4,
+        "actual_distance_m": 1.0452287860363052,
+        "conservative_distance_upper_m": 1.047136209292741,
+        "bracketing_stamps_sim_s": [
+          196.37,
+          196.404
+        ],
+        "registered_speed_bound_m_s": 0.6,
+        "method": "interpolated_GT_with_speed_margin",
+        "reason": null
+      },
+      {
+        "verified": true,
+        "stamp_sim_s": 196.6,
+        "actual_distance_m": 1.0206254872806144,
+        "conservative_distance_upper_m": 1.0244431054526566,
+        "bracketing_stamps_sim_s": [
+          196.574,
+          196.608
+        ],
+        "registered_speed_bound_m_s": 0.6,
+        "method": "interpolated_GT_with_speed_margin",
+        "reason": null
+      },
+      {
+        "verified": true,
+        "stamp_sim_s": 197.2,
+        "actual_distance_m": 0.9453048650276237,
+        "conservative_distance_upper_m": 0.9545184714871319,
+        "bracketing_stamps_sim_s": [
+          197.186,
+          197.22
+        ],
+        "registered_speed_bound_m_s": 0.6,
+        "method": "interpolated_GT_with_speed_margin",
+        "reason": null
+      }
+    ],
+    "all_three_actual_approaches_verified": true,
+    "actual_task_radius_m": 1.5,
+    "ground_truth_used_only_for_independent_audit": true
+  },
+  "recognition_or_distance_thresholds_changed": false,
+  "native_result_modified": false,
+  "new_native_speed_or_success_verified": false,
+  "limits": [
+    "Robot poses are interpolated from recorded odom/map audit samples",
+    "ID848 was already confirmed before replay start190s;replay does not simulate recognition",
+    "Selected proof frames are independently checked against actual target/trajectory",
+    "No future robot trajectory,time saving or mission success is simulated"
+  ]
+}

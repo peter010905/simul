@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T21:57:22.164669+00:00",
+  "captured_utc": "2026-11-12T22:36:49.899154+00:00",
   "purpose": "Repository upload snapshot; not a live dashboard",
   "tests_passed_final": 189,
   "native_validation_complete": false,
@@ -137,29 +137,28 @@
   "previous_regressions_complete": true,
   "latest_change": {
     "date": "2026-11-13",
-    "name": "Native sensor-proof approach496.132s full3ID/1.5m/map/zero-contact pass;new7shape calibrated-gain engineering screen activated",
-    "status": "strict_circle_full_pass;new253test_source_live_in_fresh_circle12obstacles",
+    "name": "Freshcircle399.2s fullpass;valid near sensor frames erased by intermittentLiDAR;windowed259test candidate plus corrected singleowner coordinator queued",
+    "status": "new_windowed_native_comparison_waiting_for_slot;other2native_runs_preserved",
     "generalization_verified": false
   },
   "latest_recording": {
     "date": "2026-11-13",
-    "evidence_type": "new_native_sensor_proof_circle_regression",
-    "scenario_seed": 1163000000,
+    "evidence_type": "fresh_space_native_engineering_screen_case0",
+    "scenario_seed": 1171300000,
     "original_benchmark_success": true,
     "full_completion_audit_passed": true,
-    "elapsed_sim_seconds": 496.132,
+    "elapsed_sim_seconds": 399.2,
     "targets": 3,
     "collisions": 0,
     "correct_ids": true,
     "correct_positions": true,
     "all_three_physical_credits_verified": true,
-    "maximum_physical_witness_distance_upper_m": 1.2707388159836266,
     "position_errors_m": {
-      "337": 0.06492599828571329,
-      "523": 0.06934559636986032,
-      "534": 0.021050847588733674
+      "848": 0.03765684331001675,
+      "554": 0.006009562753278091,
+      "206": 0.020972371309266914
     },
-    "report": "strict_approach_candidate.json",
+    "report": "spatial_calibrated_screen.json",
     "hardware_validated": false,
     "production_promoted": false
   },
@@ -168,14 +167,14 @@
     "coordinator": "osp-spatial-cem-v5.service",
     "dashboard": "osp-robot-dashboard.service",
     "evaluator_observer": "osp-spatial-evaluator-observer-v1.service",
-    "priority_diagnostic": "osp-strict-approach-v1.service",
-    "diagnostic_evaluator": "osp-strict-approach-evaluator-v1.service",
-    "CEM_dispatch": "resumed_after_verified_new_source_nativePID",
-    "priority_diagnostic_status": "completed_full_case_pass",
+    "priority_diagnostic": "osp-windowed-witness-v2.service",
+    "diagnostic_evaluator": "osp-windowed-witness-evaluator-v2.service",
+    "CEM_dispatch": "temporarily_inactive_during_singleowner_reservation",
+    "priority_diagnostic_status": "waiting_native_slot",
     "fresh_shape_screen": "osp-spatial-calibrated-screen-v1.service",
     "conditional_fresh_triangle_probe": "osp-calibrated-triangle-probe-v1.service",
     "conditional_fresh_triangle_status": "not_needed_seven_shape_screen_proceeds",
-    "fresh_shape_screen_status": "first_new_space_native_running",
+    "fresh_shape_screen_status": "dispatcher_temporarily_inactive;existing_triangle_native_preserved",
     "fresh_shape_evaluator": "osp-spatial-calibrated-evaluator-v1.service"
   },
   "pending_tf_comparison": {
@@ -197,9 +196,9 @@
   "dashboard": "dashboard.json",
   "spatial_geometry": "spatial_geometry_v5.json",
   "revisit_analysis": "revisit_analysis.json",
-  "latest_candidate_tests_passed": 253,
+  "latest_candidate_tests_passed": 259,
   "latest_candidate_tests_skipped": 0,
-  "latest_candidate_runtime": "/home/peter/simul/training_robust/native90/strict_calibrated_gain_v1/runtime",
+  "latest_candidate_runtime": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
   "production_promoted": false,
   "floor_diagnosis": "floor_pose_diagnosis.json",
   "local_navigation_diagnosis": "local_navigation_diagnosis.json",
@@ -227,5 +226,7 @@
   "latest_startup_failure_evidence": "latest_startup_failure_evidence.json",
   "strict_circle_camera_gain_replay": "strict_circle_camera_gain_replay.json",
   "strict_standoff_geometry_audit": "strict_standoff_geometry_audit.json",
-  "bounded_gain_circle_localization_failure": "bounded_gain_circle_localization_failure.json"
+  "bounded_gain_circle_localization_failure": "bounded_gain_circle_localization_failure.json",
+  "windowed_witness_candidate": "windowed_witness_candidate.json",
+  "witness_dropout_diagnosis": "witness_dropout_diagnosis.json"
 }

@@ -1,7 +1,7 @@
 {
   "goal_status": "active",
   "phase": "native_spatial_cem_v3",
-  "last_verified_utc": "2026-11-12T21:57:22.164669+00:00",
+  "last_verified_utc": "2026-11-12T22:36:49.899154+00:00",
   "jobs": [
     {
       "run": "training_robust/diverse_directional_cem",
@@ -559,7 +559,7 @@
     "baseline_seconds": 3.618,
     "candidate_seconds": 20.074
   },
-  "updated_utc": "2026-11-12T22:03:24.540176+00:00",
+  "updated_utc": "2026-11-12T22:36:49.899154+00:00",
   "motion_v2_native_result": {
     "seed": 8600007,
     "success": true,
@@ -1111,12 +1111,12 @@
   },
   "spatial_curriculum": "repository_snapshot/spatial_curriculum.json",
   "dashboard": "http://127.0.0.1:8765",
-  "latest_goal_turn_evidence": "Progress: native strict approach case fully passed496.132s with3IDs/map<=6.94cm/all9physical rangeframes<=1.271m/zero contacts;new253test camera-gain source now actually running in freshcircle12obstacles,actualfx665.295 andinputgates verified;7shape21target standoff feasibility audited;6snapshot replay reproduced6oldchoices and changed3;164verifiedvideos;no generalization/speed/hardware promotion",
+  "latest_goal_turn_evidence": "Progress: newspace calibrated-gain circle fully passed399.2s/3exactIDs/3actualapproaches/coords<=0.03766m/zero contacts;found cylinder near-proof dropout/reset causing4approachrequests;frozen native replay oldfalse/newtrue with3independentlyvalid samples<=1.0472m;new1s-window candidate259tests/build and exactbuilder reproduction;v1coordinator never startednative due double-stop,status preserved;v2singleowner3tests fixesunloadedunit and islivewaiting while2nativejobscontinue",
   "latest_navigation_diagnosis": "repository_snapshot/local_navigation_diagnosis.json",
   "current_native_supervisor": "osp-spatial-cem-v5.service",
   "next_training_driver": "spatial_native_curriculum_v5.py",
   "fine_evaluator_observer": "osp-spatial-evaluator-observer-v1.service",
   "physical_credit_auditor": "training_robust/audit_approach_evidence.py",
-  "priority_diagnostic": "osp-strict-approach-v1.service",
-  "next_priority": "Observe all7fresh engineering shapes from253test source;first newcircle12obstacles nativePID/profile/focal verified;inspect exact3ID/near sensor/coordinates/contact/time after each before pairedqualification"
+  "priority_diagnostic": "osp-windowed-witness-v2.service",
+  "next_priority": "Observe windowedwitnessv2same-scene399.2s baseline comparison;verify actualPID claim,profile and restoration of originaldispatchers;then exact3ID/physicalproof/map/contact/time audit;keep all7shape qualification scope"
 }

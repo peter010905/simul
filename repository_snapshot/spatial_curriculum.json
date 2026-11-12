@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T21:57:22.164669+00:00",
+  "captured_utc": "2026-11-12T22:36:49.899154+00:00",
   "client_date": "2026-11-13",
   "status": "native_spatial_source_and_weight_learning_running",
   "goal_status": "active",
@@ -1119,19 +1119,27 @@
       "role": "3",
       "workspace": "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime",
       "domain": 114,
-      "status": "running",
+      "status": "done",
       "floor_sensor_gate": true,
       "runtime_configuration_gate": true,
-      "outcome": null
+      "outcome": {
+        "success": false,
+        "targets": 1,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 600.157,
+        "infrastructure_failure": false,
+        "reason": "timeout"
+      }
     },
     {
       "number": 23,
       "role": "3",
       "workspace": "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime",
-      "domain": null,
-      "status": "prepared",
-      "floor_sensor_gate": null,
-      "runtime_configuration_gate": null,
+      "domain": 115,
+      "status": "running",
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
       "outcome": null
     },
     {
@@ -1175,7 +1183,7 @@
       "outcome": null
     }
   ],
-  "completed_spatial_training_episodes": 22,
+  "completed_spatial_training_episodes": 23,
   "completed_cem_generations": 0,
   "generalization_verified": false,
   "revisit_reduction_verified": false,
@@ -1877,14 +1885,42 @@
       "errors": [
         "Marker 858 coordinate error exceeds 0.5 m"
       ]
+    },
+    {
+      "seed": 1163002222,
+      "success": false,
+      "evaluator_success": false,
+      "seconds": 600.157,
+      "targets": 1,
+      "collisions": 0,
+      "coordinate_errors_m": {
+        "649": 0.03964463042135775
+      },
+      "required_approach_m": 1.5,
+      "closest_approach_m": {
+        "649": 0.8530737607695125,
+        "797": 1.0390944217233424,
+        "145": 0.5971519042317965
+      },
+      "video": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00022_train_g0_3/episodes/1163002222/video/mission.mp4",
+        "frames": 3003,
+        "fps": 5.0,
+        "verified": true
+      },
+      "errors": [
+        "Three distinct correct marker IDs are required",
+        "Mission did not find all targets",
+        "Mission exceeded 600 seconds"
+      ]
     }
   ],
   "evaluator_observer": "physical_credit_verification.json",
-  "priority_diagnostic": "strict_approach_candidate.json",
+  "priority_diagnostic": "windowed_witness_candidate.json",
   "coordinator_resumed_after_one_slot_diagnostic": true,
   "runtime_failure_diagnosis": "runtime_failure_diagnosis.json",
   "counts_are_descriptive_training_samples_not_independent_success_probability": true,
-  "coordinator_slot_reservation": "First new source nativePID verified;original CEM dispatcher resumed;max2native preserved",
+  "coordinator_slot_reservation": "Windowedwitnessv2waiting;bothcurrentnative runs preserved;dispatcherresumes onlyafter verifiednativeclaim",
   "completed_successes": 11,
   "fresh_shape_candidate_screen": "spatial_calibrated_screen.json",
   "latest_infrastructure_failure": "latest_startup_failure_evidence.json",
