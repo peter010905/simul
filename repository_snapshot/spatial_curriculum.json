@@ -1,18 +1,18 @@
 {
-  "captured_utc": "2026-11-12T22:36:49.899154+00:00",
+  "captured_utc": "2026-11-12T23:27:51.214354+00:00",
   "client_date": "2026-11-13",
-  "status": "native_spatial_source_and_weight_learning_running",
+  "status": "running",
   "goal_status": "active",
   "production_promoted": false,
-  "campaign": "/home/peter/simul/training_robust/native90/spatial_cem_v5",
+  "campaign": "/home/peter/simul/training_robust/native90/spatial_cem_v6",
   "generation": 0,
   "phase": "train",
-  "coordinator_unit": "osp-spatial-cem-v5.service",
+  "coordinator_unit": "osp-spatial-cem-v6.service",
   "configuration": {
-    "run_id": "nov13-space5",
-    "seed": 1163000000,
-    "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
-    "baseline_workspace": "/home/peter/simul/training_robust/native90/nav_ack_v2/runtime",
+    "run_id": "nov13-space6",
+    "seed": 1191300000,
+    "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+    "baseline_workspace": "/home/peter/simul/training_robust/native90/strict_calibrated_gain_v1/runtime",
     "baseline_weights": [
       1.0,
       2.409531985394154,
@@ -22,21 +22,21 @@
     ],
     "reserved_manifest": "/home/peter/simul/training_robust/native90/reserved_holdout_manifest.json",
     "source_hashes": {
-      "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime": {
+      "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime": {
         "setup.cfg": "fb522f4576d5429cb1cde1c49f0433cf9fd3181da3862b2f5e3a2ce9798a2003",
         "package.xml": "db6280bcd27e643036d56216dd977326d40dcf79ba21c8786370b8ef7dc3ecc6",
-        "setup.py": "1118bda1db373d349e3359113cd57d9a1516297070a64bd73c15e26ace953a76",
-        "launch/control.launch.py": "4ec5a6ac51d4a7a2332968e73c418a38c7fa9f6bb12a11eef4241a1690dbb94d",
-        "launch/simulation.launch.py": "cfcad9158c7105e8f768c834ca37a62957ed793f3bde27f3160525b228945f1f",
+        "setup.py": "057aaecae1c577eb22a5574c2c35e44eb7ae79a20fcd9bc580d07ff10514522a",
+        "launch/control.launch.py": "364ef79b92d28aef3c01bcc3d8c919e2f15e3a07256a44ea5ae41d4422b85b82",
+        "launch/simulation.launch.py": "a935ef61743c14fdaca30b93f42e4ceb275de31e78a6892be610fc6f74242127",
         "launch/spawn.launch.py": "b7aeb337d7ee67f744741070d239f57131d11bfedbc254ce48fdac6cc6bf79e4",
         "launch/create3_nodes.launch.py": "930619a35ded41509b56f6d7df2865f984386e3f5d23fa50ac74d379dfa522a4",
-        "launch/robot.launch.py": "e4b7da633850d8c4ff18f39e74a98c83386c5fbcdf4e1404aaa1d729823548d5",
+        "launch/robot.launch.py": "4cca7b752b59f5b0009cfce280713ed83523fd1857b3fb8776fa875a1b9d3185",
         "launch/bridge.launch.py": "57cf6e5e18ba8ca71b86cb6eba8278fb2b7788fa8f91d2f9d026b2bdc6f5c26d",
         "launch/description.launch.py": "e7d09c7728caa0242d1ef6aac1eebf0373c65988d881f6dfd06c2bfde546d115",
         "rviz/mission.rviz": "19f70b00d3388b070bd44e84ed0f58dc2408021a118eb24d381ac19d15d19539",
         "config/sim_control.yaml": "f8a26dc341ebf8b608d2d4e5c35f7984e4f2db1cd2b7526a691efad60050ecc8",
         "config/surface_wide_policy.json": "aa11ecff56ffb75d928587e5349eb992b825213af81c7f0b3203f0045634d3b2",
-        "config/slam.yaml": "9d3bdafdf92418ad8931593148f8bf7fecc2685eb5f4276c83d8bb4e3d130171",
+        "config/slam.yaml": "16ab21d573ae732f376c195853a84f8b57d8fbc6659d339344f7c4bec46b3788",
         "config/nav2_assignment.yaml": "f4d8743863fb702357f5b1c9177681848d84e942aa2b257e9a4ac98c74f57f98",
         "config/assignment_demo.yaml": "0484ba146071598aed8b9d8bd6db545a8274382dfe9fdf061e116d5ae114de9d",
         "config/nav2.yaml": "f936bdee74f02e497317f31621b8d0013ff0f592b5d8ba7d570952bd33f5821f",
@@ -52,7 +52,8 @@
         "config/assignment_policy.json": "d6de012b09dfe58b3a93a6fb08e35462337405124b7680637a30a98cbb05e940",
         "config/scenario.yaml": "442fdf9a66414b7796bb6c20a69c37ca1246e57069b46ab1fb5b58749bb82bea",
         "config/image_transport.xml": "262106dd04cfd648dda90b07c4adea716fb2fac5ac56fdce9c4340edf9a9e26b",
-        "config/sim_ekf.yaml": "fc48afedd4e6eaf4c2e9ab10cdadb0ae20e32b187783df084602ccbb9f6ff880",
+        "config/sim_ekf.yaml": "c59e4ac01b765fdb74f57d1c4e19ab56f47e7932aa9c1d1c701db0faffbab8fc",
+        "test/test_velocity_calibration_runtime.py": "1356f39c2a04051bc28e61a44a38e7c7c6728ff1cc2960c25c939df83bd277e0",
         "test/test_escape_connectivity.py": "045282ee57eee5161c5107e3ffe70f4cfef0236971e75769613bd4483b900369",
         "test/test_plane_views.py": "3f39faae3637867a4f924ce7bdcbf6bb940cf3af218802b13378f5e6f20faddc",
         "test/test_view_route_policy.py": "bd562c09e7f2835397a4f36b17238f9ecfd0a2b29dcc3e83891e95dd125dca4f",
@@ -72,6 +73,7 @@
         "test/test_path_geometry.py": "ba2560aeb15d7586130bfb4096cb2c1f81c2ef8f992214409f4590040da84c05",
         "test/test_edge_policy.py": "a410e14f03e6951719d917e557ef6158e56c00379a97d187c13384b504285900",
         "test/test_detector.py": "c54d32a3c3f4956c13f8dd5ab34d0ba00b5cce5f6ebad62438424a69c46d8e90",
+        "test/test_reacquisition_runtime.py": "0e8ae4216119479854108a772633fbbc3443b9b131098383a4b1d610407f1147",
         "test/test_persistent_edge_coverage.py": "e22910505a7f24a8c41543ea5fa71f9f7e2835ec4af972ed1e13e637452b014e",
         "test/test_reachable_gain.py": "677d736fb77a98719e2748fa4cfe51059ab59daf44afb2f246a606aa89df6b75",
         "test/test_small_marker_inspection.py": "791d486b20246fdbf3b5ca20e0d4c61b9c5662ad0b02089b4ff23372c3ccf07d",
@@ -81,9 +83,11 @@
         "test/test_assignment.py": "fa4ded29fda618aaf184e67353bbac6633f624cda703b81fabecf685be3566cb",
         "test/test_undock.py": "216179ff1b553d7da993eca6ddacb0fc9654d1612a1d4a4411456d9716d0e184",
         "test/test_angular_motion.py": "67b311a1ba1103d99dc34343c9114c400f76335744bbd3c96e08dbaee1b79e73",
+        "test/test_calibrated_gain_runtime.py": "8b58270ef38457247032e9e0111c6db3625bb6170dc7ebf83ebcacbfe7ec0836",
         "test/test_robust.py": "46d6169ec1a12193dd1419b08f98d837839d9cf02117c4a3d141078aef4b785d",
         "test/test_recovery.py": "b9366f55776900750a5498b1d42080aec98a3d0f380f91c61bb1847c2ae1b17f",
-        "test/test_sim_state_estimation.py": "f94bef0693c5b2495ee9de4372850af1380ff9986830c57ec57ed129107c0521",
+        "test/test_sim_state_estimation.py": "3b75bbf8a00dc845c7006289a7ce679faee58480e2e3fbb6e24f1de5844ea2b9",
+        "test/test_startup_state_runtime.py": "6be68e1e84cf39e8783deb643d3f2c6451736fd0066cd24ae8ae95d3fbdf5b1a",
         "test/test_full_scan_policy.py": "fdaf3a5ba647f2293ec21b48503e1556ca3c957c9604fd329a4026d305596a12",
         "test/test_raycast.py": "958028ec78bb3ee619f1981010a5e7c4e488ae3c7ab876f31337013c04f4999f",
         "test/test_lidar_fidelity.py": "4f55e529f7d867a79843599347cc6922d51320114f60bc123320d135949d6fa1",
@@ -92,310 +96,14 @@
         "test/test_core.py": "9ff489b16910e85f78c60beead82ddbcc90a55160adc2be169624f75c483c073",
         "test/test_surface_settings.py": "000a1d5e9ce3708f77d6a4bc9eab72c3a518c68139c44e874d95916f60cf7418",
         "test/test_scan_safety.py": "5d23eb3d1b6fb56e52053bfd1e2fb9052b40216fe71f77cf5e753868fbf2554b",
-        "test/test_marker_approach.py": "cc21bfd834d9ac41035ce544c09b67479212c32621f14f1c57da1ecf6602abc2",
+        "test/test_marker_approach.py": "98dfb17289f5a78f3e03e518a71e3318517c80bdc6ce6d3dae90565959b782de",
         "test/test_view_tour_policy.py": "bd1d7d2123406532eab7150df7851878b7425da6fc8948ac0a42fb891ffd958c",
         "test/test_face_mass.py": "691cb5f1c21f92932f4746647743a2dbeade716df0c6313ad25701ff7fe4134e",
         "test/test_surface_hits.py": "ff991bf2e1d1cd2f0b1bdff32c5028b3804b85653c0505101438936f2d2b41a3",
+        "test/test_windowed_witness_runtime.py": "9f57d3cf7292b7b0403ca806e7f6a9edd5f551635a5efb416307fe120c6bb45c",
         "test/test_tf_restamp.py": "8a05eb148b63d7001c518e77bb85ad30af4f159afbea3d86893ad1562d6dedae",
         "test/test_observation_sweep.py": "72a3103c3ce76faa9b41605054f4c2846f29cbaf6db7258ad713115efc329152",
-        "test/test_native_audit.py": "499603c3a1ca1eb56b9a3d52eb4b11e1d0b7e5e856207ce8746ee58abf7cf662",
-        "test/test_marker_focus.py": "b46286cd108e6c8d5e8bdc28cf7b998ab22a79920e6f72cab6ef9685244aed9e",
-        "test/test_drive_readiness.py": "9cefcc023f4a5cd82deb95b67d9faa2abcebe3c2dbfac936e547658b0cc1d28b",
-        "test/test_time_budget.py": "98869fe710c66d27b4be59d1c5da21763106f83ba0213aabcb40b1d37203fe8a",
-        "test/test_curriculum.py": "bfb3e96a4673b174235ea93bbad6116af57fe9e7fe8d0b2b9aeeec36c0db3520",
-        "test/test_policy_training.py": "5a338421864b024c6fd707418224f7c1c158ec613010da454dd390337ec0cde6",
-        "test/test_landmark_identity.py": "06aeb85345284899f25824f9a10612a32a797f924060476b69635ac31a7abfe3",
-        "osp_mission/scan_alignment.py": "cf1c68d78ce6eae65622590644fef31885b720f3ba3e9461e066b04ca4f5936a",
-        "osp_mission/surface_v2_policy.py": "2695940857446154dea065cb1cae232bd3687dda2adc9058d6c77ef8e1a20c0e",
-        "osp_mission/dashboard.py": "4e66c5e774f2710ca06c416f2f7339ff036620475eb152c3cd3262f8089c6612",
-        "osp_mission/view_tour_policy.py": "c78de8fd4121ab51c6143d55a8181a21faa5e44c3bdde44fbdd020f3017f65a9",
-        "osp_mission/space_scenarios.py": "582fa7cbc64c897b30b9d99f62052a87e815bd08b22e070048a7a0cd408a5385",
-        "osp_mission/drive_readiness.py": "52b405d286998597c0bc29caebff773f569c948b3d37b6ec45e8166cf00433d7",
-        "osp_mission/face_mass.py": "9eefb802aaa1a55a8e7b1ac083541238d376f28339b04018991b1814ef76b0ef",
-        "osp_mission/surface_hits.py": "47160c113cd1e5f4bd51376f5f3f163c08735a02f0bd1c19f90ab82d8d65af48",
-        "osp_mission/detector.py": "cbd536289e5af775214403dfe073358ce12e200437c1b5cc808abcb01f9ba104",
-        "osp_mission/mission.py": "4518be1f070ebe83a85eaa012c997958ef11f1865fd0fd2c0436d5e69992cbe4",
-        "osp_mission/train.py": "021485d29325b5338c3d02a117d531f4ab3fe218786706191d1f2436f3df4f38",
-        "osp_mission/landmark_identity.py": "cb5f72c21d78b2e54ce534362ab22c7c5d984db44ecd86275b0a8d1c3dba1bee",
-        "osp_mission/policy.py": "7140d1347c2e5c7a1d7975296c571b1682d8825a4bcd58b7b2290688d9fd56ee",
-        "osp_mission/gazebo_eval.py": "e6230a587de64429bd94c64cc2138cf194b0ea41c28a8180bc2732f977b309ec",
-        "osp_mission/result_io.py": "baf9b7106dbb1f48bd61578009bf734c8ee2a6fb545d784cc37dc69993c0bd8b",
-        "osp_mission/edge_policy.py": "0a0743eada4d67822015bc8c43447b0b3537f928744bab9e17740954c2f7fca8",
-        "osp_mission/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "osp_mission/fast_sim.py": "a57e51346feeb24da23ae44c14ff3cc9c7c045fc1a7865a05f2bf2c798ce4f3c",
-        "osp_mission/record_video.py": "86235912ab45248fbb2df39f8f3099a32691bf0cde4acfe377a84df271b51d33",
-        "osp_mission/world.py": "301f4a85a49954af820227c4d6ef327ecfd86d75a635c8b81c1248c4946ee7c6",
-        "osp_mission/marker_event_journal.py": "b0115c861d5a18c3650606b57a6d861378260a971627903c4af08f0060627930",
-        "osp_mission/exploration_memory.py": "338dbab9494f6a1031eec7c60142bb65749cae4a73abc26debd226bdba6ab1cc",
-        "osp_mission/space_geometry.py": "1e07dcb07ae4e14c03212144bc8b0a02f6473cf89159035ba003e9af89446367",
-        "osp_mission/angular_motion.py": "756c21d13763a6f23baf58b98dbd87c3bddc492c94d77b3d56310fb214718d63",
-        "osp_mission/normal_cache.py": "a92c09072a6ae85452562df6e3648aaf688895d3a694cfa504c98efc32ef67f6",
-        "osp_mission/native_audit.py": "bf4407ace4157992ccc32627e13bcbd209c11e4655e0e8de9bb4962bb2794534",
-        "osp_mission/travel_glance.py": "0878827f9d92b127586df639a099a5b0676e04af32f02140cb8476d5a1c7655b",
-        "osp_mission/lifecycle_readiness.py": "2fc6cbbad0ea82d65dfb764cb7b24f82b78edd929a68c23a22d7d0e8a9aa67a4",
-        "osp_mission/policy_audit.py": "0babe06b2f575aa2ac06cdfe23303df95041094abf240f3a9b6d979b256afb87",
-        "osp_mission/scan_safety.py": "aa884aa26f4aa31d08537095d4de5bf8e2204db5c38530d8911c7573189c2043",
-        "osp_mission/time_budget.py": "80139966388080994850046c76ff12fbcfe85cf3752a8e7e96e9212813d26852",
-        "osp_mission/marker_approach.py": "19aefe34ce51621475214bcdbbc7b4712fbb0c788f8a1dc344b7a654e941e307",
-        "osp_mission/escape_connectivity.py": "6eb8278373f43abdfe232200a26c53eb94d6dad8119bc5d4066ba2733aefb2a3",
-        "osp_mission/transport_config.py": "c2b8ce556f6a89182150a52c08ea3f224f06328495e7db6eab0ecb47243db5c8",
-        "osp_mission/curriculum.py": "d85f75724bbbf7f51dfb2683e798aee5988c84fd1d71c3b74c5ac9a7f46798bd",
-        "osp_mission/dock_geometry.py": "3005dedbc35a1ab2461b822821285169244b6477ada05ca4b72b19bc123a95fd",
-        "osp_mission/face_policy.py": "9857af71e6e97e41a3152a903304de3466c262f11853f68ffd085a6a2277dcb5",
-        "osp_mission/observation_sweep.py": "0adb7b5286ff2d81aadf15de0f240d0774b35ac53869fe80bae5b1501625a8ca",
-        "osp_mission/raycast.cpp": "7a35ab843c480fc3ba3a82af15385f734f28768a70f85dbca6a2a58d3ef80e04",
-        "osp_mission/scenarios.py": "9259bf1e82a6b525bf84d905226465140a183fbbc94e11dfd783907151940d37",
-        "osp_mission/frame_variation.py": "b923fbb56d2445d4f49594261ac99d13f9aee482fb96f0cc54582cbe35afa938",
-        "osp_mission/marker_focus.py": "49ad1b615fb79de8526dd62259e9b7e3df8a3e031f332e4d463361f283f7e52f",
-        "osp_mission/view_route_policy.py": "60d69a0bcb40c264c5a313d985e23e813b370bb135fa2bf67f5568c49b4b94aa",
-        "osp_mission/inspection_policy.py": "9b4923d05f9772a0cc88047579316cfb9c9dc60336c2454e86f90f7c9ae086b7",
-        "osp_mission/surface_balanced_policy.py": "dcde9d3a485abc4b0594da68f1e21e8f297568334c1be98fd7e735386e6508e1",
-        "osp_mission/marker_sizes.py": "7bfde380d0f40314387767929f16ebae344982d8154e9cc5a2ece0aa7e4f521e",
-        "osp_mission/_raycast.so": "c298a1fe6c551cb2e0cd75ddef7344761f07713b43af6db581f22f13143c730c",
-        "osp_mission/persistent_edge_coverage.py": "7830679a22c8df6306a9f11798d62106bbad3d210e429b014d3bf7fd58609108",
-        "osp_mission/surface_coverage.py": "853852f2dd5d2571346dbd19db51323d6e123f246857923aaf594a9f65ef506c",
-        "osp_mission/coverage_resize.py": "50e9b4f9dab00b1a2a4feae5e27bc3c6e326e44ddf3012fa5fb885afa3c0142f",
-        "osp_mission/directional_policy.py": "f32679a5706c4d48706591d8d576e9f189bb016374de549f1e81befa7092547c",
-        "osp_mission/surface_endpoint_policy.py": "c38800382f467fcac9634c8603d69d34477dcb04d06456d65f621f34b015679b",
-        "osp_mission/plane_views.py": "ba4ca2e8f4903b89c951bcec99360fdba466c1ed86ff022cce3abad9ac328cb3",
-        "osp_mission/continual.py": "2467ffdc31e79eba6f18bf591b4bf7c98071b98e143cf47b86eb120ddcaaeaa2",
-        "osp_mission/frontier.py": "96aa411d7a2b6d7a98c71173426c8a68eb65b50ab53c9a0176f3c06385dd97e8",
-        "osp_mission/sensor_model.py": "2b89bc9e66aa35bcbabb2ceb74343c84fc457e8ffde99393041cb4def9ae0a0a",
-        "osp_mission/provisional_marker_cues.py": "f8ecec8e8cd97584b851d4b53593dfabe664f82f3973b56bd373b9e72bae5120",
-        "osp_mission/surface_policy.py": "aae6e675d22243e4bf61762a10af12d083b4d0e6f06da07171b7197b35de1dd3",
-        "osp_mission/raycast.py": "cc3369f75937464149f7513ca1c419e80a750a5ccbbb01ab96838f9d810add3b",
-        "osp_mission/assignment_scenarios.py": "81e371efe765b79f5bf83286772e4aa32470ce049862b332c31d7f73fc62857c",
-        "osp_mission/robust_scenarios.py": "f8f6683a773afedf6c08c9ad6f14b5f4ca8823b1fc9035685222d48909f722d8",
-        "osp_mission/path_geometry.py": "ba2c98f2af003b75d8f0c55e44113c51c19a2e186e3d4e05e58bea54b7175557",
-        "osp_mission/runtime_metrics.py": "25d22a888da81710c7a8ad64f1df3383b3d8cc725eefc41e32eaacc2bbe5b1c8",
-        "resource/osp_mission": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      },
-      "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime": {
-        "setup.cfg": "fb522f4576d5429cb1cde1c49f0433cf9fd3181da3862b2f5e3a2ce9798a2003",
-        "package.xml": "db6280bcd27e643036d56216dd977326d40dcf79ba21c8786370b8ef7dc3ecc6",
-        "setup.py": "1118bda1db373d349e3359113cd57d9a1516297070a64bd73c15e26ace953a76",
-        "launch/control.launch.py": "4ec5a6ac51d4a7a2332968e73c418a38c7fa9f6bb12a11eef4241a1690dbb94d",
-        "launch/simulation.launch.py": "cfcad9158c7105e8f768c834ca37a62957ed793f3bde27f3160525b228945f1f",
-        "launch/spawn.launch.py": "b7aeb337d7ee67f744741070d239f57131d11bfedbc254ce48fdac6cc6bf79e4",
-        "launch/create3_nodes.launch.py": "930619a35ded41509b56f6d7df2865f984386e3f5d23fa50ac74d379dfa522a4",
-        "launch/robot.launch.py": "e4b7da633850d8c4ff18f39e74a98c83386c5fbcdf4e1404aaa1d729823548d5",
-        "launch/bridge.launch.py": "57cf6e5e18ba8ca71b86cb6eba8278fb2b7788fa8f91d2f9d026b2bdc6f5c26d",
-        "launch/description.launch.py": "e7d09c7728caa0242d1ef6aac1eebf0373c65988d881f6dfd06c2bfde546d115",
-        "rviz/mission.rviz": "19f70b00d3388b070bd44e84ed0f58dc2408021a118eb24d381ac19d15d19539",
-        "config/sim_control.yaml": "f8a26dc341ebf8b608d2d4e5c35f7984e4f2db1cd2b7526a691efad60050ecc8",
-        "config/surface_wide_policy.json": "aa11ecff56ffb75d928587e5349eb992b825213af81c7f0b3203f0045634d3b2",
-        "config/slam.yaml": "9d3bdafdf92418ad8931593148f8bf7fecc2685eb5f4276c83d8bb4e3d130171",
-        "config/nav2_assignment.yaml": "f4d8743863fb702357f5b1c9177681848d84e942aa2b257e9a4ac98c74f57f98",
-        "config/assignment_demo.yaml": "0484ba146071598aed8b9d8bd6db545a8274382dfe9fdf061e116d5ae114de9d",
-        "config/nav2.yaml": "f936bdee74f02e497317f31621b8d0013ff0f592b5d8ba7d570952bd33f5821f",
-        "config/gazebo.config": "3e0acf09dac24dc3967f5426da3b2936d3e312ca7b54da49c931e5dce70a448f",
-        "config/edge_policy.json": "9b743853aa73e4c9a869f55861c8ac21a3ae81e62651aa5103940bbf92b0fae1",
-        "config/hidden_demo.yaml": "37c270469c5a29a3009dc63d2a8f22161a8a03d725a719452dbe2c955fc1974e",
-        "config/directional_policy.json": "c3e7c1fb2a2975e0501f13369297a46c75c19458cfaf377ec65034752c04d969",
-        "config/nav2_gazebo.yaml": "262f66c6f02c70839e89cd6827bee9ca1ce0a3f7592f0f80594391293715a9cb",
-        "config/surface_endpoint_policy.json": "a9704e07a05255648335f93b583a270a3778ad598b8e9d17a396fb97c328cc84",
-        "config/robust_demo.yaml": "053580f6333f01f77ed8ee87b912a515fbc2a1b222fc9ced552232a95fbc3135",
-        "config/inspection_policy.json": "bdc6b87ebf73dc18f178093755b2ac0bacdaba50c4d6fdd3f82842b70c1b0b7a",
-        "config/nav2_robot_policy.yaml": "262f66c6f02c70839e89cd6827bee9ca1ce0a3f7592f0f80594391293715a9cb",
-        "config/assignment_policy.json": "d6de012b09dfe58b3a93a6fb08e35462337405124b7680637a30a98cbb05e940",
-        "config/scenario.yaml": "442fdf9a66414b7796bb6c20a69c37ca1246e57069b46ab1fb5b58749bb82bea",
-        "config/image_transport.xml": "262106dd04cfd648dda90b07c4adea716fb2fac5ac56fdce9c4340edf9a9e26b",
-        "config/sim_ekf.yaml": "fc48afedd4e6eaf4c2e9ab10cdadb0ae20e32b187783df084602ccbb9f6ff880",
-        "test/test_escape_connectivity.py": "045282ee57eee5161c5107e3ffe70f4cfef0236971e75769613bd4483b900369",
-        "test/test_plane_views.py": "3f39faae3637867a4f924ce7bdcbf6bb940cf3af218802b13378f5e6f20faddc",
-        "test/test_view_route_policy.py": "bd562c09e7f2835397a4f36b17238f9ecfd0a2b29dcc3e83891e95dd125dca4f",
-        "test/test_frame_variation.py": "72dce3c817a69cd2f14680ab0051be2f3a548b26a5f4878b033d5f0c0b76201d",
-        "test/test_spatial_runtime.py": "428096fe16ad8464c58a2ddbe401a366ce755c1bd5169d4c460d1cc0b0c514c4",
-        "test/test_coverage_resize.py": "166a3cd5cc4a0aaad3c2b3507143d6314ae267c425898609549614feaf7c8c07",
-        "test/test_normal_cache.py": "b094f9071e1d007b25e63df4a15b8f33718eeb07248d5e5fa47b6936e16d24aa",
-        "test/test_lifecycle_readiness.py": "93e09abd1e7e8f4bef05dbde8017d4074dd5b105a18723d67b91e7c84c21f946",
-        "test/test_edge_diagnostics.py": "0eb49e5874ca99eab1045fd3eda2a65b7cbfddb298600b107a5ca98eda45400c",
-        "test/test_runtime_metrics.py": "103ff203da0aa30eabe006587e91df8c42502653b08e42dd0e870eb411a7186e",
-        "test/test_surface_coverage.py": "ba7d142feed77200d8fc3a6c10a4012590f76a3480279d248df7d6102788fa29",
-        "test/test_dock_geometry.py": "81f22279a1c64dcc127ea3b73dc1e785b14b5b07e4d80f285af4eb3e5cb5fa68",
-        "test/test_face_policy.py": "37ff34e4af1f970f0b1e4eb5b5abb7cf8d2a4d7b8a8c59c180771d8fc621f1b2",
-        "test/test_face_reinspection.py": "f79562a79d0a36ffb6235d88d2564e38708eaedfb032fd8a770517dea0899004",
-        "test/test_floor_pose_runtime.py": "e67d43a9726c94b8bcbb95320078186b68df7c598f9c125dc235f472c3ee888d",
-        "test/test_gazebo_eval.py": "24b492a061d48de4a38603c81b40aa304e44cc1f3b274f7526d8b83eac5dc8f7",
-        "test/test_path_geometry.py": "ba2560aeb15d7586130bfb4096cb2c1f81c2ef8f992214409f4590040da84c05",
-        "test/test_approach_witness_runtime.py": "26bc8aa7f494fccc3961ac1c9445e9c0ec99308a01719005d276aed700b31ff9",
-        "test/test_edge_policy.py": "a410e14f03e6951719d917e557ef6158e56c00379a97d187c13384b504285900",
-        "test/test_detector.py": "c54d32a3c3f4956c13f8dd5ab34d0ba00b5cce5f6ebad62438424a69c46d8e90",
-        "test/test_persistent_edge_coverage.py": "e22910505a7f24a8c41543ea5fa71f9f7e2835ec4af972ed1e13e637452b014e",
-        "test/test_reachable_gain.py": "677d736fb77a98719e2748fa4cfe51059ab59daf44afb2f246a606aa89df6b75",
-        "test/test_small_marker_inspection.py": "791d486b20246fdbf3b5ca20e0d4c61b9c5662ad0b02089b4ff23372c3ccf07d",
-        "test/test_normal_resolution.py": "88d7a138e0670d75d42eb6335876fab6fb6d9b7b602557b7e57d48da414401a2",
-        "test/test_result_io.py": "d20fabc2fe1c08886a05b8160a2b7d61cc71f1c18463d8f466758b78f96c443a",
-        "test/test_record_video.py": "41b1ff02b480d88957e35d1f302d01deaa399b983929fc87d5ffcb9b96d93468",
-        "test/test_assignment.py": "fa4ded29fda618aaf184e67353bbac6633f624cda703b81fabecf685be3566cb",
-        "test/test_undock.py": "216179ff1b553d7da993eca6ddacb0fc9654d1612a1d4a4411456d9716d0e184",
-        "test/test_angular_motion.py": "67b311a1ba1103d99dc34343c9114c400f76335744bbd3c96e08dbaee1b79e73",
-        "test/test_robust.py": "46d6169ec1a12193dd1419b08f98d837839d9cf02117c4a3d141078aef4b785d",
-        "test/test_recovery.py": "b9366f55776900750a5498b1d42080aec98a3d0f380f91c61bb1847c2ae1b17f",
-        "test/test_sim_state_estimation.py": "f94bef0693c5b2495ee9de4372850af1380ff9986830c57ec57ed129107c0521",
-        "test/test_full_scan_policy.py": "fdaf3a5ba647f2293ec21b48503e1556ca3c957c9604fd329a4026d305596a12",
-        "test/test_raycast.py": "958028ec78bb3ee619f1981010a5e7c4e488ae3c7ab876f31337013c04f4999f",
-        "test/test_lidar_fidelity.py": "4f55e529f7d867a79843599347cc6922d51320114f60bc123320d135949d6fa1",
-        "test/test_travel_glance.py": "dfd213f784535cda960ac998e4ce3d4baa7301cc23c8efa4fc9af104b464f47a",
-        "test/test_scan_alignment.py": "16b50c227c018122f782561e78d025f7841ee377b4bb1a0be36b9d7d13cae046",
-        "test/test_core.py": "9ff489b16910e85f78c60beead82ddbcc90a55160adc2be169624f75c483c073",
-        "test/test_surface_settings.py": "000a1d5e9ce3708f77d6a4bc9eab72c3a518c68139c44e874d95916f60cf7418",
-        "test/test_scan_safety.py": "5d23eb3d1b6fb56e52053bfd1e2fb9052b40216fe71f77cf5e753868fbf2554b",
-        "test/test_marker_approach.py": "cc21bfd834d9ac41035ce544c09b67479212c32621f14f1c57da1ecf6602abc2",
-        "test/test_view_tour_policy.py": "bd1d7d2123406532eab7150df7851878b7425da6fc8948ac0a42fb891ffd958c",
-        "test/test_face_mass.py": "691cb5f1c21f92932f4746647743a2dbeade716df0c6313ad25701ff7fe4134e",
-        "test/test_surface_hits.py": "ff991bf2e1d1cd2f0b1bdff32c5028b3804b85653c0505101438936f2d2b41a3",
-        "test/test_tf_restamp.py": "8a05eb148b63d7001c518e77bb85ad30af4f159afbea3d86893ad1562d6dedae",
-        "test/test_observation_sweep.py": "72a3103c3ce76faa9b41605054f4c2846f29cbaf6db7258ad713115efc329152",
-        "test/test_native_audit.py": "499603c3a1ca1eb56b9a3d52eb4b11e1d0b7e5e856207ce8746ee58abf7cf662",
-        "test/test_marker_focus.py": "b46286cd108e6c8d5e8bdc28cf7b998ab22a79920e6f72cab6ef9685244aed9e",
-        "test/test_drive_readiness.py": "9cefcc023f4a5cd82deb95b67d9faa2abcebe3c2dbfac936e547658b0cc1d28b",
-        "test/test_time_budget.py": "98869fe710c66d27b4be59d1c5da21763106f83ba0213aabcb40b1d37203fe8a",
-        "test/test_curriculum.py": "bfb3e96a4673b174235ea93bbad6116af57fe9e7fe8d0b2b9aeeec36c0db3520",
-        "test/test_policy_training.py": "5a338421864b024c6fd707418224f7c1c158ec613010da454dd390337ec0cde6",
-        "test/test_landmark_identity.py": "06aeb85345284899f25824f9a10612a32a797f924060476b69635ac31a7abfe3",
-        "osp_mission/scan_alignment.py": "cf1c68d78ce6eae65622590644fef31885b720f3ba3e9461e066b04ca4f5936a",
-        "osp_mission/surface_v2_policy.py": "2695940857446154dea065cb1cae232bd3687dda2adc9058d6c77ef8e1a20c0e",
-        "osp_mission/dashboard.py": "4e66c5e774f2710ca06c416f2f7339ff036620475eb152c3cd3262f8089c6612",
-        "osp_mission/view_tour_policy.py": "c78de8fd4121ab51c6143d55a8181a21faa5e44c3bdde44fbdd020f3017f65a9",
-        "osp_mission/space_scenarios.py": "582fa7cbc64c897b30b9d99f62052a87e815bd08b22e070048a7a0cd408a5385",
-        "osp_mission/drive_readiness.py": "52b405d286998597c0bc29caebff773f569c948b3d37b6ec45e8166cf00433d7",
-        "osp_mission/face_mass.py": "9eefb802aaa1a55a8e7b1ac083541238d376f28339b04018991b1814ef76b0ef",
-        "osp_mission/surface_hits.py": "47160c113cd1e5f4bd51376f5f3f163c08735a02f0bd1c19f90ab82d8d65af48",
-        "osp_mission/detector.py": "cbd536289e5af775214403dfe073358ce12e200437c1b5cc808abcb01f9ba104",
-        "osp_mission/mission.py": "79fedde4d7604d4ee9c0072ba6c1ea7f2a4b3f1ace360affb748ce741f0fbe90",
-        "osp_mission/train.py": "021485d29325b5338c3d02a117d531f4ab3fe218786706191d1f2436f3df4f38",
-        "osp_mission/landmark_identity.py": "cb5f72c21d78b2e54ce534362ab22c7c5d984db44ecd86275b0a8d1c3dba1bee",
-        "osp_mission/policy.py": "7140d1347c2e5c7a1d7975296c571b1682d8825a4bcd58b7b2290688d9fd56ee",
-        "osp_mission/gazebo_eval.py": "e6230a587de64429bd94c64cc2138cf194b0ea41c28a8180bc2732f977b309ec",
-        "osp_mission/result_io.py": "baf9b7106dbb1f48bd61578009bf734c8ee2a6fb545d784cc37dc69993c0bd8b",
-        "osp_mission/edge_policy.py": "0a0743eada4d67822015bc8c43447b0b3537f928744bab9e17740954c2f7fca8",
-        "osp_mission/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "osp_mission/fast_sim.py": "a57e51346feeb24da23ae44c14ff3cc9c7c045fc1a7865a05f2bf2c798ce4f3c",
-        "osp_mission/record_video.py": "86235912ab45248fbb2df39f8f3099a32691bf0cde4acfe377a84df271b51d33",
-        "osp_mission/world.py": "301f4a85a49954af820227c4d6ef327ecfd86d75a635c8b81c1248c4946ee7c6",
-        "osp_mission/marker_event_journal.py": "b0115c861d5a18c3650606b57a6d861378260a971627903c4af08f0060627930",
-        "osp_mission/exploration_memory.py": "338dbab9494f6a1031eec7c60142bb65749cae4a73abc26debd226bdba6ab1cc",
-        "osp_mission/space_geometry.py": "1e07dcb07ae4e14c03212144bc8b0a02f6473cf89159035ba003e9af89446367",
-        "osp_mission/angular_motion.py": "756c21d13763a6f23baf58b98dbd87c3bddc492c94d77b3d56310fb214718d63",
-        "osp_mission/normal_cache.py": "a92c09072a6ae85452562df6e3648aaf688895d3a694cfa504c98efc32ef67f6",
-        "osp_mission/native_audit.py": "bf4407ace4157992ccc32627e13bcbd209c11e4655e0e8de9bb4962bb2794534",
-        "osp_mission/travel_glance.py": "0878827f9d92b127586df639a099a5b0676e04af32f02140cb8476d5a1c7655b",
-        "osp_mission/lifecycle_readiness.py": "2fc6cbbad0ea82d65dfb764cb7b24f82b78edd929a68c23a22d7d0e8a9aa67a4",
-        "osp_mission/policy_audit.py": "0babe06b2f575aa2ac06cdfe23303df95041094abf240f3a9b6d979b256afb87",
-        "osp_mission/scan_safety.py": "aa884aa26f4aa31d08537095d4de5bf8e2204db5c38530d8911c7573189c2043",
-        "osp_mission/time_budget.py": "80139966388080994850046c76ff12fbcfe85cf3752a8e7e96e9212813d26852",
-        "osp_mission/marker_approach.py": "4d09fa7109c1c75ceec94cc3081794979cf76c0ba6214b1685626b3b65569687",
-        "osp_mission/escape_connectivity.py": "6eb8278373f43abdfe232200a26c53eb94d6dad8119bc5d4066ba2733aefb2a3",
-        "osp_mission/transport_config.py": "c2b8ce556f6a89182150a52c08ea3f224f06328495e7db6eab0ecb47243db5c8",
-        "osp_mission/curriculum.py": "d85f75724bbbf7f51dfb2683e798aee5988c84fd1d71c3b74c5ac9a7f46798bd",
-        "osp_mission/dock_geometry.py": "3005dedbc35a1ab2461b822821285169244b6477ada05ca4b72b19bc123a95fd",
-        "osp_mission/face_policy.py": "9857af71e6e97e41a3152a903304de3466c262f11853f68ffd085a6a2277dcb5",
-        "osp_mission/observation_sweep.py": "0adb7b5286ff2d81aadf15de0f240d0774b35ac53869fe80bae5b1501625a8ca",
-        "osp_mission/raycast.cpp": "7a35ab843c480fc3ba3a82af15385f734f28768a70f85dbca6a2a58d3ef80e04",
-        "osp_mission/scenarios.py": "9259bf1e82a6b525bf84d905226465140a183fbbc94e11dfd783907151940d37",
-        "osp_mission/frame_variation.py": "b923fbb56d2445d4f49594261ac99d13f9aee482fb96f0cc54582cbe35afa938",
-        "osp_mission/marker_focus.py": "49ad1b615fb79de8526dd62259e9b7e3df8a3e031f332e4d463361f283f7e52f",
-        "osp_mission/view_route_policy.py": "60d69a0bcb40c264c5a313d985e23e813b370bb135fa2bf67f5568c49b4b94aa",
-        "osp_mission/inspection_policy.py": "9b4923d05f9772a0cc88047579316cfb9c9dc60336c2454e86f90f7c9ae086b7",
-        "osp_mission/surface_balanced_policy.py": "dcde9d3a485abc4b0594da68f1e21e8f297568334c1be98fd7e735386e6508e1",
-        "osp_mission/marker_sizes.py": "7bfde380d0f40314387767929f16ebae344982d8154e9cc5a2ece0aa7e4f521e",
-        "osp_mission/_raycast.so": "c298a1fe6c551cb2e0cd75ddef7344761f07713b43af6db581f22f13143c730c",
-        "osp_mission/persistent_edge_coverage.py": "7830679a22c8df6306a9f11798d62106bbad3d210e429b014d3bf7fd58609108",
-        "osp_mission/surface_coverage.py": "853852f2dd5d2571346dbd19db51323d6e123f246857923aaf594a9f65ef506c",
-        "osp_mission/coverage_resize.py": "50e9b4f9dab00b1a2a4feae5e27bc3c6e326e44ddf3012fa5fb885afa3c0142f",
-        "osp_mission/directional_policy.py": "f32679a5706c4d48706591d8d576e9f189bb016374de549f1e81befa7092547c",
-        "osp_mission/surface_endpoint_policy.py": "c38800382f467fcac9634c8603d69d34477dcb04d06456d65f621f34b015679b",
-        "osp_mission/plane_views.py": "ba4ca2e8f4903b89c951bcec99360fdba466c1ed86ff022cce3abad9ac328cb3",
-        "osp_mission/continual.py": "2467ffdc31e79eba6f18bf591b4bf7c98071b98e143cf47b86eb120ddcaaeaa2",
-        "osp_mission/frontier.py": "96aa411d7a2b6d7a98c71173426c8a68eb65b50ab53c9a0176f3c06385dd97e8",
-        "osp_mission/sensor_model.py": "2b89bc9e66aa35bcbabb2ceb74343c84fc457e8ffde99393041cb4def9ae0a0a",
-        "osp_mission/provisional_marker_cues.py": "f8ecec8e8cd97584b851d4b53593dfabe664f82f3973b56bd373b9e72bae5120",
-        "osp_mission/surface_policy.py": "aae6e675d22243e4bf61762a10af12d083b4d0e6f06da07171b7197b35de1dd3",
-        "osp_mission/raycast.py": "cc3369f75937464149f7513ca1c419e80a750a5ccbbb01ab96838f9d810add3b",
-        "osp_mission/assignment_scenarios.py": "81e371efe765b79f5bf83286772e4aa32470ce049862b332c31d7f73fc62857c",
-        "osp_mission/robust_scenarios.py": "f8f6683a773afedf6c08c9ad6f14b5f4ca8823b1fc9035685222d48909f722d8",
-        "osp_mission/path_geometry.py": "ba2c98f2af003b75d8f0c55e44113c51c19a2e186e3d4e05e58bea54b7175557",
-        "osp_mission/runtime_metrics.py": "25d22a888da81710c7a8ad64f1df3383b3d8cc725eefc41e32eaacc2bbe5b1c8",
-        "resource/osp_mission": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      },
-      "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime": {
-        "setup.cfg": "fb522f4576d5429cb1cde1c49f0433cf9fd3181da3862b2f5e3a2ce9798a2003",
-        "package.xml": "db6280bcd27e643036d56216dd977326d40dcf79ba21c8786370b8ef7dc3ecc6",
-        "setup.py": "1118bda1db373d349e3359113cd57d9a1516297070a64bd73c15e26ace953a76",
-        "launch/control.launch.py": "4ec5a6ac51d4a7a2332968e73c418a38c7fa9f6bb12a11eef4241a1690dbb94d",
-        "launch/simulation.launch.py": "cfcad9158c7105e8f768c834ca37a62957ed793f3bde27f3160525b228945f1f",
-        "launch/spawn.launch.py": "b7aeb337d7ee67f744741070d239f57131d11bfedbc254ce48fdac6cc6bf79e4",
-        "launch/create3_nodes.launch.py": "930619a35ded41509b56f6d7df2865f984386e3f5d23fa50ac74d379dfa522a4",
-        "launch/robot.launch.py": "e4b7da633850d8c4ff18f39e74a98c83386c5fbcdf4e1404aaa1d729823548d5",
-        "launch/bridge.launch.py": "57cf6e5e18ba8ca71b86cb6eba8278fb2b7788fa8f91d2f9d026b2bdc6f5c26d",
-        "launch/description.launch.py": "e7d09c7728caa0242d1ef6aac1eebf0373c65988d881f6dfd06c2bfde546d115",
-        "rviz/mission.rviz": "19f70b00d3388b070bd44e84ed0f58dc2408021a118eb24d381ac19d15d19539",
-        "config/sim_control.yaml": "f8a26dc341ebf8b608d2d4e5c35f7984e4f2db1cd2b7526a691efad60050ecc8",
-        "config/surface_wide_policy.json": "aa11ecff56ffb75d928587e5349eb992b825213af81c7f0b3203f0045634d3b2",
-        "config/slam.yaml": "9d3bdafdf92418ad8931593148f8bf7fecc2685eb5f4276c83d8bb4e3d130171",
-        "config/nav2_assignment.yaml": "f4d8743863fb702357f5b1c9177681848d84e942aa2b257e9a4ac98c74f57f98",
-        "config/assignment_demo.yaml": "0484ba146071598aed8b9d8bd6db545a8274382dfe9fdf061e116d5ae114de9d",
-        "config/nav2.yaml": "f936bdee74f02e497317f31621b8d0013ff0f592b5d8ba7d570952bd33f5821f",
-        "config/gazebo.config": "3e0acf09dac24dc3967f5426da3b2936d3e312ca7b54da49c931e5dce70a448f",
-        "config/edge_policy.json": "9b743853aa73e4c9a869f55861c8ac21a3ae81e62651aa5103940bbf92b0fae1",
-        "config/hidden_demo.yaml": "37c270469c5a29a3009dc63d2a8f22161a8a03d725a719452dbe2c955fc1974e",
-        "config/directional_policy.json": "c3e7c1fb2a2975e0501f13369297a46c75c19458cfaf377ec65034752c04d969",
-        "config/nav2_gazebo.yaml": "262f66c6f02c70839e89cd6827bee9ca1ce0a3f7592f0f80594391293715a9cb",
-        "config/surface_endpoint_policy.json": "a9704e07a05255648335f93b583a270a3778ad598b8e9d17a396fb97c328cc84",
-        "config/robust_demo.yaml": "053580f6333f01f77ed8ee87b912a515fbc2a1b222fc9ced552232a95fbc3135",
-        "config/inspection_policy.json": "bdc6b87ebf73dc18f178093755b2ac0bacdaba50c4d6fdd3f82842b70c1b0b7a",
-        "config/nav2_robot_policy.yaml": "262f66c6f02c70839e89cd6827bee9ca1ce0a3f7592f0f80594391293715a9cb",
-        "config/assignment_policy.json": "d6de012b09dfe58b3a93a6fb08e35462337405124b7680637a30a98cbb05e940",
-        "config/scenario.yaml": "442fdf9a66414b7796bb6c20a69c37ca1246e57069b46ab1fb5b58749bb82bea",
-        "config/image_transport.xml": "262106dd04cfd648dda90b07c4adea716fb2fac5ac56fdce9c4340edf9a9e26b",
-        "config/sim_ekf.yaml": "fc48afedd4e6eaf4c2e9ab10cdadb0ae20e32b187783df084602ccbb9f6ff880",
-        "test/test_escape_connectivity.py": "045282ee57eee5161c5107e3ffe70f4cfef0236971e75769613bd4483b900369",
-        "test/test_plane_views.py": "3f39faae3637867a4f924ce7bdcbf6bb940cf3af218802b13378f5e6f20faddc",
-        "test/test_view_route_policy.py": "bd562c09e7f2835397a4f36b17238f9ecfd0a2b29dcc3e83891e95dd125dca4f",
-        "test/test_frame_variation.py": "72dce3c817a69cd2f14680ab0051be2f3a548b26a5f4878b033d5f0c0b76201d",
-        "test/test_spatial_runtime.py": "428096fe16ad8464c58a2ddbe401a366ce755c1bd5169d4c460d1cc0b0c514c4",
-        "test/test_coverage_resize.py": "166a3cd5cc4a0aaad3c2b3507143d6314ae267c425898609549614feaf7c8c07",
-        "test/test_normal_cache.py": "b094f9071e1d007b25e63df4a15b8f33718eeb07248d5e5fa47b6936e16d24aa",
-        "test/test_lifecycle_readiness.py": "93e09abd1e7e8f4bef05dbde8017d4074dd5b105a18723d67b91e7c84c21f946",
-        "test/test_edge_diagnostics.py": "0eb49e5874ca99eab1045fd3eda2a65b7cbfddb298600b107a5ca98eda45400c",
-        "test/test_runtime_metrics.py": "103ff203da0aa30eabe006587e91df8c42502653b08e42dd0e870eb411a7186e",
-        "test/test_surface_coverage.py": "ba7d142feed77200d8fc3a6c10a4012590f76a3480279d248df7d6102788fa29",
-        "test/test_dock_geometry.py": "81f22279a1c64dcc127ea3b73dc1e785b14b5b07e4d80f285af4eb3e5cb5fa68",
-        "test/test_face_policy.py": "37ff34e4af1f970f0b1e4eb5b5abb7cf8d2a4d7b8a8c59c180771d8fc621f1b2",
-        "test/test_face_reinspection.py": "f79562a79d0a36ffb6235d88d2564e38708eaedfb032fd8a770517dea0899004",
-        "test/test_floor_pose_runtime.py": "e67d43a9726c94b8bcbb95320078186b68df7c598f9c125dc235f472c3ee888d",
-        "test/test_gazebo_eval.py": "24b492a061d48de4a38603c81b40aa304e44cc1f3b274f7526d8b83eac5dc8f7",
-        "test/test_path_geometry.py": "ba2560aeb15d7586130bfb4096cb2c1f81c2ef8f992214409f4590040da84c05",
-        "test/test_approach_witness_runtime.py": "26bc8aa7f494fccc3961ac1c9445e9c0ec99308a01719005d276aed700b31ff9",
-        "test/test_edge_policy.py": "a410e14f03e6951719d917e557ef6158e56c00379a97d187c13384b504285900",
-        "test/test_detector.py": "c54d32a3c3f4956c13f8dd5ab34d0ba00b5cce5f6ebad62438424a69c46d8e90",
-        "test/test_persistent_edge_coverage.py": "e22910505a7f24a8c41543ea5fa71f9f7e2835ec4af972ed1e13e637452b014e",
-        "test/test_reachable_gain.py": "677d736fb77a98719e2748fa4cfe51059ab59daf44afb2f246a606aa89df6b75",
-        "test/test_small_marker_inspection.py": "791d486b20246fdbf3b5ca20e0d4c61b9c5662ad0b02089b4ff23372c3ccf07d",
-        "test/test_normal_resolution.py": "88d7a138e0670d75d42eb6335876fab6fb6d9b7b602557b7e57d48da414401a2",
-        "test/test_result_io.py": "d20fabc2fe1c08886a05b8160a2b7d61cc71f1c18463d8f466758b78f96c443a",
-        "test/test_record_video.py": "41b1ff02b480d88957e35d1f302d01deaa399b983929fc87d5ffcb9b96d93468",
-        "test/test_assignment.py": "fa4ded29fda618aaf184e67353bbac6633f624cda703b81fabecf685be3566cb",
-        "test/test_undock.py": "216179ff1b553d7da993eca6ddacb0fc9654d1612a1d4a4411456d9716d0e184",
-        "test/test_angular_motion.py": "67b311a1ba1103d99dc34343c9114c400f76335744bbd3c96e08dbaee1b79e73",
-        "test/test_robust.py": "46d6169ec1a12193dd1419b08f98d837839d9cf02117c4a3d141078aef4b785d",
-        "test/test_recovery.py": "b9366f55776900750a5498b1d42080aec98a3d0f380f91c61bb1847c2ae1b17f",
-        "test/test_sim_state_estimation.py": "f94bef0693c5b2495ee9de4372850af1380ff9986830c57ec57ed129107c0521",
-        "test/test_full_scan_policy.py": "fdaf3a5ba647f2293ec21b48503e1556ca3c957c9604fd329a4026d305596a12",
-        "test/test_raycast.py": "958028ec78bb3ee619f1981010a5e7c4e488ae3c7ab876f31337013c04f4999f",
-        "test/test_lidar_fidelity.py": "4f55e529f7d867a79843599347cc6922d51320114f60bc123320d135949d6fa1",
-        "test/test_travel_glance.py": "dfd213f784535cda960ac998e4ce3d4baa7301cc23c8efa4fc9af104b464f47a",
-        "test/test_scan_alignment.py": "16b50c227c018122f782561e78d025f7841ee377b4bb1a0be36b9d7d13cae046",
-        "test/test_core.py": "9ff489b16910e85f78c60beead82ddbcc90a55160adc2be169624f75c483c073",
-        "test/test_surface_settings.py": "000a1d5e9ce3708f77d6a4bc9eab72c3a518c68139c44e874d95916f60cf7418",
-        "test/test_scan_safety.py": "5d23eb3d1b6fb56e52053bfd1e2fb9052b40216fe71f77cf5e753868fbf2554b",
-        "test/test_marker_approach.py": "cc21bfd834d9ac41035ce544c09b67479212c32621f14f1c57da1ecf6602abc2",
-        "test/test_view_tour_policy.py": "bd1d7d2123406532eab7150df7851878b7425da6fc8948ac0a42fb891ffd958c",
-        "test/test_face_mass.py": "691cb5f1c21f92932f4746647743a2dbeade716df0c6313ad25701ff7fe4134e",
-        "test/test_surface_hits.py": "ff991bf2e1d1cd2f0b1bdff32c5028b3804b85653c0505101438936f2d2b41a3",
-        "test/test_tf_restamp.py": "8a05eb148b63d7001c518e77bb85ad30af4f159afbea3d86893ad1562d6dedae",
-        "test/test_observation_sweep.py": "72a3103c3ce76faa9b41605054f4c2846f29cbaf6db7258ad713115efc329152",
+        "test/test_startup_guard_ros_runtime.py": "37fab34a5120f4b57c323f9b08d35e20f2763f503422695becbe138a9db9fd69",
         "test/test_native_audit.py": "499603c3a1ca1eb56b9a3d52eb4b11e1d0b7e5e856207ce8746ee58abf7cf662",
         "test/test_marker_focus.py": "b46286cd108e6c8d5e8bdc28cf7b998ab22a79920e6f72cab6ef9685244aed9e",
         "test/test_drive_readiness.py": "9cefcc023f4a5cd82deb95b67d9faa2abcebe3c2dbfac936e547658b0cc1d28b",
@@ -410,16 +118,17 @@
         "osp_mission/view_tour_policy.py": "c78de8fd4121ab51c6143d55a8181a21faa5e44c3bdde44fbdd020f3017f65a9",
         "osp_mission/space_scenarios.py": "582fa7cbc64c897b30b9d99f62052a87e815bd08b22e070048a7a0cd408a5385",
         "osp_mission/drive_readiness.py": "52b405d286998597c0bc29caebff773f569c948b3d37b6ec45e8166cf00433d7",
+        "osp_mission/startup_guard.py": "8f8fb29472b3334fa89142e56ba6e26153111149f888399deb86a530172f9b13",
         "osp_mission/face_mass.py": "9eefb802aaa1a55a8e7b1ac083541238d376f28339b04018991b1814ef76b0ef",
         "osp_mission/surface_hits.py": "47160c113cd1e5f4bd51376f5f3f163c08735a02f0bd1c19f90ab82d8d65af48",
-        "osp_mission/detector.py": "cbd536289e5af775214403dfe073358ce12e200437c1b5cc808abcb01f9ba104",
-        "osp_mission/mission.py": "79fedde4d7604d4ee9c0072ba6c1ea7f2a4b3f1ace360affb748ce741f0fbe90",
+        "osp_mission/detector.py": "5faf7c154c497c5e9b744b2e202bc78d55f492c8ea6e30d63e539b8dc04c8ac8",
+        "osp_mission/mission.py": "673819a2aac4b30d0f86a0bdc42ae269ef73f36e83d68c0a05c57d2b792cce8f",
         "osp_mission/train.py": "021485d29325b5338c3d02a117d531f4ab3fe218786706191d1f2436f3df4f38",
         "osp_mission/landmark_identity.py": "cb5f72c21d78b2e54ce534362ab22c7c5d984db44ecd86275b0a8d1c3dba1bee",
         "osp_mission/policy.py": "7140d1347c2e5c7a1d7975296c571b1682d8825a4bcd58b7b2290688d9fd56ee",
         "osp_mission/gazebo_eval.py": "e6230a587de64429bd94c64cc2138cf194b0ea41c28a8180bc2732f977b309ec",
         "osp_mission/result_io.py": "baf9b7106dbb1f48bd61578009bf734c8ee2a6fb545d784cc37dc69993c0bd8b",
-        "osp_mission/edge_policy.py": "3896cd955f4203c41695be79e8e7a5712b3615ddbd92639d491e43a7a401eeec",
+        "osp_mission/edge_policy.py": "56ca772647b74d33c6035eb63a16c6c92fbb7ee4fb0b6463e4e6f111e9e5dd0c",
         "osp_mission/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "osp_mission/fast_sim.py": "a57e51346feeb24da23ae44c14ff3cc9c7c045fc1a7865a05f2bf2c798ce4f3c",
         "osp_mission/record_video.py": "86235912ab45248fbb2df39f8f3099a32691bf0cde4acfe377a84df271b51d33",
@@ -428,6 +137,7 @@
         "osp_mission/exploration_memory.py": "338dbab9494f6a1031eec7c60142bb65749cae4a73abc26debd226bdba6ab1cc",
         "osp_mission/space_geometry.py": "1e07dcb07ae4e14c03212144bc8b0a02f6473cf89159035ba003e9af89446367",
         "osp_mission/angular_motion.py": "756c21d13763a6f23baf58b98dbd87c3bddc492c94d77b3d56310fb214718d63",
+        "osp_mission/landmark_reacquisition.py": "b03abc5238920da9a8f2c64db9c3d3a5997dfdff2208758d43b648bb7eb3d9db",
         "osp_mission/normal_cache.py": "a92c09072a6ae85452562df6e3648aaf688895d3a694cfa504c98efc32ef67f6",
         "osp_mission/native_audit.py": "bf4407ace4157992ccc32627e13bcbd209c11e4655e0e8de9bb4962bb2794534",
         "osp_mission/travel_glance.py": "0878827f9d92b127586df639a099a5b0676e04af32f02140cb8476d5a1c7655b",
@@ -435,7 +145,7 @@
         "osp_mission/policy_audit.py": "0babe06b2f575aa2ac06cdfe23303df95041094abf240f3a9b6d979b256afb87",
         "osp_mission/scan_safety.py": "aa884aa26f4aa31d08537095d4de5bf8e2204db5c38530d8911c7573189c2043",
         "osp_mission/time_budget.py": "80139966388080994850046c76ff12fbcfe85cf3752a8e7e96e9212813d26852",
-        "osp_mission/marker_approach.py": "4d09fa7109c1c75ceec94cc3081794979cf76c0ba6214b1685626b3b65569687",
+        "osp_mission/marker_approach.py": "045b0981b85dc060af786df30d4c6df053f169efa464a1f474bf448c437f5a17",
         "osp_mission/escape_connectivity.py": "6eb8278373f43abdfe232200a26c53eb94d6dad8119bc5d4066ba2733aefb2a3",
         "osp_mission/transport_config.py": "c2b8ce556f6a89182150a52c08ea3f224f06328495e7db6eab0ecb47243db5c8",
         "osp_mission/curriculum.py": "d85f75724bbbf7f51dfb2683e798aee5988c84fd1d71c3b74c5ac9a7f46798bd",
@@ -445,6 +155,7 @@
         "osp_mission/raycast.cpp": "7a35ab843c480fc3ba3a82af15385f734f28768a70f85dbca6a2a58d3ef80e04",
         "osp_mission/scenarios.py": "9259bf1e82a6b525bf84d905226465140a183fbbc94e11dfd783907151940d37",
         "osp_mission/frame_variation.py": "b923fbb56d2445d4f49594261ac99d13f9aee482fb96f0cc54582cbe35afa938",
+        "osp_mission/startup_state.py": "a27ede230ca0ce5951df57959c318f7092b53236015f1bc89ffaeb1bb90e7a8c",
         "osp_mission/marker_focus.py": "49ad1b615fb79de8526dd62259e9b7e3df8a3e031f332e4d463361f283f7e52f",
         "osp_mission/view_route_policy.py": "60d69a0bcb40c264c5a313d985e23e813b370bb135fa2bf67f5568c49b4b94aa",
         "osp_mission/inspection_policy.py": "9b4923d05f9772a0cc88047579316cfb9c9dc60336c2454e86f90f7c9ae086b7",
@@ -463,27 +174,28 @@
         "osp_mission/provisional_marker_cues.py": "f8ecec8e8cd97584b851d4b53593dfabe664f82f3973b56bd373b9e72bae5120",
         "osp_mission/surface_policy.py": "aae6e675d22243e4bf61762a10af12d083b4d0e6f06da07171b7197b35de1dd3",
         "osp_mission/raycast.py": "cc3369f75937464149f7513ca1c419e80a750a5ccbbb01ab96838f9d810add3b",
+        "osp_mission/calibrated_wheel_twist.py": "50a2a5fc5bde1a6956e36ffc0476006847780e65ddeed10203128c018c715686",
         "osp_mission/assignment_scenarios.py": "81e371efe765b79f5bf83286772e4aa32470ce049862b332c31d7f73fc62857c",
         "osp_mission/robust_scenarios.py": "f8f6683a773afedf6c08c9ad6f14b5f4ca8823b1fc9035685222d48909f722d8",
         "osp_mission/path_geometry.py": "ba2c98f2af003b75d8f0c55e44113c51c19a2e186e3d4e05e58bea54b7175557",
         "osp_mission/runtime_metrics.py": "25d22a888da81710c7a8ad64f1df3383b3d8cc725eefc41e32eaacc2bbe5b1c8",
         "resource/osp_mission": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       },
-      "/home/peter/simul/training_robust/native90/nav_ack_v2/runtime": {
+      "/home/peter/simul/training_robust/native90/strict_calibrated_gain_v1/runtime": {
         "setup.cfg": "fb522f4576d5429cb1cde1c49f0433cf9fd3181da3862b2f5e3a2ce9798a2003",
         "package.xml": "db6280bcd27e643036d56216dd977326d40dcf79ba21c8786370b8ef7dc3ecc6",
-        "setup.py": "1118bda1db373d349e3359113cd57d9a1516297070a64bd73c15e26ace953a76",
-        "launch/control.launch.py": "4ec5a6ac51d4a7a2332968e73c418a38c7fa9f6bb12a11eef4241a1690dbb94d",
-        "launch/simulation.launch.py": "cfcad9158c7105e8f768c834ca37a62957ed793f3bde27f3160525b228945f1f",
+        "setup.py": "057aaecae1c577eb22a5574c2c35e44eb7ae79a20fcd9bc580d07ff10514522a",
+        "launch/control.launch.py": "364ef79b92d28aef3c01bcc3d8c919e2f15e3a07256a44ea5ae41d4422b85b82",
+        "launch/simulation.launch.py": "a935ef61743c14fdaca30b93f42e4ceb275de31e78a6892be610fc6f74242127",
         "launch/spawn.launch.py": "b7aeb337d7ee67f744741070d239f57131d11bfedbc254ce48fdac6cc6bf79e4",
         "launch/create3_nodes.launch.py": "930619a35ded41509b56f6d7df2865f984386e3f5d23fa50ac74d379dfa522a4",
-        "launch/robot.launch.py": "e4b7da633850d8c4ff18f39e74a98c83386c5fbcdf4e1404aaa1d729823548d5",
+        "launch/robot.launch.py": "4cca7b752b59f5b0009cfce280713ed83523fd1857b3fb8776fa875a1b9d3185",
         "launch/bridge.launch.py": "57cf6e5e18ba8ca71b86cb6eba8278fb2b7788fa8f91d2f9d026b2bdc6f5c26d",
         "launch/description.launch.py": "e7d09c7728caa0242d1ef6aac1eebf0373c65988d881f6dfd06c2bfde546d115",
         "rviz/mission.rviz": "19f70b00d3388b070bd44e84ed0f58dc2408021a118eb24d381ac19d15d19539",
         "config/sim_control.yaml": "f8a26dc341ebf8b608d2d4e5c35f7984e4f2db1cd2b7526a691efad60050ecc8",
         "config/surface_wide_policy.json": "aa11ecff56ffb75d928587e5349eb992b825213af81c7f0b3203f0045634d3b2",
-        "config/slam.yaml": "9d3bdafdf92418ad8931593148f8bf7fecc2685eb5f4276c83d8bb4e3d130171",
+        "config/slam.yaml": "16ab21d573ae732f376c195853a84f8b57d8fbc6659d339344f7c4bec46b3788",
         "config/nav2_assignment.yaml": "f4d8743863fb702357f5b1c9177681848d84e942aa2b257e9a4ac98c74f57f98",
         "config/assignment_demo.yaml": "0484ba146071598aed8b9d8bd6db545a8274382dfe9fdf061e116d5ae114de9d",
         "config/nav2.yaml": "f936bdee74f02e497317f31621b8d0013ff0f592b5d8ba7d570952bd33f5821f",
@@ -491,15 +203,16 @@
         "config/edge_policy.json": "9b743853aa73e4c9a869f55861c8ac21a3ae81e62651aa5103940bbf92b0fae1",
         "config/hidden_demo.yaml": "37c270469c5a29a3009dc63d2a8f22161a8a03d725a719452dbe2c955fc1974e",
         "config/directional_policy.json": "c3e7c1fb2a2975e0501f13369297a46c75c19458cfaf377ec65034752c04d969",
-        "config/nav2_gazebo.yaml": "6065ad970b51be2f17e75ea1459c3373d2bdac4973e6e6863524c6e2aed54177",
+        "config/nav2_gazebo.yaml": "262f66c6f02c70839e89cd6827bee9ca1ce0a3f7592f0f80594391293715a9cb",
         "config/surface_endpoint_policy.json": "a9704e07a05255648335f93b583a270a3778ad598b8e9d17a396fb97c328cc84",
         "config/robust_demo.yaml": "053580f6333f01f77ed8ee87b912a515fbc2a1b222fc9ced552232a95fbc3135",
         "config/inspection_policy.json": "bdc6b87ebf73dc18f178093755b2ac0bacdaba50c4d6fdd3f82842b70c1b0b7a",
-        "config/nav2_robot_policy.yaml": "6065ad970b51be2f17e75ea1459c3373d2bdac4973e6e6863524c6e2aed54177",
+        "config/nav2_robot_policy.yaml": "262f66c6f02c70839e89cd6827bee9ca1ce0a3f7592f0f80594391293715a9cb",
         "config/assignment_policy.json": "d6de012b09dfe58b3a93a6fb08e35462337405124b7680637a30a98cbb05e940",
         "config/scenario.yaml": "442fdf9a66414b7796bb6c20a69c37ca1246e57069b46ab1fb5b58749bb82bea",
         "config/image_transport.xml": "262106dd04cfd648dda90b07c4adea716fb2fac5ac56fdce9c4340edf9a9e26b",
-        "config/sim_ekf.yaml": "fc48afedd4e6eaf4c2e9ab10cdadb0ae20e32b187783df084602ccbb9f6ff880",
+        "config/sim_ekf.yaml": "c59e4ac01b765fdb74f57d1c4e19ab56f47e7932aa9c1d1c701db0faffbab8fc",
+        "test/test_velocity_calibration_runtime.py": "1356f39c2a04051bc28e61a44a38e7c7c6728ff1cc2960c25c939df83bd277e0",
         "test/test_escape_connectivity.py": "045282ee57eee5161c5107e3ffe70f4cfef0236971e75769613bd4483b900369",
         "test/test_plane_views.py": "3f39faae3637867a4f924ce7bdcbf6bb940cf3af218802b13378f5e6f20faddc",
         "test/test_view_route_policy.py": "bd562c09e7f2835397a4f36b17238f9ecfd0a2b29dcc3e83891e95dd125dca4f",
@@ -519,6 +232,7 @@
         "test/test_path_geometry.py": "ba2560aeb15d7586130bfb4096cb2c1f81c2ef8f992214409f4590040da84c05",
         "test/test_edge_policy.py": "a410e14f03e6951719d917e557ef6158e56c00379a97d187c13384b504285900",
         "test/test_detector.py": "c54d32a3c3f4956c13f8dd5ab34d0ba00b5cce5f6ebad62438424a69c46d8e90",
+        "test/test_reacquisition_runtime.py": "0e8ae4216119479854108a772633fbbc3443b9b131098383a4b1d610407f1147",
         "test/test_persistent_edge_coverage.py": "e22910505a7f24a8c41543ea5fa71f9f7e2835ec4af972ed1e13e637452b014e",
         "test/test_reachable_gain.py": "677d736fb77a98719e2748fa4cfe51059ab59daf44afb2f246a606aa89df6b75",
         "test/test_small_marker_inspection.py": "791d486b20246fdbf3b5ca20e0d4c61b9c5662ad0b02089b4ff23372c3ccf07d",
@@ -528,9 +242,11 @@
         "test/test_assignment.py": "fa4ded29fda618aaf184e67353bbac6633f624cda703b81fabecf685be3566cb",
         "test/test_undock.py": "216179ff1b553d7da993eca6ddacb0fc9654d1612a1d4a4411456d9716d0e184",
         "test/test_angular_motion.py": "67b311a1ba1103d99dc34343c9114c400f76335744bbd3c96e08dbaee1b79e73",
+        "test/test_calibrated_gain_runtime.py": "8b58270ef38457247032e9e0111c6db3625bb6170dc7ebf83ebcacbfe7ec0836",
         "test/test_robust.py": "46d6169ec1a12193dd1419b08f98d837839d9cf02117c4a3d141078aef4b785d",
         "test/test_recovery.py": "b9366f55776900750a5498b1d42080aec98a3d0f380f91c61bb1847c2ae1b17f",
-        "test/test_sim_state_estimation.py": "f94bef0693c5b2495ee9de4372850af1380ff9986830c57ec57ed129107c0521",
+        "test/test_sim_state_estimation.py": "3b75bbf8a00dc845c7006289a7ce679faee58480e2e3fbb6e24f1de5844ea2b9",
+        "test/test_startup_state_runtime.py": "6be68e1e84cf39e8783deb643d3f2c6451736fd0066cd24ae8ae95d3fbdf5b1a",
         "test/test_full_scan_policy.py": "fdaf3a5ba647f2293ec21b48503e1556ca3c957c9604fd329a4026d305596a12",
         "test/test_raycast.py": "958028ec78bb3ee619f1981010a5e7c4e488ae3c7ab876f31337013c04f4999f",
         "test/test_lidar_fidelity.py": "4f55e529f7d867a79843599347cc6922d51320114f60bc123320d135949d6fa1",
@@ -539,12 +255,13 @@
         "test/test_core.py": "9ff489b16910e85f78c60beead82ddbcc90a55160adc2be169624f75c483c073",
         "test/test_surface_settings.py": "000a1d5e9ce3708f77d6a4bc9eab72c3a518c68139c44e874d95916f60cf7418",
         "test/test_scan_safety.py": "5d23eb3d1b6fb56e52053bfd1e2fb9052b40216fe71f77cf5e753868fbf2554b",
-        "test/test_marker_approach.py": "cc21bfd834d9ac41035ce544c09b67479212c32621f14f1c57da1ecf6602abc2",
+        "test/test_marker_approach.py": "1cedbc729b7adf4df378b2196966621a75b801d50375aa5fb31414f51a1effd5",
         "test/test_view_tour_policy.py": "bd1d7d2123406532eab7150df7851878b7425da6fc8948ac0a42fb891ffd958c",
         "test/test_face_mass.py": "691cb5f1c21f92932f4746647743a2dbeade716df0c6313ad25701ff7fe4134e",
         "test/test_surface_hits.py": "ff991bf2e1d1cd2f0b1bdff32c5028b3804b85653c0505101438936f2d2b41a3",
         "test/test_tf_restamp.py": "8a05eb148b63d7001c518e77bb85ad30af4f159afbea3d86893ad1562d6dedae",
         "test/test_observation_sweep.py": "72a3103c3ce76faa9b41605054f4c2846f29cbaf6db7258ad713115efc329152",
+        "test/test_startup_guard_ros_runtime.py": "37fab34a5120f4b57c323f9b08d35e20f2763f503422695becbe138a9db9fd69",
         "test/test_native_audit.py": "499603c3a1ca1eb56b9a3d52eb4b11e1d0b7e5e856207ce8746ee58abf7cf662",
         "test/test_marker_focus.py": "b46286cd108e6c8d5e8bdc28cf7b998ab22a79920e6f72cab6ef9685244aed9e",
         "test/test_drive_readiness.py": "9cefcc023f4a5cd82deb95b67d9faa2abcebe3c2dbfac936e547658b0cc1d28b",
@@ -552,22 +269,24 @@
         "test/test_curriculum.py": "bfb3e96a4673b174235ea93bbad6116af57fe9e7fe8d0b2b9aeeec36c0db3520",
         "test/test_policy_training.py": "5a338421864b024c6fd707418224f7c1c158ec613010da454dd390337ec0cde6",
         "test/test_landmark_identity.py": "06aeb85345284899f25824f9a10612a32a797f924060476b69635ac31a7abfe3",
+        "test/test_bounded_gain_runtime.py": "58694a3aad2255582f10fb48860fb75923ee022ceda00acdbda5d7edb983f6d6",
         "osp_mission/scan_alignment.py": "cf1c68d78ce6eae65622590644fef31885b720f3ba3e9461e066b04ca4f5936a",
         "osp_mission/surface_v2_policy.py": "2695940857446154dea065cb1cae232bd3687dda2adc9058d6c77ef8e1a20c0e",
         "osp_mission/dashboard.py": "4e66c5e774f2710ca06c416f2f7339ff036620475eb152c3cd3262f8089c6612",
         "osp_mission/view_tour_policy.py": "c78de8fd4121ab51c6143d55a8181a21faa5e44c3bdde44fbdd020f3017f65a9",
         "osp_mission/space_scenarios.py": "582fa7cbc64c897b30b9d99f62052a87e815bd08b22e070048a7a0cd408a5385",
         "osp_mission/drive_readiness.py": "52b405d286998597c0bc29caebff773f569c948b3d37b6ec45e8166cf00433d7",
+        "osp_mission/startup_guard.py": "8f8fb29472b3334fa89142e56ba6e26153111149f888399deb86a530172f9b13",
         "osp_mission/face_mass.py": "9eefb802aaa1a55a8e7b1ac083541238d376f28339b04018991b1814ef76b0ef",
         "osp_mission/surface_hits.py": "47160c113cd1e5f4bd51376f5f3f163c08735a02f0bd1c19f90ab82d8d65af48",
-        "osp_mission/detector.py": "cbd536289e5af775214403dfe073358ce12e200437c1b5cc808abcb01f9ba104",
-        "osp_mission/mission.py": "4518be1f070ebe83a85eaa012c997958ef11f1865fd0fd2c0436d5e69992cbe4",
+        "osp_mission/detector.py": "5faf7c154c497c5e9b744b2e202bc78d55f492c8ea6e30d63e539b8dc04c8ac8",
+        "osp_mission/mission.py": "673819a2aac4b30d0f86a0bdc42ae269ef73f36e83d68c0a05c57d2b792cce8f",
         "osp_mission/train.py": "021485d29325b5338c3d02a117d531f4ab3fe218786706191d1f2436f3df4f38",
         "osp_mission/landmark_identity.py": "cb5f72c21d78b2e54ce534362ab22c7c5d984db44ecd86275b0a8d1c3dba1bee",
         "osp_mission/policy.py": "7140d1347c2e5c7a1d7975296c571b1682d8825a4bcd58b7b2290688d9fd56ee",
         "osp_mission/gazebo_eval.py": "e6230a587de64429bd94c64cc2138cf194b0ea41c28a8180bc2732f977b309ec",
         "osp_mission/result_io.py": "baf9b7106dbb1f48bd61578009bf734c8ee2a6fb545d784cc37dc69993c0bd8b",
-        "osp_mission/edge_policy.py": "0a0743eada4d67822015bc8c43447b0b3537f928744bab9e17740954c2f7fca8",
+        "osp_mission/edge_policy.py": "56ca772647b74d33c6035eb63a16c6c92fbb7ee4fb0b6463e4e6f111e9e5dd0c",
         "osp_mission/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "osp_mission/fast_sim.py": "a57e51346feeb24da23ae44c14ff3cc9c7c045fc1a7865a05f2bf2c798ce4f3c",
         "osp_mission/record_video.py": "86235912ab45248fbb2df39f8f3099a32691bf0cde4acfe377a84df271b51d33",
@@ -576,6 +295,7 @@
         "osp_mission/exploration_memory.py": "338dbab9494f6a1031eec7c60142bb65749cae4a73abc26debd226bdba6ab1cc",
         "osp_mission/space_geometry.py": "1e07dcb07ae4e14c03212144bc8b0a02f6473cf89159035ba003e9af89446367",
         "osp_mission/angular_motion.py": "756c21d13763a6f23baf58b98dbd87c3bddc492c94d77b3d56310fb214718d63",
+        "osp_mission/landmark_reacquisition.py": "b03abc5238920da9a8f2c64db9c3d3a5997dfdff2208758d43b648bb7eb3d9db",
         "osp_mission/normal_cache.py": "a92c09072a6ae85452562df6e3648aaf688895d3a694cfa504c98efc32ef67f6",
         "osp_mission/native_audit.py": "bf4407ace4157992ccc32627e13bcbd209c11e4655e0e8de9bb4962bb2794534",
         "osp_mission/travel_glance.py": "0878827f9d92b127586df639a099a5b0676e04af32f02140cb8476d5a1c7655b",
@@ -583,7 +303,7 @@
         "osp_mission/policy_audit.py": "0babe06b2f575aa2ac06cdfe23303df95041094abf240f3a9b6d979b256afb87",
         "osp_mission/scan_safety.py": "aa884aa26f4aa31d08537095d4de5bf8e2204db5c38530d8911c7573189c2043",
         "osp_mission/time_budget.py": "80139966388080994850046c76ff12fbcfe85cf3752a8e7e96e9212813d26852",
-        "osp_mission/marker_approach.py": "19aefe34ce51621475214bcdbbc7b4712fbb0c788f8a1dc344b7a654e941e307",
+        "osp_mission/marker_approach.py": "79c6bdbb463bad13defef3e6c03cccbe41c100c19626ac8791906290365bb55a",
         "osp_mission/escape_connectivity.py": "6eb8278373f43abdfe232200a26c53eb94d6dad8119bc5d4066ba2733aefb2a3",
         "osp_mission/transport_config.py": "c2b8ce556f6a89182150a52c08ea3f224f06328495e7db6eab0ecb47243db5c8",
         "osp_mission/curriculum.py": "d85f75724bbbf7f51dfb2683e798aee5988c84fd1d71c3b74c5ac9a7f46798bd",
@@ -593,6 +313,7 @@
         "osp_mission/raycast.cpp": "7a35ab843c480fc3ba3a82af15385f734f28768a70f85dbca6a2a58d3ef80e04",
         "osp_mission/scenarios.py": "9259bf1e82a6b525bf84d905226465140a183fbbc94e11dfd783907151940d37",
         "osp_mission/frame_variation.py": "b923fbb56d2445d4f49594261ac99d13f9aee482fb96f0cc54582cbe35afa938",
+        "osp_mission/startup_state.py": "a27ede230ca0ce5951df57959c318f7092b53236015f1bc89ffaeb1bb90e7a8c",
         "osp_mission/marker_focus.py": "49ad1b615fb79de8526dd62259e9b7e3df8a3e031f332e4d463361f283f7e52f",
         "osp_mission/view_route_policy.py": "60d69a0bcb40c264c5a313d985e23e813b370bb135fa2bf67f5568c49b4b94aa",
         "osp_mission/inspection_policy.py": "9b4923d05f9772a0cc88047579316cfb9c9dc60336c2454e86f90f7c9ae086b7",
@@ -611,6 +332,7 @@
         "osp_mission/provisional_marker_cues.py": "f8ecec8e8cd97584b851d4b53593dfabe664f82f3973b56bd373b9e72bae5120",
         "osp_mission/surface_policy.py": "aae6e675d22243e4bf61762a10af12d083b4d0e6f06da07171b7197b35de1dd3",
         "osp_mission/raycast.py": "cc3369f75937464149f7513ca1c419e80a750a5ccbbb01ab96838f9d810add3b",
+        "osp_mission/calibrated_wheel_twist.py": "50a2a5fc5bde1a6956e36ffc0476006847780e65ddeed10203128c018c715686",
         "osp_mission/assignment_scenarios.py": "81e371efe765b79f5bf83286772e4aa32470ce049862b332c31d7f73fc62857c",
         "osp_mission/robust_scenarios.py": "f8f6683a773afedf6c08c9ad6f14b5f4ca8823b1fc9035685222d48909f722d8",
         "osp_mission/path_geometry.py": "ba2c98f2af003b75d8f0c55e44113c51c19a2e186e3d4e05e58bea54b7175557",
@@ -619,27 +341,32 @@
       }
     },
     "driver_hashes": {
-      "/home/peter/simul/training_robust/spatial_native_curriculum_v5.py": "1f62d694c3bf101f71455f782838489fc291bf19bbc0e6b5a038896a57bf0abd",
-      "/home/peter/simul/training_robust/continual_native_curriculum.py": "bb9c5b14164650ec4c07bcb5089c1b7f06822e98bd892968151997c41601f2f9",
-      "/home/peter/simul/training_robust/audit_native_campaign.py": "07e270b870ef6eadf336371a50df6f81d4ead70a92a94668f90c17783c269a67",
-      "/home/peter/simul/training_robust/native_tournament.py": "537e0de94b1f467415ccd6d0c8c571ba7b363bb8378c3b2f9e6f417eba3d879e",
-      "/home/peter/simul/training_robust/run_native_service.py": "1b7aa19f04c778ed530ad20183e48c5e17a42a15c57b4a054fb410367bfcf942",
-      "/home/peter/simul/training_robust/gazebo_benchmark.py": "72a91dacedcc0aa9b44f08e6b2f57678c4ed2023c21e7833c496a27d595a6f8b",
-      "/home/peter/simul/training_robust/run_floor_pose_regression.py": "2c05c1715e310e44b6aceeb3c18e6a9337add10d4112244713da49c63195f1c7",
       "/home/peter/simul/training_robust/runtime_configuration_v2.py": "34b28c3f7c7973576354413400160157634ddb201f8f67e8d3e4921bc6581f41",
       "/home/peter/simul/scripts/probe_floor_sensors.py": "b8179b3373c4c9f29c9773ecd9d5ba9b74028e903318d5e6e5b02367315695bd",
       "/home/peter/simul/src/osp_mission/osp_mission/space_geometry.py": "1e07dcb07ae4e14c03212144bc8b0a02f6473cf89159035ba003e9af89446367",
+      "/home/peter/simul/training_robust/probe_velocity_profile.py": "b9a52218ed0c59a886c7d237bf43b9ceadeb526db7ebadc76dd7f6e9666021d2",
+      "/home/peter/simul/training_robust/gazebo_benchmark.py": "72a91dacedcc0aa9b44f08e6b2f57678c4ed2023c21e7833c496a27d595a6f8b",
+      "/home/peter/simul/training_robust/run_floor_pose_regression.py": "2c05c1715e310e44b6aceeb3c18e6a9337add10d4112244713da49c63195f1c7",
       "/home/peter/simul/src/osp_mission/osp_mission/space_scenarios.py": "582fa7cbc64c897b30b9d99f62052a87e815bd08b22e070048a7a0cd408a5385",
+      "/home/peter/simul/training_robust/audit_native_campaign.py": "07e270b870ef6eadf336371a50df6f81d4ead70a92a94668f90c17783c269a67",
+      "/home/peter/simul/training_robust/native_tournament.py": "537e0de94b1f467415ccd6d0c8c571ba7b363bb8378c3b2f9e6f417eba3d879e",
+      "/home/peter/simul/training_robust/continual_native_curriculum.py": "bb9c5b14164650ec4c07bcb5089c1b7f06822e98bd892968151997c41601f2f9",
+      "/home/peter/simul/training_robust/audit_approach_evidence.py": "75474ec0783543c91ef9186f074c7313fec609b51d342b73931ed1fce1734f06",
+      "/home/peter/simul/training_robust/launch_spatial_cem_v6.py": "34ea390084c6968af2ad5e3e27756d2e643f3b1382abc21639771e10f6855862",
+      "/home/peter/simul/training_robust/run_windowed_witness_regression_v2.py": "ff3b58225512abb7537e0bd751bede5f1ab80621633b1d6c50d10285ec78c2ba",
+      "/home/peter/simul/src/osp_mission/osp_mission/scenarios.py": "9259bf1e82a6b525bf84d905226465140a183fbbc94e11dfd783907151940d37",
+      "/home/peter/simul/training_robust/spatial_native_curriculum_v5.py": "1f62d694c3bf101f71455f782838489fc291bf19bbc0e6b5a038896a57bf0abd",
+      "/home/peter/simul/training_robust/spatial_native_curriculum_v6.py": "2d5f8a9a6057d15b30ce75d21e931c898ef027cb3229335dd6cac0c44c20cd07",
+      "/home/peter/simul/training_robust/run_native_service.py": "1b7aa19f04c778ed530ad20183e48c5e17a42a15c57b4a054fb410367bfcf942",
       "/home/peter/simul/src/osp_mission/osp_mission/marker_sizes.py": "7bfde380d0f40314387767929f16ebae344982d8154e9cc5a2ece0aa7e4f521e",
-      "/home/peter/simul/src/osp_mission/osp_mission/robust_scenarios.py": "f8f6683a773afedf6c08c9ad6f14b5f4ca8823b1fc9035685222d48909f722d8",
-      "/home/peter/simul/src/osp_mission/osp_mission/scenarios.py": "9259bf1e82a6b525bf84d905226465140a183fbbc94e11dfd783907151940d37"
+      "/home/peter/simul/src/osp_mission/osp_mission/robust_scenarios.py": "f8f6683a773afedf6c08c9ad6f14b5f4ca8823b1fc9035685222d48909f722d8"
     },
     "population": 4,
     "training_episodes_per_generation": 28,
     "maximum_native_concurrency": 2,
     "time_objective": "PAR-2, failures cost1200s; require20% lower paired PAR-2",
-    "validation_gate": ">=26/28 paired native successes,>=3/4 per shape,0 contacts,>=20% lower PAR-2",
-    "final_gate": "After spatial gate:>=36/40 independent original PDF benchmarks,0 contacts",
+    "validation_gate": ">=26/28candidate,>=3/4perfamily,0contacts,>=20%lowerPAR2",
+    "final_gate": "After spatial gate:>=36/40independent originalPDF,0contacts",
     "train_map_reuse_allowed": false,
     "policy_receives_ground_truth": false,
     "known_remaining_issues": [
@@ -647,7 +374,7 @@
       "Stale identity conflict recovery",
       "Approach status display"
     ],
-    "parent_campaign": "/home/peter/simul/training_robust/native90/spatial_cem_v3",
+    "parent_campaign": "/home/peter/simul/training_robust/native90/spatial_cem_v5",
     "perception_runtime": "/home/peter/simul/training_robust/native90/small_marker_followup_v2/runtime",
     "tf_selection": {
       "enabled": true,
@@ -685,9 +412,9 @@
         }
       ]
     },
-    "purpose": "Fresh exterior CEM over weights and bounded-gain runtime;independent actual-approach audit",
-    "pilot_gate": "7/7 paired shape pilots,0 contacts,>=20% lower PAR-2",
-    "spatial_final_gate": ">=38/42 native successes,>=5/6 per shape,0 contacts",
+    "purpose": "Fresh-space coefficient learning on corrected sensor/SLAM/camera/near-proof source",
+    "pilot_gate": "7/7candidate paired shapes,0contacts,>=20%lowerPAR2 against calibrated predecessor",
+    "spatial_final_gate": ">=38/42candidate,>=5/6perfamily,0contacts",
     "outer_shapes": [
       "circle",
       "triangle",
@@ -704,1234 +431,1011 @@
     "action_acknowledgement_effect": "1000ms used in both arms; not attributed to this comparison",
     "runtime_configuration_gate_required": true,
     "runtime_alternatives": [
-      "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
-      "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime",
-      "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime"
+      "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime"
     ],
     "runtime_search": "Roles0/1 use incumbent source;roles2/3 explore other2sources;winner retains its source through every gate",
     "baseline_action_acknowledgement_timeout_ms": 1000,
-    "baseline_live_local_costmap": false,
+    "baseline_live_local_costmap": true,
     "navigation_diagnostic": "/home/peter/simul/training_robust/native90/navigation_regression_v1",
     "local_costmap_change": "Rolling odom map uses live voxel + inflation; global SLAM/static map retained",
     "initial_champion_approach_witness_enabled": false,
     "generalization_verified": false,
-    "production_promoted": false
+    "production_promoted": false,
+    "domains": [
+      124,
+      125
+    ],
+    "prior_engineering_screen": "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1",
+    "native_engineering_reference": "/home/peter/simul/training_robust/native90/windowed_witness_regression_v2",
+    "primary_baseline": "Frozen calibrated predecessor with identical camera/control/SLAM and original consecutive witness",
+    "exact_physical_credit_gate": true
   },
   "current_jobs": [
     {
       "number": 0,
+      "phase": "train",
+      "generation": 0,
       "role": "0",
-      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
-      "domain": 114,
-      "status": "done",
+      "parameters": [
+        1.0,
+        2.409531985394154,
+        0.4889512207810997,
+        0.7812959734881743,
+        0.6473764656964455
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191300000.yaml",
+        "seed": 1191300000,
+        "sha256": "a1cd5ad53efd1a4640deb9169a3dc4d3ecdee727c0166efb1ed5e364ced2af6d",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "walls",
+        "arena": {
+          "shape": "circle",
+          "width_m": 18.852783061225846,
+          "height_m": 18.852783061225846,
+          "area_m2": 278.35553362792405
+        },
+        "physical_sha256": "02a8403e546b7fe8e1af43cedce4f08871957d36606945b1f2521a6ce275f8dd"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00000_train_g0_0",
+      "status": "running",
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space6-00000.service",
+      "domain": 124,
       "floor_sensor_gate": true,
       "runtime_configuration_gate": true,
-      "outcome": {
-        "success": false,
-        "targets": 2,
-        "approached": 2,
-        "contacts": 0,
-        "seconds": 600.222,
-        "infrastructure_failure": false,
-        "reason": "timeout"
-      }
+      "configuration_observation_attempts": 1,
+      "velocity_profile_gate": true,
+      "velocity_observation_attempts": 1
     },
     {
       "number": 1,
+      "phase": "train",
+      "generation": 0,
       "role": "0",
-      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
-      "domain": 115,
-      "status": "done",
-      "floor_sensor_gate": true,
-      "runtime_configuration_gate": true,
-      "outcome": {
-        "success": true,
-        "targets": 3,
-        "approached": 3,
-        "contacts": 0,
-        "seconds": 408.346,
-        "infrastructure_failure": false,
-        "reason": "all_targets_found"
-      }
+      "parameters": [
+        1.0,
+        2.409531985394154,
+        0.4889512207810997,
+        0.7812959734881743,
+        0.6473764656964455
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191300101.yaml",
+        "seed": 1191300101,
+        "sha256": "73be878388f4f545bfda71eace740afd620b5ebd2eb1304818e3ba897012dc89",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "mixed",
+        "arena": {
+          "shape": "triangle",
+          "width_m": 20.58414964172733,
+          "height_m": 14.418731368056953,
+          "area_m2": 148.39866206197607
+        },
+        "physical_sha256": "c1bacce9cd7f6ad7856db7e6fde73d97e98283983730a05875f0be8cb4c21a6a"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00001_train_g0_0",
+      "status": "prepared",
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space6-00001.service"
     },
     {
       "number": 2,
+      "phase": "train",
+      "generation": 0,
       "role": "0",
-      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
-      "domain": 115,
-      "status": "done",
-      "floor_sensor_gate": true,
-      "runtime_configuration_gate": true,
-      "outcome": {
-        "success": true,
-        "targets": 3,
-        "approached": 3,
-        "contacts": 0,
-        "seconds": 52.778999999999996,
-        "infrastructure_failure": false,
-        "reason": "all_targets_found"
-      }
+      "parameters": [
+        1.0,
+        2.409531985394154,
+        0.4889512207810997,
+        0.7812959734881743,
+        0.6473764656964455
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191300202.yaml",
+        "seed": 1191300202,
+        "sha256": "50d99d07d4d78119b120e4078f42fe18f0ab7e66bed04b2cfe8f543842b68025",
+        "requested_obstacles": 16,
+        "actual_obstacles": 16,
+        "mount_profile": "obstacles",
+        "arena": {
+          "shape": "trapezoid",
+          "width_m": 19.031489922812572,
+          "height_m": 15.318512819487296,
+          "area_m2": 242.16221825591174
+        },
+        "physical_sha256": "f3de29f55a2e0c51a4ce282d6ff718fac8ce3c06fbcacdb3629fc559aef6897a"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00002_train_g0_0",
+      "status": "prepared",
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space6-00002.service"
     },
     {
       "number": 3,
+      "phase": "train",
+      "generation": 0,
       "role": "0",
-      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
-      "domain": 115,
-      "status": "done",
-      "floor_sensor_gate": true,
-      "runtime_configuration_gate": true,
-      "outcome": {
-        "success": true,
-        "targets": 3,
-        "approached": 3,
-        "contacts": 0,
-        "seconds": 319.661,
-        "infrastructure_failure": false,
-        "reason": "all_targets_found"
-      }
+      "parameters": [
+        1.0,
+        2.409531985394154,
+        0.4889512207810997,
+        0.7812959734881743,
+        0.6473764656964455
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191300303.yaml",
+        "seed": 1191300303,
+        "sha256": "a988399ea5c0f80d1abd2b6d7188e301bfab4e72ecd1e470f449f488b796291a",
+        "requested_obstacles": 24,
+        "actual_obstacles": 24,
+        "mount_profile": "hidden_obstacles",
+        "arena": {
+          "shape": "rectangle",
+          "width_m": 23.66103368301541,
+          "height_m": 12.81895278434403,
+          "area_m2": 303.3096736113483
+        },
+        "physical_sha256": "cfc9d75f14df9d19ea32e604ca7437e098da9c8b60a4d04e2e664be9c6903979"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00003_train_g0_0",
+      "status": "prepared",
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space6-00003.service"
     },
     {
       "number": 4,
+      "phase": "train",
+      "generation": 0,
       "role": "0",
-      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
-      "domain": 114,
-      "status": "done",
-      "floor_sensor_gate": true,
-      "runtime_configuration_gate": true,
-      "outcome": {
-        "success": true,
-        "targets": 3,
-        "approached": 3,
-        "contacts": 0,
-        "seconds": 225.069,
-        "infrastructure_failure": false,
-        "reason": "all_targets_found"
-      }
+      "parameters": [
+        1.0,
+        2.409531985394154,
+        0.4889512207810997,
+        0.7812959734881743,
+        0.6473764656964455
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191300404.yaml",
+        "seed": 1191300404,
+        "sha256": "8d9c0bbdd1cab3106a6fe225e47d5859a800a1855ab49ed4c536f5d5c80e25c9",
+        "requested_obstacles": 32,
+        "actual_obstacles": 32,
+        "mount_profile": "walls",
+        "arena": {
+          "shape": "l_shape",
+          "width_m": 24.23388955234381,
+          "height_m": 15.850075605052517,
+          "area_m2": 292.65651405978275
+        },
+        "physical_sha256": "002075f44d2d1da6d88877304cf45061ab79b40bf64dddbadd806b55e4dc95b7"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00004_train_g0_0",
+      "status": "prepared",
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space6-00004.service"
     },
     {
       "number": 5,
+      "phase": "train",
+      "generation": 0,
       "role": "0",
-      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
-      "domain": 115,
-      "status": "done",
-      "floor_sensor_gate": true,
-      "runtime_configuration_gate": true,
-      "outcome": {
-        "success": true,
-        "targets": 3,
-        "approached": 3,
-        "contacts": 0,
-        "seconds": 387.504,
-        "infrastructure_failure": false,
-        "reason": "all_targets_found"
-      }
+      "parameters": [
+        1.0,
+        2.409531985394154,
+        0.4889512207810997,
+        0.7812959734881743,
+        0.6473764656964455
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191300505.yaml",
+        "seed": 1191300505,
+        "sha256": "5ff9fab1a154df32f978f85548e1c06c96c0ebe4ac97b9b5635ff32e057d9105",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "mixed",
+        "arena": {
+          "shape": "u_shape",
+          "width_m": 20.30194171375593,
+          "height_m": 15.499659564877142,
+          "area_m2": 219.58322378964615
+        },
+        "physical_sha256": "66eb0a7dff609440c9987e24dcfab5a49ee5ade9ebdc6ad0d32bf76675edb162"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00005_train_g0_0",
+      "status": "prepared",
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space6-00005.service"
     },
     {
       "number": 6,
+      "phase": "train",
+      "generation": 0,
       "role": "0",
-      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
-      "domain": 114,
-      "status": "done",
-      "floor_sensor_gate": true,
-      "runtime_configuration_gate": true,
-      "outcome": {
-        "success": true,
-        "targets": 3,
-        "approached": 3,
-        "contacts": 0,
-        "seconds": 387.0,
-        "infrastructure_failure": false,
-        "reason": "all_targets_found"
-      }
+      "parameters": [
+        1.0,
+        2.409531985394154,
+        0.4889512207810997,
+        0.7812959734881743,
+        0.6473764656964455
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191300606.yaml",
+        "seed": 1191300606,
+        "sha256": "1c9980f8dd0848dbac3b6c640ceed4e350eb47d07841a35751f23a1ea7d56717",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "obstacles",
+        "arena": {
+          "shape": "rooms",
+          "width_m": 22.984607624055986,
+          "height_m": 11.555117063698587,
+          "area_m2": 265.58983175914597
+        },
+        "physical_sha256": "594cd502f45c3a805babb2a93846402cec79f526bbcb58bf74aa79ef5ce0067b"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00006_train_g0_0",
+      "status": "prepared",
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space6-00006.service"
     },
     {
       "number": 7,
+      "phase": "train",
+      "generation": 0,
       "role": "1",
-      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
-      "domain": 115,
-      "status": "done",
-      "floor_sensor_gate": true,
-      "runtime_configuration_gate": true,
-      "outcome": {
-        "success": false,
-        "targets": 0,
-        "approached": 0,
-        "contacts": 0,
-        "seconds": 600.269,
-        "infrastructure_failure": false,
-        "reason": "timeout"
-      }
+      "parameters": [
+        1.0,
+        2.9879238625750273,
+        0.3166938245555003,
+        0.9355471497656873,
+        0.41004466645383036
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191300707.yaml",
+        "seed": 1191300707,
+        "sha256": "015bdb30a75391cb93ff16ab3a2a223d1d8c4290f0248ebbae30c2e55225bb85",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "walls",
+        "arena": {
+          "shape": "circle",
+          "width_m": 18.24301534414155,
+          "height_m": 18.24301534414155,
+          "area_m2": 260.64065954762987
+        },
+        "physical_sha256": "41e241c039ce747f7c994710e1f7ce0d23f1b60aca0c500b73fe32d970f3456f"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00007_train_g0_1",
+      "status": "prepared",
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space6-00007.service"
     },
     {
       "number": 8,
+      "phase": "train",
+      "generation": 0,
       "role": "1",
-      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
-      "domain": 114,
-      "status": "done",
-      "floor_sensor_gate": true,
-      "runtime_configuration_gate": true,
-      "outcome": {
-        "success": true,
-        "targets": 3,
-        "approached": 3,
-        "contacts": 0,
-        "seconds": 358.712,
-        "infrastructure_failure": false,
-        "reason": "all_targets_found"
-      }
+      "parameters": [
+        1.0,
+        2.9879238625750273,
+        0.3166938245555003,
+        0.9355471497656873,
+        0.41004466645383036
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191300808.yaml",
+        "seed": 1191300808,
+        "sha256": "bb929d07f5ab1cb50d961843fcfb68516210b3ce6b76213eea6f1137a56be7b7",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "mixed",
+        "arena": {
+          "shape": "triangle",
+          "width_m": 25.91816680101432,
+          "height_m": 16.96173176488864,
+          "area_m2": 219.80849655822337
+        },
+        "physical_sha256": "1f996fdedd2dff41a6fe4027b3cac39c4a5c1e9ca73a1e7cc6105468a87a0af0"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00008_train_g0_1",
+      "status": "prepared",
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space6-00008.service"
     },
     {
       "number": 9,
+      "phase": "train",
+      "generation": 0,
       "role": "1",
-      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
-      "domain": 114,
-      "status": "done",
-      "floor_sensor_gate": true,
-      "runtime_configuration_gate": true,
-      "outcome": {
-        "success": true,
-        "targets": 3,
-        "approached": 3,
-        "contacts": 0,
-        "seconds": 507.1,
-        "infrastructure_failure": false,
-        "reason": "all_targets_found"
-      }
+      "parameters": [
+        1.0,
+        2.9879238625750273,
+        0.3166938245555003,
+        0.9355471497656873,
+        0.41004466645383036
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191300909.yaml",
+        "seed": 1191300909,
+        "sha256": "8e0fb57b89ba7510218376df8e618cc7a221aeddd66a6992913aa0eb5a538ee8",
+        "requested_obstacles": 16,
+        "actual_obstacles": 16,
+        "mount_profile": "obstacles",
+        "arena": {
+          "shape": "trapezoid",
+          "width_m": 16.213298459822944,
+          "height_m": 11.575452111864477,
+          "area_m2": 154.3749383883366
+        },
+        "physical_sha256": "8a1b5f9eaea4b023a9bf636a4eb4eedf8c5559d89552b14979a8e862939be386"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00009_train_g0_1",
+      "status": "prepared",
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space6-00009.service"
     },
     {
       "number": 10,
+      "phase": "train",
+      "generation": 0,
       "role": "1",
-      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
-      "domain": 115,
-      "status": "done",
-      "floor_sensor_gate": null,
-      "runtime_configuration_gate": null,
-      "outcome": {
-        "success": false,
-        "targets": 0,
-        "approached": 0,
-        "contacts": 0,
-        "seconds": 600.0,
-        "infrastructure_failure": true,
-        "reason": "native_input_or_effective_configuration_unverified"
-      }
+      "parameters": [
+        1.0,
+        2.9879238625750273,
+        0.3166938245555003,
+        0.9355471497656873,
+        0.41004466645383036
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191301010.yaml",
+        "seed": 1191301010,
+        "sha256": "902ccdf8f90c47efcb5c2ea8012359dd778ca7fc011223aa9f175ecf020d9f79",
+        "requested_obstacles": 24,
+        "actual_obstacles": 24,
+        "mount_profile": "hidden_obstacles",
+        "arena": {
+          "shape": "rectangle",
+          "width_m": 16.83908871249384,
+          "height_m": 11.904907835586272,
+          "area_m2": 200.46779915750025
+        },
+        "physical_sha256": "ac2b764398baea35abf9ebf2c55a20a36d316325688980f33db6243598b922d3"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00010_train_g0_1",
+      "status": "prepared",
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space6-00010.service"
     },
     {
       "number": 11,
+      "phase": "train",
+      "generation": 0,
       "role": "1",
-      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
-      "domain": 115,
-      "status": "done",
-      "floor_sensor_gate": true,
-      "runtime_configuration_gate": true,
-      "outcome": {
-        "success": true,
-        "targets": 3,
-        "approached": 3,
-        "contacts": 0,
-        "seconds": 358.222,
-        "infrastructure_failure": false,
-        "reason": "all_targets_found"
-      }
+      "parameters": [
+        1.0,
+        2.9879238625750273,
+        0.3166938245555003,
+        0.9355471497656873,
+        0.41004466645383036
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191301111.yaml",
+        "seed": 1191301111,
+        "sha256": "55c7d9a70af92e19afd94fcfe932da237818b104ad1a9cf23a3a539eb24c0903",
+        "requested_obstacles": 32,
+        "actual_obstacles": 27,
+        "mount_profile": "walls",
+        "arena": {
+          "shape": "l_shape",
+          "width_m": 17.41379814210463,
+          "height_m": 10.363029937893838,
+          "area_m2": 139.43025623668444
+        },
+        "physical_sha256": "62187dcef1e95250863873239b51dd4c32f7f4a1768c58456fff98866c8398eb"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00011_train_g0_1",
+      "status": "prepared",
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space6-00011.service"
     },
     {
       "number": 12,
+      "phase": "train",
+      "generation": 0,
       "role": "1",
-      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
-      "domain": 114,
-      "status": "done",
-      "floor_sensor_gate": true,
-      "runtime_configuration_gate": true,
-      "outcome": {
-        "success": true,
-        "targets": 3,
-        "approached": 3,
-        "contacts": 0,
-        "seconds": 59.812,
-        "infrastructure_failure": false,
-        "reason": "all_targets_found"
-      }
+      "parameters": [
+        1.0,
+        2.9879238625750273,
+        0.3166938245555003,
+        0.9355471497656873,
+        0.41004466645383036
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191301212.yaml",
+        "seed": 1191301212,
+        "sha256": "278130bf4e13b1964a5de19eda9708cb05bdc5246d1a8252db40995f70d734e9",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "mixed",
+        "arena": {
+          "shape": "u_shape",
+          "width_m": 21.400782944836934,
+          "height_m": 12.735956687818891,
+          "area_m2": 215.0988419588908
+        },
+        "physical_sha256": "bb63c013d946c882123e760e8b40f6e9133b11c5f37f34041c49bcebeaa2d792"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00012_train_g0_1",
+      "status": "prepared",
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space6-00012.service"
     },
     {
       "number": 13,
+      "phase": "train",
+      "generation": 0,
       "role": "1",
-      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
-      "domain": 114,
-      "status": "done",
-      "floor_sensor_gate": true,
-      "runtime_configuration_gate": true,
-      "outcome": {
-        "success": false,
-        "targets": 2,
-        "approached": 3,
-        "contacts": 0,
-        "seconds": 600.146,
-        "infrastructure_failure": false,
-        "reason": "timeout"
-      }
+      "parameters": [
+        1.0,
+        2.9879238625750273,
+        0.3166938245555003,
+        0.9355471497656873,
+        0.41004466645383036
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191301313.yaml",
+        "seed": 1191301313,
+        "sha256": "5663b0210488ebc0d89d16db225e9d111addc4132d8b86b40c34019dd9bb33a9",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "obstacles",
+        "arena": {
+          "shape": "rooms",
+          "width_m": 23.910043584488655,
+          "height_m": 14.278335704569113,
+          "area_m2": 341.395629010208
+        },
+        "physical_sha256": "66c4c25759c6fa26b2b0e2fa22236476447dd6abb9dafc11863e135b77374637"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00013_train_g0_1",
+      "status": "prepared",
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space6-00013.service"
     },
     {
       "number": 14,
+      "phase": "train",
+      "generation": 0,
       "role": "2",
-      "workspace": "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime",
-      "domain": 115,
-      "status": "done",
-      "floor_sensor_gate": true,
-      "runtime_configuration_gate": true,
-      "outcome": {
-        "success": true,
-        "targets": 3,
-        "approached": 3,
-        "contacts": 0,
-        "seconds": 403.502,
-        "infrastructure_failure": false,
-        "reason": "all_targets_found"
-      }
+      "parameters": [
+        1.0,
+        2.674919605990809,
+        0.48242051480811976,
+        1.671897241930709,
+        0.8432736861909724
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191301414.yaml",
+        "seed": 1191301414,
+        "sha256": "66cff921ccf4967e578701f0b1b9a243444babb0ea9116965a1637bbfd14c0d3",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "walls",
+        "arena": {
+          "shape": "circle",
+          "width_m": 16.16664736943008,
+          "height_m": 16.16664736943008,
+          "area_m2": 204.68633512050903
+        },
+        "physical_sha256": "b5a60d7805acd996789c43fb4e3fc8b648908bd6996490b86bd6e85e0eacf0f9"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00014_train_g0_2",
+      "status": "prepared",
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space6-00014.service"
     },
     {
       "number": 15,
+      "phase": "train",
+      "generation": 0,
       "role": "2",
-      "workspace": "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime",
-      "domain": 114,
-      "status": "done",
-      "floor_sensor_gate": true,
-      "runtime_configuration_gate": true,
-      "outcome": {
-        "success": false,
-        "targets": 2,
-        "approached": 3,
-        "contacts": 0,
-        "seconds": 600.295,
-        "infrastructure_failure": false,
-        "reason": "timeout"
-      }
+      "parameters": [
+        1.0,
+        2.674919605990809,
+        0.48242051480811976,
+        1.671897241930709,
+        0.8432736861909724
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191301515.yaml",
+        "seed": 1191301515,
+        "sha256": "086ca3be2aabc535585ac748fb76aaf40e71d0d57511573eabe5e5838d1b59df",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "mixed",
+        "arena": {
+          "shape": "triangle",
+          "width_m": 21.281111165929396,
+          "height_m": 15.988641558766595,
+          "area_m2": 170.1280292021553
+        },
+        "physical_sha256": "b527fd33a24a34d32309f205fa405d2d6fbcf2d1f8abd15ef8fa7cbf7d250f28"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00015_train_g0_2",
+      "status": "prepared",
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space6-00015.service"
     },
     {
       "number": 16,
+      "phase": "train",
+      "generation": 0,
       "role": "2",
-      "workspace": "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime",
-      "domain": 115,
-      "status": "done",
-      "floor_sensor_gate": true,
-      "runtime_configuration_gate": true,
-      "outcome": {
-        "success": false,
-        "targets": 1,
-        "approached": 2,
-        "contacts": 0,
-        "seconds": 600.447,
-        "infrastructure_failure": false,
-        "reason": "timeout"
-      }
+      "parameters": [
+        1.0,
+        2.674919605990809,
+        0.48242051480811976,
+        1.671897241930709,
+        0.8432736861909724
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191301616.yaml",
+        "seed": 1191301616,
+        "sha256": "60d4188227764fd737446261e1819958773ba5bd0e63c5eae50804bb43794287",
+        "requested_obstacles": 16,
+        "actual_obstacles": 16,
+        "mount_profile": "obstacles",
+        "arena": {
+          "shape": "trapezoid",
+          "width_m": 16.047507086690743,
+          "height_m": 12.707547314085355,
+          "area_m2": 154.83308098055932
+        },
+        "physical_sha256": "74069099390f9c70b3fdc921dfc0a0c83d52d22ca19bbb8b444e75c5ff8a063f"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00016_train_g0_2",
+      "status": "prepared",
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space6-00016.service"
     },
     {
       "number": 17,
+      "phase": "train",
+      "generation": 0,
       "role": "2",
-      "workspace": "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime",
-      "domain": 114,
-      "status": "done",
-      "floor_sensor_gate": true,
-      "runtime_configuration_gate": true,
-      "outcome": {
-        "success": false,
-        "targets": 2,
-        "approached": 3,
-        "contacts": 0,
-        "seconds": 600.1,
-        "infrastructure_failure": false,
-        "reason": "timeout"
-      }
+      "parameters": [
+        1.0,
+        2.674919605990809,
+        0.48242051480811976,
+        1.671897241930709,
+        0.8432736861909724
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191301717.yaml",
+        "seed": 1191301717,
+        "sha256": "bbd1b29275fd095d718b41a90add0635b9dab5880dce317d83f326ca8ee88df7",
+        "requested_obstacles": 24,
+        "actual_obstacles": 24,
+        "mount_profile": "hidden_obstacles",
+        "arena": {
+          "shape": "rectangle",
+          "width_m": 16.636771668295648,
+          "height_m": 14.370167304181923,
+          "area_m2": 239.07319227488225
+        },
+        "physical_sha256": "04430b362bfe650baf231eddb5d334ca5e2c691509075daf4605d1ddffe14b46"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00017_train_g0_2",
+      "status": "prepared",
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space6-00017.service"
     },
     {
       "number": 18,
+      "phase": "train",
+      "generation": 0,
       "role": "2",
-      "workspace": "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime",
-      "domain": 115,
-      "status": "done",
-      "floor_sensor_gate": true,
-      "runtime_configuration_gate": true,
-      "outcome": {
-        "success": false,
-        "targets": 2,
-        "approached": 2,
-        "contacts": 0,
-        "seconds": 600.4,
-        "infrastructure_failure": false,
-        "reason": "timeout"
-      }
+      "parameters": [
+        1.0,
+        2.674919605990809,
+        0.48242051480811976,
+        1.671897241930709,
+        0.8432736861909724
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191301818.yaml",
+        "seed": 1191301818,
+        "sha256": "3a0c49ba628718cb50d599ae9548376d887afa829dcf5e166e557f2e58c16664",
+        "requested_obstacles": 32,
+        "actual_obstacles": 32,
+        "mount_profile": "walls",
+        "arena": {
+          "shape": "l_shape",
+          "width_m": 20.374906612224144,
+          "height_m": 12.748306689656832,
+          "area_m2": 214.11804237408435
+        },
+        "physical_sha256": "5416743c6fb885e5b69b861bd88d5b4db5011d9c77042e8556ec909a4b4d1768"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00018_train_g0_2",
+      "status": "prepared",
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space6-00018.service"
     },
     {
       "number": 19,
+      "phase": "train",
+      "generation": 0,
       "role": "2",
-      "workspace": "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime",
-      "domain": 114,
-      "status": "done",
-      "floor_sensor_gate": null,
-      "runtime_configuration_gate": null,
-      "outcome": {
-        "success": false,
-        "targets": 0,
-        "approached": 0,
-        "contacts": 0,
-        "seconds": 600.0,
-        "infrastructure_failure": true,
-        "reason": "native_input_or_effective_configuration_unverified"
-      }
+      "parameters": [
+        1.0,
+        2.674919605990809,
+        0.48242051480811976,
+        1.671897241930709,
+        0.8432736861909724
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191301919.yaml",
+        "seed": 1191301919,
+        "sha256": "29594c5ff4ef69469421326547e7322b81aee84700b19fc108773a39b2d539ec",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "mixed",
+        "arena": {
+          "shape": "u_shape",
+          "width_m": 24.375102215206127,
+          "height_m": 10.974632207126675,
+          "area_m2": 191.08908211202785
+        },
+        "physical_sha256": "a906e95396565620791ff9bca3c3629d19c01bbe5ed53c756a5e3af9870348a5"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00019_train_g0_2",
+      "status": "prepared",
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space6-00019.service"
     },
     {
       "number": 20,
+      "phase": "train",
+      "generation": 0,
       "role": "2",
-      "workspace": "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime",
-      "domain": 115,
-      "status": "done",
-      "floor_sensor_gate": true,
-      "runtime_configuration_gate": true,
-      "outcome": {
-        "success": false,
-        "targets": 2,
-        "approached": 3,
-        "contacts": 0,
-        "seconds": 600.376,
-        "infrastructure_failure": false,
-        "reason": "timeout"
-      }
+      "parameters": [
+        1.0,
+        2.674919605990809,
+        0.48242051480811976,
+        1.671897241930709,
+        0.8432736861909724
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191302020.yaml",
+        "seed": 1191302020,
+        "sha256": "4df610b6c93aceec6caa64df88892d983ccc53c43efd72cb050218fb2b161cd2",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "obstacles",
+        "arena": {
+          "shape": "rooms",
+          "width_m": 18.92000118964858,
+          "height_m": 16.016409579470096,
+          "area_m2": 303.03048829747314
+        },
+        "physical_sha256": "c6570b7322c400538a0bee6eea9df62a8558a0a57ceb4f53fc82ae27da25a626"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00020_train_g0_2",
+      "status": "prepared",
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space6-00020.service"
     },
     {
       "number": 21,
+      "phase": "train",
+      "generation": 0,
       "role": "3",
-      "workspace": "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime",
-      "domain": 114,
-      "status": "done",
-      "floor_sensor_gate": true,
-      "runtime_configuration_gate": true,
-      "outcome": {
-        "success": false,
-        "targets": 3,
-        "approached": 3,
-        "contacts": 0,
-        "seconds": 265.224,
-        "infrastructure_failure": false,
-        "reason": "all_targets_found"
-      }
+      "parameters": [
+        1.0,
+        3.732211051473246,
+        0.8202669529596205,
+        0.6459887334171833,
+        0.37765537315426945
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191302121.yaml",
+        "seed": 1191302121,
+        "sha256": "657d0126f7ed7a03a1f77c3494d9f62b83fad52890c6dd62d31fdc3605acca02",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "walls",
+        "arena": {
+          "shape": "circle",
+          "width_m": 15.511423089196509,
+          "height_m": 15.511423089196509,
+          "area_m2": 188.43093657154097
+        },
+        "physical_sha256": "5cbc0abfca3198a253c11bdba728945ab4574cbf31a94b6f662d4d3b1b452e81"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00021_train_g0_3",
+      "status": "prepared",
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space6-00021.service"
     },
     {
       "number": 22,
+      "phase": "train",
+      "generation": 0,
       "role": "3",
-      "workspace": "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime",
-      "domain": 114,
-      "status": "done",
-      "floor_sensor_gate": true,
-      "runtime_configuration_gate": true,
-      "outcome": {
-        "success": false,
-        "targets": 1,
-        "approached": 3,
-        "contacts": 0,
-        "seconds": 600.157,
-        "infrastructure_failure": false,
-        "reason": "timeout"
-      }
+      "parameters": [
+        1.0,
+        3.732211051473246,
+        0.8202669529596205,
+        0.6459887334171833,
+        0.37765537315426945
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191302222.yaml",
+        "seed": 1191302222,
+        "sha256": "4d87193b2a0b5f91ffea3e43df96b2ded97a58fa0788fe6990abb602474d3d16",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "mixed",
+        "arena": {
+          "shape": "triangle",
+          "width_m": 19.58210171747591,
+          "height_m": 18.915651887322532,
+          "area_m2": 185.2041096549575
+        },
+        "physical_sha256": "b60f38f52e31241eecc8b43dc1706569121027b57738e64d9f2e83a7db4011bb"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00022_train_g0_3",
+      "status": "prepared",
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space6-00022.service"
     },
     {
       "number": 23,
+      "phase": "train",
+      "generation": 0,
       "role": "3",
-      "workspace": "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime",
-      "domain": 115,
-      "status": "running",
-      "floor_sensor_gate": true,
-      "runtime_configuration_gate": true,
-      "outcome": null
+      "parameters": [
+        1.0,
+        3.732211051473246,
+        0.8202669529596205,
+        0.6459887334171833,
+        0.37765537315426945
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191302323.yaml",
+        "seed": 1191302323,
+        "sha256": "37e8528ed189e70efc9a81d258ae2681b5de5f2f8974890293beb262b1551cd6",
+        "requested_obstacles": 16,
+        "actual_obstacles": 16,
+        "mount_profile": "obstacles",
+        "arena": {
+          "shape": "trapezoid",
+          "width_m": 15.456268704735463,
+          "height_m": 15.87660653946228,
+          "area_m2": 191.41290583756006
+        },
+        "physical_sha256": "a449398272809e09a63ca35f06d4c9d34125897c6f98706ac1e9a63f9af050ad"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00023_train_g0_3",
+      "status": "prepared",
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space6-00023.service"
     },
     {
       "number": 24,
+      "phase": "train",
+      "generation": 0,
       "role": "3",
-      "workspace": "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime",
-      "domain": null,
+      "parameters": [
+        1.0,
+        3.732211051473246,
+        0.8202669529596205,
+        0.6459887334171833,
+        0.37765537315426945
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191302424.yaml",
+        "seed": 1191302424,
+        "sha256": "6c34fe25070f11e83e400c6bcfe43c19b79a1007af66ccf2757c94f7cf3c67f9",
+        "requested_obstacles": 24,
+        "actual_obstacles": 24,
+        "mount_profile": "hidden_obstacles",
+        "arena": {
+          "shape": "rectangle",
+          "width_m": 24.77400402977024,
+          "height_m": 13.50579042851582,
+          "area_m2": 334.59250650128325
+        },
+        "physical_sha256": "3d66fff27c8e61e58f673a19271f33e5494eeb6f50be9f252425440b6a1364e4"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00024_train_g0_3",
       "status": "prepared",
-      "floor_sensor_gate": null,
-      "runtime_configuration_gate": null,
-      "outcome": null
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space6-00024.service"
     },
     {
       "number": 25,
+      "phase": "train",
+      "generation": 0,
       "role": "3",
-      "workspace": "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime",
-      "domain": null,
+      "parameters": [
+        1.0,
+        3.732211051473246,
+        0.8202669529596205,
+        0.6459887334171833,
+        0.37765537315426945
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191302525.yaml",
+        "seed": 1191302525,
+        "sha256": "701b2310e13f3542d4fbf2182c7f90f7fbf777d478ad784d26d2bc4f30fe5627",
+        "requested_obstacles": 32,
+        "actual_obstacles": 32,
+        "mount_profile": "walls",
+        "arena": {
+          "shape": "l_shape",
+          "width_m": 22.21033277200054,
+          "height_m": 16.718324629398964,
+          "area_m2": 270.75899163984974
+        },
+        "physical_sha256": "a198a7917aad366f7e7847e01f2af17e7ee1cc5a8902e2e5b4e7a3d515ccf0f4"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00025_train_g0_3",
       "status": "prepared",
-      "floor_sensor_gate": null,
-      "runtime_configuration_gate": null,
-      "outcome": null
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space6-00025.service"
     },
     {
       "number": 26,
+      "phase": "train",
+      "generation": 0,
       "role": "3",
-      "workspace": "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime",
-      "domain": null,
+      "parameters": [
+        1.0,
+        3.732211051473246,
+        0.8202669529596205,
+        0.6459887334171833,
+        0.37765537315426945
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191302626.yaml",
+        "seed": 1191302626,
+        "sha256": "9c830f9c14dc3224e6e273bb05b3864be69f6f8787ebfb70403883d30a478354",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "mixed",
+        "arena": {
+          "shape": "u_shape",
+          "width_m": 24.99085610661801,
+          "height_m": 15.731491916408466,
+          "area_m2": 304.4563128454948
+        },
+        "physical_sha256": "c050217853f7c14818670aa3196db79f48c3ba42826fcf6bda34d66b4d8a1391"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00026_train_g0_3",
       "status": "prepared",
-      "floor_sensor_gate": null,
-      "runtime_configuration_gate": null,
-      "outcome": null
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space6-00026.service"
     },
     {
       "number": 27,
+      "phase": "train",
+      "generation": 0,
       "role": "3",
-      "workspace": "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime",
-      "domain": null,
+      "parameters": [
+        1.0,
+        3.732211051473246,
+        0.8202669529596205,
+        0.6459887334171833,
+        0.37765537315426945
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191302727.yaml",
+        "seed": 1191302727,
+        "sha256": "d8fec223cf9a4b9b32327efcbbf4b5caa4ff505425b6d8c08be4f5a25c2b5c09",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "obstacles",
+        "arena": {
+          "shape": "rooms",
+          "width_m": 21.86573452299386,
+          "height_m": 11.466012152989766,
+          "area_m2": 250.7127777746955
+        },
+        "physical_sha256": "710f55570d5168d2b0ff599fde852b9f30a386d06980fa9f07c990e50b43889f"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00027_train_g0_3",
       "status": "prepared",
-      "floor_sensor_gate": null,
-      "runtime_configuration_gate": null,
-      "outcome": null
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space6-00027.service"
     }
   ],
-  "completed_spatial_training_episodes": 23,
+  "completed_spatial_training_episodes": 0,
   "completed_cem_generations": 0,
   "generalization_verified": false,
   "revisit_reduction_verified": false,
   "reserved_holdout_consumed": false,
   "spatial_holdout_consumed": false,
-  "geometry": "spatial_geometry_v5.json",
-  "previous_campaign": "spatial_curriculum_v3.json",
-  "native_navigation_ablation": "local_navigation_diagnosis.json",
-  "new_L_shape_probe": "bounded_gain_candidate.json",
-  "notes": [
-    "28newexteriors/occupancy grids;no physicaltraininglayout reuse",
-    "Incumbent is fastest independently successful same-scene arm;other2source variants remain training hypotheses",
-    "Winning source path follows its coefficients through allvalidation andfinalgates",
-    "Known-scene ablations andfreshLprobe are diagnostic evidence,not training samples or population success-rate estimates"
-  ],
-  "current_effective_configuration_audits": [
-    {
-      "domain": 114,
-      "parameters": {
-        "mission": {
-          "policy_file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00000_train_g0_0/policy.json",
-          "duration": 600.0,
-          "planner": "edge"
-        },
-        "local_costmap/local_costmap": {
-          "plugins": [
-            "voxel_layer",
-            "inflation_layer"
-          ],
-          "global_frame": "odom",
-          "rolling_window": true
-        },
-        "controller_server": {
-          "FollowPath.use_collision_detection": true
-        },
-        "slam_toolbox": {
-          "restamp_tf": true,
-          "use_sim_time": true
-        },
-        "global_costmap/global_costmap": {
-          "plugins": [
-            "static_layer",
-            "obstacle_layer",
-            "inflation_layer"
-          ],
-          "global_frame": "map"
-        },
-        "bt_navigator": {
-          "default_server_timeout": 1000,
-          "use_sim_time": true
-        }
-      },
-      "errors": {},
-      "complete": true,
-      "source": "Read-only ROS GetParameters services"
-    },
-    {
-      "domain": 115,
-      "parameters": {
-        "slam_toolbox": {
-          "restamp_tf": true,
-          "use_sim_time": true
-        },
-        "bt_navigator": {
-          "default_server_timeout": 1000,
-          "use_sim_time": true
-        },
-        "mission": {
-          "policy_file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00001_train_g0_0/policy.json",
-          "duration": 600.0,
-          "planner": "edge"
-        },
-        "controller_server": {
-          "FollowPath.use_collision_detection": true
-        },
-        "local_costmap/local_costmap": {
-          "plugins": [
-            "voxel_layer",
-            "inflation_layer"
-          ],
-          "global_frame": "odom",
-          "rolling_window": true
-        },
-        "global_costmap/global_costmap": {
-          "plugins": [
-            "static_layer",
-            "obstacle_layer",
-            "inflation_layer"
-          ],
-          "global_frame": "map"
-        }
-      },
-      "errors": {},
-      "complete": true,
-      "source": "Read-only ROS GetParameters services"
-    }
-  ],
-  "completed_generation0_audits": [
-    {
-      "seed": 1163000000,
-      "success": false,
-      "evaluator_success": false,
-      "seconds": 600.222,
-      "targets": 2,
-      "collisions": 0,
-      "coordinate_errors_m": {
-        "523": 0.10384246023088611,
-        "534": 0.09015740300424822
-      },
-      "required_approach_m": 1.5,
-      "closest_approach_m": {
-        "337": 1.7276685049124842,
-        "523": 1.3883870035133627,
-        "534": 1.4865898819420222
-      },
-      "video": {
-        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00000_train_g0_0/episodes/1163000000/video/mission.mp4",
-        "frames": 3003,
-        "fps": 5.0,
-        "verified": true
-      },
-      "errors": [
-        "Actual trajectory must approach every marker within 1.5 m",
-        "Three distinct correct marker IDs are required",
-        "Mission did not find all targets",
-        "Mission exceeded 600 seconds"
-      ]
-    },
-    {
-      "seed": 1163000101,
-      "success": true,
-      "evaluator_success": true,
-      "seconds": 408.346,
-      "targets": 3,
-      "collisions": 0,
-      "coordinate_errors_m": {
-        "786": 0.008691616286094404,
-        "76": 0.017735645891141776,
-        "90": 0.036319036712209964
-      },
-      "required_approach_m": 1.5,
-      "closest_approach_m": {
-        "786": 1.0681346577120225,
-        "90": 0.9357709926585045,
-        "76": 0.574456037464059
-      },
-      "video": {
-        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00001_train_g0_0/episodes/1163000101/video/mission.mp4",
-        "frames": 2043,
-        "fps": 5.0,
-        "verified": true
-      },
-      "errors": []
-    },
-    {
-      "seed": 1163000202,
-      "success": true,
-      "evaluator_success": true,
-      "seconds": 52.778999999999996,
-      "targets": 3,
-      "collisions": 0,
-      "coordinate_errors_m": {
-        "923": 0.05063300615221672,
-        "1005": 0.010982150916266618,
-        "831": 0.016837212216813568
-      },
-      "required_approach_m": 1.5,
-      "closest_approach_m": {
-        "831": 1.402359141573995,
-        "1005": 0.7824904495050001,
-        "923": 1.4287270327722876
-      },
-      "video": {
-        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00002_train_g0_0/episodes/1163000202/video/mission.mp4",
-        "frames": 265,
-        "fps": 5.0,
-        "verified": true
-      },
-      "errors": []
-    },
-    {
-      "seed": 1163000303,
-      "success": true,
-      "evaluator_success": true,
-      "seconds": 319.661,
-      "targets": 3,
-      "collisions": 0,
-      "coordinate_errors_m": {
-        "89": 0.2459044836641058,
-        "188": 0.11835866509390491,
-        "17": 0.22537878190225277
-      },
-      "required_approach_m": 1.5,
-      "closest_approach_m": {
-        "188": 0.5974682562798577,
-        "89": 1.4569402231480848,
-        "17": 0.5589054064047548
-      },
-      "video": {
-        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00003_train_g0_0/episodes/1163000303/video/mission.mp4",
-        "frames": 1601,
-        "fps": 5.0,
-        "verified": true
-      },
-      "errors": []
-    },
-    {
-      "seed": 1163000404,
-      "success": true,
-      "evaluator_success": true,
-      "seconds": 225.069,
-      "targets": 3,
-      "collisions": 0,
-      "coordinate_errors_m": {
-        "64": 0.15769059807287475,
-        "74": 0.07513082838310488,
-        "732": 0.17541180710587786
-      },
-      "required_approach_m": 1.5,
-      "closest_approach_m": {
-        "732": 1.4242664728929624,
-        "74": 1.3048481454394525,
-        "64": 1.0646177833628547
-      },
-      "video": {
-        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00004_train_g0_0/episodes/1163000404/video/mission.mp4",
-        "frames": 1128,
-        "fps": 5.0,
-        "verified": true
-      },
-      "errors": []
-    },
-    {
-      "seed": 1163000505,
-      "success": true,
-      "evaluator_success": true,
-      "seconds": 387.504,
-      "targets": 3,
-      "collisions": 0,
-      "coordinate_errors_m": {
-        "810": 0.023123980054021474,
-        "348": 0.15141630163474679,
-        "837": 0.10249298361905096
-      },
-      "required_approach_m": 1.5,
-      "closest_approach_m": {
-        "348": 1.3190494980247895,
-        "837": 0.9283211832206872,
-        "810": 0.5552922927583708
-      },
-      "video": {
-        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00005_train_g0_0/episodes/1163000505/video/mission.mp4",
-        "frames": 1937,
-        "fps": 5.0,
-        "verified": true
-      },
-      "errors": []
-    },
-    {
-      "seed": 1163000606,
-      "success": true,
-      "evaluator_success": true,
-      "seconds": 387.0,
-      "targets": 3,
-      "collisions": 0,
-      "coordinate_errors_m": {
-        "304": 0.05636166992131368,
-        "301": 0.02809503320962165,
-        "101": 0.11886388756301186
-      },
-      "required_approach_m": 1.5,
-      "closest_approach_m": {
-        "301": 1.2712355191196336,
-        "101": 1.4186462546779306,
-        "304": 0.5675651264030576
-      },
-      "video": {
-        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00006_train_g0_0/episodes/1163000606/video/mission.mp4",
-        "frames": 1935,
-        "fps": 5.0,
-        "verified": true
-      },
-      "errors": []
-    },
-    {
-      "seed": 1163000707,
-      "success": false,
-      "evaluator_success": false,
-      "seconds": 600.269,
-      "targets": 0,
-      "collisions": 0,
-      "coordinate_errors_m": {},
-      "required_approach_m": 1.5,
-      "closest_approach_m": {
-        "429": 9.635984530313651,
-        "64": 7.80342815536746,
-        "516": 12.996004142566358
-      },
-      "video": {
-        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00007_train_g0_1/episodes/1163000707/video/mission.mp4",
-        "frames": 3002,
-        "fps": 5.0,
-        "verified": true
-      },
-      "errors": [
-        "Actual trajectory must approach every marker within 1.5 m",
-        "Three distinct correct marker IDs are required",
-        "Mission did not find all targets",
-        "Mission exceeded 600 seconds"
-      ]
-    },
-    {
-      "seed": 1163000808,
-      "success": true,
-      "evaluator_success": true,
-      "seconds": 358.712,
-      "targets": 3,
-      "collisions": 0,
-      "coordinate_errors_m": {
-        "425": 0.027037613113749564,
-        "339": 0.010823339051169733,
-        "764": 0.047656780198299734
-      },
-      "required_approach_m": 1.5,
-      "closest_approach_m": {
-        "764": 0.9398427262023672,
-        "425": 0.6073106559242953,
-        "339": 0.5569526714250214
-      },
-      "video": {
-        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00008_train_g0_1/episodes/1163000808/video/mission.mp4",
-        "frames": 1795,
-        "fps": 5.0,
-        "verified": true
-      },
-      "errors": []
-    },
-    {
-      "seed": 1163000909,
-      "success": true,
-      "evaluator_success": true,
-      "seconds": 507.1,
-      "targets": 3,
-      "collisions": 0,
-      "coordinate_errors_m": {
-        "417": 0.018003725049265354,
-        "889": 0.05133120581565305,
-        "743": 0.052853665604079066
-      },
-      "required_approach_m": 1.5,
-      "closest_approach_m": {
-        "743": 1.4076080714453825,
-        "417": 1.0116468604630326,
-        "889": 0.9551405437063358
-      },
-      "video": {
-        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00009_train_g0_1/episodes/1163000909/video/mission.mp4",
-        "frames": 2537,
-        "fps": 5.0,
-        "verified": true
-      },
-      "errors": []
-    },
-    {
-      "seed": 1163001010,
-      "success": false,
-      "evaluator_success": false,
-      "seconds": null,
-      "targets": null,
-      "collisions": null,
-      "coordinate_errors_m": {},
-      "required_approach_m": 1.5,
-      "closest_approach_m": {
-        "760": null,
-        "691": null,
-        "973": null
-      },
-      "video": {
-        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00010_train_g0_1/episodes/1163001010/video/mission.mp4",
-        "frames": 0,
-        "fps": 0.0,
-        "verified": false
-      },
-      "errors": [
-        "Actual trajectory must approach every marker within 1.5 m",
-        "Exactly one mission result directory is required",
-        "Mission did not find all targets",
-        "Mission exceeded 600 seconds",
-        "Recorded collisions are nonzero or unavailable",
-        "Actual video sources or first/last frame decoding failed"
-      ]
-    },
-    {
-      "seed": 1163001111,
-      "success": true,
-      "evaluator_success": true,
-      "seconds": 358.222,
-      "targets": 3,
-      "collisions": 0,
-      "coordinate_errors_m": {
-        "642": 0.027416088970828062,
-        "501": 0.012135962140224948,
-        "222": 0.03606234212352358
-      },
-      "required_approach_m": 1.5,
-      "closest_approach_m": {
-        "642": 1.4207466534516229,
-        "501": 1.1251266289787352,
-        "222": 1.2949787309533805
-      },
-      "video": {
-        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00011_train_g0_1/episodes/1163001111/video/mission.mp4",
-        "frames": 1793,
-        "fps": 5.0,
-        "verified": true
-      },
-      "errors": []
-    },
-    {
-      "seed": 1163001212,
-      "success": true,
-      "evaluator_success": true,
-      "seconds": 59.812,
-      "targets": 3,
-      "collisions": 0,
-      "coordinate_errors_m": {
-        "49": 0.027511103931037853,
-        "490": 0.004685685469507696,
-        "277": 0.025356234355813256
-      },
-      "required_approach_m": 1.5,
-      "closest_approach_m": {
-        "277": 1.4418216182510708,
-        "490": 0.945444060230522,
-        "49": 1.457287143926781
-      },
-      "video": {
-        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00012_train_g0_1/episodes/1163001212/video/mission.mp4",
-        "frames": 300,
-        "fps": 5.0,
-        "verified": true
-      },
-      "errors": []
-    },
-    {
-      "seed": 1163001313,
-      "success": false,
-      "evaluator_success": false,
-      "seconds": 600.146,
-      "targets": 2,
-      "collisions": 0,
-      "coordinate_errors_m": {
-        "220": 0.07123695118893722,
-        "134": 0.05234603168749179
-      },
-      "required_approach_m": 1.5,
-      "closest_approach_m": {
-        "220": 0.52823547223813,
-        "101": 0.7462380046360165,
-        "134": 1.124053448903725
-      },
-      "video": {
-        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00013_train_g0_1/episodes/1163001313/video/mission.mp4",
-        "frames": 3003,
-        "fps": 5.0,
-        "verified": true
-      },
-      "errors": [
-        "Three distinct correct marker IDs are required",
-        "Mission did not find all targets",
-        "Mission exceeded 600 seconds"
-      ]
-    },
-    {
-      "seed": 1163001414,
-      "success": true,
-      "evaluator_success": true,
-      "seconds": 403.502,
-      "targets": 3,
-      "collisions": 0,
-      "coordinate_errors_m": {
-        "585": 0.069089979195855,
-        "172": 0.18479195240244042,
-        "61": 0.23186318857757482
-      },
-      "required_approach_m": 1.5,
-      "closest_approach_m": {
-        "585": 1.2411827098678696,
-        "61": 1.3941392497969087,
-        "172": 1.4443487625526634
-      },
-      "video": {
-        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00014_train_g0_2/episodes/1163001414/video/mission.mp4",
-        "frames": 2021,
-        "fps": 5.0,
-        "verified": true
-      },
-      "errors": []
-    },
-    {
-      "seed": 1163001515,
-      "success": false,
-      "evaluator_success": false,
-      "seconds": 600.295,
-      "targets": 2,
-      "collisions": 0,
-      "coordinate_errors_m": {
-        "784": 0.05235189598851747,
-        "674": 0.015349428389843184
-      },
-      "required_approach_m": 1.5,
-      "closest_approach_m": {
-        "784": 1.4186261993775995,
-        "253": 0.5810473901867226,
-        "674": 0.7547576501124998
-      },
-      "video": {
-        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00015_train_g0_2/episodes/1163001515/video/mission.mp4",
-        "frames": 3003,
-        "fps": 5.0,
-        "verified": true
-      },
-      "errors": [
-        "Three distinct correct marker IDs are required",
-        "Mission did not find all targets",
-        "Mission exceeded 600 seconds"
-      ]
-    },
-    {
-      "seed": 1163001616,
-      "success": false,
-      "evaluator_success": false,
-      "seconds": 600.447,
-      "targets": 1,
-      "collisions": 0,
-      "coordinate_errors_m": {
-        "231": 0.08011361053340331
-      },
-      "required_approach_m": 1.5,
-      "closest_approach_m": {
-        "411": 0.5895346246929333,
-        "231": 0.5924078329669525,
-        "529": 3.7313783702596646
-      },
-      "video": {
-        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00016_train_g0_2/episodes/1163001616/video/mission.mp4",
-        "frames": 3003,
-        "fps": 5.0,
-        "verified": true
-      },
-      "errors": [
-        "Actual trajectory must approach every marker within 1.5 m",
-        "Three distinct correct marker IDs are required",
-        "Mission did not find all targets",
-        "Mission exceeded 600 seconds"
-      ]
-    },
-    {
-      "seed": 1163001717,
-      "success": false,
-      "evaluator_success": false,
-      "seconds": 600.1,
-      "targets": 2,
-      "collisions": 0,
-      "coordinate_errors_m": {
-        "937": 0.09610772037415853,
-        "550": 0.06505326492815226
-      },
-      "required_approach_m": 1.5,
-      "closest_approach_m": {
-        "550": 1.4588062542473101,
-        "570": 0.989515931508764,
-        "937": 1.4288451730432012
-      },
-      "video": {
-        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00017_train_g0_2/episodes/1163001717/video/mission.mp4",
-        "frames": 3003,
-        "fps": 5.0,
-        "verified": true
-      },
-      "errors": [
-        "Three distinct correct marker IDs are required",
-        "Mission did not find all targets",
-        "Mission exceeded 600 seconds"
-      ]
-    },
-    {
-      "seed": 1163001818,
-      "success": false,
-      "evaluator_success": false,
-      "seconds": 600.4,
-      "targets": 2,
-      "collisions": 0,
-      "coordinate_errors_m": {
-        "112": 0.12803325525375017,
-        "518": 0.039204244322676135
-      },
-      "required_approach_m": 1.5,
-      "closest_approach_m": {
-        "112": 0.9995041751890819,
-        "518": 0.9646787037210619,
-        "65": 4.764527570807833
-      },
-      "video": {
-        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00018_train_g0_2/episodes/1163001818/video/mission.mp4",
-        "frames": 3003,
-        "fps": 5.0,
-        "verified": true
-      },
-      "errors": [
-        "Actual trajectory must approach every marker within 1.5 m",
-        "Three distinct correct marker IDs are required",
-        "Mission did not find all targets",
-        "Mission exceeded 600 seconds"
-      ]
-    },
-    {
-      "seed": 1163001919,
-      "success": false,
-      "evaluator_success": false,
-      "seconds": null,
-      "targets": null,
-      "collisions": null,
-      "coordinate_errors_m": {},
-      "required_approach_m": 1.5,
-      "closest_approach_m": {
-        "435": null,
-        "465": null,
-        "640": null
-      },
-      "video": {
-        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00019_train_g0_2/episodes/1163001919/video/mission.mp4",
-        "frames": 0,
-        "fps": 0.0,
-        "verified": false
-      },
-      "errors": [
-        "Actual trajectory must approach every marker within 1.5 m",
-        "Exactly one mission result directory is required",
-        "Mission did not find all targets",
-        "Mission exceeded 600 seconds",
-        "Recorded collisions are nonzero or unavailable",
-        "Actual video sources or first/last frame decoding failed"
-      ]
-    },
-    {
-      "seed": 1163002020,
-      "success": false,
-      "evaluator_success": false,
-      "seconds": 600.376,
-      "targets": 2,
-      "collisions": 0,
-      "coordinate_errors_m": {
-        "123": 0.1035427416756867,
-        "180": 0.08107768213994601
-      },
-      "required_approach_m": 1.5,
-      "closest_approach_m": {
-        "911": 0.7499772569552716,
-        "180": 1.4315418086604184,
-        "123": 1.0152446975382021
-      },
-      "video": {
-        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00020_train_g0_2/episodes/1163002020/video/mission.mp4",
-        "frames": 3003,
-        "fps": 5.0,
-        "verified": true
-      },
-      "errors": [
-        "Three distinct correct marker IDs are required",
-        "Mission did not find all targets",
-        "Mission exceeded 600 seconds"
-      ]
-    },
-    {
-      "seed": 1163002121,
-      "success": false,
-      "evaluator_success": false,
-      "seconds": 265.224,
-      "targets": 3,
-      "collisions": 0,
-      "coordinate_errors_m": {
-        "858": 0.7001255042617505,
-        "283": 0.32739462188684487,
-        "669": 0.16947387425910054
-      },
-      "required_approach_m": 1.5,
-      "closest_approach_m": {
-        "669": 0.5635900402110332,
-        "283": 1.3632485813445514,
-        "858": 1.4276480174682362
-      },
-      "video": {
-        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00021_train_g0_3/episodes/1163002121/video/mission.mp4",
-        "frames": 1328,
-        "fps": 5.0,
-        "verified": true
-      },
-      "errors": [
-        "Marker 858 coordinate error exceeds 0.5 m"
-      ]
-    },
-    {
-      "seed": 1163002222,
-      "success": false,
-      "evaluator_success": false,
-      "seconds": 600.157,
-      "targets": 1,
-      "collisions": 0,
-      "coordinate_errors_m": {
-        "649": 0.03964463042135775
-      },
-      "required_approach_m": 1.5,
-      "closest_approach_m": {
-        "649": 0.8530737607695125,
-        "797": 1.0390944217233424,
-        "145": 0.5971519042317965
-      },
-      "video": {
-        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00022_train_g0_3/episodes/1163002222/video/mission.mp4",
-        "frames": 3003,
-        "fps": 5.0,
-        "verified": true
-      },
-      "errors": [
-        "Three distinct correct marker IDs are required",
-        "Mission did not find all targets",
-        "Mission exceeded 600 seconds"
-      ]
-    }
-  ],
-  "evaluator_observer": "physical_credit_verification.json",
-  "priority_diagnostic": "windowed_witness_candidate.json",
-  "coordinator_resumed_after_one_slot_diagnostic": true,
-  "runtime_failure_diagnosis": "runtime_failure_diagnosis.json",
-  "counts_are_descriptive_training_samples_not_independent_success_probability": true,
-  "coordinator_slot_reservation": "Windowedwitnessv2waiting;bothcurrentnative runs preserved;dispatcherresumes onlyafter verifiednativeclaim",
-  "completed_successes": 11,
+  "geometry": "spatial_geometry_v6.json",
+  "previous_campaign": "spatial_curriculum_v5_at_transition.json",
   "fresh_shape_candidate_screen": "spatial_calibrated_screen.json",
-  "latest_infrastructure_failure": "latest_startup_failure_evidence.json",
-  "latest_strict_circle_native_outcome": {
-    "success": true,
-    "targets": 3,
-    "approached": 3,
-    "contacts": 0,
-    "seconds": 496.132,
-    "infrastructure_failure": false,
-    "reason": "all_targets_found"
-  },
-  "strict_circle_physical_credits_verified": true
+  "native_engineering_comparison": "windowed_witness_candidate.json",
+  "calibrated_trapezoid_localization_failure": "calibrated_trapezoid_localization_failure.json",
+  "evaluator_observer": "osp-spatial-evaluator-observer-v6.service",
+  "depth_quality_observer": "osp-depth-quality-space6.service",
+  "counts_are_descriptive_training_samples_not_independent_success_probability": true,
+  "notes": [
+    "Fixed corrected S7 source for all four coefficient candidates; S6 calibrated predecessor is the paired qualification baseline",
+    "28 initial training episodes have 28 distinct exteriors and occupancy grids; fresh physical scenes continue every training episode",
+    "Only paired qualification shares a map between candidate and baseline; original reserved PDF holdout remains untouched",
+    "Three actual approaches <=1.5m, three exact IDs, map errors <=0.5m, zero contacts and duration <=600sim s remain required",
+    "All near-range witness credit samples are independently audited, not only the historical closest pass",
+    "Existing native runs drain intact; previous queued artifacts are retained without being mislabeled as completed or failed",
+    "At most two native Gazebo benchmarks, 6GiB per benchmark; read-only depth patch recorder has 256MiB limit and never publishes robot commands",
+    "Deep neural reinforcement learning is not claimed; CEM tunes exploration coefficients within the SLAM/Nav2 policy"
+  ],
+  "live_native_verified": [
+    {
+      "number": 0,
+      "native_pid": 1563861,
+      "unit": "osp-spatial-nov13-space6-00000.service",
+      "shape": "circle",
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "velocity_profile_gate": true,
+      "live_status": {
+        "state": "running",
+        "approached_ids": [
+          909
+        ],
+        "targets": 1,
+        "collisions": 0,
+        "elapsed_seconds": 74.9,
+        "active_action": "nav",
+        "readiness_reason": "",
+        "sensor_interruptions": 0,
+        "nav2_lifecycle": {
+          "controller_server": 3,
+          "planner_server": 3,
+          "behavior_server": 3,
+          "bt_navigator": 3
+        },
+        "drive_controllers": {
+          "diffdrive_controller": "active",
+          "joint_state_broadcaster": "active"
+        },
+        "confirmed_surface_cells": 20,
+        "confirmed_face_anchors": 0,
+        "reassociated_face_records": 0,
+        "camera_diagnostics": {
+          "received": 393,
+          "late": 1,
+          "invalid_calibration": 0,
+          "duplicate": 0,
+          "accepted": 392,
+          "coverage_updates": 387,
+          "tf_waits": 5
+        }
+      },
+      "depth_recorder": {
+        "complete": false,
+        "domain": 124,
+        "native_pid": 1563861,
+        "native_output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00000_train_g0_0",
+        "observations": 80,
+        "matched_depth": 80,
+        "recorder_sha256": "6a75ebe06c422815186999d85e1dbf1d3eaa826de3c6ace9dcc94a2bc3acff76",
+        "source": "Independent nearest registered-depth patch at published marker center",
+        "detector_range_provenance_known": false,
+        "ground_truth_available": false,
+        "robot_commands_published": false
+      }
+    }
+  ],
+  "actual_native_process_count": 2,
+  "preview": "spatial_training_v6_preview.png"
 }

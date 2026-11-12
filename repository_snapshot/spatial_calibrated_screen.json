@@ -1,7 +1,7 @@
 {
-  "captured_utc": "2026-11-12T22:36:49.899154+00:00",
+  "captured_utc": "2026-11-12T23:24:36.362339+00:00",
   "evidence_type": "native_prerequisite_pass_and_frozen_fresh_space_engineering_screen",
-  "status": "running",
+  "status": "superseded_by_spatial_cem_v6",
   "phase": "fresh_shape_engineering_screen",
   "workspace": "/home/peter/simul/training_robust/native90/strict_calibrated_gain_v1/runtime",
   "runtime_tests_passed": 253,
@@ -9,7 +9,7 @@
   "coordinator_unit": "osp-spatial-calibrated-screen-v1.service",
   "prerequisite": "strict_approach_candidate.json",
   "prerequisite_gate": "Original benchmark3IDs+coordinates+actual1.5m/0contacts<=600s;all3sensorwitnesses independently verified;actual velocity profile verified",
-  "native_completed": 1,
+  "native_completed": 3,
   "planned_native_episodes": 7,
   "space_audit": {
     "evidence": "Offline collision and exterior geometry; not a native success result",
@@ -693,6 +693,157 @@
     "causal_limit": "Different scene/weights from current new source;not a paired source comparison",
     "new_source_fix_scope": "Combined source retains corrected simulation encoder input and weakened SLAM angular prior as well as sensor-relative approach proof;its fresh-space outcome remains pending"
   },
-  "strict_successes_so_far": 1,
-  "windowed_witness_candidate": "windowed_witness_candidate.json"
+  "strict_successes_so_far": 2,
+  "windowed_witness_candidate": "windowed_witness_candidate.json",
+  "successor_training": "spatial_curriculum.json",
+  "remaining_queued_scenes_retained": true,
+  "completed_native_results": [
+    {
+      "number": 0,
+      "seed": 1171300000,
+      "shape": "circle",
+      "obstacles": 12,
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 399.2,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      },
+      "strict_screen_passed": true,
+      "coordinate_errors_m": {
+        "848": 0.03765684331001675,
+        "554": 0.006009562753278091,
+        "206": 0.020972371309266914
+      },
+      "closest_actual_approaches_m": {
+        "206": 1.0867892637958891,
+        "554": 0.9616284993432086,
+        "848": 0.48887429697064005
+      },
+      "physical_credits_verified": true,
+      "revisits": {
+        "episode": "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_0/case_0/episodes/1171300000",
+        "source": "Independent Gazebo ground-truth trajectory; evaluator only",
+        "path_distance_m": 65.55504631586837,
+        "distance_in_returned_cells_m": 4.07923079668936,
+        "returned_distance_fraction": 0.06222603790155411,
+        "cell_reentries_after_15_sim_seconds": 8,
+        "cell_size_m": 0.6,
+        "minimum_path_step_m": 0.2,
+        "navigation_goals": 23,
+        "repeated_map_goals_within_0_8m_excluding_last_two": 2,
+        "limits": [
+          "Returned cells include necessary corridor transit and marker approach; this is not waste distance",
+          "Repeated goals use SLAM map coordinates and may be affected by frame correction",
+          "These are simulation measurements, not observations from a physical robot"
+        ]
+      },
+      "approach_requests_by_id": {
+        "554": 1,
+        "848": 4,
+        "206": 1
+      }
+    },
+    {
+      "number": 1,
+      "seed": 1171300101,
+      "shape": "triangle",
+      "obstacles": 16,
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 360.417,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      },
+      "strict_screen_passed": true,
+      "coordinate_errors_m": {
+        "90": 0.12682379917843153,
+        "836": 0.14608305937775873,
+        "294": 0.032301317959593526
+      },
+      "closest_actual_approaches_m": {
+        "836": 0.9528326282396035,
+        "294": 0.7112105563350933,
+        "90": 0.6718678883666029
+      },
+      "physical_credits_verified": true,
+      "revisits": {
+        "episode": "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_1/case_0/episodes/1171300101",
+        "source": "Independent Gazebo ground-truth trajectory; evaluator only",
+        "path_distance_m": 50.977803734788104,
+        "distance_in_returned_cells_m": 1.14959203010039,
+        "returned_distance_fraction": 0.02255083479235668,
+        "cell_reentries_after_15_sim_seconds": 3,
+        "cell_size_m": 0.6,
+        "minimum_path_step_m": 0.2,
+        "navigation_goals": 20,
+        "repeated_map_goals_within_0_8m_excluding_last_two": 0,
+        "limits": [
+          "Returned cells include necessary corridor transit and marker approach; this is not waste distance",
+          "Repeated goals use SLAM map coordinates and may be affected by frame correction",
+          "These are simulation measurements, not observations from a physical robot"
+        ]
+      },
+      "approach_requests_by_id": {
+        "90": 1,
+        "836": 1
+      }
+    },
+    {
+      "number": 2,
+      "seed": 1171300202,
+      "shape": "trapezoid",
+      "obstacles": 24,
+      "outcome": {
+        "success": false,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 580.702,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      },
+      "strict_screen_passed": false,
+      "coordinate_errors_m": {
+        "225": 0.036526272218174394,
+        "228": 0.07221268130563223,
+        "367": 1.214624179066943
+      },
+      "closest_actual_approaches_m": {
+        "367": 0.5024722457754779,
+        "228": 0.6029759336675432,
+        "225": 0.7107498909609309
+      },
+      "physical_credits_verified": true,
+      "revisits": {
+        "episode": "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_2/case_0/episodes/1171300202",
+        "source": "Independent Gazebo ground-truth trajectory; evaluator only",
+        "path_distance_m": 98.51251196286114,
+        "distance_in_returned_cells_m": 23.712296187241908,
+        "returned_distance_fraction": 0.24070339609430888,
+        "cell_reentries_after_15_sim_seconds": 41,
+        "cell_size_m": 0.6,
+        "minimum_path_step_m": 0.2,
+        "navigation_goals": 28,
+        "repeated_map_goals_within_0_8m_excluding_last_two": 2,
+        "limits": [
+          "Returned cells include necessary corridor transit and marker approach; this is not waste distance",
+          "Repeated goals use SLAM map coordinates and may be affected by frame correction",
+          "These are simulation measurements, not observations from a physical robot"
+        ]
+      },
+      "approach_requests_by_id": {
+        "225": 1,
+        "228": 1
+      }
+    }
+  ],
+  "calibrated_trapezoid_localization_failure": "calibrated_trapezoid_localization_failure.json",
+  "new_training_scope": "Corrected S7 source now receives all seven fresh shape families; four unrun S6 screen maps retained, not counted as failures or completed coverage"
 }

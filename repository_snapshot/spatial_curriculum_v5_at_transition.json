@@ -1,0 +1,1274 @@
+{
+  "captured_utc": "2026-11-12T23:24:36.362339+00:00",
+  "campaign": "/home/peter/simul/training_robust/native90/spatial_cem_v5",
+  "status": "draining_to_spatial_cem_v6",
+  "completed": 25,
+  "successes": 11,
+  "jobs": [
+    {
+      "number": 0,
+      "phase": "train",
+      "generation": 0,
+      "role": "0",
+      "parameters": [
+        1.0,
+        2.409531985394154,
+        0.4889512207810997,
+        0.7812959734881743,
+        0.6473764656964455
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163000000.yaml",
+        "seed": 1163000000,
+        "sha256": "2b3c6332c436766ff0ce294bd02dfa453110b1b8c5db94e7649411ac787ed015",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "walls",
+        "arena": {
+          "shape": "circle",
+          "width_m": 17.366482785705813,
+          "height_m": 17.366482785705813,
+          "area_m2": 236.19606577540623
+        },
+        "physical_sha256": "08c499e2e4c3425771dbc431f042ddcd3ba9dcdda4f7d09dcf7d4dd6a6b9f780"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00000_train_g0_0",
+      "status": "done",
+      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
+      "unit": "osp-spatial-nov13-space5-00000.service",
+      "domain": 114,
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "configuration_observation_attempts": 1,
+      "outcome": {
+        "success": false,
+        "targets": 2,
+        "approached": 2,
+        "contacts": 0,
+        "seconds": 600.222,
+        "infrastructure_failure": false,
+        "reason": "timeout"
+      },
+      "completed_utc": "2026-11-12T18:25:22.110549+00:00"
+    },
+    {
+      "number": 1,
+      "phase": "train",
+      "generation": 0,
+      "role": "0",
+      "parameters": [
+        1.0,
+        2.409531985394154,
+        0.4889512207810997,
+        0.7812959734881743,
+        0.6473764656964455
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163000101.yaml",
+        "seed": 1163000101,
+        "sha256": "dbbd84cfe8a93da7c2a25535d5260f9f1b466ef32dc4d7d440c8dc65fd891fe7",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "mixed",
+        "arena": {
+          "shape": "triangle",
+          "width_m": 24.463735373924756,
+          "height_m": 19.194408829265495,
+          "area_m2": 234.78346912903797
+        },
+        "physical_sha256": "5dceab48db6ad9e745b4c96353abd8feeffb1fa7fd08a58b78f9891b081a0f1a"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00001_train_g0_0",
+      "status": "done",
+      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
+      "unit": "osp-spatial-nov13-space5-00001.service",
+      "domain": 115,
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "configuration_observation_attempts": 1,
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 408.346,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      },
+      "completed_utc": "2026-11-12T18:13:05.391894+00:00"
+    },
+    {
+      "number": 2,
+      "phase": "train",
+      "generation": 0,
+      "role": "0",
+      "parameters": [
+        1.0,
+        2.409531985394154,
+        0.4889512207810997,
+        0.7812959734881743,
+        0.6473764656964455
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163000202.yaml",
+        "seed": 1163000202,
+        "sha256": "4f86e312826039b3d718a7648c469ad6940083dd46d4195e6cea291d068c3d15",
+        "requested_obstacles": 16,
+        "actual_obstacles": 16,
+        "mount_profile": "obstacles",
+        "arena": {
+          "shape": "trapezoid",
+          "width_m": 24.662087377388126,
+          "height_m": 13.42407945431433,
+          "area_m2": 279.5396817916769
+        },
+        "physical_sha256": "c2bb3c4a713ff7133b8ee72d3ad18dc6503c7b5c5f5418f56fdb83bfa5fa930b"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00002_train_g0_0",
+      "status": "done",
+      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
+      "unit": "osp-spatial-nov13-space5-00002.service",
+      "domain": 115,
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "configuration_observation_attempts": 1,
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 52.778999999999996,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      },
+      "completed_utc": "2026-11-12T18:16:09.295597+00:00"
+    },
+    {
+      "number": 3,
+      "phase": "train",
+      "generation": 0,
+      "role": "0",
+      "parameters": [
+        1.0,
+        2.409531985394154,
+        0.4889512207810997,
+        0.7812959734881743,
+        0.6473764656964455
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163000303.yaml",
+        "seed": 1163000303,
+        "sha256": "7dea99b42f86f732222762f96910b6a68e6b5a62d502ebdd39af42ee66c19262",
+        "requested_obstacles": 24,
+        "actual_obstacles": 24,
+        "mount_profile": "hidden_obstacles",
+        "arena": {
+          "shape": "rectangle",
+          "width_m": 24.13148558540469,
+          "height_m": 10.93193297081573,
+          "area_m2": 263.80378290585
+        },
+        "physical_sha256": "eee69ea7722656dc289aeb787527cd268ddb839e1562070b0ee8f7682f4ab683"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00003_train_g0_0",
+      "status": "done",
+      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
+      "unit": "osp-spatial-nov13-space5-00003.service",
+      "domain": 115,
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "configuration_observation_attempts": 1,
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 319.661,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      },
+      "completed_utc": "2026-11-12T18:31:31.088425+00:00"
+    },
+    {
+      "number": 4,
+      "phase": "train",
+      "generation": 0,
+      "role": "0",
+      "parameters": [
+        1.0,
+        2.409531985394154,
+        0.4889512207810997,
+        0.7812959734881743,
+        0.6473764656964455
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163000404.yaml",
+        "seed": 1163000404,
+        "sha256": "11ee57b7f4ce0a6a23a97e1c76af6444cf7c5cd85c781afa166305f5c654a294",
+        "requested_obstacles": 32,
+        "actual_obstacles": 30,
+        "mount_profile": "walls",
+        "arena": {
+          "shape": "l_shape",
+          "width_m": 15.583677518117383,
+          "height_m": 15.940784867776582,
+          "area_m2": 176.00864441886014
+        },
+        "physical_sha256": "fb3bf920b13969449e4e2af3c3969c57fbb66adae2208269e02be017348b6903"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00004_train_g0_0",
+      "status": "done",
+      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
+      "unit": "osp-spatial-nov13-space5-00004.service",
+      "domain": 114,
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "configuration_observation_attempts": 1,
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 225.069,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      },
+      "completed_utc": "2026-11-12T18:36:50.286091+00:00"
+    },
+    {
+      "number": 5,
+      "phase": "train",
+      "generation": 0,
+      "role": "0",
+      "parameters": [
+        1.0,
+        2.409531985394154,
+        0.4889512207810997,
+        0.7812959734881743,
+        0.6473764656964455
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163000505.yaml",
+        "seed": 1163000505,
+        "sha256": "50d2582ac59236f661d65c1fcbc09a4f38a8030b266e7dcf22fb6181c9fbc984",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "mixed",
+        "arena": {
+          "shape": "u_shape",
+          "width_m": 15.785983472011635,
+          "height_m": 12.615084561655987,
+          "area_m2": 162.6752960832924
+        },
+        "physical_sha256": "b66377db46887306985067c793fe375e46051727563705156ae917897fd9fa18"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00005_train_g0_0",
+      "status": "done",
+      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
+      "unit": "osp-spatial-nov13-space5-00005.service",
+      "domain": 115,
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "configuration_observation_attempts": 1,
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 387.504,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      },
+      "completed_utc": "2026-11-12T18:49:54.343514+00:00"
+    },
+    {
+      "number": 6,
+      "phase": "train",
+      "generation": 0,
+      "role": "0",
+      "parameters": [
+        1.0,
+        2.409531985394154,
+        0.4889512207810997,
+        0.7812959734881743,
+        0.6473764656964455
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163000606.yaml",
+        "seed": 1163000606,
+        "sha256": "bf813a36f604c65a876b8ba3afa7984cbe2f9d8a06d54ec37940c409a42fff4e",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "obstacles",
+        "arena": {
+          "shape": "rooms",
+          "width_m": 19.04338683291988,
+          "height_m": 14.19224847330446,
+          "area_m2": 270.2684777060534
+        },
+        "physical_sha256": "6b4b6287df7cd31aefa3b6569753dd7c63f5fb04979fd3f5808b9ac5e28a9e05"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00006_train_g0_0",
+      "status": "done",
+      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
+      "unit": "osp-spatial-nov13-space5-00006.service",
+      "domain": 114,
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "configuration_observation_attempts": 1,
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 387.0,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      },
+      "completed_utc": "2026-11-12T18:55:12.425135+00:00"
+    },
+    {
+      "number": 7,
+      "phase": "train",
+      "generation": 0,
+      "role": "1",
+      "parameters": [
+        1.0,
+        5.529756693831187,
+        0.7074054639037031,
+        0.4609900194853569,
+        0.8122435117426338
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163000707.yaml",
+        "seed": 1163000707,
+        "sha256": "47efb37f7401934c0724f33c2ca2ed1b4ac7c90683a00cfc92fc1a6b5ea0c63a",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "walls",
+        "arena": {
+          "shape": "circle",
+          "width_m": 17.724136960905426,
+          "height_m": 17.724136960905426,
+          "area_m2": 246.02492821467698
+        },
+        "physical_sha256": "b29c8542cbbb9e78df4a62d76ea68d5f2647ebdaf0de8290aec8bb6fe1f2ba6c"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00007_train_g0_1",
+      "status": "done",
+      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
+      "unit": "osp-spatial-nov13-space5-00007.service",
+      "domain": 115,
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "configuration_observation_attempts": 1,
+      "outcome": {
+        "success": false,
+        "targets": 0,
+        "approached": 0,
+        "contacts": 0,
+        "seconds": 600.269,
+        "infrastructure_failure": false,
+        "reason": "timeout"
+      },
+      "completed_utc": "2026-11-12T19:20:42.905286+00:00"
+    },
+    {
+      "number": 8,
+      "phase": "train",
+      "generation": 0,
+      "role": "1",
+      "parameters": [
+        1.0,
+        5.529756693831187,
+        0.7074054639037031,
+        0.4609900194853569,
+        0.8122435117426338
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163000808.yaml",
+        "seed": 1163000808,
+        "sha256": "1f1ee5eadc9e822e73a3d1b1d02610f1b4c7d675144ed76fcfd827e1da9d1426",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "mixed",
+        "arena": {
+          "shape": "triangle",
+          "width_m": 19.176352606311816,
+          "height_m": 14.179929743022056,
+          "area_m2": 135.9596663424597
+        },
+        "physical_sha256": "b76e5784da2c7204ff2dd1fda9a62bd673ff2c214423ecdab7fd99cb162b4014"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00008_train_g0_1",
+      "status": "done",
+      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
+      "unit": "osp-spatial-nov13-space5-00008.service",
+      "domain": 114,
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "configuration_observation_attempts": 1,
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 358.712,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      },
+      "completed_utc": "2026-11-12T19:11:52.282469+00:00"
+    },
+    {
+      "number": 9,
+      "phase": "train",
+      "generation": 0,
+      "role": "1",
+      "parameters": [
+        1.0,
+        5.529756693831187,
+        0.7074054639037031,
+        0.4609900194853569,
+        0.8122435117426338
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163000909.yaml",
+        "seed": 1163000909,
+        "sha256": "4c0c728154d5b6494380c52bcf2443be9777a17954dbbd6a293b5ec019f14960",
+        "requested_obstacles": 16,
+        "actual_obstacles": 16,
+        "mount_profile": "obstacles",
+        "arena": {
+          "shape": "trapezoid",
+          "width_m": 23.712639521545523,
+          "height_m": 15.81144492123369,
+          "area_m2": 284.9021732311004
+        },
+        "physical_sha256": "ebd73d9a63299b79b28ce8716b6a4b8c3cc2723a980bc3a42cf201ab210b1f86"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00009_train_g0_1",
+      "status": "done",
+      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
+      "unit": "osp-spatial-nov13-space5-00009.service",
+      "domain": 114,
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "configuration_observation_attempts": 1,
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 507.1,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      },
+      "completed_utc": "2026-11-12T19:35:40.696867+00:00"
+    },
+    {
+      "number": 10,
+      "phase": "train",
+      "generation": 0,
+      "role": "1",
+      "parameters": [
+        1.0,
+        5.529756693831187,
+        0.7074054639037031,
+        0.4609900194853569,
+        0.8122435117426338
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163001010.yaml",
+        "seed": 1163001010,
+        "sha256": "611c40184538c04ae918d51fd3076473a0f784b07e2c2f24246e95fc0878b5ab",
+        "requested_obstacles": 24,
+        "actual_obstacles": 24,
+        "mount_profile": "hidden_obstacles",
+        "arena": {
+          "shape": "rectangle",
+          "width_m": 18.26624229064615,
+          "height_m": 16.980894476682636,
+          "area_m2": 310.17713282298
+        },
+        "physical_sha256": "a99574aaa6dac53fd65a29849f7161882b00ffb193641d76bbf0e8d70725e6cb"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00010_train_g0_1",
+      "status": "done",
+      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
+      "unit": "osp-spatial-nov13-space5-00010.service",
+      "domain": 115,
+      "outcome": {
+        "success": false,
+        "targets": 0,
+        "approached": 0,
+        "contacts": 0,
+        "seconds": 600.0,
+        "infrastructure_failure": true,
+        "reason": "native_input_or_effective_configuration_unverified"
+      },
+      "completed_utc": "2026-11-12T19:23:46.771978+00:00",
+      "raw_outcome_before_floor_gate": {
+        "success": false,
+        "targets": 0,
+        "approached": 0,
+        "contacts": 0,
+        "seconds": 600.0,
+        "infrastructure_failure": true,
+        "reason": "startup_failure"
+      }
+    },
+    {
+      "number": 11,
+      "phase": "train",
+      "generation": 0,
+      "role": "1",
+      "parameters": [
+        1.0,
+        5.529756693831187,
+        0.7074054639037031,
+        0.4609900194853569,
+        0.8122435117426338
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163001111.yaml",
+        "seed": 1163001111,
+        "sha256": "58fc78eca3aa2a51c5fbff7f4d424ff5c5d138261c83301a7581bf5ae02fbbb2",
+        "requested_obstacles": 32,
+        "actual_obstacles": 26,
+        "mount_profile": "walls",
+        "arena": {
+          "shape": "l_shape",
+          "width_m": 17.23951802769289,
+          "height_m": 11.34615475394838,
+          "area_m2": 142.08998718190833
+        },
+        "physical_sha256": "80c70060d5435b4155b7177d49dd655de3216cf75d6a871b6d85f067d521a08d"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00011_train_g0_1",
+      "status": "done",
+      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
+      "unit": "osp-spatial-nov13-space5-00011.service",
+      "domain": 115,
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "configuration_observation_attempts": 1,
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 358.222,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      },
+      "completed_utc": "2026-11-12T19:41:32.261943+00:00"
+    },
+    {
+      "number": 12,
+      "phase": "train",
+      "generation": 0,
+      "role": "1",
+      "parameters": [
+        1.0,
+        5.529756693831187,
+        0.7074054639037031,
+        0.4609900194853569,
+        0.8122435117426338
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163001212.yaml",
+        "seed": 1163001212,
+        "sha256": "0d9f65a2c786a6d5cb16acf67deab78997e705c4971bdb0b031299a8c3a6a255",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "mixed",
+        "arena": {
+          "shape": "u_shape",
+          "width_m": 18.101713667918442,
+          "height_m": 10.087711275540988,
+          "area_m2": 147.4666251257144
+        },
+        "physical_sha256": "922f56c7fa88117c8113f02ce7522136143537e6aadadb1477f8b109df2c68b0"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00012_train_g0_1",
+      "status": "done",
+      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
+      "unit": "osp-spatial-nov13-space5-00012.service",
+      "domain": 114,
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "configuration_observation_attempts": 1,
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 59.812,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      },
+      "completed_utc": "2026-11-12T19:44:58.732760+00:00"
+    },
+    {
+      "number": 13,
+      "phase": "train",
+      "generation": 0,
+      "role": "1",
+      "parameters": [
+        1.0,
+        5.529756693831187,
+        0.7074054639037031,
+        0.4609900194853569,
+        0.8122435117426338
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163001313.yaml",
+        "seed": 1163001313,
+        "sha256": "363d9c4f111e06c18513e911dc9411ccc1fe1e1d6d49e0277b656b58ebb3186b",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "obstacles",
+        "arena": {
+          "shape": "rooms",
+          "width_m": 21.842778477802188,
+          "height_m": 12.303991923819204,
+          "area_m2": 268.7533699846501
+        },
+        "physical_sha256": "3aeb3c0aec51ffa180166bc478db2ef35c792fcf7b00203243b4bcb963c176b1"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00013_train_g0_1",
+      "status": "done",
+      "workspace": "/home/peter/simul/training_robust/native90/live_costmap_v1/runtime",
+      "unit": "osp-spatial-nov13-space5-00013.service",
+      "domain": 114,
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "configuration_observation_attempts": 1,
+      "outcome": {
+        "success": false,
+        "targets": 2,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 600.146,
+        "infrastructure_failure": false,
+        "reason": "timeout"
+      },
+      "completed_utc": "2026-11-12T20:13:38.909875+00:00"
+    },
+    {
+      "number": 14,
+      "phase": "train",
+      "generation": 0,
+      "role": "2",
+      "parameters": [
+        1.0,
+        1.385418612719226,
+        0.9502567951295049,
+        1.0596067876402548,
+        0.5964900127045917
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163001414.yaml",
+        "seed": 1163001414,
+        "sha256": "ed1fcc4b0725fb96ef8105b89e3218a36d4c4fbd7264a5c16f3c4b472e621a63",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "walls",
+        "arena": {
+          "shape": "circle",
+          "width_m": 19.778396711361232,
+          "height_m": 19.778396711361232,
+          "area_m2": 306.35931259547186
+        },
+        "physical_sha256": "d59dba04f638376e34c88a1042e9cd125b006cec776a7a673a20b76257bb33df"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00014_train_g0_2",
+      "status": "done",
+      "workspace": "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space5-00014.service",
+      "domain": 115,
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "configuration_observation_attempts": 1,
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 403.502,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      },
+      "completed_utc": "2026-11-12T20:06:25.316621+00:00"
+    },
+    {
+      "number": 15,
+      "phase": "train",
+      "generation": 0,
+      "role": "2",
+      "parameters": [
+        1.0,
+        1.385418612719226,
+        0.9502567951295049,
+        1.0596067876402548,
+        0.5964900127045917
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163001515.yaml",
+        "seed": 1163001515,
+        "sha256": "88408a3b6851d3317b23d459cfe0e9700d32b97e5d224802a56d392dc80d9777",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "mixed",
+        "arena": {
+          "shape": "triangle",
+          "width_m": 24.19182418016916,
+          "height_m": 17.984680439897478,
+          "area_m2": 217.54111356926356
+        },
+        "physical_sha256": "9705bd80a21e6c2402632fc77d26ee1d8d4c16bc93a5e8ae7d564b061e69cc23"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00015_train_g0_2",
+      "status": "done",
+      "workspace": "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space5-00015.service",
+      "domain": 114,
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "configuration_observation_attempts": 1,
+      "outcome": {
+        "success": false,
+        "targets": 2,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 600.295,
+        "infrastructure_failure": false,
+        "reason": "timeout"
+      },
+      "completed_utc": "2026-11-12T20:41:44.999522+00:00"
+    },
+    {
+      "number": 16,
+      "phase": "train",
+      "generation": 0,
+      "role": "2",
+      "parameters": [
+        1.0,
+        1.385418612719226,
+        0.9502567951295049,
+        1.0596067876402548,
+        0.5964900127045917
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163001616.yaml",
+        "seed": 1163001616,
+        "sha256": "a1bd4166efcf24ad50541f0d81b293acde04680117b78c3161908506b24db1ef",
+        "requested_obstacles": 16,
+        "actual_obstacles": 16,
+        "mount_profile": "obstacles",
+        "arena": {
+          "shape": "trapezoid",
+          "width_m": 23.90869625479787,
+          "height_m": 15.700132390130632,
+          "area_m2": 286.4610648222081
+        },
+        "physical_sha256": "3b0547879759265e7bb2c5e88681df76926aff9e076559e892293b040bff8ee4"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00016_train_g0_2",
+      "status": "done",
+      "workspace": "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space5-00016.service",
+      "domain": 115,
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "configuration_observation_attempts": 1,
+      "outcome": {
+        "success": false,
+        "targets": 1,
+        "approached": 2,
+        "contacts": 0,
+        "seconds": 600.447,
+        "infrastructure_failure": false,
+        "reason": "timeout"
+      },
+      "completed_utc": "2026-11-12T20:47:21.707077+00:00"
+    },
+    {
+      "number": 17,
+      "phase": "train",
+      "generation": 0,
+      "role": "2",
+      "parameters": [
+        1.0,
+        1.385418612719226,
+        0.9502567951295049,
+        1.0596067876402548,
+        0.5964900127045917
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163001717.yaml",
+        "seed": 1163001717,
+        "sha256": "97d9446286bcde019aa0c13884e65fcc60e258f1048bbd11e05f3c7ef23dd8ff",
+        "requested_obstacles": 24,
+        "actual_obstacles": 24,
+        "mount_profile": "hidden_obstacles",
+        "arena": {
+          "shape": "rectangle",
+          "width_m": 22.543879599961944,
+          "height_m": 15.598574689795921,
+          "area_m2": 351.652389737773
+        },
+        "physical_sha256": "f14820d813cbfa987d6e262d401c43907109041c11d1a893f417a5da63df4263"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00017_train_g0_2",
+      "status": "done",
+      "workspace": "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space5-00017.service",
+      "domain": 114,
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "configuration_observation_attempts": 1,
+      "outcome": {
+        "success": false,
+        "targets": 2,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 600.1,
+        "infrastructure_failure": false,
+        "reason": "timeout"
+      },
+      "completed_utc": "2026-11-12T21:16:17.795474+00:00"
+    },
+    {
+      "number": 18,
+      "phase": "train",
+      "generation": 0,
+      "role": "2",
+      "parameters": [
+        1.0,
+        1.385418612719226,
+        0.9502567951295049,
+        1.0596067876402548,
+        0.5964900127045917
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163001818.yaml",
+        "seed": 1163001818,
+        "sha256": "bdef96f2c9ce75971a7f447f2b96f39ce5e2e4b5cc76cb4ceea0a0086604d061",
+        "requested_obstacles": 32,
+        "actual_obstacles": 32,
+        "mount_profile": "walls",
+        "arena": {
+          "shape": "l_shape",
+          "width_m": 24.837866763302735,
+          "height_m": 15.038308629457951,
+          "area_m2": 296.78971705722904
+        },
+        "physical_sha256": "69fd5da100189ed08ca23814722a460c6d3afa58e1ff7e5bc449435e2ce46918"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00018_train_g0_2",
+      "status": "done",
+      "workspace": "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space5-00018.service",
+      "domain": 115,
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "configuration_observation_attempts": 1,
+      "outcome": {
+        "success": false,
+        "targets": 2,
+        "approached": 2,
+        "contacts": 0,
+        "seconds": 600.4,
+        "infrastructure_failure": false,
+        "reason": "timeout"
+      },
+      "completed_utc": "2026-11-12T21:22:09.964305+00:00"
+    },
+    {
+      "number": 19,
+      "phase": "train",
+      "generation": 0,
+      "role": "2",
+      "parameters": [
+        1.0,
+        1.385418612719226,
+        0.9502567951295049,
+        1.0596067876402548,
+        0.5964900127045917
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163001919.yaml",
+        "seed": 1163001919,
+        "sha256": "7a33ca4b9ddeeea6f7a997b54ce7ddc29c0651c2eca674a05118f5825c0423c6",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "mixed",
+        "arena": {
+          "shape": "u_shape",
+          "width_m": 20.226341393524805,
+          "height_m": 12.805295621647623,
+          "area_m2": 185.05316479812888
+        },
+        "physical_sha256": "1a5dac19cd3ed742d4146ab7c498c4a5461fbdf6ba888f74a4a8d798d5868206"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00019_train_g0_2",
+      "status": "done",
+      "workspace": "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space5-00019.service",
+      "domain": 114,
+      "outcome": {
+        "success": false,
+        "targets": 0,
+        "approached": 0,
+        "contacts": 0,
+        "seconds": 600.0,
+        "infrastructure_failure": true,
+        "reason": "native_input_or_effective_configuration_unverified"
+      },
+      "completed_utc": "2026-11-12T21:25:18.685403+00:00",
+      "raw_outcome_before_floor_gate": {
+        "success": false,
+        "targets": 0,
+        "approached": 0,
+        "contacts": 0,
+        "seconds": 600.0,
+        "infrastructure_failure": true,
+        "reason": "startup_failure"
+      }
+    },
+    {
+      "number": 20,
+      "phase": "train",
+      "generation": 0,
+      "role": "2",
+      "parameters": [
+        1.0,
+        1.385418612719226,
+        0.9502567951295049,
+        1.0596067876402548,
+        0.5964900127045917
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163002020.yaml",
+        "seed": 1163002020,
+        "sha256": "2e22f7d0daadbfdb703685d3009130c0d5b37b3c065844368f3ae13189961d46",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "obstacles",
+        "arena": {
+          "shape": "rooms",
+          "width_m": 17.06744267206234,
+          "height_m": 12.997884692948714,
+          "area_m2": 221.8406518549788
+        },
+        "physical_sha256": "47b47cade6236753057ee9f6b21500f1b9135df39c139c0d3843b402e894f4cf"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00020_train_g0_2",
+      "status": "done",
+      "workspace": "/home/peter/simul/training_robust/native90/approach_witness_v1/runtime",
+      "unit": "osp-spatial-nov13-space5-00020.service",
+      "domain": 115,
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "configuration_observation_attempts": 1,
+      "outcome": {
+        "success": false,
+        "targets": 2,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 600.376,
+        "infrastructure_failure": false,
+        "reason": "timeout"
+      },
+      "completed_utc": "2026-11-12T21:53:50.719858+00:00"
+    },
+    {
+      "number": 21,
+      "phase": "train",
+      "generation": 0,
+      "role": "3",
+      "parameters": [
+        1.0,
+        1.1368666234652485,
+        0.37295371483448997,
+        0.7415023407695795,
+        0.31873446796019067
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163002121.yaml",
+        "seed": 1163002121,
+        "sha256": "cfce00b5c72088687abdd7e9b3358d9a188630e54feccef06e5efe89fd53cdb9",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "walls",
+        "arena": {
+          "shape": "circle",
+          "width_m": 16.46604408601322,
+          "height_m": 16.46604408601322,
+          "area_m2": 212.33787501596169
+        },
+        "physical_sha256": "7b769b64cc4286987c522ef06e1b3d6908e93dacedf3b882b80e4bb1531484a5"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00021_train_g0_3",
+      "status": "done",
+      "workspace": "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime",
+      "unit": "osp-spatial-nov13-space5-00021.service",
+      "domain": 114,
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "configuration_observation_attempts": 1,
+      "outcome": {
+        "success": false,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 265.224,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      },
+      "completed_utc": "2026-11-12T21:55:49.671471+00:00"
+    },
+    {
+      "number": 22,
+      "phase": "train",
+      "generation": 0,
+      "role": "3",
+      "parameters": [
+        1.0,
+        1.1368666234652485,
+        0.37295371483448997,
+        0.7415023407695795,
+        0.31873446796019067
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163002222.yaml",
+        "seed": 1163002222,
+        "sha256": "460c6fd8ff1f5e214514b1670c68e2a2399b9b2e8d31f94db0c27606b22b25b1",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "mixed",
+        "arena": {
+          "shape": "triangle",
+          "width_m": 25.867019007984446,
+          "height_m": 18.319231054805922,
+          "area_m2": 236.93194895316188
+        },
+        "physical_sha256": "0ac3d4085a4eac0e9a32067f0a39510feeca4a7a7df8a27f8b2893dc045ffd36"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00022_train_g0_3",
+      "status": "done",
+      "workspace": "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime",
+      "unit": "osp-spatial-nov13-space5-00022.service",
+      "domain": 114,
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "configuration_observation_attempts": 1,
+      "outcome": {
+        "success": false,
+        "targets": 1,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 600.157,
+        "infrastructure_failure": false,
+        "reason": "timeout"
+      },
+      "completed_utc": "2026-11-12T22:24:14.065475+00:00"
+    },
+    {
+      "number": 23,
+      "phase": "train",
+      "generation": 0,
+      "role": "3",
+      "parameters": [
+        1.0,
+        1.1368666234652485,
+        0.37295371483448997,
+        0.7415023407695795,
+        0.31873446796019067
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163002323.yaml",
+        "seed": 1163002323,
+        "sha256": "f2672db06d304d030c258f2cac91d565d77e000c0893540d1d8c878a264df4d8",
+        "requested_obstacles": 16,
+        "actual_obstacles": 16,
+        "mount_profile": "obstacles",
+        "arena": {
+          "shape": "trapezoid",
+          "width_m": 20.916541191537373,
+          "height_m": 16.549232694766104,
+          "area_m2": 268.2367032250307
+        },
+        "physical_sha256": "5347677dcc19421c06ea791aaa29e67bf40415259cc3f9150c16000ca20b76fe"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00023_train_g0_3",
+      "status": "done",
+      "workspace": "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime",
+      "unit": "osp-spatial-nov13-space5-00023.service",
+      "domain": 115,
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "configuration_observation_attempts": 1,
+      "outcome": {
+        "success": false,
+        "targets": 2,
+        "approached": 2,
+        "contacts": 0,
+        "seconds": 600.236,
+        "infrastructure_failure": false,
+        "reason": "timeout"
+      },
+      "completed_utc": "2026-11-12T22:43:25.090949+00:00"
+    },
+    {
+      "number": 24,
+      "phase": "train",
+      "generation": 0,
+      "role": "3",
+      "parameters": [
+        1.0,
+        1.1368666234652485,
+        0.37295371483448997,
+        0.7415023407695795,
+        0.31873446796019067
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163002424.yaml",
+        "seed": 1163002424,
+        "sha256": "ebe2736a05321b39ce80fb371fd8d592c5fb0b94c4721846495f38210c90827d",
+        "requested_obstacles": 24,
+        "actual_obstacles": 24,
+        "mount_profile": "hidden_obstacles",
+        "arena": {
+          "shape": "rectangle",
+          "width_m": 24.064147303987678,
+          "height_m": 10.183768817313183,
+          "area_m2": 245.06371292958082
+        },
+        "physical_sha256": "3491396ca3f6cd3abc039170809c6ae16a75b2ce243a3e253628cbe1aa4fa86e"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00024_train_g0_3",
+      "status": "done",
+      "workspace": "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime",
+      "unit": "osp-spatial-nov13-space5-00024.service",
+      "domain": 114,
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "configuration_observation_attempts": 1,
+      "outcome": {
+        "success": false,
+        "targets": 1,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 600.2,
+        "infrastructure_failure": false,
+        "reason": "timeout"
+      },
+      "completed_utc": "2026-11-12T23:23:29.970358+00:00"
+    },
+    {
+      "number": 25,
+      "phase": "train",
+      "generation": 0,
+      "role": "3",
+      "parameters": [
+        1.0,
+        1.1368666234652485,
+        0.37295371483448997,
+        0.7415023407695795,
+        0.31873446796019067
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163002525.yaml",
+        "seed": 1163002525,
+        "sha256": "7966b089818ae78c7c30e07815603c19ffec6c34d0e6299cf5df0d41fb3ef036",
+        "requested_obstacles": 32,
+        "actual_obstacles": 32,
+        "mount_profile": "walls",
+        "arena": {
+          "shape": "l_shape",
+          "width_m": 22.085799992851875,
+          "height_m": 14.543717906820739,
+          "area_m2": 237.85363170472374
+        },
+        "physical_sha256": "9d5312b1ca7c30f7984c871c5f3211350dd4d2a6f92f5488270b8d95ca952a1d"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00025_train_g0_3",
+      "status": "running",
+      "workspace": "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime",
+      "unit": "osp-spatial-nov13-space5-00025.service",
+      "domain": 115,
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true
+    },
+    {
+      "number": 26,
+      "phase": "train",
+      "generation": 0,
+      "role": "3",
+      "parameters": [
+        1.0,
+        1.1368666234652485,
+        0.37295371483448997,
+        0.7415023407695795,
+        0.31873446796019067
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163002626.yaml",
+        "seed": 1163002626,
+        "sha256": "3be74a140259aacd599334139c53b17c50ffc467b49d959ca98c51854f46652d",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "mixed",
+        "arena": {
+          "shape": "u_shape",
+          "width_m": 19.56771115951354,
+          "height_m": 10.041061160949255,
+          "area_m2": 155.00988885671651
+        },
+        "physical_sha256": "16f541b5f7ab249541be130bc4c1314ea62283d1f86b810debf0c6bf79a1c41d"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00026_train_g0_3",
+      "status": "prepared",
+      "workspace": "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime",
+      "unit": "osp-spatial-nov13-space5-00026.service"
+    },
+    {
+      "number": 27,
+      "phase": "train",
+      "generation": 0,
+      "role": "3",
+      "parameters": [
+        1.0,
+        1.1368666234652485,
+        0.37295371483448997,
+        0.7415023407695795,
+        0.31873446796019067
+      ],
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163002727.yaml",
+        "seed": 1163002727,
+        "sha256": "80db55bbf30e09b4539cbca0be777a93a1170e5234bad8bfa487ea1d72b6086f",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "obstacles",
+        "arena": {
+          "shape": "rooms",
+          "width_m": 19.113983988523522,
+          "height_m": 16.78574216981287,
+          "area_m2": 320.8424070692873
+        },
+        "physical_sha256": "ba4f0457276596dbfa7c44a3ca1106d815b30f41d5d3cae65f456157be115537"
+      },
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00027_train_g0_3",
+      "status": "prepared",
+      "workspace": "/home/peter/simul/training_robust/native90/bounded_gain_v1/runtime",
+      "unit": "osp-spatial-nov13-space5-00027.service"
+    }
+  ],
+  "generalization_verified": false,
+  "old_source_qualification_not_completed": true,
+  "all_prepared_artifacts_retained": true,
+  "successor": "spatial_cem_v6"
+}

@@ -1,69 +1,32 @@
 # OSP Final Project — ROS 2 Jazzy
 
-> **2026-11-13 현재:** 실제 Gazebo에서 **원형·삼각형·사다리꼴·직사각형·L자·U자·다중 방**의
-> 외곽 벽과 주행 공간까지 바꾸며 학습합니다. `spatial_cem_v5`의 훈련 맵28개는 외곽선·점유 격자가 서로 다릅니다.
-> 완료된 훈련23회 중11회가 원래 벤치 기준을 통과했습니다. CEM 세대 학습과 독립 일반화 시험은 아직 미완료이며 실사용 정책으로 승격하지 않았습니다.
-> [공간·학습·기준·실행 상태](repository_snapshot/spatial_curriculum.json) · [외곽선 중복 감사](repository_snapshot/spatial_geometry_v5.json).
+> **2026-11-13 현재:** 원형·삼각형·사다리꼴·직사각형·L자·U자·다중 방의 외곽과 주행 공간을 바꾸며 실제 Gazebo에서 학습합니다.
+> 수정한 센서·위치 추정·탐색 소스를 고정한 `spatial_cem_v6`가 시작됐습니다. 첫28개 훈련 맵의 외곽선과 점유 격자는 모두 다르며,
+> 장애물8–32개, 출발 자세, 마커 크기와 벽·장애물 부착 위치도 바뀝니다. 매 훈련 주행마다 새 맵을 사용합니다.
+> CEM으로 SLAM/Nav2 탐색 계수를 조정하며, 독립 일반화 시험은 아직 완료하지 않았습니다. 실사용 정책으로 승격하지 않았습니다.
+> [현재 학습·기준·실행 상태](repository_snapshot/spatial_curriculum.json) · [28개 공간 중복·접근 가능성 검사](repository_snapshot/spatial_geometry_v6.json) · [구성한 공간 예시](repository_snapshot/spatial_training_v6_preview.png).
 >
-> **최근 실제 결과:** 새 L자·장애물26개는358.222초, U자는59.812초에 세 ID·각 실제1.5m 접근·정확한 지도 위치·충돌0회를 통과했습니다.
-> L자 좌표 오차는 최대3.6cm였습니다. 사다리꼴507.100초와 L자358.222초는 접근 판정 시각의 실제 위치도 세 ID 모두1.5m 안쪽으로 추가 확인했습니다.
-> 배치와 크기가 다르므로 시간 차이만으로 정책 개선 폭을 판단하지 않습니다. [ID별 실제 접근 증거](repository_snapshot/physical_credit_verification.json).
+> **최신 실제 비교:** 원형의 같은 맵·가중치에서 근거리 관측 유지 방식을 고친 후보가 **236.793초**에 완주했습니다. 기준은399.2초였습니다.
+> 세 ID, 각 실제1.5m 접근, 지도 좌표 오차0.5m 이내, 충돌0회와 저장된 근거리 관측9개의 실제 접근 시점을 모두 확인했습니다.
+> 지도 좌표 오차는 최대13.34cm였습니다. 이번1회씩의 비교에서는40.68% 짧았으며, 여러 공간에서 같은 개선 폭이 나온다는 뜻은 아닙니다.
+> 원통 마커의 반복 접근 요청은4회→1회였지만, 전체 재통과 거리 비율은6.22%→9.47%였습니다. 재통과 거리 자체는 약4m로 비슷해 전체 재방문 감소를 주장하지 않습니다.
+> [비교 결과·물리적 접근 증거·영상](repository_snapshot/windowed_witness_candidate.json).
 >
-> **현재 고치는 문제:** 원형 비교 후보는188.674초에 세 ID·각 실제1.5m 접근·충돌0회를 달성했지만 ID337 좌표 오차68.5cm로 실패했습니다.
-> 실제 자세를 사용한 평가용 재생에서는 관측 오차 중앙값이68.2cm에서9.4mm로 줄어, 위치 추정 오차가 주원인으로 보입니다.
-> 해당 보정은 분석에만 쓰며 정책에는 실제 위치를 전달하지 않습니다. [진단과 한계](repository_snapshot/localization_drift_diagnosis.json).
-> SLAM 방향 벌점 비교는247.622초에 세 ID·실제 접근·충돌0회를 달성했지만 다른 두 마커 좌표 오차55.3cm로 실패했습니다.
-> [설정 비교 결과](repository_snapshot/heading_prior_candidate.json) · [후속 위치 추정 오차](repository_snapshot/heading_prior_native_drift.json).
-> 두 새 맵의 원시 센서 구간에서 바퀴 속도가 실제보다 약21–24% 높게 측정됐습니다. 고정계수0.78 후보의 별도 구간 재생 오차는 줄었습니다.
-> 시뮬레이션 EKF에 보정한 바퀴 twist를 넣는 후보는235개 테스트와 실제 ROS 연결 검사를 통과했고 새 Gazebo 비교가 시작됐습니다.
-> 실제 파라미터·입력 경로·바닥 센서·Nav2 설정을 확인했고 기존 벤치에서는204.200초에 세 ID·좌표 기준·충돌0회를 통과했습니다.
-> 추가 감사에서는 마지막 ID337의 접근 완료 판정 시 실제 거리가1.511m였습니다. 이후1.484m까지 갔지만 이력만으로 앞선 판정을 검증하지 않습니다.
-> 지도상 근접만으로 완료하지 않고, 확인된 ID의 몸체 기준1.3m 내 센서 관측3프레임을 요구하는 새 후보를 만들었습니다.
-> 접근 목표는0.75–0.90m로 잡아 Nav2 정지 허용 오차에 여유를 주며 전체247개 테스트·빌드 후 원형 Gazebo 비교를496.132초에 통과했습니다.
-> 세 ID·실제1.5m 접근·지도 위치·충돌0회를 확인했고 좌표 오차는최대6.94cm였습니다.
-> 세 마커의 근거리 관측9개를 실제 궤적으로 다시 검사했으며 샘플 간 이동 여유를 더해도 모두1.271m 이내였습니다.
-> [근거리 완료 후보와 실제 영상](repository_snapshot/strict_approach_candidate.json).
-> 탐색 시간은 아직 부족합니다. 두 번째 ID 뒤 마지막 ID까지385.5초가 걸렸고 전체496.1초는 속도 개선 증거가 아닙니다.
-> 완료 실행의 저장 입력6개를 재생해 기존 선택6개를 모두 재현했고, 보상 수정 후보는3개 선택을 바꿨습니다. 실제 시간·인식 향상은 새 주행에서 검증합니다.
-> [관측 보상 재생과 한계](repository_snapshot/strict_circle_camera_gain_replay.json).
-> bounded 시야 보상과 실제 카메라 거리 보정까지 결합한 후보는253개 테스트를 통과했습니다.
-> 서로 다른 새7종 공간은 외곽·점유·접근 가능성 검사를 통과했습니다. 첫 새 원형·장애물12개 시험을 완료했고, 현재 삼각형 주행과 후속 후보 비교를 이어가고 있습니다.
-> 실제 보정 입력·바닥 센서·Nav2 설정과 카메라 초점거리665.3px·관측 인정 거리2.513m를 확인했습니다.
-> 새7종 공간의 마커21개 모두에는 안전한 근거리 접근 위치가 있었습니다. [평가용 기하 검사](repository_snapshot/strict_standoff_geometry_audit.json).
-> [새 공간 시험과 진입 조건](repository_snapshot/spatial_calibrated_screen.json). 실제 일반화·속도·재방문 개선은 아직 검증 전입니다.
-> 첫 새 원형·장애물12개는399.2초에 세 ID·실제 접근·좌표·충돌0회와 접근 완료 시점 감사를 통과했습니다. 좌표 오차는최대3.77cm였습니다.
-> 원통의 작은 마커는 첫 근거리 관측 때 라이다 누락으로 정상 근거가 지워져 접근 요청4회가 필요했습니다.
-> 실제 관측 재생에서1초 내 정상 관측3개를 유지하면 첫 접근을 인정했고, 세 프레임의 실제 거리 상한도 모두1.048m 이내였습니다. 거리·ID·센서 일치 기준은 유지합니다.
-> 새 후보는259개 테스트·빌드를 통과했고 같은 공간 비교를 준비했습니다. 첫 감독기 오류는 native 시작 전 중복 정지였으며, 기존 주행을 보존한 채 단일 감독기 구조로 수정했습니다.
-> [누락·재방문 원인과 새 후보](repository_snapshot/windowed_witness_candidate.json). 실제 시간 단축·다중 환경 향상은 아직 검증 전입니다.
-> 기존 bounded 관측 보상만 적용한 다른 원형은265.224초에 세 ID·실제 접근을 달성했지만 좌표 오차70.0cm로 실패했습니다.
-> 해당 ID의 관측을 실제 자세로 평가용 재생하면 오차 중앙값69.9cm→2.0mm여서 위치 추정 문제를 지지합니다. 이 보정을 정책에 전달하지 않습니다.
-> [기존 소스의 새 좌표 실패](repository_snapshot/bounded_gain_circle_localization_failure.json). 새 결합 후보의 공간별 검증을 계속합니다.
-> [정밀 접근 감사](repository_snapshot/approach_margin_diagnosis.json).
-> [센서 재생 측정과 한계](repository_snapshot/motion_calibration_study.json) · [실제 검증 상태](repository_snapshot/velocity_calibration_candidate.json).
-> 기존 주행은 보존했고 실제 실행 자리 확보 후 CEM 감독기가 재개됐습니다. 최대 두 native 실행을 유지합니다.
+> **남은 실패:** 이전 결합 후보의 새 삼각형은360.417초에 전체 기준을 통과했습니다. 사다리꼴은580.702초에 세 ID와 실제 접근·충돌0회를 달성했지만,
+> 한 마커의 지도 좌표 오차1.215m로 실패했습니다. 실제 자세를 쓴 평가용 재생에서는 해당 관측의 오차 중앙값이1.215m→5.37mm여서 잔여 위치 추정 오차를 지지합니다.
+> 이 실제 자세 보정은 분석에만 쓰며 정책에 전달하지 않습니다. [공간별 실제 결과](repository_snapshot/spatial_calibrated_screen.json) · [사다리꼴 실패 분석과 한계](repository_snapshot/calibrated_trapezoid_localization_failure.json).
 >
-> **재방문과 런타임:** odom 기준 관측 기억·반복 목표 억제와 실제 경로 감사를 사용합니다.
-> L자의 재통과 거리20.1%에는 필요한 통로 왕복도 포함됩니다. 전체 재방문 감소는 아직 입증되지 않았습니다.
-> 다른 새 원형은403.502초에 기준을 통과했습니다. 다중 방 실패의 ID101은 약75cm 옆을 지났지만 읽을 만한 거리에서 카메라를 돌리지 못한 것으로 보입니다.
-> [카메라 시각별 기하 분석](repository_snapshot/rooms_missed_view_diagnosis.json).
-> 실제 관측 인정 거리와 탐색 점수의 거리 불일치를 고친 별도 후보는230개 테스트를 통과했습니다.
-> 7개 공간 유형의 저장 입력13개 재생에서 선택9개가 바뀌었고 빈 후보 집합은 없었습니다. 실제 주행 성능 증거로 계산하지 않습니다.
-> 이 후보는 현재 CEM 소스를 보존한 채 별도로 준비했습니다. [관측 점수 후보](repository_snapshot/calibrated_gain_candidate.json).
-> 실패5회의 기록을 추가 분석했습니다. 직사각형에서는 목표 약0.99m 옆을 지나도 카메라 방향·투영 크기가 맞지 않아 ID를 놓쳤습니다.
-> 해당 실행의 재통과 거리 비율은1.6%로, 재방문 억제만으로 인식 누락을 해결할 수는 없습니다.
-> [기록된 카메라 시각·경로 분석과 모델 한계](repository_snapshot/missed_views_training_summary.json). 실제 로봇의 재방문 개선을 측정한 결과는 아닙니다.
-> 이전 원형의 주행 불능은 rolling local costmap에서 정적인 SLAM 격자를 제외한 같은 맵·가중치 비교에서600.2초 실패→270.500초 성공으로 개선됐습니다.
-> [주행 지도 비교](repository_snapshot/local_navigation_diagnosis.json) · [bounded 관측 이득 후보](repository_snapshot/bounded_gain_candidate.json).
-> SLAM 상태·지도·TF·LiDAR를 확인한 뒤 Nav2를 시작하는 후보는 실제 준비 순서를 확인했습니다.
-> [시작 검증·실패 결과](repository_snapshot/startup_guard_candidate.json) · [미확정 초기 위치 고정 문제](repository_snapshot/landmark_seed_diagnosis.json).
-> 별도 원형의 heartbeat 손실 원인은 미확인입니다. 향후 중단 시 스레드 대기·메모리 계수를 기록합니다.
-> 새 U자 실행에서도 SLAM 상태 응답 손실 뒤 지도 TF가 없어 시작하지 못하는 문제가 재현됐습니다. 당시 메모리 제한 도달·OOM 카운터는0이었습니다.
-> [새 시작 실패의 실제 프로세스 증거](repository_snapshot/latest_startup_failure_evidence.json). 새 후보의 상태 기반 시작 검사로 검증을 이어갑니다.
-> [런타임 실패 증거](repository_snapshot/runtime_failure_diagnosis.json) · [이전 바닥 좌표 오류와 환경 검증](repository_snapshot/floor_pose_diagnosis.json).
+> **평가와 재방문:** 정확한3개 ID·각 실제1.5m 접근·좌표 오차0.5m 이내·충돌0회·600시뮬레이션 초 이내를 유지합니다.
+> 확인된 ID의 몸체 기준1.3m 이내 정상 센서 관측3개를1초 안에서 모으며, 누락된 라이다 프레임은 접근 근거를 추가하지 않습니다.
+> odom 기준 관측 기억·반복 목표 억제와 실제 경로·목표 재방문 감사를 기록합니다. 필요한 통로 왕복도 재통과 거리에 포함됩니다.
+> 모든 계수 후보는 같은 수정 소스를 사용합니다. 이후 같은 맵의 보정된 이전 정책과7쌍 파일럿·28쌍 검증 후 새 공간42회와 원래 과제40회 기준을 적용합니다.
+> 실제 Gazebo는 최대 두 주행, 각6GiB 제한으로 실행하며 진행 중이던 이전 주행은 종료할 때까지 보존했습니다.
+> [이전 학습 원본과 전환 상태](repository_snapshot/spatial_curriculum_v5_at_transition.json).
 >
-> [로컬 로봇 대시보드](http://127.0.0.1:8765)에서 RGB 카메라·SLAM·LiDAR·ID/접근 로그와 완료 영상을 확인합니다.
-> 실행: `bash scripts/run_robot_dashboard.sh start`. [사용·관리 방법](dashboard/README.md).
+> **확인 방법:** [로컬 로봇 대시보드](http://127.0.0.1:8765)에서 RGB 카메라·SLAM·LiDAR·ID/접근 로그와 완료 영상을 확인합니다.
+> 실행: `bash scripts/run_robot_dashboard.sh start`. [대시보드 사용법](dashboard/README.md).
+> 새 학습은 마커 중심의 깊이값 유효 개수·중앙값·편차도 읽기 전용으로 기록합니다. 이 기록만으로 검출기가 실제 사용한 거리 센서를 단정하지 않습니다.
+> 시뮬레이션 바퀴 속도 보정0.78은 실제 로봇에 검증된 값이 아닙니다. 하드웨어 검증과 모든 공간 일반화는 아직 미완료입니다.
 
 [**시뮬레이션 영상 다운로드 — GitHub Release**](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11)
 
@@ -282,7 +245,7 @@ python3 scripts/publish_simulation_videos.py --upload
 
 ## 저장된 Gazebo 영상
 
-[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 166개
+[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 171개
 
 아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다. 환경 오류로 종료한 영상은 정책 학습 표본에서 제외합니다.
 
@@ -424,6 +387,8 @@ python3 scripts/publish_simulation_videos.py --upload
 | [small_marker_followup_v2__regression__case_0__1121200000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/small_marker_followup_v2__regression__case_0__1121200000.mp4) | 성공 | 확인 | 282.519 |
 | [small_marker_followup_v2__regression__case_1__1121200101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/small_marker_followup_v2__regression__case_1__1121200101.mp4) | 성공 | 확인 | 193.2 |
 | [spatial_calibrated_screen_v1__screen_0__case_0__1171300000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_calibrated_screen_v1__screen_0__case_0__1171300000.mp4) | 성공 | 확인 | 399.2 |
+| [spatial_calibrated_screen_v1__screen_1__case_0__1171300101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_calibrated_screen_v1__screen_1__case_0__1171300101.mp4) | 성공 | 확인 | 360.417 |
+| [spatial_calibrated_screen_v1__screen_2__case_0__1171300202.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_calibrated_screen_v1__screen_2__case_0__1171300202.mp4) | 실패 | 확인 | 580.702 |
 | [spatial_cem_v1__00000_train_g0_0__1136000000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v1__00000_train_g0_0__1136000000.mp4) | 환경 오류 | 미달 | 372.574 |
 | [spatial_cem_v1__00001_train_g0_0__1136000101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v1__00001_train_g0_0__1136000101.mp4) | 환경 오류 | 미달 | 375.854 |
 | [spatial_cem_v2__00000_train_g0_0__1148000000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v2__00000_train_g0_0__1148000000.mp4) | 성공 | 확인 | 139.266 |
@@ -452,10 +417,13 @@ python3 scripts/publish_simulation_videos.py --upload
 | [spatial_cem_v5__00020_train_g0_2__1163002020.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v5__00020_train_g0_2__1163002020.mp4) | 실패 | 확인 | 600.376 |
 | [spatial_cem_v5__00021_train_g0_3__1163002121.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v5__00021_train_g0_3__1163002121.mp4) | 실패 | 확인 | 265.224 |
 | [spatial_cem_v5__00022_train_g0_3__1163002222.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v5__00022_train_g0_3__1163002222.mp4) | 실패 | 확인 | 600.157 |
+| [spatial_cem_v5__00023_train_g0_3__1163002323.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v5__00023_train_g0_3__1163002323.mp4) | 실패 | 미달 | 600.236 |
+| [spatial_cem_v5__00024_train_g0_3__1163002424.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v5__00024_train_g0_3__1163002424.mp4) | 실패 | 확인 | 600.2 |
 | [strict_approach_regression_v1__case_0__1163000000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/strict_approach_regression_v1__case_0__1163000000.mp4) | 성공 | 확인 | 496.132 |
 | [tf_restamp_v1__regression__case_0__1121200000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_0__1121200000.mp4) | 성공 | 확인 | 231.867 |
 | [tf_restamp_v1__regression__case_1__1121200101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_1__1121200101.mp4) | 성공 | 확인 | 229.859 |
 | [velocity_calibration_regression_v1__case_0__1163000000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/velocity_calibration_regression_v1__case_0__1163000000.mp4) | 성공 | 확인 | 204.2 |
+| [windowed_witness_regression_v2__case_0__1171300000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/windowed_witness_regression_v2__case_0__1171300000.mp4) | 성공 | 확인 | 236.793 |
 
 </details>
 

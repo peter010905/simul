@@ -1,0 +1,578 @@
+{
+  "evidence": "Offline collision and exterior geometry; not a native success result",
+  "episodes": 28,
+  "shapes": [
+    "circle",
+    "l_shape",
+    "rectangle",
+    "rooms",
+    "trapezoid",
+    "triangle",
+    "u_shape"
+  ],
+  "unique_exteriors": 28,
+  "unique_occupancy": 28,
+  "all_approaches_reachable": true,
+  "rows": [
+    {
+      "number": 0,
+      "seed": 1191300000,
+      "role": "0",
+      "arena": {
+        "shape": "circle",
+        "width_m": 18.852783061225846,
+        "height_m": 18.852783061225846,
+        "area_m2": 278.35553362792405
+      },
+      "start": [
+        10.725,
+        3.9749999999999996,
+        -0.9662041166298754
+      ],
+      "actual_obstacles": 8,
+      "reachable_approaches": true,
+      "occupancy_sha256": "369377bf14ce65368ca7f06dd81188151db9b467abc7b2a94295d4716d9a44f2",
+      "exterior_sha256": "fbeae30056b02bdef1e3e1de83800dc4564a64165b80beca443119848ed2c9c2"
+    },
+    {
+      "number": 1,
+      "seed": 1191300101,
+      "role": "0",
+      "arena": {
+        "shape": "triangle",
+        "width_m": 20.58414964172733,
+        "height_m": 14.418731368056953,
+        "area_m2": 148.39866206197607
+      },
+      "start": [
+        9.375,
+        4.2749999999999995,
+        0.7816162105813014
+      ],
+      "actual_obstacles": 12,
+      "reachable_approaches": true,
+      "occupancy_sha256": "6f32c818dc3a95e563253dde38df66ce05b5a1ff5e7575b7dbc3bde3bfc2716a",
+      "exterior_sha256": "4084253fa54c99de15a89444c0db3d5815ef12060df78b91139956cdd2f96506"
+    },
+    {
+      "number": 2,
+      "seed": 1191300202,
+      "role": "0",
+      "arena": {
+        "shape": "trapezoid",
+        "width_m": 19.031489922812572,
+        "height_m": 15.318512819487296,
+        "area_m2": 242.16221825591174
+      },
+      "start": [
+        7.725,
+        12.375,
+        -2.7512573452655413
+      ],
+      "actual_obstacles": 16,
+      "reachable_approaches": true,
+      "occupancy_sha256": "6d49098b30da5884f9455179d279d67d33dbf54c8015607cb1784db5c159f431",
+      "exterior_sha256": "d20b1639e3fd8a486564da28c65528b8511b38f9376d431c089eba3ed90d0077"
+    },
+    {
+      "number": 3,
+      "seed": 1191300303,
+      "role": "0",
+      "arena": {
+        "shape": "rectangle",
+        "width_m": 23.66103368301541,
+        "height_m": 12.81895278434403,
+        "area_m2": 303.3096736113483
+      },
+      "start": [
+        9.225,
+        5.625,
+        2.829991185767999
+      ],
+      "actual_obstacles": 24,
+      "reachable_approaches": true,
+      "occupancy_sha256": "461359def064dd85877ed556334e65c103dcbb66870805d4aae9013f96af0b4f",
+      "exterior_sha256": "d41e06d58a320d50459a7bd7f121206a05fb9aed36183ae99b198d3f8febbb4f"
+    },
+    {
+      "number": 4,
+      "seed": 1191300404,
+      "role": "0",
+      "arena": {
+        "shape": "l_shape",
+        "width_m": 24.23388955234381,
+        "height_m": 15.850075605052517,
+        "area_m2": 292.65651405978275
+      },
+      "start": [
+        5.7749999999999995,
+        13.275,
+        -3.016791004255469
+      ],
+      "actual_obstacles": 32,
+      "reachable_approaches": true,
+      "occupancy_sha256": "8a050eaec1c56af54fb91c4f4b79a9da6d3b28562ffacb1e8191eb4e7366c36b",
+      "exterior_sha256": "7893eaa9742d9990d10b9eb605500e6eb02fae103438c19e523fde1de3314605"
+    },
+    {
+      "number": 5,
+      "seed": 1191300505,
+      "role": "0",
+      "arena": {
+        "shape": "u_shape",
+        "width_m": 20.30194171375593,
+        "height_m": 15.499659564877142,
+        "area_m2": 219.58322378964615
+      },
+      "start": [
+        10.275,
+        3.0749999999999997,
+        0.8851929145435635
+      ],
+      "actual_obstacles": 8,
+      "reachable_approaches": true,
+      "occupancy_sha256": "8a428a19434a601d1bdbb93943b9204bb8b14dfb7442720c59c39adfb2089c90",
+      "exterior_sha256": "6566e8c0f6d9df51804fc211ccba88ce0a4125c0f16190df74ba369a3f0cc14e"
+    },
+    {
+      "number": 6,
+      "seed": 1191300606,
+      "role": "0",
+      "arena": {
+        "shape": "rooms",
+        "width_m": 22.984607624055986,
+        "height_m": 11.555117063698587,
+        "area_m2": 265.58983175914597
+      },
+      "start": [
+        16.575,
+        9.975,
+        2.3199072303002266
+      ],
+      "actual_obstacles": 12,
+      "reachable_approaches": true,
+      "occupancy_sha256": "c29ccd384e127ebc3f0ec9d8257c2b0c02f909fd27228be2d0e46d2b62bedfd9",
+      "exterior_sha256": "b33734da958a6c2e6d61e6527de5ca5d00a0b0dd09e8d5295871005b8a7ee50c"
+    },
+    {
+      "number": 7,
+      "seed": 1191300707,
+      "role": "1",
+      "arena": {
+        "shape": "circle",
+        "width_m": 18.24301534414155,
+        "height_m": 18.24301534414155,
+        "area_m2": 260.64065954762987
+      },
+      "start": [
+        5.175,
+        6.075,
+        -0.5078958699888423
+      ],
+      "actual_obstacles": 8,
+      "reachable_approaches": true,
+      "occupancy_sha256": "5c10d5905cef09271249bd861800d8d3f06e6ed0457fd6a5ece509a4a53dc006",
+      "exterior_sha256": "c5797abf9eacbca12e0fd53041ea52cec06f3e5855ead30f8de9b4345bb31014"
+    },
+    {
+      "number": 8,
+      "seed": 1191300808,
+      "role": "1",
+      "arena": {
+        "shape": "triangle",
+        "width_m": 25.91816680101432,
+        "height_m": 16.96173176488864,
+        "area_m2": 219.80849655822337
+      },
+      "start": [
+        16.575,
+        3.675,
+        -0.6290438253806632
+      ],
+      "actual_obstacles": 12,
+      "reachable_approaches": true,
+      "occupancy_sha256": "331215828c4e3f1ecba53ce0c3b56bd72579f0b233835f3d254680fdfc1f9ba4",
+      "exterior_sha256": "8976da35d6080f784f83ef75b91368ec79cc0ac913b58fe70524784b5e7e127f"
+    },
+    {
+      "number": 9,
+      "seed": 1191300909,
+      "role": "1",
+      "arena": {
+        "shape": "trapezoid",
+        "width_m": 16.213298459822944,
+        "height_m": 11.575452111864477,
+        "area_m2": 154.3749383883366
+      },
+      "start": [
+        6.225,
+        4.125,
+        3.0626177255737757
+      ],
+      "actual_obstacles": 16,
+      "reachable_approaches": true,
+      "occupancy_sha256": "b7da32ab43eba47d90fc27a79cc08e550617449331c2da863d91e0c42067eace",
+      "exterior_sha256": "b96ca823f364f837be45318e0af15888226117fbc53a23af5d2c600a7a48a7ed"
+    },
+    {
+      "number": 10,
+      "seed": 1191301010,
+      "role": "1",
+      "arena": {
+        "shape": "rectangle",
+        "width_m": 16.83908871249384,
+        "height_m": 11.904907835586272,
+        "area_m2": 200.46779915750025
+      },
+      "start": [
+        13.424999999999999,
+        1.425,
+        -0.7649002541485044
+      ],
+      "actual_obstacles": 24,
+      "reachable_approaches": true,
+      "occupancy_sha256": "fbc392d490ffb6b2c76e60fade6233dcd90d99cab85024f411b7f6925415b716",
+      "exterior_sha256": "3e08c7a2c8d89f66091c2b22cf7f57a8edf03e23c1b01f5d250692d5af15b1cf"
+    },
+    {
+      "number": 11,
+      "seed": 1191301111,
+      "role": "1",
+      "arena": {
+        "shape": "l_shape",
+        "width_m": 17.41379814210463,
+        "height_m": 10.363029937893838,
+        "area_m2": 139.43025623668444
+      },
+      "start": [
+        16.425,
+        3.675,
+        -2.630964701574192
+      ],
+      "actual_obstacles": 27,
+      "reachable_approaches": true,
+      "occupancy_sha256": "2ec2764c248699a989909e8b1aa145f9d37de2b91f08ce789559490fea6ac5a2",
+      "exterior_sha256": "649adf2db73e381c8620b4edf505d8feb5da3286a1357aa68963f314b2c56bcc"
+    },
+    {
+      "number": 12,
+      "seed": 1191301212,
+      "role": "1",
+      "arena": {
+        "shape": "u_shape",
+        "width_m": 21.400782944836934,
+        "height_m": 12.735956687818891,
+        "area_m2": 215.0988419588908
+      },
+      "start": [
+        18.974999999999998,
+        9.975,
+        -2.8633382518590684
+      ],
+      "actual_obstacles": 8,
+      "reachable_approaches": true,
+      "occupancy_sha256": "6b17a1950f311e06ae2b3efa446f6eb3c2513f66ef072b11fd239758f1524fc8",
+      "exterior_sha256": "89ddb58ca10c935418c8d69c85253b3e58701226d955ecca1098a5c8ae16502f"
+    },
+    {
+      "number": 13,
+      "seed": 1191301313,
+      "role": "1",
+      "arena": {
+        "shape": "rooms",
+        "width_m": 23.910043584488655,
+        "height_m": 14.278335704569113,
+        "area_m2": 341.395629010208
+      },
+      "start": [
+        2.475,
+        3.9749999999999996,
+        -2.627913670011467
+      ],
+      "actual_obstacles": 12,
+      "reachable_approaches": true,
+      "occupancy_sha256": "be9c9a400a4e729e41e13288a8321ef5aea25f13b557e7e1a22399b3b34fbc20",
+      "exterior_sha256": "036a5ee2eda184330efd5f94f0f45a83305cb11fe7d649f90b0471e451db4698"
+    },
+    {
+      "number": 14,
+      "seed": 1191301414,
+      "role": "2",
+      "arena": {
+        "shape": "circle",
+        "width_m": 16.16664736943008,
+        "height_m": 16.16664736943008,
+        "area_m2": 204.68633512050903
+      },
+      "start": [
+        11.924999999999999,
+        10.424999999999999,
+        -2.634744258445288
+      ],
+      "actual_obstacles": 8,
+      "reachable_approaches": true,
+      "occupancy_sha256": "8a7af354554bc02282b2e355f4f9e8a7f7624829d5cfc70b9765a5e0a0c745e2",
+      "exterior_sha256": "4b3a399269801fbe4444e1bae5b355cb12cb6010536b7ea019334f1a4612fa05"
+    },
+    {
+      "number": 15,
+      "seed": 1191301515,
+      "role": "2",
+      "arena": {
+        "shape": "triangle",
+        "width_m": 21.281111165929396,
+        "height_m": 15.988641558766595,
+        "area_m2": 170.1280292021553
+      },
+      "start": [
+        7.725,
+        3.225,
+        -1.934953439383929
+      ],
+      "actual_obstacles": 12,
+      "reachable_approaches": true,
+      "occupancy_sha256": "da8aa6b42b55263ec368d133dd76807d58f79c33b4efab9860cdd8ff44586560",
+      "exterior_sha256": "01845fdeb703a3d521de33e755c5c0cd60f8bd3a8a9482cfab6b27ffa68e2ff1"
+    },
+    {
+      "number": 16,
+      "seed": 1191301616,
+      "role": "2",
+      "arena": {
+        "shape": "trapezoid",
+        "width_m": 16.047507086690743,
+        "height_m": 12.707547314085355,
+        "area_m2": 154.83308098055932
+      },
+      "start": [
+        6.825,
+        2.925,
+        2.6419277756218156
+      ],
+      "actual_obstacles": 16,
+      "reachable_approaches": true,
+      "occupancy_sha256": "17e6fbbedbe1c7373a3bfb7352ee5b35072324546875837500abd3040bc82ef4",
+      "exterior_sha256": "89221a542ab3f75e3ec5feeeb9b6acd1d63b9e5917800da15b18bc41c8ee845a"
+    },
+    {
+      "number": 17,
+      "seed": 1191301717,
+      "role": "2",
+      "arena": {
+        "shape": "rectangle",
+        "width_m": 16.636771668295648,
+        "height_m": 14.370167304181923,
+        "area_m2": 239.07319227488225
+      },
+      "start": [
+        12.825,
+        3.375,
+        1.0903124814905256
+      ],
+      "actual_obstacles": 24,
+      "reachable_approaches": true,
+      "occupancy_sha256": "efb9d8c0dbd079b1911899d0c8d523e004d57a551b240e12a944f42a72b7d8ad",
+      "exterior_sha256": "595553b41d6b73a750bd79fd1b1ad1080bd3898839e2573a65dc6338929e791d"
+    },
+    {
+      "number": 18,
+      "seed": 1191301818,
+      "role": "2",
+      "arena": {
+        "shape": "l_shape",
+        "width_m": 20.374906612224144,
+        "height_m": 12.748306689656832,
+        "area_m2": 214.11804237408435
+      },
+      "start": [
+        14.924999999999999,
+        2.625,
+        -0.3675339926241459
+      ],
+      "actual_obstacles": 32,
+      "reachable_approaches": true,
+      "occupancy_sha256": "450588f12118aa953a204415eac8b9047bafe1374a00d3ccbea13bc281ac9aba",
+      "exterior_sha256": "504e7eb1fb1ffd6f39cbab5d491df31bdd80c229391e04b4480c70d5eb280085"
+    },
+    {
+      "number": 19,
+      "seed": 1191301919,
+      "role": "2",
+      "arena": {
+        "shape": "u_shape",
+        "width_m": 24.375102215206127,
+        "height_m": 10.974632207126675,
+        "area_m2": 191.08908211202785
+      },
+      "start": [
+        10.275,
+        2.025,
+        -2.9841219513408612
+      ],
+      "actual_obstacles": 8,
+      "reachable_approaches": true,
+      "occupancy_sha256": "78ba6cb3ac7e2959c6ad778e85ebd27643a1914ff4889dcd6cb402105bc3f888",
+      "exterior_sha256": "07962a7d19fe820a6f6609f91d17400226dee4a58fa0a554c64fbfafb0ea3191"
+    },
+    {
+      "number": 20,
+      "seed": 1191302020,
+      "role": "2",
+      "arena": {
+        "shape": "rooms",
+        "width_m": 18.92000118964858,
+        "height_m": 16.016409579470096,
+        "area_m2": 303.03048829747314
+      },
+      "start": [
+        14.325,
+        12.225,
+        0.10876250452103697
+      ],
+      "actual_obstacles": 12,
+      "reachable_approaches": true,
+      "occupancy_sha256": "30a1878098498fbc32ae10bcf3b319266ff458acd054ebad0cb5fec7b094ab87",
+      "exterior_sha256": "22f2e16e616ff65493b1d88a1e38b4e0c73e91d504ce312eae9ee1e7269e8eb2"
+    },
+    {
+      "number": 21,
+      "seed": 1191302121,
+      "role": "3",
+      "arena": {
+        "shape": "circle",
+        "width_m": 15.511423089196509,
+        "height_m": 15.511423089196509,
+        "area_m2": 188.43093657154097
+      },
+      "start": [
+        5.925,
+        6.375,
+        1.7177099004459864
+      ],
+      "actual_obstacles": 8,
+      "reachable_approaches": true,
+      "occupancy_sha256": "e542dfa6e9c88173c971e6576f8159beb0cb6d115a36c0bfb48ce6a178691ab1",
+      "exterior_sha256": "5fcfda381e7122d4499ab781ec757c0e2386accf8da8ebf86339449bfe1758c8"
+    },
+    {
+      "number": 22,
+      "seed": 1191302222,
+      "role": "3",
+      "arena": {
+        "shape": "triangle",
+        "width_m": 19.58210171747591,
+        "height_m": 18.915651887322532,
+        "area_m2": 185.2041096549575
+      },
+      "start": [
+        9.225,
+        11.174999999999999,
+        -2.9605232502852057
+      ],
+      "actual_obstacles": 12,
+      "reachable_approaches": true,
+      "occupancy_sha256": "e7bed03cd72bfb39c28fcd42c53986a12381909ec93655add3f5a1462054690c",
+      "exterior_sha256": "e4808e41c6193178fdd0749d42833a4574ba56aebbda2ba9ce76bd1706faaa1d"
+    },
+    {
+      "number": 23,
+      "seed": 1191302323,
+      "role": "3",
+      "arena": {
+        "shape": "trapezoid",
+        "width_m": 15.456268704735463,
+        "height_m": 15.87660653946228,
+        "area_m2": 191.41290583756006
+      },
+      "start": [
+        9.674999999999999,
+        9.825,
+        0.5043817929997685
+      ],
+      "actual_obstacles": 16,
+      "reachable_approaches": true,
+      "occupancy_sha256": "7a06e0f83dbb9aa82ec41be8bba1cf1d1a9e31a135172263d0ac04b462b2283c",
+      "exterior_sha256": "415b4cbff3d8390823c9f4c8db09a4fecc4dcdb139fd6c311082b4042b5ee3b2"
+    },
+    {
+      "number": 24,
+      "seed": 1191302424,
+      "role": "3",
+      "arena": {
+        "shape": "rectangle",
+        "width_m": 24.77400402977024,
+        "height_m": 13.50579042851582,
+        "area_m2": 334.59250650128325
+      },
+      "start": [
+        19.125,
+        6.075,
+        0.22937463822302107
+      ],
+      "actual_obstacles": 24,
+      "reachable_approaches": true,
+      "occupancy_sha256": "adfe9d0c2481f786ae7e57cf171c7834010fdf860ca8fb9eeba077c5497b8e2e",
+      "exterior_sha256": "34603f5384707a52716c7017f9834677352fef91dec967f7c4050caa6611161b"
+    },
+    {
+      "number": 25,
+      "seed": 1191302525,
+      "role": "3",
+      "arena": {
+        "shape": "l_shape",
+        "width_m": 22.21033277200054,
+        "height_m": 16.718324629398964,
+        "area_m2": 270.75899163984974
+      },
+      "start": [
+        4.875,
+        2.775,
+        0.08555764932215837
+      ],
+      "actual_obstacles": 32,
+      "reachable_approaches": true,
+      "occupancy_sha256": "a921cbee08ebd7a4fdf03479288860f052714d21f78129540ce565f917f26bce",
+      "exterior_sha256": "87cc2ec0eb8272cf3f1b2d1c02536b307e21ef438008ab344102d61b78607251"
+    },
+    {
+      "number": 26,
+      "seed": 1191302626,
+      "role": "3",
+      "arena": {
+        "shape": "u_shape",
+        "width_m": 24.99085610661801,
+        "height_m": 15.731491916408466,
+        "area_m2": 304.4563128454948
+      },
+      "start": [
+        9.375,
+        5.925,
+        2.587852271921143
+      ],
+      "actual_obstacles": 8,
+      "reachable_approaches": true,
+      "occupancy_sha256": "a547e715329681d5c7ba07608b68027b6719a243232732d72c1e3088e2210c6b",
+      "exterior_sha256": "c6443fe00b34ef532bb27139b00c1c4750710ef41a8552bd07ce0c92da2ad27a"
+    },
+    {
+      "number": 27,
+      "seed": 1191302727,
+      "role": "3",
+      "arena": {
+        "shape": "rooms",
+        "width_m": 21.86573452299386,
+        "height_m": 11.466012152989766,
+        "area_m2": 250.7127777746955
+      },
+      "start": [
+        9.674999999999999,
+        5.325,
+        2.05695296519064
+      ],
+      "actual_obstacles": 12,
+      "reachable_approaches": true,
+      "occupancy_sha256": "da9fff0d6136bce96536726bd48470ec2334aad4d16b0521ecf527d6ba3ec2ec",
+      "exterior_sha256": "dd321fdbb014f03457e284363d9998dd2833f1e521422d229d2b5857022588f6"
+    }
+  ]
+}

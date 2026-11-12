@@ -1,6 +1,6 @@
 {
-  "captured_utc": "2026-11-12T22:36:49.899154+00:00",
-  "evidence_type": "frozen_native_sensor_replay_fix_built_and_queued_for_actual_comparison",
+  "captured_utc": "2026-11-12T23:24:36.362339+00:00",
+  "evidence_type": "completed_same_scene_native_engineering_comparison_and_fresh_space_training",
   "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
   "source_hashes": {
     "setup.cfg": "fb522f4576d5429cb1cde1c49f0433cf9fd3181da3862b2f5e3a2ce9798a2003",
@@ -446,19 +446,296 @@
   },
   "native_comparison": {
     "root": "/home/peter/simul/training_robust/native90/windowed_witness_regression_v2",
-    "status": "running",
-    "job_status": "prepared",
-    "native_started": false,
+    "status": "completed_windowed_witness_regression",
+    "job_status": "done",
+    "native_started": true,
     "coordinator_unit": "osp-windowed-witness-v2.service",
     "native_unit": "osp-windowed-witness-v2-native.service",
     "training_samples": false,
     "same_scene_seed": 1171300000,
     "source_change_only": "marker_approach and its tests;camera exploration/weights/scene unchanged",
     "maximum_total_native_benchmarks": 2,
-    "existing_native_pids": [
-      1527383,
-      1532485
-    ]
+    "outcome": {
+      "success": true,
+      "targets": 3,
+      "approached": 3,
+      "contacts": 0,
+      "seconds": 236.793,
+      "infrastructure_failure": false,
+      "reason": "all_targets_found"
+    },
+    "velocity_profile_verified": true,
+    "independent_audit": {
+      "seed": 1171300000,
+      "success": true,
+      "evaluator_success": true,
+      "seconds": 236.793,
+      "targets": 3,
+      "collisions": 0,
+      "coordinate_errors_m": {
+        "848": 0.1333307258020401,
+        "554": 0.029105009622714045,
+        "206": 0.040396781531015745
+      },
+      "required_approach_m": 1.5,
+      "closest_approach_m": {
+        "206": 1.0742694423032588,
+        "554": 0.6091726176397296,
+        "848": 1.1360022652712178
+      },
+      "video": {
+        "file": "/home/peter/simul/training_robust/native90/windowed_witness_regression_v2/case_0/episodes/1171300000/video/mission.mp4",
+        "frames": 1185,
+        "fps": 5.0,
+        "verified": true
+      },
+      "errors": []
+    },
+    "physical_credit_audit": {
+      "evidence_type": "independent_GT_at_saved_policy_credit_timestamps",
+      "episode": "/home/peter/simul/training_robust/native90/windowed_witness_regression_v2/case_0/episodes/1171300000",
+      "required_actual_radius_m": 1.5,
+      "ground_truth_available_to_policy": false,
+      "registered_speed_bound_m_s": 0.6,
+      "sampling_limit": "Between samples the upper distance bound assumes speed<=0.6m/s; segment speeds above it or gaps>0.30s are unverified",
+      "historical_closest_pass_alone_is_sufficient": false,
+      "all_three_physical_credits_verified": true,
+      "all_three_recognition_and_approach_events_logged": true,
+      "rows": [
+        {
+          "id": 206,
+          "id_confirmed_in_journal": true,
+          "estimated_approach_in_journal": true,
+          "map_pose_credit": {
+            "verified": true,
+            "stamp_sim_s": 69.472,
+            "actual_distance_m": 1.0743077679326742,
+            "conservative_distance_upper_m": 1.0749077843625066,
+            "bracketing_stamps_sim_s": [
+              69.471,
+              69.505
+            ],
+            "registered_speed_bound_m_s": 0.6,
+            "method": "interpolated_GT_with_speed_margin",
+            "reason": null,
+            "trajectory_source": "fine_evaluator_trace"
+          },
+          "range_witness_physical_samples": [
+            {
+              "verified": true,
+              "stamp_sim_s": 70.4,
+              "actual_distance_m": 1.0743214338650522,
+              "conservative_distance_upper_m": 1.0809210969361434,
+              "bracketing_stamps_sim_s": [
+                70.389,
+                70.423
+              ],
+              "registered_speed_bound_m_s": 0.6,
+              "method": "interpolated_GT_with_speed_margin",
+              "reason": null,
+              "trajectory_source": "fine_evaluator_trace"
+            },
+            {
+              "verified": true,
+              "stamp_sim_s": 70.6,
+              "actual_distance_m": 1.0743294751511554,
+              "conservative_distance_upper_m": 1.0785291162720945,
+              "bracketing_stamps_sim_s": [
+                70.593,
+                70.627
+              ],
+              "registered_speed_bound_m_s": 0.6,
+              "method": "interpolated_GT_with_speed_margin",
+              "reason": null,
+              "trajectory_source": "fine_evaluator_trace"
+            },
+            {
+              "verified": true,
+              "stamp_sim_s": 70.8,
+              "actual_distance_m": 1.074299345770403,
+              "conservative_distance_upper_m": 1.0760995785982206,
+              "bracketing_stamps_sim_s": [
+                70.797,
+                70.831
+              ],
+              "registered_speed_bound_m_s": 0.6,
+              "method": "interpolated_GT_with_speed_margin",
+              "reason": null,
+              "trajectory_source": "fine_evaluator_trace"
+            }
+          ],
+          "range_witness_verified": true,
+          "physical_credit_verified": true
+        },
+        {
+          "id": 554,
+          "id_confirmed_in_journal": true,
+          "estimated_approach_in_journal": true,
+          "map_pose_credit": {
+            "verified": true,
+            "stamp_sim_s": 98.992,
+            "actual_distance_m": 0.6090977908161466,
+            "conservative_distance_upper_m": 0.6144531628757044,
+            "bracketing_stamps_sim_s": [
+              98.983,
+              99.017
+            ],
+            "registered_speed_bound_m_s": 0.6,
+            "method": "interpolated_GT_with_speed_margin",
+            "reason": null,
+            "trajectory_source": "fine_evaluator_trace"
+          },
+          "range_witness_physical_samples": [
+            {
+              "verified": true,
+              "stamp_sim_s": 91.8,
+              "actual_distance_m": 0.9938678462351209,
+              "conservative_distance_upper_m": 0.999268051711365,
+              "bracketing_stamps_sim_s": [
+                91.775,
+                91.809
+              ],
+              "registered_speed_bound_m_s": 0.6,
+              "method": "interpolated_GT_with_speed_margin",
+              "reason": null,
+              "trajectory_source": "fine_evaluator_trace"
+            },
+            {
+              "verified": true,
+              "stamp_sim_s": 92.0,
+              "actual_distance_m": 0.9938746449937756,
+              "conservative_distance_upper_m": 1.0016752139272267,
+              "bracketing_stamps_sim_s": [
+                91.979,
+                92.013
+              ],
+              "registered_speed_bound_m_s": 0.6,
+              "method": "interpolated_GT_with_speed_margin",
+              "reason": null,
+              "trajectory_source": "fine_evaluator_trace"
+            },
+            {
+              "verified": true,
+              "stamp_sim_s": 92.2,
+              "actual_distance_m": 0.9938854442904544,
+              "conservative_distance_upper_m": 1.0040843629118954,
+              "bracketing_stamps_sim_s": [
+                92.183,
+                92.217
+              ],
+              "registered_speed_bound_m_s": 0.6,
+              "method": "interpolated_GT_with_speed_margin",
+              "reason": null,
+              "trajectory_source": "fine_evaluator_trace"
+            }
+          ],
+          "range_witness_verified": true,
+          "physical_credit_verified": true
+        },
+        {
+          "id": 848,
+          "id_confirmed_in_journal": true,
+          "estimated_approach_in_journal": true,
+          "map_pose_credit": {
+            "verified": true,
+            "stamp_sim_s": 243.472,
+            "actual_distance_m": 1.1360022652712178,
+            "conservative_distance_upper_m": 1.1426022652712153,
+            "bracketing_stamps_sim_s": [
+              243.449,
+              243.483
+            ],
+            "registered_speed_bound_m_s": 0.6,
+            "method": "interpolated_GT_with_speed_margin",
+            "reason": null,
+            "trajectory_source": "fine_evaluator_trace"
+          },
+          "range_witness_physical_samples": [
+            {
+              "verified": true,
+              "stamp_sim_s": 242.4,
+              "actual_distance_m": 1.2251388210105005,
+              "conservative_distance_upper_m": 1.2289610130932507,
+              "bracketing_stamps_sim_s": [
+                242.395,
+                242.429
+              ],
+              "registered_speed_bound_m_s": 0.6,
+              "method": "interpolated_GT_with_speed_margin",
+              "reason": null,
+              "trajectory_source": "fine_evaluator_trace"
+            },
+            {
+              "verified": true,
+              "stamp_sim_s": 243.0,
+              "actual_distance_m": 1.1463998810038938,
+              "conservative_distance_upper_m": 1.1498459813802906,
+              "bracketing_stamps_sim_s": [
+                242.973,
+                243.007
+              ],
+              "registered_speed_bound_m_s": 0.6,
+              "method": "interpolated_GT_with_speed_margin",
+              "reason": null,
+              "trajectory_source": "fine_evaluator_trace"
+            },
+            {
+              "verified": true,
+              "stamp_sim_s": 243.2,
+              "actual_distance_m": 1.1360064726220005,
+              "conservative_distance_upper_m": 1.1426063293095576,
+              "bracketing_stamps_sim_s": [
+                243.177,
+                243.211
+              ],
+              "registered_speed_bound_m_s": 0.6,
+              "method": "interpolated_GT_with_speed_margin",
+              "reason": null,
+              "trajectory_source": "fine_evaluator_trace"
+            }
+          ],
+          "range_witness_verified": true,
+          "physical_credit_verified": true
+        }
+      ],
+      "source_sha256": {
+        "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_0/scenarios/1171300000.yaml": "f4148926a247e575507165f364940e658aa15d3cdd1170f2168a11158cd0a62c",
+        "/home/peter/simul/training_robust/native90/windowed_witness_regression_v2/case_0/episodes/1171300000/evaluation.json": "bdace7ecaacda390996c12b5a4438caec382401258abf0d8d2ecead5b63247fc",
+        "/home/peter/simul/training_robust/native90/windowed_witness_regression_v2/case_0/episodes/1171300000/ground_truth_trajectory.csv": "20269106c519990378c503b9224d7e3be168f8feb5c076bd9081b0fada8d1c26",
+        "/home/peter/simul/training_robust/native90/windowed_witness_regression_v2/case_0/episodes/1171300000/marker_events.jsonl": "ab0c8eb0919f4ad4f2f12c1dde8ee78725d393b871be0dd0fcfbac600a19dcfc",
+        "/home/peter/simul/training_robust/native90/windowed_witness_regression_v2/case_0/episodes/1171300000/evaluator_gt_fine_1794523352181003165.csv": "155ecdb498d1fb001bb385da839561738faaf10319e3947abe8939dcbaf86570"
+      }
+    },
+    "revisits": {
+      "episode": "/home/peter/simul/training_robust/native90/windowed_witness_regression_v2/case_0/episodes/1171300000",
+      "source": "Independent Gazebo ground-truth trajectory; evaluator only",
+      "path_distance_m": 41.774819134938376,
+      "distance_in_returned_cells_m": 3.95552433135572,
+      "returned_distance_fraction": 0.09468680926131207,
+      "cell_reentries_after_15_sim_seconds": 9,
+      "cell_size_m": 0.6,
+      "minimum_path_step_m": 0.2,
+      "navigation_goals": 14,
+      "repeated_map_goals_within_0_8m_excluding_last_two": 2,
+      "limits": [
+        "Returned cells include necessary corridor transit and marker approach; this is not waste distance",
+        "Repeated goals use SLAM map coordinates and may be affected by frame correction",
+        "These are simulation measurements, not observations from a physical robot"
+      ]
+    },
+    "approach_requests_by_id": {
+      "554": 3,
+      "206": 1,
+      "848": 1
+    },
+    "relative_time_reduction": 0.4068311623246492,
+    "video": "https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/windowed_witness_regression_v2__case_0__1171300000.mp4",
+    "dispatch_handoff": {
+      "status": "original_dispatchers_resumed",
+      "verified_new_native_pid": 1542127,
+      "trigger": "native_claim",
+      "existing_native_and_queued_scenes_preserved": true
+    }
   },
   "coordinator_recovery": {
     "prior_attempt": "/home/peter/simul/training_robust/native90/windowed_witness_regression_v1",
@@ -468,15 +745,17 @@
     "new_owner_tests_passed": 3,
     "previous_handoff_tests_passed": 4
   },
-  "new_native_speed_or_success_verified": false,
+  "new_native_speed_or_success_verified": true,
   "generalization_verified": false,
   "hardware_validated": false,
   "production_promoted": false,
   "ground_truth_available_to_policy": false,
   "limits": [
-    "Partial immutable sensor replay proves accumulator behavior,not native time saving",
-    "Reference fullnative399.2s passed;one comparison is not a population rate",
-    "Three selected positive sensor frames are independently within1.5m;bad/missing frames never grant proof",
-    "All original frozen scenes/runtimes/results and currentnative runs preserved"
-  ]
+    "Same scene and coefficient weights, one native run per source; observed 40.68% shorter completion is not a general speed or success probability estimate",
+    "Independent audit verifies all three exact IDs, mapped coordinates, real proximity and all nine saved near-range witness samples",
+    "Returned-cell fraction increased from 6.22% to 9.47%, while absolute returned distance stayed near 4m; overall revisit reduction is not established",
+    "Box554 still needed three approach requests because some first-pass near samples lacked a valid auxiliary LiDAR fit; additional depth-quality recording is diagnostic only",
+    "All frozen scenes/sources/results and already-running native benchmarks were preserved; no ground truth entered policy"
+  ],
+  "successor_training": "spatial_curriculum.json"
 }
