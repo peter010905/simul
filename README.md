@@ -217,7 +217,7 @@ python3 scripts/publish_simulation_videos.py --upload
 
 ## 저장된 Gazebo 영상
 
-[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 106개
+[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 115개
 
 아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다.
 
@@ -331,6 +331,15 @@ python3 scripts/publish_simulation_videos.py --upload
 | [rpp_v7_service_screen3__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/rpp_v7_service_screen3__8600007.mp4) | 실패 | 미달 | 347.66799999999995 |
 | [slam_nav2_search_v1__000_screen_control_9810000__9810000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/slam_nav2_search_v1__000_screen_control_9810000__9810000.mp4) | 실패 | 미달 | 600.221 |
 | [slam_nav2_search_v1__001_screen_stable_map_9810000__9810000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/slam_nav2_search_v1__001_screen_stable_map_9810000__9810000.mp4) | 실패 | 미달 | 600.151 |
+| [slam_nav2_search_v1__002_screen_frontier_balanced_9810000__9810000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/slam_nav2_search_v1__002_screen_frontier_balanced_9810000__9810000.mp4) | 성공 | 확인 | 576.891 |
+| [slam_nav2_search_v1__004_screen_stable_map_9810012__9810012.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/slam_nav2_search_v1__004_screen_stable_map_9810012__9810012.mp4) | 성공 | 확인 | 315.2 |
+| [slam_nav2_search_v1__005_screen_frontier_balanced_9810012__9810012.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/slam_nav2_search_v1__005_screen_frontier_balanced_9810012__9810012.mp4) | 성공 | 확인 | 178.416 |
+| [slam_nav2_search_v1__006_screen_control_9810018__9810018.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/slam_nav2_search_v1__006_screen_control_9810018__9810018.mp4) | 실패 | 미달 | 600.412 |
+| [slam_nav2_search_v1__007_screen_stable_map_9810018__9810018.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/slam_nav2_search_v1__007_screen_stable_map_9810018__9810018.mp4) | 실패 | 미달 | 600.45 |
+| [slam_nav2_search_v1__008_screen_frontier_balanced_9810018__9810018.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/slam_nav2_search_v1__008_screen_frontier_balanced_9810018__9810018.mp4) | 실패 | 미달 | 600.122 |
+| [slam_nav2_search_v1__009_validation_frontier_balanced_9811006__9811006.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/slam_nav2_search_v1__009_validation_frontier_balanced_9811006__9811006.mp4) | 성공 | 확인 | 287.908 |
+| [slam_nav2_search_v1__010_validation_frontier_balanced_9811013__9811013.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/slam_nav2_search_v1__010_validation_frontier_balanced_9811013__9811013.mp4) | 성공 | 확인 | 428.354 |
+| [slam_nav2_search_v1__011_validation_frontier_balanced_9811019__9811019.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/slam_nav2_search_v1__011_validation_frontier_balanced_9811019__9811019.mp4) | 실패 | 확인 | 600.083 |
 
 </details>
 
@@ -422,9 +431,8 @@ python3 training_robust/prepare_slam_nav2_search.py --output training_robust/nat
 ```
 
 새 경로에서 후보별 `colcon build`를 마친 후 `native_tournament.py NEW_SEARCH`로 실행합니다.
-현재 실행은 `osp-slam-nav2-search-v1.service`가 감독하며 로컬 `state.json`에 진행을 기록합니다.
-첫 훈련 배치의 기준 설정은2개 인식·접근, 지도 안정화 후보는1개 인식·접근 후600초 시간 초과였습니다.
-두 실행 모두 충돌0회이며, 최초 완료2회에서 완주는0회입니다. 나머지 비교는 진행 중입니다.
+이12회 비교는 종료됐습니다. 훈련 비교에서 기준0/3, 지도 안정화1/3, frontier2/3 완주였고,
+frontier의 별도 검증은2/3 완주였습니다. 이후 학습은 아래의 새 맵 연속 학습으로 이어갑니다.
 최근 완료된 v13 회귀 실험은3/6, v14 회전 비용 비교는2/3, 마커 크기 변동 실험은3/5 성공했습니다.
 v14는 공통 성공 배치 두 개에서 v13보다 느렸습니다. 이 개발 배치 결과를 일반 완주율로 해석할 수는 없습니다.
 
@@ -480,3 +488,42 @@ production 승격은 하지 않았습니다. 평가용 정답은 정책에 전�
 소유자의 이번 요청에 따라 공개 GitHub Release 업로드를 허용받았습니다.
 
 [이번 회전 감소 후보의 8분15초 영상 다운로드](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/low_rotation_video_20261112__episode_8000001.mp4)
+
+## 매 훈련 회차 새 맵을 사용하는 연속 학습 — 2026-11-12
+
+`fresh_map_cem_v1`은 매 훈련 실행마다 새 seed로 실제 장애물 지도와 마커 배치를 생성합니다.
+PDF의20.15×11.35m 외곽은 유지하고 장애물8/12/16/24/32개, 위치·방향, 부착면,
+마커 ID·8–30cm 크기, 도달 가능한 출발 위치·방향을 바꿉니다.
+장애물 뒤 배치는 마커 정면이 시작 위치에서 보이지 않는 쪽으로 출발 위치를 제한합니다.
+환경 seed와 물리 배치 hash를 기록하고 훈련 맵 재사용을 거부합니다.
+준비한 첫20개 회차의 seed와 물리 배치 hash는 모두 서로 다릅니다.
+
+한 세대는 탐색 가중치 후보4개×각5개의 서로 다른 맵으로 구성됩니다.
+Gazebo에서 SLAM과 Nav2를 실행한 평가 결과로 상위 후보2개의 로그 가중치 분포를 갱신하고,
+다음 세대에서 새 후보·새 맵을 생성합니다. 초기 가중치는 이전 frontier 후보에서 가져왔고,
+회전 감소 코드와8cm 관측 기준을 사용합니다.
+실패는1,200초, 완주는 실제 소요 시간을 반영하는 PAR-2 시간 비용으로 평가합니다.
+파일럿 검증은 별도5개 맵에서 후보와 이전 frontier 후보를 같은 조건으로 비교합니다.
+이 비교에서4/5 이상 완주·접촉0·시간 비용20% 감소를 충족하면20개 배치의 짝지은 검증으로 넘어갑니다.
+20개 검증에서18/20 이상 완주·접촉0·시간 비용20% 감소 후 독립40개 최종 평가를 수행합니다.
+검증 맵만 후보와 기준 정책에 동일하게 제공하며 정책은 정답 좌표를 받지 않습니다.
+최종 평가에서 실패한 배치도 훈련에 재사용하지 않고 이후 새 독립 배치로 평가합니다.
+
+`marker_events.jsonl`에 ID 확정·철회,1.5m 접근 추정·철회, 임무 상태 변경을 누적합니다.
+별도 정답 기반 접근 거리·지도 좌표·ID 감사는 `episode_audit.json`, 영상은 `video/mission.mp4`,
+각 회차의 가중치·결과는 `learning_log.json`과 `state.json`에 보관합니다.
+최대2개 native 실행과 각6GiB 제한을 유지합니다. 인프라 실패3회 연속 또는 디스크8GiB 미만이면
+원인을 기록하고 수리를 기다립니다. 정상 성능 비교는 다음 세대와 새 맵으로 계속 진행합니다.
+
+이번 준비 과정의 검증은 runtime197개 통과·1개 skip, 학습·다양성·시간 평가·마커 로그6개 통과와
+colcon 빌드 성공입니다. 새로운 맵에서의 성능 향상은 아직 검증 중이며 기본 실물 정책은 승격하지 않았습니다.
+[현재 구성과 검증 범위](repository_snapshot/fresh_map_curriculum.json).
+실행 서비스는 `osp-fresh-map-cem-v1.service`이며 이전12회 SLAM/Nav2 실험은 종료됐습니다.
+이전 우승 후보의 별도 검증 결과는2/3 완주(287.908초·428.354초, 나머지600초 timeout)였습니다.
+
+```bash
+# 이전 SLAM/Nav2 비교의 frontier runtime이 빌드된 환경에서 새 실행 경로를 준비합니다.
+python3 training_robust/prepare_continual_native.py training_robust/native90/NEW_FRESH_MAP_RUN
+# 생성된 runtime에서 colcon build를 마친 뒤 감독기를 실행합니다.
+python3 training_robust/continual_native_curriculum.py training_robust/native90/NEW_FRESH_MAP_RUN
+```

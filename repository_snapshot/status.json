@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-09T06:44:05.145101+00:00",
+  "captured_utc": "2026-11-12T13:28:48.127299+00:00",
   "purpose": "Repository upload snapshot; not a live dashboard",
   "tests_passed_final": 189,
   "native_validation_complete": false,
@@ -133,7 +133,7 @@
     "marker_sizes.json",
     "route_timecost.json"
   ],
-  "latest_training": "slam_nav2_search.json",
+  "latest_training": "fresh_map_curriculum.json",
   "previous_regressions_complete": true,
   "latest_change": {
     "date": "2026-11-12",

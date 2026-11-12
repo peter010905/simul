@@ -577,7 +577,7 @@
     "baseline_seconds": 3.618,
     "candidate_seconds": 20.074
   },
-  "updated_utc": "2026-11-09T06:44:05.145101+00:00",
+  "updated_utc": "2026-11-12T13:28:48.127299+00:00",
   "motion_v2_native_result": {
     "seed": 8600007,
     "success": true,
@@ -1107,10 +1107,18 @@
   },
   "slam_nav2_native_search": {
     "report": "repository_snapshot/slam_nav2_search.json",
-    "status": "running",
+    "status": "completed_development_search",
     "service": "osp-slam-nav2-search-v1.service",
     "planned_native_episodes": 12,
-    "completed_native_episodes": 2,
+    "completed_native_episodes": 12,
     "default_policy_promoted": false
+  },
+  "fresh_map_curriculum": {
+    "snapshot": "repository_snapshot/fresh_map_curriculum.json",
+    "service": "osp-fresh-map-cem-v1.service",
+    "status": "running",
+    "generation": 0,
+    "unique_training_maps": 20,
+    "goal_verified": false
   }
 }

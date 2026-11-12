@@ -1,7 +1,7 @@
 {
-  "captured_utc": "2026-11-09T06:44:05.145101+00:00",
-  "status": "running",
-  "phase": "screen",
+  "captured_utc": "2026-11-12T13:30:40.256913+00:00",
+  "status": "completed_development_search",
+  "phase": "validation",
   "environment": "gazebo_harmonic",
   "algorithm": "Bounded black-box search over exploration weights, SLAM settings and Nav2 RPP settings",
   "campaign": "/home/peter/simul/training_robust/native90/slam_nav2_search_v1",
@@ -119,87 +119,8 @@
       "sha256": "d631bbc3e69b0453922b1f6a9313bb940dcc6166b430f2b4cdb8e7aa76181655"
     }
   ],
-  "completed_jobs": 2,
-  "running_jobs": [
-    {
-      "number": 2,
-      "candidate": "frontier_balanced",
-      "seed": 9810000,
-      "unit": "osp-nativesearch-nov09-slam-nav2-v1-002.service",
-      "observed_status": {
-        "state": "running",
-        "approached_ids": [],
-        "targets": 0,
-        "collisions": 0,
-        "elapsed_seconds": 36.391,
-        "active_action": "nav",
-        "readiness_reason": "",
-        "sensor_interruptions": 0,
-        "nav2_lifecycle": {
-          "controller_server": 3,
-          "planner_server": 3,
-          "behavior_server": 3,
-          "bt_navigator": 3
-        },
-        "drive_controllers": {
-          "diffdrive_controller": "active",
-          "joint_state_broadcaster": "active"
-        },
-        "confirmed_surface_cells": 133,
-        "confirmed_face_anchors": 0,
-        "reassociated_face_records": 0,
-        "camera_diagnostics": {
-          "received": 198,
-          "late": 2,
-          "invalid_calibration": 0,
-          "duplicate": 0,
-          "accepted": 196,
-          "coverage_updates": 194,
-          "tf_waits": 1
-        }
-      },
-      "wall_seconds": 120.32820964511484
-    },
-    {
-      "number": 3,
-      "candidate": "control",
-      "seed": 9810012,
-      "unit": "osp-nativesearch-nov09-slam-nav2-v1-003.service",
-      "observed_status": {
-        "state": "idle",
-        "approached_ids": [],
-        "targets": 0,
-        "collisions": 0,
-        "elapsed_seconds": 0.0,
-        "active_action": "",
-        "readiness_reason": "scan_stale",
-        "sensor_interruptions": 0,
-        "nav2_lifecycle": {
-          "controller_server": 3,
-          "planner_server": 3,
-          "behavior_server": 3,
-          "bt_navigator": 3
-        },
-        "drive_controllers": {
-          "diffdrive_controller": "active",
-          "joint_state_broadcaster": "active"
-        },
-        "confirmed_surface_cells": 5,
-        "confirmed_face_anchors": 0,
-        "reassociated_face_records": 0,
-        "camera_diagnostics": {
-          "received": 164,
-          "late": 0,
-          "invalid_calibration": 0,
-          "duplicate": 0,
-          "accepted": 164,
-          "coverage_updates": 162,
-          "tf_waits": 1
-        }
-      },
-      "wall_seconds": 105.24404610367492
-    }
-  ],
+  "completed_jobs": 12,
+  "running_jobs": [],
   "evaluation": {
     "correct_ids": 3,
     "approach_m": 1.5,
@@ -254,6 +175,7 @@
     {
       "number": 0,
       "candidate": "control",
+      "phase": "screen",
       "seed": 9810000,
       "success": false,
       "targets": 2,
@@ -265,6 +187,7 @@
     {
       "number": 1,
       "candidate": "stable_map",
+      "phase": "screen",
       "seed": 9810000,
       "success": false,
       "targets": 1,
@@ -272,6 +195,170 @@
       "seconds": 600.151,
       "infrastructure_failure": false,
       "reason": "timeout"
+    },
+    {
+      "number": 2,
+      "candidate": "frontier_balanced",
+      "phase": "screen",
+      "seed": 9810000,
+      "success": true,
+      "targets": 3,
+      "approached": 3,
+      "seconds": 576.891,
+      "infrastructure_failure": false,
+      "reason": "all_targets_found"
+    },
+    {
+      "number": 3,
+      "candidate": "control",
+      "phase": "screen",
+      "seed": 9810012,
+      "success": false,
+      "targets": 0,
+      "approached": 0,
+      "seconds": 600.0,
+      "infrastructure_failure": true,
+      "reason": "startup_failure"
+    },
+    {
+      "number": 4,
+      "candidate": "stable_map",
+      "phase": "screen",
+      "seed": 9810012,
+      "success": true,
+      "targets": 3,
+      "approached": 3,
+      "seconds": 315.2,
+      "infrastructure_failure": false,
+      "reason": "all_targets_found"
+    },
+    {
+      "number": 5,
+      "candidate": "frontier_balanced",
+      "phase": "screen",
+      "seed": 9810012,
+      "success": true,
+      "targets": 3,
+      "approached": 3,
+      "seconds": 178.416,
+      "infrastructure_failure": false,
+      "reason": "all_targets_found"
+    },
+    {
+      "number": 6,
+      "candidate": "control",
+      "phase": "screen",
+      "seed": 9810018,
+      "success": false,
+      "targets": 2,
+      "approached": 2,
+      "seconds": 600.412,
+      "infrastructure_failure": false,
+      "reason": "timeout"
+    },
+    {
+      "number": 7,
+      "candidate": "stable_map",
+      "phase": "screen",
+      "seed": 9810018,
+      "success": false,
+      "targets": 2,
+      "approached": 2,
+      "seconds": 600.45,
+      "infrastructure_failure": false,
+      "reason": "timeout"
+    },
+    {
+      "number": 8,
+      "candidate": "frontier_balanced",
+      "phase": "screen",
+      "seed": 9810018,
+      "success": false,
+      "targets": 2,
+      "approached": 2,
+      "seconds": 600.122,
+      "infrastructure_failure": false,
+      "reason": "timeout"
+    },
+    {
+      "number": 9,
+      "candidate": "frontier_balanced",
+      "phase": "validation",
+      "seed": 9811006,
+      "success": true,
+      "targets": 3,
+      "approached": 3,
+      "seconds": 287.908,
+      "infrastructure_failure": false,
+      "reason": "all_targets_found"
+    },
+    {
+      "number": 10,
+      "candidate": "frontier_balanced",
+      "phase": "validation",
+      "seed": 9811013,
+      "success": true,
+      "targets": 3,
+      "approached": 3,
+      "seconds": 428.354,
+      "infrastructure_failure": false,
+      "reason": "all_targets_found"
+    },
+    {
+      "number": 11,
+      "candidate": "frontier_balanced",
+      "phase": "validation",
+      "seed": 9811019,
+      "success": false,
+      "targets": 1,
+      "approached": 3,
+      "seconds": 600.083,
+      "infrastructure_failure": false,
+      "reason": "timeout"
+    }
+  ],
+  "screen_ranking": [
+    {
+      "candidate": "frontier_balanced",
+      "planned": 3,
+      "finished": 3,
+      "successes": 2,
+      "success_rate": 0.6666666666666666,
+      "recognized": 8,
+      "approached": 8,
+      "mean_seconds": 451.8096666666666
+    },
+    {
+      "candidate": "stable_map",
+      "planned": 3,
+      "finished": 3,
+      "successes": 1,
+      "success_rate": 0.3333333333333333,
+      "recognized": 6,
+      "approached": 6,
+      "mean_seconds": 505.267
+    },
+    {
+      "candidate": "control",
+      "planned": 3,
+      "finished": 3,
+      "successes": 0,
+      "success_rate": 0.0,
+      "recognized": 4,
+      "approached": 4,
+      "mean_seconds": 600.211
+    }
+  ],
+  "validation_ranking": [
+    {
+      "candidate": "frontier_balanced",
+      "planned": 3,
+      "finished": 3,
+      "successes": 2,
+      "success_rate": 0.6666666666666666,
+      "recognized": 7,
+      "approached": 9,
+      "mean_seconds": 438.7816666666667
     }
   ]
 }
