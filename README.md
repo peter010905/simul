@@ -217,7 +217,7 @@ python3 scripts/publish_simulation_videos.py --upload
 
 ## 저장된 Gazebo 영상
 
-[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 115개
+[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 117개
 
 아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다.
 
@@ -249,6 +249,8 @@ python3 scripts/publish_simulation_videos.py --upload
 | [development_imu_screen4__8600139.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/development_imu_screen4__8600139.mp4) | 실패 | 미달 | 600.1 |
 | [development_imu_v1__runtime_probes__20261104T230250_371315Z.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/development_imu_v1__runtime_probes__20261104T230250_371315Z.mp4) | 성공 | 미달 | 238.9 |
 | [edge_runtime_v2__runtime_probes__20261104T234253_265975Z.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/edge_runtime_v2__runtime_probes__20261104T234253_265975Z.mp4) | 실패 | 미달 | 600.306 |
+| [fresh_map_cem_v1__00000_train_g0_0__1121200000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fresh_map_cem_v1__00000_train_g0_0__1121200000.mp4) | 실패 | 미달 | 600.455 |
+| [fresh_map_cem_v1__00001_train_g0_1__1121200101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fresh_map_cem_v1__00001_train_g0_1__1121200101.mp4) | 실패 | 미달 | 600.309 |
 | [low_rotation_video_20261112__episode_8000001.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/low_rotation_video_20261112__episode_8000001.mp4) | 성공 | 확인 | 494.534 |
 | [marker_focus_v6_screen3__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/marker_focus_v6_screen3__8600007.mp4) | 실패 | 자료 없음 | 242.819 |
 | [marker_focus_v6_service_screen3__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/marker_focus_v6_service_screen3__8600007.mp4) | 실패 | 미달 | 347.089 |
@@ -548,3 +550,25 @@ runtime 테스트200개 통과·1개 skip, 감독 서비스 테스트2개 통과
 14px 영상은 관측 힌트만 생성하고,24px 영상도3회 관측 후 ID를 확정하는 경로를 검증했습니다.
 실제 Gazebo에서의 시간 단축·완주 개선은 추가 검증이 필요합니다.
 [구성과 진단 비교 범위](repository_snapshot/small_marker_followup.json).
+
+## 첫 새 맵 회차 결과와 Nav2 시간 오류 — 2026-11-12
+
+첫2회 새 맵 훈련은 모두600초 시간 초과였습니다. 첫 회차는 ID3개와 지도 좌표가 모두 정확했고
+좌표 오차는1.5–3.7cm였지만, 실제 최소 접근 거리가1.28m·1.43m·4.53m여서2개만 접근했습니다.
+두 번째는1개 인식·접근이었고 두 회차 모두 접촉0회였습니다. 해당 영상도 Release에 저장했습니다.
+
+첫 회차에는 Nav2 목표 실패63회와 로봇 위치→전역 경로 좌표 변환 오류72회가 있었습니다.
+미래 시각 외삽 오류의 최대 차이는0.184초였습니다. 두 번째는 목표 실패20회·좌표 변환 오류31회였습니다.
+이는 탐색 가중치 외에 주행을 반복 중단시키는 시간 문제가 있음을 보여 줍니다.
+
+설치된 SLAM Toolbox2.8.5와 같은 버전의 공식 구현에서 `restamp_tf`가 현재 시각과
+`transform_timeout`으로 map→odom TF 시각을 발행하는 것을 확인했습니다.
+[SLAM Toolbox2.8.5 구현](https://raw.githubusercontent.com/SteveMacenski/slam_toolbox/2.8.5/src/slam_toolbox_common.cpp).
+이 설정만 켠 별도 후보를 빌드했고, TF buffer의 실제4ms 외삽 실패와 시각 범위 보완 후 성공을 재현했습니다.
+후보 runtime 테스트198개 통과·1개 skip입니다. 실제 주행 개선은 아직 검증하지 않았습니다.
+
+작은 마커 진단 비교가 끝나고 새 맵 학습의 다음2회 주행이 활성화된 것을 확인한 뒤,
+그 주행을 끝까지 유지하고 TF 설정 후보의 같은 조건 진단 비교2회를 수행하도록 대기시켰습니다.
+이후 연속 새 맵 학습 감독기를 다시 재개합니다. 회차·맵·마커·가중치·영상 기록을 보존하며
+동시 Gazebo 실행은 최대2개입니다.
+[실패 로그 집계와 TF 후보](repository_snapshot/tf_navigation_failure.json).

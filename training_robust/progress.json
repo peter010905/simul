@@ -577,7 +577,7 @@
     "baseline_seconds": 3.618,
     "candidate_seconds": 20.074
   },
-  "updated_utc": "2026-11-12T13:51:00.091047+00:00",
+  "updated_utc": "2026-11-12T14:08:22.008394+00:00",
   "motion_v2_native_result": {
     "seed": 8600007,
     "success": true,
@@ -1119,12 +1119,18 @@
     "status": "running",
     "generation": 0,
     "unique_training_maps": 20,
-    "goal_verified": false
+    "goal_verified": false,
+    "completed_training_jobs": 2
   },
   "small_marker_followup": {
     "snapshot": "repository_snapshot/small_marker_followup.json",
-    "status": "waiting_for_current_native_pair",
+    "status": "running_regression",
     "supervisor": "osp-small-marker-regression-v2.service",
+    "native_improvement_verified": false
+  },
+  "tf_navigation_timing": {
+    "snapshot": "repository_snapshot/tf_navigation_failure.json",
+    "status": "candidate_queued",
     "native_improvement_verified": false
   }
 }

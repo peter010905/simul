@@ -1,7 +1,7 @@
 {
-  "updated_utc": "2026-11-12T13:28:32.034917+00:00",
+  "updated_utc": "2026-11-12T14:05:55.837236+00:00",
   "release_url": "https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11",
-  "uploaded_verified": 115,
+  "uploaded_verified": 117,
   "videos": [
     {
       "asset": "fix_v10_escape_regression3__9802005.mp4",
@@ -381,6 +381,38 @@
       "reason": "timeout",
       "elapsed_sim_seconds": 600.306,
       "targets": 2,
+      "collisions": 0,
+      "actual_approach_1_5m": false,
+      "recording_frames": 3003,
+      "recording_seconds": 600.6,
+      "uploaded_verified": true
+    },
+    {
+      "asset": "fresh_map_cem_v1__00000_train_g0_0__1121200000.mp4",
+      "local_path": "training_robust/native90/fresh_map_cem_v1/jobs/00000_train_g0_0/episodes/1121200000/video/mission.mp4",
+      "bytes": 19796628,
+      "sha256": "fe9f4b139682c4fc36daadf14fbc5db619a6fd77a1841a267e4444361d24eff0",
+      "url": "https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fresh_map_cem_v1__00000_train_g0_0__1121200000.mp4",
+      "original_evaluator_success": false,
+      "reason": "timeout",
+      "elapsed_sim_seconds": 600.455,
+      "targets": 3,
+      "collisions": 0,
+      "actual_approach_1_5m": false,
+      "recording_frames": 3003,
+      "recording_seconds": 600.6,
+      "uploaded_verified": true
+    },
+    {
+      "asset": "fresh_map_cem_v1__00001_train_g0_1__1121200101.mp4",
+      "local_path": "training_robust/native90/fresh_map_cem_v1/jobs/00001_train_g0_1/episodes/1121200101/video/mission.mp4",
+      "bytes": 22117697,
+      "sha256": "c32815dc3e6f4ee4b02337e2837d5f1edb1d6805e1b8009510215b03cb80ca09",
+      "url": "https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fresh_map_cem_v1__00001_train_g0_1__1121200101.mp4",
+      "original_evaluator_success": false,
+      "reason": "timeout",
+      "elapsed_sim_seconds": 600.309,
+      "targets": 1,
       "collisions": 0,
       "actual_approach_1_5m": false,
       "recording_frames": 3003,
@@ -1850,19 +1882,19 @@
       "reason": "Final evaluation or recording metadata absent"
     },
     {
-      "path": "training_robust/native90/fresh_map_cem_v1/jobs/00000_train_g0_0/episodes/1121200000/video/mission.mp4",
-      "reason": "Final evaluation or recording metadata absent"
-    },
-    {
-      "path": "training_robust/native90/fresh_map_cem_v1/jobs/00001_train_g0_1/episodes/1121200101/video/mission.mp4",
-      "reason": "Final evaluation or recording metadata absent"
-    },
-    {
       "path": "training_robust/native90/marker_focus_v6_service_screen3/episodes/8600133/video/mission.mp4",
       "reason": "Final evaluation or recording metadata absent"
     },
     {
       "path": "training_robust/native90/rpp_v7_service_screen3/episodes/8600133/video/mission.mp4",
+      "reason": "Final evaluation or recording metadata absent"
+    },
+    {
+      "path": "training_robust/native90/small_marker_followup_v2/regression/case_0/episodes/1121200000/video/mission.mp4",
+      "reason": "Final evaluation or recording metadata absent"
+    },
+    {
+      "path": "training_robust/native90/small_marker_followup_v2/regression/case_1/episodes/1121200101/video/mission.mp4",
       "reason": "Final evaluation or recording metadata absent"
     }
   ],

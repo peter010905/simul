@@ -1,6 +1,6 @@
 {
-  "captured_utc": "2026-11-12T13:51:00.091047+00:00",
-  "status": "waiting_for_current_native_pair",
+  "captured_utc": "2026-11-12T14:10:57.100578+00:00",
+  "status": "running_regression",
   "candidate_workspace": "/home/peter/simul/training_robust/native90/small_marker_followup_v2/runtime",
   "supervisor": "osp-small-marker-regression-v2.service",
   "baseline_campaign": "training_robust/native90/fresh_map_cem_v1",
@@ -43,5 +43,29 @@
   },
   "native_improvement_verified": false,
   "production_promoted": false,
-  "state_file": "/home/peter/simul/training_robust/native90/small_marker_followup_v2/regression/regression_state.json"
+  "state_file": "/home/peter/simul/training_robust/native90/small_marker_followup_v2/regression/regression_state.json",
+  "baseline_results": "tf_navigation_failure.json",
+  "running_case_observations": [
+    {
+      "case": "case_1",
+      "state": "running",
+      "elapsed_seconds": 191.2,
+      "targets": 3,
+      "approached_ids": [
+        174,
+        773
+      ],
+      "collisions": 0
+    },
+    {
+      "case": "case_0",
+      "state": "running",
+      "elapsed_seconds": 206.519,
+      "targets": 2,
+      "approached_ids": [
+        754
+      ],
+      "collisions": 0
+    }
+  ]
 }

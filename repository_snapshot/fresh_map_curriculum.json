@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T13:51:00.091047+00:00",
+  "captured_utc": "2026-11-12T14:08:22.008394+00:00",
   "status": "running",
   "generation": 0,
   "phase": "train",
@@ -49,42 +49,8 @@
     "curriculum_and_marker_journal_passed": 6,
     "build": "passed"
   },
-  "running_jobs": [
-    {
-      "number": 0,
-      "seed": 1121200000,
-      "unit": "osp-freshmap-nov12-v1-00000.service",
-      "observed_status": {
-        "state": "running",
-        "elapsed_seconds": 446.45599999999996,
-        "targets": 2,
-        "approached_ids": [
-          739,
-          754
-        ],
-        "collisions": 0,
-        "readiness_reason": ""
-      },
-      "marker_events_file": "/home/peter/simul/training_robust/native90/fresh_map_cem_v1/jobs/00000_train_g0_0/episodes/1121200000/marker_events.jsonl"
-    },
-    {
-      "number": 1,
-      "seed": 1121200101,
-      "unit": "osp-freshmap-nov12-v1-00001.service",
-      "observed_status": {
-        "state": "running",
-        "elapsed_seconds": 444.309,
-        "targets": 1,
-        "approached_ids": [
-          174
-        ],
-        "collisions": 0,
-        "readiness_reason": ""
-      },
-      "marker_events_file": "/home/peter/simul/training_robust/native90/fresh_map_cem_v1/jobs/00001_train_g0_1/episodes/1121200101/marker_events.jsonl"
-    }
-  ],
-  "completed_training_jobs": 0,
+  "running_jobs": [],
+  "completed_training_jobs": 2,
   "goal_status": "active",
   "generalization_improvement_verified": false,
   "production_promoted": false,
@@ -95,7 +61,31 @@
   ],
   "occupancy_diversity_audit": "fresh_map_diversity.json",
   "diversity_regression_checks_passed": 2,
-  "status_detail": "Current native pair running;CEM coordinator temporarily inactive while regression supervisor waits and runs2diagnostic comparisons",
+  "status_detail": "First2training jobs timed out;small-marker diagnostic regressions are running before CEM resumes",
   "active_supervisor": "osp-small-marker-regression-v2.service",
-  "pending_diagnostic": "small_marker_followup.json"
+  "pending_diagnostic": "small_marker_followup.json",
+  "completed_results": [
+    {
+      "number": 0,
+      "seed": 1121200000,
+      "success": false,
+      "targets": 3,
+      "approached": 2,
+      "contacts": 0,
+      "seconds": 600.455,
+      "infrastructure_failure": false,
+      "reason": "timeout"
+    },
+    {
+      "number": 1,
+      "seed": 1121200101,
+      "success": false,
+      "targets": 1,
+      "approached": 1,
+      "contacts": 0,
+      "seconds": 600.309,
+      "infrastructure_failure": false,
+      "reason": "timeout"
+    }
+  ]
 }
