@@ -27,6 +27,12 @@ def digest(path):
     return h.hexdigest()
 
 
+def evaluation_label(entry):
+    if entry.get('policy_training_sample_valid') is False:
+        return '환경 오류'
+    return '성공' if entry['original_evaluator_success'] else '실패'
+
+
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--repo',default='peter010905/simul')
@@ -82,12 +88,19 @@ def main():
             audit=result.get('ground_truth_audit',{})
             distances=audit.get('closest_approach_m',{})
             approach=bool(len(distances)==3 and all(v is not None and v<=1.5 for v in distances.values()))
-            entries.append(dict(asset=name,local_path=str(video.relative_to(root)),bytes=size,sha256=sha,
+            entry=dict(asset=name,local_path=str(video.relative_to(root)),bytes=size,sha256=sha,
                 url=f'https://github.com/{args.repo}/releases/download/{args.tag}/{name}',
                 original_evaluator_success=result.get('success'),reason=result.get('reason'),
                 elapsed_sim_seconds=result.get('elapsed_seconds'),targets=result.get('targets'),collisions=result.get('collisions'),
                 actual_approach_1_5m=approach if distances else None,
-                recording_frames=rec['frames'],recording_seconds=rec.get('duration_seconds')))
+                recording_frames=rec['frames'],recording_seconds=rec.get('duration_seconds'))
+            output=episode.parent.parent if episode.parent.name=='episodes' else episode.parent
+            invalidation=output/'environment_invalidation.json'
+            if invalidation.exists():
+                annotation=json.loads(invalidation.read_text())
+                if annotation.get('policy_training_sample_valid') is False:
+                    entry.update(policy_training_sample_valid=False,environment_invalidation_reason=annotation.get('reason'))
+            entries.append(entry)
     remote=assets()
     for item in entries:
         a=remote.get(item['asset'])
@@ -103,20 +116,20 @@ def main():
     for e in entries:
         if not e['uploaded_verified']:continue
         approach='확인' if e['actual_approach_1_5m'] else '미달' if e['actual_approach_1_5m'] is False else '자료 없음'
-        lines.append(f'<tr><td><a href="{e["url"]}">{e["asset"]}</a></td><td>{"성공" if e["original_evaluator_success"] else "실패"}</td><td>{approach}</td><td>{e["elapsed_sim_seconds"]}</td></tr>')
+        lines.append(f'<tr><td><a href="{e["url"]}">{e["asset"]}</a></td><td>{evaluation_label(e)}</td><td>{approach}</td><td>{e["elapsed_sim_seconds"]}</td></tr>')
     lines.append('</table></html>');(root/'repository_snapshot/videos.html').write_text('\n'.join(lines)+'\n')
     start='<!-- SIMULATION_VIDEO_INDEX:START -->'
     end='<!-- SIMULATION_VIDEO_INDEX:END -->'
     table=[start,'','## 저장된 Gazebo 영상','',
            f'[GitHub Release에서 다운로드]({release["html_url"]}) · 검증된 영상 {report["uploaded_verified"]}개','',
-           '아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다.','',
+           '아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다. 환경 오류로 종료한 영상은 정책 학습 표본에서 제외합니다.','',
            '<details><summary>전체 영상과 평가 결과 펼치기</summary>','',
            '| 영상 | 당시 평가 | 실제 1.5m 접근 | 시간(시뮬레이션 초) |',
            '|---|---|---|---:|']
     for e in entries:
         if not e['uploaded_verified']:continue
         approach='확인' if e['actual_approach_1_5m'] else '미달' if e['actual_approach_1_5m'] is False else '자료 없음'
-        table.append(f'| [{e["asset"]}]({e["url"]}) | {"성공" if e["original_evaluator_success"] else "실패"} | {approach} | {e["elapsed_sim_seconds"]} |')
+        table.append(f'| [{e["asset"]}]({e["url"]}) | {evaluation_label(e)} | {approach} | {e["elapsed_sim_seconds"]} |')
     table.extend(['','</details>','',end])
     readme=root/'README.md';content=readme.read_text();block='\n'.join(table)
     if start in content and end in content:

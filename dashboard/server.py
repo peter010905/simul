@@ -143,7 +143,10 @@ class Observatory:
             if isinstance(state.get('jobs'), list):
                 states.append((statefile, state))
         units = [j.get('unit', '') for _, s in states for j in s['jobs']]
-        units += ['osp-fresh-map-cem-v2.service', 'osp-spatial-cem-v1.service']
+        coordinator_units=[s['coordinator_unit'] for _,s in sorted(states,key=lambda row:row[0].stat().st_mtime,reverse=True)
+                           if s.get('coordinator_unit')]
+        units += coordinator_units
+        units += ['osp-fresh-map-cem-v2.service', 'osp-spatial-cem-v1.service', 'osp-spatial-cem-v2.service']
         services = self.services(units)
         for statefile, state in states:
             campaign_id = statefile.parent.name
@@ -161,9 +164,12 @@ class Observatory:
                 scenario = job.get('scenario', {})
                 live = read_json(episode / 'live_status.json') if episode else {}
                 result = read_json(episode / 'evaluation.json') if episode else {}
+                invalidation = read_json(output / 'environment_invalidation.json')
                 service = services.get(job.get('unit'), {})
                 active = service.get('ActiveState') == 'active'
-                if result:
+                if result and invalidation.get('policy_training_sample_valid') is False:
+                    status = 'invalid_environment'
+                elif result:
                     status = 'passed' if evaluate(result)['passed'] else 'failed'
                 elif active:
                     status = 'running' if live else 'starting'
@@ -175,6 +181,8 @@ class Observatory:
                        'phase': job.get('phase'), 'generation': job.get('generation', 0),
                        'seed': scenario.get('seed'), 'obstacles': scenario.get('actual_obstacles'),
                        'mount': scenario.get('mount_profile'), 'domain': job.get('domain'),
+                       'floor_sensor_gate': job.get('floor_sensor_gate'),
+                       'runtime_configuration_gate': job.get('runtime_configuration_gate'),
                        'arena': scenario.get('arena', {'shape':'pdf_original','width_m':20.15,'height_m':11.35}),
                        'unit': job.get('unit'), 'service': service.get('ActiveState', 'unknown'),
                        'state': status, 'elapsed': result.get('elapsed_seconds', live.get('status', {}).get('elapsed_seconds', 0)),
@@ -186,7 +194,7 @@ class Observatory:
                 campaign_jobs.append(row)
                 paths[identifier] = {'output': output, 'episode': episode, 'job': row,
                                      'live': live, 'result': result}
-            completed = [j for j in campaign_jobs if j['state'] in ('passed', 'failed')]
+            completed = [j for j in campaign_jobs if j['state'] in ('passed', 'failed', 'invalid_environment')]
             campaigns.append({'id': campaign_id, 'status': state.get('status'),
                               'generation': state.get('generation', 0), 'phase': state.get('phase'),
                               'total': len(campaign_jobs), 'completed': len(completed),
@@ -198,7 +206,7 @@ class Observatory:
         videos, video_paths = self.library(paths)
         snapshot = {'updated_at': datetime.now(timezone.utc).isoformat(), 'campaigns': campaigns,
                     'jobs': jobs, 'videos': videos, 'observer_error': self.last_error,
-                    'coordinator': next((services[name] for name in ('osp-spatial-cem-v1.service', 'osp-fresh-map-cem-v2.service')
+                    'coordinator': next((services[name] for name in [*coordinator_units,'osp-spatial-cem-v2.service', 'osp-spatial-cem-v1.service', 'osp-fresh-map-cem-v2.service']
                                          if services.get(name, {}).get('ActiveState') == 'active'), {}),
                     'rubric': '정확한 ID 3개 · 실제 접근 ≤1.5m · 좌표 오차 ≤0.5m · 접촉 0 · 시뮬레이션 600초 이내'}
         with self.lock:
@@ -226,9 +234,11 @@ class Observatory:
                 continue
             identifier = key(video)
             audit = evaluate(result)
+            environment_valid = read_json(video.parent.parent.parent.parent / 'environment_invalidation.json').get('policy_training_sample_valid')
             row = {'id': identifier, 'name': old.get('asset', str(video.relative_to(self.native)).replace('/episodes/', ' / ').replace('/video/mission.mp4', '')),
                    'seconds': result.get('elapsed_seconds'), 'targets': result.get('targets'),
-                   'contacts': result.get('collisions'), 'passed': audit['passed'],
+                   'contacts': result.get('collisions'), 'passed': audit['passed'] and environment_valid is not False,
+                   'environment_valid': environment_valid,
                    'audit_available': audit['available'], 'reason': result.get('reason'),
                    'bytes': video.stat().st_size, 'mtime': video.stat().st_mtime,
                    'release_url': old.get('url'), 'url': '/media/video?id=' + identifier,
@@ -300,6 +310,10 @@ class Observatory:
                     pass
         status = live.get('status', {})
         audit = evaluate(result) if result else None
+        invalidation = read_json(entry['output'] / 'environment_invalidation.json')
+        if audit and invalidation.get('policy_training_sample_valid') is False:
+            audit['raw_rubric_passed'] = audit['passed']
+            audit['passed'] = False
         camera = read_json(self.cache / identifier / 'metadata.json')
         camera_age = max(0, time.time() - camera['received_unix']) if camera.get('received_unix') else None
         frame = self.frame_path(entry)
@@ -307,7 +321,8 @@ class Observatory:
                 'detector': live.get('detector', {}), 'events': events, 'audit': audit,
                 'confirmed_ids': audit['found_ids'] if audit else live.get('detector', {}).get('resolved_ids', []),
                 'approached_ids': status.get('approached_ids', []),
-                'result': result, 'exploration_memory': read_json_lines_last(episode / 'exploration_memory.jsonl') if episode else {},
+                'result': result, 'environment_invalidation': invalidation,
+                'exploration_memory': read_json_lines_last(episode / 'exploration_memory.jsonl') if episode else {},
                 'camera': {**camera, 'age': camera_age,
                     'live': entry['job']['state'] in ('running', 'starting') and camera_age is not None and camera_age < 10},
                 'frame_age': age(frame) if frame else None,
@@ -326,6 +341,9 @@ class Observatory:
     def artifacts(self, entry):
         episode = entry['episode']
         return {} if not episode else {
+            'floor_probe.json': entry['output'] / 'floor_probe.json',
+            'runtime_configuration.json': entry['output'] / 'runtime_configuration.json',
+            'runtime_configuration_check.json': entry['output'] / 'runtime_configuration_check.json',
             'evaluation.json': episode / 'evaluation.json',
             'marker_events.jsonl': episode / 'marker_events.jsonl',
             'runtime_trace.csv': episode / 'runtime_trace.csv',

@@ -1,0 +1,539 @@
+{
+  "captured_utc": "2026-11-12T16:38:44.102643+00:00",
+  "status": "completed_calibration_requires_fresh_training",
+  "root_cause": "World-coordinate OBJ vertices inherited an extra floor-model centre translation and -0.06m z offset",
+  "correction": "Visual relative pose cancels enclosing model pose; visible floor and collision top both at world z=0",
+  "sensor_protection_disabled": false,
+  "prior_runs_scope": "Two infrastructure-invalid spatial runs, stopped through mission/stop; raw operator_stop evaluations and videos preserved; not used as policy-quality failures",
+  "candidate_runtime": "/home/peter/simul/training_robust/native90/floor_pose_v1/runtime",
+  "candidate_tests_passed": 217,
+  "candidate_tests_skipped": 1,
+  "world_alignment_shapes_tested": 7,
+  "probe_scope": "5s wall before;7s wall after, four actual GPU cliff streams and hazard topic; not proof of whole mission success",
+  "cases": [
+    {
+      "shape": "circle",
+      "seed": 1136000000,
+      "unit": "osp-floor-pose-case-0.service",
+      "domain": 116,
+      "status": "done",
+      "floor_sensor_gate": true,
+      "before": {
+        "domain": 114,
+        "wall_seconds": 5.0,
+        "constants": {
+          "BACKUP_LIMIT": 0,
+          "BUMP": 1,
+          "CLIFF": 2,
+          "OBJECT_PROXIMITY": 5,
+          "STALL": 3,
+          "WHEEL_DROP": 4
+        },
+        "samples": {
+          "cliff_front_left": 13,
+          "cliff_side_right": 12,
+          "cliff_side_left": 11,
+          "cliff_front_right": 10,
+          "hazard_frames": 59,
+          "hazard_nonempty_frames": 8
+        },
+        "hazards": {
+          "2:base_link": 32
+        },
+        "cliff_scans": {
+          "cliff_front_left": {
+            "values": 13,
+            "finite": 0,
+            "infinite": 13,
+            "last_ranges": [
+              "inf"
+            ],
+            "range_min": 9.999999747378752e-05,
+            "range_max": 0.15000000596046448
+          },
+          "cliff_side_right": {
+            "values": 12,
+            "finite": 0,
+            "infinite": 12,
+            "last_ranges": [
+              "inf"
+            ],
+            "range_min": 9.999999747378752e-05,
+            "range_max": 0.15000000596046448
+          },
+          "cliff_side_left": {
+            "values": 11,
+            "finite": 0,
+            "infinite": 11,
+            "last_ranges": [
+              "inf"
+            ],
+            "range_min": 9.999999747378752e-05,
+            "range_max": 0.15000000596046448
+          },
+          "cliff_front_right": {
+            "values": 10,
+            "finite": 0,
+            "infinite": 10,
+            "last_ranges": [
+              "inf"
+            ],
+            "range_min": 9.999999747378752e-05,
+            "range_max": 0.15000000596046448
+          }
+        }
+      },
+      "after": {
+        "domain": 116,
+        "wall_seconds": 7.0,
+        "constants": {
+          "BACKUP_LIMIT": 0,
+          "BUMP": 1,
+          "CLIFF": 2,
+          "OBJECT_PROXIMITY": 5,
+          "STALL": 3,
+          "WHEEL_DROP": 4
+        },
+        "samples": {
+          "cliff_front_left": 15,
+          "cliff_side_left": 14,
+          "cliff_front_right": 12,
+          "hazard_frames": 75,
+          "hazard_nonempty_frames": 0,
+          "cliff_side_right": 10
+        },
+        "hazards": {},
+        "cliff_scans": {
+          "cliff_front_left": {
+            "values": 15,
+            "finite": 15,
+            "infinite": 0,
+            "last_ranges": [
+              0.015690607950091362
+            ],
+            "range_min": 9.999999747378752e-05,
+            "range_max": 0.15000000596046448
+          },
+          "cliff_side_left": {
+            "values": 14,
+            "finite": 14,
+            "infinite": 0,
+            "last_ranges": [
+              0.015225195325911045
+            ],
+            "range_min": 9.999999747378752e-05,
+            "range_max": 0.15000000596046448
+          },
+          "cliff_front_right": {
+            "values": 12,
+            "finite": 12,
+            "infinite": 0,
+            "last_ranges": [
+              0.015685928985476494
+            ],
+            "range_min": 9.999999747378752e-05,
+            "range_max": 0.15000000596046448
+          },
+          "cliff_side_right": {
+            "values": 10,
+            "finite": 10,
+            "infinite": 0,
+            "last_ranges": [
+              0.015224645845592022
+            ],
+            "range_min": 9.999999747378752e-05,
+            "range_max": 0.15000000596046448
+          }
+        }
+      },
+      "live_status": {
+        "state": "running",
+        "approached_ids": [
+          94,
+          385
+        ],
+        "targets": 2,
+        "collisions": 0,
+        "elapsed_seconds": 252.40399999999997,
+        "active_action": "spin",
+        "readiness_reason": "",
+        "sensor_interruptions": 0,
+        "nav2_lifecycle": {
+          "controller_server": 3,
+          "planner_server": 3,
+          "behavior_server": 3,
+          "bt_navigator": 3
+        },
+        "drive_controllers": {
+          "diffdrive_controller": "active",
+          "joint_state_broadcaster": "active"
+        },
+        "confirmed_surface_cells": 72,
+        "confirmed_face_anchors": 0,
+        "reassociated_face_records": 0,
+        "camera_diagnostics": {
+          "received": 1272,
+          "late": 2,
+          "invalid_calibration": 0,
+          "duplicate": 0,
+          "accepted": 1270,
+          "coverage_updates": 1252,
+          "tf_waits": 18
+        }
+      },
+      "native_log_counts_at_capture": {
+        "Ignoring velocities commanded while an autonomous behavior": 0,
+        "Controller patience exceeded": 0,
+        "No reachable observation goals": 0,
+        "Timed out while waiting for action server to acknowledge": 8
+      },
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 288.903,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      },
+      "independent_audit": {
+        "seed": 1136000000,
+        "success": true,
+        "evaluator_success": true,
+        "seconds": 288.903,
+        "targets": 3,
+        "collisions": 0,
+        "coordinate_errors_m": {
+          "385": 0.10921397845847138,
+          "94": 0.3022081289429867,
+          "943": 0.45998041785411764
+        },
+        "required_approach_m": 1.5,
+        "closest_approach_m": {
+          "943": 1.4392385824997416,
+          "385": 1.3382879048684087,
+          "94": 1.4061655718562032
+        },
+        "video": {
+          "file": "/home/peter/simul/training_robust/native90/floor_pose_regression_v1/case_0/episodes/1136000000/video/mission.mp4",
+          "frames": 1446,
+          "fps": 5.0,
+          "verified": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "shape": "triangle",
+      "seed": 1136000101,
+      "unit": "osp-floor-pose-case-1.service",
+      "domain": 117,
+      "status": "done",
+      "floor_sensor_gate": true,
+      "before": {
+        "domain": 115,
+        "wall_seconds": 5.0,
+        "constants": {
+          "BACKUP_LIMIT": 0,
+          "BUMP": 1,
+          "CLIFF": 2,
+          "OBJECT_PROXIMITY": 5,
+          "STALL": 3,
+          "WHEEL_DROP": 4
+        },
+        "samples": {
+          "cliff_front_left": 16,
+          "cliff_side_left": 15,
+          "cliff_front_right": 14,
+          "cliff_side_right": 9,
+          "hazard_frames": 53,
+          "hazard_nonempty_frames": 10
+        },
+        "hazards": {
+          "2:base_link": 40
+        },
+        "cliff_scans": {
+          "cliff_front_left": {
+            "values": 16,
+            "finite": 0,
+            "infinite": 16,
+            "last_ranges": [
+              "inf"
+            ],
+            "range_min": 9.999999747378752e-05,
+            "range_max": 0.15000000596046448
+          },
+          "cliff_side_left": {
+            "values": 15,
+            "finite": 0,
+            "infinite": 15,
+            "last_ranges": [
+              "inf"
+            ],
+            "range_min": 9.999999747378752e-05,
+            "range_max": 0.15000000596046448
+          },
+          "cliff_front_right": {
+            "values": 14,
+            "finite": 0,
+            "infinite": 14,
+            "last_ranges": [
+              "inf"
+            ],
+            "range_min": 9.999999747378752e-05,
+            "range_max": 0.15000000596046448
+          },
+          "cliff_side_right": {
+            "values": 9,
+            "finite": 0,
+            "infinite": 9,
+            "last_ranges": [
+              "inf"
+            ],
+            "range_min": 9.999999747378752e-05,
+            "range_max": 0.15000000596046448
+          }
+        }
+      },
+      "after": {
+        "domain": 117,
+        "wall_seconds": 7.0,
+        "constants": {
+          "BACKUP_LIMIT": 0,
+          "BUMP": 1,
+          "CLIFF": 2,
+          "OBJECT_PROXIMITY": 5,
+          "STALL": 3,
+          "WHEEL_DROP": 4
+        },
+        "samples": {
+          "cliff_front_right": 22,
+          "hazard_frames": 114,
+          "hazard_nonempty_frames": 0,
+          "cliff_front_left": 16,
+          "cliff_side_left": 14,
+          "cliff_side_right": 14
+        },
+        "hazards": {},
+        "cliff_scans": {
+          "cliff_front_right": {
+            "values": 22,
+            "finite": 22,
+            "infinite": 0,
+            "last_ranges": [
+              0.015685558319091797
+            ],
+            "range_min": 9.999999747378752e-05,
+            "range_max": 0.15000000596046448
+          },
+          "cliff_front_left": {
+            "values": 16,
+            "finite": 16,
+            "infinite": 0,
+            "last_ranges": [
+              0.015690602362155914
+            ],
+            "range_min": 9.999999747378752e-05,
+            "range_max": 0.15000000596046448
+          },
+          "cliff_side_left": {
+            "values": 14,
+            "finite": 14,
+            "infinite": 0,
+            "last_ranges": [
+              0.015226522460579872
+            ],
+            "range_min": 9.999999747378752e-05,
+            "range_max": 0.15000000596046448
+          },
+          "cliff_side_right": {
+            "values": 14,
+            "finite": 14,
+            "infinite": 0,
+            "last_ranges": [
+              0.015225350856781006
+            ],
+            "range_min": 9.999999747378752e-05,
+            "range_max": 0.15000000596046448
+          }
+        }
+      },
+      "live_status": {
+        "state": "running",
+        "approached_ids": [
+          384,
+          654
+        ],
+        "targets": 2,
+        "collisions": 0,
+        "elapsed_seconds": 274.0,
+        "active_action": "nav",
+        "readiness_reason": "",
+        "sensor_interruptions": 0,
+        "nav2_lifecycle": {
+          "controller_server": 3,
+          "planner_server": 3,
+          "behavior_server": 3,
+          "bt_navigator": 3
+        },
+        "drive_controllers": {
+          "diffdrive_controller": "active",
+          "joint_state_broadcaster": "active"
+        },
+        "confirmed_surface_cells": 295,
+        "confirmed_face_anchors": 0,
+        "reassociated_face_records": 0,
+        "camera_diagnostics": {
+          "received": 1385,
+          "late": 0,
+          "invalid_calibration": 0,
+          "duplicate": 0,
+          "accepted": 1385,
+          "coverage_updates": 1373,
+          "tf_waits": 11
+        }
+      },
+      "native_log_counts_at_capture": {
+        "Ignoring velocities commanded while an autonomous behavior": 0,
+        "Controller patience exceeded": 0,
+        "No reachable observation goals": 0,
+        "Timed out while waiting for action server to acknowledge": 6
+      },
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 427.501,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      },
+      "independent_audit": {
+        "seed": 1136000101,
+        "success": true,
+        "evaluator_success": true,
+        "seconds": 427.501,
+        "targets": 3,
+        "collisions": 0,
+        "coordinate_errors_m": {
+          "384": 0.09146441241912484,
+          "722": 0.009666318087884726,
+          "654": 0.0584926518266008
+        },
+        "required_approach_m": 1.5,
+        "closest_approach_m": {
+          "654": 0.653879695582041,
+          "722": 1.0091165285760273,
+          "384": 1.3083395088055503
+        },
+        "video": {
+          "file": "/home/peter/simul/training_robust/native90/floor_pose_regression_v1/case_1/episodes/1136000101/video/mission.mp4",
+          "frames": 2137,
+          "fps": 5.0,
+          "verified": true
+        },
+        "errors": []
+      }
+    }
+  ],
+  "generalization_verified": false,
+  "control_ack_candidate": {
+    "runtime": "/home/peter/simul/training_robust/native90/nav_ack_v2/runtime",
+    "previous_attempt_runtime": "/home/peter/simul/training_robust/native90/nav_ack_v1/runtime",
+    "previous_attempt_effective_gazebo_timeout_ms": 20,
+    "previous_attempt_modified_only_hardware_profile": true,
+    "changed_files": [
+      "config/nav2_gazebo.yaml",
+      "config/nav2_robot_policy.yaml"
+    ],
+    "effective_timeout_verified_ms": 1000,
+    "actual_measurements": [
+      {
+        "number": 0,
+        "unit": "osp-spatial-nov13-space3-00000.service",
+        "floor_sensor_gate": true,
+        "runtime_configuration_gate": true,
+        "measurement": {
+          "domain": 114,
+          "parameters": {
+            "slam_toolbox": {
+              "restamp_tf": true,
+              "use_sim_time": true
+            },
+            "bt_navigator": {
+              "default_server_timeout": 1000,
+              "use_sim_time": true
+            },
+            "mission": {
+              "policy_file": "/home/peter/simul/training_robust/native90/spatial_cem_v3/jobs/00000_train_g0_0/policy.json",
+              "duration": 600.0,
+              "planner": "edge"
+            }
+          },
+          "errors": {},
+          "complete": true,
+          "source": "Read-only ROS GetParameters services"
+        }
+      }
+    ],
+    "other_motion_and_safety_parameters_changed": false,
+    "effect_on_native_completion_time_verified": false
+  },
+  "previous_goal_turn_classification": "progress",
+  "previous_goal_turn_evidence": "Diverse physical worlds and live dashboard were built; native sensor evidence in this turn exposed an input defect and changed the next action",
+  "floor_sensor_calibration_passed": true,
+  "full_native_audits": [
+    {
+      "seed": 1136000000,
+      "success": true,
+      "evaluator_success": true,
+      "seconds": 288.903,
+      "targets": 3,
+      "collisions": 0,
+      "coordinate_errors_m": {
+        "385": 0.10921397845847138,
+        "94": 0.3022081289429867,
+        "943": 0.45998041785411764
+      },
+      "required_approach_m": 1.5,
+      "closest_approach_m": {
+        "943": 1.4392385824997416,
+        "385": 1.3382879048684087,
+        "94": 1.4061655718562032
+      },
+      "video": {
+        "file": "/home/peter/simul/training_robust/native90/floor_pose_regression_v1/case_0/episodes/1136000000/video/mission.mp4",
+        "frames": 1446,
+        "fps": 5.0,
+        "verified": true
+      },
+      "errors": []
+    },
+    {
+      "seed": 1136000101,
+      "success": true,
+      "evaluator_success": true,
+      "seconds": 427.501,
+      "targets": 3,
+      "collisions": 0,
+      "coordinate_errors_m": {
+        "384": 0.09146441241912484,
+        "722": 0.009666318087884726,
+        "654": 0.0584926518266008
+      },
+      "required_approach_m": 1.5,
+      "closest_approach_m": {
+        "654": 0.653879695582041,
+        "722": 1.0091165285760273,
+        "384": 1.3083395088055503
+      },
+      "video": {
+        "file": "/home/peter/simul/training_robust/native90/floor_pose_regression_v1/case_1/episodes/1136000101/video/mission.mp4",
+        "frames": 2137,
+        "fps": 5.0,
+        "verified": true
+      },
+      "errors": []
+    }
+  ]
+}

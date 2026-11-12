@@ -83,6 +83,21 @@ def test_unfinalized_recording_is_not_a_playable_video(store):
     assert len(obs.snapshot['videos']) == 1
 
 
+def test_invalid_environment_is_never_a_valid_policy_success(store):
+    obs, output, episode = store
+    save(episode / 'evaluation.json',result())
+    save(output / 'environment_invalidation.json',dict(policy_training_sample_valid=False,reason='Invalid cliff input'))
+    save(episode / 'video/recording.json',dict(frames=5))
+    (episode / 'video/mission.mp4').write_bytes(b'0123456789')
+    obs.refresh()
+    detail=obs.detail(server.key(output))
+    assert detail['state']=='invalid_environment'
+    assert not detail['audit']['passed']
+    assert detail['audit']['raw_rubric_passed']
+    assert obs.snapshot['videos'][0]['environment_valid'] is False
+    assert not obs.snapshot['videos'][0]['passed']
+
+
 @pytest.mark.parametrize('value,expected', [('bytes=0-2', (0, 2)), ('bytes=7-', (7, 9)),
                                            ('bytes=-4', (6, 9)), ('bytes=0-999', (0, 9))])
 def test_ranges(value, expected):

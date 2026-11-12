@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T15:53:13.555654+00:00",
+  "captured_utc": "2026-11-12T16:38:44.102643+00:00",
   "purpose": "Repository upload snapshot; not a live dashboard",
   "tests_passed_final": 189,
   "native_validation_complete": false,
@@ -137,8 +137,8 @@
   "previous_regressions_complete": true,
   "latest_change": {
     "date": "2026-11-13",
-    "name": "outer_space_randomization_and_revisit_memory",
-    "status": "native_learning_in_progress",
+    "name": "floor_corrected_and_effective_configuration_verified",
+    "status": "2native_floor_regressions_passed;fresh_shape_learning_running",
     "generalization_verified": false
   },
   "latest_recording": {
@@ -161,10 +161,10 @@
     "matched_baseline_comparison": false
   },
   "active_supervision": {
-    "current_campaign": "spatial_cem_v1",
-    "coordinator": "osp-spatial-cem-v1.service",
-    "dashboard": "osp-robot-dashboard.service",
-    "previous_curriculum": "superseded;completed native results preserved"
+    "current_campaign": "spatial_cem_v3",
+    "coordinator": "osp-spatial-cem-v3.service",
+    "previous_campaign_drain": "osp-spatial-config-upgrade-v3.service",
+    "dashboard": "osp-robot-dashboard.service"
   },
   "pending_tf_comparison": {
     "status": "completed",
@@ -176,15 +176,16 @@
     "report": "tf_navigation_failure.json"
   },
   "pending_curriculum_upgrade": {
-    "status": "completed",
-    "successor": "spatial_cem_v1",
-    "active_service": "osp-spatial-cem-v1.service"
+    "status": "new_coordinator_running;preserving_previous_native_runs",
+    "successor": "spatial_cem_v3",
+    "active_service": "osp-spatial-cem-v3.service"
   },
   "dashboard": "dashboard.json",
-  "spatial_geometry": "spatial_geometry.json",
+  "spatial_geometry": "spatial_geometry_v3.json",
   "revisit_analysis": "revisit_analysis.json",
-  "latest_candidate_tests_passed": 210,
+  "latest_candidate_tests_passed": 217,
   "latest_candidate_tests_skipped": 1,
-  "latest_candidate_runtime": "training_robust/native90/spatial_cem_v1/runtime",
-  "production_promoted": false
+  "latest_candidate_runtime": "/home/peter/simul/training_robust/native90/nav_ack_v2/runtime",
+  "production_promoted": false,
+  "floor_diagnosis": "floor_pose_diagnosis.json"
 }

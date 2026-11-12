@@ -4,9 +4,12 @@
 > SLAM·LiDAR, ID 인식/1.5m 접근 기록, 로그와 완료 영상을 확인할 수 있습니다.
 > 실행: `bash scripts/run_robot_dashboard.sh start`.
 > [사용·관리 방법](dashboard/README.md) · [공간 다양화 학습 상태](repository_snapshot/spatial_curriculum.json).
-> `spatial_cem_v1`은 **원형·삼각형·사다리꼴·직사각형·L자·U자·다중 방**으로
+> `spatial_cem_v3`는 **원형·삼각형·사다리꼴·직사각형·L자·U자·다중 방**으로
 > 실제 Gazebo 외곽 벽과 주행 공간을 바꿉니다. 기존 PDF 공간의 내부 장애물만 바꾸던
 > `fresh_map_cem_v2`와 구분합니다. 새 학습과 재방문 억제는 검증 중이며 실사용 정책으로 승격하지 않았습니다.
+> 공간 초판 `spatial_cem_v1`의 바닥 렌더링 좌표 오류를 발견해 두 실행을 정상 종료·보존하고
+> 학습 표본에서 제외했습니다. 수정한 실제 원형·삼각형의 바닥 센서4개가 모두 정상 응답하며,
+> 매 새 실행에도 이 검사를 적용합니다. [진단과 검증 범위](repository_snapshot/floor_pose_diagnosis.json).
 
 [**시뮬레이션 영상 다운로드 — GitHub Release**](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11)
 
@@ -225,9 +228,9 @@ python3 scripts/publish_simulation_videos.py --upload
 
 ## 저장된 Gazebo 영상
 
-[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 128개
+[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 133개
 
-아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다.
+아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다. 환경 오류로 종료한 영상은 정책 학습 표본에서 제외합니다.
 
 <details><summary>전체 영상과 평가 결과 펼치기</summary>
 
@@ -257,6 +260,8 @@ python3 scripts/publish_simulation_videos.py --upload
 | [development_imu_screen4__8600139.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/development_imu_screen4__8600139.mp4) | 실패 | 미달 | 600.1 |
 | [development_imu_v1__runtime_probes__20261104T230250_371315Z.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/development_imu_v1__runtime_probes__20261104T230250_371315Z.mp4) | 성공 | 미달 | 238.9 |
 | [edge_runtime_v2__runtime_probes__20261104T234253_265975Z.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/edge_runtime_v2__runtime_probes__20261104T234253_265975Z.mp4) | 실패 | 미달 | 600.306 |
+| [floor_pose_regression_v1__case_0__1136000000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/floor_pose_regression_v1__case_0__1136000000.mp4) | 성공 | 확인 | 288.903 |
+| [floor_pose_regression_v1__case_1__1136000101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/floor_pose_regression_v1__case_1__1136000101.mp4) | 성공 | 확인 | 427.501 |
 | [fresh_map_cem_v1__00000_train_g0_0__1121200000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fresh_map_cem_v1__00000_train_g0_0__1121200000.mp4) | 실패 | 미달 | 600.455 |
 | [fresh_map_cem_v1__00001_train_g0_1__1121200101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fresh_map_cem_v1__00001_train_g0_1__1121200101.mp4) | 실패 | 미달 | 600.309 |
 | [fresh_map_cem_v1__00002_train_g0_2__1121200202.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fresh_map_cem_v1__00002_train_g0_2__1121200202.mp4) | 실패 | 확인 | 600.3 |
@@ -359,6 +364,9 @@ python3 scripts/publish_simulation_videos.py --upload
 | [slam_nav2_search_v1__011_validation_frontier_balanced_9811019__9811019.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/slam_nav2_search_v1__011_validation_frontier_balanced_9811019__9811019.mp4) | 실패 | 확인 | 600.083 |
 | [small_marker_followup_v2__regression__case_0__1121200000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/small_marker_followup_v2__regression__case_0__1121200000.mp4) | 성공 | 확인 | 282.519 |
 | [small_marker_followup_v2__regression__case_1__1121200101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/small_marker_followup_v2__regression__case_1__1121200101.mp4) | 성공 | 확인 | 193.2 |
+| [spatial_cem_v1__00000_train_g0_0__1136000000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v1__00000_train_g0_0__1136000000.mp4) | 환경 오류 | 미달 | 372.574 |
+| [spatial_cem_v1__00001_train_g0_0__1136000101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v1__00001_train_g0_0__1136000101.mp4) | 환경 오류 | 미달 | 375.854 |
+| [spatial_cem_v2__00000_train_g0_0__1148000000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v2__00000_train_g0_0__1148000000.mp4) | 성공 | 확인 | 139.266 |
 | [tf_restamp_v1__regression__case_0__1121200000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_0__1121200000.mp4) | 성공 | 확인 | 231.867 |
 | [tf_restamp_v1__regression__case_1__1121200101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_1__1121200101.mp4) | 성공 | 확인 | 229.859 |
 
@@ -647,6 +655,41 @@ driver/환경 생성기 해시는 고정됩니다. 추가 변경은 새 후보/�
 새 후보와 비교 기준 runtime은 각각 **210개 테스트 통과·1개 skip 및 빌드 성공**입니다.
 [형태별 구성과 실행 증거](repository_snapshot/spatial_curriculum.json) ·
 [재방문 분석의 범위](repository_snapshot/revisit_analysis.json).
+
+## 다각형 바닥 좌표 오류 수정과 입력 검증 — 2026-11-13
+
+초판 공간의 OBJ 바닥 꼭짓점은 월드 좌표였지만, floor 모델의 중앙 좌표와 높이(-0.06m)가
+다시 적용됐습니다. 충돌 바닥과 GPU 센서에 보이는 바닥이 어긋나 실제 원형·삼각형 모두
+바닥 센서4개가 전부 무한대를 반환했고 낭떠러지 이벤트가 발생했습니다. Create3 자체 보호
+동작이 Nav2 속도 명령을 무시하며, 삼각형은 벽 근처에서 탐색 후보가 없어지는 복구를
+반복했습니다. 이는 정책 성능으로 사용할 수 없는 시뮬레이션 입력 오류입니다.
+
+두 실행은 `/mission/stop`으로 종료하여 원본 평가·지도·영상·로그를 보존했습니다.
+`operator_stop` 결과를 성공/시간 초과로 바꿔 쓰지 않고 `environment_invalidation.json`으로
+학습 표본 제외를 표시합니다. 대시보드도 ‘환경 오류로 종료’로 구분합니다.
+낭떠러지 감지나 충돌 보호 기능을 끄지 않았습니다.
+
+새 `floor_pose_v1` runtime은 바닥 visual에 모델 이동을 상쇄하는 상대 pose를 넣습니다.
+7종 공간의 모든 바닥 꼭짓점과 충돌 바닥 상면이 실제 월드 z=0에 일치하는 검사를 추가했고,
+runtime 전체 **217개 테스트 통과·1개 skip 및 빌드 성공**을 확인했습니다.
+동일한 실제 원형·삼각형을 재실행한7초 관측에서4개 센서가100% 유효 거리를 반환했고
+낭떠러지 이벤트는0회였습니다. 두 완주 회귀 실험은 별도로 기록합니다.
+
+`spatial_cem_v3`는 새로운 외곽28개를 준비하고 기존 실행이 비우는 슬롯에서 계속 학습합니다.
+각 실행에 실제 바닥 센서4개와 hazard 스트림 검사를 요구하며, 입력이 검증되지 않으면
+완주로 보이는 결과도 학습 성공으로 인정하지 않습니다. 현재 동시 Gazebo 상한은2개입니다.
+처음 수정한 `nav2_robot_policy.yaml`은 Gazebo 기본 실행 경로가 아니어서 실제 응답 대기는
+여전히20ms였습니다. 이 후보와 현재 주행은 보존하고, 새 후보에서 실제 경로인
+`nav2_gazebo.yaml`도 수정했습니다. 새 실행의 ROS GetParameters로 **1000ms 실제 적용**,
+현재 정책 파일·600초 제한·SLAM restamp_tf=true를 확인했습니다.
+각 주행마다 실제 적용값을 다시 확인하며, 기준 정책의20ms와 후보1000ms를 구분합니다.
+응답 대기의 시간 개선 효과는 실제 쌍대 검증 대상이며 아직 입증하지 않았습니다.
+원형·삼각형 진단 결과만으로7종 공간 일반화나 실사용 정책 완성을 주장하지 않습니다.
+
+수정한 바닥의 두 동일 배치 회귀 주행은 각각 **원형288.903초, 삼각형427.501초**에
+세 ID·실제1.5m 접근·좌표 오차0.5m 이내·접촉0회를 독립 감사로 통과했습니다.
+원형의 최대 지도 오차는0.460m로 허용치에 가까워 다른 배치에서도 충분한지 확인해야 합니다.
+이는 두 진단 배치의 결과이며 전체 성공률·학습 완료·응답 대기 변경 효과를 의미하지 않습니다.
 
 TF 설정만 바꾼 진단 비교도231.867초·229.859초에 모두 완주했고, 독립 감사를 통과했습니다.
 관련 로봇 위치 변환 오류는 기존72회·31회에서 두 비교 모두0회로 줄었습니다.

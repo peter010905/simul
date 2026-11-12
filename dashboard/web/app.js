@@ -1,8 +1,8 @@
 'use strict';
 const $ = id => document.getElementById(id);
 const state = {data:null, campaign:'', job:'', detail:null, tab:'live', videoLimit:18, polling:false, jobsSignature:'', campaignSignature:'', videoSignature:'', imageKey:''};
-const labels = {running:'실행 중',starting:'시작 준비',passed:'독립 검증 통과',failed:'미통과',stopped:'종료 / 중단',queued:'대기'};
-const phases = {train:'학습',pilot:'파일럿',validation:'검증',final:'독립 시험'};
+const labels = {running:'실행 중',starting:'시작 준비',passed:'독립 검증 통과',failed:'미통과',invalid_environment:'환경 오류로 종료',stopped:'종료 / 중단',queued:'대기'};
+const phases = {train:'학습',pilot:'파일럿',validation:'검증',final:'독립 시험',diagnostic:'환경 진단'};
 const format = (n, digits=1) => typeof n === 'number' && Number.isFinite(n) ? n.toFixed(digits) : '—';
 const esc = text => String(text ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 const params = values => new URLSearchParams(values).toString();
@@ -51,7 +51,7 @@ function renderSelectors(data) {
   $('job').value=state.job;
   const shapeLabels={pdf_original:'PDF 원래 공간',circle:'원형',triangle:'삼각형',trapezoid:'사다리꼴',rectangle:'직사각형',l_shape:'L자',u_shape:'U자',rooms:'다중 방'};
   const groups={};for(const job of jobs){const name=job.arena.shape;(groups[name] ||= []).push(job);}
-  $('shape-summary').innerHTML=Object.entries(groups).map(([name,rows])=>`<span><b>${esc(shapeLabels[name] || name)}</b> ${rows.filter(j=>['passed','failed'].includes(j.state)).length}/${rows.length} 완료 · ${rows.filter(j=>j.state==='passed').length} 통과</span>`).join('');
+  $('shape-summary').innerHTML=Object.entries(groups).map(([name,rows])=>`<span><b>${esc(shapeLabels[name] || name)}</b> ${rows.filter(j=>['passed','failed','invalid_environment'].includes(j.state)).length}/${rows.length} 종료 · ${rows.filter(j=>j.state==='passed').length} 통과</span>`).join('');
   const campaign=data.campaigns.find(c=>c.id===state.campaign);
   if(campaign){
     $('side-campaign').textContent=campaign.id;
@@ -85,6 +85,8 @@ function renderDetail(d) {
   const stream=d.metrics.streams || {};
   const telemetry=[['현재 동작',active ? d.status.active_action || d.state : labels[d.state]],['공간 형태',shapes[d.arena.shape] || d.arena.shape],['실시간 배율',`${format(d.metrics.real_time_factor,2)}×`],['카메라',`${format(stream.camera?.sim_hz)} Hz (sim)`],['LiDAR',`${format(stream.scan?.sim_hz)} Hz (sim)`],['실행 서비스',d.service]];
   if(d.exploration_memory.path_distance_m!==undefined)telemetry.push(['주행 / 재방문 추정',`${format(d.exploration_memory.path_distance_m)} / ${format(d.exploration_memory.revisited_distance_m)}m`]);
+  telemetry.push(['바닥 센서 검사',d.floor_sensor_gate===true?'4개 센서 통과':d.floor_sensor_gate===false?'실패 · 환경 재검증':'아직 검사 전']);
+  telemetry.push(['정책·Nav2 적용 확인',d.runtime_configuration_gate===true?'실제 ROS 값 확인':d.runtime_configuration_gate===false?'확인 중 / 불일치':'검사 전']);
   $('telemetry').innerHTML=telemetry.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('');
   $('readiness').textContent=d.status.readiness_reason || (active ? '센서·주행 상태 모니터링 중' : `종료 사유: ${d.reason || d.state}`);
   const events=d.events.filter(e=>e.event!=='mission_state').slice(-30).reverse();
@@ -94,6 +96,7 @@ function renderDetail(d) {
   auditPanel.classList.toggle('passed',Boolean(d.audit?.passed));auditPanel.classList.toggle('failed',Boolean(d.audit&&!d.audit.passed));
   $('audit-title').textContent=d.audit ? d.audit.passed ? '독립 검증 통과 · 세 ID와 실제 접근을 모두 확인했습니다.' : '이 실행은 현재 성공 기준을 충족하지 못했습니다.' : '독립 검증은 실험 종료 후 표시됩니다.';
   $('audit-note').textContent=d.audit ? `${d.reason} · 좌표 허용 오차 0.5m · 실제 접근 반경 1.5m · 제한 600초` : '성공 기준: 정확한 ID 3개 · 실제 거리 ≤1.5m · 지도 오차 ≤0.5m · 접촉 0회 · 600초 이내';
+  if(d.environment_invalidation.policy_training_sample_valid===false){$('audit-title').textContent='시뮬레이션 환경 오류 · 정책 학습 표본에서 제외했습니다.';$('audit-note').textContent=d.environment_invalidation.reason;}
   $('audit-details').innerHTML=d.audit ? Object.entries(d.audit.closest_approach_m).map(([id,distance])=>`<div class="audit-details-row">ID ${esc(id)} &nbsp; 실제 최근접 ${format(distance,2)}m &nbsp; 좌표 오차 ${format(d.audit.position_errors_m[id],3)}m</div>`).join('') : '';
   $('log-job').textContent=`${d.campaign} / #${d.number} / Seed ${d.seed}`;
   $('artifact-links').innerHTML=d.artifacts.map(name=>`<a href="/api/artifact?${params({id:d.id,name})}">${esc(name)} ↓</a>`).join('') || '<span class="subtle">실행 후 파일이 표시됩니다.</span>';
@@ -113,11 +116,11 @@ function updateImages(force=false) {
   }
 }
 function videoCard(v){
-  return `<article class="video-card"><button class="video-preview" data-video="${esc(v.id)}" aria-label="${esc(v.name)} 재생"><img src="${esc(v.thumbnail)}" loading="lazy" alt="실제 Gazebo 주행 녹화 미리보기"><span class="play-icon">▷</span><span class="video-duration">${elapsed(v.seconds)} SIM</span></button><div class="video-content"><h3 title="${esc(v.name)}">${esc(v.name)}</h3><div class="video-meta"><span class="video-result ${v.passed?'':'fail'}">${v.passed?'✓ 현재 기준 통과':'미통과 / 검증 부족'}</span><span>ID ${v.targets ?? '—'}/3 · 접촉 ${v.contacts ?? '—'}</span></div></div></article>`;
+  return `<article class="video-card"><button class="video-preview" data-video="${esc(v.id)}" aria-label="${esc(v.name)} 재생"><img src="${esc(v.thumbnail)}" loading="lazy" alt="실제 Gazebo 주행 녹화 미리보기"><span class="play-icon">▷</span><span class="video-duration">${elapsed(v.seconds)} SIM</span></button><div class="video-content"><h3 title="${esc(v.name)}">${esc(v.name)}</h3><div class="video-meta"><span class="video-result ${v.passed?'':'fail'}">${v.environment_valid===false?'환경 오류로 종료':v.passed?'✓ 현재 기준 통과':'미통과 / 검증 부족'}</span><span>ID ${v.targets ?? '—'}/3 · 접촉 ${v.contacts ?? '—'}</span></div></div></article>`;
 }
 function renderVideos(data){
   $('video-count').textContent=data.videos.length;
-  const sig=data.videos.map(v=>v.id).join('|');
+  const sig=data.videos.map(v=>`${v.id}:${v.passed}:${v.environment_valid}`).join('|');
   if(sig!==state.videoSignature){
     $('recent-videos').innerHTML=data.videos.slice(0,3).map(videoCard).join('') || '<p class="empty-copy">완료 영상을 기다립니다.</p>';
     $('recent-count').textContent=`${data.videos.length}개 보관 중`;
@@ -137,7 +140,7 @@ function playVideo(id){
   const video=state.data?.videos.find(v=>v.id===id);if(!video)return;
   $('player-title').textContent=video.name;
   $('player').src=video.url;
-  $('player-info').textContent=`${format(video.seconds)} sim s · ${(video.bytes/1048576).toFixed(1)} MB · ${video.passed?'현재 기준 통과':'미통과 / 검증 부족'}`;
+  $('player-info').textContent=`${format(video.seconds)} sim s · ${(video.bytes/1048576).toFixed(1)} MB · ${video.environment_valid===false?'환경 오류로 종료':video.passed?'현재 기준 통과':'미통과 / 검증 부족'}`;
   $('download-video').href=video.url+'&download=1';
   $('video-dialog').showModal();
 }

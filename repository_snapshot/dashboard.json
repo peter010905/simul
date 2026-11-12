@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T15:53:13.555654+00:00",
+  "captured_utc": "2026-11-12T16:38:44.102643+00:00",
   "url": "http://127.0.0.1:8765",
   "service": "osp-robot-dashboard.service",
   "installed_enabled": true,
@@ -16,7 +16,7 @@
     "download"
   ],
   "robot_commands_published": false,
-  "tests_passed": 14,
+  "tests_passed": 15,
   "browser_verified": [
     "live RGB and SLAM map",
     "completed independent audit replaces stale live status",
@@ -29,5 +29,9 @@
     "cpu_quota_percent": 60,
     "nice": 10
   },
-  "automatic_github_upload": false
+  "automatic_github_upload": false,
+  "invalid_environment_outcomes_labelled": true,
+  "floor_sensor_probe_download": true,
+  "effective_configuration_probe_download": true,
+  "generic_coordinator_discovery": true
 }

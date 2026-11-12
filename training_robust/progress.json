@@ -1,7 +1,7 @@
 {
   "goal_status": "active",
-  "phase": "native_spatial_cem_learning",
-  "last_verified_utc": "2026-11-12T15:53:13.555654+00:00",
+  "phase": "native_spatial_cem_v3",
+  "last_verified_utc": "2026-11-12T16:38:44.102643+00:00",
   "jobs": [
     {
       "run": "training_robust/diverse_directional_cem",
@@ -108,14 +108,9 @@
   },
   "current_jobs": [
     {
-      "name": "circle",
-      "unit": "osp-spatial-nov13-space-00000.service",
+      "number": 0,
+      "unit": "osp-spatial-nov13-space3-00000.service",
       "domain": 114
-    },
-    {
-      "name": "triangle",
-      "unit": "osp-spatial-nov13-space-00001.service",
-      "domain": 115
     }
   ],
   "additional_results": {
@@ -455,7 +450,7 @@
       "last_frame_decoded": true
     }
   },
-  "latest_goal_turn_classification": "native exterior-space training started; goal not yet achieved",
+  "latest_goal_turn_classification": "progress",
   "baseline_native_screen4": {
     "complete": true,
     "successes": 1,
@@ -556,7 +551,7 @@
     "baseline_seconds": 3.618,
     "candidate_seconds": 20.074
   },
-  "updated_utc": "2026-11-12T15:53:13.555654+00:00",
+  "updated_utc": "2026-11-12T16:38:44.102643+00:00",
   "motion_v2_native_result": {
     "seed": 8600007,
     "success": true,
@@ -784,22 +779,7 @@
       }
     ]
   },
-  "latest_failure_analysis": {
-    "report": "/home/peter/simul/training_robust/native_diagnostics/native_search_v1_failure_analysis/report_ko.txt",
-    "data": "/home/peter/simul/training_robust/native_diagnostics/native_search_v1_failure_analysis/analysis.json",
-    "categories": {
-      "extra_close_rgb_completion_gate": 5,
-      "missing_marker_observation_or_confirmation": 13,
-      "persistent_empty_candidate_spin_loop": 3,
-      "false_positive_extra_id": 1
-    },
-    "planner_empty_reproduced_trials": [
-      31,
-      39,
-      57
-    ],
-    "policy_fixes_native_validated": false
-  },
+  "latest_failure_analysis": "repository_snapshot/floor_pose_diagnosis.json",
   "sequential_fixes": {
     "summary": "/home/peter/simul/training_robust/native90/sequential_fixes_v10_v13/implementation.json",
     "state": "/home/peter/simul/training_robust/native90/sequential_fixes_v10_v13/sequence.json",
@@ -1122,5 +1102,6 @@
     "report": "repository_snapshot/spatial_curriculum.json"
   },
   "spatial_curriculum": "repository_snapshot/spatial_curriculum.json",
-  "dashboard": "http://127.0.0.1:8765"
+  "dashboard": "http://127.0.0.1:8765",
+  "latest_goal_turn_evidence": "Two independently audited native circle/triangle completions after correcting visual floor pose;fresh28exteriors prepared;actual ROS1000ms acknowledgement,current policy,600s deadline,restamp_tf verified in new training run"
 }

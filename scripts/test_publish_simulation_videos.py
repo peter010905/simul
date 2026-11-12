@@ -28,6 +28,8 @@ class SelectivePublishingTest(unittest.TestCase):
                 writer.release();videos.append(file)
                 (video/'recording.json').write_text(json.dumps({'frames':2,'duration_seconds':.4}))
                 (episode/'evaluation.json').write_text(json.dumps({'success':False,'reason':'timeout','targets':1,'collisions':0}))
+            (videos[0].parent.parent.parent/'environment_invalidation.json').write_text(json.dumps(
+                dict(policy_training_sample_valid=False,reason='Invalid floor sensor input')))
             assets=[];uploaded=[]
             def command(args):
                 endpoint=args[-1]
@@ -50,6 +52,10 @@ class SelectivePublishingTest(unittest.TestCase):
             self.assertEqual(len(report['videos']),2)
             self.assertEqual(report['uploaded_verified'],1)
             self.assertFalse(report['repository_private'])
+            invalid=next(v for v in report['videos'] if v['asset']=='requested__episode.mp4')
+            self.assertFalse(invalid['policy_training_sample_valid'])
+            self.assertFalse(invalid['original_evaluator_success'])
+            self.assertIn('환경 오류',(root/'repository_snapshot/videos.html').read_text())
             self.assertNotIn('로그인해야',(root/'repository_snapshot/videos.html').read_text())
 
 
