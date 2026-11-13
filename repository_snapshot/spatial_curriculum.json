@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-13T03:09:35.614630+00:00",
+  "captured_utc": "2026-11-13T03:18:19.379488+00:00",
   "client_date": "2026-11-13",
   "status": "running",
   "goal_status": "active",
@@ -492,7 +492,7 @@
       }
     }
   ],
-  "completed_spatial_training_episodes": 15,
+  "completed_spatial_training_episodes": 16,
   "completed_cem_generations": 0,
   "generalization_verified": false,
   "revisit_reduction_verified": false,
@@ -524,7 +524,7 @@
   ],
   "actual_native_process_count": 2,
   "preview": "spatial_training_v6_preview.png",
-  "completed_successes": 8,
+  "completed_successes": 9,
   "first_corrected_fresh_space_native": "first_corrected_fresh_space_native.json",
   "graph_landmark_candidate": "graph_landmark_candidate.json",
   "priority_diagnostic": {
@@ -814,16 +814,16 @@
     "percent": 57.142857142857146
   },
   "mixed_training_observed_rate": {
-    "successes": 8,
-    "completed": 15,
-    "percent": 53.333333333333336
+    "successes": 9,
+    "completed": 16,
+    "percent": 56.25
   },
   "marker_directed_candidate": "repository_snapshot/marker_directed_candidate.json",
   "second_L_localization_failure": "repository_snapshot/second_L_localization_failure.json",
   "environment_verified_training_rate": {
-    "successes": 8,
-    "completed": 14,
-    "percent": 57.142857142857146
+    "successes": 9,
+    "completed": 15,
+    "percent": 60.0
   },
   "infrastructure_unverified_completed": 1,
   "slam_thread_budget_comparison": "repository_snapshot/slam_thread_budget_comparison.json",
@@ -839,5 +839,6 @@
     "completed_recorded_episodes": 2,
     "background_cpu_quota_percent": 25
   },
-  "loop_gate_candidate": "repository_snapshot/loop_gate_candidate.json"
+  "loop_gate_candidate": "repository_snapshot/loop_gate_candidate.json",
+  "integrated_first_rectangle_failure": "repository_snapshot/integrated_first_rectangle_failure.json"
 }

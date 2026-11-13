@@ -1243,7 +1243,8 @@
   "latest_goal_turn_evidence": [
     "Recomputed exact recorded face selection;actual+60deg plan became-120deg general sweep.",
     "New face_intent_v2 preserves planned inspection orientation;348tests/build passed;first preparation callback failure retained and repaired in separate stage.",
-    "Two native training jobs remain active;new candidate has not been qualified or promoted."
+    "Two native training jobs remain active;new candidate has not been qualified or promoted.",
+    "Integrated rectangle native ended600.248s/1ID/0contacts,not improved;next CEM triangle completed380.888s strict pass."
   ],
   "latest_navigation_diagnosis": "repository_snapshot/local_navigation_diagnosis.json",
   "current_native_supervisor": "osp-spatial-cem-v6.service",
@@ -1349,11 +1350,11 @@
   "encoder_delta_native_early": "repository_snapshot/encoder_delta_native_early.json",
   "bottleneck_audit": "repository_snapshot/bottleneck_audit.json",
   "integrated_candidate": "repository_snapshot/integrated_candidate.json",
-  "captured_utc": "2026-11-13T03:15:15.375488+00:00",
+  "captured_utc": "2026-11-13T03:18:19.379488+00:00",
   "mixed_training_observed_rate": {
-    "successes": 8,
-    "completed": 15,
-    "percent": 53.333333333333336
+    "successes": 9,
+    "completed": 16,
+    "percent": 56.25
   },
   "current_fixed_incumbent_observed_rate": {
     "successes": 4,
@@ -1367,9 +1368,9 @@
   "coordinator_slot_reservation": false,
   "next_priority_diagnostic": "Three failed-world diagnostic replays followed by seven distinct fresh physical training worlds;no holdout or promotion",
   "environment_verified_training_rate": {
-    "successes": 8,
-    "completed": 14,
-    "percent": 57.142857142857146
+    "successes": 9,
+    "completed": 15,
+    "percent": 60.0
   },
   "infrastructure_unverified_completed": 1,
   "slam_thread_budget_comparison": "repository_snapshot/slam_thread_budget_comparison.json",
@@ -1393,5 +1394,6 @@
     "other_spaces_pending": true
   },
   "loop_gate_candidate": "repository_snapshot/loop_gate_candidate.json",
-  "face_intent_candidate": "repository_snapshot/face_intent_candidate.json"
+  "face_intent_candidate": "repository_snapshot/face_intent_candidate.json",
+  "integrated_first_rectangle_failure": "repository_snapshot/integrated_first_rectangle_failure.json"
 }

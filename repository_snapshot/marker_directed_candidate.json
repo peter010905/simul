@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-13T03:09:35.614630+00:00",
+  "captured_utc": "2026-11-13T03:18:19.379488+00:00",
   "evidence_type": "tested_installed_candidate_and_supervised_native_queue",
   "runtime": "/home/peter/simul/training_robust/native90/integrated_directed_v1/runtime",
   "root": "/home/peter/simul/training_robust/native90/directed_integrated_screen_v1",
@@ -431,7 +431,7 @@
   "native_memory_high": "5G",
   "native_memory_max": "6G",
   "native_swap_max": "512M",
-  "native_result_verified": false,
+  "native_result_verified": true,
   "generalization_verified": false,
   "production_promoted": false,
   "comparison_limit": "Three repeated failure scenes are diagnostic only. Seven subsequent physical worlds are fresh training screens with fixed weights, not independent qualification. Motion source, nearby looks, pixel ranking, SLAM transport, final graph projection and directed looks differ from S7; timing differences cannot be assigned to a single change.",
@@ -522,5 +522,16 @@
       "selected_scan_angle_rad": 0.0
     }
   ],
-  "native_directed_action_observed": true
+  "native_directed_action_observed": true,
+  "first_native_result": {
+    "success": false,
+    "targets": 1,
+    "approached": 3,
+    "contacts": 0,
+    "seconds": 600.248,
+    "infrastructure_failure": false,
+    "reason": "timeout"
+  },
+  "native_performance_improvement_verified": false,
+  "first_failure_report": "repository_snapshot/integrated_first_rectangle_failure.json"
 }

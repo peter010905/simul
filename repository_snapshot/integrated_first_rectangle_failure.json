@@ -1,0 +1,92 @@
+{
+  "captured_utc": "2026-11-13T03:18:19.379488+00:00",
+  "evidence_type": "completed_native_engineering_comparison",
+  "outcome": {
+    "success": false,
+    "targets": 1,
+    "approached": 3,
+    "contacts": 0,
+    "seconds": 600.248,
+    "infrastructure_failure": false,
+    "reason": "timeout"
+  },
+  "baseline": {
+    "success": false,
+    "targets": 2,
+    "approached": 3,
+    "contacts": 0,
+    "seconds": 600.058,
+    "infrastructure_failure": false,
+    "reason": "timeout"
+  },
+  "input_gates": {
+    "slam_transport_gate": true,
+    "floor_sensor_gate": true,
+    "runtime_configuration_gate": true,
+    "velocity_profile_gate": true,
+    "directed_profile_gate": true,
+    "near_pass_profile_gate": true,
+    "pixel_profile_gate": true,
+    "graph_profile_gate": true
+  },
+  "ground_truth_audit": {
+    "available": true,
+    "correct_ids": false,
+    "correct_positions": false,
+    "position_tolerance_m": 0.5,
+    "position_errors_m": {
+      "991": 0.041713776348981574
+    },
+    "expected_ids": [
+      220,
+      465,
+      991
+    ],
+    "found_ids": [
+      991
+    ],
+    "closest_approach_m": {
+      "220": 0.855242065994434,
+      "991": 0.5243462163976451,
+      "465": 1.0061461066326172
+    },
+    "approached_within_1_5m": 3,
+    "approach_radius_m": 1.5,
+    "all_approached": true,
+    "approached_within_2m": 3,
+    "world_to_map": [
+      7.065523619163404,
+      8.173322110373181,
+      -2.8312393647942096
+    ],
+    "trajectory_samples": 2951
+  },
+  "marker_directed_look": {
+    "version": 1,
+    "target_frame": "odom",
+    "camera_axis": "optical_z",
+    "maximum_turn_rad": 3.141592653589793,
+    "selected": 1,
+    "executed": 1,
+    "unavailable": 0,
+    "creates_recognition_or_approach_credit": false,
+    "ground_truth_inputs": false
+  },
+  "near_pass_inspection_summary": {
+    "requested": 8,
+    "spent_sim_s": 22.999,
+    "maximum_sim_s": 35.0,
+    "maximum_looks": 8
+  },
+  "position_errors_m": {
+    "991": 0.041713776348981574
+  },
+  "evaluation_sha256": "d307b719bb94f342c489a550f95d02df08e1f35f9327cee1871644328f74eb01",
+  "production_promoted": false,
+  "conclusions": [
+    "One exact ID at deadline;all three geometric closest passes do not establish recognition or sensor verification.",
+    "Original same-map reference decoded2IDs;this composed candidate decoded1ID. No recognition benefit is established.",
+    "One real marker-directed look executed;nearby-look allowance8used by244sim s.",
+    "Additional face inspection intent override was verified from this actual trace;new face_intent_v2 candidate remains untested natively."
+  ]
+}

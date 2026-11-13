@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-13T03:03:56.166658+00:00",
+  "captured_utc": "2026-11-13T03:18:46.003799+00:00",
   "evidence_type": "authoritative_completed_native_training_bottleneck_audit",
   "fixed_incumbent": {
     "successes": 4,
@@ -7,9 +7,9 @@
     "percent": 57.142857142857146
   },
   "mixed_coefficient_training": {
-    "successes": 8,
-    "completed": 15,
-    "percent": 53.333333333333336
+    "successes": 9,
+    "completed": 16,
+    "percent": 56.25
   },
   "success_definition": "3exact IDs,three sensor-relative near witnesses,actual1.5m approaches,final coordinate error<=0.5m,zero contacts,<=600sim s,independent gates",
   "independent_generalization_success_rate": null,
@@ -19,9 +19,9 @@
     "map_localization": 2,
     "input_verification_missing": 1
   },
-  "zero_collision_completed": 15,
-  "correct_all_three_ID_missions": 11,
-  "geometric_all_three_closest_pass_missions": 15,
+  "zero_collision_completed": 16,
+  "correct_all_three_ID_missions": 12,
+  "geometric_all_three_closest_pass_missions": 16,
   "successful_mission_time_sim_s": {
     "mean": 379.16087500000003,
     "median": 360.15
@@ -1107,6 +1107,70 @@
       },
       "authoritative_evaluation": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00014_train_g0_2/episodes/1191301414/evaluation.json",
       "evaluation_sha256": "1d84eca40be25015186913bef378f2b69a54079f9ed9df4ec99461b76c439b74"
+    },
+    {
+      "number": 15,
+      "role": "2",
+      "shape": "triangle",
+      "seed": 1191301515,
+      "parameters": [
+        1.0,
+        2.674919605990809,
+        0.48242051480811976,
+        1.671897241930709,
+        0.8432736861909724
+      ],
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 380.888,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      },
+      "failure_category": "none",
+      "exact_ids": true,
+      "map_positions": true,
+      "geometric_closest_passes_all3": true,
+      "sensor_verified_ids": [
+        29,
+        136,
+        712
+      ],
+      "coordinate_errors_m": {
+        "136": 0.1075129927311336,
+        "712": 0.003671579922660021,
+        "29": 0.014102368832994356
+      },
+      "wall_s": 1173.773794631008,
+      "rtf": 0.3343050945033705,
+      "motion": {
+        "observed_sim_s": 381.90500000000003,
+        "stationary_sim_s": 38.75999999999995,
+        "stationary_turn_sim_s": 103.83600000000008,
+        "longest_stationary_interval_s": 3.263999999999996,
+        "caveat": "Stationary camera verification and observation turns can be necessary; not automatically wasted time"
+      },
+      "revisit": {
+        "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00015_train_g0_2/episodes/1191301515",
+        "source": "Independent Gazebo ground-truth trajectory; evaluator only",
+        "path_distance_m": 63.70505056777476,
+        "distance_in_returned_cells_m": 2.474908253296949,
+        "returned_distance_fraction": 0.038849482595794106,
+        "cell_reentries_after_15_sim_seconds": 5,
+        "cell_size_m": 0.6,
+        "minimum_path_step_m": 0.2,
+        "navigation_goals": 20,
+        "repeated_map_goals_within_0_8m_excluding_last_two": 0,
+        "limits": [
+          "Returned cells include necessary corridor transit and marker approach; this is not waste distance",
+          "Repeated goals use SLAM map coordinates and may be affected by frame correction",
+          "These are simulation measurements, not observations from a physical robot"
+        ]
+      },
+      "authoritative_evaluation": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00015_train_g0_2/episodes/1191301515/evaluation.json",
+      "evaluation_sha256": "ac146b14726a220c09460c96b2124d75794f577284115d4f9ff8d0553f812fa4"
     }
   ],
   "current_native_jobs": [
@@ -1160,9 +1224,9 @@
   ],
   "second_L_localization_failure": "repository_snapshot/second_L_localization_failure.json",
   "environment_verified_training": {
-    "successes": 8,
-    "completed": 14,
-    "percent": 57.142857142857146
+    "successes": 9,
+    "completed": 15,
+    "percent": 60.0
   },
   "infrastructure_unverified_completed": 1,
   "slam_thread_budget_comparison": "repository_snapshot/slam_thread_budget_comparison.json",
@@ -1174,5 +1238,7 @@
     "reason": "Parent dispatcher paused for slot reservation before it could collect effective input probes;shorter native finished while waiting.",
     "fix": "Supervisor v2 collects existing native inputs before waiting for a slot;active native handles and original sources preserved.",
     "retroactive_gate_credit_added": false
-  }
+  },
+  "integrated_engineering_failure": "repository_snapshot/integrated_first_rectangle_failure.json",
+  "additional_face_intent_bug": "repository_snapshot/face_intent_candidate.json"
 }

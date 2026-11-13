@@ -1,10 +1,10 @@
 # OSP Final Project — ROS 2 Jazzy
 
-> **2026-11-13 병목 점검:** 같은 계수의 기준 정책은7종 새 공간에서4/7회 완주(57.1%)입니다. 다른 학습 계수까지 포함한 입력 검증 완료 주행은8/14회(57.1%)이며, 입력 검증 누락1건까지 포함한 전체 엄격 집계는8/15회(53.3%)입니다. 독립 검증 성공률은 아직 없습니다.
-> 완료15회는 모두 충돌0회였습니다. 마커 인식 누락4회, 좌표 오차2회, 실험 관리상의 입력 검증 누락1회가 있습니다. 누락 주행은246.7초에 임무 자체를 달성했지만 검증 성공으로 소급 처리하지 않았습니다.
+> **2026-11-13 병목 점검:** 같은 계수의 기준 정책은7종 새 공간에서4/7회 완주(57.1%)입니다. 다른 학습 계수까지 포함한 입력 검증 완료 주행은9/15회(60.0%)이며, 입력 검증 누락1건까지 포함한 전체 엄격 집계는9/16회(56.3%)입니다. 독립 검증 성공률은 아직 없습니다.
+> 완료16회는 모두 충돌0회였습니다. 마커 인식 누락4회, 좌표 오차2회, 실험 관리상의 입력 검증 누락1회가 있습니다. 누락 주행은246.7초에 임무 자체를 달성했지만 검증 성공으로 소급 처리하지 않았습니다.
 > 12개 논리 CPU의 부하도 높습니다. 실제 속도는 실시간의0.31–0.35배,10분 임무에 약29–32분이 걸립니다. [완주율 집계·제어·CPU·시간 병목](repository_snapshot/bottleneck_audit.json).
 > **수정과 다음 실제 검증:** 마커 확인·접근 시 일반 탐색 회전보다 해당 마커의 카메라 방향을 우선하도록 수정했습니다. 센서 일시 중단은 목표를 유지하고, 실패·충돌·재계획은 이전 방향 지시를 지웁니다.
-> 통합 후보는337개 런타임 테스트·설치 빌드와11개 실험 관리 검사를 통과했습니다. 첫 실제 직사각형 주행이 시작되어 센서·Nav2·속도 입력 검사를 통과했고, ID991 접근 뒤 해당 마커 방향으로 약4.7도 회전한 로그를 확인했습니다. 전체 완주 결과는 아직 없습니다.
+> 통합 후보는337개 런타임 테스트·설치 빌드와11개 실험 관리 검사를 통과했습니다. 첫 실제 직사각형은600.248초에 ID1개·충돌0회로 시간 초과했습니다. ID991 접근 뒤 해당 마커 방향으로 약4.7도 회전은 실행됐지만, 같은 맵 기준 주행의 ID2개보다 인식 결과가 좋아지지 않았습니다. [첫 통합 후보 실제 실패](repository_snapshot/integrated_first_rectangle_failure.json).
 > 기존 실패3개 재검증 후 외곽·점유 격자가 모두 다른 새7종 공간을 주행합니다. 감독 코드v2는 실행 자리를 기다리기 전에 기존 주행의 입력 검사를 확보하며, 원래 감독 코드·실험·진행 중 PID를 보존해 인계했습니다. [마커 방향 수정·10개 실제 검증 구성](repository_snapshot/marker_directed_candidate.json).
 > 추가 L자 주행은564.387초에 세 ID·실제 접근을 달성했지만 두 좌표의 오차1.67–1.79m로 실패했습니다.124.7초에 지도 자세만1.77m 이동했고 실제 몸체·odom은 약6cm 이동했습니다. 저장 후 SLAM 그래프 보정도 이 실패를 해결하지 못했습니다.
 > 원래 그래프는 실제2.89m 떨어진 관측을0.20m 거리로 잘못 연결했습니다. 저장 센서255개를 재생하자124.3초의 잘못된 루프 연결과 최대1.80m 오차가 재현됐고, 더 엄격한 루프 기준에서는 해당150초 구간 최대 오차6.6cm였습니다. 새 실제 주행 성공을 뜻하지 않으며, 기록된9개 환경·7종 공간의 전체 경로에서 비교 중입니다. [두 번째 L자 위치 추정 실패와 통제 재생](repository_snapshot/second_L_localization_failure.json).
@@ -291,7 +291,7 @@ python3 scripts/publish_simulation_videos.py --upload
 
 ## 저장된 Gazebo 영상
 
-[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 190개
+[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 192개
 
 아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다. 환경 오류로 종료한 영상은 정책 학습 표본에서 제외합니다.
 
@@ -323,6 +323,7 @@ python3 scripts/publish_simulation_videos.py --upload
 | [development_imu_screen4__8600133.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/development_imu_screen4__8600133.mp4) | 실패 | 미달 | 600.0 |
 | [development_imu_screen4__8600139.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/development_imu_screen4__8600139.mp4) | 실패 | 미달 | 600.1 |
 | [development_imu_v1__runtime_probes__20261104T230250_371315Z.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/development_imu_v1__runtime_probes__20261104T230250_371315Z.mp4) | 성공 | 미달 | 238.9 |
+| [directed_integrated_screen_v1__case_0__1191300303.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/directed_integrated_screen_v1__case_0__1191300303.mp4) | 실패 | 확인 | 600.248 |
 | [edge_runtime_v2__runtime_probes__20261104T234253_265975Z.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/edge_runtime_v2__runtime_probes__20261104T234253_265975Z.mp4) | 실패 | 미달 | 600.306 |
 | [encoder_delta_regression_v1__case_0__1191300404.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/encoder_delta_regression_v1__case_0__1191300404.mp4) | 실패 | 미달 | 600.2 |
 | [floor_pose_regression_v1__case_0__1136000000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/floor_pose_regression_v1__case_0__1136000000.mp4) | 성공 | 확인 | 288.903 |
@@ -484,6 +485,7 @@ python3 scripts/publish_simulation_videos.py --upload
 | [spatial_cem_v6__00012_train_g0_1__1191301212.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00012_train_g0_1__1191301212.mp4) | 실패 | 확인 | 600.431 |
 | [spatial_cem_v6__00013_train_g0_1__1191301313.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00013_train_g0_1__1191301313.mp4) | 성공 | 확인 | 246.7 |
 | [spatial_cem_v6__00014_train_g0_2__1191301414.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00014_train_g0_2__1191301414.mp4) | 성공 | 확인 | 117.189 |
+| [spatial_cem_v6__00015_train_g0_2__1191301515.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00015_train_g0_2__1191301515.mp4) | 성공 | 확인 | 380.888 |
 | [strict_approach_regression_v1__case_0__1163000000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/strict_approach_regression_v1__case_0__1163000000.mp4) | 성공 | 확인 | 496.132 |
 | [tf_restamp_v1__regression__case_0__1121200000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_0__1121200000.mp4) | 성공 | 확인 | 231.867 |
 | [tf_restamp_v1__regression__case_1__1121200101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_1__1121200101.mp4) | 성공 | 확인 | 229.859 |
