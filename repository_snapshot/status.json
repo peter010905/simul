@@ -298,7 +298,7 @@
   "pixel_focus_batch_replay": "pixel_focus_batch_replay.json",
   "pixel_focus_startup_failure": "pixel_focus_startup_failure.json",
   "fresh_space_failure_analysis": "fresh_space_failure_analysis.json",
-  "video_release_verified_count": 190,
+  "video_release_verified_count": 192,
   "priority_diagnostic": {
     "root": "/home/peter/simul/training_robust/native90/directed_integrated_screen_v1",
     "unit": "osp-directed-integrated-v2.service",
