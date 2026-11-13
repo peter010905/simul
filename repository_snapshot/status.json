@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-13T01:35:36.635535+00:00",
+  "captured_utc": "2026-11-13T02:20:11.398197+00:00",
   "purpose": "Repository upload snapshot; not a live dashboard",
   "tests_passed_final": 189,
   "native_validation_complete": false,
@@ -137,26 +137,26 @@
   "previous_regressions_complete": true,
   "latest_change": {
     "date": "2026-11-13",
-    "name": "New circle460.84s strict pass;rooms600.4s1IDfailure;nearby-face inspection286tests/build+retained-raster shadow;encoder-delta L actually running with effective input gates",
-    "status": "CEM_triangle_and_encoder_delta_L_native_running;near_pass_rectangle_queued",
+    "name": "Bottleneck audit:fixed incumbent4/7(57.1%),mixed training7/10(70%);marker5.6deglook overwritten by105deg sweep;CPU oversubscription;integrated316-test build not natively validated",
+    "status": "CEM_rectangle_and_L_native_running;obsolete_prepared_near_pass_held",
     "generalization_verified": false
   },
   "latest_recording": {
     "evidence_type": "fresh_space_native_training_not_holdout",
-    "scenario_seed": 1191300606,
-    "shape": "rooms",
-    "original_benchmark_success": false,
-    "elapsed_sim_seconds": 600.4,
-    "targets": 1,
+    "scenario_seed": 1191300909,
+    "shape": "trapezoid",
+    "original_benchmark_success": true,
+    "elapsed_sim_seconds": 562.7,
+    "targets": 3,
     "collisions": 0,
     "position_errors_m": {
-      "800": 0.011673888038042306
+      "48": 0.009193254819505049,
+      "710": 0.034331412471759255,
+      "413": 0.018670515366600072
     },
-    "finalized_evaluation_mtime_utc": "2026-11-13T01:21:37.867904+00:00",
-    "report": "spatial_curriculum.json",
-    "local_video": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00006_train_g0_0/episodes/1191300606/video/mission.mp4",
-    "hardware_validated": false,
-    "production_promoted": false
+    "local_video": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00009_train_g0_1/episodes/1191300909/video/mission.mp4",
+    "production_promoted": false,
+    "hardware_validated": false
   },
   "active_supervision": {
     "current_campaign": "spatial_cem_v6",
@@ -166,24 +166,32 @@
     "failure_observer": "osp-native-failure-evidence-v6.service",
     "depth_quality_observer": "osp-depth-quality-space6.service",
     "legacy_drainer": "completed",
-    "CEM_dispatch": "active_after_verified_encoder_delta_native_PID",
+    "CEM_dispatch": "active",
     "previous_CEM": "superseded_by_spatial_cem_v6",
     "previous_screen": "superseded_by_spatial_cem_v6",
     "completed_priority_diagnostic": "completed_windowed_witness_regression",
-    "priority_diagnostic": "osp-encoder-delta-v1.service",
+    "priority_diagnostic": "none_running",
     "diagnostic_evaluator": "osp-encoder-delta-evaluator-v1.service",
-    "priority_diagnostic_status": "running",
+    "priority_diagnostic_status": "marker_direction_fix_in_preparation",
     "diagnostic_failure_observer": "osp-encoder-delta-failure-evidence-v1.service",
     "campaign": "/home/peter/simul/training_robust/native90/spatial_cem_v6",
     "unit": "osp-spatial-cem-v6.service",
     "current_jobs": [
       {
-        "number": 8,
-        "shape": "triangle",
-        "unit": "osp-spatial-nov13-space6-00008.service",
-        "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00008_train_g0_1",
-        "status": "running",
-        "verified_native_pid": 1649692
+        "number": 10,
+        "shape": "rectangle",
+        "verified_native_pid": 1668339,
+        "unit": "osp-spatial-nov13-space6-00010.service",
+        "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00010_train_g0_1",
+        "status": "running"
+      },
+      {
+        "number": 11,
+        "shape": "l_shape",
+        "verified_native_pid": 1675120,
+        "unit": "osp-spatial-nov13-space6-00011.service",
+        "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00011_train_g0_1",
+        "status": "running"
       }
     ],
     "next_priority": "Analyze velocity spike before promoting a motion source",
@@ -244,22 +252,20 @@
   "calibrated_trapezoid_localization_failure": "calibrated_trapezoid_localization_failure.json",
   "latest_verified_successful_recording": {
     "evidence_type": "fresh_space_native_training_not_holdout",
-    "scenario_seed": 1191300707,
-    "shape": "circle",
+    "scenario_seed": 1191300909,
+    "shape": "trapezoid",
     "original_benchmark_success": true,
-    "elapsed_sim_seconds": 460.84,
+    "elapsed_sim_seconds": 562.7,
     "targets": 3,
     "collisions": 0,
     "position_errors_m": {
-      "991": 0.18747087134924748,
-      "793": 0.14970604349002306,
-      "814": 0.23831452393674896
+      "48": 0.009193254819505049,
+      "710": 0.034331412471759255,
+      "413": 0.018670515366600072
     },
-    "finalized_evaluation_mtime_utc": "2026-11-13T01:20:41.893042+00:00",
-    "report": "spatial_curriculum.json",
-    "local_video": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00007_train_g0_1/episodes/1191300707/video/mission.mp4",
-    "hardware_validated": false,
-    "production_promoted": false
+    "local_video": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00009_train_g0_1/episodes/1191300909/video/mission.mp4",
+    "production_promoted": false,
+    "hardware_validated": false
   },
   "latest_auxiliary_validation": {
     "tests_passed": 23,
@@ -292,52 +298,11 @@
   "pixel_focus_batch_replay": "pixel_focus_batch_replay.json",
   "pixel_focus_startup_failure": "pixel_focus_startup_failure.json",
   "fresh_space_failure_analysis": "fresh_space_failure_analysis.json",
-  "video_release_verified_count": 182,
+  "video_release_verified_count": 185,
   "priority_diagnostic": {
-    "root": "/home/peter/simul/training_robust/native90/encoder_delta_regression_v1",
-    "unit": "osp-encoder-delta-v1.service",
-    "job_status": "running",
-    "verified_native_pid": 1647746,
-    "live_status": {
-      "state": "running",
-      "approached_ids": [
-        339
-      ],
-      "targets": 1,
-      "collisions": 0,
-      "elapsed_seconds": 291.7,
-      "active_action": "nav",
-      "readiness_reason": "",
-      "sensor_interruptions": 0,
-      "nav2_lifecycle": {
-        "controller_server": 3,
-        "planner_server": 3,
-        "behavior_server": 3,
-        "bt_navigator": 3
-      },
-      "drive_controllers": {
-        "diffdrive_controller": "active",
-        "joint_state_broadcaster": "active"
-      },
-      "confirmed_surface_cells": 45,
-      "confirmed_face_anchors": 0,
-      "reassociated_face_records": 0,
-      "camera_diagnostics": {
-        "received": 1478,
-        "late": 0,
-        "invalid_calibration": 0,
-        "duplicate": 0,
-        "accepted": 1478,
-        "coverage_updates": 1467,
-        "tf_waits": 9
-      }
-    },
-    "input_gates": {
-      "slam_transport_gate": true,
-      "floor_sensor_gate": true,
-      "runtime_configuration_gate": true,
-      "velocity_profile_gate": true
-    }
+    "status": "directed_marker_fix_required_before_next_native",
+    "held_prepared_source": "/home/peter/simul/training_robust/native90/near_pass_regression_v1",
+    "held_coordinator_active": false
   },
   "coordinator_slot_reservation": false,
   "near_pass_inspection_candidate": "near_pass_inspection_candidate.json",
@@ -350,5 +315,8 @@
     "live_status": {},
     "input_gates": {}
   },
-  "encoder_delta_native_early": "encoder_delta_native_early.json"
+  "encoder_delta_native_early": "encoder_delta_native_early.json",
+  "bottleneck_audit": "bottleneck_audit.json",
+  "integrated_candidate": "integrated_candidate.json",
+  "near_pass_sequence_audit": "near_pass_sequence_audit.json"
 }

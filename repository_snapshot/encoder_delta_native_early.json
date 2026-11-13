@@ -50,5 +50,36 @@
     "Different native trajectories and asynchronous sensor timing;large original jump may not have recurred in this new run",
     "Map poses and truth are coarse audit samples with small time differences;these are not final marker-coordinate errors",
     "Partial180sim-second diagnostic does not establish3IDs,physical approach,600s completion or generalization"
-  ]
+  ],
+  "subsequent_final_native_outcome": {
+    "outcome": {
+      "success": false,
+      "targets": 2,
+      "approached": 2,
+      "contacts": 0,
+      "seconds": 600.2,
+      "infrastructure_failure": false,
+      "reason": "timeout"
+    },
+    "position_errors_m": {
+      "674": 0.08566726492634774,
+      "339": 0.024044447352994
+    },
+    "closest_approach_m": {
+      "674": 1.055887292069092,
+      "826": 3.181852767540119,
+      "339": 0.8776493532839545
+    },
+    "expected_ids": [
+      339,
+      674,
+      826
+    ],
+    "found_ids": [
+      339,
+      674
+    ],
+    "mission_success": false,
+    "standalone_policy_promoted": false
+  }
 }

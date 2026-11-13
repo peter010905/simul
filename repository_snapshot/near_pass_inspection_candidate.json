@@ -666,7 +666,7 @@
   "queued_native": {
     "root": "/home/peter/simul/training_robust/native90/near_pass_regression_v1",
     "coordinator_unit": "osp-near-pass-v1.service",
-    "job_status": "prepared",
+    "job_status": "prepared_held",
     "scenario_seed": 1191300303,
     "dependency": "/home/peter/simul/training_robust/native90/encoder_delta_regression_v1",
     "original_failed_rectangle_retained": true,
@@ -679,7 +679,9 @@
       "infrastructure_failure": false,
       "reason": "timeout"
     },
-    "native_not_started": true
+    "native_not_started": true,
+    "root_status": "held_for_directed_marker_fix",
+    "held_for_directed_marker_fix": true
   },
   "limits": [
     "No new Gazebo run of this look policy has finished;tests and shadows do not establish better native completion,time or transfer",
@@ -687,5 +689,7 @@
     "Source also retains pixel-aware followup and SLAM UDP;comparison against original S7rectangle does not isolate a single timing effect",
     "Budgets apply to the extra inspection phase;full runtime includes navigation to resume and determines actual performance",
     "Source does not include the separate encoder-delta or final-graph candidate;later composition requires new validation"
-  ]
+  ],
+  "sequence_shadow_audit": "near_pass_sequence_audit.json",
+  "known_priority_issue": "General exploration sweep overwrites marker-directed look;correct this in a new source before native comparison"
 }

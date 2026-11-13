@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-13T01:33:12.393681+00:00",
+  "captured_utc": "2026-11-13T02:20:11.398197+00:00",
   "evidence_type": "finalized_fresh_training_failures_and_evaluator_only_sensor_replay",
   "production_promoted": false,
   "ground_truth_available_to_policy": false,
@@ -1907,7 +1907,7 @@
     "native_engineering_successor": {
       "root": "/home/peter/simul/training_robust/native90/encoder_delta_regression_v1",
       "workspace": "/home/peter/simul/training_robust/native90/encoder_delta_v3/runtime",
-      "job_status": "running",
+      "job_status": "done",
       "coordinator_unit": "osp-encoder-delta-v1.service",
       "runtime_tests_passed": 275,
       "build_passed": true,
@@ -1927,9 +1927,53 @@
       "generalization_verified": false,
       "production_promoted": false,
       "actual_input_gates_verified": true,
-      "native_not_promoted": true
+      "native_not_promoted": true,
+      "final_native_outcome": {
+        "outcome": {
+          "success": false,
+          "targets": 2,
+          "approached": 2,
+          "contacts": 0,
+          "seconds": 600.2,
+          "infrastructure_failure": false,
+          "reason": "timeout"
+        },
+        "position_errors_m": {
+          "674": 0.08566726492634774,
+          "339": 0.024044447352994
+        },
+        "closest_approach_m": {
+          "674": 1.055887292069092,
+          "826": 3.181852767540119,
+          "339": 0.8776493532839545
+        },
+        "expected_ids": [
+          339,
+          674,
+          826
+        ],
+        "found_ids": [
+          339,
+          674
+        ],
+        "mission_success": false,
+        "standalone_policy_promoted": false
+      }
     }
   },
   "near_pass_inspection_candidate": "near_pass_inspection_candidate.json",
-  "encoder_delta_native_early": "encoder_delta_native_early.json"
+  "encoder_delta_native_early": "encoder_delta_native_early.json",
+  "confirmed_marker_direction_bug": {
+    "id": 292,
+    "requested_turn_deg": 5.618014300113263,
+    "logged_general_sweep_deg": 105.0,
+    "source": "Stationary marker choice stores scan_angle but edge-mode observation_turn selects general unseen-face sweep",
+    "snapshot": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00001_train_g0_0/episodes/1191300101/policy_decisions/0002.npz",
+    "snapshot_sha256": "70b29ffaceeed046ce1b93934dbe686b4703907d0f0b204d34ad8abcef066fa8",
+    "log": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00001_train_g0_0/episodes/1191300101/launch.log",
+    "log_sha256": "9f3b5f782d4624d1d8a63a1653b8ced449dfad12748e3a3a04dadf754c8ffcbf",
+    "deployed_fix_verified": false,
+    "limit": "This proves intent was overwritten;it does not attribute the entire279s recognition delay to this single cause"
+  },
+  "latest_bottleneck_audit": "bottleneck_audit.json"
 }

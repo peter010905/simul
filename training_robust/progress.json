@@ -1,7 +1,7 @@
 {
   "goal_status": "active",
   "phase": "fixed_corrected_source_fresh_space_native_CEM",
-  "last_verified_utc": "2026-11-13T01:35:36.635535+00:00",
+  "last_verified_utc": "2026-11-13T02:13:27.738014+00:00",
   "jobs": [
     {
       "run": "training_robust/diverse_directional_cem",
@@ -568,7 +568,7 @@
     "baseline_seconds": 3.618,
     "candidate_seconds": 20.074
   },
-  "updated_utc": "2026-11-13T01:35:36.635535+00:00",
+  "updated_utc": "2026-11-13T02:20:11.398197+00:00",
   "motion_v2_native_result": {
     "seed": 8600007,
     "success": true,
@@ -892,7 +892,7 @@
       }
     ]
   },
-  "latest_failure_analysis": "repository_snapshot/fresh_space_missed_views.json",
+  "latest_failure_analysis": "repository_snapshot/bottleneck_audit.json",
   "sequential_fixes": {
     "summary": "/home/peter/simul/training_robust/native90/sequential_fixes_v10_v13/implementation.json",
     "state": "/home/peter/simul/training_robust/native90/sequential_fixes_v10_v13/sequence.json",
@@ -1217,20 +1217,22 @@
   "spatial_curriculum": "repository_snapshot/spatial_curriculum.json",
   "dashboard": "http://127.0.0.1:8765",
   "latest_goal_turn_evidence": [
-    "Fresh native circle role1 completed460.84s strict pass;new rooms600.4s failure remains1ID,not reclassified from geometric proximity",
-    "Rectangle missed ID220 is24cm:camera points88degreesaway atclosest0.6m;priorSLAMsnapshotstillhasuninspectednearbyface;modelalsohas9edge-of-FOVframesanddoesnotresolveocclusion",
-    "New shape-independent nearby-face look policy286tests/build passed,including16newgeometry/action-flow checks;real-source snapshot10probes8choices,mixedtargetcenteralignment,nofakeIDorcoveragecredit",
-    "Preserved failed rectangle/weights prepared as a new frozen native test queued behind the actually live encoder-delta owner;oldnativejobsintact",
-    "Actual encoder-delta native PID,inputgates and rawmotion capture verified;early evaluator-only trajectory check shows smallmaperror but full3-ID/approach/timeoutcome still pending",
-    "Completed verified videos182published;CEMcontroller active and exactly2actual native benchmarks live"
+    "Authoritative audit:fixed incumbent4/7strict completions;all coefficient training7/10(70%)after new trapezoid562.7s pass;not an independent rate",
+    "Encoder-delta native failed600.2s with2IDs despite2.4-8.6cm coordinates for recognized markers;no standalone promotion",
+    "Confirmed source/runtime mismatch:stationary marker requested5.6deg but native log immediately executed105deg general sweep",
+    "Unstarted286-test near-pass diagnostic deliberately held after verifying no native claim;original prepared artifacts retained and running CEM PIDs preserved",
+    "12logical CPU host:sampled94.5%busy,91runnable native threads,software llvmpipe12workers perjob;10minsimtakes29-32minwall;single planner call0.424wall s",
+    "New integrated component source316tests/build+installed exporter841scans smoke passed;known marker-direction issue remains so not launched/promoted",
+    "Nine finalized training episodes across7shapes,27half-second-spaced path-budget shadows completed withmemoization equivalence checks;no new images or success credit",
+    "Verified finished video count185published"
   ],
   "latest_navigation_diagnosis": "repository_snapshot/local_navigation_diagnosis.json",
   "current_native_supervisor": "osp-spatial-cem-v6.service",
   "next_training_driver": "spatial_native_curriculum_v6.py",
   "fine_evaluator_observer": "osp-spatial-evaluator-observer-v6.service",
   "physical_credit_auditor": "training_robust/audit_approach_evidence.py",
-  "priority_diagnostic": "osp-encoder-delta-v1.service",
-  "next_priority": "286-test nearby-face inspection queued for preserved failed rectangle after actual encoder-delta completion;no promotion from shadows",
+  "priority_diagnostic": "none_running;marker-directedlookfixrequired",
+  "next_priority": "Fix confirmed marker direction override,then launch a corrected integrated source while preserving active missions",
   "depth_quality_observer": "osp-depth-quality-space6.service",
   "goal_success_rate_note": "Corrected-source fresh-map qualification is incomplete; do not infer independent success probability from older descriptive training counts",
   "graph_landmark_candidate": "repository_snapshot/graph_landmark_candidate.json",
@@ -1238,15 +1240,25 @@
   "pixel_focus_candidate": "/home/peter/simul/repository_snapshot/pixel_focus_candidate.json",
   "current_native_jobs": [
     {
-      "number": 8,
-      "shape": "triangle",
-      "unit": "osp-spatial-nov13-space6-00008.service",
-      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00008_train_g0_1",
-      "status": "running",
-      "verified_native_pid": 1649692
+      "number": 10,
+      "shape": "rectangle",
+      "verified_native_pid": 1668339,
+      "unit": "osp-spatial-nov13-space6-00010.service",
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00010_train_g0_1",
+      "status": "running"
+    },
+    {
+      "number": 11,
+      "shape": "l_shape",
+      "verified_native_pid": 1675120,
+      "unit": "osp-spatial-nov13-space6-00011.service",
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00011_train_g0_1",
+      "status": "running"
     }
   ],
   "fresh_space_failure_analysis": "/home/peter/simul/repository_snapshot/fresh_space_failure_analysis.json",
   "near_pass_inspection_candidate": "repository_snapshot/near_pass_inspection_candidate.json",
-  "encoder_delta_native_early": "repository_snapshot/encoder_delta_native_early.json"
+  "encoder_delta_native_early": "repository_snapshot/encoder_delta_native_early.json",
+  "bottleneck_audit": "repository_snapshot/bottleneck_audit.json",
+  "integrated_candidate": "repository_snapshot/integrated_candidate.json"
 }

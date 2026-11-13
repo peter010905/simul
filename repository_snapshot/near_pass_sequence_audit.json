@@ -1,0 +1,306 @@
+{
+  "captured_utc": "2026-11-13T02:20:11.398197+00:00",
+  "evidence_type": "recorded_training_path_look_budget_shadows_not_new_native_missions",
+  "unique_recorded_training_episodes": 9,
+  "shadow_runs": 27,
+  "shapes": [
+    "circle",
+    "l_shape",
+    "rectangle",
+    "rooms",
+    "trapezoid",
+    "triangle",
+    "u_shape"
+  ],
+  "step_sim_s": 0.5,
+  "maximum_requested_looks": 8,
+  "maximum_estimated_phase_sim_s": 31.775948142986813,
+  "new_native_successes_verified": 0,
+  "counts_are_replays_not_new_trials": true,
+  "ground_truth_available_to_policy": false,
+  "memoization_equivalence_checks": 495,
+  "cases": [
+    {
+      "shape": "circle",
+      "seed": 1191300000,
+      "start_offset_sim_s": -0.5,
+      "requested_looks": 7,
+      "estimated_phase_time_sim_s": 21.335969750075584,
+      "eligible_probes": 259,
+      "geometry_opportunities_without_history_or_budget": 49,
+      "memoization_equivalence_checks": 11
+    },
+    {
+      "shape": "circle",
+      "seed": 1191300000,
+      "start_offset_sim_s": 0.0,
+      "requested_looks": 6,
+      "estimated_phase_time_sim_s": 20.13596975007559,
+      "eligible_probes": 261,
+      "geometry_opportunities_without_history_or_budget": 54,
+      "memoization_equivalence_checks": 11
+    },
+    {
+      "shape": "circle",
+      "seed": 1191300000,
+      "start_offset_sim_s": 0.5,
+      "requested_looks": 6,
+      "estimated_phase_time_sim_s": 21.367966869130413,
+      "eligible_probes": 258,
+      "geometry_opportunities_without_history_or_budget": 50,
+      "memoization_equivalence_checks": 11
+    },
+    {
+      "shape": "triangle",
+      "seed": 1191300101,
+      "start_offset_sim_s": -0.5,
+      "requested_looks": 8,
+      "estimated_phase_time_sim_s": 27.463958226294928,
+      "eligible_probes": 472,
+      "geometry_opportunities_without_history_or_budget": 338,
+      "memoization_equivalence_checks": 13
+    },
+    {
+      "shape": "triangle",
+      "seed": 1191300101,
+      "start_offset_sim_s": 0.0,
+      "requested_looks": 8,
+      "estimated_phase_time_sim_s": 27.463958226294928,
+      "eligible_probes": 473,
+      "geometry_opportunities_without_history_or_budget": 337,
+      "memoization_equivalence_checks": 13
+    },
+    {
+      "shape": "triangle",
+      "seed": 1191300101,
+      "start_offset_sim_s": 0.5,
+      "requested_looks": 8,
+      "estimated_phase_time_sim_s": 27.46395822629492,
+      "eligible_probes": 473,
+      "geometry_opportunities_without_history_or_budget": 335,
+      "memoization_equivalence_checks": 13
+    },
+    {
+      "shape": "trapezoid",
+      "seed": 1191300202,
+      "start_offset_sim_s": -0.5,
+      "requested_looks": 8,
+      "estimated_phase_time_sim_s": 26.231961107240075,
+      "eligible_probes": 409,
+      "geometry_opportunities_without_history_or_budget": 178,
+      "memoization_equivalence_checks": 14
+    },
+    {
+      "shape": "trapezoid",
+      "seed": 1191300202,
+      "start_offset_sim_s": 0.0,
+      "requested_looks": 8,
+      "estimated_phase_time_sim_s": 26.231961107240075,
+      "eligible_probes": 408,
+      "geometry_opportunities_without_history_or_budget": 178,
+      "memoization_equivalence_checks": 14
+    },
+    {
+      "shape": "trapezoid",
+      "seed": 1191300202,
+      "start_offset_sim_s": 0.5,
+      "requested_looks": 8,
+      "estimated_phase_time_sim_s": 28.07995678582234,
+      "eligible_probes": 399,
+      "geometry_opportunities_without_history_or_budget": 162,
+      "memoization_equivalence_checks": 14
+    },
+    {
+      "shape": "rectangle",
+      "seed": 1191300303,
+      "start_offset_sim_s": -0.5,
+      "requested_looks": 8,
+      "estimated_phase_time_sim_s": 28.695955345349745,
+      "eligible_probes": 925,
+      "geometry_opportunities_without_history_or_budget": 463,
+      "memoization_equivalence_checks": 31
+    },
+    {
+      "shape": "rectangle",
+      "seed": 1191300303,
+      "start_offset_sim_s": 0.0,
+      "requested_looks": 8,
+      "estimated_phase_time_sim_s": 28.695955345349745,
+      "eligible_probes": 923,
+      "geometry_opportunities_without_history_or_budget": 461,
+      "memoization_equivalence_checks": 31
+    },
+    {
+      "shape": "rectangle",
+      "seed": 1191300303,
+      "start_offset_sim_s": 0.5,
+      "requested_looks": 8,
+      "estimated_phase_time_sim_s": 28.695955345349745,
+      "eligible_probes": 921,
+      "geometry_opportunities_without_history_or_budget": 453,
+      "memoization_equivalence_checks": 31
+    },
+    {
+      "shape": "l_shape",
+      "seed": 1191300404,
+      "start_offset_sim_s": -0.5,
+      "requested_looks": 8,
+      "estimated_phase_time_sim_s": 28.07995678582234,
+      "eligible_probes": 521,
+      "geometry_opportunities_without_history_or_budget": 325,
+      "memoization_equivalence_checks": 18
+    },
+    {
+      "shape": "l_shape",
+      "seed": 1191300404,
+      "start_offset_sim_s": 0.0,
+      "requested_looks": 8,
+      "estimated_phase_time_sim_s": 28.079956785822333,
+      "eligible_probes": 522,
+      "geometry_opportunities_without_history_or_budget": 319,
+      "memoization_equivalence_checks": 18
+    },
+    {
+      "shape": "l_shape",
+      "seed": 1191300404,
+      "start_offset_sim_s": 0.5,
+      "requested_looks": 8,
+      "estimated_phase_time_sim_s": 26.847959666767515,
+      "eligible_probes": 522,
+      "geometry_opportunities_without_history_or_budget": 325,
+      "memoization_equivalence_checks": 18
+    },
+    {
+      "shape": "u_shape",
+      "seed": 1191300505,
+      "start_offset_sim_s": -0.5,
+      "requested_looks": 8,
+      "estimated_phase_time_sim_s": 31.1599495834594,
+      "eligible_probes": 647,
+      "geometry_opportunities_without_history_or_budget": 178,
+      "memoization_equivalence_checks": 22
+    },
+    {
+      "shape": "u_shape",
+      "seed": 1191300505,
+      "start_offset_sim_s": 0.0,
+      "requested_looks": 8,
+      "estimated_phase_time_sim_s": 31.15994958345943,
+      "eligible_probes": 646,
+      "geometry_opportunities_without_history_or_budget": 178,
+      "memoization_equivalence_checks": 22
+    },
+    {
+      "shape": "u_shape",
+      "seed": 1191300505,
+      "start_offset_sim_s": 0.5,
+      "requested_looks": 8,
+      "estimated_phase_time_sim_s": 31.775948142986813,
+      "eligible_probes": 645,
+      "geometry_opportunities_without_history_or_budget": 174,
+      "memoization_equivalence_checks": 22
+    },
+    {
+      "shape": "rooms",
+      "seed": 1191300606,
+      "start_offset_sim_s": -0.5,
+      "requested_looks": 8,
+      "estimated_phase_time_sim_s": 26.231961107240075,
+      "eligible_probes": 938,
+      "geometry_opportunities_without_history_or_budget": 416,
+      "memoization_equivalence_checks": 24
+    },
+    {
+      "shape": "rooms",
+      "seed": 1191300606,
+      "start_offset_sim_s": 0.0,
+      "requested_looks": 8,
+      "estimated_phase_time_sim_s": 26.231961107240075,
+      "eligible_probes": 938,
+      "geometry_opportunities_without_history_or_budget": 415,
+      "memoization_equivalence_checks": 24
+    },
+    {
+      "shape": "rooms",
+      "seed": 1191300606,
+      "start_offset_sim_s": 0.5,
+      "requested_looks": 8,
+      "estimated_phase_time_sim_s": 26.231961107240075,
+      "eligible_probes": 938,
+      "geometry_opportunities_without_history_or_budget": 411,
+      "memoization_equivalence_checks": 24
+    },
+    {
+      "shape": "circle",
+      "seed": 1191300707,
+      "start_offset_sim_s": -0.5,
+      "requested_looks": 8,
+      "estimated_phase_time_sim_s": 27.463958226294928,
+      "eligible_probes": 611,
+      "geometry_opportunities_without_history_or_budget": 128,
+      "memoization_equivalence_checks": 18
+    },
+    {
+      "shape": "circle",
+      "seed": 1191300707,
+      "start_offset_sim_s": 0.0,
+      "requested_looks": 8,
+      "estimated_phase_time_sim_s": 27.463958226294928,
+      "eligible_probes": 610,
+      "geometry_opportunities_without_history_or_budget": 129,
+      "memoization_equivalence_checks": 18
+    },
+    {
+      "shape": "circle",
+      "seed": 1191300707,
+      "start_offset_sim_s": 0.5,
+      "requested_looks": 8,
+      "estimated_phase_time_sim_s": 25.61596254771269,
+      "eligible_probes": 611,
+      "geometry_opportunities_without_history_or_budget": 125,
+      "memoization_equivalence_checks": 18
+    },
+    {
+      "shape": "triangle",
+      "seed": 1191300808,
+      "start_offset_sim_s": -0.5,
+      "requested_looks": 7,
+      "estimated_phase_time_sim_s": 26.263958226294903,
+      "eligible_probes": 457,
+      "geometry_opportunities_without_history_or_budget": 172,
+      "memoization_equivalence_checks": 14
+    },
+    {
+      "shape": "triangle",
+      "seed": 1191300808,
+      "start_offset_sim_s": 0.0,
+      "requested_looks": 8,
+      "estimated_phase_time_sim_s": 26.847959666767487,
+      "eligible_probes": 457,
+      "geometry_opportunities_without_history_or_budget": 170,
+      "memoization_equivalence_checks": 14
+    },
+    {
+      "shape": "triangle",
+      "seed": 1191300808,
+      "start_offset_sim_s": 0.5,
+      "requested_looks": 8,
+      "estimated_phase_time_sim_s": 27.463958226294892,
+      "eligible_probes": 455,
+      "geometry_opportunities_without_history_or_budget": 166,
+      "memoization_equivalence_checks": 14
+    }
+  ],
+  "limits": [
+    "Original path,rasters and camera coverage retained;requested looks do not create new views or change motion",
+    "Look duration is an estimate;later Nav2 reorientation and actual interruption latency are not simulated",
+    "Between planner snapshots exact active action is unavailable;ordinary exploration legs include potential post-arrival scans and dwell",
+    "Video clock/status infer mission start with0.5sbracketing;frame poses are interpolated from coarse audit samples",
+    "Current camera extrinsics inferred independently per episode;shared earlier verified960x720FOV checked against all recorded focal lengths"
+  ],
+  "source_sha256": {
+    "/home/peter/simul/training_robust/replay_near_pass_sequence.py": "cb83728c409e37ef8befe9dd88669b6fc8aab7ab043b7555dacbd0825ac89374",
+    "/home/peter/simul/training_robust/native90/near_pass_v2/runtime/src/osp_mission/osp_mission/near_pass_inspection.py": "a67246ac703f19fc9678a2db1f054c978c9a6eee434d2c191390cbfc1a1ad10c",
+    "/home/peter/simul/training_robust/native90/calibrated_gain_v1/native_camera_calibration.json": "1a5bb787f8c2f64cbc4a7503e1edc933625407d6bb665d7b61be1ba95db3641c"
+  }
+}

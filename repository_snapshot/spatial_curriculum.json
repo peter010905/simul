@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-13T01:35:36.635535+00:00",
+  "captured_utc": "2026-11-13T02:20:11.398197+00:00",
   "client_date": "2026-11-13",
   "status": "running",
   "goal_status": "active",
@@ -452,15 +452,23 @@
   },
   "current_jobs": [
     {
-      "number": 8,
-      "shape": "triangle",
-      "unit": "osp-spatial-nov13-space6-00008.service",
-      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00008_train_g0_1",
-      "status": "running",
-      "verified_native_pid": 1649692
+      "number": 10,
+      "shape": "rectangle",
+      "verified_native_pid": 1668339,
+      "unit": "osp-spatial-nov13-space6-00010.service",
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00010_train_g0_1",
+      "status": "running"
+    },
+    {
+      "number": 11,
+      "shape": "l_shape",
+      "verified_native_pid": 1675120,
+      "unit": "osp-spatial-nov13-space6-00011.service",
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00011_train_g0_1",
+      "status": "running"
     }
   ],
-  "completed_spatial_training_episodes": 8,
+  "completed_spatial_training_episodes": 10,
   "completed_cem_generations": 0,
   "generalization_verified": false,
   "revisit_reduction_verified": false,
@@ -492,67 +500,56 @@
   ],
   "actual_native_process_count": 2,
   "preview": "spatial_training_v6_preview.png",
-  "completed_successes": 5,
+  "completed_successes": 7,
   "first_corrected_fresh_space_native": "first_corrected_fresh_space_native.json",
   "graph_landmark_candidate": "graph_landmark_candidate.json",
   "priority_diagnostic": {
-    "root": "/home/peter/simul/training_robust/native90/encoder_delta_regression_v1",
-    "unit": "osp-encoder-delta-v1.service",
-    "job_status": "running",
-    "verified_native_pid": 1647746,
-    "live_status": {
-      "state": "running",
-      "approached_ids": [
-        339
+    "status": "none_running;directed_marker_fix_required",
+    "completed_encoder_delta": {
+      "outcome": {
+        "success": false,
+        "targets": 2,
+        "approached": 2,
+        "contacts": 0,
+        "seconds": 600.2,
+        "infrastructure_failure": false,
+        "reason": "timeout"
+      },
+      "position_errors_m": {
+        "674": 0.08566726492634774,
+        "339": 0.024044447352994
+      },
+      "closest_approach_m": {
+        "674": 1.055887292069092,
+        "826": 3.181852767540119,
+        "339": 0.8776493532839545
+      },
+      "expected_ids": [
+        339,
+        674,
+        826
       ],
-      "targets": 1,
-      "collisions": 0,
-      "elapsed_seconds": 291.7,
-      "active_action": "nav",
-      "readiness_reason": "",
-      "sensor_interruptions": 0,
-      "nav2_lifecycle": {
-        "controller_server": 3,
-        "planner_server": 3,
-        "behavior_server": 3,
-        "bt_navigator": 3
-      },
-      "drive_controllers": {
-        "diffdrive_controller": "active",
-        "joint_state_broadcaster": "active"
-      },
-      "confirmed_surface_cells": 45,
-      "confirmed_face_anchors": 0,
-      "reassociated_face_records": 0,
-      "camera_diagnostics": {
-        "received": 1478,
-        "late": 0,
-        "invalid_calibration": 0,
-        "duplicate": 0,
-        "accepted": 1478,
-        "coverage_updates": 1467,
-        "tf_waits": 9
-      }
+      "found_ids": [
+        339,
+        674
+      ],
+      "mission_success": false,
+      "standalone_policy_promoted": false
     },
-    "input_gates": {
-      "slam_transport_gate": true,
-      "floor_sensor_gate": true,
-      "runtime_configuration_gate": true,
-      "velocity_profile_gate": true
-    }
+    "held_near_pass_root": "/home/peter/simul/training_robust/native90/near_pass_regression_v1"
   },
   "coordinator_slot_reservation": false,
   "latest_completed_native": {
-    "number": 7,
-    "seed": 1191300707,
-    "shape": "circle",
-    "obstacles": 8,
+    "number": 9,
+    "seed": 1191300909,
+    "shape": "trapezoid",
+    "obstacles": 16,
     "outcome": {
       "success": true,
       "targets": 3,
       "approached": 3,
       "contacts": 0,
-      "seconds": 460.84,
+      "seconds": 562.7,
       "infrastructure_failure": false,
       "reason": "all_targets_found"
     }
@@ -678,19 +675,53 @@
         "infrastructure_failure": false,
         "reason": "all_targets_found"
       }
+    },
+    {
+      "number": 8,
+      "seed": 1191300808,
+      "shape": "triangle",
+      "obstacles": 12,
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 343.2,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      }
+    },
+    {
+      "number": 9,
+      "seed": 1191300909,
+      "shape": "trapezoid",
+      "obstacles": 16,
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 562.7,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      }
     }
   ],
   "triangle_single_glance_diagnosis": "triangle_single_glance_diagnosis.json",
   "pixel_focus_candidate": "pixel_focus_candidate.json",
-  "next_priority_diagnostic": {
-    "root": "/home/peter/simul/training_robust/native90/near_pass_regression_v1",
-    "unit": "osp-near-pass-v1.service",
-    "job_status": "prepared",
-    "verified_native_pid": null,
-    "live_status": {},
-    "input_gates": {}
-  },
+  "next_priority_diagnostic": "Explicit marker-look priority fix,then corrected integrated source native screen",
   "fresh_space_failure_analysis": "fresh_space_failure_analysis.json",
   "near_pass_inspection_candidate": "near_pass_inspection_candidate.json",
-  "fresh_space_missed_views": "fresh_space_missed_views.json"
+  "fresh_space_missed_views": "fresh_space_missed_views.json",
+  "bottleneck_audit": "bottleneck_audit.json",
+  "current_fixed_incumbent_observed_rate": {
+    "successes": 4,
+    "completed": 7,
+    "percent": 57.142857142857146
+  },
+  "mixed_training_observed_rate": {
+    "successes": 7,
+    "completed": 10,
+    "percent": 70.0
+  }
 }
