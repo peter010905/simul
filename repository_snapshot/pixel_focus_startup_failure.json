@@ -1,0 +1,462 @@
+{
+  "captured_utc": "2026-11-13T00:44:23.798031+00:00",
+  "evidence_type": "terminal_native_startup_failure_with_live_process_capture",
+  "root": "/home/peter/simul/training_robust/native90/pixel_focus_regression_v1",
+  "scenario_seed": 1191300101,
+  "outcome": {
+    "success": false,
+    "targets": 0,
+    "approached": 0,
+    "contacts": 0,
+    "seconds": 600.0,
+    "infrastructure_failure": true,
+    "reason": "native_effective_inputs_unverified"
+  },
+  "original_native_reason": "startup_failure",
+  "mission_started": false,
+  "source_policy_performance_evaluated": false,
+  "startup_guard": {
+    "success": false,
+    "reason": "startup_readiness_timeout",
+    "finished_wall_epoch_s": 1794529401.2653856,
+    "elapsed_wall_s": 120.09145047329366,
+    "observed_slam_state": null,
+    "transitions": {
+      "1": 0,
+      "3": 0
+    },
+    "events": [
+      {
+        "event": "state_observation_timeout",
+        "elapsed_wall_s": 7.590837207157165
+      },
+      {
+        "event": "state_observation_timeout",
+        "elapsed_wall_s": 12.842236639931798
+      },
+      {
+        "event": "state_observation_timeout",
+        "elapsed_wall_s": 18.34083661902696
+      },
+      {
+        "event": "state_observation_timeout",
+        "elapsed_wall_s": 23.591608237009495
+      },
+      {
+        "event": "state_observation_timeout",
+        "elapsed_wall_s": 29.090855461079627
+      },
+      {
+        "event": "state_observation_timeout",
+        "elapsed_wall_s": 34.59096339996904
+      },
+      {
+        "event": "state_observation_timeout",
+        "elapsed_wall_s": 40.09083874896169
+      },
+      {
+        "event": "state_observation_timeout",
+        "elapsed_wall_s": 45.59090444119647
+      },
+      {
+        "event": "state_observation_timeout",
+        "elapsed_wall_s": 50.844325457233936
+      },
+      {
+        "event": "state_observation_timeout",
+        "elapsed_wall_s": 56.34183862898499
+      },
+      {
+        "event": "state_observation_timeout",
+        "elapsed_wall_s": 61.84086848190054
+      },
+      {
+        "event": "state_observation_timeout",
+        "elapsed_wall_s": 67.09561876719818
+      },
+      {
+        "event": "state_observation_timeout",
+        "elapsed_wall_s": 72.59147446602583
+      },
+      {
+        "event": "state_observation_timeout",
+        "elapsed_wall_s": 78.09966834122315
+      },
+      {
+        "event": "state_observation_timeout",
+        "elapsed_wall_s": 83.34188532596454
+      },
+      {
+        "event": "state_observation_timeout",
+        "elapsed_wall_s": 88.59141060290858
+      },
+      {
+        "event": "state_observation_timeout",
+        "elapsed_wall_s": 93.8449068730697
+      },
+      {
+        "event": "state_observation_timeout",
+        "elapsed_wall_s": 99.09087938722223
+      },
+      {
+        "event": "state_observation_timeout",
+        "elapsed_wall_s": 104.5907530579716
+      },
+      {
+        "event": "state_observation_timeout",
+        "elapsed_wall_s": 109.84189766319469
+      },
+      {
+        "event": "state_observation_timeout",
+        "elapsed_wall_s": 115.0914824232459
+      },
+      {
+        "event": "finished",
+        "elapsed_wall_s": 120.09092550585046,
+        "success": false,
+        "reason": "startup_readiness_timeout"
+      }
+    ],
+    "map_ready": false,
+    "nav2_released_after_readiness": false
+  },
+  "state_observation_timeouts": 21,
+  "captures": [
+    {
+      "source": "/home/peter/simul/training_robust/native90/pixel_focus_regression_v1/case_0/runtime_failure_capture/at_00_wall_seconds.json",
+      "source_sha256": "0167c8da8f5998a98bb2dd61f12f36e4e9b9de4035bb94acb2bfe0832abc11a2",
+      "verified_native_pid": true,
+      "cgroup_stats": {
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "memory.current": "2502389760",
+        "memory.peak": "2566807552",
+        "cpu.stat": "usage_usec 565075527\nuser_usec 478687686\nsystem_usec 86387840\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0"
+      },
+      "slam_process_alive": true,
+      "slam_pid": 1606016,
+      "slam_thread_names": [
+        "async_slam_tool",
+        "async_slam_-ust",
+        "async_slam_-ust",
+        "async_slam_tool",
+        "async_slam_tool",
+        "dds.shm.wdog",
+        "dds.ev.0",
+        "dds.udp.39418",
+        "dds.udp.39400",
+        "dds.shm.39419",
+        "dds.udp.39419",
+        "dds.asyn.0.0",
+        "dds.shm.7006",
+        "dds.udp.7006",
+        "async_slam_tool",
+        "async_slam_tool"
+      ],
+      "slam_main_wait_channel": "futex_do_wait"
+    },
+    {
+      "source": "/home/peter/simul/training_robust/native90/pixel_focus_regression_v1/case_0/runtime_failure_capture/at_05_wall_seconds.json",
+      "source_sha256": "ea7582980a4a4fda7b329876d3d5595872201afd9d92f1e90b73929257da835b",
+      "verified_native_pid": true,
+      "cgroup_stats": {
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "memory.current": "2495827968",
+        "memory.peak": "2566807552",
+        "cpu.stat": "usage_usec 590488814\nuser_usec 500383620\nsystem_usec 90105194\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0"
+      },
+      "slam_process_alive": true,
+      "slam_pid": 1606016,
+      "slam_thread_names": [
+        "async_slam_tool",
+        "async_slam_-ust",
+        "async_slam_-ust",
+        "async_slam_tool",
+        "async_slam_tool",
+        "dds.shm.wdog",
+        "dds.ev.0",
+        "dds.udp.39418",
+        "dds.udp.39400",
+        "dds.shm.39419",
+        "dds.udp.39419",
+        "dds.asyn.0.0",
+        "dds.shm.7006",
+        "dds.udp.7006",
+        "async_slam_tool",
+        "async_slam_tool"
+      ],
+      "slam_main_wait_channel": "futex_do_wait"
+    },
+    {
+      "source": "/home/peter/simul/training_robust/native90/pixel_focus_regression_v1/case_0/runtime_failure_capture/at_20_wall_seconds.json",
+      "source_sha256": "578bd46d692111b8174d3e504f6d0f0021f75864ee3442a7cd7b72c8517bf112",
+      "verified_native_pid": true,
+      "cgroup_stats": {
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "memory.current": "2502045696",
+        "memory.peak": "2566807552",
+        "cpu.stat": "usage_usec 651252094\nuser_usec 552120201\nsystem_usec 99131892\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0"
+      },
+      "slam_process_alive": true,
+      "slam_pid": 1606016,
+      "slam_thread_names": [
+        "async_slam_tool",
+        "async_slam_-ust",
+        "async_slam_-ust",
+        "async_slam_tool",
+        "async_slam_tool",
+        "dds.shm.wdog",
+        "dds.ev.0",
+        "dds.udp.39418",
+        "dds.udp.39400",
+        "dds.shm.39419",
+        "dds.udp.39419",
+        "dds.asyn.0.0",
+        "dds.shm.7006",
+        "dds.udp.7006",
+        "async_slam_tool",
+        "async_slam_tool"
+      ],
+      "slam_main_wait_channel": "futex_do_wait"
+    }
+  ],
+  "chronology": [
+    "SLAM GetState never yielded a state;no configure/activate transition was sent",
+    "Startup guard ended after120wall seconds and did not release Nav2",
+    "Benchmark then finalized startup_failure and shut the launch down;SIGINT/SIGTERM and later SIGKILL of slow-cleanup children followed",
+    "Original benchmark unit and coordinator are actually terminal;new experiment gets a new root and unchanged policy source"
+  ],
+  "small_RPC_probe": {
+    "evidence_type": "finite_unconfigured_SLAM_state_RPC_checks_not_native_missions",
+    "results": [
+      {
+        "domain": 91,
+        "transport": "default",
+        "server_pid": 1616744,
+        "states": [
+          {
+            "state": 1,
+            "latency_wall_s": 0.18821151973679662
+          },
+          {
+            "state": 1,
+            "latency_wall_s": 0.00046142376959323883
+          },
+          {
+            "state": 1,
+            "latency_wall_s": 0.00021505216136574745
+          },
+          {
+            "state": 1,
+            "latency_wall_s": 0.00014924071729183197
+          },
+          {
+            "state": 1,
+            "latency_wall_s": 0.00019872700795531273
+          }
+        ],
+        "five_unconfigured_state_responses": true,
+        "shm_threads": [
+          "dds.shm.wdog",
+          "dds.shm.30163",
+          "dds.shm.7130"
+        ],
+        "wall_seconds": 0.4425929398275912
+      },
+      {
+        "domain": 91,
+        "transport": "UDPv4",
+        "server_pid": 1616795,
+        "states": [
+          {
+            "state": 1,
+            "latency_wall_s": 0.18306994019076228
+          },
+          {
+            "state": 1,
+            "latency_wall_s": 0.0005303150974214077
+          },
+          {
+            "state": 1,
+            "latency_wall_s": 0.0006008399650454521
+          },
+          {
+            "state": 1,
+            "latency_wall_s": 0.00034939683973789215
+          },
+          {
+            "state": 1,
+            "latency_wall_s": 0.00029268208891153336
+          }
+        ],
+        "five_unconfigured_state_responses": true,
+        "shm_threads": [],
+        "wall_seconds": 0.29156916588544846
+      },
+      {
+        "domain": 91,
+        "transport": "default",
+        "server_pid": 1616830,
+        "states": [
+          {
+            "state": 1,
+            "latency_wall_s": 0.1277198507450521
+          },
+          {
+            "state": 1,
+            "latency_wall_s": 0.0003173067234456539
+          },
+          {
+            "state": 1,
+            "latency_wall_s": 0.0001407526433467865
+          },
+          {
+            "state": 1,
+            "latency_wall_s": 0.0006364244036376476
+          },
+          {
+            "state": 1,
+            "latency_wall_s": 0.00020141946151852608
+          }
+        ],
+        "five_unconfigured_state_responses": true,
+        "shm_threads": [
+          "dds.shm.wdog",
+          "dds.shm.30163",
+          "dds.shm.7130"
+        ],
+        "wall_seconds": 0.23134450428187847
+      },
+      {
+        "domain": 91,
+        "transport": "UDPv4",
+        "server_pid": 1616858,
+        "states": [
+          {
+            "state": 1,
+            "latency_wall_s": 0.18120997305959463
+          },
+          {
+            "state": 1,
+            "latency_wall_s": 0.0005046487785875797
+          },
+          {
+            "state": 1,
+            "latency_wall_s": 0.00031340308487415314
+          },
+          {
+            "state": 1,
+            "latency_wall_s": 0.00044462596997618675
+          },
+          {
+            "state": 1,
+            "latency_wall_s": 0.00017327908426523209
+          }
+        ],
+        "five_unconfigured_state_responses": true,
+        "shm_threads": [],
+        "wall_seconds": 0.28602473391219974
+      },
+      {
+        "domain": 91,
+        "transport": "default",
+        "server_pid": 1616881,
+        "states": [
+          {
+            "state": 1,
+            "latency_wall_s": 0.1637894082814455
+          },
+          {
+            "state": 1,
+            "latency_wall_s": 0.0017360984347760677
+          },
+          {
+            "state": 1,
+            "latency_wall_s": 0.00039122113958001137
+          },
+          {
+            "state": 1,
+            "latency_wall_s": 0.00027919886633753777
+          },
+          {
+            "state": 1,
+            "latency_wall_s": 0.00013346364721655846
+          }
+        ],
+        "five_unconfigured_state_responses": true,
+        "shm_threads": [
+          "dds.shm.wdog",
+          "dds.shm.30163",
+          "dds.shm.7130"
+        ],
+        "wall_seconds": 0.2704747789539397
+      },
+      {
+        "domain": 91,
+        "transport": "UDPv4",
+        "server_pid": 1616907,
+        "states": [
+          {
+            "state": 1,
+            "latency_wall_s": 0.00306886387988925
+          },
+          {
+            "state": 1,
+            "latency_wall_s": 0.0014525549486279488
+          },
+          {
+            "state": 1,
+            "latency_wall_s": 0.0009169420227408409
+          },
+          {
+            "state": 1,
+            "latency_wall_s": 0.0003737877123057842
+          },
+          {
+            "state": 1,
+            "latency_wall_s": 0.0003256527706980705
+          }
+        ],
+        "five_unconfigured_state_responses": true,
+        "shm_threads": [],
+        "wall_seconds": 0.21112716803327203
+      }
+    ],
+    "source": "Real isolated SLAM lifecycle services;no simulator or robot commands",
+    "limit": "Lightweight service checks do not reproduce the complete simulation load or establish a cause for an earlier failure"
+  },
+  "root_cause_proven": false,
+  "limits": [
+    "Cgroup max/OOM/OOM-kill counters were0 at every captured point",
+    "Futex waits do not prove a user-space deadlock;kernel stack reads were unavailable",
+    "Both default and UDPv4 lightweight probes passed;these do not reproduce complete simulation load or establish a fix"
+  ],
+  "planned_ablation": "Only the simulated SLAM include uses scoped UDPv4;RGB/depth/perception transport settings stay in their original source",
+  "successor": "/home/peter/simul/training_robust/native90/pixel_focus_udp_regression_v1",
+  "primary_transport_documentation": "https://fast-dds.docs.eprosima.com/en/2.14.x/fastdds/env_vars/env_vars.html#fastdds-builtin-transports",
+  "transport_successor_observation": {
+    "root": "/home/peter/simul/training_robust/native90/pixel_focus_udp_regression_v1",
+    "startup_success": true,
+    "startup_wall_s": 5.343859473243356,
+    "mission_outcome": {
+      "success": true,
+      "targets": 3,
+      "approached": 3,
+      "contacts": 0,
+      "seconds": 206.764,
+      "infrastructure_failure": false,
+      "reason": "all_targets_found"
+    },
+    "actual_transport": {
+      "native_pid": 1621680,
+      "server_pid": 1623160,
+      "server_environment": {
+        "ROS_DOMAIN_ID": "128",
+        "FASTDDS_BUILTIN_TRANSPORTS": "UDPv4"
+      },
+      "shm_threads": [],
+      "source": "Read-only bound native SLAM process environment and thread names"
+    },
+    "cause_proven": false,
+    "limit": "One full startup and mission success does not prove intermittent transport-failure cause or elimination"
+  }
+}

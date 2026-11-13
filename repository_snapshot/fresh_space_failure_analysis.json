@@ -1,0 +1,1930 @@
+{
+  "captured_utc": "2026-11-13T01:08:55.934989+00:00",
+  "evidence_type": "finalized_fresh_training_failures_and_evaluator_only_sensor_replay",
+  "production_promoted": false,
+  "ground_truth_available_to_policy": false,
+  "rectangle": {
+    "outcome": {
+      "success": false,
+      "targets": 2,
+      "approached": 3,
+      "contacts": 0,
+      "seconds": 600.058,
+      "infrastructure_failure": false,
+      "reason": "timeout"
+    },
+    "evaluation": {
+      "available": true,
+      "correct_ids": false,
+      "correct_positions": false,
+      "position_tolerance_m": 0.5,
+      "position_errors_m": {
+        "991": 0.01882000783056141,
+        "465": 0.018695485141410728
+      },
+      "expected_ids": [
+        220,
+        465,
+        991
+      ],
+      "found_ids": [
+        465,
+        991
+      ],
+      "closest_approach_m": {
+        "220": 0.6044239129378753,
+        "991": 0.7211149299123225,
+        "465": 0.9921616286454688
+      },
+      "approached_within_1_5m": 3,
+      "approach_radius_m": 1.5,
+      "all_approached": true,
+      "approached_within_2m": 3,
+      "world_to_map": [
+        7.063821231391467,
+        8.174793442941505,
+        -2.8310311107294495
+      ],
+      "trajectory_samples": 2952
+    },
+    "detector": {
+      "frames": 3032,
+      "decoded": {
+        "991": 20,
+        "465": 36,
+        "1023": 1,
+        "220": 7
+      },
+      "small": 11,
+      "border": 0,
+      "no_range": 0,
+      "horizontal": 0,
+      "inconsistent": 0,
+      "accepted": 53,
+      "errors": 0,
+      "last_error": "",
+      "identity_conflicts": [],
+      "resolved_ids": [
+        465,
+        991
+      ],
+      "by_id": {
+        "991": {
+          "last_min_edge_pixels": 57.070133209228516,
+          "last_stamp": 131.6,
+          "small": 3,
+          "accepted": 17
+        },
+        "465": {
+          "last_min_edge_pixels": 56.0,
+          "last_stamp": 180.8,
+          "accepted": 36
+        },
+        "1023": {
+          "last_min_edge_pixels": 3.0,
+          "last_stamp": 260.0,
+          "small": 1
+        },
+        "220": {
+          "last_min_edge_pixels": 5.099019527435303,
+          "last_stamp": 492.8,
+          "small": 7
+        }
+      },
+      "confirmations": {
+        "991": 17,
+        "465": 30
+      }
+    },
+    "approach_verified_ids": [
+      465
+    ],
+    "diagnosis": "Missing ID220 decoded7times but all below18px;last5.10px;no accepted readable observations. Geometric closest pass does not establish facing or recognition.",
+    "revisits": {
+      "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00003_train_g0_0/episodes/1191300303",
+      "source": "Independent Gazebo ground-truth trajectory; evaluator only",
+      "path_distance_m": 94.76278829363761,
+      "distance_in_returned_cells_m": 11.737041450055106,
+      "returned_distance_fraction": 0.12385707155097643,
+      "cell_reentries_after_15_sim_seconds": 22,
+      "cell_size_m": 0.6,
+      "minimum_path_step_m": 0.2,
+      "navigation_goals": 33,
+      "repeated_map_goals_within_0_8m_excluding_last_two": 0,
+      "limits": [
+        "Returned cells include necessary corridor transit and marker approach; this is not waste distance",
+        "Repeated goals use SLAM map coordinates and may be affected by frame correction",
+        "These are simulation measurements, not observations from a physical robot"
+      ]
+    }
+  },
+  "l_shape": {
+    "outcome": {
+      "success": false,
+      "targets": 3,
+      "approached": 3,
+      "contacts": 0,
+      "seconds": 409.664,
+      "infrastructure_failure": false,
+      "reason": "all_targets_found"
+    },
+    "evaluation": {
+      "available": true,
+      "correct_ids": true,
+      "correct_positions": false,
+      "position_tolerance_m": 0.5,
+      "position_errors_m": {
+        "674": 0.6376746736724243,
+        "826": 0.6195447730977498,
+        "339": 0.6115543018893289
+      },
+      "expected_ids": [
+        339,
+        674,
+        826
+      ],
+      "found_ids": [
+        339,
+        674,
+        826
+      ],
+      "closest_approach_m": {
+        "674": 1.226766463875528,
+        "826": 0.6595573775633947,
+        "339": 1.090810243406259
+      },
+      "approached_within_1_5m": 3,
+      "approach_radius_m": 1.5,
+      "all_approached": true,
+      "approached_within_2m": 3,
+      "world_to_map": [
+        7.370680839758352,
+        12.459329641419034,
+        3.017647948174363
+      ],
+      "trajectory_samples": 2015
+    },
+    "onset": {
+      "gt_sim_stamps": [
+        19.795,
+        20.288
+      ],
+      "odom_sim_stamps": [
+        19.792,
+        20.274
+      ],
+      "actual_body_displacement_m": 0.08667670583376397,
+      "estimated_odom_displacement_m": 0.979363801812398,
+      "reported_odom_samples": [
+        {
+          "stream": "odom",
+          "stamp_sim_seconds": "19.808",
+          "receipt_wall_seconds_since_start": "22.53518752520904",
+          "linear_speed_m_s": "0.1609282062601582",
+          "angular_speed_rad_s": "0.11595914489234918"
+        },
+        {
+          "stream": "odom",
+          "stamp_sim_seconds": "19.966",
+          "receipt_wall_seconds_since_start": "23.10012216726318",
+          "linear_speed_m_s": "3.9877434852690117",
+          "angular_speed_rad_s": "0.10369508002044259"
+        },
+        {
+          "stream": "odom",
+          "stamp_sim_seconds": "20.112",
+          "receipt_wall_seconds_since_start": "23.16178318299353",
+          "linear_speed_m_s": "4.318542395335218",
+          "angular_speed_rad_s": "0.10369415054835857"
+        },
+        {
+          "stream": "odom",
+          "stamp_sim_seconds": "20.225",
+          "receipt_wall_seconds_since_start": "23.224648972041905",
+          "linear_speed_m_s": "0.2027872503408883",
+          "angular_speed_rad_s": "0.20628730016329913"
+        },
+        {
+          "stream": "odom",
+          "stamp_sim_seconds": "20.338",
+          "receipt_wall_seconds_since_start": "23.41930775810033",
+          "linear_speed_m_s": "0.05187654751538426",
+          "angular_speed_rad_s": "0.3788576132315116"
+        }
+      ]
+    },
+    "localization_replay": {
+      "evidence_type": "finalized_native_sensor_replay_with_evaluator_only_counterfactual_pose",
+      "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00004_train_g0_0/episodes/1191300404",
+      "native_success": false,
+      "native_seconds": 409.664,
+      "native_coordinate_errors_m": {
+        "674": 0.6376746736724243,
+        "826": 0.6195447730977498,
+        "339": 0.6115543018893289
+      },
+      "by_id": {
+        "674": {
+          "recorded_map_marker_error_m": {
+            "samples": 102,
+            "minimum": 0.5918716540851052,
+            "median": 0.635106879938345,
+            "p90": 0.6388332289278349,
+            "maximum": 0.6413710635861638
+          },
+          "counterfactual_pose_corrected_marker_error_m": {
+            "samples": 102,
+            "minimum": 0.0004208568767712099,
+            "median": 0.003867261293511338,
+            "p90": 0.011485260031031643,
+            "maximum": 0.035237791958585105
+          },
+          "robot_map_position_error_m": {
+            "samples": 102,
+            "minimum": 0.6316760483099564,
+            "median": 0.6384515519256023,
+            "p90": 0.639651904904658,
+            "maximum": 0.6446114636210913
+          },
+          "robot_map_heading_error_deg": {
+            "samples": 102,
+            "minimum": 0.00288634263233876,
+            "median": 0.03312305026117929,
+            "p90": 0.2136201001947121,
+            "maximum": 0.591440199437046
+          },
+          "observed_stamp_range_sim_s": [
+            285.8,
+            315.2
+          ]
+        },
+        "826": {
+          "recorded_map_marker_error_m": {
+            "samples": 26,
+            "minimum": 0.5923324139223881,
+            "median": 0.619503973996961,
+            "p90": 0.6277201992617105,
+            "maximum": 0.6375224006457423
+          },
+          "counterfactual_pose_corrected_marker_error_m": {
+            "samples": 26,
+            "minimum": 0.0007763661409962527,
+            "median": 0.00253289167603062,
+            "p90": 0.00566130292259461,
+            "maximum": 0.01310684956045872
+          },
+          "robot_map_position_error_m": {
+            "samples": 26,
+            "minimum": 0.5914447688981133,
+            "median": 0.6189157366231851,
+            "p90": 0.6253466750604819,
+            "maximum": 0.6356268620302022
+          },
+          "robot_map_heading_error_deg": {
+            "samples": 26,
+            "minimum": 0.004733667845174986,
+            "median": 0.14318471449687542,
+            "p90": 0.46197462657193455,
+            "maximum": 0.8189881365643347
+          },
+          "observed_stamp_range_sim_s": [
+            107.0,
+            147.2
+          ]
+        },
+        "339": {
+          "recorded_map_marker_error_m": {
+            "samples": 32,
+            "minimum": 0.6000043900336723,
+            "median": 0.6084664323012849,
+            "p90": 0.6158640790894484,
+            "maximum": 0.6195258253398627
+          },
+          "counterfactual_pose_corrected_marker_error_m": {
+            "samples": 32,
+            "minimum": 0.0004902092048466431,
+            "median": 0.003248526821707431,
+            "p90": 0.00751921232630468,
+            "maximum": 0.04104961442658605
+          },
+          "robot_map_position_error_m": {
+            "samples": 32,
+            "minimum": 0.6084466191071146,
+            "median": 0.6147312303749528,
+            "p90": 0.616281169164195,
+            "maximum": 0.6185062876000654
+          },
+          "robot_map_heading_error_deg": {
+            "samples": 32,
+            "minimum": 0.07452587610185263,
+            "median": 0.32016279243513257,
+            "p90": 0.4159771483877358,
+            "maximum": 1.1274442469355186
+          },
+          "observed_stamp_range_sim_s": [
+            401.6,
+            416.2
+          ]
+        }
+      },
+      "fine_trajectory_segment_sim_s": [
+        1.486,
+        416.558
+      ],
+      "policy_or_result_modified": false,
+      "ground_truth_supplied_to_policy": false,
+      "limits": [
+        "Pose correction is a diagnostic counterfactual,not a deployed fix or native success",
+        "Map poses are interpolated from coarse audit samples;rapid motion or SLAM jumps add interpolation uncertainty",
+        "Observations outside finalized fine trajectory coverage are omitted,not extrapolated",
+        "Small counterfactual error supports localization drift as dominant;it does not prove a particular SLAM setting will fix it"
+      ],
+      "source_sha256": {
+        "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191300404.yaml": "8d9c0bbdd1cab3106a6fe225e47d5859a800a1855ab49ed4c536f5d5c80e25c9",
+        "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00004_train_g0_0/episodes/1191300404/evaluation.json": "91563f6ba6311335546fe86d280a78493919baa0b5672d69119307b231fc34a9",
+        "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00004_train_g0_0/episodes/1191300404/marker_observations.json": "730ab356264cb49eeda59a936833d7fc8c58ea2513007210df67f52954b275dd",
+        "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00004_train_g0_0/episodes/1191300404/pose_trace.csv": "b67587c11acb809ec1945caef7fe17e2ba17be9200b04ea69509f7a74302bc58",
+        "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00004_train_g0_0/episodes/1191300404/evaluator_gt_fine_1794529477484198618.csv": "fd9935c2332f5a6d22c37573818041a40a6751c9eb751f6b008348c7b8c946bb"
+      }
+    },
+    "final_graph_replay": {
+      "evidence_type": "finalized_native_SLAM_graph_replay_not_new_native_success",
+      "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00004_train_g0_0/episodes/1191300404",
+      "original_native_success": false,
+      "original_native_seconds": 409.664,
+      "original_coordinate_errors_m": {
+        "674": 0.6376746736724244,
+        "826": 0.6195447730977489,
+        "339": 0.6115543018893289
+      },
+      "reprojected_coordinate_errors_m": {
+        "674": 0.6351049202365572,
+        "826": 0.613778100289952,
+        "339": 0.6072830356423102
+      },
+      "all_reprojected_coordinates_within_0_5m": false,
+      "corrected_ids": [
+        339,
+        674,
+        826
+      ],
+      "policy_inputs_contain_ground_truth": false,
+      "original_native_results_modified": false,
+      "report": {
+        "method": "confirmed_odom_landmarks_reprojected_by_final_SLAM_scan_poses",
+        "ground_truth_inputs": false,
+        "required_readable_frames": 3,
+        "required_distinct_scan_nodes": 3,
+        "maximum_scan_time_gap_sim_s": 0.35,
+        "maximum_inlier_deviation_m": 0.25,
+        "corrected_ids": [
+          339,
+          674,
+          826
+        ],
+        "rows": [
+          {
+            "id": 339,
+            "original_point": [
+              -8.106910023215562,
+              6.277155726432831
+            ],
+            "eligible_observations": 20,
+            "applied": true,
+            "inlier_observations": 20,
+            "distinct_scan_nodes": 15,
+            "point": [
+              -8.103782138873106,
+              6.272791320855651
+            ],
+            "shift_m": 0.0053695154811118535,
+            "observations": [
+              {
+                "stamp": 401.6,
+                "node_id": 877,
+                "scan_stamp": 401.7,
+                "point": [
+                  -8.097322991092229,
+                  6.274273200100917
+                ]
+              },
+              {
+                "stamp": 402.0,
+                "node_id": 878,
+                "scan_stamp": 401.9,
+                "point": [
+                  -8.098866330544547,
+                  6.273261410416299
+                ]
+              },
+              {
+                "stamp": 410.4,
+                "node_id": 879,
+                "scan_stamp": 410.6,
+                "point": [
+                  -8.10257548628296,
+                  6.268808440923404
+                ]
+              },
+              {
+                "stamp": 410.8,
+                "node_id": 879,
+                "scan_stamp": 410.6,
+                "point": [
+                  -8.102909223242268,
+                  6.268301763831983
+                ]
+              },
+              {
+                "stamp": 411.2,
+                "node_id": 880,
+                "scan_stamp": 411.0,
+                "point": [
+                  -8.107931180170572,
+                  6.270677351154625
+                ]
+              },
+              {
+                "stamp": 411.4,
+                "node_id": 881,
+                "scan_stamp": 411.4,
+                "point": [
+                  -8.105888866260557,
+                  6.269777380871481
+                ]
+              },
+              {
+                "stamp": 411.8,
+                "node_id": 883,
+                "scan_stamp": 411.9,
+                "point": [
+                  -8.102933799059688,
+                  6.275277304996213
+                ]
+              },
+              {
+                "stamp": 412.0,
+                "node_id": 883,
+                "scan_stamp": 411.9,
+                "point": [
+                  -8.100059961916749,
+                  6.2761979414953295
+                ]
+              },
+              {
+                "stamp": 412.6,
+                "node_id": 887,
+                "scan_stamp": 412.7,
+                "point": [
+                  -8.10791426155399,
+                  6.274399129725168
+                ]
+              },
+              {
+                "stamp": 412.8,
+                "node_id": 888,
+                "scan_stamp": 412.9,
+                "point": [
+                  -8.105673790812464,
+                  6.273520755273126
+                ]
+              },
+              {
+                "stamp": 413.0,
+                "node_id": 888,
+                "scan_stamp": 412.9,
+                "point": [
+                  -8.106933732257673,
+                  6.275021083996179
+                ]
+              },
+              {
+                "stamp": 413.2,
+                "node_id": 889,
+                "scan_stamp": 413.1,
+                "point": [
+                  -8.10602266942171,
+                  6.276771334656069
+                ]
+              },
+              {
+                "stamp": 413.4,
+                "node_id": 890,
+                "scan_stamp": 413.3,
+                "point": [
+                  -8.109291405493689,
+                  6.278216348586277
+                ]
+              },
+              {
+                "stamp": 413.6,
+                "node_id": 891,
+                "scan_stamp": 413.5,
+                "point": [
+                  -8.1107578869651,
+                  6.277540118209591
+                ]
+              },
+              {
+                "stamp": 413.8,
+                "node_id": 892,
+                "scan_stamp": 413.9,
+                "point": [
+                  -8.097918563726186,
+                  6.269948808313823
+                ]
+              },
+              {
+                "stamp": 414.0,
+                "node_id": 892,
+                "scan_stamp": 413.9,
+                "point": [
+                  -8.10120171358269,
+                  6.270972645960087
+                ]
+              },
+              {
+                "stamp": 414.2,
+                "node_id": 893,
+                "scan_stamp": 414.2,
+                "point": [
+                  -8.104630478686524,
+                  6.271263897225986
+                ]
+              },
+              {
+                "stamp": 414.4,
+                "node_id": 894,
+                "scan_stamp": 414.5,
+                "point": [
+                  -8.107824476456319,
+                  6.272321231295004
+                ]
+              },
+              {
+                "stamp": 414.6,
+                "node_id": 894,
+                "scan_stamp": 414.5,
+                "point": [
+                  -8.100169135837238,
+                  6.270571620569544
+                ]
+              },
+              {
+                "stamp": 414.8,
+                "node_id": 895,
+                "scan_stamp": 414.9,
+                "point": [
+                  -8.100612971197991,
+                  6.269846457795726
+                ]
+              }
+            ]
+          },
+          {
+            "id": 674,
+            "original_point": [
+              -16.767738269413137,
+              14.30637158127386
+            ],
+            "eligible_observations": 87,
+            "applied": true,
+            "inlier_observations": 87,
+            "distinct_scan_nodes": 72,
+            "point": [
+              -16.766192610935743,
+              14.303784793378755
+            ],
+            "shift_m": 0.0030133920659281884,
+            "observations": [
+              {
+                "stamp": 285.8,
+                "node_id": 578,
+                "scan_stamp": 285.8,
+                "point": [
+                  -16.756618043968853,
+                  14.303556612569915
+                ]
+              },
+              {
+                "stamp": 286.0,
+                "node_id": 579,
+                "scan_stamp": 286.0,
+                "point": [
+                  -16.75019085764231,
+                  14.30341930961903
+                ]
+              },
+              {
+                "stamp": 286.2,
+                "node_id": 580,
+                "scan_stamp": 286.2,
+                "point": [
+                  -16.76459612066091,
+                  14.308450778614548
+                ]
+              },
+              {
+                "stamp": 286.4,
+                "node_id": 581,
+                "scan_stamp": 286.4,
+                "point": [
+                  -16.762513652547817,
+                  14.304672442247071
+                ]
+              },
+              {
+                "stamp": 286.6,
+                "node_id": 582,
+                "scan_stamp": 286.6,
+                "point": [
+                  -16.75773913368006,
+                  14.30316642356453
+                ]
+              },
+              {
+                "stamp": 286.8,
+                "node_id": 583,
+                "scan_stamp": 286.8,
+                "point": [
+                  -16.765043967891867,
+                  14.305451676874432
+                ]
+              },
+              {
+                "stamp": 287.0,
+                "node_id": 584,
+                "scan_stamp": 287.0,
+                "point": [
+                  -16.76079214474251,
+                  14.298620198164071
+                ]
+              },
+              {
+                "stamp": 287.2,
+                "node_id": 585,
+                "scan_stamp": 287.2,
+                "point": [
+                  -16.764106171315504,
+                  14.300016906302767
+                ]
+              },
+              {
+                "stamp": 287.4,
+                "node_id": 586,
+                "scan_stamp": 287.4,
+                "point": [
+                  -16.759622620093555,
+                  14.301821675687354
+                ]
+              },
+              {
+                "stamp": 287.6,
+                "node_id": 587,
+                "scan_stamp": 287.6,
+                "point": [
+                  -16.759134410217364,
+                  14.29701466152366
+                ]
+              },
+              {
+                "stamp": 287.8,
+                "node_id": 588,
+                "scan_stamp": 287.8,
+                "point": [
+                  -16.764012538472002,
+                  14.295306635833072
+                ]
+              },
+              {
+                "stamp": 288.0,
+                "node_id": 589,
+                "scan_stamp": 288.1,
+                "point": [
+                  -16.76430755216659,
+                  14.29363531429147
+                ]
+              },
+              {
+                "stamp": 288.2,
+                "node_id": 589,
+                "scan_stamp": 288.1,
+                "point": [
+                  -16.75839510245425,
+                  14.292160652796674
+                ]
+              },
+              {
+                "stamp": 288.4,
+                "node_id": 590,
+                "scan_stamp": 288.3,
+                "point": [
+                  -16.762002232961937,
+                  14.292563057265406
+                ]
+              },
+              {
+                "stamp": 288.6,
+                "node_id": 591,
+                "scan_stamp": 288.6,
+                "point": [
+                  -16.759319978123095,
+                  14.29149519160526
+                ]
+              },
+              {
+                "stamp": 288.8,
+                "node_id": 591,
+                "scan_stamp": 288.6,
+                "point": [
+                  -16.75508038845227,
+                  14.296405272165071
+                ]
+              },
+              {
+                "stamp": 289.0,
+                "node_id": 592,
+                "scan_stamp": 289.0,
+                "point": [
+                  -16.760934638167235,
+                  14.295463398493037
+                ]
+              },
+              {
+                "stamp": 289.2,
+                "node_id": 592,
+                "scan_stamp": 289.0,
+                "point": [
+                  -16.75990364722381,
+                  14.297163580160284
+                ]
+              },
+              {
+                "stamp": 300.0,
+                "node_id": 593,
+                "scan_stamp": 300.0,
+                "point": [
+                  -16.774208422564005,
+                  14.278484321188941
+                ]
+              },
+              {
+                "stamp": 300.2,
+                "node_id": 593,
+                "scan_stamp": 300.0,
+                "point": [
+                  -16.774851063261487,
+                  14.284276987726525
+                ]
+              },
+              {
+                "stamp": 300.4,
+                "node_id": 594,
+                "scan_stamp": 300.4,
+                "point": [
+                  -16.763538510963436,
+                  14.285703862111728
+                ]
+              },
+              {
+                "stamp": 300.6,
+                "node_id": 595,
+                "scan_stamp": 300.8,
+                "point": [
+                  -16.772399225982603,
+                  14.286083031116751
+                ]
+              },
+              {
+                "stamp": 300.8,
+                "node_id": 595,
+                "scan_stamp": 300.8,
+                "point": [
+                  -16.76877187666747,
+                  14.289935271968046
+                ]
+              },
+              {
+                "stamp": 301.0,
+                "node_id": 596,
+                "scan_stamp": 301.1,
+                "point": [
+                  -16.76821739571836,
+                  14.291591199089217
+                ]
+              },
+              {
+                "stamp": 301.2,
+                "node_id": 596,
+                "scan_stamp": 301.1,
+                "point": [
+                  -16.763693087948795,
+                  14.287950402314621
+                ]
+              },
+              {
+                "stamp": 301.4,
+                "node_id": 597,
+                "scan_stamp": 301.4,
+                "point": [
+                  -16.76480452873037,
+                  14.286649450806388
+                ]
+              },
+              {
+                "stamp": 301.6,
+                "node_id": 598,
+                "scan_stamp": 301.6,
+                "point": [
+                  -16.763000881386077,
+                  14.289817237742561
+                ]
+              },
+              {
+                "stamp": 301.8,
+                "node_id": 599,
+                "scan_stamp": 301.8,
+                "point": [
+                  -16.761210764376152,
+                  14.290090569260517
+                ]
+              },
+              {
+                "stamp": 302.0,
+                "node_id": 599,
+                "scan_stamp": 301.8,
+                "point": [
+                  -16.751434722104,
+                  14.298340597174857
+                ]
+              },
+              {
+                "stamp": 302.2,
+                "node_id": 600,
+                "scan_stamp": 302.2,
+                "point": [
+                  -16.755267187040463,
+                  14.300082154293737
+                ]
+              },
+              {
+                "stamp": 302.4,
+                "node_id": 601,
+                "scan_stamp": 302.4,
+                "point": [
+                  -16.756939262854036,
+                  14.301715325040917
+                ]
+              },
+              {
+                "stamp": 302.6,
+                "node_id": 602,
+                "scan_stamp": 302.6,
+                "point": [
+                  -16.76820372805402,
+                  14.299215491079641
+                ]
+              },
+              {
+                "stamp": 302.8,
+                "node_id": 603,
+                "scan_stamp": 302.8,
+                "point": [
+                  -16.768880276970997,
+                  14.302762992742274
+                ]
+              },
+              {
+                "stamp": 303.0,
+                "node_id": 604,
+                "scan_stamp": 303.0,
+                "point": [
+                  -16.76343314989297,
+                  14.304305375736192
+                ]
+              },
+              {
+                "stamp": 303.2,
+                "node_id": 605,
+                "scan_stamp": 303.2,
+                "point": [
+                  -16.766299117643243,
+                  14.301618133856072
+                ]
+              },
+              {
+                "stamp": 303.4,
+                "node_id": 606,
+                "scan_stamp": 303.4,
+                "point": [
+                  -16.76116867357468,
+                  14.302619145435795
+                ]
+              },
+              {
+                "stamp": 303.6,
+                "node_id": 607,
+                "scan_stamp": 303.6,
+                "point": [
+                  -16.76524446117553,
+                  14.300939669750427
+                ]
+              },
+              {
+                "stamp": 303.8,
+                "node_id": 608,
+                "scan_stamp": 303.8,
+                "point": [
+                  -16.768387942156917,
+                  14.301807395367312
+                ]
+              },
+              {
+                "stamp": 304.0,
+                "node_id": 609,
+                "scan_stamp": 304.0,
+                "point": [
+                  -16.767178101871487,
+                  14.302734477263751
+                ]
+              },
+              {
+                "stamp": 304.2,
+                "node_id": 610,
+                "scan_stamp": 304.2,
+                "point": [
+                  -16.760743915762014,
+                  14.304039176963459
+                ]
+              },
+              {
+                "stamp": 304.4,
+                "node_id": 611,
+                "scan_stamp": 304.4,
+                "point": [
+                  -16.764852573639377,
+                  14.30107683201662
+                ]
+              },
+              {
+                "stamp": 304.6,
+                "node_id": 612,
+                "scan_stamp": 304.6,
+                "point": [
+                  -16.763711350443472,
+                  14.304004226133564
+                ]
+              },
+              {
+                "stamp": 304.8,
+                "node_id": 613,
+                "scan_stamp": 304.8,
+                "point": [
+                  -16.767719038159157,
+                  14.30308792372257
+                ]
+              },
+              {
+                "stamp": 305.0,
+                "node_id": 614,
+                "scan_stamp": 305.0,
+                "point": [
+                  -16.76838358095386,
+                  14.304045812249372
+                ]
+              },
+              {
+                "stamp": 305.2,
+                "node_id": 615,
+                "scan_stamp": 305.2,
+                "point": [
+                  -16.762691804604763,
+                  14.30392874382309
+                ]
+              },
+              {
+                "stamp": 305.4,
+                "node_id": 616,
+                "scan_stamp": 305.4,
+                "point": [
+                  -16.76888508991646,
+                  14.302413389020403
+                ]
+              },
+              {
+                "stamp": 305.6,
+                "node_id": 617,
+                "scan_stamp": 305.6,
+                "point": [
+                  -16.764284972146758,
+                  14.305754266867627
+                ]
+              },
+              {
+                "stamp": 305.8,
+                "node_id": 618,
+                "scan_stamp": 305.8,
+                "point": [
+                  -16.77369796857159,
+                  14.304221285617743
+                ]
+              },
+              {
+                "stamp": 306.0,
+                "node_id": 619,
+                "scan_stamp": 306.0,
+                "point": [
+                  -16.766829124027897,
+                  14.305235542052452
+                ]
+              },
+              {
+                "stamp": 306.2,
+                "node_id": 620,
+                "scan_stamp": 306.2,
+                "point": [
+                  -16.761157050392477,
+                  14.302875572640168
+                ]
+              },
+              {
+                "stamp": 306.4,
+                "node_id": 621,
+                "scan_stamp": 306.4,
+                "point": [
+                  -16.767619977407243,
+                  14.303057492498528
+                ]
+              },
+              {
+                "stamp": 306.6,
+                "node_id": 622,
+                "scan_stamp": 306.6,
+                "point": [
+                  -16.768833050954512,
+                  14.304429951604698
+                ]
+              },
+              {
+                "stamp": 306.8,
+                "node_id": 623,
+                "scan_stamp": 306.8,
+                "point": [
+                  -16.763945032391923,
+                  14.305553636313414
+                ]
+              },
+              {
+                "stamp": 307.0,
+                "node_id": 624,
+                "scan_stamp": 307.0,
+                "point": [
+                  -16.772657119211857,
+                  14.304148912807987
+                ]
+              },
+              {
+                "stamp": 307.2,
+                "node_id": 625,
+                "scan_stamp": 307.2,
+                "point": [
+                  -16.775138372642985,
+                  14.302971163136137
+                ]
+              },
+              {
+                "stamp": 307.4,
+                "node_id": 626,
+                "scan_stamp": 307.4,
+                "point": [
+                  -16.766631101197085,
+                  14.304478785426435
+                ]
+              },
+              {
+                "stamp": 307.6,
+                "node_id": 627,
+                "scan_stamp": 307.6,
+                "point": [
+                  -16.768865487141735,
+                  14.303784793378755
+                ]
+              },
+              {
+                "stamp": 307.8,
+                "node_id": 629,
+                "scan_stamp": 307.9,
+                "point": [
+                  -16.7694086871192,
+                  14.30558566885539
+                ]
+              },
+              {
+                "stamp": 308.0,
+                "node_id": 629,
+                "scan_stamp": 307.9,
+                "point": [
+                  -16.770628917852967,
+                  14.305460401719795
+                ]
+              },
+              {
+                "stamp": 308.2,
+                "node_id": 630,
+                "scan_stamp": 308.1,
+                "point": [
+                  -16.76214708707375,
+                  14.303620991428941
+                ]
+              },
+              {
+                "stamp": 308.4,
+                "node_id": 631,
+                "scan_stamp": 308.3,
+                "point": [
+                  -16.763856423037396,
+                  14.30431184843775
+                ]
+              },
+              {
+                "stamp": 308.6,
+                "node_id": 633,
+                "scan_stamp": 308.7,
+                "point": [
+                  -16.77608841895929,
+                  14.303346918300477
+                ]
+              },
+              {
+                "stamp": 308.8,
+                "node_id": 634,
+                "scan_stamp": 308.9,
+                "point": [
+                  -16.77952225030268,
+                  14.304939418809193
+                ]
+              },
+              {
+                "stamp": 309.0,
+                "node_id": 634,
+                "scan_stamp": 308.9,
+                "point": [
+                  -16.77361671079843,
+                  14.305029813996107
+                ]
+              },
+              {
+                "stamp": 309.2,
+                "node_id": 635,
+                "scan_stamp": 309.1,
+                "point": [
+                  -16.764121059134943,
+                  14.305584259799813
+                ]
+              },
+              {
+                "stamp": 309.4,
+                "node_id": 636,
+                "scan_stamp": 309.3,
+                "point": [
+                  -16.76935995965125,
+                  14.30479581641069
+                ]
+              },
+              {
+                "stamp": 309.6,
+                "node_id": 638,
+                "scan_stamp": 309.7,
+                "point": [
+                  -16.7563831178417,
+                  14.304617296655115
+                ]
+              },
+              {
+                "stamp": 309.8,
+                "node_id": 639,
+                "scan_stamp": 309.9,
+                "point": [
+                  -16.772549485781422,
+                  14.305029444635544
+                ]
+              },
+              {
+                "stamp": 310.0,
+                "node_id": 639,
+                "scan_stamp": 309.9,
+                "point": [
+                  -16.763895219143194,
+                  14.306023775446558
+                ]
+              },
+              {
+                "stamp": 310.2,
+                "node_id": 640,
+                "scan_stamp": 310.1,
+                "point": [
+                  -16.776192756310486,
+                  14.304249081317677
+                ]
+              },
+              {
+                "stamp": 310.4,
+                "node_id": 641,
+                "scan_stamp": 310.3,
+                "point": [
+                  -16.765360994327736,
+                  14.304939293622354
+                ]
+              },
+              {
+                "stamp": 310.6,
+                "node_id": 643,
+                "scan_stamp": 310.7,
+                "point": [
+                  -16.77127833644276,
+                  14.304678933021236
+                ]
+              },
+              {
+                "stamp": 310.8,
+                "node_id": 644,
+                "scan_stamp": 310.9,
+                "point": [
+                  -16.78102918887376,
+                  14.305940874293537
+                ]
+              },
+              {
+                "stamp": 311.0,
+                "node_id": 644,
+                "scan_stamp": 310.9,
+                "point": [
+                  -16.76989365677491,
+                  14.306476254681648
+                ]
+              },
+              {
+                "stamp": 311.2,
+                "node_id": 645,
+                "scan_stamp": 311.1,
+                "point": [
+                  -16.769559415083947,
+                  14.305640569316903
+                ]
+              },
+              {
+                "stamp": 311.4,
+                "node_id": 646,
+                "scan_stamp": 311.3,
+                "point": [
+                  -16.765561862015506,
+                  14.305760660549694
+                ]
+              },
+              {
+                "stamp": 311.6,
+                "node_id": 648,
+                "scan_stamp": 311.7,
+                "point": [
+                  -16.7703618439391,
+                  14.30610430414491
+                ]
+              },
+              {
+                "stamp": 311.8,
+                "node_id": 649,
+                "scan_stamp": 311.9,
+                "point": [
+                  -16.77590882740657,
+                  14.306266907866073
+                ]
+              },
+              {
+                "stamp": 312.0,
+                "node_id": 649,
+                "scan_stamp": 311.9,
+                "point": [
+                  -16.771778901105524,
+                  14.306148677162112
+                ]
+              },
+              {
+                "stamp": 312.2,
+                "node_id": 650,
+                "scan_stamp": 312.1,
+                "point": [
+                  -16.766192610935743,
+                  14.306717086927959
+                ]
+              },
+              {
+                "stamp": 312.4,
+                "node_id": 651,
+                "scan_stamp": 312.3,
+                "point": [
+                  -16.76924671990552,
+                  14.306762467414371
+                ]
+              },
+              {
+                "stamp": 312.6,
+                "node_id": 653,
+                "scan_stamp": 312.7,
+                "point": [
+                  -16.77632962448845,
+                  14.306250326356018
+                ]
+              },
+              {
+                "stamp": 312.8,
+                "node_id": 654,
+                "scan_stamp": 312.9,
+                "point": [
+                  -16.770267937660567,
+                  14.307060285148642
+                ]
+              },
+              {
+                "stamp": 313.0,
+                "node_id": 654,
+                "scan_stamp": 312.9,
+                "point": [
+                  -16.766275341095582,
+                  14.306549622030873
+                ]
+              },
+              {
+                "stamp": 313.2,
+                "node_id": 655,
+                "scan_stamp": 313.3,
+                "point": [
+                  -16.77909342098457,
+                  14.30718587577303
+                ]
+              },
+              {
+                "stamp": 313.4,
+                "node_id": 655,
+                "scan_stamp": 313.3,
+                "point": [
+                  -16.774991457726554,
+                  14.307537282336668
+                ]
+              },
+              {
+                "stamp": 313.6,
+                "node_id": 655,
+                "scan_stamp": 313.3,
+                "point": [
+                  -16.774027630848998,
+                  14.307670618759158
+                ]
+              }
+            ]
+          },
+          {
+            "id": 826,
+            "original_point": [
+              6.649134799889234,
+              7.617384353204258
+            ],
+            "eligible_observations": 14,
+            "applied": true,
+            "inlier_observations": 14,
+            "distinct_scan_nodes": 13,
+            "point": [
+              6.643123254859148,
+              7.612364730413788
+            ],
+            "shift_m": 0.007831684787283204,
+            "observations": [
+              {
+                "stamp": 114.4,
+                "node_id": 168,
+                "scan_stamp": 114.3,
+                "point": [
+                  6.642613955958533,
+                  7.61207461746135
+                ]
+              },
+              {
+                "stamp": 114.8,
+                "node_id": 169,
+                "scan_stamp": 114.7,
+                "point": [
+                  6.6394299641971655,
+                  7.608071089437878
+                ]
+              },
+              {
+                "stamp": 115.4,
+                "node_id": 172,
+                "scan_stamp": 115.4,
+                "point": [
+                  6.648078919659665,
+                  7.62047720691219
+                ]
+              },
+              {
+                "stamp": 115.6,
+                "node_id": 173,
+                "scan_stamp": 115.6,
+                "point": [
+                  6.643435472845587,
+                  7.619297585102784
+                ]
+              },
+              {
+                "stamp": 116.2,
+                "node_id": 176,
+                "scan_stamp": 116.2,
+                "point": [
+                  6.646207120593067,
+                  7.611217366390308
+                ]
+              },
+              {
+                "stamp": 116.4,
+                "node_id": 177,
+                "scan_stamp": 116.4,
+                "point": [
+                  6.6460832689541745,
+                  7.602304118550406
+                ]
+              },
+              {
+                "stamp": 116.6,
+                "node_id": 178,
+                "scan_stamp": 116.6,
+                "point": [
+                  6.643511342956251,
+                  7.611463822198024
+                ]
+              },
+              {
+                "stamp": 116.8,
+                "node_id": 179,
+                "scan_stamp": 116.8,
+                "point": [
+                  6.638960385427145,
+                  7.606304266619345
+                ]
+              },
+              {
+                "stamp": 117.0,
+                "node_id": 180,
+                "scan_stamp": 117.0,
+                "point": [
+                  6.64759230276985,
+                  7.612654843366224
+                ]
+              },
+              {
+                "stamp": 117.2,
+                "node_id": 180,
+                "scan_stamp": 117.0,
+                "point": [
+                  6.641666512456272,
+                  7.601627990522112
+                ]
+              },
+              {
+                "stamp": 138.6,
+                "node_id": 233,
+                "scan_stamp": 138.5,
+                "point": [
+                  6.642589317765436,
+                  7.639049693167791
+                ]
+              },
+              {
+                "stamp": 139.2,
+                "node_id": 235,
+                "scan_stamp": 139.1,
+                "point": [
+                  6.643260093644025,
+                  7.637193831197569
+                ]
+              },
+              {
+                "stamp": 139.4,
+                "node_id": 236,
+                "scan_stamp": 139.3,
+                "point": [
+                  6.642986416074272,
+                  7.635705735842815
+                ]
+              },
+              {
+                "stamp": 139.8,
+                "node_id": 239,
+                "scan_stamp": 139.9,
+                "point": [
+                  6.640174753070975,
+                  7.635973541076832
+                ]
+              }
+            ]
+          }
+        ],
+        "rejected": {
+          "scan_time_gap": 32
+        }
+      },
+      "source_sha256": {
+        "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00004_train_g0_0/episodes/1191300404/20261113_094436/map.data": "f79ef7f39125f1fc7f4fb9aadd0b2b4836d5e7dbe474cc7726a8cd34f872f9bd",
+        "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00004_train_g0_0/episodes/1191300404/20261113_094436/markers.csv": "57f7b3d8c44627fbf4eb02b50d7f7d36a9be9687ba109fe90fa74a0d38bb5864",
+        "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00004_train_g0_0/episodes/1191300404/marker_observations.json": "730ab356264cb49eeda59a936833d7fc8c58ea2513007210df67f52954b275dd",
+        "/home/peter/simul/training_robust/native90/fresh_failure_study_v1/l_shape/graph_scan_poses.csv": "ccb702f846185c391569b8800f88c4b255de910b569b9e60426f505b6fea4c58",
+        "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191300404.yaml": "8d9c0bbdd1cab3106a6fe225e47d5859a800a1855ab49ed4c536f5d5c80e25c9",
+        "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00004_train_g0_0/episodes/1191300404/evaluation.json": "91563f6ba6311335546fe86d280a78493919baa0b5672d69119307b231fc34a9",
+        "/home/peter/simul/tmp/export_slam_graph_poses": "ae49d693a63d9bc8c1828aeea438770d5651588c825f35f5fe4696eaf009631f",
+        "/home/peter/simul/scripts/candidate_graph_landmarks.py": "0b1cc7cae3385ec8a511070918e37acf53aac993ef7c7c1de6e71ff5a1bf1074"
+      },
+      "limits": [
+        "Final serialized SLAM graph contains later optimization; this is a final map update,not an online localization fix",
+        "Native driving time,physical approach credit and collisions are unchanged and are not reclassified by replay",
+        "Fixed constants apply across scenes; no target truth or scene geometry enters projection or inlier selection"
+      ]
+    },
+    "revisits": {
+      "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00004_train_g0_0/episodes/1191300404",
+      "source": "Independent Gazebo ground-truth trajectory; evaluator only",
+      "path_distance_m": 55.79889135201555,
+      "distance_in_returned_cells_m": 2.1491870111872857,
+      "returned_distance_fraction": 0.038516661516244506,
+      "cell_reentries_after_15_sim_seconds": 4,
+      "cell_size_m": 0.6,
+      "minimum_path_step_m": 0.2,
+      "navigation_goals": 23,
+      "repeated_map_goals_within_0_8m_excluding_last_two": 0,
+      "limits": [
+        "Returned cells include necessary corridor transit and marker approach; this is not waste distance",
+        "Repeated goals use SLAM map coordinates and may be affected by frame correction",
+        "These are simulation measurements, not observations from a physical robot"
+      ]
+    },
+    "diagnosis": "Map error tracks localization error after an early odom jump;final graph replay does not remove the residual0.61-0.64m offset. Raw wheel input was not recorded for this historical event,so its origin is not yet proven."
+  },
+  "velocity_guard": {
+    "workspace": "/home/peter/simul/training_robust/native90/velocity_guard_v2/runtime",
+    "tests_passed": 269,
+    "build_passed": true,
+    "native_queued": false,
+    "actual_EKF_component_replay": {
+      "evidence_type": "recorded_encoder_IMU_replay_through_actual_EKF_components_not_Gazebo_mission",
+      "input": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00015_train_g0_2/episodes/1163001515/motion_calibration_1794515114847795662.csv",
+      "original_segment_sim_s": [
+        350.0,
+        365.0
+      ],
+      "input_samples": 1857,
+      "replay_rate": 2.0,
+      "domain": 93,
+      "scores": {
+        "baseline": {
+          "samples": 733,
+          "max_position_error_m": 0.12274834551524415,
+          "last_position_error_m": 0.0036202379294406443,
+          "maximum_reported_forward_speed_m_s": 1.6636529106989928,
+          "status": {
+            "linear_scale": 0.78,
+            "maximum_calibrated_linear_speed": 0.0,
+            "accepted": 854,
+            "rejected": 0,
+            "maximum_rejected_speed_m_s": 0.0,
+            "ground_truth_input": false
+          }
+        },
+        "guard": {
+          "samples": 720,
+          "max_position_error_m": 0.2064065056660723,
+          "last_position_error_m": 0.2046466625841024,
+          "maximum_reported_forward_speed_m_s": 0.6159566406880119,
+          "status": {
+            "linear_scale": 0.78,
+            "maximum_calibrated_linear_speed": 0.75,
+            "accepted": 845,
+            "rejected": 11,
+            "maximum_rejected_speed_m_s": 1.8431999999314095,
+            "ground_truth_input": false
+          }
+        }
+      },
+      "policy_inputs": [
+        "wheel_twist",
+        "IMU_angular_velocity",
+        "clock"
+      ],
+      "ground_truth_sent_to_components": false,
+      "limits": [
+        "Recorded subset,initial pose aligned once for scoring;not a new native trajectory or completion result",
+        "IMU angular rate is normalized into the base_link frame;no absolute orientation or world position is fused",
+        "Replay scheduling differs from live Gazebo;does not establish the cause of every historical EKF jump"
+      ],
+      "source_sha256": {
+        "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00015_train_g0_2/episodes/1163001515/motion_calibration_1794515114847795662.csv": "724e08cea4757e3241b336b7f1523ae0d8e5cf7b12689b328603d68ef93834ed",
+        "/home/peter/simul/training_robust/replay_encoder_spike_component.py": "cc6b6c9af70683ca3ad4a9adbf529b229221b44796c4bfde38aa401bacccac87",
+        "runtime_helper": "0e838700f3cf20d92c116d46fc2afd25df3bf39cc0508e553b5d14161822e994",
+        "runtime_EKF_parameters": "c59e4ac01b765fdb74f57d1c4e19ab56f47e7932aa9c1d1c701db0faffbab8fc"
+      }
+    },
+    "decision": "Do not queue or promote simple velocity rejection;in this recorded component segment final position error increased rather than improving"
+  },
+  "limits": [
+    "Both native failures remain recorded failures;no change to scenarios,truth alignment,recognition threshold or approach radius",
+    "Counterfactual pose corrections and final-graph replays are diagnostics,not new native completions",
+    "No raw wheel capture exists at L-shaped20s event;new read-only captures bind actual ongoing native jobs",
+    "Returned-cell measures include necessary corridor transits;hardware revisit performance remains unverified"
+  ],
+  "source_sha256": {
+    "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00003_train_g0_0/episodes/1191300303/evaluation.json": "5a0e7e0809c411338f82206d6e2154e4dc59250db419f928d39dce83300496fa",
+    "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00004_train_g0_0/episodes/1191300404/evaluation.json": "91563f6ba6311335546fe86d280a78493919baa0b5672d69119307b231fc34a9",
+    "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00004_train_g0_0/episodes/1191300404/pose_trace.csv": "b67587c11acb809ec1945caef7fe17e2ba17be9200b04ea69509f7a74302bc58",
+    "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00004_train_g0_0/episodes/1191300404/runtime_trace.csv": "197cb72105c9edb3c0a0ac5e05d9a1ebdfd63f49fef8980ea5248d033c7c6a0b",
+    "/home/peter/simul/training_robust/replay_encoder_spike_component.py": "77e1faf4309f8f8b5df4f50439e8914663e89476e7c0829ff241652eebe917cc"
+  },
+  "encoder_delta_experiments": {
+    "evidence_type": "actual_EKF_component_replays_not_native_driving",
+    "workspace": "/home/peter/simul/training_robust/native90/encoder_delta_v2/runtime",
+    "runtime_tests_passed": 275,
+    "build_passed": true,
+    "cases": [
+      {
+        "evidence_type": "recorded_encoder_IMU_replay_through_actual_EKF_components_not_Gazebo_mission",
+        "input": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00015_train_g0_2/episodes/1163001515/motion_calibration_1794515114847795662.csv",
+        "original_segment_sim_s": [
+          350.0,
+          365.0
+        ],
+        "input_samples": 1857,
+        "replay_rate": 2.0,
+        "domain": 93,
+        "guard_mode": "pose_delta",
+        "scores": {
+          "baseline": {
+            "samples": 722,
+            "max_position_error_m": 0.14950030028996306,
+            "last_position_error_m": 0.014774844882393579,
+            "maximum_reported_forward_speed_m_s": 1.6951158254862229,
+            "status": {
+              "velocity_source": "reported",
+              "linear_scale": 0.78,
+              "maximum_calibrated_linear_speed": 0.0,
+              "accepted": 856,
+              "rejected": 0,
+              "maximum_rejected_speed_m_s": 0.0,
+              "ground_truth_input": false
+            }
+          },
+          "guard": {
+            "samples": 713,
+            "max_position_error_m": 1.107201998671421,
+            "last_position_error_m": 1.107201998671421,
+            "maximum_reported_forward_speed_m_s": 0.37766996220058396,
+            "status": {
+              "velocity_source": "pose_delta",
+              "linear_scale": 0.78,
+              "maximum_calibrated_linear_speed": 0.75,
+              "accepted": 851,
+              "rejected": 2,
+              "maximum_rejected_speed_m_s": 0.8721817896579568,
+              "ground_truth_input": false
+            }
+          }
+        },
+        "policy_inputs": [
+          "wheel_twist",
+          "IMU_angular_velocity",
+          "clock"
+        ],
+        "ground_truth_sent_to_components": false,
+        "limits": [
+          "Recorded subset,initial pose aligned once for scoring;not a new native trajectory or completion result",
+          "IMU angular rate is normalized into the base_link frame;no absolute orientation or world position is fused",
+          "Replay scheduling differs from live Gazebo;does not establish the cause of every historical EKF jump"
+        ],
+        "source_sha256": {
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00015_train_g0_2/episodes/1163001515/motion_calibration_1794515114847795662.csv": "724e08cea4757e3241b336b7f1523ae0d8e5cf7b12689b328603d68ef93834ed",
+          "/home/peter/simul/training_robust/replay_encoder_spike_component.py": "61ebddf14fcaedd6449621a749fe63500599c3339ccf7f4e4c0795a674f38c95",
+          "runtime_helper": "f87b4418f2cfdb71853de77b84bf2988adb905cf5741894774ee7277d256f030",
+          "runtime_EKF_parameters": "c59e4ac01b765fdb74f57d1c4e19ab56f47e7932aa9c1d1c701db0faffbab8fc"
+        }
+      },
+      {
+        "evidence_type": "recorded_encoder_IMU_replay_through_actual_EKF_components_not_Gazebo_mission",
+        "input": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00015_train_g0_2/episodes/1163001515/motion_calibration_1794515114847795662.csv",
+        "original_segment_sim_s": [
+          350.0,
+          365.0
+        ],
+        "input_samples": 1857,
+        "replay_rate": 2.0,
+        "domain": 93,
+        "guard_mode": "pose_delta",
+        "guard_linear_scale": 1.0,
+        "scores": {
+          "baseline": {
+            "samples": 743,
+            "max_position_error_m": 0.11988376045606071,
+            "last_position_error_m": 0.007086610838092665,
+            "maximum_reported_forward_speed_m_s": 1.6742730225003213,
+            "status": {
+              "velocity_source": "reported",
+              "linear_scale": 0.78,
+              "maximum_calibrated_linear_speed": 0.0,
+              "accepted": 849,
+              "rejected": 0,
+              "maximum_rejected_speed_m_s": 0.0,
+              "ground_truth_input": false
+            }
+          },
+          "guard": {
+            "samples": 736,
+            "max_position_error_m": 0.1346171028199503,
+            "last_position_error_m": 0.1346171028199503,
+            "maximum_reported_forward_speed_m_s": 0.4845982556804321,
+            "status": {
+              "velocity_source": "pose_delta",
+              "linear_scale": 1.0,
+              "maximum_calibrated_linear_speed": 0.75,
+              "accepted": 850,
+              "rejected": 3,
+              "maximum_rejected_speed_m_s": 1.118181781612765,
+              "ground_truth_input": false
+            }
+          }
+        },
+        "policy_inputs": [
+          "wheel_twist",
+          "IMU_angular_velocity",
+          "clock"
+        ],
+        "ground_truth_sent_to_components": false,
+        "limits": [
+          "Recorded subset,initial pose aligned once for scoring;not a new native trajectory or completion result",
+          "IMU angular rate is normalized into the base_link frame;no absolute orientation or world position is fused",
+          "Replay scheduling differs from live Gazebo;does not establish the cause of every historical EKF jump"
+        ],
+        "source_sha256": {
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00015_train_g0_2/episodes/1163001515/motion_calibration_1794515114847795662.csv": "724e08cea4757e3241b336b7f1523ae0d8e5cf7b12689b328603d68ef93834ed",
+          "/home/peter/simul/training_robust/replay_encoder_spike_component.py": "77e1faf4309f8f8b5df4f50439e8914663e89476e7c0829ff241652eebe917cc",
+          "runtime_helper": "f87b4418f2cfdb71853de77b84bf2988adb905cf5741894774ee7277d256f030",
+          "runtime_EKF_parameters": "c59e4ac01b765fdb74f57d1c4e19ab56f47e7932aa9c1d1c701db0faffbab8fc"
+        }
+      },
+      {
+        "evidence_type": "recorded_encoder_IMU_replay_through_actual_EKF_components_not_Gazebo_mission",
+        "input": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00015_train_g0_2/episodes/1163001515/motion_calibration_1794515114847795662.csv",
+        "original_segment_sim_s": [
+          350.0,
+          365.0
+        ],
+        "input_samples": 1857,
+        "replay_rate": 2.0,
+        "domain": 93,
+        "guard_mode": "pose_delta",
+        "guard_linear_scale": 1.0,
+        "guard_maximum_calibrated_speed": 0.0,
+        "scores": {
+          "baseline": {
+            "samples": 735,
+            "max_position_error_m": 0.12135210901641928,
+            "last_position_error_m": 0.005906531306359596,
+            "maximum_reported_forward_speed_m_s": 1.6742177289337867,
+            "status": {
+              "velocity_source": "reported",
+              "linear_scale": 0.78,
+              "maximum_calibrated_linear_speed": 0.0,
+              "accepted": 856,
+              "rejected": 0,
+              "maximum_rejected_speed_m_s": 0.0,
+              "ground_truth_input": false
+            }
+          },
+          "guard": {
+            "samples": 740,
+            "max_position_error_m": 0.0983013364471397,
+            "last_position_error_m": 0.0983013364471397,
+            "maximum_reported_forward_speed_m_s": 0.5476562982773462,
+            "status": {
+              "velocity_source": "pose_delta",
+              "linear_scale": 1.0,
+              "maximum_calibrated_linear_speed": 0.0,
+              "accepted": 847,
+              "rejected": 0,
+              "maximum_rejected_speed_m_s": 0.0,
+              "ground_truth_input": false
+            }
+          }
+        },
+        "policy_inputs": [
+          "wheel_twist",
+          "IMU_angular_velocity",
+          "clock"
+        ],
+        "ground_truth_sent_to_components": false,
+        "limits": [
+          "Recorded subset,initial pose aligned once for scoring;not a new native trajectory or completion result",
+          "IMU angular rate is normalized into the base_link frame;no absolute orientation or world position is fused",
+          "Replay scheduling differs from live Gazebo;does not establish the cause of every historical EKF jump"
+        ],
+        "source_sha256": {
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00015_train_g0_2/episodes/1163001515/motion_calibration_1794515114847795662.csv": "724e08cea4757e3241b336b7f1523ae0d8e5cf7b12689b328603d68ef93834ed",
+          "/home/peter/simul/training_robust/replay_encoder_spike_component.py": "1c44a29bbcbc45997fbce666042750ed6490307b6fc7482743a7f2d59f0ba623",
+          "runtime_helper": "f87b4418f2cfdb71853de77b84bf2988adb905cf5741894774ee7277d256f030",
+          "runtime_EKF_parameters": "c59e4ac01b765fdb74f57d1c4e19ab56f47e7932aa9c1d1c701db0faffbab8fc"
+        }
+      },
+      {
+        "evidence_type": "recorded_encoder_IMU_replay_through_actual_EKF_components_not_Gazebo_mission",
+        "input": "/home/peter/simul/training_robust/native90/encoder_delta_rooms_segment_v1.csv",
+        "original_segment_sim_s": [
+          25.0,
+          45.0
+        ],
+        "input_samples": 2483,
+        "replay_rate": 2.0,
+        "domain": 93,
+        "guard_mode": "pose_delta",
+        "guard_linear_scale": 1.0,
+        "guard_maximum_calibrated_speed": 0.0,
+        "scores": {
+          "baseline": {
+            "samples": 985,
+            "max_position_error_m": 0.12942725718845322,
+            "last_position_error_m": 0.11796555125258484,
+            "maximum_reported_forward_speed_m_s": 1.0886774360702294,
+            "status": {
+              "velocity_source": "reported",
+              "linear_scale": 0.78,
+              "maximum_calibrated_linear_speed": 0.0,
+              "accepted": 1164,
+              "rejected": 0,
+              "maximum_rejected_speed_m_s": 0.0,
+              "ground_truth_input": false
+            }
+          },
+          "guard": {
+            "samples": 987,
+            "max_position_error_m": 0.07074183170272326,
+            "last_position_error_m": 0.06296957178627224,
+            "maximum_reported_forward_speed_m_s": 0.7204120227688111,
+            "status": {
+              "velocity_source": "pose_delta",
+              "linear_scale": 1.0,
+              "maximum_calibrated_linear_speed": 0.0,
+              "accepted": 1167,
+              "rejected": 0,
+              "maximum_rejected_speed_m_s": 0.0,
+              "ground_truth_input": false
+            }
+          }
+        },
+        "policy_inputs": [
+          "wheel_twist",
+          "IMU_angular_velocity",
+          "clock"
+        ],
+        "ground_truth_sent_to_components": false,
+        "limits": [
+          "Recorded subset,initial pose aligned once for scoring;not a new native trajectory or completion result",
+          "IMU angular rate is normalized into the base_link frame;no absolute orientation or world position is fused",
+          "Replay scheduling differs from live Gazebo;does not establish the cause of every historical EKF jump"
+        ],
+        "source_sha256": {
+          "/home/peter/simul/training_robust/native90/encoder_delta_rooms_segment_v1.csv": "a224d47aebf608c75fba55ed60efda898df2ffdbe7fcd717675793748fc8113a",
+          "/home/peter/simul/training_robust/replay_encoder_spike_component.py": "1c44a29bbcbc45997fbce666042750ed6490307b6fc7482743a7f2d59f0ba623",
+          "runtime_helper": "f87b4418f2cfdb71853de77b84bf2988adb905cf5741894774ee7277d256f030",
+          "runtime_EKF_parameters": "c59e4ac01b765fdb74f57d1c4e19ab56f47e7932aa9c1d1c701db0faffbab8fc"
+        }
+      }
+    ],
+    "native_queued": false,
+    "production_promoted": false,
+    "decision": "Assess multiple recorded segments;no motion candidate promoted from unit tests or lower peak velocity alone",
+    "native_engineering_successor": {
+      "root": "/home/peter/simul/training_robust/native90/encoder_delta_regression_v1",
+      "workspace": "/home/peter/simul/training_robust/native90/encoder_delta_v3/runtime",
+      "job_status": "prepared",
+      "coordinator_unit": "osp-encoder-delta-v1.service",
+      "runtime_tests_passed": 275,
+      "build_passed": true,
+      "source_changes": [
+        "launch/control.launch.py",
+        "launch/robot.launch.py",
+        "osp_mission/calibrated_wheel_twist.py",
+        "osp_mission/encoder_delta_twist.py",
+        "test/test_encoder_delta_runtime.py",
+        "test/test_sim_state_estimation.py",
+        "test/test_velocity_guard_runtime.py"
+      ],
+      "fixed_linear_scale": 1.0,
+      "reported_twist_bound_disabled": true,
+      "reason": "Relative encoder-pose velocity reduced peak and room-segment position error;historical segment final error worsened,so this remains a same-failed-L engineering test,not an adopted policy",
+      "prior_negative_candidates_preserved": true,
+      "generalization_verified": false,
+      "production_promoted": false
+    }
+  }
+}

@@ -1,7 +1,7 @@
 {
   "goal_status": "active",
   "phase": "fixed_corrected_source_fresh_space_native_CEM",
-  "last_verified_utc": "2026-11-12T23:57:53.003433+00:00",
+  "last_verified_utc": "2026-11-13T01:05:17.438926+00:00",
   "jobs": [
     {
       "run": "training_robust/diverse_directional_cem",
@@ -65,11 +65,9 @@
   "ros_surface_integration": "surface_endpoint_default_edge_comparison_option_unit_tested",
   "gazebo_verified": false,
   "next_actions": [
-    "Keep current fresh triangle and trapezoid native runs intact;insert only one finalized graph regression when a slot opens",
-    "Validate integrated final SLAM landmark update without modifying original evaluator results or physical approach conditions",
-    "Use first-approach journals when measuring missed approaches;final proof samples can be replaced by later valid samples",
-    "Continue strict seven-shape fresh-map optimization and untouched independent qualification gates",
-    "Compare safer closer follow-up views for single modest-resolution cues using exact replay before new native source;do not weaken recognition or approach gates"
+    "Verify actual SLAM-only UDP process environment and no SHM threads after mission starts;do not infer a solved root cause from the lightweight checks",
+    "Evaluate pixel-focused triangle against all ID/proximity/map/contact/time gates and record early confirmation timing",
+    "Continue original seven-family fresh maps;retain rectangle timeout and all infrastructure failures without filtering easy cases"
   ],
   "ros_unit_tests_passed": 157,
   "ros_directional_smoke": "native_communication_verified",
@@ -112,18 +110,18 @@
   "current_jobs": [
     {
       "campaign": "spatial_cem_v6",
-      "number": 3,
-      "unit": "osp-spatial-nov13-space6-00003.service",
-      "domain": 124,
+      "number": 4,
+      "unit": "osp-spatial-nov13-space6-00004.service",
+      "domain": 125,
       "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
       "status": "running"
     },
     {
-      "campaign": "graph_landmark_regression_v1",
-      "number": 0,
-      "unit": "osp-graph-landmark-regression-v1-native.service",
-      "domain": 126,
-      "workspace": "/home/peter/simul/training_robust/native90/graph_landmarks_v1/runtime",
+      "campaign": "spatial_cem_v6",
+      "number": 5,
+      "unit": "osp-spatial-nov13-space6-00005.service",
+      "domain": 124,
+      "workspace": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
       "status": "running"
     }
   ],
@@ -374,7 +372,7 @@
     }
   ],
   "previous_goal_turn_classification": "progress",
-  "previous_goal_turn_evidence": "Progress: S7 same-scene full native236.793s versus399.2s, all3IDs/actualapproaches/coords<=.1334m/0contacts/9strictproofsamples; S6triangle360.417s fullpass and trapezoid580.702s fails map1.2146m; evaluator-only pose correction5.37mm supports residual localization drift; newv6fixed-source28unique exterior/maps and stronger calibrated baseline dispatched after preserving legacyruns;13new auxiliary tests and23relevant tests passed;171videos uploaded;firstnewnativePID1563861/domain124 confirmed with all3inputgates and80matchedactualdepthpatchsamples",
+  "previous_goal_turn_evidence": "Progress:first S7fresh circle283.901s passes3exactIDs/actualapproaches/coords<=.112913m/0contacts/strictproof,inputgates;3approachrequestsoneperID and0repeatmapgoals;6finalgraph-only replay cases show calibratedtrap1.2146m->.1392m,but rawboundedcircle remains.7101m;newS8final-map-onlycandidate273tests/build,installedactualdatasetexport;17auxchecks;queuednativeprobe preserving2livefreshjobs;first40.4s225proofreplay+journalprevents misreading lateroverwritten456sproof as missed firstpass;175videosuploaded;freshtriangle375.1s fullpass3IDs/physicalproof/map<=.03431m/zero contacts;S8nativePID1587728/domain126/all3inputgates verified and v6resumed on actualPID1587842;freshtrapezoid345.2s also fullpass3IDs/physicalproof/coords<=.05261m/0contacts;first3correctedfreshmaps allstrictpasses,not populationrate;rectangle24nowactualnexttrainingnative;exact native triangle single-glance decision reproduced:ID292 one22.2px cue at14.4s,stationary2.048m followup15.5s,recognizedelapsed279.1s;pixel-aware closer followup remains hypothesis",
   "recovery_note": "Two exec sessions ended 143 for unknown reason. Frozen sources verified; recovery saves each finished episode and uses bounded batches.",
   "goal_success_rate": null,
   "native_baseline": {
@@ -562,7 +560,7 @@
     "baseline_seconds": 3.618,
     "candidate_seconds": 20.074
   },
-  "updated_utc": "2026-11-12T23:57:53.003433+00:00",
+  "updated_utc": "2026-11-13T01:05:17.438926+00:00",
   "motion_v2_native_result": {
     "seed": 8600007,
     "success": true,
@@ -633,41 +631,6 @@
     }
   ],
   "queued_jobs": [
-    {
-      "number": 1,
-      "unit": "osp-spatial-nov13-space6-00001.service",
-      "shape": "triangle"
-    },
-    {
-      "number": 2,
-      "unit": "osp-spatial-nov13-space6-00002.service",
-      "shape": "trapezoid"
-    },
-    {
-      "number": 3,
-      "unit": "osp-spatial-nov13-space6-00003.service",
-      "shape": "rectangle"
-    },
-    {
-      "number": 4,
-      "unit": "osp-spatial-nov13-space6-00004.service",
-      "shape": "l_shape"
-    },
-    {
-      "number": 5,
-      "unit": "osp-spatial-nov13-space6-00005.service",
-      "shape": "u_shape"
-    },
-    {
-      "number": 6,
-      "unit": "osp-spatial-nov13-space6-00006.service",
-      "shape": "rooms"
-    },
-    {
-      "number": 7,
-      "unit": "osp-spatial-nov13-space6-00007.service",
-      "shape": "circle"
-    },
     {
       "number": 8,
       "unit": "osp-spatial-nov13-space6-00008.service",
@@ -828,7 +791,7 @@
     "Saved maps, marker CSV, and real video"
   ],
   "approach_candidate_tests_passed": 177,
-  "latest_native_summary": "native_diagnostics/approach_v8_status_20261105.json",
+  "latest_native_summary": "repository_snapshot/pixel_focus_candidate.json",
   "latest_evaluator_fix": {
     "cause": "Result JSON read before writer completed",
     "atomic_write": true,
@@ -926,7 +889,7 @@
       }
     ]
   },
-  "latest_failure_analysis": "repository_snapshot/floor_pose_diagnosis.json",
+  "latest_failure_analysis": "repository_snapshot/fresh_space_failure_analysis.json",
   "sequential_fixes": {
     "summary": "/home/peter/simul/training_robust/native90/sequential_fixes_v10_v13/implementation.json",
     "state": "/home/peter/simul/training_robust/native90/sequential_fixes_v10_v13/sequence.json",
@@ -1250,16 +1213,42 @@
   },
   "spatial_curriculum": "repository_snapshot/spatial_curriculum.json",
   "dashboard": "http://127.0.0.1:8765",
-  "latest_goal_turn_evidence": "Progress:first S7fresh circle283.901s passes3exactIDs/actualapproaches/coords<=.112913m/0contacts/strictproof,inputgates;3approachrequestsoneperID and0repeatmapgoals;6finalgraph-only replay cases show calibratedtrap1.2146m->.1392m,but rawboundedcircle remains.7101m;newS8final-map-onlycandidate273tests/build,installedactualdatasetexport;17auxchecks;queuednativeprobe preserving2livefreshjobs;first40.4s225proofreplay+journalprevents misreading lateroverwritten456sproof as missed firstpass;175videosuploaded;freshtriangle375.1s fullpass3IDs/physicalproof/map<=.03431m/zero contacts;S8nativePID1587728/domain126/all3inputgates verified and v6resumed on actualPID1587842;freshtrapezoid345.2s also fullpass3IDs/physicalproof/coords<=.05261m/0contacts;first3correctedfreshmaps allstrictpasses,not populationrate;rectangle24nowactualnexttrainingnative;exact native triangle single-glance decision reproduced:ID292 one22.2px cue at14.4s,stationary2.048m followup15.5s,recognizedelapsed279.1s;pixel-aware closer followup remains hypothesis",
+  "latest_goal_turn_evidence": [
+    "New actual Gazebo pixel+SLAM UDP triangle206.764s strict pass versus375.1s reference;all9physical witness samples independently verified",
+    "Returned-cell distance5.68->1.67m and total path62.28->35.17m in this one scene;no cross-shape generalization claim",
+    "New CEM U-shape545.157s strict pass;rectangle2IDs timeout and L-shapedmap failure remain failures",
+    "L-shapedearly4m/s EKF spike and0.97m odomjump despite0.09m actual motion;localization and finalgraph replays quantify remaining error",
+    "Simple velocity rejection failed component comparison and was not queued;encoder-delta alternatives remain offline experiments",
+    "Actual new-source native tests270+owner4passed;new guard269 and encoder-delta275 tests/build passed;no production promotion",
+    "275-test unbounded encoder-delta candidate queued as engineering test on the preserved failed L;two recorded component segments have mixed error results,not promoted;actual existing native runs preserved while dispatcher reserves next slot"
+  ],
   "latest_navigation_diagnosis": "repository_snapshot/local_navigation_diagnosis.json",
   "current_native_supervisor": "osp-spatial-cem-v6.service",
   "next_training_driver": "spatial_native_curriculum_v6.py",
   "fine_evaluator_observer": "osp-spatial-evaluator-observer-v6.service",
   "physical_credit_auditor": "training_robust/audit_approach_evidence.py",
-  "priority_diagnostic": "osp-graph-landmark-regression-v1.service",
-  "next_priority": "Audit S8actualtrapezoid finalmap CSV afterSLAM serialization and strict physical proofs;keep nativeCEMtrapezoid intact and continue all7family fresh training",
+  "priority_diagnostic": "osp-encoder-delta-v1.service",
+  "next_priority": "275-test relative encoder-pose candidate queued on the preserved failed L-shaped scene;verify actual input profile,coordinate errors,all IDs/physical credit and time before adoption",
   "depth_quality_observer": "osp-depth-quality-space6.service",
   "goal_success_rate_note": "Corrected-source fresh-map qualification is incomplete; do not infer independent success probability from older descriptive training counts",
   "graph_landmark_candidate": "repository_snapshot/graph_landmark_candidate.json",
-  "first_corrected_fresh_space_native": "repository_snapshot/first_corrected_fresh_space_native.json"
+  "first_corrected_fresh_space_native": "repository_snapshot/first_corrected_fresh_space_native.json",
+  "pixel_focus_candidate": "/home/peter/simul/repository_snapshot/pixel_focus_candidate.json",
+  "current_native_jobs": [
+    {
+      "number": 6,
+      "shape": "rooms",
+      "unit": "osp-spatial-nov13-space6-00006.service",
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00006_train_g0_0",
+      "status": "running"
+    },
+    {
+      "number": 7,
+      "shape": "circle",
+      "unit": "osp-spatial-nov13-space6-00007.service",
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00007_train_g0_1",
+      "status": "running"
+    }
+  ],
+  "fresh_space_failure_analysis": "/home/peter/simul/repository_snapshot/fresh_space_failure_analysis.json"
 }

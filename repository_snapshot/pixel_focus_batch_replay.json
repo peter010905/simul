@@ -1,0 +1,751 @@
+{
+  "evidence_type": "additional_recorded_single_glance_shadows_not_native_generalization",
+  "cases": 7,
+  "shapes": [
+    "circle",
+    "l_shape",
+    "rooms",
+    "trapezoid",
+    "triangle"
+  ],
+  "results": [
+    {
+      "evidence_type": "same_observed_inputs_pixel_followup_shadow_not_new_native_success",
+      "baseline": {
+        "evidence_type": "exact_recorded_single_glance_followup_replay_not_new_policy_performance",
+        "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00001_train_g0_0/episodes/1191300101",
+        "snapshot": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00001_train_g0_0/episodes/1191300101/policy_decisions/0002.npz",
+        "id": 292,
+        "baseline_choice_reproduced": true,
+        "first_observation_stamp_sim_s": 14.4,
+        "first_minimum_edge_pixels": 22.203603744506836,
+        "first_followup": {
+          "stamp": 15.5,
+          "id": 292,
+          "point": [
+            0.20885505840348068,
+            1.9736643235184332
+          ],
+          "observer": [
+            0.2970205022992236,
+            -0.1311974741676196
+          ],
+          "goal": [
+            0.30947928293604104,
+            -0.07235144776863331,
+            1.619937304060473
+          ],
+          "stationary": true,
+          "attempt": 1
+        },
+        "first_followup_range_m": 2.0484886553061963,
+        "first_followup_was_stationary": true,
+        "recognition_and_approach_journal": [
+          {
+            "event": "id_confirmed",
+            "elapsed_seconds": 279.1,
+            "state": "running",
+            "confirmed_ids": [
+              292,
+              440,
+              841
+            ],
+            "approached_ids": [
+              440,
+              841
+            ],
+            "id": 292
+          },
+          {
+            "event": "approach_estimated_within_1_5m",
+            "elapsed_seconds": 375.1,
+            "state": "running",
+            "confirmed_ids": [
+              292,
+              440,
+              841
+            ],
+            "approached_ids": [
+              292,
+              440,
+              841
+            ],
+            "id": 292
+          }
+        ],
+        "hypothesis": "A safe closer viewpoint for a single modest-resolution detection may improve confirmation before leaving;test pixel-aware view costs without weakening ID or approach gates",
+        "candidate_source_built": false,
+        "new_native_speed_improvement_verified": false,
+        "ground_truth_policy_inputs": false,
+        "limits": [
+          "A delayed later recognition does not prove why intervening RGB frames did not decode the marker",
+          "One captured decision cannot establish total time saved or population reliability",
+          "Only the early sensor cue and observed planner map enter the replay;journal timing describes the recorded future"
+        ],
+        "source_sha256": {
+          "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime/src/osp_mission/osp_mission/marker_focus.py": "49ad1b615fb79de8526dd62259e9b7e3df8a3e031f332e4d463361f283f7e52f",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00001_train_g0_0/episodes/1191300101/policy_decisions/0002.npz": "70b29ffaceeed046ce1b93934dbe686b4703907d0f0b204d34ad8abcef066fa8",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00001_train_g0_0/episodes/1191300101/marker_followups.jsonl": "f9ebd53d48674634997b2e03313667166d6c7f74c90c324882d62676880e8223",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00001_train_g0_0/episodes/1191300101/marker_observations.json": "735e59212155d3790f58caca4b5cd99abc35c0df4dc319cb8a3548d523805024",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00001_train_g0_0/episodes/1191300101/marker_events.jsonl": "79d820606ec67200bc39205b156df5bff79b8beaf962031b15edadea6c5c6144"
+        }
+      },
+      "candidate_workspace": "/home/peter/simul/training_robust/native90/pixel_focus_v2/runtime",
+      "candidate_source_sha256": "494dec5e7a23e291cb55c9fd41044e9947fdbb0d18783bb4aec28b21a9310e92",
+      "candidate": {
+        "x": 0.2632598958575381,
+        "y": 0.6748032402375468,
+        "distance": 0.7485829009211504,
+        "features": [
+          0.0,
+          0.0,
+          0.7485829009211504,
+          0.09077397036058832,
+          0.0
+        ],
+        "targeted": true,
+        "yaw": 1.6126584274599598,
+        "scan_angle": 0.0,
+        "focus_id": 292,
+        "observed_min_edge_pixels": 22.203603744506836,
+        "predicted_min_edge_pixels": 35.98192131118351,
+        "view_resolution_penalty_s": 0.004017486403664172
+      },
+      "candidate_range_to_marker_m": 1.3,
+      "known_free_inflated_direct_route": true,
+      "known_free_marker_sightline": true,
+      "source_inputs_contain_ground_truth": false,
+      "new_native_speed_or_success_verified": false,
+      "limits": [
+        "Image-size scaling is a heuristic estimate;actual decoding must be tested in Gazebo",
+        "One early decision does not simulate a new path or establish mission time saved",
+        "Original native result and journal are preserved;ID and actual approach thresholds are unchanged"
+      ],
+      "shape": "triangle"
+    },
+    {
+      "evidence_type": "same_observed_inputs_pixel_followup_shadow_not_new_native_success",
+      "baseline": {
+        "evidence_type": "exact_recorded_single_glance_followup_replay_not_new_policy_performance",
+        "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00001_train_g0_0/episodes/1191300101",
+        "snapshot": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00001_train_g0_0/episodes/1191300101/policy_decisions/0003.npz",
+        "id": 440,
+        "baseline_choice_reproduced": true,
+        "first_observation_stamp_sim_s": 18.4,
+        "first_minimum_edge_pixels": 18.0,
+        "first_followup": {
+          "stamp": 20.5,
+          "id": 440,
+          "point": [
+            -3.4937556044777813,
+            1.6561910153567478
+          ],
+          "observer": [
+            0.36853201393722784,
+            -0.06424134168984937
+          ],
+          "goal": [
+            -1.0711214694306932,
+            0.5962546305997289,
+            2.7291704495243154
+          ],
+          "stationary": false,
+          "attempt": 1
+        },
+        "first_followup_range_m": 2.644356498664114,
+        "first_followup_was_stationary": false,
+        "recognition_and_approach_journal": [
+          {
+            "event": "id_confirmed",
+            "elapsed_seconds": 15.1,
+            "state": "running",
+            "confirmed_ids": [
+              440
+            ],
+            "approached_ids": [],
+            "id": 440
+          },
+          {
+            "event": "approach_estimated_within_1_5m",
+            "elapsed_seconds": 27.1,
+            "state": "running",
+            "confirmed_ids": [
+              440
+            ],
+            "approached_ids": [
+              440
+            ],
+            "id": 440
+          }
+        ],
+        "hypothesis": "A safe closer viewpoint for a single modest-resolution detection may improve confirmation before leaving;test pixel-aware view costs without weakening ID or approach gates",
+        "candidate_source_built": false,
+        "new_native_speed_improvement_verified": false,
+        "ground_truth_policy_inputs": false,
+        "limits": [
+          "A delayed later recognition does not prove why intervening RGB frames did not decode the marker",
+          "One captured decision cannot establish total time saved or population reliability",
+          "Only the early sensor cue and observed planner map enter the replay;journal timing describes the recorded future"
+        ],
+        "source_sha256": {
+          "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime/src/osp_mission/osp_mission/marker_focus.py": "49ad1b615fb79de8526dd62259e9b7e3df8a3e031f332e4d463361f283f7e52f",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00001_train_g0_0/episodes/1191300101/policy_decisions/0003.npz": "d6427ed2c8e3db8573ad577b6d25340b564f6c8fda5378e0d29e989f1e35f564",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00001_train_g0_0/episodes/1191300101/marker_followups.jsonl": "f9ebd53d48674634997b2e03313667166d6c7f74c90c324882d62676880e8223",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00001_train_g0_0/episodes/1191300101/marker_observations.json": "735e59212155d3790f58caca4b5cd99abc35c0df4dc319cb8a3548d523805024",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00001_train_g0_0/episodes/1191300101/marker_events.jsonl": "79d820606ec67200bc39205b156df5bff79b8beaf962031b15edadea6c5c6144"
+        }
+      },
+      "candidate_workspace": "/home/peter/simul/training_robust/native90/pixel_focus_v2/runtime",
+      "candidate_source_sha256": "494dec5e7a23e291cb55c9fd41044e9947fdbb0d18783bb4aec28b21a9310e92",
+      "candidate": {
+        "x": -1.3927690763941611,
+        "y": 0.72031943826343,
+        "distance": 1.8777648629987809,
+        "features": [
+          0.0,
+          0.0,
+          1.8777648629987809,
+          0.6705266560378913,
+          0.0
+        ],
+        "targeted": true,
+        "yaw": 2.722534058931839,
+        "scan_angle": 0.0,
+        "focus_id": 440,
+        "observed_min_edge_pixels": 18.0,
+        "predicted_min_edge_pixels": 33.08977768404957,
+        "view_resolution_penalty_s": 0.6467160702112063
+      },
+      "candidate_range_to_marker_m": 2.3,
+      "known_free_inflated_direct_route": true,
+      "known_free_marker_sightline": true,
+      "source_inputs_contain_ground_truth": false,
+      "new_native_speed_or_success_verified": false,
+      "limits": [
+        "Image-size scaling is a heuristic estimate;actual decoding must be tested in Gazebo",
+        "One early decision does not simulate a new path or establish mission time saved",
+        "Original native result and journal are preserved;ID and actual approach thresholds are unchanged"
+      ],
+      "shape": "triangle"
+    },
+    {
+      "evidence_type": "same_observed_inputs_pixel_followup_shadow_not_new_native_success",
+      "baseline": {
+        "evidence_type": "exact_recorded_single_glance_followup_replay_not_new_policy_performance",
+        "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00000_train_g0_0/episodes/1163000000",
+        "snapshot": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00000_train_g0_0/episodes/1163000000/policy_decisions/0017.npz",
+        "id": 337,
+        "baseline_choice_reproduced": true,
+        "first_observation_stamp_sim_s": 36.4,
+        "first_minimum_edge_pixels": 19.0,
+        "first_followup": {
+          "stamp": 286.016,
+          "id": 337,
+          "point": [
+            3.4979576897290228,
+            7.262981340392342
+          ],
+          "observer": [
+            1.1004508104711253,
+            -1.7894550424296596
+          ],
+          "goal": [
+            2.9221957600327624,
+            6.506398691100349,
+            0.9202901878259904
+          ],
+          "stationary": false,
+          "attempt": 1
+        },
+        "first_followup_range_m": 0.9507466039367438,
+        "first_followup_was_stationary": false,
+        "recognition_and_approach_journal": [],
+        "hypothesis": "A safe closer viewpoint for a single modest-resolution detection may improve confirmation before leaving;test pixel-aware view costs without weakening ID or approach gates",
+        "candidate_source_built": false,
+        "new_native_speed_improvement_verified": false,
+        "ground_truth_policy_inputs": false,
+        "limits": [
+          "A delayed later recognition does not prove why intervening RGB frames did not decode the marker",
+          "One captured decision cannot establish total time saved or population reliability",
+          "Only the early sensor cue and observed planner map enter the replay;journal timing describes the recorded future"
+        ],
+        "source_sha256": {
+          "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime/src/osp_mission/osp_mission/marker_focus.py": "49ad1b615fb79de8526dd62259e9b7e3df8a3e031f332e4d463361f283f7e52f",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00000_train_g0_0/episodes/1163000000/policy_decisions/0017.npz": "fa21a11dcd4cf34980851dd890c9d4a51eebafea2f518d48b59d4fce81d549e5",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00000_train_g0_0/episodes/1163000000/marker_followups.jsonl": "318e70ee11ecfcf46a628ed26018471eb3ade5b3b68eef5f8a5c308cce88f736",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00000_train_g0_0/episodes/1163000000/marker_observations.json": "ebeaa5c17ccde4557293797903a2c24480f3bda42a2ce44a875f40de18a7d664",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00000_train_g0_0/episodes/1163000000/marker_events.jsonl": "bb1634893d388bd4fe605da45c38f11b59065007fff93cf07a29198a70b3cee0"
+        }
+      },
+      "candidate_workspace": "/home/peter/simul/training_robust/native90/pixel_focus_v2/runtime",
+      "candidate_source_sha256": "494dec5e7a23e291cb55c9fd41044e9947fdbb0d18783bb4aec28b21a9310e92",
+      "candidate": {
+        "x": 2.9221957600327624,
+        "y": 6.506398691100349,
+        "yaw": 0.9202901878259904,
+        "scan_angle": 0.0,
+        "distance": 2.8455844546740834,
+        "features": [
+          3.7500000558793545,
+          0.0,
+          2.8455844546740834,
+          0.04483320660351042,
+          1.5687944266301464e-06
+        ],
+        "focus_id": 337,
+        "observed_min_edge_pixels": 19.0,
+        "predicted_min_edge_pixels": 187.14376054439015,
+        "view_resolution_penalty_s": 0.0
+      },
+      "candidate_range_to_marker_m": 0.9507466039367438,
+      "known_free_inflated_direct_route": true,
+      "known_free_marker_sightline": true,
+      "source_inputs_contain_ground_truth": false,
+      "new_native_speed_or_success_verified": false,
+      "limits": [
+        "Image-size scaling is a heuristic estimate;actual decoding must be tested in Gazebo",
+        "One early decision does not simulate a new path or establish mission time saved",
+        "Original native result and journal are preserved;ID and actual approach thresholds are unchanged"
+      ],
+      "shape": "circle"
+    },
+    {
+      "evidence_type": "same_observed_inputs_pixel_followup_shadow_not_new_native_success",
+      "baseline": {
+        "evidence_type": "exact_recorded_single_glance_followup_replay_not_new_policy_performance",
+        "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00011_train_g0_1/episodes/1163001111",
+        "snapshot": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00011_train_g0_1/episodes/1163001111/policy_decisions/0002.npz",
+        "id": 222,
+        "baseline_choice_reproduced": true,
+        "first_observation_stamp_sim_s": 24.8,
+        "first_minimum_edge_pixels": 19.10497283935547,
+        "first_followup": {
+          "stamp": 26.002,
+          "id": 222,
+          "point": [
+            4.940200809171078,
+            -0.8644981076105753
+          ],
+          "observer": [
+            2.2689907636480595,
+            -0.9467022112485226
+          ],
+          "goal": [
+            2.320451994750019,
+            -0.976645294919859,
+            0.042782253226258546
+          ],
+          "stationary": true,
+          "attempt": 1
+        },
+        "first_followup_range_m": 2.6221481350758817,
+        "first_followup_was_stationary": true,
+        "recognition_and_approach_journal": [
+          {
+            "event": "id_confirmed",
+            "elapsed_seconds": 154.222,
+            "state": "running",
+            "confirmed_ids": [
+              222,
+              501
+            ],
+            "approached_ids": [
+              501
+            ],
+            "id": 222
+          },
+          {
+            "event": "approach_estimated_within_1_5m",
+            "elapsed_seconds": 202.723,
+            "state": "running",
+            "confirmed_ids": [
+              222,
+              501
+            ],
+            "approached_ids": [
+              222,
+              501
+            ],
+            "id": 222
+          }
+        ],
+        "hypothesis": "A safe closer viewpoint for a single modest-resolution detection may improve confirmation before leaving;test pixel-aware view costs without weakening ID or approach gates",
+        "candidate_source_built": false,
+        "new_native_speed_improvement_verified": false,
+        "ground_truth_policy_inputs": false,
+        "limits": [
+          "A delayed later recognition does not prove why intervening RGB frames did not decode the marker",
+          "One captured decision cannot establish total time saved or population reliability",
+          "Only the early sensor cue and observed planner map enter the replay;journal timing describes the recorded future"
+        ],
+        "source_sha256": {
+          "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime/src/osp_mission/osp_mission/marker_focus.py": "49ad1b615fb79de8526dd62259e9b7e3df8a3e031f332e4d463361f283f7e52f",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00011_train_g0_1/episodes/1163001111/policy_decisions/0002.npz": "b63ea17507785354cb0b859983af98d48e1a8ea894b91a295fd0874bd6722a7d",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00011_train_g0_1/episodes/1163001111/marker_followups.jsonl": "84af1d926ba637e2373e1bcda32fb6bd9c3dfb2764fb13062b64078e0a436c7b",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00011_train_g0_1/episodes/1163001111/marker_observations.json": "85f5e76634b0ab426c2fdeaf6de54aa04ab8aea4309446f7675d4ba33233c7dc",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00011_train_g0_1/episodes/1163001111/marker_events.jsonl": "2658c579f14cffa00a3fb6e69e01b61c784b3b1ab74eb6d4d0d86a5f4af9193c"
+        }
+      },
+      "candidate_workspace": "/home/peter/simul/training_robust/native90/pixel_focus_v2/runtime",
+      "candidate_source_sha256": "494dec5e7a23e291cb55c9fd41044e9947fdbb0d18783bb4aec28b21a9310e92",
+      "candidate": {
+        "x": 3.6408159519575514,
+        "y": -0.9044855161810781,
+        "distance": 1.3223343046145193,
+        "features": [
+          0.0,
+          0.0,
+          1.3223343046145193,
+          0.3701305184010444,
+          0.0
+        ],
+        "targeted": true,
+        "yaw": 0.030764397642526576,
+        "scan_angle": 0.0,
+        "focus_id": 222,
+        "observed_min_edge_pixels": 19.10497283935547,
+        "predicted_min_edge_pixels": 39.27504240534988,
+        "view_resolution_penalty_s": 0.0
+      },
+      "candidate_range_to_marker_m": 1.3,
+      "known_free_inflated_direct_route": true,
+      "known_free_marker_sightline": true,
+      "source_inputs_contain_ground_truth": false,
+      "new_native_speed_or_success_verified": false,
+      "limits": [
+        "Image-size scaling is a heuristic estimate;actual decoding must be tested in Gazebo",
+        "One early decision does not simulate a new path or establish mission time saved",
+        "Original native result and journal are preserved;ID and actual approach thresholds are unchanged"
+      ],
+      "shape": "l_shape"
+    },
+    {
+      "evidence_type": "same_observed_inputs_pixel_followup_shadow_not_new_native_success",
+      "baseline": {
+        "evidence_type": "exact_recorded_single_glance_followup_replay_not_new_policy_performance",
+        "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00016_train_g0_2/episodes/1163001616",
+        "snapshot": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00016_train_g0_2/episodes/1163001616/policy_decisions/0040.npz",
+        "id": 411,
+        "baseline_choice_reproduced": true,
+        "first_observation_stamp_sim_s": 498.4,
+        "first_minimum_edge_pixels": 18.027755737304688,
+        "first_followup": {
+          "stamp": 500.5,
+          "id": 411,
+          "point": [
+            9.592808818670523,
+            0.7897383017708169
+          ],
+          "observer": [
+            11.93021922497769,
+            0.7282860350360654
+          ],
+          "goal": [
+            11.878607231234314,
+            0.7579941692527623,
+            3.127705999450317
+          ],
+          "stationary": true,
+          "attempt": 1
+        },
+        "first_followup_range_m": 2.286018826000449,
+        "first_followup_was_stationary": true,
+        "recognition_and_approach_journal": [],
+        "hypothesis": "A safe closer viewpoint for a single modest-resolution detection may improve confirmation before leaving;test pixel-aware view costs without weakening ID or approach gates",
+        "candidate_source_built": false,
+        "new_native_speed_improvement_verified": false,
+        "ground_truth_policy_inputs": false,
+        "limits": [
+          "A delayed later recognition does not prove why intervening RGB frames did not decode the marker",
+          "One captured decision cannot establish total time saved or population reliability",
+          "Only the early sensor cue and observed planner map enter the replay;journal timing describes the recorded future"
+        ],
+        "source_sha256": {
+          "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime/src/osp_mission/osp_mission/marker_focus.py": "49ad1b615fb79de8526dd62259e9b7e3df8a3e031f332e4d463361f283f7e52f",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00016_train_g0_2/episodes/1163001616/policy_decisions/0040.npz": "f96e0da1da9d1a618125a3bfb2269da76ae370a5c0546e72764a3c6e956cc68d",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00016_train_g0_2/episodes/1163001616/marker_followups.jsonl": "2a5407dd738f6f3a5ff3b72f7ed9158abef791dbdf61a15bba44555d4e2b669c",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00016_train_g0_2/episodes/1163001616/marker_observations.json": "6eb884b5467b145213d14d1235b6be82c471581111ba35eb2485b4974db8425a",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00016_train_g0_2/episodes/1163001616/marker_events.jsonl": "2b5ab84110a9dbaf0628a645aeb12ea12b71b9eda737eca9e3ff7bfe42ebbad5"
+        }
+      },
+      "candidate_workspace": "/home/peter/simul/training_robust/native90/pixel_focus_v2/runtime",
+      "candidate_source_sha256": "494dec5e7a23e291cb55c9fd41044e9947fdbb0d18783bb4aec28b21a9310e92",
+      "candidate": {
+        "x": 10.492497938291198,
+        "y": 0.7660848023219837,
+        "distance": 1.3861329050010776,
+        "features": [
+          0.0,
+          0.0,
+          1.3861329050010776,
+          0.31791529780518335,
+          0.0
+        ],
+        "targeted": true,
+        "yaw": 3.11530796102317,
+        "scan_angle": 0.0,
+        "focus_id": 411,
+        "observed_min_edge_pixels": 18.027755737304688,
+        "predicted_min_edge_pixels": 46.83647155864904,
+        "view_resolution_penalty_s": 0.0
+      },
+      "candidate_range_to_marker_m": 0.9000000000000004,
+      "known_free_inflated_direct_route": true,
+      "known_free_marker_sightline": true,
+      "source_inputs_contain_ground_truth": false,
+      "new_native_speed_or_success_verified": false,
+      "limits": [
+        "Image-size scaling is a heuristic estimate;actual decoding must be tested in Gazebo",
+        "One early decision does not simulate a new path or establish mission time saved",
+        "Original native result and journal are preserved;ID and actual approach thresholds are unchanged"
+      ],
+      "shape": "trapezoid"
+    },
+    {
+      "evidence_type": "same_observed_inputs_pixel_followup_shadow_not_new_native_success",
+      "baseline": {
+        "evidence_type": "exact_recorded_single_glance_followup_replay_not_new_policy_performance",
+        "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00020_train_g0_2/episodes/1163002020",
+        "snapshot": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00020_train_g0_2/episodes/1163002020/policy_decisions/0029.npz",
+        "id": 123,
+        "baseline_choice_reproduced": true,
+        "first_observation_stamp_sim_s": 345.2,
+        "first_minimum_edge_pixels": 18.0,
+        "first_followup": {
+          "stamp": 366.0,
+          "id": 123,
+          "point": [
+            7.675440988837386,
+            -0.899219545264291
+          ],
+          "observer": [
+            9.247511244901599,
+            -7.740312696816074
+          ],
+          "goal": [
+            9.005831393397894,
+            -2.669219635906339,
+            2.2153417100837642
+          ],
+          "stationary": false,
+          "attempt": 1
+        },
+        "first_followup_range_m": 2.214235522571962,
+        "first_followup_was_stationary": false,
+        "recognition_and_approach_journal": [
+          {
+            "event": "id_confirmed",
+            "elapsed_seconds": 367.876,
+            "state": "running",
+            "confirmed_ids": [
+              123,
+              180
+            ],
+            "approached_ids": [],
+            "id": 123
+          },
+          {
+            "event": "approach_estimated_within_1_5m",
+            "elapsed_seconds": 374.876,
+            "state": "running",
+            "confirmed_ids": [
+              123,
+              180
+            ],
+            "approached_ids": [
+              123
+            ],
+            "id": 123
+          }
+        ],
+        "hypothesis": "A safe closer viewpoint for a single modest-resolution detection may improve confirmation before leaving;test pixel-aware view costs without weakening ID or approach gates",
+        "candidate_source_built": false,
+        "new_native_speed_improvement_verified": false,
+        "ground_truth_policy_inputs": false,
+        "limits": [
+          "A delayed later recognition does not prove why intervening RGB frames did not decode the marker",
+          "One captured decision cannot establish total time saved or population reliability",
+          "Only the early sensor cue and observed planner map enter the replay;journal timing describes the recorded future"
+        ],
+        "source_sha256": {
+          "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime/src/osp_mission/osp_mission/marker_focus.py": "49ad1b615fb79de8526dd62259e9b7e3df8a3e031f332e4d463361f283f7e52f",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00020_train_g0_2/episodes/1163002020/policy_decisions/0029.npz": "5b262a71582de3fa23093334bfd0cdcde3bde501257cb3f42d9b6d137b5941c5",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00020_train_g0_2/episodes/1163002020/marker_followups.jsonl": "c4bbe972eb074366fb36f68d639f4fc599ddc020ab988f7d77e9cfde448bab0a",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00020_train_g0_2/episodes/1163002020/marker_observations.json": "404bd2afdc60bf276f606f97cb678149bc371fd7926d47dd09895614845f82fa",
+          "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00020_train_g0_2/episodes/1163002020/marker_events.jsonl": "8f9621daf7dc3a94fa2d3429fa764a0e0449716fcc77f603ea3bdf4f65fec64d"
+        }
+      },
+      "candidate_workspace": "/home/peter/simul/training_robust/native90/pixel_focus_v2/runtime",
+      "candidate_source_sha256": "494dec5e7a23e291cb55c9fd41044e9947fdbb0d18783bb4aec28b21a9310e92",
+      "candidate": {
+        "x": 9.005831393397894,
+        "y": -2.669219635906339,
+        "yaw": 2.2153417100837642,
+        "scan_angle": 0.0,
+        "distance": 1.8328427397861038,
+        "features": [
+          4.700000070035458,
+          0.7500000111758708,
+          1.8328427397861038,
+          2.388190095427019,
+          0.006939041064827228
+        ],
+        "focus_id": 123,
+        "observed_min_edge_pixels": 18.0,
+        "predicted_min_edge_pixels": 57.062213231795056,
+        "view_resolution_penalty_s": 0.0
+      },
+      "candidate_range_to_marker_m": 2.214235522571962,
+      "known_free_inflated_direct_route": true,
+      "known_free_marker_sightline": true,
+      "source_inputs_contain_ground_truth": false,
+      "new_native_speed_or_success_verified": false,
+      "limits": [
+        "Image-size scaling is a heuristic estimate;actual decoding must be tested in Gazebo",
+        "One early decision does not simulate a new path or establish mission time saved",
+        "Original native result and journal are preserved;ID and actual approach thresholds are unchanged"
+      ],
+      "shape": "rooms"
+    },
+    {
+      "evidence_type": "same_observed_inputs_pixel_followup_shadow_not_new_native_success",
+      "baseline": {
+        "evidence_type": "exact_recorded_single_glance_followup_replay_not_new_policy_performance",
+        "episode": "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_2/case_0/episodes/1171300202",
+        "snapshot": "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_2/case_0/episodes/1171300202/policy_decisions/0016.npz",
+        "id": 367,
+        "baseline_choice_reproduced": true,
+        "first_observation_stamp_sim_s": 251.6,
+        "first_minimum_edge_pixels": 22.56102752685547,
+        "first_followup": {
+          "stamp": 253.0,
+          "id": 367,
+          "point": [
+            -6.659726216018918,
+            6.3160568593115975
+          ],
+          "observer": [
+            -7.421395534060556,
+            4.949330100968075
+          ],
+          "goal": [
+            -7.28971346520267,
+            5.056686632059002,
+            1.106956808183494
+          ],
+          "stationary": true,
+          "attempt": 1
+        },
+        "first_followup_range_m": 1.4081538635477182,
+        "first_followup_was_stationary": true,
+        "recognition_and_approach_journal": [
+          {
+            "event": "id_confirmed",
+            "elapsed_seconds": 252.7,
+            "state": "running",
+            "confirmed_ids": [
+              225,
+              367
+            ],
+            "approached_ids": [
+              225
+            ],
+            "id": 367
+          },
+          {
+            "event": "approach_estimated_within_1_5m",
+            "elapsed_seconds": 255.2,
+            "state": "running",
+            "confirmed_ids": [
+              225,
+              367
+            ],
+            "approached_ids": [
+              225,
+              367
+            ],
+            "id": 367
+          }
+        ],
+        "hypothesis": "A safe closer viewpoint for a single modest-resolution detection may improve confirmation before leaving;test pixel-aware view costs without weakening ID or approach gates",
+        "candidate_source_built": false,
+        "new_native_speed_improvement_verified": false,
+        "ground_truth_policy_inputs": false,
+        "limits": [
+          "A delayed later recognition does not prove why intervening RGB frames did not decode the marker",
+          "One captured decision cannot establish total time saved or population reliability",
+          "Only the early sensor cue and observed planner map enter the replay;journal timing describes the recorded future"
+        ],
+        "source_sha256": {
+          "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime/src/osp_mission/osp_mission/marker_focus.py": "49ad1b615fb79de8526dd62259e9b7e3df8a3e031f332e4d463361f283f7e52f",
+          "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_2/case_0/episodes/1171300202/policy_decisions/0016.npz": "f41bdd90530607c7e2f3e17f7dd22beb3594fedf392751b8341e738ab16bedc6",
+          "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_2/case_0/episodes/1171300202/marker_followups.jsonl": "4ab813a206a0cd8c7e5823eb1168645f2af6b9e7192bbcfcf98b7dead0f15d21",
+          "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_2/case_0/episodes/1171300202/marker_observations.json": "16b5270d19900a677032f8d8850527c664a3a21ff215b2b429c7b5a2e60c89ec",
+          "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_2/case_0/episodes/1171300202/marker_events.jsonl": "010c7310640043f02851039f58a949d8bd145e5c80bf4d0fdeea65a88d349efe"
+        }
+      },
+      "candidate_workspace": "/home/peter/simul/training_robust/native90/pixel_focus_v2/runtime",
+      "candidate_source_sha256": "494dec5e7a23e291cb55c9fd41044e9947fdbb0d18783bb4aec28b21a9310e92",
+      "candidate": {
+        "x": -7.097849136962431,
+        "y": 5.529896375603643,
+        "distance": 0.5106264601806919,
+        "features": [
+          0.0,
+          0.0,
+          0.5106264601806919,
+          0.34744762580439303,
+          0.0
+        ],
+        "targeted": true,
+        "yaw": 1.0623699803527473,
+        "scan_angle": 0.0,
+        "focus_id": 367,
+        "observed_min_edge_pixels": 22.56102752685547,
+        "predicted_min_edge_pixels": 39.22196632326887,
+        "view_resolution_penalty_s": 0.0
+      },
+      "candidate_range_to_marker_m": 0.9,
+      "known_free_inflated_direct_route": true,
+      "known_free_marker_sightline": true,
+      "source_inputs_contain_ground_truth": false,
+      "new_native_speed_or_success_verified": false,
+      "limits": [
+        "Image-size scaling is a heuristic estimate;actual decoding must be tested in Gazebo",
+        "One early decision does not simulate a new path or establish mission time saved",
+        "Original native result and journal are preserved;ID and actual approach thresholds are unchanged"
+      ],
+      "shape": "trapezoid"
+    }
+  ],
+  "skipped": [
+    {
+      "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00001_train_g0_0/episodes/1191300101",
+      "id": 841,
+      "reason": "Require exact recorded source choice before drawing a follow-up diagnosis"
+    },
+    {
+      "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00000_train_g0_0/episodes/1163000000",
+      "id": 252,
+      "reason": "followup_not_uniquely_selected_in_final_planner_audit"
+    },
+    {
+      "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00004_train_g0_0/episodes/1163000404",
+      "id": 74,
+      "reason": "Require exact recorded source choice before drawing a follow-up diagnosis"
+    },
+    {
+      "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00009_train_g0_1/episodes/1163000909",
+      "id": 417,
+      "reason": "Require exact recorded source choice before drawing a follow-up diagnosis"
+    }
+  ],
+  "qualification_or_holdout_data_consumed": false,
+  "ground_truth_policy_inputs": false,
+  "limits": [
+    "Only uniquely matched first single-frame cues with unchanged baseline focus code are included",
+    "Other pending ID hints are absent;candidate choice is conditional on the recorded selected ID",
+    "Straight-line blockage is not necessarily an unsafe global Nav2 route for ordinary planner candidates",
+    "No native mission success,time saving,or transfer rate can be inferred from these shadows"
+  ]
+}

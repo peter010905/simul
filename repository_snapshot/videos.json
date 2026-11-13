@@ -1,7 +1,7 @@
 {
-  "updated_utc": "2026-11-12T23:57:08.818241+00:00",
+  "updated_utc": "2026-11-13T01:00:43.770772+00:00",
   "release_url": "https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11",
-  "uploaded_verified": 175,
+  "uploaded_verified": 180,
   "videos": [
     {
       "asset": "fix_v10_escape_regression3__9802005.mp4",
@@ -577,6 +577,22 @@
       "actual_approach_1_5m": true,
       "recording_frames": 2708,
       "recording_seconds": 541.6,
+      "uploaded_verified": true
+    },
+    {
+      "asset": "graph_landmark_regression_v1__case_0__1171300202.mp4",
+      "local_path": "training_robust/native90/graph_landmark_regression_v1/case_0/episodes/1171300202/video/mission.mp4",
+      "bytes": 14090211,
+      "sha256": "2cc304d6f2de4c7543215af0d3a56f95b4beaaed7b57a1014334c80aab0bd8be",
+      "url": "https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/graph_landmark_regression_v1__case_0__1171300202.mp4",
+      "original_evaluator_success": true,
+      "reason": "all_targets_found",
+      "elapsed_sim_seconds": 524.241,
+      "targets": 3,
+      "collisions": 0,
+      "actual_approach_1_5m": true,
+      "recording_frames": 2623,
+      "recording_seconds": 524.6,
       "uploaded_verified": true
     },
     {
@@ -1844,6 +1860,22 @@
       "uploaded_verified": true
     },
     {
+      "asset": "pixel_focus_udp_regression_v1__case_0__1191300101.mp4",
+      "local_path": "training_robust/native90/pixel_focus_udp_regression_v1/case_0/episodes/1191300101/video/mission.mp4",
+      "bytes": 6317085,
+      "sha256": "bccd7b102a411a786278c2eafd6bba7d59165189039cfda839fc9cb857b2d23a",
+      "url": "https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/pixel_focus_udp_regression_v1__case_0__1191300101.mp4",
+      "original_evaluator_success": true,
+      "reason": "all_targets_found",
+      "elapsed_sim_seconds": 206.764,
+      "targets": 3,
+      "collisions": 0,
+      "actual_approach_1_5m": true,
+      "recording_frames": 1035,
+      "recording_seconds": 207.0,
+      "uploaded_verified": true
+    },
+    {
       "asset": "reacquisition_startup_regression_v2__case_0__1163000000.mp4",
       "local_path": "training_robust/native90/reacquisition_startup_regression_v2/case_0/episodes/1163000000/video/mission.mp4",
       "bytes": 6369683,
@@ -2728,6 +2760,54 @@
       "uploaded_verified": true
     },
     {
+      "asset": "spatial_cem_v6__00003_train_g0_0__1191300303.mp4",
+      "local_path": "training_robust/native90/spatial_cem_v6/jobs/00003_train_g0_0/episodes/1191300303/video/mission.mp4",
+      "bytes": 13250431,
+      "sha256": "6917b7df9f34e4f2e4cb65b4a2fe46ea07c53ee6736f4b4619aa467d876ca0e0",
+      "url": "https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00003_train_g0_0__1191300303.mp4",
+      "original_evaluator_success": false,
+      "reason": "timeout",
+      "elapsed_sim_seconds": 600.058,
+      "targets": 2,
+      "collisions": 0,
+      "actual_approach_1_5m": true,
+      "recording_frames": 3003,
+      "recording_seconds": 600.6,
+      "uploaded_verified": true
+    },
+    {
+      "asset": "spatial_cem_v6__00004_train_g0_0__1191300404.mp4",
+      "local_path": "training_robust/native90/spatial_cem_v6/jobs/00004_train_g0_0/episodes/1191300404/video/mission.mp4",
+      "bytes": 12094160,
+      "sha256": "1fda4b0d554375474d0cbfe83d79df73c08b5a3ba5410e756c975b141092c71e",
+      "url": "https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00004_train_g0_0__1191300404.mp4",
+      "original_evaluator_success": false,
+      "reason": "all_targets_found",
+      "elapsed_sim_seconds": 409.664,
+      "targets": 3,
+      "collisions": 0,
+      "actual_approach_1_5m": true,
+      "recording_frames": 2051,
+      "recording_seconds": 410.2,
+      "uploaded_verified": true
+    },
+    {
+      "asset": "spatial_cem_v6__00005_train_g0_0__1191300505.mp4",
+      "local_path": "training_robust/native90/spatial_cem_v6/jobs/00005_train_g0_0/episodes/1191300505/video/mission.mp4",
+      "bytes": 11641756,
+      "sha256": "0fb8c6c42e3d0a43b2daec2aa7ba8c47efbc964b2cc9079699e09e6e4e0f3b8a",
+      "url": "https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00005_train_g0_0__1191300505.mp4",
+      "original_evaluator_success": true,
+      "reason": "all_targets_found",
+      "elapsed_sim_seconds": 545.157,
+      "targets": 3,
+      "collisions": 0,
+      "actual_approach_1_5m": true,
+      "recording_frames": 2728,
+      "recording_seconds": 545.6,
+      "uploaded_verified": true
+    },
+    {
       "asset": "strict_approach_regression_v1__case_0__1163000000.mp4",
       "local_path": "training_robust/native90/strict_approach_regression_v1/case_0/episodes/1163000000/video/mission.mp4",
       "bytes": 15682189,
@@ -2814,10 +2894,6 @@
       "reason": "Final evaluation or recording metadata absent"
     },
     {
-      "path": "training_robust/native90/graph_landmark_regression_v1/case_0/episodes/1171300202/video/mission.mp4",
-      "reason": "Final evaluation or recording metadata absent"
-    },
-    {
       "path": "training_robust/native90/marker_focus_v6_service_screen3/episodes/8600133/video/mission.mp4",
       "reason": "Final evaluation or recording metadata absent"
     },
@@ -2826,7 +2902,11 @@
       "reason": "Final evaluation or recording metadata absent"
     },
     {
-      "path": "training_robust/native90/spatial_cem_v6/jobs/00003_train_g0_0/episodes/1191300303/video/mission.mp4",
+      "path": "training_robust/native90/spatial_cem_v6/jobs/00006_train_g0_0/episodes/1191300606/video/mission.mp4",
+      "reason": "Final evaluation or recording metadata absent"
+    },
+    {
+      "path": "training_robust/native90/spatial_cem_v6/jobs/00007_train_g0_1/episodes/1191300707/video/mission.mp4",
       "reason": "Final evaluation or recording metadata absent"
     }
   ],

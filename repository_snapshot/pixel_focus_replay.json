@@ -1,0 +1,113 @@
+{
+  "evidence_type": "same_observed_inputs_pixel_followup_shadow_not_new_native_success",
+  "baseline": {
+    "evidence_type": "exact_recorded_single_glance_followup_replay_not_new_policy_performance",
+    "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00001_train_g0_0/episodes/1191300101",
+    "snapshot": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00001_train_g0_0/episodes/1191300101/policy_decisions/0002.npz",
+    "id": 292,
+    "baseline_choice_reproduced": true,
+    "first_observation_stamp_sim_s": 14.4,
+    "first_minimum_edge_pixels": 22.203603744506836,
+    "first_followup": {
+      "stamp": 15.5,
+      "id": 292,
+      "point": [
+        0.20885505840348068,
+        1.9736643235184332
+      ],
+      "observer": [
+        0.2970205022992236,
+        -0.1311974741676196
+      ],
+      "goal": [
+        0.30947928293604104,
+        -0.07235144776863331,
+        1.619937304060473
+      ],
+      "stationary": true,
+      "attempt": 1
+    },
+    "first_followup_range_m": 2.0484886553061963,
+    "first_followup_was_stationary": true,
+    "recognition_and_approach_journal": [
+      {
+        "event": "id_confirmed",
+        "elapsed_seconds": 279.1,
+        "state": "running",
+        "confirmed_ids": [
+          292,
+          440,
+          841
+        ],
+        "approached_ids": [
+          440,
+          841
+        ],
+        "id": 292
+      },
+      {
+        "event": "approach_estimated_within_1_5m",
+        "elapsed_seconds": 375.1,
+        "state": "running",
+        "confirmed_ids": [
+          292,
+          440,
+          841
+        ],
+        "approached_ids": [
+          292,
+          440,
+          841
+        ],
+        "id": 292
+      }
+    ],
+    "hypothesis": "A safe closer viewpoint for a single modest-resolution detection may improve confirmation before leaving;test pixel-aware view costs without weakening ID or approach gates",
+    "candidate_source_built": false,
+    "new_native_speed_improvement_verified": false,
+    "ground_truth_policy_inputs": false,
+    "limits": [
+      "A delayed later recognition does not prove why intervening RGB frames did not decode the marker",
+      "One captured decision cannot establish total time saved or population reliability",
+      "Only the early sensor cue and observed planner map enter the replay;journal timing describes the recorded future"
+    ],
+    "source_sha256": {
+      "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime/src/osp_mission/osp_mission/marker_focus.py": "49ad1b615fb79de8526dd62259e9b7e3df8a3e031f332e4d463361f283f7e52f",
+      "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00001_train_g0_0/episodes/1191300101/policy_decisions/0002.npz": "70b29ffaceeed046ce1b93934dbe686b4703907d0f0b204d34ad8abcef066fa8",
+      "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00001_train_g0_0/episodes/1191300101/marker_followups.jsonl": "f9ebd53d48674634997b2e03313667166d6c7f74c90c324882d62676880e8223",
+      "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00001_train_g0_0/episodes/1191300101/marker_observations.json": "735e59212155d3790f58caca4b5cd99abc35c0df4dc319cb8a3548d523805024",
+      "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00001_train_g0_0/episodes/1191300101/marker_events.jsonl": "79d820606ec67200bc39205b156df5bff79b8beaf962031b15edadea6c5c6144"
+    }
+  },
+  "candidate_workspace": "/home/peter/simul/training_robust/native90/pixel_focus_v2/runtime",
+  "candidate_source_sha256": "494dec5e7a23e291cb55c9fd41044e9947fdbb0d18783bb4aec28b21a9310e92",
+  "candidate": {
+    "x": 0.2632598958575381,
+    "y": 0.6748032402375468,
+    "distance": 0.7485829009211504,
+    "features": [
+      0.0,
+      0.0,
+      0.7485829009211504,
+      0.09077397036058832,
+      0.0
+    ],
+    "targeted": true,
+    "yaw": 1.6126584274599598,
+    "scan_angle": 0.0,
+    "focus_id": 292,
+    "observed_min_edge_pixels": 22.203603744506836,
+    "predicted_min_edge_pixels": 35.98192131118351,
+    "view_resolution_penalty_s": 0.004017486403664172
+  },
+  "candidate_range_to_marker_m": 1.3,
+  "known_free_inflated_direct_route": true,
+  "known_free_marker_sightline": true,
+  "source_inputs_contain_ground_truth": false,
+  "new_native_speed_or_success_verified": false,
+  "limits": [
+    "Image-size scaling is a heuristic estimate;actual decoding must be tested in Gazebo",
+    "One early decision does not simulate a new path or establish mission time saved",
+    "Original native result and journal are preserved;ID and actual approach thresholds are unchanged"
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T23:57:53.003433+00:00",
+  "captured_utc": "2026-11-13T01:08:55.939883+00:00",
   "purpose": "Repository upload snapshot; not a live dashboard",
   "tests_passed_final": 189,
   "native_validation_complete": false,
@@ -137,26 +137,26 @@
   "previous_regressions_complete": true,
   "latest_change": {
     "date": "2026-11-13",
-    "name": "Corrected-source first3freshmaps pass:circle283.901s,triangle375.1s,trapezoid345.2s;final-map candidate273tests now actualnative with v6handoffverified",
-    "status": "fresh_rectangle24obstacles_and_original_failed_trapezoid24_graph_regression_both_running",
+    "name": "Native pixel+SLAM UDP triangle206.764s strict pass;U545.157s strict pass;L map failure narrowed to early odom jump;simple velocity rejection rejected by component replay",
+    "status": "fresh_rooms_and_next_circle_CEM_training_running",
     "generalization_verified": false
   },
   "latest_recording": {
-    "evidence_type": "fresh_trapezoid_corrected_source_native_training_not_holdout",
-    "scenario_seed": 1191300202,
+    "evidence_type": "new_native_pixel_focus_plus_SlAM_UDP_engineering_comparison",
     "original_benchmark_success": true,
-    "elapsed_sim_seconds": 345.2,
+    "elapsed_sim_seconds": 206.764,
     "targets": 3,
     "collisions": 0,
     "full_completion_audit_passed": true,
     "position_errors_m": {
-      "733": 0.052607660460885136,
-      "326": 0.01898060739841684,
-      "439": 0.014515868203114275
+      "841": 0.015214213076391167,
+      "292": 0.029998763231824144,
+      "440": 0.012162870598091376
     },
-    "all_three_physical_credits_verified": true,
-    "all_saved_range_witnesses_verified": true,
-    "report": "spatial_curriculum.json",
+    "local_video": "/home/peter/simul/training_robust/native90/pixel_focus_udp_regression_v1/case_0/episodes/1191300101/video/mission.mp4",
+    "physical_credit_all_three_verified": true,
+    "scenario_seed": 1191300101,
+    "report": "pixel_focus_candidate.json",
     "hardware_validated": false,
     "production_promoted": false
   },
@@ -168,14 +168,33 @@
     "failure_observer": "osp-native-failure-evidence-v6.service",
     "depth_quality_observer": "osp-depth-quality-space6.service",
     "legacy_drainer": "completed",
-    "CEM_dispatch": "active_after_verified_graph_native_PID",
+    "CEM_dispatch": "intentionally_paused_for_encoder_delta_slot",
     "previous_CEM": "superseded_by_spatial_cem_v6",
     "previous_screen": "superseded_by_spatial_cem_v6",
     "completed_priority_diagnostic": "completed_windowed_witness_regression",
-    "priority_diagnostic": "osp-graph-landmark-regression-v1.service",
-    "diagnostic_evaluator": "osp-graph-landmark-evaluator-v1.service",
-    "priority_diagnostic_status": "native_running_all_effective_input_gates_verified",
-    "diagnostic_failure_observer": "osp-graph-landmark-failure-evidence-v1.service"
+    "priority_diagnostic": "osp-encoder-delta-v1.service",
+    "diagnostic_evaluator": "osp-encoder-delta-evaluator-v1.service",
+    "priority_diagnostic_status": "prepared",
+    "diagnostic_failure_observer": "osp-encoder-delta-failure-evidence-v1.service",
+    "campaign": "/home/peter/simul/training_robust/native90/spatial_cem_v6",
+    "unit": "osp-spatial-cem-v6.service",
+    "current_jobs": [
+      {
+        "number": 6,
+        "shape": "rooms",
+        "unit": "osp-spatial-nov13-space6-00006.service",
+        "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00006_train_g0_0",
+        "status": "running"
+      },
+      {
+        "number": 7,
+        "shape": "circle",
+        "unit": "osp-spatial-nov13-space6-00007.service",
+        "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00007_train_g0_1",
+        "status": "running"
+      }
+    ],
+    "next_priority": "Analyze velocity spike before promoting a motion source"
   },
   "pending_tf_comparison": {
     "status": "completed",
@@ -196,9 +215,9 @@
   "dashboard": "dashboard.json",
   "spatial_geometry": "spatial_geometry_v6.json",
   "revisit_analysis": "revisit_analysis.json",
-  "latest_candidate_tests_passed": 273,
+  "latest_candidate_tests_passed": 270,
   "latest_candidate_tests_skipped": 0,
-  "latest_candidate_runtime": "/home/peter/simul/training_robust/native90/graph_landmarks_v1/runtime",
+  "latest_candidate_runtime": "/home/peter/simul/training_robust/native90/pixel_slam_udp_v1/runtime",
   "production_promoted": false,
   "floor_diagnosis": "floor_pose_diagnosis.json",
   "local_navigation_diagnosis": "local_navigation_diagnosis.json",
@@ -207,8 +226,8 @@
   "physical_credit_verification": "physical_credit_verification.json",
   "latest_observability_change": "Read-only depth patch quality capture matches nearest recorded depth within0.15sim s; detector range provenance remains unknown; no GT subscription or robot commands",
   "landmark_seed_diagnosis": "landmark_seed_diagnosis.json",
-  "latest_built_recovery_candidate": "/home/peter/simul/training_robust/native90/reacquisition_v1/runtime",
-  "recovery_candidate_tests_passed": 223,
+  "latest_built_recovery_candidate": "/home/peter/simul/training_robust/native90/encoder_delta_v3/runtime",
+  "recovery_candidate_tests_passed": 275,
   "reacquisition_startup_failure": "reacquisition_startup_failure.json",
   "startup_guard_candidate": "startup_guard_candidate.json",
   "runtime_failure_diagnosis": "runtime_failure_diagnosis.json",
@@ -231,21 +250,21 @@
   "witness_dropout_diagnosis": "witness_dropout_diagnosis.json",
   "calibrated_trapezoid_localization_failure": "calibrated_trapezoid_localization_failure.json",
   "latest_verified_successful_recording": {
-    "evidence_type": "fresh_trapezoid_corrected_source_native_training_not_holdout",
-    "scenario_seed": 1191300202,
+    "evidence_type": "new_native_pixel_focus_plus_SlAM_UDP_engineering_comparison",
     "original_benchmark_success": true,
-    "elapsed_sim_seconds": 345.2,
+    "elapsed_sim_seconds": 206.764,
     "targets": 3,
     "collisions": 0,
     "full_completion_audit_passed": true,
     "position_errors_m": {
-      "733": 0.052607660460885136,
-      "326": 0.01898060739841684,
-      "439": 0.014515868203114275
+      "841": 0.015214213076391167,
+      "292": 0.029998763231824144,
+      "440": 0.012162870598091376
     },
-    "all_three_physical_credits_verified": true,
-    "all_saved_range_witnesses_verified": true,
-    "report": "spatial_curriculum.json",
+    "local_video": "/home/peter/simul/training_robust/native90/pixel_focus_udp_regression_v1/case_0/episodes/1191300101/video/mission.mp4",
+    "physical_credit_all_three_verified": true,
+    "scenario_seed": 1191300101,
+    "report": "pixel_focus_candidate.json",
     "hardware_validated": false,
     "production_promoted": false
   },
@@ -274,5 +293,19 @@
   "graph_landmark_candidate": "graph_landmark_candidate.json",
   "first_corrected_fresh_space_native": "first_corrected_fresh_space_native.json",
   "trapezoid_witness_diagnosis": "trapezoid_witness_diagnosis.json",
-  "triangle_single_glance_diagnosis": "triangle_single_glance_diagnosis.json"
+  "triangle_single_glance_diagnosis": "triangle_single_glance_diagnosis.json",
+  "pixel_focus_candidate": "pixel_focus_candidate.json",
+  "pixel_focus_replay": "pixel_focus_replay.json",
+  "pixel_focus_batch_replay": "pixel_focus_batch_replay.json",
+  "pixel_focus_startup_failure": "pixel_focus_startup_failure.json",
+  "fresh_space_failure_analysis": "fresh_space_failure_analysis.json",
+  "video_release_verified_count": 180,
+  "priority_diagnostic": {
+    "unit": "osp-encoder-delta-v1.service",
+    "root": "/home/peter/simul/training_robust/native90/encoder_delta_regression_v1",
+    "status": "queued_waiting_for_existing_native_slot",
+    "native_job_status": "prepared",
+    "existing_native_services_preserved": true
+  },
+  "coordinator_slot_reservation": "CEM dispatcher paused until a verified new native PID claims a slot;existing Gazebo missions continue"
 }
