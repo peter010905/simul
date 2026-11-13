@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-13T03:18:19.379488+00:00",
+  "captured_utc": "2026-11-13T03:25:09.149490+00:00",
   "purpose": "Repository upload snapshot; not a live dashboard",
   "tests_passed_final": 189,
   "native_validation_complete": false,
@@ -137,8 +137,8 @@
   "previous_regressions_complete": true,
   "latest_change": {
     "date": "2026-11-13",
-    "name": "Confirm planned60deg obstacle-face look overwritten by-120deg;stage348-test correction",
-    "status": "two_native_runs_active;new_candidate_not_queued",
+    "name": "Diagnose unread marker bearings159deg/-177deg;queue single-change face orientation native comparison",
+    "status": "two_current_native_missions_preserved;new_trial_waiting_for_slot",
     "generalization_verified": false
   },
   "latest_recording": {
@@ -300,52 +300,15 @@
   "fresh_space_failure_analysis": "fresh_space_failure_analysis.json",
   "video_release_verified_count": 192,
   "priority_diagnostic": {
-    "root": "/home/peter/simul/training_robust/native90/directed_integrated_screen_v1",
-    "unit": "osp-directed-integrated-v2.service",
-    "status": "native_running",
-    "verified_native_pid": 1696629,
-    "current_native_status": {
-      "state": "running",
-      "approached_ids": [
-        991
-      ],
-      "targets": 1,
-      "collisions": 0,
-      "elapsed_seconds": 439.748,
-      "active_action": "nav",
-      "readiness_reason": "",
-      "sensor_interruptions": 0,
-      "nav2_lifecycle": {
-        "controller_server": 3,
-        "planner_server": 3,
-        "behavior_server": 3,
-        "bt_navigator": 3
-      },
-      "drive_controllers": {
-        "diffdrive_controller": "active",
-        "joint_state_broadcaster": "active"
-      },
-      "confirmed_surface_cells": 23,
-      "confirmed_face_anchors": 0,
-      "reassociated_face_records": 0,
-      "camera_diagnostics": {
-        "received": 2217,
-        "late": 1,
-        "invalid_calibration": 0,
-        "duplicate": 0,
-        "accepted": 2216,
-        "coverage_updates": 2199,
-        "tf_waits": 17
-      }
-    },
-    "input_gates": {
-      "slam_transport_gate": true,
-      "floor_sensor_gate": true,
-      "runtime_configuration_gate": true,
-      "velocity_profile_gate": true
-    }
+    "root": "/home/peter/simul/training_robust/native90/face_intent_regression_v2",
+    "unit": "osp-face-intent-v2.service",
+    "status": "waiting_for_existing_native_slot",
+    "coordinator_active": true,
+    "native_status": "prepared",
+    "verified_native_pid": null,
+    "same_world_and_weights": true
   },
-  "coordinator_slot_reservation": false,
+  "coordinator_slot_reservation": true,
   "near_pass_inspection_candidate": "near_pass_inspection_candidate.json",
   "fresh_space_missed_views": "fresh_space_missed_views.json",
   "next_priority_diagnostic": "Three failed-world diagnostic replays followed by seven distinct fresh physical training worlds;no holdout or promotion",
@@ -445,18 +408,18 @@
   "second_L_localization_failure": "repository_snapshot/second_L_localization_failure.json",
   "current_jobs": [
     {
-      "number": 15,
-      "shape": "triangle",
-      "native_pid": 1702882,
+      "campaign": "spatial_cem_v6",
+      "number": 16,
+      "verified_native_pid": 1714850,
       "status": {
         "state": "running",
         "approached_ids": [
-          29,
-          136
+          356,
+          782
         ],
-        "targets": 2,
+        "targets": 3,
         "collisions": 0,
-        "elapsed_seconds": 125.39099999999999,
+        "elapsed_seconds": 163.875,
         "active_action": "nav",
         "readiness_reason": "",
         "sensor_interruptions": 0,
@@ -470,17 +433,54 @@
           "diffdrive_controller": "active",
           "joint_state_broadcaster": "active"
         },
-        "confirmed_surface_cells": 80,
+        "confirmed_surface_cells": 138,
         "confirmed_face_anchors": 0,
         "reassociated_face_records": 0,
         "camera_diagnostics": {
-          "received": 648,
+          "received": 837,
           "late": 0,
           "invalid_calibration": 0,
           "duplicate": 0,
-          "accepted": 648,
-          "coverage_updates": 640,
-          "tf_waits": 6
+          "accepted": 837,
+          "coverage_updates": 831,
+          "tf_waits": 5
+        }
+      }
+    },
+    {
+      "campaign": "directed_integrated_screen_v1",
+      "number": 1,
+      "verified_native_pid": 1716779,
+      "status": {
+        "state": "running",
+        "approached_ids": [],
+        "targets": 0,
+        "collisions": 0,
+        "elapsed_seconds": 140.6,
+        "active_action": "nav",
+        "readiness_reason": "",
+        "sensor_interruptions": 0,
+        "nav2_lifecycle": {
+          "controller_server": 3,
+          "planner_server": 3,
+          "behavior_server": 3,
+          "bt_navigator": 3
+        },
+        "drive_controllers": {
+          "diffdrive_controller": "active",
+          "joint_state_broadcaster": "active"
+        },
+        "confirmed_surface_cells": 71,
+        "confirmed_face_anchors": 0,
+        "reassociated_face_records": 0,
+        "camera_diagnostics": {
+          "received": 719,
+          "late": 0,
+          "invalid_calibration": 0,
+          "duplicate": 0,
+          "accepted": 719,
+          "coverage_updates": 714,
+          "tf_waits": 4
         }
       }
     }

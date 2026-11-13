@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-13T03:15:15.375488+00:00",
+  "captured_utc": "2026-11-13T03:25:09.149490+00:00",
   "evidence_type": "actual_orientation_override_and_tested_candidate",
   "proof": {
     "snapshot": "training_robust/native90/directed_integrated_screen_v1/case_0/episodes/1191300303/policy_decisions/0001.npz",
@@ -217,12 +217,25 @@
   },
   "ground_truth_inputs": false,
   "creates_coverage_or_recognition_credit": false,
-  "native_queued": false,
+  "native_queued": true,
   "native_performance_verified": false,
   "production_promoted": false,
   "limits": [
     "Existing robot optical camera heading is aligned with body heading.",
     "Does not yet skip a planned sweep if its surfaces were already fully observed during navigation.",
     "Marker recognition,physical approach,map accuracy,time and collision gates are unchanged;fresh native comparison remains necessary."
-  ]
+  ],
+  "native_comparison": {
+    "root": "/home/peter/simul/training_robust/native90/face_intent_regression_v2",
+    "unit": "osp-face-intent-v2.service",
+    "coordinator_active": true,
+    "native_status": "prepared",
+    "verified_native_pid": null,
+    "source_changes": [
+      "osp_mission/face_directed_look.py",
+      "osp_mission/mission.py",
+      "test/test_face_directed_runtime.py"
+    ],
+    "original_scenes_and_sources_preserved": true
+  }
 }

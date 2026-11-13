@@ -88,5 +88,75 @@
     "Original same-map reference decoded2IDs;this composed candidate decoded1ID. No recognition benefit is established.",
     "One real marker-directed look executed;nearby-look allowance8used by244sim s.",
     "Additional face inspection intent override was verified from this actual trace;new face_intent_v2 candidate remains untested natively."
-  ]
+  ],
+  "missed_view_geometry": {
+    "evidence_type": "offline_2D_camera_geometry_at_recorded_image_stamps",
+    "episode": "/home/peter/simul/training_robust/native90/directed_integrated_screen_v1/case_0/episodes/1191300303",
+    "rows": [
+      {
+        "id": 220,
+        "decoded_frames": 0,
+        "modeled_readable_in_fov_frames_before_occlusion": 0,
+        "maximum_predicted_pixels_in_front_fov": 2.398887731432973,
+        "minimum_bearing_error_deg_when_predicted_readable": 74.46552718057688,
+        "closest_camera_distance_m": 0.7996496243076624,
+        "bearing_error_deg_at_closest": 158.96735167695758
+      },
+      {
+        "id": 991,
+        "decoded_frames": 89,
+        "modeled_readable_in_fov_frames_before_occlusion": 89,
+        "maximum_predicted_pixels_in_front_fov": 65.12461812683163,
+        "minimum_bearing_error_deg_when_predicted_readable": 0.3759042550470149,
+        "closest_camera_distance_m": 0.5245591661533687,
+        "bearing_error_deg_at_closest": 88.6963595664255
+      },
+      {
+        "id": 465,
+        "decoded_frames": 0,
+        "modeled_readable_in_fov_frames_before_occlusion": 2,
+        "maximum_predicted_pixels_in_front_fov": 29.140394293613987,
+        "minimum_bearing_error_deg_when_predicted_readable": 34.593935924052836,
+        "closest_camera_distance_m": 0.9469122655167741,
+        "bearing_error_deg_at_closest": -177.44633119909946
+      }
+    ],
+    "inferred_camera_extrinsic_xy_m": [
+      -0.05960101738477327,
+      2.7376884941324175e-07
+    ],
+    "inferred_camera_yaw_offset_rad": 8.615330671091215e-14,
+    "actual_horizontal_half_fov_deg": 35.80986219567645,
+    "source_sha256": {
+      "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191300303.yaml": "a988399ea5c0f80d1abd2b6d7188e301bfab4e72ecd1e470f449f488b796291a",
+      "/home/peter/simul/training_robust/native90/calibrated_gain_v1/native_camera_calibration.json": "1a5bb787f8c2f64cbc4a7503e1edc933625407d6bb665d7b61be1ba95db3641c",
+      "/home/peter/simul/training_robust/native90/directed_integrated_screen_v1/case_0/episodes/1191300303/pose_trace.csv": "6bd496ade58c9525b41627e13deb62b4f8d8b38682509e5b6dadf617277ee414",
+      "/home/peter/simul/training_robust/native90/directed_integrated_screen_v1/case_0/episodes/1191300303/marker_observations.json": "ced4bd11ec323e0ca4e5adb461a9a1392e5c8e5aa1b330eccc065ba3f8ec98ec",
+      "/home/peter/simul/training_robust/native90/directed_integrated_screen_v1/case_0/episodes/1191300303/runtime_trace.csv": "ab5668d49aeb365eba0197d15ef6e8e53ee839919a50ac1ddb27d88190049539",
+      "/home/peter/simul/training_robust/native90/directed_integrated_screen_v1/case_0/episodes/1191300303/evaluation.json": "d307b719bb94f342c489a550f95d02df08e1f35f9327cee1871644328f74eb01",
+      "/home/peter/simul/training_robust/native90/directed_integrated_screen_v1/case_0/episodes/1191300303/evaluator_gt_fine_1794538053016758608.csv": "22e57979fd6592a56a223e739801ab0e77aecb9991dde2612fabda6ba028c789"
+    },
+    "ground_truth_used_only_by_evaluator": true,
+    "policy_or_result_modified": false,
+    "limits": [
+      "Pinhole edge size is approximate;occlusion,3D corner projection and image decoder behavior are not simulated",
+      "Camera extrinsics are inferred from accepted observations and interpolated audit poses",
+      "This diagnoses missed viewing direction;it is not a counterfactual mission success or speed result"
+    ]
+  },
+  "next_controlled_comparison": {
+    "root": "/home/peter/simul/training_robust/native90/face_intent_regression_v2",
+    "coordinator": "osp-face-intent-v2.service",
+    "same_scene_and_weights": true,
+    "changed_files": [
+      "osp_mission/face_directed_look.py",
+      "osp_mission/mission.py",
+      "test/test_face_directed_runtime.py"
+    ],
+    "runtime_tests": 348,
+    "supervision_checks": 10,
+    "native_status": "prepared",
+    "native_pid": null,
+    "comparison_limit": "Same world,weights and integrated source;only face-observation orientation handling differs. One repeat is not a generalization or isolated timing estimate."
+  }
 }
