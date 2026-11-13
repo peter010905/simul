@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-13T02:40:35.956730+00:00",
+  "captured_utc": "2026-11-13T03:03:56.166658+00:00",
   "evidence_type": "authoritative_completed_native_training_bottleneck_audit",
   "fixed_incumbent": {
     "successes": 4,
@@ -7,34 +7,35 @@
     "percent": 57.142857142857146
   },
   "mixed_coefficient_training": {
-    "successes": 7,
-    "completed": 12,
-    "percent": 58.333333333333336
+    "successes": 8,
+    "completed": 15,
+    "percent": 53.333333333333336
   },
   "success_definition": "3exact IDs,three sensor-relative near witnesses,actual1.5m approaches,final coordinate error<=0.5m,zero contacts,<=600sim s,independent gates",
   "independent_generalization_success_rate": null,
   "rate_limit": "Training layouts and coefficient mixtures are descriptive;not an independent deployment probability",
   "failures": {
-    "marker_recognition": 3,
-    "map_localization": 2
+    "marker_recognition": 4,
+    "map_localization": 2,
+    "input_verification_missing": 1
   },
-  "zero_collision_completed": 12,
-  "correct_all_three_ID_missions": 9,
-  "geometric_all_three_closest_pass_missions": 12,
+  "zero_collision_completed": 15,
+  "correct_all_three_ID_missions": 11,
+  "geometric_all_three_closest_pass_missions": 15,
   "successful_mission_time_sim_s": {
-    "mean": 416.58542857142857,
-    "median": 375.1
+    "mean": 379.16087500000003,
+    "median": 360.15
   },
   "rtf": {
     "minimum": 0.312717010629583,
-    "maximum": 0.34915274059439444,
-    "median": 0.3465537820138443
+    "maximum": 0.3535466043164875,
+    "median": 0.34652634829630036
   },
   "motion": {
-    "observed_sim_s": 5707.512,
-    "stationary_sim_s": 590.6140000000008,
-    "stationary_turn_sim_s": 1629.6709999999994,
-    "stationary_plus_turn_fraction": 0.3890110086496534,
+    "observed_sim_s": 6675.186,
+    "stationary_sim_s": 695.2660000000004,
+    "stationary_turn_sim_s": 1897.9309999999996,
+    "stationary_plus_turn_fraction": 0.38848310743700626,
     "limit": "Includes necessary camera verification and safe observation turns;not all wasted time"
   },
   "confirmed_marker_direction_bug": {
@@ -48,7 +49,8 @@
     "log_sha256": "9f3b5f782d4624d1d8a63a1653b8ced449dfad12748e3a3a04dadf754c8ffcbf",
     "deployed_fix_verified": false,
     "limit": "This proves intent was overwritten;it does not attribute the entire279s recognition delay to this single cause",
-    "candidate_fix": "repository_snapshot/marker_directed_candidate.json"
+    "candidate_fix": "repository_snapshot/marker_directed_candidate.json",
+    "native_directed_action_observed": true
   },
   "host_sample": {
     "native_pids": [
@@ -915,21 +917,212 @@
       },
       "authoritative_evaluation": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00011_train_g0_1/episodes/1191301111/evaluation.json",
       "evaluation_sha256": "a6de11fb59985f11495e92a102e7a236ea9a53722b25b1f4d82fe51904b450b2"
+    },
+    {
+      "number": 12,
+      "role": "1",
+      "shape": "u_shape",
+      "seed": 1191301212,
+      "parameters": [
+        1.0,
+        2.9879238625750273,
+        0.3166938245555003,
+        0.9355471497656873,
+        0.41004466645383036
+      ],
+      "outcome": {
+        "success": false,
+        "targets": 2,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 600.431,
+        "infrastructure_failure": false,
+        "reason": "timeout"
+      },
+      "failure_category": "marker_recognition",
+      "exact_ids": false,
+      "map_positions": false,
+      "geometric_closest_passes_all3": true,
+      "sensor_verified_ids": [
+        21,
+        797
+      ],
+      "coordinate_errors_m": {
+        "797": 0.00601208299053735,
+        "21": 0.0057447782875799085
+      },
+      "wall_s": 1726.4773951731622,
+      "rtf": 0.3535466043164875,
+      "motion": {
+        "observed_sim_s": 601.29,
+        "stationary_sim_s": 62.62799999999967,
+        "stationary_turn_sim_s": 175.23600000000036,
+        "longest_stationary_interval_s": 2.2439999999999714,
+        "caveat": "Stationary camera verification and observation turns can be necessary; not automatically wasted time"
+      },
+      "revisit": {
+        "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00012_train_g0_1/episodes/1191301212",
+        "source": "Independent Gazebo ground-truth trajectory; evaluator only",
+        "path_distance_m": 95.17088509560602,
+        "distance_in_returned_cells_m": 10.570292901574565,
+        "returned_distance_fraction": 0.11106645578588391,
+        "cell_reentries_after_15_sim_seconds": 20,
+        "cell_size_m": 0.6,
+        "minimum_path_step_m": 0.2,
+        "navigation_goals": 32,
+        "repeated_map_goals_within_0_8m_excluding_last_two": 2,
+        "limits": [
+          "Returned cells include necessary corridor transit and marker approach; this is not waste distance",
+          "Repeated goals use SLAM map coordinates and may be affected by frame correction",
+          "These are simulation measurements, not observations from a physical robot"
+        ]
+      },
+      "authoritative_evaluation": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00012_train_g0_1/episodes/1191301212/evaluation.json",
+      "evaluation_sha256": "d95dd51f738b63aae31cab6319beaa70424b69bc79f4b610108e3f123d82fa98"
+    },
+    {
+      "number": 13,
+      "role": "1",
+      "shape": "rooms",
+      "seed": 1191301313,
+      "parameters": [
+        1.0,
+        2.9879238625750273,
+        0.3166938245555003,
+        0.9355471497656873,
+        0.41004466645383036
+      ],
+      "outcome": {
+        "success": false,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 246.7,
+        "infrastructure_failure": true,
+        "reason": "native_input_or_effective_motion_configuration_unverified"
+      },
+      "failure_category": "input_verification_missing",
+      "exact_ids": true,
+      "map_positions": true,
+      "geometric_closest_passes_all3": true,
+      "sensor_verified_ids": [
+        430,
+        624,
+        976
+      ],
+      "coordinate_errors_m": {
+        "976": 0.1293179805164691,
+        "624": 0.25637288869776853,
+        "430": 0.13679388876811902
+      },
+      "wall_s": 746.3862215252593,
+      "rtf": 0.34419221570968905,
+      "motion": {
+        "observed_sim_s": 247.656,
+        "stationary_sim_s": 30.395999999999958,
+        "stationary_turn_sim_s": 64.87200000000001,
+        "longest_stationary_interval_s": 2.0400000000000063,
+        "caveat": "Stationary camera verification and observation turns can be necessary; not automatically wasted time"
+      },
+      "revisit": {
+        "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00013_train_g0_1/episodes/1191301313",
+        "source": "Independent Gazebo ground-truth trajectory; evaluator only",
+        "path_distance_m": 39.900277060092094,
+        "distance_in_returned_cells_m": 0.0,
+        "returned_distance_fraction": 0.0,
+        "cell_reentries_after_15_sim_seconds": 0,
+        "cell_size_m": 0.6,
+        "minimum_path_step_m": 0.2,
+        "navigation_goals": 17,
+        "repeated_map_goals_within_0_8m_excluding_last_two": 0,
+        "limits": [
+          "Returned cells include necessary corridor transit and marker approach; this is not waste distance",
+          "Repeated goals use SLAM map coordinates and may be affected by frame correction",
+          "These are simulation measurements, not observations from a physical robot"
+        ]
+      },
+      "authoritative_evaluation": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00013_train_g0_1/episodes/1191301313/evaluation.json",
+      "evaluation_sha256": "f1744f286d3237e01e39b3a860658ea78faa48c77234555f1bf81f02f9a69ed9"
+    },
+    {
+      "number": 14,
+      "role": "2",
+      "shape": "circle",
+      "seed": 1191301414,
+      "parameters": [
+        1.0,
+        2.674919605990809,
+        0.48242051480811976,
+        1.671897241930709,
+        0.8432736861909724
+      ],
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 117.189,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      },
+      "failure_category": "none",
+      "exact_ids": true,
+      "map_positions": true,
+      "geometric_closest_passes_all3": true,
+      "sensor_verified_ids": [
+        35,
+        78,
+        371
+      ],
+      "coordinate_errors_m": {
+        "371": 0.0741862449923997,
+        "35": 0.0505517750863608,
+        "78": 0.3436253209703434
+      },
+      "wall_s": 394.4357634196058,
+      "rtf": 0.3232843698000973,
+      "motion": {
+        "observed_sim_s": 118.728,
+        "stationary_sim_s": 11.62800000000001,
+        "stationary_turn_sim_s": 28.152000000000005,
+        "longest_stationary_interval_s": 2.0400000000000063,
+        "caveat": "Stationary camera verification and observation turns can be necessary; not automatically wasted time"
+      },
+      "revisit": {
+        "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00014_train_g0_2/episodes/1191301414",
+        "source": "Independent Gazebo ground-truth trajectory; evaluator only",
+        "path_distance_m": 21.363282929109833,
+        "distance_in_returned_cells_m": 0.0,
+        "returned_distance_fraction": 0.0,
+        "cell_reentries_after_15_sim_seconds": 0,
+        "cell_size_m": 0.6,
+        "minimum_path_step_m": 0.2,
+        "navigation_goals": 6,
+        "repeated_map_goals_within_0_8m_excluding_last_two": 0,
+        "limits": [
+          "Returned cells include necessary corridor transit and marker approach; this is not waste distance",
+          "Repeated goals use SLAM map coordinates and may be affected by frame correction",
+          "These are simulation measurements, not observations from a physical robot"
+        ]
+      },
+      "authoritative_evaluation": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00014_train_g0_2/episodes/1191301414/evaluation.json",
+      "evaluation_sha256": "1d84eca40be25015186913bef378f2b69a54079f9ed9df4ec99461b76c439b74"
     }
   ],
   "current_native_jobs": [
     {
-      "number": 12,
-      "shape": "u_shape",
-      "native_pid": 1682637,
+      "number": 15,
+      "shape": "triangle",
+      "native_pid": 1702882,
       "status": {
         "state": "running",
         "approached_ids": [
-          797
+          29,
+          136
         ],
-        "targets": 1,
+        "targets": 2,
         "collisions": 0,
-        "elapsed_seconds": 410.431,
+        "elapsed_seconds": 125.39099999999999,
         "active_action": "nav",
         "readiness_reason": "",
         "sensor_interruptions": 0,
@@ -943,53 +1136,16 @@
           "diffdrive_controller": "active",
           "joint_state_broadcaster": "active"
         },
-        "confirmed_surface_cells": 444,
+        "confirmed_surface_cells": 80,
         "confirmed_face_anchors": 0,
         "reassociated_face_records": 0,
         "camera_diagnostics": {
-          "received": 2069,
+          "received": 648,
           "late": 0,
           "invalid_calibration": 0,
           "duplicate": 0,
-          "accepted": 2069,
-          "coverage_updates": 2053,
-          "tf_waits": 17
-        }
-      }
-    },
-    {
-      "number": 13,
-      "shape": "rooms",
-      "native_pid": 1688779,
-      "status": {
-        "state": "running",
-        "approached_ids": [],
-        "targets": 1,
-        "collisions": 0,
-        "elapsed_seconds": 105.7,
-        "active_action": "nav",
-        "readiness_reason": "",
-        "sensor_interruptions": 0,
-        "nav2_lifecycle": {
-          "controller_server": 3,
-          "planner_server": 3,
-          "behavior_server": 3,
-          "bt_navigator": 3
-        },
-        "drive_controllers": {
-          "diffdrive_controller": "active",
-          "joint_state_broadcaster": "active"
-        },
-        "confirmed_surface_cells": 38,
-        "confirmed_face_anchors": 0,
-        "reassociated_face_records": 0,
-        "camera_diagnostics": {
-          "received": 546,
-          "late": 0,
-          "invalid_calibration": 0,
-          "duplicate": 0,
-          "accepted": 546,
-          "coverage_updates": 537,
+          "accepted": 648,
+          "coverage_updates": 640,
           "tf_waits": 6
         }
       }
@@ -1002,5 +1158,21 @@
     "Isolate second L map-pose jump;final graph replay cannot repair it.",
     "Controlled future CPU thread-budget ablation;current live sources unchanged."
   ],
-  "second_L_localization_failure": "repository_snapshot/second_L_localization_failure.json"
+  "second_L_localization_failure": "repository_snapshot/second_L_localization_failure.json",
+  "environment_verified_training": {
+    "successes": 8,
+    "completed": 14,
+    "percent": 57.142857142857146
+  },
+  "infrastructure_unverified_completed": 1,
+  "slam_thread_budget_comparison": "repository_snapshot/slam_thread_budget_comparison.json",
+  "input_collection_failure": {
+    "job": 13,
+    "raw_mission_success": true,
+    "seconds": 246.7,
+    "strict_result_success": false,
+    "reason": "Parent dispatcher paused for slot reservation before it could collect effective input probes;shorter native finished while waiting.",
+    "fix": "Supervisor v2 collects existing native inputs before waiting for a slot;active native handles and original sources preserved.",
+    "retroactive_gate_credit_added": false
+  }
 }

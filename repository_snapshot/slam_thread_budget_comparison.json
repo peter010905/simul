@@ -1,0 +1,243 @@
+{
+  "evidence_type": "recorded_SLAM_component_thread_budget_comparison",
+  "sequence": [
+    "system",
+    12,
+    2,
+    1,
+    1,
+    2,
+    12,
+    "system"
+  ],
+  "rows": [
+    {
+      "number": 0,
+      "threads": "system",
+      "exit_code": 0,
+      "wall_seconds": 5.477087868843228,
+      "cpu_seconds": 7.426178,
+      "voluntary_context_switches": 5986,
+      "involuntary_context_switches": 190281,
+      "peak_process_threads": 38,
+      "peak_rss_KiB": 125116,
+      "native_before": [
+        1696629,
+        1702882
+      ],
+      "native_after": [
+        1696629,
+        1702882
+      ],
+      "output": "/home/peter/simul/training_robust/native90/fresh_failure_study_v1/thread_budget_comparison_v2/00_system",
+      "scan_count": 255,
+      "same_scan_acceptance_and_edge_counts": true,
+      "maximum_pose_difference_from_first_system": 0.0
+    },
+    {
+      "number": 1,
+      "threads": 12,
+      "exit_code": 0,
+      "wall_seconds": 5.595814521890134,
+      "cpu_seconds": 7.467303,
+      "voluntary_context_switches": 6110,
+      "involuntary_context_switches": 205902,
+      "peak_process_threads": 37,
+      "peak_rss_KiB": 125324,
+      "native_before": [
+        1696629,
+        1702882
+      ],
+      "native_after": [
+        1696629,
+        1702882
+      ],
+      "output": "/home/peter/simul/training_robust/native90/fresh_failure_study_v1/thread_budget_comparison_v2/01_12",
+      "scan_count": 255,
+      "same_scan_acceptance_and_edge_counts": true,
+      "maximum_pose_difference_from_first_system": 0.0
+    },
+    {
+      "number": 2,
+      "threads": 2,
+      "exit_code": 0,
+      "wall_seconds": 5.193190820980817,
+      "cpu_seconds": 7.424768,
+      "voluntary_context_switches": 6022,
+      "involuntary_context_switches": 186267,
+      "peak_process_threads": 27,
+      "peak_rss_KiB": 125104,
+      "native_before": [
+        1696629,
+        1702882
+      ],
+      "native_after": [
+        1696629,
+        1702882
+      ],
+      "output": "/home/peter/simul/training_robust/native90/fresh_failure_study_v1/thread_budget_comparison_v2/02_2",
+      "scan_count": 255,
+      "same_scan_acceptance_and_edge_counts": true,
+      "maximum_pose_difference_from_first_system": 0.0
+    },
+    {
+      "number": 3,
+      "threads": 1,
+      "exit_code": 0,
+      "wall_seconds": 5.254546537064016,
+      "cpu_seconds": 7.556012999999999,
+      "voluntary_context_switches": 5861,
+      "involuntary_context_switches": 334770,
+      "peak_process_threads": 26,
+      "peak_rss_KiB": 125132,
+      "native_before": [
+        1696629,
+        1702882
+      ],
+      "native_after": [
+        1696629,
+        1702882
+      ],
+      "output": "/home/peter/simul/training_robust/native90/fresh_failure_study_v1/thread_budget_comparison_v2/03_1",
+      "scan_count": 255,
+      "same_scan_acceptance_and_edge_counts": true,
+      "maximum_pose_difference_from_first_system": 0.0
+    },
+    {
+      "number": 4,
+      "threads": 1,
+      "exit_code": 0,
+      "wall_seconds": 5.444467363879085,
+      "cpu_seconds": 7.5068049999999955,
+      "voluntary_context_switches": 6010,
+      "involuntary_context_switches": 237404,
+      "peak_process_threads": 26,
+      "peak_rss_KiB": 125044,
+      "native_before": [
+        1696629,
+        1702882
+      ],
+      "native_after": [
+        1696629,
+        1702882
+      ],
+      "output": "/home/peter/simul/training_robust/native90/fresh_failure_study_v1/thread_budget_comparison_v2/04_1",
+      "scan_count": 255,
+      "same_scan_acceptance_and_edge_counts": true,
+      "maximum_pose_difference_from_first_system": 0.0
+    },
+    {
+      "number": 5,
+      "threads": 2,
+      "exit_code": 0,
+      "wall_seconds": 5.600680308882147,
+      "cpu_seconds": 7.521429000000005,
+      "voluntary_context_switches": 5832,
+      "involuntary_context_switches": 202628,
+      "peak_process_threads": 27,
+      "peak_rss_KiB": 125076,
+      "native_before": [
+        1696629,
+        1702882
+      ],
+      "native_after": [
+        1696629,
+        1702882
+      ],
+      "output": "/home/peter/simul/training_robust/native90/fresh_failure_study_v1/thread_budget_comparison_v2/05_2",
+      "scan_count": 255,
+      "same_scan_acceptance_and_edge_counts": true,
+      "maximum_pose_difference_from_first_system": 0.0
+    },
+    {
+      "number": 6,
+      "threads": 12,
+      "exit_code": 0,
+      "wall_seconds": 5.473559570033103,
+      "cpu_seconds": 7.5014700000000065,
+      "voluntary_context_switches": 6185,
+      "involuntary_context_switches": 245013,
+      "peak_process_threads": 37,
+      "peak_rss_KiB": 125364,
+      "native_before": [
+        1696629,
+        1702882
+      ],
+      "native_after": [
+        1696629,
+        1702882
+      ],
+      "output": "/home/peter/simul/training_robust/native90/fresh_failure_study_v1/thread_budget_comparison_v2/06_12",
+      "scan_count": 255,
+      "same_scan_acceptance_and_edge_counts": true,
+      "maximum_pose_difference_from_first_system": 0.0
+    },
+    {
+      "number": 7,
+      "threads": "system",
+      "exit_code": 0,
+      "wall_seconds": 5.368047045078129,
+      "cpu_seconds": 7.464268999999997,
+      "voluntary_context_switches": 6289,
+      "involuntary_context_switches": 185336,
+      "peak_process_threads": 38,
+      "peak_rss_KiB": 125252,
+      "native_before": [
+        1696629,
+        1702882
+      ],
+      "native_after": [
+        1696629,
+        1702882
+      ],
+      "output": "/home/peter/simul/training_robust/native90/fresh_failure_study_v1/thread_budget_comparison_v2/07_system",
+      "scan_count": 255,
+      "same_scan_acceptance_and_edge_counts": true,
+      "maximum_pose_difference_from_first_system": 0.0
+    }
+  ],
+  "groups": {
+    "system": {
+      "wall_median_s": 5.422567456960678,
+      "cpu_median_s": 7.445223499999999
+    },
+    "12": {
+      "wall_median_s": 5.534687045961618,
+      "cpu_median_s": 7.484386500000003
+    },
+    "2": {
+      "wall_median_s": 5.396935564931482,
+      "cpu_median_s": 7.4730985000000025
+    },
+    "1": {
+      "wall_median_s": 5.34950695047155,
+      "cpu_median_s": 7.531408999999997
+    }
+  },
+  "input_hashes": {
+    "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00011_train_g0_1/episodes/1191301111/20261113_113439/map.data": "6c80f4b90158cc08f0181e9930d3da93957db4cba3fac0391a291477a395db61",
+    "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00011_train_g0_1/episodes/1191301111/20261113_113439/map.posegraph": "6b547aecf8ea6fd93b71433c5fca282871b61f2cf7b71464310c551ef6210a57",
+    "/home/peter/simul/training_robust/native90/fresh_failure_study_v1/slam_diagnostics_v4/replay_karto_component": "bf65d1b4bb8123088d03b9068015cd52369f34067c070d2849517689ab6dc23c",
+    "/home/peter/simul/training_robust/native90/fresh_failure_study_v1/budgeted_solver_v2/install/lib/libosp_solver_budget.so": "4cd5e4d4871529deab8e31ebecac32ea35c6973e8e61db4e28c8f9068f46f5d2"
+  },
+  "native_runtime_changed": false,
+  "production_promoted": false,
+  "full_Gazebo_speedup_verified": false,
+  "limits": [
+    "Two repetitions per arm under changing host load; not a standalone stable throughput estimate.",
+    "Recorded scans are a retained subset and do not include rendering,camera decoding,physics or navigation.",
+    "Custom12 versus custom2/1 uses the same build; system uses the installed distribution build.",
+    "Native Gazebo concurrency is preserved and each arm records actual native handles."
+  ],
+  "captured_utc": "2026-11-13T03:03:56.166658+00:00",
+  "user_requested_native_parallelism": 2,
+  "native_parallelism_changed": false,
+  "decision": "Do not adopt the plugin as a proven overall speed improvement;only minor component wall-time differences were observed.",
+  "next_speed_comparison": "Scoped software-renderer/physics throughput comparisons in future isolated stages;no sensor resolution/frequency or current native changes",
+  "measured_ratios": {
+    "custom_12_to_2_wall_speedup": 1.0255240180974599,
+    "custom_12_to_1_wall_speedup": 1.0346162921563724,
+    "installed_to_1_wall_speedup": 1.0136574280892723
+  },
+  "packaging_failure_preserved": "/home/peter/simul/training_robust/native90/fresh_failure_study_v1/thread_budget_comparison_v1"
+}

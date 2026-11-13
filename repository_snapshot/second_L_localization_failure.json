@@ -79,8 +79,274 @@
     "All three IDs and actual approaches were achieved; two final marker coordinates fail the unchanged 0.5m gate.",
     "Around124.7sim s,map pose jumps about1.8m while odom and actual body travel only about6cm. This differs from the earlier L-case odometry spike.",
     "Final SLAM graph reprojection does not repair this case; do not treat final-map projection as a substitute for online localization.",
-    "Loop-closure versus scan-match cause is not yet isolated. No raw wheel capture exists for this episode."
+    "Recorded255-scan component replay reproduces the false loop closure at124.3s (coarse0.41375>0.35,fine0.499453>0.45) and1.8003m maximum error. Disabling loop closure or using stricter loop gates avoids this prefix failure;full trajectory and native generalization remain unverified."
   ],
   "production_promoted": false,
-  "policy_ground_truth_inputs": false
+  "policy_ground_truth_inputs": false,
+  "updated_utc": "2026-11-13T03:00:04.069504+00:00",
+  "serialized_graph_edges": {
+    "count": 1876,
+    "selected_edges": [
+      {
+        "source_id": 227,
+        "target_id": 228,
+        "source_stamp": 124.1,
+        "target_stamp": 124.3,
+        "actual_relative_xy": [
+          0.062109463772764384,
+          0.0005424407238556468
+        ],
+        "constraint_relative_xy": [
+          0.061270171397964646,
+          0.000469891277183887
+        ],
+        "actual_distance_m": 0.062111832464347955,
+        "constraint_distance_m": 0.06127197320919523,
+        "translation_constraint_error_m": 0.000842422170060453,
+        "timestamp_alignment_gaps_s": [
+          0.029000000000010573,
+          0.03300000000000125
+        ]
+      },
+      {
+        "source_id": 107,
+        "target_id": 228,
+        "source_stamp": 68.0,
+        "target_stamp": 124.3,
+        "actual_relative_xy": [
+          2.025781525641214,
+          -2.0643281992791205
+        ],
+        "constraint_relative_xy": [
+          0.19886313777518128,
+          -0.0033758596839263966
+        ],
+        "actual_distance_m": 2.892272757533117,
+        "constraint_distance_m": 0.19889178966059984,
+        "translation_constraint_error_m": 2.754116072718419,
+        "timestamp_alignment_gaps_s": [
+          0.028999999999996362,
+          0.03300000000000125
+        ]
+      },
+      {
+        "source_id": 109,
+        "target_id": 229,
+        "source_stamp": 68.8,
+        "target_stamp": 124.5,
+        "actual_relative_xy": [
+          1.6317743924868904,
+          -2.3786814834732755
+        ],
+        "constraint_relative_xy": [
+          0.6670713474638433,
+          -0.8682198157432461
+        ],
+        "actual_distance_m": 2.8845819918654736,
+        "constraint_distance_m": 1.0948926116548892,
+        "translation_constraint_error_m": 1.7922461925635442,
+        "timestamp_alignment_gaps_s": [
+          0.045000000000001705,
+          0.03700000000000614
+        ]
+      }
+    ],
+    "path": "/home/peter/simul/training_robust/native90/fresh_failure_study_v1/second_L_edges.csv",
+    "sha256": "5cec279c9bcb94b82e770d5c915fd5a423004c08b67ca57a7487170de8568425"
+  },
+  "controlled_component_replay": {
+    "evidence_type": "SLAM_component_replay_evaluated_against_separate_truth",
+    "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00011_train_g0_1/episodes/1191301111",
+    "arms": [
+      {
+        "name": "baseline",
+        "retained_scan_count": 255,
+        "accepted_scan_count": 255,
+        "matched_evaluator_samples": 254,
+        "median_error_m": 0.019388416511694966,
+        "p95_error_m": 1.7598728571801119,
+        "maximum_error_m": 1.8003092999476817,
+        "last_stamp_sim_s": 149.9,
+        "last_error_m": 1.749871271421546,
+        "first_error_over_0_5m": {
+          "stamp": 124.3,
+          "error_m": 1.8003092999476817
+        },
+        "loop_closures": 10,
+        "loop_checks_near_original_jump": [
+          "124.3 CHECK COARSE RESPONSE: 0.41375 (> 0.35)",
+          "124.3 CHECK FINE RESPONSE: 0.499453 (>0.45)",
+          "124.3 BEGIN Closing loop...",
+          "124.3 END Loop closed!"
+        ],
+        "trajectory_sha256": "77cea3bfe9fe662769589fa83e3b6e947eb8a8bf2a8c7a7d665fd59f8c552ba4"
+      },
+      {
+        "name": "huber",
+        "retained_scan_count": 255,
+        "accepted_scan_count": 255,
+        "matched_evaluator_samples": 254,
+        "median_error_m": 0.019388416511694966,
+        "p95_error_m": 0.8020089860960277,
+        "maximum_error_m": 0.8387881536200074,
+        "last_stamp_sim_s": 149.9,
+        "last_error_m": 0.7965871701089672,
+        "first_error_over_0_5m": {
+          "stamp": 126.8,
+          "error_m": 0.8387881536200074
+        },
+        "loop_closures": 11,
+        "loop_checks_near_original_jump": [
+          "124.3 CHECK COARSE RESPONSE: 0.41375 (> 0.35)",
+          "124.3 CHECK FINE RESPONSE: 0.499453 (>0.45)",
+          "124.3 BEGIN Closing loop...",
+          "124.3 END Loop closed!"
+        ],
+        "trajectory_sha256": "262f507fcec014a9c05456e43f919f270cb5cd6030bf31916636741047175065"
+      },
+      {
+        "name": "no_loop",
+        "retained_scan_count": 255,
+        "accepted_scan_count": 255,
+        "matched_evaluator_samples": 254,
+        "median_error_m": 0.019388416511694966,
+        "p95_error_m": 0.05236252292803065,
+        "maximum_error_m": 0.06552656930443117,
+        "last_stamp_sim_s": 149.9,
+        "last_error_m": 0.06552656930443117,
+        "first_error_over_0_5m": null,
+        "loop_closures": 0,
+        "loop_checks_near_original_jump": [],
+        "trajectory_sha256": "0163039093fe975f00020b5fa3b389af58377452b5d153a0a59118528a189785"
+      },
+      {
+        "name": "strict_loop",
+        "retained_scan_count": 255,
+        "accepted_scan_count": 255,
+        "matched_evaluator_samples": 254,
+        "median_error_m": 0.019388416511694966,
+        "p95_error_m": 0.05236252292803065,
+        "maximum_error_m": 0.06552656930443117,
+        "last_stamp_sim_s": 149.9,
+        "last_error_m": 0.06552656930443117,
+        "first_error_over_0_5m": null,
+        "loop_closures": 0,
+        "loop_checks_near_original_jump": [
+          "124.3 CHECK COARSE RESPONSE: 0.415031 (> 0.55)",
+          "124.5 CHECK COARSE RESPONSE: 0.414547 (> 0.55)",
+          "124.7 CHECK COARSE RESPONSE: 0.404281 (> 0.55)",
+          "124.9 CHECK COARSE RESPONSE: 0.393422 (> 0.55)"
+        ],
+        "trajectory_sha256": "0163039093fe975f00020b5fa3b389af58377452b5d153a0a59118528a189785"
+      }
+    ],
+    "native_mission": false,
+    "policy_ground_truth_inputs": false,
+    "original_results_modified": false,
+    "limits": [
+      "Recorded accepted scans are a subset of the original ROS scan stream.",
+      "Translation errors use interpolated evaluator body positions and the original world-to-map alignment.",
+      "No new navigation, recognition, approach, contact or completion result is produced.",
+      "Only first150sim seconds have been compared so far;strict-loop settings also suppress all earlier loop closures in this prefix."
+    ]
+  },
+  "component_solver_thread_evidence": {
+    "installed_package": "ros-jazzy-slam-toolbox2.8.5",
+    "requested_threads": 50,
+    "reported_effective_maximum": 12,
+    "source": "Ceres warning in completed baseline component process log",
+    "source_url": "https://raw.githubusercontent.com/SteveMacenski/slam_toolbox/2.8.5/solvers/ceres_solver.cpp",
+    "live_native_settings_unchanged": true
+  },
+  "full_trajectory_component_initial": {
+    "captured_utc": "2026-11-13T03:05:27.650541+00:00",
+    "report": {
+      "evidence_type": "SLAM_component_replay_evaluated_against_separate_truth",
+      "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00011_train_g0_1/episodes/1191301111",
+      "arms": [
+        {
+          "name": "baseline",
+          "retained_scan_count": 1122,
+          "accepted_scan_count": 1122,
+          "matched_evaluator_samples": 1121,
+          "median_error_m": 1.7520970827909437,
+          "p95_error_m": 1.8243911610013075,
+          "maximum_error_m": 1.8489038804802125,
+          "last_stamp_sim_s": 570.0,
+          "last_error_m": 1.7075601029197323,
+          "first_error_over_0_5m": {
+            "stamp": 124.3,
+            "error_m": 1.8003092999476817
+          },
+          "loop_closures": 45,
+          "loop_checks_near_original_jump": [
+            "124.3 CHECK COARSE RESPONSE: 0.41375 (> 0.35)",
+            "124.3 CHECK FINE RESPONSE: 0.499453 (>0.45)",
+            "124.3 BEGIN Closing loop...",
+            "124.3 END Loop closed!"
+          ],
+          "trajectory_sha256": "62fad53850cff12273c1fee4f9d25932d0249ca4d446114f1a91ab60c0c9a95c"
+        },
+        {
+          "name": "fine55",
+          "retained_scan_count": 1122,
+          "accepted_scan_count": 1122,
+          "matched_evaluator_samples": 1121,
+          "median_error_m": 0.06732589860573222,
+          "p95_error_m": 0.11528632771119407,
+          "maximum_error_m": 0.13965437372461897,
+          "last_stamp_sim_s": 570.0,
+          "last_error_m": 0.06931366152446124,
+          "first_error_over_0_5m": null,
+          "loop_closures": 35,
+          "loop_checks_near_original_jump": [
+            "124.3 CHECK COARSE RESPONSE: 0.41375 (> 0.35)",
+            "124.3 CHECK FINE RESPONSE: 0.499531 (>0.55)",
+            "124.3 CHECK REJECTED!",
+            "124.5 CHECK COARSE RESPONSE: 0.413281 (> 0.35)",
+            "124.5 CHECK FINE RESPONSE: 0.486438 (>0.55)",
+            "124.5 CHECK REJECTED!",
+            "124.7 CHECK COARSE RESPONSE: 0.411219 (> 0.35)",
+            "124.7 CHECK FINE RESPONSE: 0.480703 (>0.55)",
+            "124.7 CHECK REJECTED!",
+            "124.9 CHECK COARSE RESPONSE: 0.390719 (> 0.35)",
+            "124.9 CHECK FINE RESPONSE: 0.465672 (>0.55)",
+            "124.9 CHECK REJECTED!"
+          ],
+          "trajectory_sha256": "17cbe37504d98078027bca5c48a2b46e0ba718ac9a0022294a773bb0446a06df"
+        },
+        {
+          "name": "strict_loop",
+          "retained_scan_count": 1122,
+          "accepted_scan_count": 1122,
+          "matched_evaluator_samples": 1121,
+          "median_error_m": 0.07691966953005694,
+          "p95_error_m": 0.21535392792350344,
+          "maximum_error_m": 0.2508491603558217,
+          "last_stamp_sim_s": 570.0,
+          "last_error_m": 0.10742431126054584,
+          "first_error_over_0_5m": null,
+          "loop_closures": 0,
+          "loop_checks_near_original_jump": [
+            "124.3 CHECK COARSE RESPONSE: 0.415031 (> 0.55)",
+            "124.5 CHECK COARSE RESPONSE: 0.414547 (> 0.55)",
+            "124.7 CHECK COARSE RESPONSE: 0.404281 (> 0.55)",
+            "124.9 CHECK COARSE RESPONSE: 0.393422 (> 0.55)"
+          ],
+          "trajectory_sha256": "e5f8faee770d0fa84957273fb4bed6cc3c13dfc7411dca5a70f6422c908fa85b"
+        }
+      ],
+      "native_mission": false,
+      "policy_ground_truth_inputs": false,
+      "original_results_modified": false,
+      "limits": [
+        "Recorded accepted scans are a subset of the original ROS scan stream.",
+        "Translation errors use interpolated evaluator body positions and the original world-to-map alignment.",
+        "No new navigation, recognition, approach, contact or completion result is produced."
+      ]
+    },
+    "setting_comparison": "fine55 changes only LoopMatchMinimumResponseFine0.45->0.55;same2-thread solver for both arms",
+    "other_geometries_pending": true,
+    "new_native_success": false
+  }
 }
