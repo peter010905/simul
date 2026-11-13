@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-13T03:46:30.385317+00:00",
+  "captured_utc": "2026-11-13T03:53:42.440796+00:00",
   "evidence_type": "actual_orientation_override_and_tested_candidate",
   "proof": {
     "snapshot": "training_robust/native90/directed_integrated_screen_v1/case_0/episodes/1191300303/policy_decisions/0001.npz",
@@ -217,8 +217,8 @@
   },
   "ground_truth_inputs": false,
   "creates_coverage_or_recognition_credit": false,
-  "native_queued": true,
-  "native_performance_verified": false,
+  "native_queued": false,
+  "native_performance_verified": true,
   "production_promoted": false,
   "limits": [
     "Existing robot optical camera heading is aligned with body heading.",
@@ -228,48 +228,15 @@
   "native_comparison": {
     "root": "/home/peter/simul/training_robust/native90/face_intent_regression_v2",
     "unit": "osp-face-intent-v2.service",
-    "native_status": "running",
-    "verified_native_pid": 1725382,
+    "native_status": "done",
+    "verified_native_pid": null,
     "input_gates": {
       "slam_transport_gate": true,
       "floor_sensor_gate": true,
       "runtime_configuration_gate": true,
       "velocity_profile_gate": true
     },
-    "current_status": {
-      "state": "running",
-      "approached_ids": [
-        220
-      ],
-      "targets": 1,
-      "collisions": 0,
-      "elapsed_seconds": 325.627,
-      "active_action": "nav",
-      "readiness_reason": "",
-      "sensor_interruptions": 0,
-      "nav2_lifecycle": {
-        "controller_server": 3,
-        "planner_server": 3,
-        "behavior_server": 3,
-        "bt_navigator": 3
-      },
-      "drive_controllers": {
-        "diffdrive_controller": "active",
-        "joint_state_broadcaster": "active"
-      },
-      "confirmed_surface_cells": 306,
-      "confirmed_face_anchors": 0,
-      "reassociated_face_records": 0,
-      "camera_diagnostics": {
-        "received": 1651,
-        "late": 0,
-        "invalid_calibration": 0,
-        "duplicate": 0,
-        "accepted": 1651,
-        "coverage_updates": 1639,
-        "tf_waits": 7
-      }
-    }
+    "current_status": null
   },
   "native_face_action_observed": true,
   "actual_face_action_events": [
@@ -294,5 +261,16 @@
     "first_selection_absolute_sim_s": 220.5,
     "inferred_mission_start_sim_s": 6.3729999999999905,
     "first_execution_elapsed_s": 260.627
-  }
+  },
+  "verified_scope": "One exact-world engineering completion;not fresh-space or deployment qualification",
+  "native_result": {
+    "success": true,
+    "targets": 3,
+    "approached": 3,
+    "contacts": 0,
+    "seconds": 388.627,
+    "infrastructure_failure": false,
+    "reason": "all_targets_found"
+  },
+  "native_success_report": "repository_snapshot/face_intent_native_success.json"
 }

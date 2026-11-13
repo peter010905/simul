@@ -14,7 +14,10 @@
 > 남은3개 기록 비교는 실제 Gazebo2개에 CPU를 우선 배정하도록 낮은 CPU 한도로 진행합니다. 기록 재생의 몸체 위치 오차와 새 실제 임무의 최종 마커 좌표 판정은 구분합니다. [비교 그래프](repository_snapshot/loop_gate_replay_comparison.png) · [단일 기준 수정 후보·검증 범위](repository_snapshot/loop_gate_candidate.json).
 > **추가 제어 문제:** 현재 직사각형 주행의 저장 입력을 재계산하자 장애물 면 확인을 위한60도 계획이 정확히 재현됐지만, 실제 도착 후 일반 탐색이 반대 방향120도 회전을 실행했습니다. 해당 면을 보는 종료 방향을 odom에 보존하는 별도 후보는348개 테스트·빌드를 통과했습니다. 마커 확인 방향을 우선하며, 이동 실패·센서 일시 중단·도착 성공의 처리를 실제 콜백으로 검사했습니다. 새 실제 완주 성능은 아직 검증되지 않았습니다. [장애물 면 관찰 방향 문제·수정 후보](repository_snapshot/face_intent_candidate.json).
 > 종료한 직사각형에서 ID220은 카메라 거리0.80m까지 접근했지만 가장 가까운 순간 시선 오차159도였고, ID465도0.95m에서-177도였습니다. ID220에는 가림을 제외한 단순 영상 크기·시야각 모델에서도 읽을 만한 프레임이 없었습니다. 이 분석은 평가용 실제 자세로 수행하며 정책에 정답 위치를 전달하지 않습니다.
-> 같은 맵·계수에서 관찰 방향 처리만 바꾼 실제 비교를 진행 중입니다. 감독·복구 검사10개를 통과했고, 실제 Gazebo 동시2개를 유지합니다. 비교 후 원래 학습·통합 감독 프로세스를 복구하도록 구성했으며, 원래 소스와 준비된 맵은 보존합니다. [비교 구성과 실패 분석](repository_snapshot/integrated_first_rectangle_failure.json).
+> 같은 맵·계수에서 관찰 방향 처리만 바꾼 실제 비교를 완료했습니다. 감독·복구 검사10개를 통과했고, 실제 Gazebo 동시2개를 유지합니다. 원래 소스와 준비된 맵은 보존합니다. [비교 구성과 실패 분석](repository_snapshot/integrated_first_rectangle_failure.json).
+> **관찰 방향 후보의 실제 결과:** 이 직사각형 비교는388.627초에 전체 기준을 통과했습니다. 세 ID·각 실제1.5m 접근·근거리 관측9개·지도 좌표 오차0.5m 이내·충돌0회를 독립 검사했습니다. 최대 좌표 오차는24.37cm이며, 예정된 관찰 방향 회전도 실제1회 실행됐습니다. 같은 맵 직전 통합 후보는600.248초에 ID1개로 실패했습니다.
+> 소스별1회씩이고 비동기 시작·주행 경로가 달랐습니다. ID220은 첫 면 관찰 회전보다 먼저 확정됐으므로 그 최초 발견을 해당 회전의 효과로 설명하지 않습니다. 새 소스의 여러 공간 학습과 독립 검증을 거쳐야 실사용 정책으로 승격할 수 있습니다. 원래 감독 프로세스는 복구됐습니다. [실제 성공·증거·해석 범위](repository_snapshot/face_intent_native_success.json).
+> 다음 학습 소스는 이 관찰 방향 수정본입니다. 이전 통합 캠페인의 시작하지 않은8개 실험은 원본을 보존해 보류했고, 현재 실행 중인 두 새 맵 주행은 그대로 유지했습니다. 새 소스로 매번 다른 공간을 생성하는 학습은 아직 시작 전이며, 이후 독립 검증을 포함한 전환 작업이 남아 있습니다.
 > 이 관찰 방향 비교는 실제 실행 중이며 센서·Nav2·속도 입력 검사를 통과했습니다. 별도로 새 사다리꼴은259.376초에 전체 기준을 통과했습니다. 세 마커의 실제 최소 접근 거리는1.03–1.10m, 좌표 오차는최대3.19cm였습니다. [새 사다리꼴 실제 결과](repository_snapshot/fresh_trapezoid_role2_native.json).
 > **접근 경로 후보:** 위 사다리꼴은 세 ID를99.875초에 알았지만 마지막 근거리 관측 검증은259.376초였습니다. 저장 지도에는 알려진 안전 공간의 우회 경로가 있는데도 기존 로직이 직선 접근 불가로 새 관측 위치를 제외하는 사례를 찾았습니다. 경로 연결성과 실제 경로 길이로 판단하는 별도 후보는354개 테스트·빌드를 통과했습니다.
 > 조건부 저장 입력6개 중5개에서 새 접근 경로를 찾았고, 첫 경로는60.875초 시점 약3.81m였습니다. 아직 실제 주행의 시간 단축 결과가 아닙니다. 미지 공간 통과·막힌 경로·마커 반대편 지름길은 거부하고, 이동 경로가 없어도 기존 제자리 관찰은 유지하는 검사를 포함합니다. [우회 접근 후보·재생 한계](repository_snapshot/routed_approach_candidate.json).
@@ -298,7 +301,7 @@ python3 scripts/publish_simulation_videos.py --upload
 
 ## 저장된 Gazebo 영상
 
-[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 194개
+[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 195개
 
 아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다. 환경 오류로 종료한 영상은 정책 학습 표본에서 제외합니다.
 
@@ -334,6 +337,7 @@ python3 scripts/publish_simulation_videos.py --upload
 | [directed_integrated_screen_v1__case_1__1191300404.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/directed_integrated_screen_v1__case_1__1191300404.mp4) | 성공 | 확인 | 596.1 |
 | [edge_runtime_v2__runtime_probes__20261104T234253_265975Z.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/edge_runtime_v2__runtime_probes__20261104T234253_265975Z.mp4) | 실패 | 미달 | 600.306 |
 | [encoder_delta_regression_v1__case_0__1191300404.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/encoder_delta_regression_v1__case_0__1191300404.mp4) | 실패 | 미달 | 600.2 |
+| [face_intent_regression_v2__case_0__1191300303.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/face_intent_regression_v2__case_0__1191300303.mp4) | 성공 | 확인 | 388.627 |
 | [floor_pose_regression_v1__case_0__1136000000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/floor_pose_regression_v1__case_0__1136000000.mp4) | 성공 | 확인 | 288.903 |
 | [floor_pose_regression_v1__case_1__1136000101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/floor_pose_regression_v1__case_1__1136000101.mp4) | 성공 | 확인 | 427.501 |
 | [fresh_map_cem_v1__00000_train_g0_0__1121200000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fresh_map_cem_v1__00000_train_g0_0__1121200000.mp4) | 실패 | 미달 | 600.455 |

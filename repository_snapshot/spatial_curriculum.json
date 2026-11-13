@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-13T03:49:27.834419+00:00",
+  "captured_utc": "2026-11-13T03:55:51.895056+00:00",
   "client_date": "2026-11-13",
   "status": "running",
   "goal_status": "active",
@@ -458,10 +458,10 @@
       "status": {
         "state": "running",
         "approached_ids": [],
-        "targets": 0,
+        "targets": 1,
         "collisions": 0,
-        "elapsed_seconds": 20.314,
-        "active_action": "nav",
+        "elapsed_seconds": 146.81699999999998,
+        "active_action": "",
         "readiness_reason": "",
         "sensor_interruptions": 0,
         "nav2_lifecycle": {
@@ -478,29 +478,26 @@
         "confirmed_face_anchors": 0,
         "reassociated_face_records": 0,
         "camera_diagnostics": {
-          "received": 120,
+          "received": 753,
           "late": 2,
           "invalid_calibration": 0,
           "duplicate": 0,
-          "accepted": 118,
-          "coverage_updates": 116,
-          "tf_waits": 2
+          "accepted": 751,
+          "coverage_updates": 748,
+          "tf_waits": 3
         }
       }
     },
     {
-      "campaign": "face_intent_regression_v2",
-      "number": 0,
-      "verified_native_pid": 1725382,
+      "campaign": "spatial_cem_v6",
+      "number": 18,
+      "verified_native_pid": 1739944,
       "status": {
         "state": "running",
-        "approached_ids": [
-          220,
-          465
-        ],
-        "targets": 3,
+        "approached_ids": [],
+        "targets": 1,
         "collisions": 0,
-        "elapsed_seconds": 383.127,
+        "elapsed_seconds": 109.006,
         "active_action": "nav",
         "readiness_reason": "",
         "sensor_interruptions": 0,
@@ -514,17 +511,17 @@
           "diffdrive_controller": "active",
           "joint_state_broadcaster": "active"
         },
-        "confirmed_surface_cells": 461,
+        "confirmed_surface_cells": 49,
         "confirmed_face_anchors": 0,
         "reassociated_face_records": 0,
         "camera_diagnostics": {
-          "received": 1938,
+          "received": 564,
           "late": 0,
           "invalid_calibration": 0,
           "duplicate": 0,
-          "accepted": 1938,
-          "coverage_updates": 1923,
-          "tf_waits": 10
+          "accepted": 564,
+          "coverage_updates": 559,
+          "tf_waits": 5
         }
       }
     }
@@ -567,16 +564,17 @@
   "priority_diagnostic": {
     "root": "/home/peter/simul/training_robust/native90/face_intent_regression_v2",
     "unit": "osp-face-intent-v2.service",
-    "status": "native_running",
-    "native_status": "running",
-    "verified_native_pid": 1725382,
-    "input_gates": {
-      "slam_transport_gate": true,
-      "floor_sensor_gate": true,
-      "runtime_configuration_gate": true,
-      "velocity_profile_gate": true
+    "status": "completed_success",
+    "outcome": {
+      "success": true,
+      "targets": 3,
+      "approached": 3,
+      "contacts": 0,
+      "seconds": 388.627,
+      "infrastructure_failure": false,
+      "reason": "all_targets_found"
     },
-    "same_world_and_weights": true
+    "original_supervisors_restored": true
   },
   "coordinator_slot_reservation": false,
   "latest_completed_native": {
@@ -851,11 +849,19 @@
   "routed_approach_candidate": "repository_snapshot/routed_approach_candidate.json",
   "fresh_trapezoid_role2_native": "repository_snapshot/fresh_trapezoid_role2_native.json",
   "integrated_L_native_success": "repository_snapshot/integrated_L_native_success.json",
-  "completed_pending_original_supervisor_collection": [
-    {
-      "campaign": "directed_integrated_screen_v1",
-      "number": 1,
-      "status": "completed_pending_original_supervisor_collection"
-    }
-  ]
+  "completed_pending_original_supervisor_collection": [],
+  "face_intent_native_success": "repository_snapshot/face_intent_native_success.json",
+  "source_upgrade": {
+    "previous_integrated_campaign": "held_for_face_source_training_upgrade",
+    "completed_diagnostics": 2,
+    "unstarted_prepared_jobs_preserved": 8,
+    "next_runtime": "/home/peter/simul/training_robust/native90/face_intent_v2/runtime",
+    "next_runtime_tests": 348,
+    "new_source_fresh_training_started": false,
+    "old_CEM_dispatcher_active": true,
+    "existing_native_handles_preserved": [
+      1735261,
+      1739944
+    ]
+  }
 }
