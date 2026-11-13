@@ -1,16 +1,20 @@
 # OSP Final Project — ROS 2 Jazzy
 
-> **2026-11-13 병목 점검:** 같은 계수의 기준 정책은7종 새 공간에서4/7회 완주(57.1%), 다른 학습 계수까지 포함하면7/11회(63.6%)입니다. 독립 검증 성공률은 아직 없습니다.
-> 완료11회는 모두 충돌0회였으며 실패는 마커 인식 누락3회와 좌표 오차1회였습니다. 마커 확인5.6도 선택 뒤 일반 탐색105도 회전이 실행된 제어 우선순위 오류를 확인했습니다.
+> **2026-11-13 병목 점검:** 같은 계수의 기준 정책은7종 새 공간에서4/7회 완주(57.1%), 다른 학습 계수까지 포함하면7/12회(58.3%)입니다. 독립 검증 성공률은 아직 없습니다.
+> 완료12회는 모두 충돌0회였으며 실패는 마커 인식 누락3회와 좌표 오차2회였습니다. 마커 확인5.6도 선택 뒤 일반 탐색105도 회전이 실행된 제어 우선순위 오류를 확인했습니다.
 > 12개 논리 CPU의 부하도 높습니다. 실제 속도는 실시간의0.31–0.35배,10분 임무에 약29–32분이 걸립니다. [완주율 집계·제어·CPU·시간 병목](repository_snapshot/bottleneck_audit.json).
-> 센서 수정 L자 후보는600.2초에 ID2개로 실패했습니다. 대기하던 근접 확인 실험은 원본을 보존하고, 명시적인 마커 방향 처리부터 고치도록 보류했습니다. 통합 구성316개 테스트·빌드는 통과했으나 새 Gazebo 성공이나 실사용 정책으로 승격하지 않았습니다. [통합 구성과 남은 문제](repository_snapshot/integrated_candidate.json).
+> **수정과 다음 실제 검증:** 마커 확인·접근 시 일반 탐색 회전보다 해당 마커의 카메라 방향을 우선하도록 수정했습니다. 센서 일시 중단은 목표를 유지하고, 실패·충돌·재계획은 이전 방향 지시를 지웁니다.
+> 통합 후보는337개 런타임 테스트·설치 빌드와7개 실험 관리 검사를 통과했습니다. 기존 실패3개 재검증 후 외곽·점유 격자가 모두 다른 새7종 공간을 주행하도록 감독 프로세스를 시작했습니다. 기존 실제 Gazebo2개는 유지하며 빈 실행 자리를 기다립니다.
+> 아직 수정본의 새 완주 결과나 일반화 성능은 검증되지 않았습니다. [마커 방향 수정·10개 실제 검증 구성](repository_snapshot/marker_directed_candidate.json).
+> 추가 L자 주행은564.387초에 세 ID·실제 접근을 달성했지만 두 좌표의 오차1.67–1.79m로 실패했습니다.124.7초에 지도 자세만1.77m 이동했고 실제 몸체·odom은 약6cm 이동했습니다. 저장 후 SLAM 그래프 보정도 이 실패를 해결하지 못했습니다. 잘못된 루프 연결과 스캔 정합 중 어느 원인인지는 추가 분리가 필요합니다. [두 번째 L자 위치 추정 실패](repository_snapshot/second_L_localization_failure.json).
+> 앞선 센서 수정 L자 후보는600.2초에 ID2개로 실패했습니다. 구형 근접 확인 실험은 시작 전 원본을 보존해 보류했고, 그 개선을 위 통합 수정본에 포함했습니다. 실사용 정책으로 승격하지 않았습니다. [이전 통합 구성](repository_snapshot/integrated_candidate.json).
 
 > **2026-11-13 현재:** 원형·삼각형·사다리꼴·직사각형·L자·U자·다중 방의 외곽과 주행 공간을 바꾸며 실제 Gazebo에서 학습합니다.
 > 수정한 센서·위치 추정·탐색 소스를 고정한 `spatial_cem_v6`가 시작됐습니다. 첫28개 훈련 맵의 외곽선과 점유 격자는 모두 다르며,
 > 장애물8–32개, 출발 자세, 마커 크기와 벽·장애물 부착 위치도 바뀝니다. 매 훈련 주행마다 새 맵을 사용합니다.
 > CEM으로 SLAM/Nav2 탐색 계수를 조정합니다. 새 원형283.901초·삼각형375.1초·사다리꼴345.2초·U자545.157초가 전체 기준을 통과했습니다.
 > 직사각형은600.058초에 ID2개로 시간 초과, L자는409.664초에 세 ID와 실제 접근을 달성했지만 좌표 오차61–64cm로 실패했습니다.
-> 이후 새 원형460.84초·삼각형343.2초·사다리꼴562.7초가 전체 기준을 통과했고, 다중 방은600.4초에 ID1개로 실패했습니다. 현재 다음 새 직사각형·L자에서 계수를 학습 중입니다.
+> 이후 새 원형460.84초·삼각형343.2초·사다리꼴562.7초가 전체 기준을 통과했고, 다중 방은600.4초에 ID1개로 실패했습니다. 다음 직사각형도600.418초에 ID1개로 실패했고, 추가 L자는 위 좌표 오차로 실패했습니다. 현재 새 U자·다중 방에서 계수를 학습 중입니다.
 > 독립 일반화 시험은 아직 완료하지 않았으며 실사용 정책으로 승격하지 않았습니다. [첫 새 맵 실제 결과](repository_snapshot/first_corrected_fresh_space_native.json).
 > [현재 학습·기준·실행 상태](repository_snapshot/spatial_curriculum.json) · [28개 공간 중복·접근 가능성 검사](repository_snapshot/spatial_geometry_v6.json) · [구성한 공간 예시](repository_snapshot/spatial_training_v6_preview.png).
 >
@@ -281,7 +285,7 @@ python3 scripts/publish_simulation_videos.py --upload
 
 ## 저장된 Gazebo 영상
 
-[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 185개
+[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 187개
 
 아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다. 환경 오류로 종료한 영상은 정책 학습 표본에서 제외합니다.
 
@@ -469,6 +473,8 @@ python3 scripts/publish_simulation_videos.py --upload
 | [spatial_cem_v6__00007_train_g0_1__1191300707.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00007_train_g0_1__1191300707.mp4) | 성공 | 확인 | 460.84 |
 | [spatial_cem_v6__00008_train_g0_1__1191300808.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00008_train_g0_1__1191300808.mp4) | 성공 | 확인 | 343.2 |
 | [spatial_cem_v6__00009_train_g0_1__1191300909.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00009_train_g0_1__1191300909.mp4) | 성공 | 확인 | 562.7 |
+| [spatial_cem_v6__00010_train_g0_1__1191301010.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00010_train_g0_1__1191301010.mp4) | 실패 | 확인 | 600.418 |
+| [spatial_cem_v6__00011_train_g0_1__1191301111.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00011_train_g0_1__1191301111.mp4) | 실패 | 확인 | 564.387 |
 | [strict_approach_regression_v1__case_0__1163000000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/strict_approach_regression_v1__case_0__1163000000.mp4) | 성공 | 확인 | 496.132 |
 | [tf_restamp_v1__regression__case_0__1121200000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_0__1121200000.mp4) | 성공 | 확인 | 231.867 |
 | [tf_restamp_v1__regression__case_1__1121200101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_1__1121200101.mp4) | 성공 | 확인 | 229.859 |

@@ -1,0 +1,86 @@
+{
+  "captured_utc": "2026-11-13T02:40:35.956730+00:00",
+  "evidence_type": "completed_native_failure_with_read_only_pose_analysis",
+  "outcome": {
+    "success": false,
+    "targets": 3,
+    "approached": 3,
+    "contacts": 0,
+    "seconds": 564.387,
+    "infrastructure_failure": false,
+    "reason": "all_targets_found"
+  },
+  "original_coordinate_errors_m": {
+    "588": 1.792776342842709,
+    "351": 0.01056292136555686,
+    "675": 1.6690282165543127
+  },
+  "actual_closest_approach_m": {
+    "588": 1.1227517670737177,
+    "351": 1.0618989442047315,
+    "675": 1.0210218169081668
+  },
+  "abrupt_map_pose_change": {
+    "start_sim_s": 124.537,
+    "end_sim_s": 124.741,
+    "map_displacement_m": 1.772058535029552,
+    "odom_displacement_m": 0.05805700148072486,
+    "actual_displacement_m": 0.0626886223471361,
+    "pose_samples": [
+      {
+        "gt_stamp": "124.537",
+        "gt_x": "11.60186387410836",
+        "gt_y": "4.456290684519704",
+        "gt_yaw": "-3.0670260983730984",
+        "odom_stamp": "124.519",
+        "odom_x": "3.5242131612762897",
+        "odom_y": "-3.1594927192290783",
+        "odom_yaw": "-0.4379830023189557",
+        "map_stamp": "124.534",
+        "map_x": "3.8338554149441237",
+        "map_y": "-3.082592763187844",
+        "map_yaw": "-0.4412403138293395",
+        "imu_stamp": "124.528",
+        "imu_angular_z": "0.014959880418458199"
+      },
+      {
+        "gt_stamp": "124.741",
+        "gt_x": "11.5393418404894",
+        "gt_y": "4.451723553699231",
+        "gt_yaw": "-3.0696886805479995",
+        "odom_stamp": "124.727",
+        "odom_x": "3.5768166906823353",
+        "odom_y": "-3.184058632909627",
+        "odom_yaw": "-0.4402003897624746",
+        "map_stamp": "124.727",
+        "map_x": "2.2936713990072986",
+        "map_y": "-2.2062226081598473",
+        "map_yaw": "-0.4474461580068247",
+        "imu_stamp": "124.736",
+        "imu_angular_z": "-1.129232665156723e-07"
+      }
+    ]
+  },
+  "final_graph_replay": {
+    "reprojected_coordinate_errors_m": {
+      "588": 1.8030251516487934,
+      "351": 0.04069318867924393,
+      "675": 1.6715361650743494
+    },
+    "passes_coordinate_gate": false,
+    "new_native_success": false
+  },
+  "evidence_hashes": {
+    "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00011_train_g0_1/episodes/1191301111/pose_trace.csv": "d41fb18c78feb82944ef0b8969772610b37666efea43dc712195d465fce8fd89",
+    "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00011_train_g0_1/episodes/1191301111/evaluation.json": "a6de11fb59985f11495e92a102e7a236ea9a53722b25b1f4d82fe51904b450b2",
+    "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00011_train_g0_1/episodes/1191301111/runtime_trace.csv": "24679fee4e01e0d078262a95b445e8ccd140f23dd8523cf4c842b378dd6b83f7"
+  },
+  "conclusions": [
+    "All three IDs and actual approaches were achieved; two final marker coordinates fail the unchanged 0.5m gate.",
+    "Around124.7sim s,map pose jumps about1.8m while odom and actual body travel only about6cm. This differs from the earlier L-case odometry spike.",
+    "Final SLAM graph reprojection does not repair this case; do not treat final-map projection as a substitute for online localization.",
+    "Loop-closure versus scan-match cause is not yet isolated. No raw wheel capture exists for this episode."
+  ],
+  "production_promoted": false,
+  "policy_ground_truth_inputs": false
+}

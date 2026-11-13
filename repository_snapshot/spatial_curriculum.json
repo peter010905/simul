@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-13T02:22:25.537605+00:00",
+  "captured_utc": "2026-11-13T02:40:35.956730+00:00",
   "client_date": "2026-11-13",
   "status": "running",
   "goal_status": "active",
@@ -452,54 +452,17 @@
   },
   "current_jobs": [
     {
-      "number": 11,
-      "shape": "l_shape",
-      "native_pid": 1675120,
-      "status": {
-        "state": "running",
-        "approached_ids": [
-          351
-        ],
-        "targets": 1,
-        "collisions": 0,
-        "elapsed_seconds": 309.385,
-        "active_action": "",
-        "readiness_reason": "",
-        "sensor_interruptions": 0,
-        "nav2_lifecycle": {
-          "controller_server": 3,
-          "planner_server": 3,
-          "behavior_server": 3,
-          "bt_navigator": 3
-        },
-        "drive_controllers": {
-          "diffdrive_controller": "active",
-          "joint_state_broadcaster": "active"
-        },
-        "confirmed_surface_cells": 119,
-        "confirmed_face_anchors": 0,
-        "reassociated_face_records": 0,
-        "camera_diagnostics": {
-          "received": 1563,
-          "late": 0,
-          "invalid_calibration": 0,
-          "duplicate": 0,
-          "accepted": 1563,
-          "coverage_updates": 1559,
-          "tf_waits": 2
-        }
-      }
-    },
-    {
       "number": 12,
       "shape": "u_shape",
       "native_pid": 1682637,
       "status": {
         "state": "running",
-        "approached_ids": [],
-        "targets": 0,
+        "approached_ids": [
+          797
+        ],
+        "targets": 1,
         "collisions": 0,
-        "elapsed_seconds": 17.931,
+        "elapsed_seconds": 410.431,
         "active_action": "nav",
         "readiness_reason": "",
         "sensor_interruptions": 0,
@@ -513,22 +476,59 @@
           "diffdrive_controller": "active",
           "joint_state_broadcaster": "active"
         },
-        "confirmed_surface_cells": 24,
+        "confirmed_surface_cells": 444,
         "confirmed_face_anchors": 0,
         "reassociated_face_records": 0,
         "camera_diagnostics": {
-          "received": 107,
+          "received": 2069,
           "late": 0,
           "invalid_calibration": 0,
           "duplicate": 0,
-          "accepted": 107,
-          "coverage_updates": 101,
-          "tf_waits": 7
+          "accepted": 2069,
+          "coverage_updates": 2053,
+          "tf_waits": 17
+        }
+      }
+    },
+    {
+      "number": 13,
+      "shape": "rooms",
+      "native_pid": 1688779,
+      "status": {
+        "state": "running",
+        "approached_ids": [],
+        "targets": 1,
+        "collisions": 0,
+        "elapsed_seconds": 105.7,
+        "active_action": "nav",
+        "readiness_reason": "",
+        "sensor_interruptions": 0,
+        "nav2_lifecycle": {
+          "controller_server": 3,
+          "planner_server": 3,
+          "behavior_server": 3,
+          "bt_navigator": 3
+        },
+        "drive_controllers": {
+          "diffdrive_controller": "active",
+          "joint_state_broadcaster": "active"
+        },
+        "confirmed_surface_cells": 38,
+        "confirmed_face_anchors": 0,
+        "reassociated_face_records": 0,
+        "camera_diagnostics": {
+          "received": 546,
+          "late": 0,
+          "invalid_calibration": 0,
+          "duplicate": 0,
+          "accepted": 546,
+          "coverage_updates": 537,
+          "tf_waits": 6
         }
       }
     }
   ],
-  "completed_spatial_training_episodes": 11,
+  "completed_spatial_training_episodes": 12,
   "completed_cem_generations": 0,
   "generalization_verified": false,
   "revisit_reduction_verified": false,
@@ -564,52 +564,23 @@
   "first_corrected_fresh_space_native": "first_corrected_fresh_space_native.json",
   "graph_landmark_candidate": "graph_landmark_candidate.json",
   "priority_diagnostic": {
-    "status": "none_running;directed_marker_fix_required",
-    "completed_encoder_delta": {
-      "outcome": {
-        "success": false,
-        "targets": 2,
-        "approached": 2,
-        "contacts": 0,
-        "seconds": 600.2,
-        "infrastructure_failure": false,
-        "reason": "timeout"
-      },
-      "position_errors_m": {
-        "674": 0.08566726492634774,
-        "339": 0.024044447352994
-      },
-      "closest_approach_m": {
-        "674": 1.055887292069092,
-        "826": 3.181852767540119,
-        "339": 0.8776493532839545
-      },
-      "expected_ids": [
-        339,
-        674,
-        826
-      ],
-      "found_ids": [
-        339,
-        674
-      ],
-      "mission_success": false,
-      "standalone_policy_promoted": false
-    },
-    "held_near_pass_root": "/home/peter/simul/training_robust/native90/near_pass_regression_v1"
+    "root": "/home/peter/simul/training_robust/native90/directed_integrated_screen_v1",
+    "unit": "osp-directed-integrated-v1.service",
+    "status": "waiting_for_existing_native_slot",
+    "coordinator_active": true,
+    "native_started": false
   },
-  "coordinator_slot_reservation": false,
+  "coordinator_slot_reservation": true,
   "latest_completed_native": {
-    "number": 9,
-    "seed": 1191300909,
-    "shape": "trapezoid",
-    "obstacles": 16,
+    "number": 11,
+    "seed": 1191301111,
+    "shape": "l_shape",
     "outcome": {
-      "success": true,
+      "success": false,
       "targets": 3,
       "approached": 3,
       "contacts": 0,
-      "seconds": 562.7,
+      "seconds": 564.387,
       "infrastructure_failure": false,
       "reason": "all_targets_found"
     }
@@ -769,11 +740,25 @@
         "infrastructure_failure": false,
         "reason": "timeout"
       }
+    },
+    {
+      "number": 11,
+      "seed": 1191301111,
+      "shape": "l_shape",
+      "outcome": {
+        "success": false,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 564.387,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      }
     }
   ],
   "triangle_single_glance_diagnosis": "triangle_single_glance_diagnosis.json",
   "pixel_focus_candidate": "pixel_focus_candidate.json",
-  "next_priority_diagnostic": "Explicit marker-look priority fix,then corrected integrated source native screen",
+  "next_priority_diagnostic": "Three failed-world diagnostic replays followed by seven distinct fresh physical training worlds;no holdout or promotion",
   "fresh_space_failure_analysis": "fresh_space_failure_analysis.json",
   "near_pass_inspection_candidate": "near_pass_inspection_candidate.json",
   "fresh_space_missed_views": "fresh_space_missed_views.json",
@@ -785,7 +770,9 @@
   },
   "mixed_training_observed_rate": {
     "successes": 7,
-    "completed": 11,
-    "percent": 63.63636363636363
-  }
+    "completed": 12,
+    "percent": 58.333333333333336
+  },
+  "marker_directed_candidate": "repository_snapshot/marker_directed_candidate.json",
+  "second_L_localization_failure": "repository_snapshot/second_L_localization_failure.json"
 }
