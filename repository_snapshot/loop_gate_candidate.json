@@ -12,7 +12,7 @@
   "production_promoted": false,
   "evidence": "repository_snapshot/second_L_localization_failure.json",
   "limit": "Broader recorded-space comparison and fresh native tests are still required.",
-  "captured_utc": "2026-11-13T03:29:32.779534+00:00",
+  "captured_utc": "2026-11-13T03:46:30.385317+00:00",
   "runtime_tests": 337,
   "installed_build_passed": true,
   "installed_launch_smoke": {
@@ -429,16 +429,137 @@
           "trajectory_sha256": "6d841c56cf21bb3dcdc20a867c1dd0eab13223aa9c53de50fe2486b447dbd3af"
         }
       ]
+    },
+    {
+      "number": 3,
+      "shape": "rectangle",
+      "arms": [
+        {
+          "name": "baseline",
+          "retained_scan_count": 1511,
+          "accepted_scan_count": 1511,
+          "matched_evaluator_samples": 1510,
+          "median_error_m": 0.04061817462763192,
+          "p95_error_m": 0.10471675022280663,
+          "maximum_error_m": 0.11629921763415695,
+          "last_stamp_sim_s": 604.0,
+          "last_error_m": 0.049451005842749876,
+          "first_error_over_0_5m": null,
+          "loop_closures": 111,
+          "loop_checks_near_original_jump": [],
+          "trajectory_sha256": "3b177c321d857d6cdbe232e087fb528ae0ab2019afa48d7ed63b4178f32f8ff9"
+        },
+        {
+          "name": "fine55",
+          "retained_scan_count": 1511,
+          "accepted_scan_count": 1511,
+          "matched_evaluator_samples": 1510,
+          "median_error_m": 0.03943703118861941,
+          "p95_error_m": 0.10471675022280663,
+          "maximum_error_m": 0.11629921763415695,
+          "last_stamp_sim_s": 604.0,
+          "last_error_m": 0.042347189095112585,
+          "first_error_over_0_5m": null,
+          "loop_closures": 108,
+          "loop_checks_near_original_jump": [],
+          "trajectory_sha256": "3ddd88b0b8d9a1fc01656f3c7b4ccbee2c87e708c62f36955dde57f5f14a3fab"
+        },
+        {
+          "name": "strict_loop",
+          "retained_scan_count": 1511,
+          "accepted_scan_count": 1511,
+          "matched_evaluator_samples": 1510,
+          "median_error_m": 0.03560864863913081,
+          "p95_error_m": 0.10466334752021504,
+          "maximum_error_m": 0.11629921763415411,
+          "last_stamp_sim_s": 604.0,
+          "last_error_m": 0.027273013049669715,
+          "first_error_over_0_5m": null,
+          "loop_closures": 98,
+          "loop_checks_near_original_jump": [],
+          "trajectory_sha256": "761764ba8cecb77a99f3deee11457880874ab1591701b3b76b38040263b7fe62"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "shape": "l_shape",
+      "arms": [
+        {
+          "name": "baseline",
+          "retained_scan_count": 896,
+          "accepted_scan_count": 896,
+          "matched_evaluator_samples": 895,
+          "median_error_m": 0.6235152391307145,
+          "p95_error_m": 0.641535807396569,
+          "maximum_error_m": 0.6476911855443053,
+          "last_stamp_sim_s": 414.9,
+          "last_error_m": 0.6092073384326415,
+          "first_error_over_0_5m": {
+            "stamp": 20.1,
+            "error_m": 0.587573352864924
+          },
+          "loop_closures": 7,
+          "loop_checks_near_original_jump": [],
+          "trajectory_sha256": "f4691c35f01472f7fbe208e938cf4c8550191e50a7133368e4c16f0f4dbd8fae"
+        },
+        {
+          "name": "fine55",
+          "retained_scan_count": 896,
+          "accepted_scan_count": 896,
+          "matched_evaluator_samples": 895,
+          "median_error_m": 0.6298841287448451,
+          "p95_error_m": 0.6636313090008051,
+          "maximum_error_m": 0.6717516372614861,
+          "last_stamp_sim_s": 414.9,
+          "last_error_m": 0.6225994300438719,
+          "first_error_over_0_5m": {
+            "stamp": 20.1,
+            "error_m": 0.587573352864924
+          },
+          "loop_closures": 5,
+          "loop_checks_near_original_jump": [],
+          "trajectory_sha256": "0d33c70a63827daddae68f14b2a316e9b465a57a60af3889f043871fcd1a3b78"
+        },
+        {
+          "name": "strict_loop",
+          "retained_scan_count": 896,
+          "accepted_scan_count": 896,
+          "matched_evaluator_samples": 895,
+          "median_error_m": 0.6298841287448451,
+          "p95_error_m": 0.6636313090008051,
+          "maximum_error_m": 0.6717516372614861,
+          "last_stamp_sim_s": 414.9,
+          "last_error_m": 0.6225994300438719,
+          "first_error_over_0_5m": {
+            "stamp": 20.1,
+            "error_m": 0.587573352864924
+          },
+          "loop_closures": 5,
+          "loop_checks_near_original_jump": [],
+          "trajectory_sha256": "0d33c70a63827daddae68f14b2a316e9b465a57a60af3889f043871fcd1a3b78"
+        }
+      ]
     }
   ],
-  "remaining_recorded_episodes": 5,
+  "remaining_recorded_episodes": 3,
   "component_study_resource_limit": {
     "cpu_quota_percent": 25,
     "nice": 19,
     "memory_max": "1G",
     "reason": "Prioritize the two actual Gazebo training missions;component correctness study is background work"
   },
-  "decision": "Built candidate only;wait for all seven geometries and a dedicated native comparison before adoption",
-  "completed_recorded_episodes": 4,
-  "completed_geometry_families": 4
+  "decision": "Keep staged only;finish remaining geometries and separate odometry-input faults from false loop closure;native success still unverified",
+  "completed_recorded_episodes": 6,
+  "completed_geometry_families": 5,
+  "counterexample": {
+    "number": 4,
+    "shape": "l_shape",
+    "maximum_body_error_baseline_m": 0.6476911855443053,
+    "maximum_body_error_fine55_m": 0.6717516372614861,
+    "final_body_error_baseline_m": 0.6092073384326415,
+    "final_body_error_fine55_m": 0.6225994300438719,
+    "interpretation": "A stricter loop response does not repair the earlier odometry-spike episode;do not promote as a universal localization fix"
+  },
+  "comparison_plot": "repository_snapshot/loop_gate_replay_comparison.png"
 }

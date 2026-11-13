@@ -1,7 +1,7 @@
 {
   "goal_status": "active",
   "phase": "fixed_corrected_source_fresh_space_native_CEM",
-  "last_verified_utc": "2026-11-13T03:40:15.605045+00:00",
+  "last_verified_utc": "2026-11-13T03:46:30.385317+00:00",
   "jobs": [
     {
       "run": "training_robust/diverse_directional_cem",
@@ -1277,10 +1277,10 @@
   "spatial_curriculum": "repository_snapshot/spatial_curriculum.json",
   "dashboard": "http://127.0.0.1:8765",
   "latest_goal_turn_evidence": [
-    "Fresh trapezoid16completed259.376s,3IDs/actualapproaches/0contacts,maxcoordinateerror3.19cm,allstrictinput/witness gates passed.",
-    "Face-intent native PID1725382started with all4effective input gates;old integratedL continues independently.",
-    "New routed_approach_v2 preserves real sensor proof and stationary inspections;354tests/build pass.",
-    "Conditional6-input replay findsknown-free routes in5cases wherepreviousapproachplannerreturnsNone;earliest3.81m route at60.875sim s. No native speedup claimed."
+    "SLAM replay6/9episodes over5/7geometries complete;oldLmaximum body error0.648->0.672m is a counterexample,sofine55isnotuniversalfix.",
+    "First actual face sweep consumedat267simstamp with49.66degturn afterarrivalheadingcorrection;newnative stillincomplete.",
+    "ID220wasconfirmedbeforefirstfacesweepexecuted;do not claimcausalrecognitionimprovementfromthispartialrun.",
+    "NativePIDs1716779/1725382revalidatedbeforeandafter45-second observation;no restart."
   ],
   "latest_navigation_diagnosis": "repository_snapshot/local_navigation_diagnosis.json",
   "current_native_supervisor": "osp-spatial-cem-v6.service",
@@ -1354,7 +1354,7 @@
   "encoder_delta_native_early": "repository_snapshot/encoder_delta_native_early.json",
   "bottleneck_audit": "repository_snapshot/bottleneck_audit.json",
   "integrated_candidate": "repository_snapshot/integrated_candidate.json",
-  "captured_utc": "2026-11-13T03:40:15.605045+00:00",
+  "captured_utc": "2026-11-13T03:46:30.385317+00:00",
   "mixed_training_observed_rate": {
     "successes": 10,
     "completed": 17,
@@ -1387,10 +1387,10 @@
     "recorded_episodes": 9,
     "arms_per_episode": 3,
     "status": "running",
-    "completed_recorded_episodes": 4,
+    "completed_recorded_episodes": 6,
     "background_cpu_quota_percent": 25,
-    "completed_geometry_families": 4,
-    "remaining_recorded_episodes": 5
+    "completed_geometry_families": 5,
+    "remaining_recorded_episodes": 3
   },
   "second_L_full_replay_initial": {
     "max_error_baseline_m": 1.8489038804802125,

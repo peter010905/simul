@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-13T03:40:15.605045+00:00",
+  "captured_utc": "2026-11-13T03:46:30.385317+00:00",
   "client_date": "2026-11-13",
   "status": "running",
   "goal_status": "active",
@@ -840,10 +840,10 @@
     "recorded_episodes": 9,
     "arms_per_episode": 3,
     "status": "running",
-    "completed_recorded_episodes": 4,
+    "completed_recorded_episodes": 6,
     "background_cpu_quota_percent": 25,
-    "completed_geometry_families": 4,
-    "remaining_recorded_episodes": 5
+    "completed_geometry_families": 5,
+    "remaining_recorded_episodes": 3
   },
   "loop_gate_candidate": "repository_snapshot/loop_gate_candidate.json",
   "integrated_first_rectangle_failure": "repository_snapshot/integrated_first_rectangle_failure.json",

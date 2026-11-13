@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-13T03:40:15.605045+00:00",
+  "captured_utc": "2026-11-13T03:46:30.385317+00:00",
   "purpose": "Repository upload snapshot; not a live dashboard",
   "tests_passed_final": 189,
   "native_validation_complete": false,
@@ -137,8 +137,8 @@
   "previous_regressions_complete": true,
   "latest_change": {
     "date": "2026-11-13",
-    "name": "Fresh trapezoid259.376s strict pass;face-intent native starts;354-test routed approach candidate staged",
-    "status": "two_native_missions_running",
+    "name": "Six retained-recording comparisons reveal old-L counterexample;first planned-face turn executed natively",
+    "status": "two_native_comparisons_active;candidate_not_qualified",
     "generalization_verified": false
   },
   "latest_recording": {
@@ -505,10 +505,10 @@
     "recorded_episodes": 9,
     "arms_per_episode": 3,
     "status": "running",
-    "completed_recorded_episodes": 4,
+    "completed_recorded_episodes": 6,
     "background_cpu_quota_percent": 25,
-    "completed_geometry_families": 4,
-    "remaining_recorded_episodes": 5
+    "completed_geometry_families": 5,
+    "remaining_recorded_episodes": 3
   },
   "second_L_full_replay_initial": {
     "max_error_baseline_m": 1.8489038804802125,
