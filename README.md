@@ -1,7 +1,7 @@
 # OSP Final Project — ROS 2 Jazzy
 
-> **2026-11-13 병목 점검:** 같은 계수의 기준 정책은7종 새 공간에서4/7회 완주(57.1%)입니다. 다른 학습 계수까지 포함한 입력 검증 완료 주행은9/15회(60.0%)이며, 입력 검증 누락1건까지 포함한 전체 엄격 집계는9/16회(56.3%)입니다. 독립 검증 성공률은 아직 없습니다.
-> 완료16회는 모두 충돌0회였습니다. 마커 인식 누락4회, 좌표 오차2회, 실험 관리상의 입력 검증 누락1회가 있습니다. 누락 주행은246.7초에 임무 자체를 달성했지만 검증 성공으로 소급 처리하지 않았습니다.
+> **2026-11-13 병목 점검:** 같은 계수의 기준 정책은7종 새 공간에서4/7회 완주(57.1%)입니다. 다른 학습 계수까지 포함한 입력 검증 완료 주행은10/16회(62.5%)이며, 입력 검증 누락1건까지 포함한 전체 엄격 집계는10/17회(58.8%)입니다. 독립 검증 성공률은 아직 없습니다.
+> 완료17회는 모두 충돌0회였습니다. 마커 인식 누락4회, 좌표 오차2회, 실험 관리상의 입력 검증 누락1회가 있습니다. 누락 주행은246.7초에 임무 자체를 달성했지만 검증 성공으로 소급 처리하지 않았습니다.
 > 12개 논리 CPU의 부하도 높습니다. 실제 속도는 실시간의0.31–0.35배,10분 임무에 약29–32분이 걸립니다. [완주율 집계·제어·CPU·시간 병목](repository_snapshot/bottleneck_audit.json).
 > **수정과 다음 실제 검증:** 마커 확인·접근 시 일반 탐색 회전보다 해당 마커의 카메라 방향을 우선하도록 수정했습니다. 센서 일시 중단은 목표를 유지하고, 실패·충돌·재계획은 이전 방향 지시를 지웁니다.
 > 통합 후보는337개 런타임 테스트·설치 빌드와11개 실험 관리 검사를 통과했습니다. 첫 실제 직사각형은600.248초에 ID1개·충돌0회로 시간 초과했습니다. ID991 접근 뒤 해당 마커 방향으로 약4.7도 회전은 실행됐지만, 같은 맵 기준 주행의 ID2개보다 인식 결과가 좋아지지 않았습니다. [첫 통합 후보 실제 실패](repository_snapshot/integrated_first_rectangle_failure.json).
@@ -12,7 +12,10 @@
 > 응답 기준 하나만 바꾼 별도 후보는337개 런타임 테스트·빌드를 통과했고, 실제 설치본의 launch가0.55 설정을 생성하는 것도 확인했습니다. 완료한4개 기록의 원형·삼각형·사다리꼴에서는 기존·수정 기준 모두 최대 오차가 각각0.106m·0.058m·0.064m로 같았고, L자는 위 오류가 줄었습니다. 남은5개 기록 비교는 실제 Gazebo2개에 CPU를 우선 배정하도록 낮은 CPU 한도로 진행합니다. 이는 새 실제 주행의 완주 검증이 아닙니다. [단일 기준 수정 후보·검증 범위](repository_snapshot/loop_gate_candidate.json).
 > **추가 제어 문제:** 현재 직사각형 주행의 저장 입력을 재계산하자 장애물 면 확인을 위한60도 계획이 정확히 재현됐지만, 실제 도착 후 일반 탐색이 반대 방향120도 회전을 실행했습니다. 해당 면을 보는 종료 방향을 odom에 보존하는 별도 후보는348개 테스트·빌드를 통과했습니다. 마커 확인 방향을 우선하며, 이동 실패·센서 일시 중단·도착 성공의 처리를 실제 콜백으로 검사했습니다. 새 실제 완주 성능은 아직 검증되지 않았습니다. [장애물 면 관찰 방향 문제·수정 후보](repository_snapshot/face_intent_candidate.json).
 > 종료한 직사각형에서 ID220은 카메라 거리0.80m까지 접근했지만 가장 가까운 순간 시선 오차159도였고, ID465도0.95m에서-177도였습니다. ID220에는 가림을 제외한 단순 영상 크기·시야각 모델에서도 읽을 만한 프레임이 없었습니다. 이 분석은 평가용 실제 자세로 수행하며 정책에 정답 위치를 전달하지 않습니다.
-> 같은 맵·계수에서 관찰 방향 처리만 바꾼 실제 비교를 우선 예약했습니다. 감독·복구 검사10개를 통과했고, 기존 두 주행을 유지하며 빈 실행 자리를 기다립니다. 비교 후 원래 학습·통합 감독 프로세스를 복구하도록 구성했으며, 원래 소스와 준비된 맵은 보존합니다. [예약된 비교와 실패 분석](repository_snapshot/integrated_first_rectangle_failure.json).
+> 같은 맵·계수에서 관찰 방향 처리만 바꾼 실제 비교를 진행 중입니다. 감독·복구 검사10개를 통과했고, 실제 Gazebo 동시2개를 유지합니다. 비교 후 원래 학습·통합 감독 프로세스를 복구하도록 구성했으며, 원래 소스와 준비된 맵은 보존합니다. [비교 구성과 실패 분석](repository_snapshot/integrated_first_rectangle_failure.json).
+> 이 관찰 방향 비교는 실제 실행 중이며 센서·Nav2·속도 입력 검사를 통과했습니다. 별도로 새 사다리꼴은259.376초에 전체 기준을 통과했습니다. 세 마커의 실제 최소 접근 거리는1.03–1.10m, 좌표 오차는최대3.19cm였습니다. [새 사다리꼴 실제 결과](repository_snapshot/fresh_trapezoid_role2_native.json).
+> **접근 경로 후보:** 위 사다리꼴은 세 ID를99.875초에 알았지만 마지막 근거리 관측 검증은259.376초였습니다. 저장 지도에는 알려진 안전 공간의 우회 경로가 있는데도 기존 로직이 직선 접근 불가로 새 관측 위치를 제외하는 사례를 찾았습니다. 경로 연결성과 실제 경로 길이로 판단하는 별도 후보는354개 테스트·빌드를 통과했습니다.
+> 조건부 저장 입력6개 중5개에서 새 접근 경로를 찾았고, 첫 경로는60.875초 시점 약3.81m였습니다. 아직 실제 주행의 시간 단축 결과가 아닙니다. 미지 공간 통과·막힌 경로·마커 반대편 지름길은 거부하고, 이동 경로가 없어도 기존 제자리 관찰은 유지하는 검사를 포함합니다. [우회 접근 후보·재생 한계](repository_snapshot/routed_approach_candidate.json).
 > **속도와 병렬 실행:** 사용자 요청대로 실제 Gazebo는 동시2개를 유지합니다. 설치된 SLAM 최적화기는50개 스레드를 요청하고12개로 제한됐습니다. 별도 CPU 예산 플러그인으로8회 순서 균형 비교를 했고, 모든 궤적과 그래프 연결 수는 같았습니다.
 > 설치본 대비1개 스레드의 해당 구성요소 처리 시간 개선은약1.4%, 같은 빌드12개 대비1–2개 스레드는약2.5–3.3%였습니다. 전체 Gazebo 속도 개선은 검증되지 않아 적용하지 않았습니다. 다음 속도 비교 대상은 렌더링·물리 엔진입니다. [측정값과 비교 한계](repository_snapshot/slam_thread_budget_comparison.json).
 > 앞선 센서 수정 L자 후보는600.2초에 ID2개로 실패했습니다. 구형 근접 확인 실험은 시작 전 원본을 보존해 보류했고, 그 개선을 위 통합 수정본에 포함했습니다. 실사용 정책으로 승격하지 않았습니다. [이전 통합 구성](repository_snapshot/integrated_candidate.json).
@@ -293,7 +296,7 @@ python3 scripts/publish_simulation_videos.py --upload
 
 ## 저장된 Gazebo 영상
 
-[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 192개
+[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 193개
 
 아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다. 환경 오류로 종료한 영상은 정책 학습 표본에서 제외합니다.
 
@@ -488,6 +491,7 @@ python3 scripts/publish_simulation_videos.py --upload
 | [spatial_cem_v6__00013_train_g0_1__1191301313.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00013_train_g0_1__1191301313.mp4) | 성공 | 확인 | 246.7 |
 | [spatial_cem_v6__00014_train_g0_2__1191301414.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00014_train_g0_2__1191301414.mp4) | 성공 | 확인 | 117.189 |
 | [spatial_cem_v6__00015_train_g0_2__1191301515.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00015_train_g0_2__1191301515.mp4) | 성공 | 확인 | 380.888 |
+| [spatial_cem_v6__00016_train_g0_2__1191301616.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00016_train_g0_2__1191301616.mp4) | 성공 | 확인 | 259.376 |
 | [strict_approach_regression_v1__case_0__1163000000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/strict_approach_regression_v1__case_0__1163000000.mp4) | 성공 | 확인 | 496.132 |
 | [tf_restamp_v1__regression__case_0__1121200000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_0__1121200000.mp4) | 성공 | 확인 | 231.867 |
 | [tf_restamp_v1__regression__case_1__1121200101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_1__1121200101.mp4) | 성공 | 확인 | 229.859 |

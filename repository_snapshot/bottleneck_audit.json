@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-13T03:18:46.003799+00:00",
+  "captured_utc": "2026-11-13T03:40:54.882439+00:00",
   "evidence_type": "authoritative_completed_native_training_bottleneck_audit",
   "fixed_incumbent": {
     "successes": 4,
@@ -7,9 +7,9 @@
     "percent": 57.142857142857146
   },
   "mixed_coefficient_training": {
-    "successes": 9,
-    "completed": 16,
-    "percent": 56.25
+    "successes": 10,
+    "completed": 17,
+    "percent": 58.8235294117647
   },
   "success_definition": "3exact IDs,three sensor-relative near witnesses,actual1.5m approaches,final coordinate error<=0.5m,zero contacts,<=600sim s,independent gates",
   "independent_generalization_success_rate": null,
@@ -19,11 +19,11 @@
     "map_localization": 2,
     "input_verification_missing": 1
   },
-  "zero_collision_completed": 16,
-  "correct_all_three_ID_missions": 12,
-  "geometric_all_three_closest_pass_missions": 16,
+  "zero_collision_completed": 17,
+  "correct_all_three_ID_missions": 13,
+  "geometric_all_three_closest_pass_missions": 17,
   "successful_mission_time_sim_s": {
-    "mean": 379.16087500000003,
+    "mean": 367.35510000000005,
     "median": 360.15
   },
   "rtf": {
@@ -32,10 +32,10 @@
     "median": 0.34652634829630036
   },
   "motion": {
-    "observed_sim_s": 6675.186,
-    "stationary_sim_s": 695.2660000000004,
-    "stationary_turn_sim_s": 1897.9309999999996,
-    "stationary_plus_turn_fraction": 0.38848310743700626,
+    "observed_sim_s": 7317.803,
+    "stationary_sim_s": 760.5460000000004,
+    "stationary_turn_sim_s": 2084.591,
+    "stationary_plus_turn_fraction": 0.38879661013011696,
     "limit": "Includes necessary camera verification and safe observation turns;not all wasted time"
   },
   "confirmed_marker_direction_bug": {
@@ -182,7 +182,7 @@
         "infrastructure_failure": false,
         "reason": "all_targets_found"
       },
-      "failure_category": null,
+      "failure_category": "none",
       "exact_ids": true,
       "map_positions": true,
       "geometric_closest_passes_all3": true,
@@ -246,7 +246,7 @@
         "infrastructure_failure": false,
         "reason": "all_targets_found"
       },
-      "failure_category": null,
+      "failure_category": "none",
       "exact_ids": true,
       "map_positions": true,
       "geometric_closest_passes_all3": true,
@@ -310,7 +310,7 @@
         "infrastructure_failure": false,
         "reason": "all_targets_found"
       },
-      "failure_category": null,
+      "failure_category": "none",
       "exact_ids": true,
       "map_positions": true,
       "geometric_closest_passes_all3": true,
@@ -499,7 +499,7 @@
         "infrastructure_failure": false,
         "reason": "all_targets_found"
       },
-      "failure_category": null,
+      "failure_category": "none",
       "exact_ids": true,
       "map_positions": true,
       "geometric_closest_passes_all3": true,
@@ -623,7 +623,7 @@
         "infrastructure_failure": false,
         "reason": "all_targets_found"
       },
-      "failure_category": null,
+      "failure_category": "none",
       "exact_ids": true,
       "map_positions": true,
       "geometric_closest_passes_all3": true,
@@ -687,7 +687,7 @@
         "infrastructure_failure": false,
         "reason": "all_targets_found"
       },
-      "failure_category": null,
+      "failure_category": "none",
       "exact_ids": true,
       "map_positions": true,
       "geometric_closest_passes_all3": true,
@@ -751,7 +751,7 @@
         "infrastructure_failure": false,
         "reason": "all_targets_found"
       },
-      "failure_category": null,
+      "failure_category": "none",
       "exact_ids": true,
       "map_positions": true,
       "geometric_closest_passes_all3": true,
@@ -1171,6 +1171,70 @@
       },
       "authoritative_evaluation": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00015_train_g0_2/episodes/1191301515/evaluation.json",
       "evaluation_sha256": "ac146b14726a220c09460c96b2124d75794f577284115d4f9ff8d0553f812fa4"
+    },
+    {
+      "number": 16,
+      "role": "2",
+      "shape": "trapezoid",
+      "seed": 1191301616,
+      "parameters": [
+        1.0,
+        2.674919605990809,
+        0.48242051480811976,
+        1.671897241930709,
+        0.8432736861909724
+      ],
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 259.376,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      },
+      "failure_category": "none",
+      "exact_ids": true,
+      "map_positions": true,
+      "geometric_closest_passes_all3": true,
+      "sensor_verified_ids": [
+        16,
+        356,
+        782
+      ],
+      "coordinate_errors_m": {
+        "16": 0.027234264846577698,
+        "782": 0.0066125141797155635,
+        "356": 0.03192684189070102
+      },
+      "wall_s": 780.8957798909396,
+      "rtf": 0.34675817164233047,
+      "motion": {
+        "observed_sim_s": 260.712,
+        "stationary_sim_s": 26.520000000000007,
+        "stationary_turn_sim_s": 82.82399999999996,
+        "longest_stationary_interval_s": 2.0400000000000063,
+        "caveat": "Stationary camera verification and observation turns can be necessary; not automatically wasted time"
+      },
+      "revisit": {
+        "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00016_train_g0_2/episodes/1191301616",
+        "source": "Independent Gazebo ground-truth trajectory; evaluator only",
+        "path_distance_m": 38.52959391099812,
+        "distance_in_returned_cells_m": 1.6782385071251011,
+        "returned_distance_fraction": 0.0435571293847988,
+        "cell_reentries_after_15_sim_seconds": 5,
+        "cell_size_m": 0.6,
+        "minimum_path_step_m": 0.2,
+        "navigation_goals": 14,
+        "repeated_map_goals_within_0_8m_excluding_last_two": 0,
+        "limits": [
+          "Returned cells include necessary corridor transit and marker approach; this is not waste distance",
+          "Repeated goals use SLAM map coordinates and may be affected by frame correction",
+          "These are simulation measurements, not observations from a physical robot"
+        ]
+      },
+      "authoritative_evaluation": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00016_train_g0_2/episodes/1191301616/evaluation.json",
+      "evaluation_sha256": "c3762b78c54130700ef302e4a561660c3fde39ff9262dcaa710a4d72f8feb50a"
     }
   ],
   "current_native_jobs": [
@@ -1224,9 +1288,9 @@
   ],
   "second_L_localization_failure": "repository_snapshot/second_L_localization_failure.json",
   "environment_verified_training": {
-    "successes": 9,
-    "completed": 15,
-    "percent": 60.0
+    "successes": 10,
+    "completed": 16,
+    "percent": 62.5
   },
   "infrastructure_unverified_completed": 1,
   "slam_thread_budget_comparison": "repository_snapshot/slam_thread_budget_comparison.json",

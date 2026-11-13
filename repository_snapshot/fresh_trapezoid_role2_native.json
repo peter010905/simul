@@ -1,0 +1,59 @@
+{
+  "number": 16,
+  "shape": "trapezoid",
+  "outcome": {
+    "success": true,
+    "targets": 3,
+    "approached": 3,
+    "contacts": 0,
+    "seconds": 259.376,
+    "infrastructure_failure": false,
+    "reason": "all_targets_found"
+  },
+  "ground_truth_audit": {
+    "available": true,
+    "correct_ids": true,
+    "correct_positions": true,
+    "position_tolerance_m": 0.5,
+    "position_errors_m": {
+      "16": 0.027234264846577698,
+      "782": 0.0066125141797155635,
+      "356": 0.03192684189070102
+    },
+    "expected_ids": [
+      16,
+      356,
+      782
+    ],
+    "found_ids": [
+      16,
+      356,
+      782
+    ],
+    "closest_approach_m": {
+      "16": 1.0439996678511496,
+      "782": 1.0960236004476818,
+      "356": 1.0304944182716012
+    },
+    "approached_within_1_5m": 3,
+    "approach_radius_m": 1.5,
+    "all_approached": true,
+    "approached_within_2m": 3,
+    "world_to_map": [
+      4.581198094258895,
+      5.842831965548195,
+      -2.640719458709556
+    ],
+    "trajectory_samples": 1279
+  },
+  "input_gates": {
+    "floor_sensor_gate": true,
+    "runtime_configuration_gate": true,
+    "velocity_profile_gate": true,
+    "witness_algorithm_gate": true,
+    "physical_credit_gate": true
+  },
+  "marker_events": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00016_train_g0_2/episodes/1191301616/marker_events.jsonl",
+  "physical_witness_audit": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00016_train_g0_2/physical_credit_audit.json",
+  "evaluation_sha256": "c3762b78c54130700ef302e4a561660c3fde39ff9262dcaa710a4d72f8feb50a"
+}
