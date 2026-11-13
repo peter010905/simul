@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-12T23:27:51.214354+00:00",
+  "captured_utc": "2026-11-12T23:57:53.003433+00:00",
   "purpose": "Repository upload snapshot; not a live dashboard",
   "tests_passed_final": 189,
   "native_validation_complete": false,
@@ -137,29 +137,28 @@
   "previous_regressions_complete": true,
   "latest_change": {
     "date": "2026-11-13",
-    "name": "Windowed near-range witness passes actual circle236.793s versus399.2s; fixed corrected-source CEM on28fresh spaces launched",
-    "status": "spatial_cem_v6_first_actual_native_running_all_input_gates_verified",
+    "name": "Corrected-source first3freshmaps pass:circle283.901s,triangle375.1s,trapezoid345.2s;final-map candidate273tests now actualnative with v6handoffverified",
+    "status": "fresh_rectangle24obstacles_and_original_failed_trapezoid24_graph_regression_both_running",
     "generalization_verified": false
   },
   "latest_recording": {
-    "evidence_type": "latest_finalized_native_episode_by_evaluation_mtime",
-    "evaluation": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00024_train_g0_3/episodes/1163002424/evaluation.json",
-    "original_benchmark_success": false,
-    "elapsed_sim_seconds": 600.2,
-    "targets": 1,
+    "evidence_type": "fresh_trapezoid_corrected_source_native_training_not_holdout",
+    "scenario_seed": 1191300202,
+    "original_benchmark_success": true,
+    "elapsed_sim_seconds": 345.2,
+    "targets": 3,
     "collisions": 0,
-    "correct_ids": false,
-    "correct_positions": false,
+    "full_completion_audit_passed": true,
     "position_errors_m": {
-      "330": 0.07245793435652881
+      "733": 0.052607660460885136,
+      "326": 0.01898060739841684,
+      "439": 0.014515868203114275
     },
-    "closest_approach_m": {
-      "330": 0.8310432772981421,
-      "340": 0.8062644838272248,
-      "856": 0.8982298881581123
-    },
-    "reason": "timeout",
-    "independent_qualification": false
+    "all_three_physical_credits_verified": true,
+    "all_saved_range_witnesses_verified": true,
+    "report": "spatial_curriculum.json",
+    "hardware_validated": false,
+    "production_promoted": false
   },
   "active_supervision": {
     "current_campaign": "spatial_cem_v6",
@@ -168,11 +167,15 @@
     "evaluator_observer": "osp-spatial-evaluator-observer-v6.service",
     "failure_observer": "osp-native-failure-evidence-v6.service",
     "depth_quality_observer": "osp-depth-quality-space6.service",
-    "legacy_drainer": "osp-spatial-transition-v6.service",
-    "CEM_dispatch": "active;global_native_slots_include_draining_previous_campaign",
-    "previous_CEM": "draining_to_spatial_cem_v6",
+    "legacy_drainer": "completed",
+    "CEM_dispatch": "active_after_verified_graph_native_PID",
+    "previous_CEM": "superseded_by_spatial_cem_v6",
     "previous_screen": "superseded_by_spatial_cem_v6",
-    "completed_priority_diagnostic": "completed_windowed_witness_regression"
+    "completed_priority_diagnostic": "completed_windowed_witness_regression",
+    "priority_diagnostic": "osp-graph-landmark-regression-v1.service",
+    "diagnostic_evaluator": "osp-graph-landmark-evaluator-v1.service",
+    "priority_diagnostic_status": "native_running_all_effective_input_gates_verified",
+    "diagnostic_failure_observer": "osp-graph-landmark-failure-evidence-v1.service"
   },
   "pending_tf_comparison": {
     "status": "completed",
@@ -193,9 +196,9 @@
   "dashboard": "dashboard.json",
   "spatial_geometry": "spatial_geometry_v6.json",
   "revisit_analysis": "revisit_analysis.json",
-  "latest_candidate_tests_passed": 259,
+  "latest_candidate_tests_passed": 273,
   "latest_candidate_tests_skipped": 0,
-  "latest_candidate_runtime": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
+  "latest_candidate_runtime": "/home/peter/simul/training_robust/native90/graph_landmarks_v1/runtime",
   "production_promoted": false,
   "floor_diagnosis": "floor_pose_diagnosis.json",
   "local_navigation_diagnosis": "local_navigation_diagnosis.json",
@@ -228,24 +231,21 @@
   "witness_dropout_diagnosis": "witness_dropout_diagnosis.json",
   "calibrated_trapezoid_localization_failure": "calibrated_trapezoid_localization_failure.json",
   "latest_verified_successful_recording": {
-    "date": "2026-11-13",
-    "evidence_type": "same_scene_native_engineering_comparison_not_holdout",
-    "scenario_seed": 1171300000,
+    "evidence_type": "fresh_trapezoid_corrected_source_native_training_not_holdout",
+    "scenario_seed": 1191300202,
     "original_benchmark_success": true,
-    "full_completion_audit_passed": true,
-    "elapsed_sim_seconds": 236.793,
+    "elapsed_sim_seconds": 345.2,
     "targets": 3,
     "collisions": 0,
-    "correct_ids": true,
-    "correct_positions": true,
+    "full_completion_audit_passed": true,
+    "position_errors_m": {
+      "733": 0.052607660460885136,
+      "326": 0.01898060739841684,
+      "439": 0.014515868203114275
+    },
     "all_three_physical_credits_verified": true,
     "all_saved_range_witnesses_verified": true,
-    "position_errors_m": {
-      "848": 0.1333307258020401,
-      "554": 0.029105009622714045,
-      "206": 0.040396781531015745
-    },
-    "report": "windowed_witness_candidate.json",
+    "report": "spatial_curriculum.json",
     "hardware_validated": false,
     "production_promoted": false
   },
@@ -262,64 +262,6 @@
     "actual_native_velocity_profile_verified": true
   },
   "current_training_runtime": "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime",
-  "live_corrected_training": [
-    {
-      "number": 0,
-      "native_pid": 1563861,
-      "unit": "osp-spatial-nov13-space6-00000.service",
-      "shape": "circle",
-      "floor_sensor_gate": true,
-      "runtime_configuration_gate": true,
-      "velocity_profile_gate": true,
-      "live_status": {
-        "state": "running",
-        "approached_ids": [
-          909
-        ],
-        "targets": 1,
-        "collisions": 0,
-        "elapsed_seconds": 74.9,
-        "active_action": "nav",
-        "readiness_reason": "",
-        "sensor_interruptions": 0,
-        "nav2_lifecycle": {
-          "controller_server": 3,
-          "planner_server": 3,
-          "behavior_server": 3,
-          "bt_navigator": 3
-        },
-        "drive_controllers": {
-          "diffdrive_controller": "active",
-          "joint_state_broadcaster": "active"
-        },
-        "confirmed_surface_cells": 20,
-        "confirmed_face_anchors": 0,
-        "reassociated_face_records": 0,
-        "camera_diagnostics": {
-          "received": 393,
-          "late": 1,
-          "invalid_calibration": 0,
-          "duplicate": 0,
-          "accepted": 392,
-          "coverage_updates": 387,
-          "tf_waits": 5
-        }
-      },
-      "depth_recorder": {
-        "complete": false,
-        "domain": 124,
-        "native_pid": 1563861,
-        "native_output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00000_train_g0_0",
-        "observations": 80,
-        "matched_depth": 80,
-        "recorder_sha256": "6a75ebe06c422815186999d85e1dbf1d3eaa826de3c6ace9dcc94a2bc3acff76",
-        "source": "Independent nearest registered-depth patch at published marker center",
-        "detector_range_provenance_known": false,
-        "ground_truth_available": false,
-        "robot_commands_published": false
-      }
-    }
-  ],
   "actual_native_process_count": 2,
   "github_visibility": {
     "verified_utc": "2026-11-12T23:29:06.049281+00:00",
@@ -328,5 +270,9 @@
     "observed_before_correction": "public",
     "verified_after_correction": "private",
     "original_experiments_and_assets_retained": true
-  }
+  },
+  "graph_landmark_candidate": "graph_landmark_candidate.json",
+  "first_corrected_fresh_space_native": "first_corrected_fresh_space_native.json",
+  "trapezoid_witness_diagnosis": "trapezoid_witness_diagnosis.json",
+  "triangle_single_glance_diagnosis": "triangle_single_glance_diagnosis.json"
 }

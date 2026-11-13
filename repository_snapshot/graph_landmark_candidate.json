@@ -1,0 +1,650 @@
+{
+  "captured_utc": "2026-11-12T23:56:12.617040+00:00",
+  "evidence_type": "finalized_native_SLAM_replay_candidate_built_and_queued_for_native_regression",
+  "workspace": "/home/peter/simul/training_robust/native90/graph_landmarks_v1/runtime",
+  "runtime_tests_passed": 273,
+  "build_passed": true,
+  "installed_exporter_smoke_passed": true,
+  "source_changes": {
+    "osp_mission/graph_landmarks.py": {
+      "before": null,
+      "after": "0b1cc7cae3385ec8a511070918e37acf53aac993ef7c7c1de6e71ff5a1bf1074"
+    },
+    "osp_mission/mission.py": {
+      "before": "673819a2aac4b30d0f86a0bdc42ae269ef73f36e83d68c0a05c57d2b792cce8f",
+      "after": "981a69be9ccc4222ffc9f31b1d2ddf25f9489efdb6b5f5769997d74302129abc"
+    },
+    "setup.py": {
+      "before": "057aaecae1c577eb22a5574c2c35e44eb7ae79a20fcd9bc580d07ff10514522a",
+      "after": "4471d4598fdeb03dd0269f517e5ba3a9bb224e399cd74b53459c20b2e240c7e3"
+    },
+    "test/test_graph_landmarks_runtime.py": {
+      "before": null,
+      "after": "24ea730f09da6f8678f89a94a91e96dd37300eefbf514deb51bfffafe4c04669"
+    },
+    "tools/export_slam_graph_poses": {
+      "before": null,
+      "after": "ae49d693a63d9bc8c1828aeea438770d5651588c825f35f5fe4696eaf009631f"
+    },
+    "tools/export_slam_graph_poses.cpp": {
+      "before": null,
+      "after": "b0ef5bb81ae6ad753d44565b9c62226ec83a9380142ad76c691b0b41f1d1df96"
+    }
+  },
+  "builder": "scripts/prepare_graph_landmarks_runtime.py",
+  "policy_module": "scripts/candidate_graph_landmarks.py",
+  "auxiliary_handoff_tests_passed": 3,
+  "geometry_and_final_csv_tests_passed": 14,
+  "source_policy_scope": "Only final map landmark coordinates; navigation,ID thresholds,physical sensor approach proofs and driving timer are unchanged",
+  "new_native_success_verified": false,
+  "generalization_verified": false,
+  "hardware_validated": false,
+  "production_promoted": false,
+  "ground_truth_available_to_policy": false,
+  "method": {
+    "input": "Accepted readable marker odom points + serialized SLAM corrected/odometric scan poses",
+    "maximum_scan_time_gap_sim_s": 0.35,
+    "minimum_readable_frames": 3,
+    "minimum_distinct_scan_nodes": 3,
+    "maximum_median_deviation_m": 0.25,
+    "coordinate_replacement": "Atomic final CSV after successful export; original CSV and graph evidence preserved; missing evidence keeps original coordinates"
+  },
+  "replay_cases": [
+    {
+      "evidence_type": "finalized_native_SLAM_graph_replay_not_new_native_success",
+      "episode": "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_2/case_0/episodes/1171300202",
+      "original_native_success": false,
+      "original_native_seconds": 580.702,
+      "original_coordinate_errors_m": {
+        "367": 1.2146241790669439,
+        "228": 0.07221268130563249,
+        "225": 0.03652627221817406
+      },
+      "reprojected_coordinate_errors_m": {
+        "367": 0.13922252545977484,
+        "228": 0.06657216675355157,
+        "225": 0.02283887433182051
+      },
+      "all_reprojected_coordinates_within_0_5m": true,
+      "corrected_ids": [
+        225,
+        228,
+        367
+      ],
+      "policy_inputs_contain_ground_truth": false,
+      "original_native_results_modified": false,
+      "source_sha256": {
+        "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_2/case_0/episodes/1171300202/20261113_081242/map.data": "0e68ad45b28d35b6b1c424f288d2f271b36513e1ea4f5da43874f840ecc019c9",
+        "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_2/case_0/episodes/1171300202/20261113_081242/markers.csv": "82296cdd7f4861ccd9a0c330576267048069da27faeb450d22eca13df6684afd",
+        "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_2/case_0/episodes/1171300202/marker_observations.json": "16b5270d19900a677032f8d8850527c664a3a21ff215b2b429c7b5a2e60c89ec",
+        "/home/peter/simul/training_robust/native90/graph_landmark_study_v1/trapezoid/graph_scan_poses.csv": "9bd0cea151dad72aa82593a85d704dfc7098a2e183aa1267b8d524586b14b3c3",
+        "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_2/scenarios/1171300202.yaml": "2cf7ff458010e577a9c2a6b5a5d1113193128751198e3ecd51e063287cdb790a",
+        "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_2/case_0/episodes/1171300202/evaluation.json": "ae0ecb416ce8cb1ebc04453af3fde20ceee1597bfdf21c103642a5c00e3e3b7b",
+        "/home/peter/simul/tmp/export_slam_graph_poses": "ae49d693a63d9bc8c1828aeea438770d5651588c825f35f5fe4696eaf009631f",
+        "/home/peter/simul/scripts/candidate_graph_landmarks.py": "d88c8ff809ec7c225dfc23ed65143ab109f556df5151d06132f29c4e1f99b0a7"
+      },
+      "limits": [
+        "Final serialized SLAM graph contains later optimization; this is a final map update,not an online localization fix",
+        "Native driving time,physical approach credit and collisions are unchanged and are not reclassified by replay",
+        "Fixed constants apply across scenes; no target truth or scene geometry enters projection or inlier selection"
+      ],
+      "retained_evidence_by_id": [
+        {
+          "id": 225,
+          "original_point": [
+            2.097182873109584,
+            0.2470237267369232
+          ],
+          "eligible_observations": 62,
+          "applied": true,
+          "inlier_observations": 62,
+          "distinct_scan_nodes": 54,
+          "point": [
+            2.0813929112274705,
+            0.24672966462995516
+          ],
+          "shift_m": 0.015792699856621947
+        },
+        {
+          "id": 228,
+          "original_point": [
+            -1.4682690654880017,
+            -7.931195019983538
+          ],
+          "eligible_observations": 21,
+          "applied": true,
+          "inlier_observations": 21,
+          "distinct_scan_nodes": 19,
+          "point": [
+            -1.4734708811258626,
+            -7.928923987596574
+          ],
+          "shift_m": 0.00567595578144645
+        },
+        {
+          "id": 367,
+          "original_point": [
+            -6.648364425178462,
+            6.312182534052994
+          ],
+          "eligible_observations": 12,
+          "applied": true,
+          "inlier_observations": 12,
+          "distinct_scan_nodes": 8,
+          "point": [
+            -6.1997586019668205,
+            5.314553916905741
+          ],
+          "shift_m": 1.0938510147047151
+        }
+      ]
+    },
+    {
+      "evidence_type": "finalized_native_SLAM_graph_replay_not_new_native_success",
+      "episode": "/home/peter/simul/training_robust/native90/windowed_witness_regression_v2/case_0/episodes/1171300000",
+      "original_native_success": true,
+      "original_native_seconds": 236.793,
+      "original_coordinate_errors_m": {
+        "206": 0.04039678153101626,
+        "554": 0.029105009622713826,
+        "848": 0.13333072580204147
+      },
+      "reprojected_coordinate_errors_m": {
+        "206": 0.011009447001293115,
+        "554": 0.017212730815823224,
+        "848": 0.13051166124743144
+      },
+      "all_reprojected_coordinates_within_0_5m": true,
+      "corrected_ids": [
+        206,
+        554,
+        848
+      ],
+      "policy_inputs_contain_ground_truth": false,
+      "original_native_results_modified": false,
+      "source_sha256": {
+        "/home/peter/simul/training_robust/native90/windowed_witness_regression_v2/case_0/episodes/1171300000/20261113_075446/map.data": "014ad6e92b1c50ad0abf64cdd8d827b159e370a6ba26c6991636489bb3ceca47",
+        "/home/peter/simul/training_robust/native90/windowed_witness_regression_v2/case_0/episodes/1171300000/20261113_075446/markers.csv": "9c80d22de6beaad7f1e9c3818ea5d5b9d42ba62d446d46e2cf9ba9ef45cb2921",
+        "/home/peter/simul/training_robust/native90/windowed_witness_regression_v2/case_0/episodes/1171300000/marker_observations.json": "8c1d66f26dcbcbc59ad2f5587cdfd7eb6fabd7250ddd1c6fdb3a93f8f898f68e",
+        "/home/peter/simul/training_robust/native90/graph_landmark_study_v1/circle_windowed/graph_scan_poses.csv": "b389369442ffd85745e872e6ecf368175843159c9ba914611d7ddb45c5014ccd",
+        "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_0/scenarios/1171300000.yaml": "f4148926a247e575507165f364940e658aa15d3cdd1170f2168a11158cd0a62c",
+        "/home/peter/simul/training_robust/native90/windowed_witness_regression_v2/case_0/episodes/1171300000/evaluation.json": "bdace7ecaacda390996c12b5a4438caec382401258abf0d8d2ecead5b63247fc",
+        "/home/peter/simul/tmp/export_slam_graph_poses": "ae49d693a63d9bc8c1828aeea438770d5651588c825f35f5fe4696eaf009631f",
+        "/home/peter/simul/scripts/candidate_graph_landmarks.py": "d88c8ff809ec7c225dfc23ed65143ab109f556df5151d06132f29c4e1f99b0a7"
+      },
+      "limits": [
+        "Final serialized SLAM graph contains later optimization; this is a final map update,not an online localization fix",
+        "Native driving time,physical approach credit and collisions are unchanged and are not reclassified by replay",
+        "Fixed constants apply across scenes; no target truth or scene geometry enters projection or inlier selection"
+      ],
+      "retained_evidence_by_id": [
+        {
+          "id": 206,
+          "original_point": [
+            -2.768882949944892,
+            -4.730174785130017
+          ],
+          "eligible_observations": 125,
+          "applied": true,
+          "inlier_observations": 125,
+          "distinct_scan_nodes": 104,
+          "point": [
+            -2.740464069760841,
+            -4.743491939760997
+          ],
+          "shift_m": 0.03138438080289124
+        },
+        {
+          "id": 554,
+          "original_point": [
+            1.8384758749494732,
+            -0.9689231488308637
+          ],
+          "eligible_observations": 72,
+          "applied": true,
+          "inlier_observations": 72,
+          "distinct_scan_nodes": 54,
+          "point": [
+            1.8436365996707877,
+            -0.9536487201690234
+          ],
+          "shift_m": 0.016122693651956482
+        },
+        {
+          "id": 848,
+          "original_point": [
+            -6.3434331180711965,
+            5.598331473287793
+          ],
+          "eligible_observations": 45,
+          "applied": true,
+          "inlier_observations": 45,
+          "distinct_scan_nodes": 30,
+          "point": [
+            -6.352705720384475,
+            5.597699094080294
+          ],
+          "shift_m": 0.009294141010458959
+        }
+      ]
+    },
+    {
+      "evidence_type": "finalized_native_SLAM_graph_replay_not_new_native_success",
+      "episode": "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_0/case_0/episodes/1171300000",
+      "original_native_success": true,
+      "original_native_seconds": 399.2,
+      "original_coordinate_errors_m": {
+        "206": 0.020972371309266397,
+        "554": 0.006009562753278201,
+        "848": 0.037656843310018166
+      },
+      "reprojected_coordinate_errors_m": {
+        "206": 0.018494430260950722,
+        "554": 0.0017565796247205783,
+        "848": 0.03187750114411181
+      },
+      "all_reprojected_coordinates_within_0_5m": true,
+      "corrected_ids": [
+        206,
+        554,
+        848
+      ],
+      "policy_inputs_contain_ground_truth": false,
+      "original_native_results_modified": false,
+      "source_sha256": {
+        "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_0/case_0/episodes/1171300000/20261113_071447/map.data": "35e77ce64fb4c180ed7ac62f2768ec6956f2152176396572e95897d9395d777d",
+        "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_0/case_0/episodes/1171300000/20261113_071447/markers.csv": "e86587f171a469fd6f41f7ac76104c6dec56adaec68554c4d880f972178c8342",
+        "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_0/case_0/episodes/1171300000/marker_observations.json": "b4fafe9a5c81f9e6a76c6130419f246b731cc14f6bc97e75a1ab3bca6a638fdd",
+        "/home/peter/simul/training_robust/native90/graph_landmark_study_v1/circle_reference/graph_scan_poses.csv": "e5d1063c533ac3be038731f111f67f6da260eebf9b09d521d3d9fdb3111187d3",
+        "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_0/scenarios/1171300000.yaml": "f4148926a247e575507165f364940e658aa15d3cdd1170f2168a11158cd0a62c",
+        "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_0/case_0/episodes/1171300000/evaluation.json": "7a82d19c57b480dbd2efd00a2afc2f54b5390ad3b309ca557e4b6ad9b3d5e44f",
+        "/home/peter/simul/tmp/export_slam_graph_poses": "ae49d693a63d9bc8c1828aeea438770d5651588c825f35f5fe4696eaf009631f",
+        "/home/peter/simul/scripts/candidate_graph_landmarks.py": "d88c8ff809ec7c225dfc23ed65143ab109f556df5151d06132f29c4e1f99b0a7"
+      },
+      "limits": [
+        "Final serialized SLAM graph contains later optimization; this is a final map update,not an online localization fix",
+        "Native driving time,physical approach credit and collisions are unchanged and are not reclassified by replay",
+        "Fixed constants apply across scenes; no target truth or scene geometry enters projection or inlier selection"
+      ],
+      "retained_evidence_by_id": [
+        {
+          "id": 206,
+          "original_point": [
+            -2.7187701858775997,
+            -4.765756304341813
+          ],
+          "eligible_observations": 83,
+          "applied": true,
+          "inlier_observations": 83,
+          "distinct_scan_nodes": 67,
+          "point": [
+            -2.7232613094725577,
+            -4.767126521268424
+          ],
+          "shift_m": 0.0046954963072247825
+        },
+        {
+          "id": 554,
+          "original_point": [
+            1.8593844948745692,
+            -0.9438455000787127
+          ],
+          "eligible_observations": 23,
+          "applied": true,
+          "inlier_observations": 23,
+          "distinct_scan_nodes": 14,
+          "point": [
+            1.8588316429653857,
+            -0.9490309926056527
+          ],
+          "shift_m": 0.005214880437789395
+        },
+        {
+          "id": 848,
+          "original_point": [
+            -6.3673593467208605,
+            5.505483515611514
+          ],
+          "eligible_observations": 57,
+          "applied": true,
+          "inlier_observations": 57,
+          "distinct_scan_nodes": 44,
+          "point": [
+            -6.3686899452538555,
+            5.499825390963063
+          ],
+          "shift_m": 0.005812475117660104
+        }
+      ]
+    },
+    {
+      "evidence_type": "finalized_native_SLAM_graph_replay_not_new_native_success",
+      "episode": "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_1/case_0/episodes/1171300101",
+      "original_native_success": true,
+      "original_native_seconds": 360.417,
+      "original_coordinate_errors_m": {
+        "836": 0.14608305937775976,
+        "294": 0.032301317959593526,
+        "90": 0.12682379917843153
+      },
+      "reprojected_coordinate_errors_m": {
+        "836": 0.1382138227622722,
+        "294": 0.032301317959593526,
+        "90": 0.13512232474433972
+      },
+      "all_reprojected_coordinates_within_0_5m": true,
+      "corrected_ids": [
+        90,
+        836
+      ],
+      "policy_inputs_contain_ground_truth": false,
+      "original_native_results_modified": false,
+      "source_sha256": {
+        "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_1/case_0/episodes/1171300101/20261113_074207/map.data": "066ab48555a25d79a745c43dbea786f526926d1c14c0b9d6c1233bf717cece44",
+        "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_1/case_0/episodes/1171300101/20261113_074207/markers.csv": "6b3c32d1ba49e64afca1e2cf162b05abb8f2acce0ecf2ad009fe48c11fce0809",
+        "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_1/case_0/episodes/1171300101/marker_observations.json": "bdd0ca13d5bb7b8ddee5f396f6db09122faae03b92d5dd2dea7d655c64810e4a",
+        "/home/peter/simul/training_robust/native90/graph_landmark_study_v1/triangle_reference/graph_scan_poses.csv": "6d8d947902423abe4b75ad24fd4b36f0783c1ee972ad64fc0192a45d9924fade",
+        "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_1/scenarios/1171300101.yaml": "7b054bbf0e795bab6735557b20d08d32463419f776c1209a9569550a594f52b9",
+        "/home/peter/simul/training_robust/native90/spatial_calibrated_screen_v1/screen_1/case_0/episodes/1171300101/evaluation.json": "f9109f73392d906079aa3c37698b0f1a3b5f5a936610df58a6fe8877c5037fa1",
+        "/home/peter/simul/tmp/export_slam_graph_poses": "ae49d693a63d9bc8c1828aeea438770d5651588c825f35f5fe4696eaf009631f",
+        "/home/peter/simul/scripts/candidate_graph_landmarks.py": "d88c8ff809ec7c225dfc23ed65143ab109f556df5151d06132f29c4e1f99b0a7"
+      },
+      "limits": [
+        "Final serialized SLAM graph contains later optimization; this is a final map update,not an online localization fix",
+        "Native driving time,physical approach credit and collisions are unchanged and are not reclassified by replay",
+        "Fixed constants apply across scenes; no target truth or scene geometry enters projection or inlier selection"
+      ],
+      "retained_evidence_by_id": [
+        {
+          "id": 90,
+          "original_point": [
+            -5.0656911966026925,
+            10.963914722686786
+          ],
+          "eligible_observations": 40,
+          "applied": true,
+          "inlier_observations": 40,
+          "distinct_scan_nodes": 32,
+          "point": [
+            -5.064465668299627,
+            10.973706631563797
+          ],
+          "shift_m": 0.009868302745523055
+        },
+        {
+          "id": 294,
+          "original_point": [
+            2.049133265311296,
+            8.274634297850211
+          ],
+          "eligible_observations": 0,
+          "applied": false,
+          "reason": "no_time_matched_valid_odom_observations"
+        },
+        {
+          "id": 836,
+          "original_point": [
+            -5.0355476251533275,
+            15.570747346765202
+          ],
+          "eligible_observations": 15,
+          "applied": true,
+          "inlier_observations": 15,
+          "distinct_scan_nodes": 14,
+          "point": [
+            -5.042483106397407,
+            15.56689677421981
+          ],
+          "shift_m": 0.00793270502504091
+        }
+      ]
+    },
+    {
+      "evidence_type": "finalized_native_SLAM_graph_replay_not_new_native_success",
+      "episode": "/home/peter/simul/training_robust/native90/strict_approach_regression_v1/case_0/episodes/1163000000",
+      "original_native_success": true,
+      "original_native_seconds": 496.132,
+      "original_coordinate_errors_m": {
+        "337": 0.06492599828571395,
+        "523": 0.06934559636986076,
+        "534": 0.02105084758873301
+      },
+      "reprojected_coordinate_errors_m": {
+        "337": 0.030186072971329123,
+        "523": 0.07579942378769611,
+        "534": 0.04031606589355654
+      },
+      "all_reprojected_coordinates_within_0_5m": true,
+      "corrected_ids": [
+        337,
+        523,
+        534
+      ],
+      "policy_inputs_contain_ground_truth": false,
+      "original_native_results_modified": false,
+      "source_sha256": {
+        "/home/peter/simul/training_robust/native90/strict_approach_regression_v1/case_0/episodes/1163000000/20261113_064152/map.data": "f7091ac089e3d32b2240b340452d885b58b4d4fecfcf2a04b987eb708f3e8f05",
+        "/home/peter/simul/training_robust/native90/strict_approach_regression_v1/case_0/episodes/1163000000/20261113_064152/markers.csv": "a670aadabd9008e939b923066a09986cea5de108006a4d60cc497b1df3e0ece0",
+        "/home/peter/simul/training_robust/native90/strict_approach_regression_v1/case_0/episodes/1163000000/marker_observations.json": "6e098f4a79c49264a1895c318c5c36af9f1a61a69960b492374d108aa3401a44",
+        "/home/peter/simul/training_robust/native90/graph_landmark_study_v1/circle_strict/graph_scan_poses.csv": "e972f57bb26d466488dcd495af7b5e430aa6fafd21cf4dda13778649e17fd791",
+        "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163000000.yaml": "2b3c6332c436766ff0ce294bd02dfa453110b1b8c5db94e7649411ac787ed015",
+        "/home/peter/simul/training_robust/native90/strict_approach_regression_v1/case_0/episodes/1163000000/evaluation.json": "f82216e884a6dbbd676fbed90980a5af2450351acd7ca9cc8e633803abf1c3ca",
+        "/home/peter/simul/tmp/export_slam_graph_poses": "ae49d693a63d9bc8c1828aeea438770d5651588c825f35f5fe4696eaf009631f",
+        "/home/peter/simul/scripts/candidate_graph_landmarks.py": "d88c8ff809ec7c225dfc23ed65143ab109f556df5151d06132f29c4e1f99b0a7"
+      },
+      "limits": [
+        "Final serialized SLAM graph contains later optimization; this is a final map update,not an online localization fix",
+        "Native driving time,physical approach credit and collisions are unchanged and are not reclassified by replay",
+        "Fixed constants apply across scenes; no target truth or scene geometry enters projection or inlier selection"
+      ],
+      "retained_evidence_by_id": [
+        {
+          "id": 337,
+          "original_point": [
+            3.686635498015594,
+            7.887151389117039
+          ],
+          "eligible_observations": 122,
+          "applied": true,
+          "inlier_observations": 122,
+          "distinct_scan_nodes": 102,
+          "point": [
+            3.666614369531917,
+            7.916084779684336
+          ],
+          "shift_m": 0.03518503482277161
+        },
+        {
+          "id": 523,
+          "original_point": [
+            -2.3468467323730398,
+            -4.903862883338606
+          ],
+          "eligible_observations": 56,
+          "applied": true,
+          "inlier_observations": 56,
+          "distinct_scan_nodes": 40,
+          "point": [
+            -2.340772287831159,
+            -4.898516257386619
+          ],
+          "shift_m": 0.00809229791609518
+        },
+        {
+          "id": 534,
+          "original_point": [
+            1.6590715291861753,
+            -3.14394689518181
+          ],
+          "eligible_observations": 66,
+          "applied": true,
+          "inlier_observations": 66,
+          "distinct_scan_nodes": 49,
+          "point": [
+            1.6749916453800657,
+            -3.128674826200469
+          ],
+          "shift_m": 0.02206096531427879
+        }
+      ]
+    },
+    {
+      "evidence_type": "finalized_native_SLAM_graph_replay_not_new_native_success",
+      "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00021_train_g0_3/episodes/1163002121",
+      "original_native_success": false,
+      "original_native_seconds": 265.224,
+      "original_coordinate_errors_m": {
+        "669": 0.16947387425910082,
+        "283": 0.32739462188684487,
+        "858": 0.7001255042617509
+      },
+      "reprojected_coordinate_errors_m": {
+        "669": 0.10106155747390207,
+        "283": 0.277732280364424,
+        "858": 0.7101016860946433
+      },
+      "all_reprojected_coordinates_within_0_5m": false,
+      "corrected_ids": [
+        283,
+        669,
+        858
+      ],
+      "policy_inputs_contain_ground_truth": false,
+      "original_native_results_modified": false,
+      "source_sha256": {
+        "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00021_train_g0_3/episodes/1163002121/20261113_065535/map.data": "d83bbb1e0feba8ce3a8d67c1644571b03c04708288d1f2f2fcf4eaf9033f5ac9",
+        "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00021_train_g0_3/episodes/1163002121/20261113_065535/markers.csv": "a0504e4abd027d2c9d376b79b78076319a8b4a591fbaf6840f1e687ec9d78b5e",
+        "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00021_train_g0_3/episodes/1163002121/marker_observations.json": "d11502d423f8a70cb7c32729ce01b3198d8f0ddf69a15d2e2a753f0a74199369",
+        "/home/peter/simul/training_robust/native90/graph_landmark_study_v1/circle_raw_bounded/graph_scan_poses.csv": "19e3106e2c0574497e75289a846a211d0de076d31cd57125e8f99f2085f01794",
+        "/home/peter/simul/training_robust/native90/spatial_cem_v5/scenarios/1163002121.yaml": "cfce00b5c72088687abdd7e9b3358d9a188630e54feccef06e5efe89fd53cdb9",
+        "/home/peter/simul/training_robust/native90/spatial_cem_v5/jobs/00021_train_g0_3/episodes/1163002121/evaluation.json": "95483e3c6532cf56ad8147fbbe2a12ba87872840164cd0f4f46416a3c24fcdd9",
+        "/home/peter/simul/tmp/export_slam_graph_poses": "ae49d693a63d9bc8c1828aeea438770d5651588c825f35f5fe4696eaf009631f",
+        "/home/peter/simul/scripts/candidate_graph_landmarks.py": "d88c8ff809ec7c225dfc23ed65143ab109f556df5151d06132f29c4e1f99b0a7"
+      },
+      "limits": [
+        "Final serialized SLAM graph contains later optimization; this is a final map update,not an online localization fix",
+        "Native driving time,physical approach credit and collisions are unchanged and are not reclassified by replay",
+        "Fixed constants apply across scenes; no target truth or scene geometry enters projection or inlier selection"
+      ],
+      "retained_evidence_by_id": [
+        {
+          "id": 283,
+          "original_point": [
+            -6.823860035101678,
+            -4.472625963452919
+          ],
+          "eligible_observations": 59,
+          "applied": true,
+          "inlier_observations": 59,
+          "distinct_scan_nodes": 44,
+          "point": [
+            -6.860463411590054,
+            -4.436742926125639
+          ],
+          "shift_m": 0.05125816557565017
+        },
+        {
+          "id": 669,
+          "original_point": [
+            -0.3239306096982814,
+            -7.200850683607853
+          ],
+          "eligible_observations": 132,
+          "applied": true,
+          "inlier_observations": 132,
+          "distinct_scan_nodes": 106,
+          "point": [
+            -0.39181283248499943,
+            -7.1918261104590995
+          ],
+          "shift_m": 0.06847947934222938
+        },
+        {
+          "id": 858,
+          "original_point": [
+            -2.7051698925921768,
+            8.773331737204478
+          ],
+          "eligible_observations": 32,
+          "applied": true,
+          "inlier_observations": 32,
+          "distinct_scan_nodes": 25,
+          "point": [
+            -2.712850479508548,
+            8.760529528249307
+          ],
+          "shift_m": 0.01492943299364627
+        }
+      ]
+    }
+  ],
+  "native_comparison": {
+    "root": "/home/peter/simul/training_robust/native90/graph_landmark_regression_v1",
+    "coordinator_unit": "osp-graph-landmark-regression-v1.service",
+    "status": "running_graph_landmark_regression",
+    "job_status": "running",
+    "native_started": true,
+    "scenario_seed": 1171300202,
+    "shape": "trapezoid",
+    "obstacles": 24,
+    "baseline": {
+      "success": false,
+      "targets": 3,
+      "approached": 3,
+      "contacts": 0,
+      "seconds": 580.702,
+      "infrastructure_failure": false,
+      "reason": "all_targets_found"
+    },
+    "training_samples": false,
+    "comparison_limit": "S8 combines S7 windowed proof with final graph updates; reference S6 has original consecutive proof",
+    "verified_native_pid": 1587728,
+    "dispatch_handoff": {
+      "verified_new_native_pid": 1587728,
+      "resumed_unit": "osp-spatial-cem-v6.service",
+      "driver": "spatial_native_curriculum_v6.py",
+      "old_native_runs_and_prepared_scenes_preserved": true
+    },
+    "floor_sensor_gate": true,
+    "runtime_configuration_gate": true,
+    "velocity_profile_gate": true
+  },
+  "primary_sources": [
+    "https://github.com/SteveMacenski/slam_toolbox/blob/jazzy/include/slam_toolbox/serialization.hpp",
+    "https://github.com/SteveMacenski/slam_toolbox/blob/jazzy/lib/karto_sdk/include/karto_sdk/Karto.h"
+  ],
+  "limits": [
+    "Five of six coordinate replay cases pass0.5m,but this is neither a new native success rate nor independent qualification",
+    "Raw-encoder bounded circle remains wrong0.7101m: the final SLAM graph itself can remain inaccurate",
+    "A later optimized pose graph is valid for final map updates; this does not repair historical online localization or guarantee better paths",
+    "Only the dedicated new native regression can verify the integrated final CSV and unchanged physical completion gates"
+  ],
+  "installed_finalization_integration": {
+    "evidence_type": "installed_finalization_integration_on_saved_native_dataset_not_new_native_run",
+    "corrected_ids": [
+      225,
+      228,
+      367
+    ],
+    "finalization_wall_seconds": 0.23179578175768256,
+    "result_coordinates": {
+      "225": [
+        2.0813929112274705,
+        0.24672966462995516
+      ],
+      "228": [
+        -1.4734708811258626,
+        -7.928923987596574
+      ],
+      "367": [
+        -6.1997586019668205,
+        5.314553916905741
+      ]
+    },
+    "original_csv_preserved": true,
+    "compiled_exporter": "/home/peter/simul/training_robust/native90/graph_landmarks_v1/runtime/install/osp_mission/share/osp_mission/tools/export_slam_graph_poses",
+    "exporter_sha256": "ae49d693a63d9bc8c1828aeea438770d5651588c825f35f5fe4696eaf009631f",
+    "input_dataset_sha256": "0e68ad45b28d35b6b1c424f288d2f271b36513e1ea4f5da43874f840ecc019c9",
+    "module_scope": "Final CSV and graph artifacts only; no truth or simulator services used"
+  }
+}

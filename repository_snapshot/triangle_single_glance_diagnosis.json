@@ -1,0 +1,79 @@
+{
+  "evidence_type": "exact_recorded_single_glance_followup_replay_not_new_policy_performance",
+  "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00001_train_g0_0/episodes/1191300101",
+  "snapshot": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00001_train_g0_0/episodes/1191300101/policy_decisions/0002.npz",
+  "id": 292,
+  "baseline_choice_reproduced": true,
+  "first_observation_stamp_sim_s": 14.4,
+  "first_minimum_edge_pixels": 22.203603744506836,
+  "first_followup": {
+    "stamp": 15.5,
+    "id": 292,
+    "point": [
+      0.20885505840348068,
+      1.9736643235184332
+    ],
+    "observer": [
+      0.2970205022992236,
+      -0.1311974741676196
+    ],
+    "goal": [
+      0.30947928293604104,
+      -0.07235144776863331,
+      1.619937304060473
+    ],
+    "stationary": true,
+    "attempt": 1
+  },
+  "first_followup_range_m": 2.0484886553061963,
+  "first_followup_was_stationary": true,
+  "recognition_and_approach_journal": [
+    {
+      "event": "id_confirmed",
+      "elapsed_seconds": 279.1,
+      "state": "running",
+      "confirmed_ids": [
+        292,
+        440,
+        841
+      ],
+      "approached_ids": [
+        440,
+        841
+      ],
+      "id": 292
+    },
+    {
+      "event": "approach_estimated_within_1_5m",
+      "elapsed_seconds": 375.1,
+      "state": "running",
+      "confirmed_ids": [
+        292,
+        440,
+        841
+      ],
+      "approached_ids": [
+        292,
+        440,
+        841
+      ],
+      "id": 292
+    }
+  ],
+  "hypothesis": "A safe closer viewpoint for a single modest-resolution detection may improve confirmation before leaving;test pixel-aware view costs without weakening ID or approach gates",
+  "candidate_source_built": false,
+  "new_native_speed_improvement_verified": false,
+  "ground_truth_policy_inputs": false,
+  "limits": [
+    "A delayed later recognition does not prove why intervening RGB frames did not decode the marker",
+    "One captured decision cannot establish total time saved or population reliability",
+    "Only the early sensor cue and observed planner map enter the replay;journal timing describes the recorded future"
+  ],
+  "source_sha256": {
+    "/home/peter/simul/training_robust/native90/windowed_witness_v1/runtime/src/osp_mission/osp_mission/marker_focus.py": "49ad1b615fb79de8526dd62259e9b7e3df8a3e031f332e4d463361f283f7e52f",
+    "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00001_train_g0_0/episodes/1191300101/policy_decisions/0002.npz": "70b29ffaceeed046ce1b93934dbe686b4703907d0f0b204d34ad8abcef066fa8",
+    "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00001_train_g0_0/episodes/1191300101/marker_followups.jsonl": "f9ebd53d48674634997b2e03313667166d6c7f74c90c324882d62676880e8223",
+    "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00001_train_g0_0/episodes/1191300101/marker_observations.json": "735e59212155d3790f58caca4b5cd99abc35c0df4dc319cb8a3548d523805024",
+    "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00001_train_g0_0/episodes/1191300101/marker_events.jsonl": "79d820606ec67200bc39205b156df5bff79b8beaf962031b15edadea6c5c6144"
+  }
+}
