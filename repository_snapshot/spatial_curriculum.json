@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-13T02:20:11.398197+00:00",
+  "captured_utc": "2026-11-13T02:22:25.537605+00:00",
   "client_date": "2026-11-13",
   "status": "running",
   "goal_status": "active",
@@ -452,23 +452,83 @@
   },
   "current_jobs": [
     {
-      "number": 10,
-      "shape": "rectangle",
-      "verified_native_pid": 1668339,
-      "unit": "osp-spatial-nov13-space6-00010.service",
-      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00010_train_g0_1",
-      "status": "running"
-    },
-    {
       "number": 11,
       "shape": "l_shape",
-      "verified_native_pid": 1675120,
-      "unit": "osp-spatial-nov13-space6-00011.service",
-      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00011_train_g0_1",
-      "status": "running"
+      "native_pid": 1675120,
+      "status": {
+        "state": "running",
+        "approached_ids": [
+          351
+        ],
+        "targets": 1,
+        "collisions": 0,
+        "elapsed_seconds": 309.385,
+        "active_action": "",
+        "readiness_reason": "",
+        "sensor_interruptions": 0,
+        "nav2_lifecycle": {
+          "controller_server": 3,
+          "planner_server": 3,
+          "behavior_server": 3,
+          "bt_navigator": 3
+        },
+        "drive_controllers": {
+          "diffdrive_controller": "active",
+          "joint_state_broadcaster": "active"
+        },
+        "confirmed_surface_cells": 119,
+        "confirmed_face_anchors": 0,
+        "reassociated_face_records": 0,
+        "camera_diagnostics": {
+          "received": 1563,
+          "late": 0,
+          "invalid_calibration": 0,
+          "duplicate": 0,
+          "accepted": 1563,
+          "coverage_updates": 1559,
+          "tf_waits": 2
+        }
+      }
+    },
+    {
+      "number": 12,
+      "shape": "u_shape",
+      "native_pid": 1682637,
+      "status": {
+        "state": "running",
+        "approached_ids": [],
+        "targets": 0,
+        "collisions": 0,
+        "elapsed_seconds": 17.931,
+        "active_action": "nav",
+        "readiness_reason": "",
+        "sensor_interruptions": 0,
+        "nav2_lifecycle": {
+          "controller_server": 3,
+          "planner_server": 3,
+          "behavior_server": 3,
+          "bt_navigator": 3
+        },
+        "drive_controllers": {
+          "diffdrive_controller": "active",
+          "joint_state_broadcaster": "active"
+        },
+        "confirmed_surface_cells": 24,
+        "confirmed_face_anchors": 0,
+        "reassociated_face_records": 0,
+        "camera_diagnostics": {
+          "received": 107,
+          "late": 0,
+          "invalid_calibration": 0,
+          "duplicate": 0,
+          "accepted": 107,
+          "coverage_updates": 101,
+          "tf_waits": 7
+        }
+      }
     }
   ],
-  "completed_spatial_training_episodes": 10,
+  "completed_spatial_training_episodes": 11,
   "completed_cem_generations": 0,
   "generalization_verified": false,
   "revisit_reduction_verified": false,
@@ -560,7 +620,6 @@
       "number": 0,
       "seed": 1191300000,
       "shape": "circle",
-      "obstacles": 8,
       "outcome": {
         "success": true,
         "targets": 3,
@@ -575,7 +634,6 @@
       "number": 1,
       "seed": 1191300101,
       "shape": "triangle",
-      "obstacles": 12,
       "outcome": {
         "success": true,
         "targets": 3,
@@ -590,7 +648,6 @@
       "number": 2,
       "seed": 1191300202,
       "shape": "trapezoid",
-      "obstacles": 16,
       "outcome": {
         "success": true,
         "targets": 3,
@@ -605,7 +662,6 @@
       "number": 3,
       "seed": 1191300303,
       "shape": "rectangle",
-      "obstacles": 24,
       "outcome": {
         "success": false,
         "targets": 2,
@@ -620,7 +676,6 @@
       "number": 4,
       "seed": 1191300404,
       "shape": "l_shape",
-      "obstacles": 32,
       "outcome": {
         "success": false,
         "targets": 3,
@@ -635,7 +690,6 @@
       "number": 5,
       "seed": 1191300505,
       "shape": "u_shape",
-      "obstacles": 8,
       "outcome": {
         "success": true,
         "targets": 3,
@@ -650,7 +704,6 @@
       "number": 6,
       "seed": 1191300606,
       "shape": "rooms",
-      "obstacles": 12,
       "outcome": {
         "success": false,
         "targets": 1,
@@ -665,7 +718,6 @@
       "number": 7,
       "seed": 1191300707,
       "shape": "circle",
-      "obstacles": 8,
       "outcome": {
         "success": true,
         "targets": 3,
@@ -680,7 +732,6 @@
       "number": 8,
       "seed": 1191300808,
       "shape": "triangle",
-      "obstacles": 12,
       "outcome": {
         "success": true,
         "targets": 3,
@@ -695,7 +746,6 @@
       "number": 9,
       "seed": 1191300909,
       "shape": "trapezoid",
-      "obstacles": 16,
       "outcome": {
         "success": true,
         "targets": 3,
@@ -704,6 +754,20 @@
         "seconds": 562.7,
         "infrastructure_failure": false,
         "reason": "all_targets_found"
+      }
+    },
+    {
+      "number": 10,
+      "seed": 1191301010,
+      "shape": "rectangle",
+      "outcome": {
+        "success": false,
+        "targets": 1,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 600.418,
+        "infrastructure_failure": false,
+        "reason": "timeout"
       }
     }
   ],
@@ -721,7 +785,7 @@
   },
   "mixed_training_observed_rate": {
     "successes": 7,
-    "completed": 10,
-    "percent": 70.0
+    "completed": 11,
+    "percent": 63.63636363636363
   }
 }

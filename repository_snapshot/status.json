@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-13T02:20:11.398197+00:00",
+  "captured_utc": "2026-11-13T02:22:25.537605+00:00",
   "purpose": "Repository upload snapshot; not a live dashboard",
   "tests_passed_final": 189,
   "native_validation_complete": false,
@@ -318,5 +318,93 @@
   "encoder_delta_native_early": "encoder_delta_native_early.json",
   "bottleneck_audit": "bottleneck_audit.json",
   "integrated_candidate": "integrated_candidate.json",
-  "near_pass_sequence_audit": "near_pass_sequence_audit.json"
+  "near_pass_sequence_audit": "near_pass_sequence_audit.json",
+  "mixed_training_observed_rate": {
+    "successes": 7,
+    "completed": 11,
+    "percent": 63.63636363636363
+  },
+  "current_fixed_incumbent_observed_rate": {
+    "successes": 4,
+    "completed": 7,
+    "percent": 57.142857142857146
+  },
+  "current_native_jobs_at_bottleneck_audit": [
+    {
+      "number": 11,
+      "shape": "l_shape",
+      "native_pid": 1675120,
+      "status": {
+        "state": "running",
+        "approached_ids": [
+          351
+        ],
+        "targets": 1,
+        "collisions": 0,
+        "elapsed_seconds": 309.385,
+        "active_action": "",
+        "readiness_reason": "",
+        "sensor_interruptions": 0,
+        "nav2_lifecycle": {
+          "controller_server": 3,
+          "planner_server": 3,
+          "behavior_server": 3,
+          "bt_navigator": 3
+        },
+        "drive_controllers": {
+          "diffdrive_controller": "active",
+          "joint_state_broadcaster": "active"
+        },
+        "confirmed_surface_cells": 119,
+        "confirmed_face_anchors": 0,
+        "reassociated_face_records": 0,
+        "camera_diagnostics": {
+          "received": 1563,
+          "late": 0,
+          "invalid_calibration": 0,
+          "duplicate": 0,
+          "accepted": 1563,
+          "coverage_updates": 1559,
+          "tf_waits": 2
+        }
+      }
+    },
+    {
+      "number": 12,
+      "shape": "u_shape",
+      "native_pid": 1682637,
+      "status": {
+        "state": "running",
+        "approached_ids": [],
+        "targets": 0,
+        "collisions": 0,
+        "elapsed_seconds": 17.931,
+        "active_action": "nav",
+        "readiness_reason": "",
+        "sensor_interruptions": 0,
+        "nav2_lifecycle": {
+          "controller_server": 3,
+          "planner_server": 3,
+          "behavior_server": 3,
+          "bt_navigator": 3
+        },
+        "drive_controllers": {
+          "diffdrive_controller": "active",
+          "joint_state_broadcaster": "active"
+        },
+        "confirmed_surface_cells": 24,
+        "confirmed_face_anchors": 0,
+        "reassociated_face_records": 0,
+        "camera_diagnostics": {
+          "received": 107,
+          "late": 0,
+          "invalid_calibration": 0,
+          "duplicate": 0,
+          "accepted": 107,
+          "coverage_updates": 101,
+          "tf_waits": 7
+        }
+      }
+    }
+  ]
 }
