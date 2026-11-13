@@ -1,7 +1,7 @@
 {
   "goal_status": "active",
   "phase": "fixed_corrected_source_fresh_space_native_CEM",
-  "last_verified_utc": "2026-11-13T03:03:56.166658+00:00",
+  "last_verified_utc": "2026-11-13T03:09:35.614630+00:00",
   "jobs": [
     {
       "run": "training_robust/diverse_directional_cem",
@@ -1241,11 +1241,10 @@
   "spatial_curriculum": "repository_snapshot/spatial_curriculum.json",
   "dashboard": "http://127.0.0.1:8765",
   "latest_goal_turn_evidence": [
-    "New integrated Gazebo PID1696629 running with all four effective input gates;actual marker-directed approach turn observed.",
-    "Second L native wrong graph edge connects actual2.892m separation as0.199m;recorded255-scan baseline reproduces false loop closure and1.800m error;strict prefix6.55cm.",
-    "Supervisor v2 tested and handed off without changing native PIDs;short mission13 missing probes retained as unverified,not retroactively passed.",
-    "Eight balanced component thread arms produce identical trajectories;only about1–3%wall improvement,not proven Gazebo speedup;native parallelism stays2 per user.",
-    "Full recorded9-episode/7-geometry/3-arm loop study active;190videos published."
+    "Created immutable loop_gate_fine55_v1;only config/slam.yaml changes0.45->0.55.",
+    "All337runtime tests and build pass;actual installed launch generates fine-response0.55 without starting a simulator.",
+    "Recorded full L and circle component comparisons complete;remaining seven episodes continue.",
+    "Reduced background replay CPU allowance100%->25%;actual two native handles retained."
   ],
   "latest_navigation_diagnosis": "repository_snapshot/local_navigation_diagnosis.json",
   "current_native_supervisor": "osp-spatial-cem-v6.service",
@@ -1264,7 +1263,7 @@
       ],
       "targets": 1,
       "collisions": 0,
-      "elapsed_seconds": 330.248,
+      "elapsed_seconds": 439.748,
       "active_action": "nav",
       "readiness_reason": "",
       "sensor_interruptions": 0,
@@ -1278,17 +1277,17 @@
         "diffdrive_controller": "active",
         "joint_state_broadcaster": "active"
       },
-      "confirmed_surface_cells": 18,
+      "confirmed_surface_cells": 23,
       "confirmed_face_anchors": 0,
       "reassociated_face_records": 0,
       "camera_diagnostics": {
-        "received": 1669,
+        "received": 2217,
         "late": 1,
         "invalid_calibration": 0,
         "duplicate": 0,
-        "accepted": 1668,
-        "coverage_updates": 1657,
-        "tf_waits": 11
+        "accepted": 2216,
+        "coverage_updates": 2199,
+        "tf_waits": 17
       }
     },
     "input_gates": {
@@ -1351,7 +1350,7 @@
   "encoder_delta_native_early": "repository_snapshot/encoder_delta_native_early.json",
   "bottleneck_audit": "repository_snapshot/bottleneck_audit.json",
   "integrated_candidate": "repository_snapshot/integrated_candidate.json",
-  "captured_utc": "2026-11-13T03:03:56.166658+00:00",
+  "captured_utc": "2026-11-13T03:09:35.614630+00:00",
   "mixed_training_observed_rate": {
     "successes": 8,
     "completed": 15,
@@ -1383,7 +1382,9 @@
     "geometries": 7,
     "recorded_episodes": 9,
     "arms_per_episode": 3,
-    "status": "running"
+    "status": "running",
+    "completed_recorded_episodes": 2,
+    "background_cpu_quota_percent": 25
   },
   "second_L_full_replay_initial": {
     "max_error_baseline_m": 1.8489038804802125,
@@ -1391,5 +1392,6 @@
     "retained_loop_closures": 35,
     "new_native_success": false,
     "other_spaces_pending": true
-  }
+  },
+  "loop_gate_candidate": "repository_snapshot/loop_gate_candidate.json"
 }

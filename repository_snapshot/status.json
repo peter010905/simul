@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-13T03:03:56.166658+00:00",
+  "captured_utc": "2026-11-13T03:09:35.614630+00:00",
   "purpose": "Repository upload snapshot; not a live dashboard",
   "tests_passed_final": 189,
   "native_validation_complete": false,
@@ -137,8 +137,8 @@
   "previous_regressions_complete": true,
   "latest_change": {
     "date": "2026-11-13",
-    "name": "Directed native actions observed;false SLAM loop reproduced;supervisor input collection repaired;CPU thread comparison shows only minor component benefit",
-    "status": "two_native_benchmarks_retained;integrated_screen_running;full_loop_component_study_running",
+    "name": "Stage single fine-loop-response change;337runtime tests/build/installed launch verified;two native training missions retained",
+    "status": "candidate_staged_not_adopted",
     "generalization_verified": false
   },
   "latest_recording": {
@@ -311,7 +311,7 @@
       ],
       "targets": 1,
       "collisions": 0,
-      "elapsed_seconds": 330.248,
+      "elapsed_seconds": 439.748,
       "active_action": "nav",
       "readiness_reason": "",
       "sensor_interruptions": 0,
@@ -325,17 +325,17 @@
         "diffdrive_controller": "active",
         "joint_state_broadcaster": "active"
       },
-      "confirmed_surface_cells": 18,
+      "confirmed_surface_cells": 23,
       "confirmed_face_anchors": 0,
       "reassociated_face_records": 0,
       "camera_diagnostics": {
-        "received": 1669,
+        "received": 2217,
         "late": 1,
         "invalid_calibration": 0,
         "duplicate": 0,
-        "accepted": 1668,
-        "coverage_updates": 1657,
-        "tf_waits": 11
+        "accepted": 2216,
+        "coverage_updates": 2199,
+        "tf_waits": 17
       }
     },
     "input_gates": {
@@ -500,7 +500,9 @@
     "geometries": 7,
     "recorded_episodes": 9,
     "arms_per_episode": 3,
-    "status": "running"
+    "status": "running",
+    "completed_recorded_episodes": 2,
+    "background_cpu_quota_percent": 25
   },
   "second_L_full_replay_initial": {
     "max_error_baseline_m": 1.8489038804802125,
@@ -508,5 +510,6 @@
     "retained_loop_closures": 35,
     "new_native_success": false,
     "other_spaces_pending": true
-  }
+  },
+  "loop_gate_candidate": "repository_snapshot/loop_gate_candidate.json"
 }

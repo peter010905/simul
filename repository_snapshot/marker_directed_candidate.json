@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-13T03:03:56.166658+00:00",
+  "captured_utc": "2026-11-13T03:09:35.614630+00:00",
   "evidence_type": "tested_installed_candidate_and_supervised_native_queue",
   "runtime": "/home/peter/simul/training_robust/native90/integrated_directed_v1/runtime",
   "root": "/home/peter/simul/training_robust/native90/directed_integrated_screen_v1",
@@ -451,7 +451,7 @@
     ],
     "targets": 1,
     "collisions": 0,
-    "elapsed_seconds": 330.248,
+    "elapsed_seconds": 439.748,
     "active_action": "nav",
     "readiness_reason": "",
     "sensor_interruptions": 0,
@@ -465,17 +465,17 @@
       "diffdrive_controller": "active",
       "joint_state_broadcaster": "active"
     },
-    "confirmed_surface_cells": 18,
+    "confirmed_surface_cells": 23,
     "confirmed_face_anchors": 0,
     "reassociated_face_records": 0,
     "camera_diagnostics": {
-      "received": 1669,
+      "received": 2217,
       "late": 1,
       "invalid_calibration": 0,
       "duplicate": 0,
-      "accepted": 1668,
-      "coverage_updates": 1657,
-      "tf_waits": 11
+      "accepted": 2216,
+      "coverage_updates": 2199,
+      "tf_waits": 17
     }
   },
   "current_native_input_gates": {
