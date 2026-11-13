@@ -1,7 +1,7 @@
 {
   "goal_status": "active",
   "phase": "fixed_corrected_source_fresh_space_native_CEM",
-  "last_verified_utc": "2026-11-13T01:05:17.438926+00:00",
+  "last_verified_utc": "2026-11-13T01:35:36.635535+00:00",
   "jobs": [
     {
       "run": "training_robust/diverse_directional_cem",
@@ -372,7 +372,15 @@
     }
   ],
   "previous_goal_turn_classification": "progress",
-  "previous_goal_turn_evidence": "Progress:first S7fresh circle283.901s passes3exactIDs/actualapproaches/coords<=.112913m/0contacts/strictproof,inputgates;3approachrequestsoneperID and0repeatmapgoals;6finalgraph-only replay cases show calibratedtrap1.2146m->.1392m,but rawboundedcircle remains.7101m;newS8final-map-onlycandidate273tests/build,installedactualdatasetexport;17auxchecks;queuednativeprobe preserving2livefreshjobs;first40.4s225proofreplay+journalprevents misreading lateroverwritten456sproof as missed firstpass;175videosuploaded;freshtriangle375.1s fullpass3IDs/physicalproof/map<=.03431m/zero contacts;S8nativePID1587728/domain126/all3inputgates verified and v6resumed on actualPID1587842;freshtrapezoid345.2s also fullpass3IDs/physicalproof/coords<=.05261m/0contacts;first3correctedfreshmaps allstrictpasses,not populationrate;rectangle24nowactualnexttrainingnative;exact native triangle single-glance decision reproduced:ID292 one22.2px cue at14.4s,stationary2.048m followup15.5s,recognizedelapsed279.1s;pixel-aware closer followup remains hypothesis",
+  "previous_goal_turn_evidence": [
+    "New actual Gazebo pixel+SLAM UDP triangle206.764s strict pass versus375.1s reference;all9physical witness samples independently verified",
+    "Returned-cell distance5.68->1.67m and total path62.28->35.17m in this one scene;no cross-shape generalization claim",
+    "New CEM U-shape545.157s strict pass;rectangle2IDs timeout and L-shapedmap failure remain failures",
+    "L-shapedearly4m/s EKF spike and0.97m odomjump despite0.09m actual motion;localization and finalgraph replays quantify remaining error",
+    "Simple velocity rejection failed component comparison and was not queued;encoder-delta alternatives remain offline experiments",
+    "Actual new-source native tests270+owner4passed;new guard269 and encoder-delta275 tests/build passed;no production promotion",
+    "275-test unbounded encoder-delta candidate queued as engineering test on the preserved failed L;two recorded component segments have mixed error results,not promoted;actual existing native runs preserved while dispatcher reserves next slot"
+  ],
   "recovery_note": "Two exec sessions ended 143 for unknown reason. Frozen sources verified; recovery saves each finished episode and uses bounded batches.",
   "goal_success_rate": null,
   "native_baseline": {
@@ -560,7 +568,7 @@
     "baseline_seconds": 3.618,
     "candidate_seconds": 20.074
   },
-  "updated_utc": "2026-11-13T01:05:17.438926+00:00",
+  "updated_utc": "2026-11-13T01:35:36.635535+00:00",
   "motion_v2_native_result": {
     "seed": 8600007,
     "success": true,
@@ -631,11 +639,6 @@
     }
   ],
   "queued_jobs": [
-    {
-      "number": 8,
-      "unit": "osp-spatial-nov13-space6-00008.service",
-      "shape": "triangle"
-    },
     {
       "number": 9,
       "unit": "osp-spatial-nov13-space6-00009.service",
@@ -889,7 +892,7 @@
       }
     ]
   },
-  "latest_failure_analysis": "repository_snapshot/fresh_space_failure_analysis.json",
+  "latest_failure_analysis": "repository_snapshot/fresh_space_missed_views.json",
   "sequential_fixes": {
     "summary": "/home/peter/simul/training_robust/native90/sequential_fixes_v10_v13/implementation.json",
     "state": "/home/peter/simul/training_robust/native90/sequential_fixes_v10_v13/sequence.json",
@@ -1214,13 +1217,12 @@
   "spatial_curriculum": "repository_snapshot/spatial_curriculum.json",
   "dashboard": "http://127.0.0.1:8765",
   "latest_goal_turn_evidence": [
-    "New actual Gazebo pixel+SLAM UDP triangle206.764s strict pass versus375.1s reference;all9physical witness samples independently verified",
-    "Returned-cell distance5.68->1.67m and total path62.28->35.17m in this one scene;no cross-shape generalization claim",
-    "New CEM U-shape545.157s strict pass;rectangle2IDs timeout and L-shapedmap failure remain failures",
-    "L-shapedearly4m/s EKF spike and0.97m odomjump despite0.09m actual motion;localization and finalgraph replays quantify remaining error",
-    "Simple velocity rejection failed component comparison and was not queued;encoder-delta alternatives remain offline experiments",
-    "Actual new-source native tests270+owner4passed;new guard269 and encoder-delta275 tests/build passed;no production promotion",
-    "275-test unbounded encoder-delta candidate queued as engineering test on the preserved failed L;two recorded component segments have mixed error results,not promoted;actual existing native runs preserved while dispatcher reserves next slot"
+    "Fresh native circle role1 completed460.84s strict pass;new rooms600.4s failure remains1ID,not reclassified from geometric proximity",
+    "Rectangle missed ID220 is24cm:camera points88degreesaway atclosest0.6m;priorSLAMsnapshotstillhasuninspectednearbyface;modelalsohas9edge-of-FOVframesanddoesnotresolveocclusion",
+    "New shape-independent nearby-face look policy286tests/build passed,including16newgeometry/action-flow checks;real-source snapshot10probes8choices,mixedtargetcenteralignment,nofakeIDorcoveragecredit",
+    "Preserved failed rectangle/weights prepared as a new frozen native test queued behind the actually live encoder-delta owner;oldnativejobsintact",
+    "Actual encoder-delta native PID,inputgates and rawmotion capture verified;early evaluator-only trajectory check shows smallmaperror but full3-ID/approach/timeoutcome still pending",
+    "Completed verified videos182published;CEMcontroller active and exactly2actual native benchmarks live"
   ],
   "latest_navigation_diagnosis": "repository_snapshot/local_navigation_diagnosis.json",
   "current_native_supervisor": "osp-spatial-cem-v6.service",
@@ -1228,7 +1230,7 @@
   "fine_evaluator_observer": "osp-spatial-evaluator-observer-v6.service",
   "physical_credit_auditor": "training_robust/audit_approach_evidence.py",
   "priority_diagnostic": "osp-encoder-delta-v1.service",
-  "next_priority": "275-test relative encoder-pose candidate queued on the preserved failed L-shaped scene;verify actual input profile,coordinate errors,all IDs/physical credit and time before adoption",
+  "next_priority": "286-test nearby-face inspection queued for preserved failed rectangle after actual encoder-delta completion;no promotion from shadows",
   "depth_quality_observer": "osp-depth-quality-space6.service",
   "goal_success_rate_note": "Corrected-source fresh-map qualification is incomplete; do not infer independent success probability from older descriptive training counts",
   "graph_landmark_candidate": "repository_snapshot/graph_landmark_candidate.json",
@@ -1236,19 +1238,15 @@
   "pixel_focus_candidate": "/home/peter/simul/repository_snapshot/pixel_focus_candidate.json",
   "current_native_jobs": [
     {
-      "number": 6,
-      "shape": "rooms",
-      "unit": "osp-spatial-nov13-space6-00006.service",
-      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00006_train_g0_0",
-      "status": "running"
-    },
-    {
-      "number": 7,
-      "shape": "circle",
-      "unit": "osp-spatial-nov13-space6-00007.service",
-      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00007_train_g0_1",
-      "status": "running"
+      "number": 8,
+      "shape": "triangle",
+      "unit": "osp-spatial-nov13-space6-00008.service",
+      "output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00008_train_g0_1",
+      "status": "running",
+      "verified_native_pid": 1649692
     }
   ],
-  "fresh_space_failure_analysis": "/home/peter/simul/repository_snapshot/fresh_space_failure_analysis.json"
+  "fresh_space_failure_analysis": "/home/peter/simul/repository_snapshot/fresh_space_failure_analysis.json",
+  "near_pass_inspection_candidate": "repository_snapshot/near_pass_inspection_candidate.json",
+  "encoder_delta_native_early": "repository_snapshot/encoder_delta_native_early.json"
 }

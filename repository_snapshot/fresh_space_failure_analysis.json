@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-13T01:08:55.934989+00:00",
+  "captured_utc": "2026-11-13T01:33:12.393681+00:00",
   "evidence_type": "finalized_fresh_training_failures_and_evaluator_only_sensor_replay",
   "production_promoted": false,
   "ground_truth_available_to_policy": false,
@@ -99,7 +99,7 @@
     "approach_verified_ids": [
       465
     ],
-    "diagnosis": "Missing ID220 decoded7times but all below18px;last5.10px;no accepted readable observations. Geometric closest pass does not establish facing or recognition.",
+    "diagnosis": "Missing ID220 is a0.2387m marker,not a physically tiny marker. It decoded7times but all below18px;near a front-side0.60m pass,the camera pointed about88degrees away. Pinhole analysis still has9edge-of-FOV candidate frames;occlusion and corner clipping are not modeled.",
     "revisits": {
       "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00003_train_g0_0/episodes/1191300303",
       "source": "Independent Gazebo ground-truth trajectory; evaluator only",
@@ -116,7 +116,8 @@
         "Repeated goals use SLAM map coordinates and may be affected by frame correction",
         "These are simulation measurements, not observations from a physical robot"
       ]
-    }
+    },
+    "camera_direction_report": "fresh_space_missed_views.json"
   },
   "l_shape": {
     "outcome": {
@@ -1906,7 +1907,7 @@
     "native_engineering_successor": {
       "root": "/home/peter/simul/training_robust/native90/encoder_delta_regression_v1",
       "workspace": "/home/peter/simul/training_robust/native90/encoder_delta_v3/runtime",
-      "job_status": "prepared",
+      "job_status": "running",
       "coordinator_unit": "osp-encoder-delta-v1.service",
       "runtime_tests_passed": 275,
       "build_passed": true,
@@ -1924,7 +1925,11 @@
       "reason": "Relative encoder-pose velocity reduced peak and room-segment position error;historical segment final error worsened,so this remains a same-failed-L engineering test,not an adopted policy",
       "prior_negative_candidates_preserved": true,
       "generalization_verified": false,
-      "production_promoted": false
+      "production_promoted": false,
+      "actual_input_gates_verified": true,
+      "native_not_promoted": true
     }
-  }
+  },
+  "near_pass_inspection_candidate": "near_pass_inspection_candidate.json",
+  "encoder_delta_native_early": "encoder_delta_native_early.json"
 }

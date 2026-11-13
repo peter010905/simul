@@ -1,0 +1,54 @@
+{
+  "captured_utc": "2026-11-13T01:39:11.388204+00:00",
+  "evidence_type": "partial_native_evaluator_only_pose_diagnostic_not_finished_mission",
+  "verified_live_native_pid": 1647746,
+  "rows": [
+    {
+      "label": "baseline",
+      "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00004_train_g0_0/episodes/1191300404",
+      "through_gt_stamp_sim_s": 179.816,
+      "samples": 856,
+      "map_position_error_m": {
+        "median": 0.6029727464349528,
+        "maximum": 0.8870723464558533,
+        "last": 0.6106738170946391
+      },
+      "maximum_reported_odom_speed_m_s": 4.318542395335218,
+      "alignment_source": "First paired stationary audit pose;not a target fit",
+      "alignment_world_to_map": [
+        7.3706807490595505,
+        12.459329705925253,
+        3.017647955743307
+      ],
+      "selected_trace_rows_sha256": "647b2a8520d1b3a7d055c929d909eb8df7857d097a43608a8de8ba87c0309933"
+    },
+    {
+      "label": "candidate",
+      "episode": "/home/peter/simul/training_robust/native90/encoder_delta_regression_v1/case_0/episodes/1191300404",
+      "through_gt_stamp_sim_s": 179.878,
+      "samples": 857,
+      "map_position_error_m": {
+        "median": 0.021725534432168635,
+        "maximum": 0.0519805606421922,
+        "last": 0.021232639008240108
+      },
+      "maximum_reported_odom_speed_m_s": 0.6891543052379167,
+      "alignment_source": "First paired stationary audit pose;not a target fit",
+      "alignment_world_to_map": [
+        7.371406391160997,
+        12.458900402597711,
+        3.0175897138779133
+      ],
+      "selected_trace_rows_sha256": "a149a0536e5f4e30ef3c7d98300f55f0dce449cc88833da460a315d313129faa"
+    }
+  ],
+  "original_native_failure_preserved": true,
+  "ground_truth_available_to_policy": false,
+  "full_success_verified": false,
+  "production_promoted": false,
+  "limits": [
+    "Different native trajectories and asynchronous sensor timing;large original jump may not have recurred in this new run",
+    "Map poses and truth are coarse audit samples with small time differences;these are not final marker-coordinate errors",
+    "Partial180sim-second diagnostic does not establish3IDs,physical approach,600s completion or generalization"
+  ]
+}

@@ -1,0 +1,691 @@
+{
+  "captured_utc": "2026-11-13T01:33:12.393681+00:00",
+  "evidence_type": "new_source_tests_and_recorded_input_shadow_native_comparison_queued",
+  "workspace": "/home/peter/simul/training_robust/native90/near_pass_v2/runtime",
+  "runtime_tests_passed": 286,
+  "new_runtime_tests_passed": 16,
+  "build_passed": true,
+  "new_native_success_verified": false,
+  "generalization_verified": false,
+  "production_promoted": false,
+  "ground_truth_available_to_policy": false,
+  "method": {
+    "input": "Observed occupancy and uninspected boundary faces,calibrated camera pose and odometry memory",
+    "maximum_camera_range_m": 1.2,
+    "maximum_turn_deg": 120,
+    "minimum_face_length_m": 0.25,
+    "maximum_looks": 8,
+    "stationary_phase_budget_sim_s": 35.0,
+    "minimum_interval_sim_s": 15.0,
+    "time_budget_scope": "Cancel/turn/dwell phases are charged using actual simulation time;later Nav2 reorientation belongs to the full measured mission time",
+    "protects_marker_followup_and_approach": true,
+    "minimum_dwell_sim_s": 0.8,
+    "desired_new_processed_frames": 3,
+    "recognition_credit": "Unchanged exact IDs and three readable frames;inspection creates no recognition,coverage or physical approach credit",
+    "navigation": "Wait for acknowledged exploration-goal cancellation,Nav2 Spin with collision checks,real processed-frame dwell;resume original goal unless fresh marker evidence calls normal focus/approach planning",
+    "failures": "Sensor interruption retains original navigation;blocked/rejected spin uses existing recovery;contact and mission finish clear inspection;time and odometry memory bound repeats"
+  },
+  "source_changes": [
+    "launch/robot.launch.py",
+    "osp_mission/marker_focus.py",
+    "osp_mission/mission.py",
+    "osp_mission/near_pass_inspection.py",
+    "osp_mission/near_pass_runtime.py",
+    "test/test_near_pass_controller_runtime.py",
+    "test/test_near_pass_inspection_runtime.py",
+    "test/test_pixel_focus_runtime.py"
+  ],
+  "frozen_source_hashes": {
+    "setup.cfg": "fb522f4576d5429cb1cde1c49f0433cf9fd3181da3862b2f5e3a2ce9798a2003",
+    "package.xml": "db6280bcd27e643036d56216dd977326d40dcf79ba21c8786370b8ef7dc3ecc6",
+    "setup.py": "057aaecae1c577eb22a5574c2c35e44eb7ae79a20fcd9bc580d07ff10514522a",
+    "launch/control.launch.py": "364ef79b92d28aef3c01bcc3d8c919e2f15e3a07256a44ea5ae41d4422b85b82",
+    "launch/simulation.launch.py": "a935ef61743c14fdaca30b93f42e4ceb275de31e78a6892be610fc6f74242127",
+    "launch/spawn.launch.py": "b7aeb337d7ee67f744741070d239f57131d11bfedbc254ce48fdac6cc6bf79e4",
+    "launch/create3_nodes.launch.py": "930619a35ded41509b56f6d7df2865f984386e3f5d23fa50ac74d379dfa522a4",
+    "launch/robot.launch.py": "eb92689f6a67053a1e291d8db802c2706b408328679635ace5a26f2845efa122",
+    "launch/bridge.launch.py": "57cf6e5e18ba8ca71b86cb6eba8278fb2b7788fa8f91d2f9d026b2bdc6f5c26d",
+    "launch/description.launch.py": "e7d09c7728caa0242d1ef6aac1eebf0373c65988d881f6dfd06c2bfde546d115",
+    "rviz/mission.rviz": "19f70b00d3388b070bd44e84ed0f58dc2408021a118eb24d381ac19d15d19539",
+    "config/sim_control.yaml": "f8a26dc341ebf8b608d2d4e5c35f7984e4f2db1cd2b7526a691efad60050ecc8",
+    "config/surface_wide_policy.json": "aa11ecff56ffb75d928587e5349eb992b825213af81c7f0b3203f0045634d3b2",
+    "config/slam.yaml": "16ab21d573ae732f376c195853a84f8b57d8fbc6659d339344f7c4bec46b3788",
+    "config/nav2_assignment.yaml": "f4d8743863fb702357f5b1c9177681848d84e942aa2b257e9a4ac98c74f57f98",
+    "config/assignment_demo.yaml": "0484ba146071598aed8b9d8bd6db545a8274382dfe9fdf061e116d5ae114de9d",
+    "config/nav2.yaml": "f936bdee74f02e497317f31621b8d0013ff0f592b5d8ba7d570952bd33f5821f",
+    "config/gazebo.config": "3e0acf09dac24dc3967f5426da3b2936d3e312ca7b54da49c931e5dce70a448f",
+    "config/edge_policy.json": "9b743853aa73e4c9a869f55861c8ac21a3ae81e62651aa5103940bbf92b0fae1",
+    "config/hidden_demo.yaml": "37c270469c5a29a3009dc63d2a8f22161a8a03d725a719452dbe2c955fc1974e",
+    "config/directional_policy.json": "c3e7c1fb2a2975e0501f13369297a46c75c19458cfaf377ec65034752c04d969",
+    "config/nav2_gazebo.yaml": "262f66c6f02c70839e89cd6827bee9ca1ce0a3f7592f0f80594391293715a9cb",
+    "config/surface_endpoint_policy.json": "a9704e07a05255648335f93b583a270a3778ad598b8e9d17a396fb97c328cc84",
+    "config/robust_demo.yaml": "053580f6333f01f77ed8ee87b912a515fbc2a1b222fc9ced552232a95fbc3135",
+    "config/inspection_policy.json": "bdc6b87ebf73dc18f178093755b2ac0bacdaba50c4d6fdd3f82842b70c1b0b7a",
+    "config/nav2_robot_policy.yaml": "262f66c6f02c70839e89cd6827bee9ca1ce0a3f7592f0f80594391293715a9cb",
+    "config/assignment_policy.json": "d6de012b09dfe58b3a93a6fb08e35462337405124b7680637a30a98cbb05e940",
+    "config/scenario.yaml": "442fdf9a66414b7796bb6c20a69c37ca1246e57069b46ab1fb5b58749bb82bea",
+    "config/image_transport.xml": "262106dd04cfd648dda90b07c4adea716fb2fac5ac56fdce9c4340edf9a9e26b",
+    "config/sim_ekf.yaml": "c59e4ac01b765fdb74f57d1c4e19ab56f47e7932aa9c1d1c701db0faffbab8fc",
+    "test/test_velocity_calibration_runtime.py": "1356f39c2a04051bc28e61a44a38e7c7c6728ff1cc2960c25c939df83bd277e0",
+    "test/test_escape_connectivity.py": "045282ee57eee5161c5107e3ffe70f4cfef0236971e75769613bd4483b900369",
+    "test/test_plane_views.py": "3f39faae3637867a4f924ce7bdcbf6bb940cf3af218802b13378f5e6f20faddc",
+    "test/test_view_route_policy.py": "bd562c09e7f2835397a4f36b17238f9ecfd0a2b29dcc3e83891e95dd125dca4f",
+    "test/test_frame_variation.py": "72dce3c817a69cd2f14680ab0051be2f3a548b26a5f4878b033d5f0c0b76201d",
+    "test/test_spatial_runtime.py": "428096fe16ad8464c58a2ddbe401a366ce755c1bd5169d4c460d1cc0b0c514c4",
+    "test/test_coverage_resize.py": "166a3cd5cc4a0aaad3c2b3507143d6314ae267c425898609549614feaf7c8c07",
+    "test/test_normal_cache.py": "b094f9071e1d007b25e63df4a15b8f33718eeb07248d5e5fa47b6936e16d24aa",
+    "test/test_lifecycle_readiness.py": "93e09abd1e7e8f4bef05dbde8017d4074dd5b105a18723d67b91e7c84c21f946",
+    "test/test_edge_diagnostics.py": "0eb49e5874ca99eab1045fd3eda2a65b7cbfddb298600b107a5ca98eda45400c",
+    "test/test_runtime_metrics.py": "103ff203da0aa30eabe006587e91df8c42502653b08e42dd0e870eb411a7186e",
+    "test/test_surface_coverage.py": "ba7d142feed77200d8fc3a6c10a4012590f76a3480279d248df7d6102788fa29",
+    "test/test_dock_geometry.py": "81f22279a1c64dcc127ea3b73dc1e785b14b5b07e4d80f285af4eb3e5cb5fa68",
+    "test/test_face_policy.py": "37ff34e4af1f970f0b1e4eb5b5abb7cf8d2a4d7b8a8c59c180771d8fc621f1b2",
+    "test/test_face_reinspection.py": "f79562a79d0a36ffb6235d88d2564e38708eaedfb032fd8a770517dea0899004",
+    "test/test_floor_pose_runtime.py": "e67d43a9726c94b8bcbb95320078186b68df7c598f9c125dc235f472c3ee888d",
+    "test/test_gazebo_eval.py": "24b492a061d48de4a38603c81b40aa304e44cc1f3b274f7526d8b83eac5dc8f7",
+    "test/test_path_geometry.py": "ba2560aeb15d7586130bfb4096cb2c1f81c2ef8f992214409f4590040da84c05",
+    "test/test_edge_policy.py": "a410e14f03e6951719d917e557ef6158e56c00379a97d187c13384b504285900",
+    "test/test_detector.py": "c54d32a3c3f4956c13f8dd5ab34d0ba00b5cce5f6ebad62438424a69c46d8e90",
+    "test/test_reacquisition_runtime.py": "0e8ae4216119479854108a772633fbbc3443b9b131098383a4b1d610407f1147",
+    "test/test_persistent_edge_coverage.py": "e22910505a7f24a8c41543ea5fa71f9f7e2835ec4af972ed1e13e637452b014e",
+    "test/test_reachable_gain.py": "677d736fb77a98719e2748fa4cfe51059ab59daf44afb2f246a606aa89df6b75",
+    "test/test_small_marker_inspection.py": "791d486b20246fdbf3b5ca20e0d4c61b9c5662ad0b02089b4ff23372c3ccf07d",
+    "test/test_normal_resolution.py": "88d7a138e0670d75d42eb6335876fab6fb6d9b7b602557b7e57d48da414401a2",
+    "test/test_result_io.py": "d20fabc2fe1c08886a05b8160a2b7d61cc71f1c18463d8f466758b78f96c443a",
+    "test/test_record_video.py": "41b1ff02b480d88957e35d1f302d01deaa399b983929fc87d5ffcb9b96d93468",
+    "test/test_assignment.py": "fa4ded29fda618aaf184e67353bbac6633f624cda703b81fabecf685be3566cb",
+    "test/test_undock.py": "216179ff1b553d7da993eca6ddacb0fc9654d1612a1d4a4411456d9716d0e184",
+    "test/test_angular_motion.py": "67b311a1ba1103d99dc34343c9114c400f76335744bbd3c96e08dbaee1b79e73",
+    "test/test_pixel_focus_runtime.py": "ad6df1d0f7272bb796ec15731ff07db5eb09bdafe7bf138a4dd3fc84baefc249",
+    "test/test_calibrated_gain_runtime.py": "8b58270ef38457247032e9e0111c6db3625bb6170dc7ebf83ebcacbfe7ec0836",
+    "test/test_robust.py": "46d6169ec1a12193dd1419b08f98d837839d9cf02117c4a3d141078aef4b785d",
+    "test/test_recovery.py": "b9366f55776900750a5498b1d42080aec98a3d0f380f91c61bb1847c2ae1b17f",
+    "test/test_sim_state_estimation.py": "3b75bbf8a00dc845c7006289a7ce679faee58480e2e3fbb6e24f1de5844ea2b9",
+    "test/test_startup_state_runtime.py": "6be68e1e84cf39e8783deb643d3f2c6451736fd0066cd24ae8ae95d3fbdf5b1a",
+    "test/test_full_scan_policy.py": "fdaf3a5ba647f2293ec21b48503e1556ca3c957c9604fd329a4026d305596a12",
+    "test/test_raycast.py": "958028ec78bb3ee619f1981010a5e7c4e488ae3c7ab876f31337013c04f4999f",
+    "test/test_lidar_fidelity.py": "4f55e529f7d867a79843599347cc6922d51320114f60bc123320d135949d6fa1",
+    "test/test_travel_glance.py": "dfd213f784535cda960ac998e4ce3d4baa7301cc23c8efa4fc9af104b464f47a",
+    "test/test_scan_alignment.py": "16b50c227c018122f782561e78d025f7841ee377b4bb1a0be36b9d7d13cae046",
+    "test/test_core.py": "9ff489b16910e85f78c60beead82ddbcc90a55160adc2be169624f75c483c073",
+    "test/test_surface_settings.py": "000a1d5e9ce3708f77d6a4bc9eab72c3a518c68139c44e874d95916f60cf7418",
+    "test/test_scan_safety.py": "5d23eb3d1b6fb56e52053bfd1e2fb9052b40216fe71f77cf5e753868fbf2554b",
+    "test/test_near_pass_controller_runtime.py": "74bffec78fbf235e9af0a8d35d37fb6d47d66164c9e23e110f5870f8f35d8ca6",
+    "test/test_marker_approach.py": "98dfb17289f5a78f3e03e518a71e3318517c80bdc6ce6d3dae90565959b782de",
+    "test/test_near_pass_inspection_runtime.py": "16ad5386feba49314dc8d0f1cbd78843316f38e52e3b4d696ecf6a1f47a67d7b",
+    "test/test_view_tour_policy.py": "bd1d7d2123406532eab7150df7851878b7425da6fc8948ac0a42fb891ffd958c",
+    "test/test_face_mass.py": "691cb5f1c21f92932f4746647743a2dbeade716df0c6313ad25701ff7fe4134e",
+    "test/test_surface_hits.py": "ff991bf2e1d1cd2f0b1bdff32c5028b3804b85653c0505101438936f2d2b41a3",
+    "test/test_windowed_witness_runtime.py": "9f57d3cf7292b7b0403ca806e7f6a9edd5f551635a5efb416307fe120c6bb45c",
+    "test/test_tf_restamp.py": "8a05eb148b63d7001c518e77bb85ad30af4f159afbea3d86893ad1562d6dedae",
+    "test/test_observation_sweep.py": "72a3103c3ce76faa9b41605054f4c2846f29cbaf6db7258ad713115efc329152",
+    "test/test_startup_guard_ros_runtime.py": "37fab34a5120f4b57c323f9b08d35e20f2763f503422695becbe138a9db9fd69",
+    "test/test_native_audit.py": "499603c3a1ca1eb56b9a3d52eb4b11e1d0b7e5e856207ce8746ee58abf7cf662",
+    "test/test_marker_focus.py": "b46286cd108e6c8d5e8bdc28cf7b998ab22a79920e6f72cab6ef9685244aed9e",
+    "test/test_drive_readiness.py": "9cefcc023f4a5cd82deb95b67d9faa2abcebe3c2dbfac936e547658b0cc1d28b",
+    "test/test_time_budget.py": "98869fe710c66d27b4be59d1c5da21763106f83ba0213aabcb40b1d37203fe8a",
+    "test/test_curriculum.py": "bfb3e96a4673b174235ea93bbad6116af57fe9e7fe8d0b2b9aeeec36c0db3520",
+    "test/test_policy_training.py": "5a338421864b024c6fd707418224f7c1c158ec613010da454dd390337ec0cde6",
+    "test/test_landmark_identity.py": "06aeb85345284899f25824f9a10612a32a797f924060476b69635ac31a7abfe3",
+    "test/test_bounded_gain_runtime.py": "58694a3aad2255582f10fb48860fb75923ee022ceda00acdbda5d7edb983f6d6",
+    "osp_mission/scan_alignment.py": "cf1c68d78ce6eae65622590644fef31885b720f3ba3e9461e066b04ca4f5936a",
+    "osp_mission/surface_v2_policy.py": "2695940857446154dea065cb1cae232bd3687dda2adc9058d6c77ef8e1a20c0e",
+    "osp_mission/dashboard.py": "4e66c5e774f2710ca06c416f2f7339ff036620475eb152c3cd3262f8089c6612",
+    "osp_mission/view_tour_policy.py": "c78de8fd4121ab51c6143d55a8181a21faa5e44c3bdde44fbdd020f3017f65a9",
+    "osp_mission/space_scenarios.py": "582fa7cbc64c897b30b9d99f62052a87e815bd08b22e070048a7a0cd408a5385",
+    "osp_mission/drive_readiness.py": "52b405d286998597c0bc29caebff773f569c948b3d37b6ec45e8166cf00433d7",
+    "osp_mission/startup_guard.py": "8f8fb29472b3334fa89142e56ba6e26153111149f888399deb86a530172f9b13",
+    "osp_mission/face_mass.py": "9eefb802aaa1a55a8e7b1ac083541238d376f28339b04018991b1814ef76b0ef",
+    "osp_mission/surface_hits.py": "47160c113cd1e5f4bd51376f5f3f163c08735a02f0bd1c19f90ab82d8d65af48",
+    "osp_mission/detector.py": "5faf7c154c497c5e9b744b2e202bc78d55f492c8ea6e30d63e539b8dc04c8ac8",
+    "osp_mission/mission.py": "bb448e7854a025c9456d642dcbaff0ef1b2a7b0a3377999b59552b17f4503883",
+    "osp_mission/train.py": "021485d29325b5338c3d02a117d531f4ab3fe218786706191d1f2436f3df4f38",
+    "osp_mission/landmark_identity.py": "cb5f72c21d78b2e54ce534362ab22c7c5d984db44ecd86275b0a8d1c3dba1bee",
+    "osp_mission/policy.py": "7140d1347c2e5c7a1d7975296c571b1682d8825a4bcd58b7b2290688d9fd56ee",
+    "osp_mission/gazebo_eval.py": "e6230a587de64429bd94c64cc2138cf194b0ea41c28a8180bc2732f977b309ec",
+    "osp_mission/result_io.py": "baf9b7106dbb1f48bd61578009bf734c8ee2a6fb545d784cc37dc69993c0bd8b",
+    "osp_mission/edge_policy.py": "56ca772647b74d33c6035eb63a16c6c92fbb7ee4fb0b6463e4e6f111e9e5dd0c",
+    "osp_mission/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "osp_mission/fast_sim.py": "a57e51346feeb24da23ae44c14ff3cc9c7c045fc1a7865a05f2bf2c798ce4f3c",
+    "osp_mission/record_video.py": "86235912ab45248fbb2df39f8f3099a32691bf0cde4acfe377a84df271b51d33",
+    "osp_mission/world.py": "301f4a85a49954af820227c4d6ef327ecfd86d75a635c8b81c1248c4946ee7c6",
+    "osp_mission/marker_event_journal.py": "b0115c861d5a18c3650606b57a6d861378260a971627903c4af08f0060627930",
+    "osp_mission/exploration_memory.py": "338dbab9494f6a1031eec7c60142bb65749cae4a73abc26debd226bdba6ab1cc",
+    "osp_mission/near_pass_inspection.py": "a67246ac703f19fc9678a2db1f054c978c9a6eee434d2c191390cbfc1a1ad10c",
+    "osp_mission/space_geometry.py": "1e07dcb07ae4e14c03212144bc8b0a02f6473cf89159035ba003e9af89446367",
+    "osp_mission/angular_motion.py": "756c21d13763a6f23baf58b98dbd87c3bddc492c94d77b3d56310fb214718d63",
+    "osp_mission/landmark_reacquisition.py": "b03abc5238920da9a8f2c64db9c3d3a5997dfdff2208758d43b648bb7eb3d9db",
+    "osp_mission/normal_cache.py": "a92c09072a6ae85452562df6e3648aaf688895d3a694cfa504c98efc32ef67f6",
+    "osp_mission/native_audit.py": "bf4407ace4157992ccc32627e13bcbd209c11e4655e0e8de9bb4962bb2794534",
+    "osp_mission/travel_glance.py": "0878827f9d92b127586df639a099a5b0676e04af32f02140cb8476d5a1c7655b",
+    "osp_mission/lifecycle_readiness.py": "2fc6cbbad0ea82d65dfb764cb7b24f82b78edd929a68c23a22d7d0e8a9aa67a4",
+    "osp_mission/policy_audit.py": "0babe06b2f575aa2ac06cdfe23303df95041094abf240f3a9b6d979b256afb87",
+    "osp_mission/scan_safety.py": "aa884aa26f4aa31d08537095d4de5bf8e2204db5c38530d8911c7573189c2043",
+    "osp_mission/time_budget.py": "80139966388080994850046c76ff12fbcfe85cf3752a8e7e96e9212813d26852",
+    "osp_mission/marker_approach.py": "045b0981b85dc060af786df30d4c6df053f169efa464a1f474bf448c437f5a17",
+    "osp_mission/escape_connectivity.py": "6eb8278373f43abdfe232200a26c53eb94d6dad8119bc5d4066ba2733aefb2a3",
+    "osp_mission/transport_config.py": "c2b8ce556f6a89182150a52c08ea3f224f06328495e7db6eab0ecb47243db5c8",
+    "osp_mission/curriculum.py": "d85f75724bbbf7f51dfb2683e798aee5988c84fd1d71c3b74c5ac9a7f46798bd",
+    "osp_mission/dock_geometry.py": "3005dedbc35a1ab2461b822821285169244b6477ada05ca4b72b19bc123a95fd",
+    "osp_mission/face_policy.py": "9857af71e6e97e41a3152a903304de3466c262f11853f68ffd085a6a2277dcb5",
+    "osp_mission/observation_sweep.py": "0adb7b5286ff2d81aadf15de0f240d0774b35ac53869fe80bae5b1501625a8ca",
+    "osp_mission/raycast.cpp": "7a35ab843c480fc3ba3a82af15385f734f28768a70f85dbca6a2a58d3ef80e04",
+    "osp_mission/scenarios.py": "9259bf1e82a6b525bf84d905226465140a183fbbc94e11dfd783907151940d37",
+    "osp_mission/frame_variation.py": "b923fbb56d2445d4f49594261ac99d13f9aee482fb96f0cc54582cbe35afa938",
+    "osp_mission/near_pass_runtime.py": "5be3e101f0df92b74783803e5ee53462bcf3308f78a79adbb6310e24d56257a2",
+    "osp_mission/startup_state.py": "a27ede230ca0ce5951df57959c318f7092b53236015f1bc89ffaeb1bb90e7a8c",
+    "osp_mission/marker_focus.py": "494dec5e7a23e291cb55c9fd41044e9947fdbb0d18783bb4aec28b21a9310e92",
+    "osp_mission/view_route_policy.py": "60d69a0bcb40c264c5a313d985e23e813b370bb135fa2bf67f5568c49b4b94aa",
+    "osp_mission/inspection_policy.py": "9b4923d05f9772a0cc88047579316cfb9c9dc60336c2454e86f90f7c9ae086b7",
+    "osp_mission/surface_balanced_policy.py": "dcde9d3a485abc4b0594da68f1e21e8f297568334c1be98fd7e735386e6508e1",
+    "osp_mission/marker_sizes.py": "7bfde380d0f40314387767929f16ebae344982d8154e9cc5a2ece0aa7e4f521e",
+    "osp_mission/_raycast.so": "c298a1fe6c551cb2e0cd75ddef7344761f07713b43af6db581f22f13143c730c",
+    "osp_mission/persistent_edge_coverage.py": "7830679a22c8df6306a9f11798d62106bbad3d210e429b014d3bf7fd58609108",
+    "osp_mission/surface_coverage.py": "853852f2dd5d2571346dbd19db51323d6e123f246857923aaf594a9f65ef506c",
+    "osp_mission/coverage_resize.py": "50e9b4f9dab00b1a2a4feae5e27bc3c6e326e44ddf3012fa5fb885afa3c0142f",
+    "osp_mission/directional_policy.py": "f32679a5706c4d48706591d8d576e9f189bb016374de549f1e81befa7092547c",
+    "osp_mission/surface_endpoint_policy.py": "c38800382f467fcac9634c8603d69d34477dcb04d06456d65f621f34b015679b",
+    "osp_mission/plane_views.py": "ba4ca2e8f4903b89c951bcec99360fdba466c1ed86ff022cce3abad9ac328cb3",
+    "osp_mission/continual.py": "2467ffdc31e79eba6f18bf591b4bf7c98071b98e143cf47b86eb120ddcaaeaa2",
+    "osp_mission/frontier.py": "96aa411d7a2b6d7a98c71173426c8a68eb65b50ab53c9a0176f3c06385dd97e8",
+    "osp_mission/sensor_model.py": "2b89bc9e66aa35bcbabb2ceb74343c84fc457e8ffde99393041cb4def9ae0a0a",
+    "osp_mission/provisional_marker_cues.py": "f8ecec8e8cd97584b851d4b53593dfabe664f82f3973b56bd373b9e72bae5120",
+    "osp_mission/surface_policy.py": "aae6e675d22243e4bf61762a10af12d083b4d0e6f06da07171b7197b35de1dd3",
+    "osp_mission/raycast.py": "cc3369f75937464149f7513ca1c419e80a750a5ccbbb01ab96838f9d810add3b",
+    "osp_mission/calibrated_wheel_twist.py": "50a2a5fc5bde1a6956e36ffc0476006847780e65ddeed10203128c018c715686",
+    "osp_mission/assignment_scenarios.py": "81e371efe765b79f5bf83286772e4aa32470ce049862b332c31d7f73fc62857c",
+    "osp_mission/robust_scenarios.py": "f8f6683a773afedf6c08c9ad6f14b5f4ca8823b1fc9035685222d48909f722d8",
+    "osp_mission/path_geometry.py": "ba2c98f2af003b75d8f0c55e44113c51c19a2e186e3d4e05e58bea54b7175557",
+    "osp_mission/runtime_metrics.py": "25d22a888da81710c7a8ad64f1df3383b3d8cc725eefc41e32eaacc2bbe5b1c8",
+    "resource/osp_mission": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "driver_hashes": {
+    "/home/peter/simul/training_robust/run_near_pass_regression.py": "c4e69b7540abd34c817f3d493d0b5fc393417a1aabb7457b40623b68f1a028af",
+    "/home/peter/simul/scripts/prepare_near_pass_runtime.py": "3b8d7276adc51b40d5ee89dfdb16496becd5c7a2ef07be334e366393c3335ffe",
+    "/home/peter/simul/scripts/candidate_near_pass_inspection.py": "a67246ac703f19fc9678a2db1f054c978c9a6eee434d2c191390cbfc1a1ad10c",
+    "/home/peter/simul/scripts/candidate_near_pass_runtime.py": "5be3e101f0df92b74783803e5ee53462bcf3308f78a79adbb6310e24d56257a2",
+    "/home/peter/simul/training_robust/run_graph_landmark_regression.py": "a84cb34a66f1baf71236505b9884625f6ba3fcb48a05fb5175fcb20c2d6d2bc9",
+    "/home/peter/simul/training_robust/replay_near_pass_inspection.py": "12085b92c9bad321561b164d292de07443d58748f6c3d1573d2ac61de700589c"
+  },
+  "shadow": {
+    "evidence_type": "prior_SLAM_raster_and_recorded_pose_near_pass_shadow_not_new_native_mission",
+    "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00003_train_g0_0/episodes/1191300303",
+    "snapshot": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00003_train_g0_0/episodes/1191300303/policy_decisions/0015.npz",
+    "workspace": "/home/peter/simul/training_robust/native90/near_pass_v2/runtime",
+    "rows": [
+      {
+        "stamp_sim_s": 303.6,
+        "camera_map_pose": [
+          -3.8543232171689934,
+          -6.080966285291124,
+          -14.792311880647267
+        ],
+        "choice": {
+          "turn_rad": -0.7853981633974485,
+          "gain_surface_m": 0.2500000037252903,
+          "angular_gain_rad": 0.2936077028095765,
+          "estimated_sim_s": 3.0479956785822315,
+          "odom_camera": [
+            -3.504671889319468,
+            -5.819547256521878,
+            -14.779389251763483
+          ],
+          "odom_yaw": -2.9984168008017598,
+          "face_count": 5,
+          "range_min_m": 0.6565556888857101,
+          "range_max_m": 0.8631399606024608
+        },
+        "evaluator_annotations": [
+          {
+            "id": 220,
+            "map_camera_distance_m": 1.8025111464077934,
+            "bearing_before_deg": -33.99575772865868,
+            "bearing_after_deg": 11.00424227134132,
+            "center_inside_FOV_after": true,
+            "actual_marker_size_m": 0.23866345758724483
+          },
+          {
+            "id": 991,
+            "map_camera_distance_m": 10.417539556420698,
+            "bearing_before_deg": -170.19784138970434,
+            "bearing_after_deg": -125.19784138970434,
+            "center_inside_FOV_after": false,
+            "actual_marker_size_m": 0.1555551112437343
+          },
+          {
+            "id": 465,
+            "map_camera_distance_m": 14.323479053933228,
+            "bearing_before_deg": -179.96228363628904,
+            "bearing_after_deg": -134.96228363628904,
+            "center_inside_FOV_after": false,
+            "actual_marker_size_m": 0.08965664323306682
+          }
+        ]
+      },
+      {
+        "stamp_sim_s": 304.6,
+        "camera_map_pose": [
+          -4.046994760419151,
+          -6.318259896429394,
+          -14.86542412187528
+        ],
+        "choice": {
+          "turn_rad": -1.0471975511965979,
+          "gain_surface_m": 0.45000000670552254,
+          "angular_gain_rad": 0.5798860017599311,
+          "estimated_sim_s": 3.663994238109642,
+          "odom_camera": [
+            -3.6748329474337744,
+            -6.039495409464626,
+            -14.852343189801676
+          ],
+          "odom_yaw": 2.9500151805404844,
+          "face_count": 9,
+          "range_min_m": 0.5180138365144403,
+          "range_max_m": 0.8178326035877119
+        },
+        "evaluator_annotations": [
+          {
+            "id": 220,
+            "map_camera_distance_m": 1.5532823073475526,
+            "bearing_before_deg": -35.86908760926648,
+            "bearing_after_deg": 24.130912390733528,
+            "center_inside_FOV_after": true,
+            "actual_marker_size_m": 0.23866345758724483
+          },
+          {
+            "id": 991,
+            "map_camera_distance_m": 10.717404821120878,
+            "bearing_before_deg": -166.33013740951904,
+            "bearing_after_deg": -106.33013740951904,
+            "center_inside_FOV_after": false,
+            "actual_marker_size_m": 0.1555551112437343
+          },
+          {
+            "id": 465,
+            "map_camera_distance_m": 14.629030052287645,
+            "bearing_before_deg": -175.80617973166272,
+            "bearing_after_deg": -115.80617973166271,
+            "center_inside_FOV_after": false,
+            "actual_marker_size_m": 0.08965664323306682
+          }
+        ]
+      },
+      {
+        "stamp_sim_s": 305.6,
+        "camera_map_pose": [
+          -4.25003714582234,
+          -6.531703692989838,
+          -15.0107214844577
+        ],
+        "choice": {
+          "turn_rad": -1.3089969389957472,
+          "gain_surface_m": 0.850000012665987,
+          "angular_gain_rad": 1.1357894196118552,
+          "estimated_sim_s": 4.279992797637052,
+          "odom_camera": [
+            -3.8580701229260703,
+            -6.237998922815414,
+            -14.997721373517743
+          ],
+          "odom_yaw": 2.54283760902527,
+          "face_count": 17,
+          "range_min_m": 0.5072404835530825,
+          "range_max_m": 0.8037868626412739
+        },
+        "evaluator_annotations": [
+          {
+            "id": 220,
+            "map_camera_distance_m": 1.3194661811583348,
+            "bearing_before_deg": -34.72099313832198,
+            "bearing_after_deg": 40.27900686167804,
+            "center_inside_FOV_after": false,
+            "actual_marker_size_m": 0.23866345758724483
+          },
+          {
+            "id": 991,
+            "map_camera_distance_m": 11.00154670614545,
+            "bearing_before_deg": -158.41555993692586,
+            "bearing_after_deg": -83.41555993692585,
+            "center_inside_FOV_after": false,
+            "actual_marker_size_m": 0.1555551112437343
+          },
+          {
+            "id": 465,
+            "map_camera_distance_m": 14.922020421534283,
+            "bearing_before_deg": -167.6002195397534,
+            "bearing_after_deg": -92.6002195397534,
+            "center_inside_FOV_after": false,
+            "actual_marker_size_m": 0.08965664323306682
+          }
+        ]
+      },
+      {
+        "stamp_sim_s": 306.6,
+        "camera_map_pose": [
+          -4.490875632340691,
+          -6.71744759179389,
+          -15.157412464932785
+        ],
+        "choice": {
+          "turn_rad": -1.3089969389957472,
+          "gain_surface_m": 0.9000000134110451,
+          "angular_gain_rad": 1.227038689646867,
+          "estimated_sim_s": 4.279992797637052,
+          "odom_camera": [
+            -4.06789722166887,
+            -6.403374446774908,
+            -15.144412353992827
+          ],
+          "odom_yaw": 2.3961466285501842,
+          "face_count": 18,
+          "range_min_m": 0.5610985308128427,
+          "range_max_m": 0.8348044494416063
+        },
+        "evaluator_annotations": [
+          {
+            "id": 220,
+            "map_camera_distance_m": 1.0751366254936292,
+            "bearing_before_deg": -35.03778713570107,
+            "bearing_after_deg": 39.96221286429894,
+            "center_inside_FOV_after": false,
+            "actual_marker_size_m": 0.23866345758724483
+          },
+          {
+            "id": 991,
+            "map_camera_distance_m": 11.28030058702005,
+            "bearing_before_deg": -150.63649436221115,
+            "bearing_after_deg": -75.63649436221115,
+            "center_inside_FOV_after": false,
+            "actual_marker_size_m": 0.1555551112437343
+          },
+          {
+            "id": 465,
+            "map_camera_distance_m": 15.216394899596724,
+            "bearing_before_deg": -159.48621150630777,
+            "bearing_after_deg": -84.48621150630777,
+            "center_inside_FOV_after": false,
+            "actual_marker_size_m": 0.08965664323306682
+          }
+        ]
+      },
+      {
+        "stamp_sim_s": 307.6,
+        "camera_map_pose": [
+          -4.752675278668,
+          -6.871370531067828,
+          -15.213473399138948
+        ],
+        "choice": {
+          "turn_rad": -1.3089969389957472,
+          "gain_surface_m": 0.850000012665987,
+          "angular_gain_rad": 1.1561135914890655,
+          "estimated_sim_s": 4.279992797637052,
+          "odom_camera": [
+            -4.293705905108907,
+            -6.540244406845883,
+            -15.20047328819899
+          ],
+          "odom_yaw": 2.3400856943440225,
+          "face_count": 17,
+          "range_min_m": 0.5822221497817824,
+          "range_max_m": 0.7379412714462947
+        },
+        "evaluator_annotations": [
+          {
+            "id": 220,
+            "map_camera_distance_m": 0.840490260847388,
+            "bearing_before_deg": -43.46651072204493,
+            "bearing_after_deg": 31.533489277955088,
+            "center_inside_FOV_after": true,
+            "actual_marker_size_m": 0.23866345758724483
+          },
+          {
+            "id": 991,
+            "map_camera_distance_m": 11.543122202973514,
+            "bearing_before_deg": -148.18851586697244,
+            "bearing_after_deg": -73.18851586697244,
+            "center_inside_FOV_after": false,
+            "actual_marker_size_m": 0.1555551112437343
+          },
+          {
+            "id": 465,
+            "map_camera_distance_m": 15.499158075737954,
+            "bearing_before_deg": -156.68753480817512,
+            "bearing_after_deg": -81.68753480817512,
+            "center_inside_FOV_after": false,
+            "actual_marker_size_m": 0.08965664323306682
+          }
+        ]
+      },
+      {
+        "stamp_sim_s": 308.6,
+        "camera_map_pose": [
+          -5.019850032743846,
+          -7.013416720819997,
+          -15.224084850852247
+        ],
+        "choice": {
+          "turn_rad": -1.5707963267948966,
+          "gain_surface_m": 0.9000000134110451,
+          "angular_gain_rad": 1.3641451708988557,
+          "estimated_sim_s": 4.895991357164463,
+          "odom_camera": [
+            -4.575130148061994,
+            -6.695962198120318,
+            -15.21108473991229
+          ],
+          "odom_yaw": 2.067674854831573,
+          "face_count": 18,
+          "range_min_m": 0.5752385397533961,
+          "range_max_m": 0.6541054567416079
+        },
+        "evaluator_annotations": [
+          {
+            "id": 220,
+            "map_camera_distance_m": 0.6532880740982081,
+            "bearing_before_deg": -61.319951778619824,
+            "bearing_after_deg": 28.680048221380176,
+            "center_inside_FOV_after": true,
+            "actual_marker_size_m": 0.23866345758724483
+          },
+          {
+            "id": 991,
+            "map_camera_distance_m": 11.800420653124503,
+            "bearing_before_deg": -148.36226809084545,
+            "bearing_after_deg": -58.36226809084544,
+            "center_inside_FOV_after": false,
+            "actual_marker_size_m": 0.1555551112437343
+          },
+          {
+            "id": 465,
+            "map_camera_distance_m": 15.776806092755614,
+            "bearing_before_deg": -156.520311449989,
+            "bearing_after_deg": -66.52031144998902,
+            "center_inside_FOV_after": false,
+            "actual_marker_size_m": 0.08965664323306682
+          }
+        ]
+      },
+      {
+        "stamp_sim_s": 309.6,
+        "camera_map_pose": [
+          -5.298972787277194,
+          -7.163708240831992,
+          -15.222687620952778
+        ],
+        "choice": {
+          "turn_rad": -1.5707963267948966,
+          "gain_surface_m": 0.7000000104308128,
+          "angular_gain_rad": 1.0913321899922952,
+          "estimated_sim_s": 4.895991357164463,
+          "odom_camera": [
+            -4.836156935828169,
+            -6.839659142178633,
+            -15.20968751001282
+          ],
+          "odom_yaw": 2.06907208473104,
+          "face_count": 14,
+          "range_min_m": 0.554228076202746,
+          "range_max_m": 0.7051430775375819
+        },
+        "evaluator_annotations": [
+          {
+            "id": 220,
+            "map_camera_distance_m": 0.5763341190979452,
+            "bearing_before_deg": -90.42522111360934,
+            "bearing_after_deg": -0.4252211136093446,
+            "center_inside_FOV_after": true,
+            "actual_marker_size_m": 0.23866345758724483
+          },
+          {
+            "id": 991,
+            "map_camera_distance_m": 12.073084752967533,
+            "bearing_before_deg": -149.21859752515792,
+            "bearing_after_deg": -59.218597525157925,
+            "center_inside_FOV_after": false,
+            "actual_marker_size_m": 0.1555551112437343
+          },
+          {
+            "id": 465,
+            "map_camera_distance_m": 16.06929865166435,
+            "bearing_before_deg": -157.04027894021362,
+            "bearing_after_deg": -67.04027894021362,
+            "center_inside_FOV_after": false,
+            "actual_marker_size_m": 0.08965664323306682
+          }
+        ]
+      },
+      {
+        "stamp_sim_s": 310.6,
+        "camera_map_pose": [
+          -5.585116060466088,
+          -7.303304597459069,
+          -15.297921528366922
+        ],
+        "choice": {
+          "turn_rad": -1.832595714594046,
+          "gain_surface_m": 0.5000000074505806,
+          "angular_gain_rad": 0.6589824563373113,
+          "estimated_sim_s": 5.511989916691873,
+          "odom_camera": [
+            -5.102515914707077,
+            -6.972729342012976,
+            -15.284921417426965
+          ],
+          "odom_yaw": 1.7320387895177483,
+          "face_count": 10,
+          "range_min_m": 0.5928300297565509,
+          "range_max_m": 0.8923368495922983
+        },
+        "evaluator_annotations": [
+          {
+            "id": 220,
+            "map_camera_distance_m": 0.6517134299374021,
+            "bearing_before_deg": -115.34915997765941,
+            "bearing_after_deg": -10.349159977659433,
+            "center_inside_FOV_after": true,
+            "actual_marker_size_m": 0.23866345758724483
+          },
+          {
+            "id": 991,
+            "map_camera_distance_m": 12.342554401050545,
+            "bearing_before_deg": -145.70388309121424,
+            "bearing_after_deg": -40.70388309121426,
+            "center_inside_FOV_after": false,
+            "actual_marker_size_m": 0.1555551112437343
+          },
+          {
+            "id": 465,
+            "map_camera_distance_m": 16.358956304234,
+            "bearing_before_deg": -153.19669043514887,
+            "bearing_after_deg": -48.19669043514888,
+            "center_inside_FOV_after": false,
+            "actual_marker_size_m": 0.08965664323306682
+          }
+        ]
+      },
+      {
+        "stamp_sim_s": 311.6,
+        "camera_map_pose": [
+          -5.876129736924933,
+          -7.429291830840993,
+          -15.275281072333188
+        ],
+        "choice": null
+      },
+      {
+        "stamp_sim_s": 312.6,
+        "camera_map_pose": [
+          -6.12280585231281,
+          -7.548468293726409,
+          -15.297438919690409
+        ],
+        "choice": null
+      }
+    ],
+    "snapshot_elapsed_sim_s": 286.558,
+    "matched_exploration_journal": {
+      "elapsed_seconds": 286.558,
+      "selected": [
+        -7.685844942703628,
+        -8.33764903015895,
+        -2.2252947962927703
+      ],
+      "inspection_focal_px": 665.2950122399816,
+      "readable_distance_m": 2.5133367129065975,
+      "marker_override": false,
+      "visited_cells": 82,
+      "completed_viewpoints": 13,
+      "suppressed_redundant_viewpoints": 7,
+      "path_distance_m": 45.79121876417358,
+      "revisited_distance_m": 0.5800689165165387,
+      "source": "odom + observed SLAM/TF only; revisits include necessary transit"
+    },
+    "history_reset_for_each_probe": true,
+    "ground_truth_available_to_policy": false,
+    "evaluator_target_annotation_after_selection": true,
+    "native_result_modified": false,
+    "limits": [
+      "Previous decision raster and viewed state held fixed during one recorded exploration leg;not exact current live maps",
+      "Camera/odom poses are interpolated from recorded audit samples;camera extrinsics inferred from accepted observations",
+      "Each empty-history probe is independent;this does not simulate a new route,overhead,ID decoding or repeated-look behavior",
+      "Target center in horizontal FOV does not prove unoccluded full-marker visibility or correct decoding"
+    ],
+    "source_sha256": {
+      "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00003_train_g0_0/episodes/1191300303/policy_decisions/0015.npz": "ec1784326cc25017bb435ad649d9db7c374d78f729ae02bfe458740cfbc233e3",
+      "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00003_train_g0_0/episodes/1191300303/pose_trace.csv": "b228bd02047a8cb8761730ca0898ac12d73f48264d56bf8e331c4a5f8df9cb50",
+      "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191300303.yaml": "a988399ea5c0f80d1abd2b6d7188e301bfab4e72ecd1e470f449f488b796291a",
+      "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00003_train_g0_0/episodes/1191300303/evaluation.json": "5a0e7e0809c411338f82206d6e2154e4dc59250db419f928d39dce83300496fa",
+      "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00003_train_g0_0/episodes/1191300303/exploration_memory.jsonl": "fa3668b83eb430880396d3b249492251f86f27fddc5c6fa99072f86a369053fe",
+      "/home/peter/simul/training_robust/native90/fresh_failure_study_v1/rectangle_camera_direction.json": "2ac2aabda745a3409345e04647768acafcdce49754d75a8778034871a57d14f2",
+      "/home/peter/simul/training_robust/native90/near_pass_v2/runtime/src/osp_mission/osp_mission/near_pass_inspection.py": "a67246ac703f19fc9678a2db1f054c978c9a6eee434d2c191390cbfc1a1ad10c",
+      "/home/peter/simul/training_robust/replay_near_pass_inspection.py": "12085b92c9bad321561b164d292de07443d58748f6c3d1573d2ac61de700589c"
+    }
+  },
+  "queued_native": {
+    "root": "/home/peter/simul/training_robust/native90/near_pass_regression_v1",
+    "coordinator_unit": "osp-near-pass-v1.service",
+    "job_status": "prepared",
+    "scenario_seed": 1191300303,
+    "dependency": "/home/peter/simul/training_robust/native90/encoder_delta_regression_v1",
+    "original_failed_rectangle_retained": true,
+    "baseline": {
+      "success": false,
+      "targets": 2,
+      "approached": 3,
+      "contacts": 0,
+      "seconds": 600.058,
+      "infrastructure_failure": false,
+      "reason": "timeout"
+    },
+    "native_not_started": true
+  },
+  "limits": [
+    "No new Gazebo run of this look policy has finished;tests and shadows do not establish better native completion,time or transfer",
+    "Recorded raster/viewed state is held fixed over one prior exploration leg;each probe resets look history and does not simulate a changed path",
+    "Source also retains pixel-aware followup and SLAM UDP;comparison against original S7rectangle does not isolate a single timing effect",
+    "Budgets apply to the extra inspection phase;full runtime includes navigation to resume and determines actual performance",
+    "Source does not include the separate encoder-delta or final-graph candidate;later composition requires new validation"
+  ]
+}

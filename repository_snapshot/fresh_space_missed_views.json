@@ -1,0 +1,130 @@
+{
+  "captured_utc": "2026-11-13T01:33:12.393681+00:00",
+  "evidence_type": "finalized_native_training_camera_direction_diagnosis_not_new_success",
+  "rectangle": {
+    "evidence_type": "offline_2D_camera_geometry_at_recorded_image_stamps",
+    "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00003_train_g0_0/episodes/1191300303",
+    "rows": [
+      {
+        "id": 220,
+        "decoded_frames": 7,
+        "modeled_readable_in_fov_frames_before_occlusion": 9,
+        "maximum_predicted_pixels_in_front_fov": 74.03563572791933,
+        "minimum_bearing_error_deg_when_predicted_readable": 34.150873955366194,
+        "closest_camera_distance_m": 0.6052638350459137,
+        "bearing_error_deg_at_closest": -87.80262352822587
+      },
+      {
+        "id": 991,
+        "decoded_frames": 20,
+        "modeled_readable_in_fov_frames_before_occlusion": 13,
+        "maximum_predicted_pixels_in_front_fov": 42.59846075605045,
+        "minimum_bearing_error_deg_when_predicted_readable": 21.017299558135896,
+        "closest_camera_distance_m": 0.7205479100373658,
+        "bearing_error_deg_at_closest": -89.46396995863086
+      },
+      {
+        "id": 465,
+        "decoded_frames": 36,
+        "modeled_readable_in_fov_frames_before_occlusion": 37,
+        "maximum_predicted_pixels_in_front_fov": 51.06374594438577,
+        "minimum_bearing_error_deg_when_predicted_readable": 0.7641528795989195,
+        "closest_camera_distance_m": 0.9901919209119696,
+        "bearing_error_deg_at_closest": 93.09479094045548
+      }
+    ],
+    "inferred_camera_extrinsic_xy_m": [
+      -0.05959999999999962,
+      2.6149682790660433e-08
+    ],
+    "inferred_camera_yaw_offset_rad": 0.0,
+    "actual_horizontal_half_fov_deg": 35.80986219567645,
+    "source_sha256": {
+      "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191300303.yaml": "a988399ea5c0f80d1abd2b6d7188e301bfab4e72ecd1e470f449f488b796291a",
+      "/home/peter/simul/training_robust/native90/calibrated_gain_v1/native_camera_calibration.json": "1a5bb787f8c2f64cbc4a7503e1edc933625407d6bb665d7b61be1ba95db3641c",
+      "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00003_train_g0_0/episodes/1191300303/pose_trace.csv": "b228bd02047a8cb8761730ca0898ac12d73f48264d56bf8e331c4a5f8df9cb50",
+      "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00003_train_g0_0/episodes/1191300303/marker_observations.json": "cfefe628b2b0cfcfa8e911aad375d0b220a3b55ba96490ed460d852a035b1cc3",
+      "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00003_train_g0_0/episodes/1191300303/runtime_trace.csv": "907182d50bbe62e3651350a2fa5f918908c426731754b11f57105f13f13cc1a6",
+      "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00003_train_g0_0/episodes/1191300303/evaluation.json": "5a0e7e0809c411338f82206d6e2154e4dc59250db419f928d39dce83300496fa",
+      "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00003_train_g0_0/episodes/1191300303/evaluator_gt_fine_1794527745368176224.csv": "46d232f9b1d364690dda923c3be18b6d67bfc6ec641c7743567dc7080b9b8e17"
+    },
+    "ground_truth_used_only_by_evaluator": true,
+    "policy_or_result_modified": false,
+    "limits": [
+      "Pinhole edge size is approximate;occlusion,3D corner projection and image decoder behavior are not simulated",
+      "Camera extrinsics are inferred from accepted observations and interpolated audit poses",
+      "This diagnoses missed viewing direction;it is not a counterfactual mission success or speed result"
+    ]
+  },
+  "rooms": {
+    "evidence_type": "offline_2D_camera_geometry_at_recorded_image_stamps",
+    "episode": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00006_train_g0_0/episodes/1191300606",
+    "rows": [
+      {
+        "id": 800,
+        "decoded_frames": 146,
+        "modeled_readable_in_fov_frames_before_occlusion": 96,
+        "maximum_predicted_pixels_in_front_fov": 60.350416299993626,
+        "minimum_bearing_error_deg_when_predicted_readable": 0.0529161038292589,
+        "closest_camera_distance_m": 1.063024352491181,
+        "bearing_error_deg_at_closest": 106.21429006460666
+      },
+      {
+        "id": 907,
+        "decoded_frames": 0,
+        "modeled_readable_in_fov_frames_before_occlusion": 0,
+        "maximum_predicted_pixels_in_front_fov": 14.918961270824294,
+        "minimum_bearing_error_deg_when_predicted_readable": null,
+        "closest_camera_distance_m": 1.1707155722815228,
+        "bearing_error_deg_at_closest": -89.53301100772595
+      },
+      {
+        "id": 502,
+        "decoded_frames": 0,
+        "modeled_readable_in_fov_frames_before_occlusion": 20,
+        "maximum_predicted_pixels_in_front_fov": 28.190649126522622,
+        "minimum_bearing_error_deg_when_predicted_readable": 2.1765596331095347,
+        "closest_camera_distance_m": 0.48157887772470587,
+        "bearing_error_deg_at_closest": -179.16584298711052
+      }
+    ],
+    "inferred_camera_extrinsic_xy_m": [
+      -0.05960046865545294,
+      -7.840950111415168e-16
+    ],
+    "inferred_camera_yaw_offset_rad": -8.570523846174183e-09,
+    "actual_horizontal_half_fov_deg": 35.80986219567645,
+    "source_sha256": {
+      "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191300606.yaml": "1c9980f8dd0848dbac3b6c640ceed4e350eb47d07841a35751f23a1ea7d56717",
+      "/home/peter/simul/training_robust/native90/calibrated_gain_v1/native_camera_calibration.json": "1a5bb787f8c2f64cbc4a7503e1edc933625407d6bb665d7b61be1ba95db3641c",
+      "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00006_train_g0_0/episodes/1191300606/pose_trace.csv": "1a595356c41e33036ccc012986c94d9e0ec8e10072ecd7f930fb15475e97f08f",
+      "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00006_train_g0_0/episodes/1191300606/marker_observations.json": "91df84241ea337119e1651bd253e42c46939ec9c9bbb091d9ea1140013901dc6",
+      "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00006_train_g0_0/episodes/1191300606/runtime_trace.csv": "169aa083c8379524b475381291b00b1f6018f6c144f84c397886f2ff5dcf3303",
+      "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00006_train_g0_0/episodes/1191300606/evaluation.json": "3c29c668dc065d90251a262d407c60df08d9680bfea049b4ee81e030fb43a341",
+      "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00006_train_g0_0/episodes/1191300606/evaluator_gt_fine_1794531131388663648.csv": "6b8688f3cf4d0f4c6937fbe232894b9d59383ca21c43582e104b62ed8289bfd3"
+    },
+    "ground_truth_used_only_by_evaluator": true,
+    "policy_or_result_modified": false,
+    "limits": [
+      "Pinhole edge size is approximate;occlusion,3D corner projection and image decoder behavior are not simulated",
+      "Camera extrinsics are inferred from accepted observations and interpolated audit poses",
+      "This diagnoses missed viewing direction;it is not a counterfactual mission success or speed result"
+    ]
+  },
+  "ground_truth_supplied_to_policy": false,
+  "original_native_results_modified": false,
+  "rectangle_visual_evidence": {
+    "path": "/home/peter/simul/tmp/rectangle_closest_220.png",
+    "native_video": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00003_train_g0_0/episodes/1191300303/video/mission.mp4",
+    "video_sim_stamp_s": 309.6,
+    "RGB_frame_age_sim_s": 0.2,
+    "observation": "At closest pass,the RGB camera faces away from the marker-bearing obstacle face;marker is not readable in this saved composite frame"
+  },
+  "clarification": "Rectangle ID220 is physically0.2387m,not a small physical marker. Its accepted-image failure involves viewing direction and oblique/distant apparent size.",
+  "limits": [
+    "Shared960x720CameraInfo comes from an earlier verified native run;focal665.295px is also recorded in these missions decision journals",
+    "2D pinhole estimates omit occlusion,3D corner clipping and actual decoder behavior;rectangle has9modeled readable center-in-FOV frames but no accepted decode",
+    "Rooms ID502 has20modeled readable center-in-FOV frames with no decode;camera direction alone does not explain every failure",
+    "Camera extrinsics inferred from accepted sensor observations and interpolated map poses;truth used only for evaluator annotation"
+  ]
+}
