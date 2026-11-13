@@ -1,7 +1,7 @@
 {
   "goal_status": "active",
   "phase": "fixed_corrected_source_fresh_space_native_CEM",
-  "last_verified_utc": "2026-11-13T03:09:35.614630+00:00",
+  "last_verified_utc": "2026-11-13T03:15:15.375488+00:00",
   "jobs": [
     {
       "run": "training_robust/diverse_directional_cem",
@@ -1241,10 +1241,9 @@
   "spatial_curriculum": "repository_snapshot/spatial_curriculum.json",
   "dashboard": "http://127.0.0.1:8765",
   "latest_goal_turn_evidence": [
-    "Created immutable loop_gate_fine55_v1;only config/slam.yaml changes0.45->0.55.",
-    "All337runtime tests and build pass;actual installed launch generates fine-response0.55 without starting a simulator.",
-    "Recorded full L and circle component comparisons complete;remaining seven episodes continue.",
-    "Reduced background replay CPU allowance100%->25%;actual two native handles retained."
+    "Recomputed exact recorded face selection;actual+60deg plan became-120deg general sweep.",
+    "New face_intent_v2 preserves planned inspection orientation;348tests/build passed;first preparation callback failure retained and repaired in separate stage.",
+    "Two native training jobs remain active;new candidate has not been qualified or promoted."
   ],
   "latest_navigation_diagnosis": "repository_snapshot/local_navigation_diagnosis.json",
   "current_native_supervisor": "osp-spatial-cem-v6.service",
@@ -1350,7 +1349,7 @@
   "encoder_delta_native_early": "repository_snapshot/encoder_delta_native_early.json",
   "bottleneck_audit": "repository_snapshot/bottleneck_audit.json",
   "integrated_candidate": "repository_snapshot/integrated_candidate.json",
-  "captured_utc": "2026-11-13T03:09:35.614630+00:00",
+  "captured_utc": "2026-11-13T03:15:15.375488+00:00",
   "mixed_training_observed_rate": {
     "successes": 8,
     "completed": 15,
@@ -1393,5 +1392,6 @@
     "new_native_success": false,
     "other_spaces_pending": true
   },
-  "loop_gate_candidate": "repository_snapshot/loop_gate_candidate.json"
+  "loop_gate_candidate": "repository_snapshot/loop_gate_candidate.json",
+  "face_intent_candidate": "repository_snapshot/face_intent_candidate.json"
 }

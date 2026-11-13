@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-13T03:09:35.614630+00:00",
+  "captured_utc": "2026-11-13T03:15:15.375488+00:00",
   "purpose": "Repository upload snapshot; not a live dashboard",
   "tests_passed_final": 189,
   "native_validation_complete": false,
@@ -137,8 +137,8 @@
   "previous_regressions_complete": true,
   "latest_change": {
     "date": "2026-11-13",
-    "name": "Stage single fine-loop-response change;337runtime tests/build/installed launch verified;two native training missions retained",
-    "status": "candidate_staged_not_adopted",
+    "name": "Confirm planned60deg obstacle-face look overwritten by-120deg;stage348-test correction",
+    "status": "two_native_runs_active;new_candidate_not_queued",
     "generalization_verified": false
   },
   "latest_recording": {
@@ -511,5 +511,6 @@
     "new_native_success": false,
     "other_spaces_pending": true
   },
-  "loop_gate_candidate": "repository_snapshot/loop_gate_candidate.json"
+  "loop_gate_candidate": "repository_snapshot/loop_gate_candidate.json",
+  "face_intent_candidate": "repository_snapshot/face_intent_candidate.json"
 }
