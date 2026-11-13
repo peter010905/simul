@@ -1,0 +1,8 @@
+{
+  "release_id": "2026-11-13_face_intent_v2",
+  "policy": "policy_releases/2026-11-13_face_intent_v2/policy.json",
+  "runtime_source": "policy_releases/2026-11-13_face_intent_v2/runtime/src/osp_mission",
+  "release_manifest": "policy_releases/2026-11-13_face_intent_v2/release.json",
+  "classification": "latest_native_verified_simulation_candidate",
+  "independent_generalization_verified": false
+}

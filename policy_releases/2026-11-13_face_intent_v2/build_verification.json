@@ -1,0 +1,10 @@
+{
+  "build_passed": true,
+  "runtime_tests_passed": 348,
+  "installed_native_helpers_verified": true,
+  "release_payload_hashes_verified": true,
+  "compiled_artifacts_committed": false,
+  "build_log_sha256": "ee42cffde556e20b629737efe8b44903c60c909b8cfcb83266a74eb1065b77bf",
+  "native_simulation_started": false,
+  "physical_robot_started": false
+}

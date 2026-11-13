@@ -551,5 +551,13 @@
       1735261,
       1739944
     ]
+  },
+  "latest_published_policy_release": {
+    "release_id": "2026-11-13_face_intent_v2",
+    "policy": "policy_releases/2026-11-13_face_intent_v2/policy.json",
+    "manifest": "policy_releases/2026-11-13_face_intent_v2/release.json",
+    "fresh_rebuild_tests": 348,
+    "native_engineering_seconds": 388.627,
+    "production_promoted": false
   }
 }
