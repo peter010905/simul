@@ -559,5 +559,30 @@
     "fresh_rebuild_tests": 348,
     "native_engineering_seconds": 388.627,
     "production_promoted": false
+  },
+  "challenge_curriculum": "repository_snapshot/challenge_curriculum.json",
+  "challenge_training_observation": {
+    "captured_utc": "2026-11-13T04:45:32.523948+00:00",
+    "coordinator_unit": "osp-concave-challenge-v1.service",
+    "transition_unit": "osp-challenge-upgrade-v1.service",
+    "status": "native_training_started",
+    "new_native_successes": null,
+    "policy_receives_ground_truth": false,
+    "live_native": [
+      {
+        "number": 0,
+        "seed": 1192700000,
+        "shape": "c_shape",
+        "unit": "osp-spatial-nov13-concave1-00000.service",
+        "state": "running",
+        "elapsed_seconds": 39.5,
+        "targets": 0,
+        "contacts": 0,
+        "floor_sensor_gate": true,
+        "runtime_configuration_gate": true,
+        "velocity_profile_gate": true,
+        "slam_transport_gate": true
+      }
+    ]
   }
 }

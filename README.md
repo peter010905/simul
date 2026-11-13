@@ -303,7 +303,7 @@ python3 scripts/publish_simulation_videos.py --upload
 
 ## 저장된 Gazebo 영상
 
-[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 195개
+[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 196개
 
 아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다. 환경 오류로 종료한 영상은 정책 학습 표본에서 제외합니다.
 
@@ -501,6 +501,7 @@ python3 scripts/publish_simulation_videos.py --upload
 | [spatial_cem_v6__00014_train_g0_2__1191301414.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00014_train_g0_2__1191301414.mp4) | 성공 | 확인 | 117.189 |
 | [spatial_cem_v6__00015_train_g0_2__1191301515.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00015_train_g0_2__1191301515.mp4) | 성공 | 확인 | 380.888 |
 | [spatial_cem_v6__00016_train_g0_2__1191301616.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00016_train_g0_2__1191301616.mp4) | 성공 | 확인 | 259.376 |
+| [spatial_cem_v6__00020_train_g0_2__1191302020.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00020_train_g0_2__1191302020.mp4) | 실패 | 미달 | 600.4 |
 | [strict_approach_regression_v1__case_0__1163000000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/strict_approach_regression_v1__case_0__1163000000.mp4) | 성공 | 확인 | 496.132 |
 | [tf_restamp_v1__regression__case_0__1121200000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_0__1121200000.mp4) | 성공 | 확인 | 231.867 |
 | [tf_restamp_v1__regression__case_1__1121200101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_1__1121200101.mp4) | 성공 | 확인 | 229.859 |
@@ -835,3 +836,61 @@ TF 설정만 바꾼 진단 비교도231.867초·229.859초에 모두 완주했�
 선택된 실제 다음 runtime도 빌드와201개 테스트 통과·1개 skip을 마쳤고,
 현재 활성 주행을 종료한 뒤 새로운20개 맵의 학습을 시작하도록 전환 서비스가 진행 중입니다.
 이 두 비교는 기존 배치의 진단 결과이며, 결합 후보의 새 맵 일반화 성능은 계속 검증합니다.
+
+## ㄷ자·U자·지그재그 맵 학습 — 2026-11-13
+
+외곽 벽 자체가 오목한 **ㄷ자(C shape)·U자·지그재그 3단 통로**인 새 공간을 추가했습니다.
+차선 그림만 바꾸는 방식이 아니라 실제 충돌 벽과 바닥 경계가 달라집니다. 중앙을 가로질러 갈 수 없고,
+연결 통로와 코너를 돌아야 합니다. 명목 통로 폭은2.8–3.8m이며 장애물로 추가 시야 가림이 생깁니다.
+
+![오프라인 기하 미리보기 — 새 Gazebo 성공 결과가 아님](repository_snapshot/challenge_maps.png)
+
+위 그림의 파란 점은 시작점, 주황 점은 평가용 숨김 마커 위치입니다. 정답 위치는 정책에 전달하지 않습니다.
+세 마커는 서로 다른 장애물의 시작점 반대 면에 부착하고 ID·크기·장애물·공간 치수를 바꿉니다.
+각 배치의 요청 장애물 수8/12/16개를 정확히 지키며, 부족하게 배치되면 해당 생성 시도를 버립니다.
+10cm와15cm 두 격자에서 세 마커 접근과 통로 연결을 검사합니다. 더 거친 격자에서 접근이 막혔던
+초기 U자 준비본은 실행하지 않고 보존했고, 재사용 시드 검사에서 거절된 두 번째 준비본도 실행하지 않았습니다.
+
+현재 `concave_challenge_v3` 캠페인이 별도로 준비됐으며, 첫 학습12개는 외곽12개·점유 지도12개가 모두
+고유하고 접근 검사를 통과했습니다. 이는 **오프라인 기하 검증**이며 완주 성공률이 아닙니다.
+실행 중인 기존 두 native 주행은 중단하지 않습니다. 이전 감독기의 추가 배치만 멈추고,
+먼저 비는 슬롯부터 새 학습 감독기 `osp-concave-challenge-v1.service`가 사용합니다.
+모든 기존 결과·준비 대기열·동결된 runtime 소스는 보존합니다. 최대2개 Gazebo·실행당6GiB를 유지합니다.
+
+출발 소스는 기존 직사각형 개발 배치에서388.627초의 엄격한 native 감사를 통과한 `face_intent_v2/runtime`입니다.
+이 기록을 새 ㄷ자·U자·지그재그 완주율로 사용하지 않습니다. 새 맵에서 네 계수 후보를 학습하고,
+후보/기준을 같은 배치로 비교하는 파일럿3종·검증12개, 독립 challenge18개, 원래 PDF 공간 독립40개를
+차례로 평가합니다. 정확한ID3개·실제1.5m 접근·지도 오차0.5m 이내·접촉0회·600초 이내 기준은 그대로입니다.
+검증에는 성공률뿐 아니라 각 형태별 성공과 짝지은 PAR-2 시간20% 개선을 요구합니다.
+후보는 아직 production으로 승격하지 않았으며, 준비됐던 일반 공간 v7 캠페인도 수정하지 않았습니다.
+
+[검증된 예제 맵12개](scenarios_challenge_validated) · [구성과 현재 관측](repository_snapshot/challenge_curriculum.json).
+
+새 예제 맵 생성(기존 폴더를 덮어쓰지 않음):
+
+```bash
+PYTHONPATH=src/osp_mission python3 -m osp_mission.challenge_scenarios \
+  --output /tmp/osp_challenge_examples --per-shape 4 --obstacles 12 --seed 1192900000
+```
+
+실행 진행은 로컬 캠페인의 `state.json`, `learning_log.json`, 각 에피소드 `live_status.json`에 기록됩니다.
+장기간 학습을 위한 감독 프로세스가 실제로 실행 중이며, 자동 코드 수정이나 무인 코드 리뷰를 구성했다는 뜻은 아닙니다.
+
+예제 한 개를 수동으로 시뮬레이션하려면, 위 학습과 별개인 작업 공간에 공개된 고정 소스를 빌드합니다.
+현재 학습 두 개가 실행 중이면 추가 Gazebo를 띄우지 않습니다.
+
+```bash
+python3 policy_releases/2026-11-13_face_intent_v2/build.py \
+  --workspace "$PWD/deployment/challenge_manual" --test
+source deployment/challenge_manual/install/setup.bash
+ros2 launch osp_mission simulation.launch.py planner:=edge camera_width:=960 \
+  scenario:="$PWD/scenarios_challenge_validated/zigzag_1192320000.yaml" \
+  policy_file:="$PWD/policy_releases/2026-11-13_face_intent_v2/policy.json"
+```
+
+이 실행은 시작 신호 전에는 이동하지 않습니다. 같은 ROS 도메인의 다른 터미널에서
+`ros2 service call /mission/start std_srvs/srv/Trigger '{}'`로 시작합니다.
+
+첫 새 ㄷ자 배치(seed1192700000)의 실제 Gazebo 주행 시작을 확인했습니다. 이는 시작 관측이며 완주 결과가 아닙니다. 새 맵/감독기 검사15개와 기본 소스를 포함한 전체189개 테스트가 통과했습니다.
+
+첫 ㄷ자 주행에서 실제 바닥 센서, 적용된 ROS 설정, 속도/인코더 설정, SLAM 통신 설정의 네 입력 검사가 모두 통과한 것을 확인했습니다. 주행 중의 관측이므로 완주 성공으로 집계하지 않습니다.

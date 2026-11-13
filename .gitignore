@@ -79,3 +79,6 @@ training_hidden/
 !/training_robust/native90/runtime_route_v14_staging/
 /training_robust/native90/runtime_route_v14_staging/*
 !/training_robust/native90/runtime_route_v14_staging/src/
+
+# Superseded local challenge examples; validated examples are versioned separately.
+/scenarios_challenge/

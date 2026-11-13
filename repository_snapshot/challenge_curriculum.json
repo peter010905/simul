@@ -1,0 +1,345 @@
+{
+  "captured_utc": "2026-11-13T04:45:32.523948+00:00",
+  "evidence_type": "offline_geometry_and_launched_native_curriculum",
+  "shapes": [
+    "c_shape",
+    "u_shape",
+    "zigzag"
+  ],
+  "shape_labels": {
+    "c_shape": "ㄷ자",
+    "u_shape": "U자",
+    "zigzag": "지그재그 3단 통로"
+  },
+  "campaign": "/home/peter/simul/training_robust/native90/concave_challenge_v3",
+  "coordinator_unit": "osp-concave-challenge-v1.service",
+  "transition_unit": "osp-challenge-upgrade-v1.service",
+  "frozen_runtime": "/home/peter/simul/training_robust/native90/face_intent_v2/runtime",
+  "source_runtime_native_reference": "/home/peter/simul/training_robust/native90/face_intent_regression_v2",
+  "policy_receives_ground_truth": false,
+  "production_promoted": false,
+  "native_generalization_verified": false,
+  "initial_training_episodes": 12,
+  "examples": "scenarios_challenge_validated",
+  "preview": "repository_snapshot/challenge_maps.png",
+  "geometry_audit": {
+    "evidence": "Offline collision and exterior geometry; not a native success result",
+    "episodes": 12,
+    "shapes": [
+      "c_shape",
+      "u_shape",
+      "zigzag"
+    ],
+    "unique_exteriors": 12,
+    "unique_occupancy": 12,
+    "all_approaches_reachable": true,
+    "rows": [
+      {
+        "number": 0,
+        "seed": 1192700000,
+        "role": "0",
+        "arena": {
+          "shape": "c_shape",
+          "width_m": 21.713613647533855,
+          "height_m": 13.064930110357615,
+          "area_m2": 160.08528004884798
+        },
+        "start": [
+          20.116011991361827,
+          1.5976016561720285,
+          3.141592653589793
+        ],
+        "actual_obstacles": 8,
+        "reachable_approaches": true,
+        "occupancy_sha256": "6f78ddf8d760378f8b59ef5b9e524a518301a05a8f77fc697d97e22c52f28935",
+        "exterior_sha256": "846a0ef7b22ae9d931b8581f1db76d4066a21974fc7efe072975a1f10d632f2a"
+      },
+      {
+        "number": 1,
+        "seed": 1192700101,
+        "role": "0",
+        "arena": {
+          "shape": "u_shape",
+          "width_m": 21.439077962298896,
+          "height_m": 14.029138050009633,
+          "area_m2": 156.5508311309953
+        },
+        "start": [
+          1.8614081070598314,
+          12.167729942949801,
+          -1.5707963267948966
+        ],
+        "actual_obstacles": 12,
+        "reachable_approaches": true,
+        "occupancy_sha256": "3127486a553ae2685a0cb7cd09d0dac2358ee23fae55a358ece09f86ba49a376",
+        "exterior_sha256": "1c836094a45c57b579a7edb6c8263251b3fc776b43fe3602b8686e27a6ed3950"
+      },
+      {
+        "number": 2,
+        "seed": 1192700202,
+        "role": "0",
+        "arena": {
+          "shape": "zigzag",
+          "width_m": 18.15334909085789,
+          "height_m": 15.779669229203265,
+          "area_m2": 191.79214331224233
+        },
+        "start": [
+          1.5779669229203264,
+          1.5779669229203264,
+          0.0
+        ],
+        "actual_obstacles": 16,
+        "reachable_approaches": true,
+        "occupancy_sha256": "74fbafc81faee051372711c73c235ecf31c1dcb52ed6460e2325489ee7ff30f1",
+        "exterior_sha256": "2c80699860ad84e226644a9429adc1f8baadf8d0c3fdc859b7b8d1f66a8bb83e"
+      },
+      {
+        "number": 3,
+        "seed": 1192700303,
+        "role": "1",
+        "arena": {
+          "shape": "c_shape",
+          "width_m": 17.76053776575555,
+          "height_m": 14.84839699178827,
+          "area_m2": 145.85369368389954
+        },
+        "start": [
+          16.091471818034297,
+          1.6690659477212546,
+          3.141592653589793
+        ],
+        "actual_obstacles": 8,
+        "reachable_approaches": true,
+        "occupancy_sha256": "1932717766e829463d70559e0cac96e8ce3b997317077a14ff08ca46bac862c4",
+        "exterior_sha256": "e6ccc90f7c8837e3739404f59b24f4bef7f2b30d49153fe9c9c3fd86509a9183"
+      },
+      {
+        "number": 4,
+        "seed": 1192700404,
+        "role": "1",
+        "arena": {
+          "shape": "u_shape",
+          "width_m": 19.225139550461048,
+          "height_m": 15.84915643549371,
+          "area_m2": 163.97064559786793
+        },
+        "start": [
+          1.890793226275884,
+          13.958363209217826,
+          -1.5707963267948966
+        ],
+        "actual_obstacles": 12,
+        "reachable_approaches": true,
+        "occupancy_sha256": "3a0b15e67934b02cb39610a8d24e8dc8b8e3576c32447d4cc2e3dd83456e8555",
+        "exterior_sha256": "71ebc76c1b3ebc205519b0cf756bc6520bfe96af815767fc2d57ba0414350354"
+      },
+      {
+        "number": 5,
+        "seed": 1192700505,
+        "role": "1",
+        "arena": {
+          "shape": "zigzag",
+          "width_m": 20.224605020541947,
+          "height_m": 18.01532457176909,
+          "area_m2": 244.57584782263123
+        },
+        "start": [
+          1.801532457176909,
+          1.801532457176909,
+          0.0
+        ],
+        "actual_obstacles": 16,
+        "reachable_approaches": true,
+        "occupancy_sha256": "ec5f9b0694fbc1b630fa4d62fabe40dc8114adf6ec25ad903536e5a543ea6f98",
+        "exterior_sha256": "8992f6709748b2473c31b44cc31b3c2345ae4a8446542ce272d66d7e418ec584"
+      },
+      {
+        "number": 6,
+        "seed": 1192700606,
+        "role": "2",
+        "arena": {
+          "shape": "c_shape",
+          "width_m": 21.959183794480797,
+          "height_m": 15.774612516929151,
+          "area_m2": 151.77673476756598
+        },
+        "start": [
+          20.555920686569436,
+          1.403263107911359,
+          3.141592653589793
+        ],
+        "actual_obstacles": 8,
+        "reachable_approaches": true,
+        "occupancy_sha256": "244affcae5942d2fe3542da0809197cff028950c7bf2a5efb22cc7c3ffab09af",
+        "exterior_sha256": "ac899826a56d56d1d0dc95a937ae5d6259992c9e19fc8d7a86608e382f38896b"
+      },
+      {
+        "number": 7,
+        "seed": 1192700707,
+        "role": "2",
+        "arena": {
+          "shape": "u_shape",
+          "width_m": 21.893174216418085,
+          "height_m": 15.694977445777594,
+          "area_m2": 149.1818978557983
+        },
+        "start": [
+          1.5895851980380782,
+          14.105392247739516,
+          -1.5707963267948966
+        ],
+        "actual_obstacles": 12,
+        "reachable_approaches": true,
+        "occupancy_sha256": "f72378081d95f3ed65e49bdaf64fbbf788c90da6d973d4c155dad5b8b0cf0e65",
+        "exterior_sha256": "567dd742f60648624f76c2702322e714d80dc8e3686665d661ee23d59f64b056"
+      },
+      {
+        "number": 8,
+        "seed": 1192700808,
+        "role": "2",
+        "arena": {
+          "shape": "zigzag",
+          "width_m": 18.13176108023292,
+          "height_m": 17.492794801135435,
+          "area_m2": 214.7849351722074
+        },
+        "start": [
+          1.7492794801135436,
+          1.7492794801135436,
+          0.0
+        ],
+        "actual_obstacles": 16,
+        "reachable_approaches": true,
+        "occupancy_sha256": "01754f0fefce36749506399abb89a3727ec4d1ab6974ef64ffac7278e31eb763",
+        "exterior_sha256": "3606bb849b8b8753a6222ad1bcc36572201c1cf3c86e918000147d09db9a676b"
+      },
+      {
+        "number": 9,
+        "seed": 1192700909,
+        "role": "3",
+        "arena": {
+          "shape": "c_shape",
+          "width_m": 20.42122813537108,
+          "height_m": 15.946416227948026,
+          "area_m2": 176.29017601301456
+        },
+        "start": [
+          18.647464480955666,
+          1.7737636544154154,
+          3.141592653589793
+        ],
+        "actual_obstacles": 8,
+        "reachable_approaches": true,
+        "occupancy_sha256": "de01fbff358d81ec7a8c9ce7e244cde418872c1f80fbd56c1d3c23dcca6e87ad",
+        "exterior_sha256": "e8b13342b5480a574d5c9e4264d0dcf7b6835f2aceea7ae32759ef0a8f7459dc"
+      },
+      {
+        "number": 10,
+        "seed": 1192701010,
+        "role": "3",
+        "arena": {
+          "shape": "u_shape",
+          "width_m": 19.8358338468134,
+          "height_m": 16.456530020835086,
+          "area_m2": 140.89798515962784
+        },
+        "start": [
+          1.5079979500007372,
+          14.948532070834348,
+          -1.5707963267948966
+        ],
+        "actual_obstacles": 12,
+        "reachable_approaches": true,
+        "occupancy_sha256": "63ef73486ffdd9ed250ba9fab24d96e72d292d1a95434edfeff49d5fb8d5bbf3",
+        "exterior_sha256": "adbf4936191ccc5e5d1e57d377c378df3dd56e51adcbae070a48bdec54f8d312"
+      },
+      {
+        "number": 11,
+        "seed": 1192701111,
+        "role": "3",
+        "arena": {
+          "shape": "zigzag",
+          "width_m": 19.374021505983603,
+          "height_m": 15.51678603929851,
+          "area_m2": 199.63517977661883
+        },
+        "start": [
+          1.5516786039298511,
+          1.5516786039298511,
+          0.0
+        ],
+        "actual_obstacles": 16,
+        "reachable_approaches": true,
+        "occupancy_sha256": "bcfb33f4b97e3eb064111fd652d17611e0b3a5f2c81a5220953fc8976e1ee690",
+        "exterior_sha256": "399ca2b103f9e0dbebbfd0c1177b5f77f4b03d8b9eed6244a3c28ef2ea961ce7"
+      }
+    ]
+  },
+  "mount_profile": "hidden_obstacles",
+  "obstacle_counts": [
+    8,
+    12,
+    16
+  ],
+  "exact_requested_obstacle_counts": true,
+  "geometry_validation_resolutions_m": [
+    0.1,
+    0.15
+  ],
+  "failed_preparations": [
+    {
+      "directory": "concave_challenge_v1",
+      "reason": "One U geometry failed the coarser approach grid; never launched"
+    },
+    {
+      "directory": "concave_challenge_v2",
+      "reason": "Seed reservation correctly rejected reuse of an earlier preparation; never launched"
+    }
+  ],
+  "validation_gates": {
+    "pilot": "3/3 paired, zero contacts, >=20% lower PAR-2",
+    "paired": ">=11/12 and >=3/4 each shape,zero contacts,>=20% lower PAR-2",
+    "independent_challenge": ">=17/18 and >=5/6 each shape,zero contacts",
+    "original_pdf": ">=36/40 independent scenes,zero contacts"
+  },
+  "required_outcome": "3 accurate IDs,actual1.5m approaches,correct map positions,zero contacts,<=600sim seconds",
+  "maximum_native_concurrency": 2,
+  "native_memory_max_gib": 6,
+  "completed_new_native_trials": 0,
+  "old_native_runs_preserved": true,
+  "old_prepared_queues_preserved": true,
+  "status": "native_training_started",
+  "live_native_observation": [
+    {
+      "number": 0,
+      "seed": 1192700000,
+      "shape": "c_shape",
+      "unit": "osp-spatial-nov13-concave1-00000.service",
+      "state": "running",
+      "elapsed_seconds": 39.5,
+      "targets": 0,
+      "contacts": 0,
+      "floor_sensor_gate": true,
+      "runtime_configuration_gate": true,
+      "velocity_profile_gate": true,
+      "slam_transport_gate": true
+    }
+  ],
+  "tests": {
+    "new_challenge_tests": 15,
+    "root_and_challenge_tests_passed": 189,
+    "released_spatial_runtime_tests_passed": 9
+  },
+  "preserved_legacy_result_during_handoff": {
+    "evidence_type": "completed_previous_runtime_run_not_new_challenge_result",
+    "seed": 1191302020,
+    "success": false,
+    "seconds": 600.4,
+    "targets": 2,
+    "contacts": 0,
+    "reason": "timeout",
+    "video_url": "https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00020_train_g0_2__1191302020.mp4",
+    "uploaded_verified": true
+  }
+}

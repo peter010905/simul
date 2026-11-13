@@ -1,0 +1,102 @@
+{
+  "evidence_type": "offline_geometry_only",
+  "native_success": false,
+  "episodes": [
+    {
+      "file": "/home/peter/simul/scenarios_challenge_validated/c_shape_1192300000.yaml",
+      "seed": 1192300000,
+      "shape": "c_shape",
+      "obstacles": 12,
+      "sha256": "ff685715411baeab13cf1107649642771bdae0bdcb7b063f01ca5bb160f700ee",
+      "reachable": true
+    },
+    {
+      "file": "/home/peter/simul/scenarios_challenge_validated/c_shape_1192300101.yaml",
+      "seed": 1192300101,
+      "shape": "c_shape",
+      "obstacles": 12,
+      "sha256": "0a77f5455184a2f2d34459bd67b57a1e93e37bb45fc692df6a52c4624dda5c81",
+      "reachable": true
+    },
+    {
+      "file": "/home/peter/simul/scenarios_challenge_validated/c_shape_1192300202.yaml",
+      "seed": 1192300202,
+      "shape": "c_shape",
+      "obstacles": 12,
+      "sha256": "ca6cd99db7223da985c5a1ce6710a43b78d1331b2bccba9a733b47f38014e2c8",
+      "reachable": true
+    },
+    {
+      "file": "/home/peter/simul/scenarios_challenge_validated/c_shape_1192300303.yaml",
+      "seed": 1192300303,
+      "shape": "c_shape",
+      "obstacles": 12,
+      "sha256": "263138bbbec42fa2ac5835d21fd061188cb662807fcea450eabc1e7c74693d57",
+      "reachable": true
+    },
+    {
+      "file": "/home/peter/simul/scenarios_challenge_validated/u_shape_1192310000.yaml",
+      "seed": 1192310000,
+      "shape": "u_shape",
+      "obstacles": 12,
+      "sha256": "f783a38ba10dfe0a8b77aba57f91302a0a90c0b3df35e931abf2a2e046d3b789",
+      "reachable": true
+    },
+    {
+      "file": "/home/peter/simul/scenarios_challenge_validated/u_shape_1192310101.yaml",
+      "seed": 1192310101,
+      "shape": "u_shape",
+      "obstacles": 12,
+      "sha256": "ee60176b45b6dfcb4608a23afae6adf071ffdfac9f6c53d3dd3c43f2e616f130",
+      "reachable": true
+    },
+    {
+      "file": "/home/peter/simul/scenarios_challenge_validated/u_shape_1192310202.yaml",
+      "seed": 1192310202,
+      "shape": "u_shape",
+      "obstacles": 12,
+      "sha256": "3d54724791ee72b20f34739468fedd3506d32d62a8386775047156062bb484da",
+      "reachable": true
+    },
+    {
+      "file": "/home/peter/simul/scenarios_challenge_validated/u_shape_1192310303.yaml",
+      "seed": 1192310303,
+      "shape": "u_shape",
+      "obstacles": 12,
+      "sha256": "00118ccde12e075a39b6dabc70e0913ef4afcee16cd9406fc6624c80ce347a05",
+      "reachable": true
+    },
+    {
+      "file": "/home/peter/simul/scenarios_challenge_validated/zigzag_1192320000.yaml",
+      "seed": 1192320000,
+      "shape": "zigzag",
+      "obstacles": 12,
+      "sha256": "c7c89b0eb9f4e8dffee13bd906bcf9c4ac213b1ad35f8477a3bdde18faa6fb2e",
+      "reachable": true
+    },
+    {
+      "file": "/home/peter/simul/scenarios_challenge_validated/zigzag_1192320101.yaml",
+      "seed": 1192320101,
+      "shape": "zigzag",
+      "obstacles": 12,
+      "sha256": "bcc954d8f7c2589454f221d017a41f263794797466446a5276f458099dfc4c2b",
+      "reachable": true
+    },
+    {
+      "file": "/home/peter/simul/scenarios_challenge_validated/zigzag_1192320202.yaml",
+      "seed": 1192320202,
+      "shape": "zigzag",
+      "obstacles": 12,
+      "sha256": "4a68216d1bb8c686d52afe485d87d3fed220e39c812e8fa7c6aaa8b9e7cd279d",
+      "reachable": true
+    },
+    {
+      "file": "/home/peter/simul/scenarios_challenge_validated/zigzag_1192320303.yaml",
+      "seed": 1192320303,
+      "shape": "zigzag",
+      "obstacles": 12,
+      "sha256": "c7138b358ceac78de4e50210fb9a31f708e865fc0fcc6d03aaddbc57c8f229c0",
+      "reachable": true
+    }
+  ]
+}
