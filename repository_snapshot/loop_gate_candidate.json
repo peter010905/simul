@@ -12,7 +12,7 @@
   "production_promoted": false,
   "evidence": "repository_snapshot/second_L_localization_failure.json",
   "limit": "Broader recorded-space comparison and fresh native tests are still required.",
-  "captured_utc": "2026-11-13T03:09:35.614630+00:00",
+  "captured_utc": "2026-11-13T03:29:32.779534+00:00",
   "runtime_tests": 337,
   "installed_build_passed": true,
   "installed_launch_smoke": {
@@ -327,14 +327,118 @@
           "trajectory_sha256": "7dcba2065fb8a3fbf1be8081692985f4ccbb95fd55223ef17475fa8f0e6faafb"
         }
       ]
+    },
+    {
+      "number": 1,
+      "shape": "triangle",
+      "arms": [
+        {
+          "name": "baseline",
+          "retained_scan_count": 1025,
+          "accepted_scan_count": 1025,
+          "matched_evaluator_samples": 1024,
+          "median_error_m": 0.02863635437372814,
+          "p95_error_m": 0.04282258971797743,
+          "maximum_error_m": 0.058414643037801195,
+          "last_stamp_sim_s": 379.1,
+          "last_error_m": 0.02141375150577148,
+          "first_error_over_0_5m": null,
+          "loop_closures": 183,
+          "loop_checks_near_original_jump": [],
+          "trajectory_sha256": "9ce92479aeacb1c311170c9fc74c2cc76a7866dfd51dadf97bb1d76b3c9681d4"
+        },
+        {
+          "name": "fine55",
+          "retained_scan_count": 1025,
+          "accepted_scan_count": 1025,
+          "matched_evaluator_samples": 1024,
+          "median_error_m": 0.02863635437372814,
+          "p95_error_m": 0.04282258971797743,
+          "maximum_error_m": 0.058414643037801195,
+          "last_stamp_sim_s": 379.1,
+          "last_error_m": 0.02141375150577148,
+          "first_error_over_0_5m": null,
+          "loop_closures": 182,
+          "loop_checks_near_original_jump": [],
+          "trajectory_sha256": "9ce92479aeacb1c311170c9fc74c2cc76a7866dfd51dadf97bb1d76b3c9681d4"
+        },
+        {
+          "name": "strict_loop",
+          "retained_scan_count": 1025,
+          "accepted_scan_count": 1025,
+          "matched_evaluator_samples": 1024,
+          "median_error_m": 0.02863635437372814,
+          "p95_error_m": 0.04282258971797885,
+          "maximum_error_m": 0.05841464303780693,
+          "last_stamp_sim_s": 379.1,
+          "last_error_m": 0.021413751505776603,
+          "first_error_over_0_5m": null,
+          "loop_closures": 177,
+          "loop_checks_near_original_jump": [],
+          "trajectory_sha256": "ccbc31d19734e1d0ba130f0f727ff82e03e1fa7bd13fbbd6ad3d75fb54321206"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "shape": "trapezoid",
+      "arms": [
+        {
+          "name": "baseline",
+          "retained_scan_count": 926,
+          "accepted_scan_count": 926,
+          "matched_evaluator_samples": 925,
+          "median_error_m": 0.03555756397944274,
+          "p95_error_m": 0.05703625895614314,
+          "maximum_error_m": 0.06376017051779771,
+          "last_stamp_sim_s": 348.1,
+          "last_error_m": 0.04604463633178193,
+          "first_error_over_0_5m": null,
+          "loop_closures": 89,
+          "loop_checks_near_original_jump": [],
+          "trajectory_sha256": "68e2f659eef517c6fbaf4b5723674abfeb7f8d342acb361ef487bbce35bdf733"
+        },
+        {
+          "name": "fine55",
+          "retained_scan_count": 926,
+          "accepted_scan_count": 926,
+          "matched_evaluator_samples": 925,
+          "median_error_m": 0.03555756397944274,
+          "p95_error_m": 0.05703625895614314,
+          "maximum_error_m": 0.06376017051779771,
+          "last_stamp_sim_s": 348.1,
+          "last_error_m": 0.04604463633178193,
+          "first_error_over_0_5m": null,
+          "loop_closures": 85,
+          "loop_checks_near_original_jump": [],
+          "trajectory_sha256": "6b4ddde110d9c5cc119b759bac12dd849f6923d5741ce74c2a1c2763516eb015"
+        },
+        {
+          "name": "strict_loop",
+          "retained_scan_count": 926,
+          "accepted_scan_count": 926,
+          "matched_evaluator_samples": 925,
+          "median_error_m": 0.03555756397944274,
+          "p95_error_m": 0.05703625895614314,
+          "maximum_error_m": 0.06376017051779771,
+          "last_stamp_sim_s": 348.1,
+          "last_error_m": 0.04604463633178346,
+          "first_error_over_0_5m": null,
+          "loop_closures": 79,
+          "loop_checks_near_original_jump": [],
+          "trajectory_sha256": "6d841c56cf21bb3dcdc20a867c1dd0eab13223aa9c53de50fe2486b447dbd3af"
+        }
+      ]
     }
   ],
-  "remaining_recorded_episodes": 7,
+  "remaining_recorded_episodes": 5,
   "component_study_resource_limit": {
     "cpu_quota_percent": 25,
     "nice": 19,
     "memory_max": "1G",
     "reason": "Prioritize the two actual Gazebo training missions;component correctness study is background work"
   },
-  "decision": "Built candidate only;wait for all seven geometries and a dedicated native comparison before adoption"
+  "decision": "Built candidate only;wait for all seven geometries and a dedicated native comparison before adoption",
+  "completed_recorded_episodes": 4,
+  "completed_geometry_families": 4
 }

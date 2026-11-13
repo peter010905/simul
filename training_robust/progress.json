@@ -1,7 +1,7 @@
 {
   "goal_status": "active",
   "phase": "fixed_corrected_source_fresh_space_native_CEM",
-  "last_verified_utc": "2026-11-13T03:25:09.149490+00:00",
+  "last_verified_utc": "2026-11-13T03:29:32.779534+00:00",
   "jobs": [
     {
       "run": "training_robust/diverse_directional_cem",
@@ -120,7 +120,7 @@
         ],
         "targets": 3,
         "collisions": 0,
-        "elapsed_seconds": 163.875,
+        "elapsed_seconds": 251.875,
         "active_action": "nav",
         "readiness_reason": "",
         "sensor_interruptions": 0,
@@ -134,17 +134,17 @@
           "diffdrive_controller": "active",
           "joint_state_broadcaster": "active"
         },
-        "confirmed_surface_cells": 138,
+        "confirmed_surface_cells": 74,
         "confirmed_face_anchors": 0,
         "reassociated_face_records": 0,
         "camera_diagnostics": {
-          "received": 837,
+          "received": 1276,
           "late": 0,
           "invalid_calibration": 0,
           "duplicate": 0,
-          "accepted": 837,
-          "coverage_updates": 831,
-          "tf_waits": 5
+          "accepted": 1276,
+          "coverage_updates": 1268,
+          "tf_waits": 7
         }
       }
     },
@@ -157,7 +157,7 @@
         "approached_ids": [],
         "targets": 0,
         "collisions": 0,
-        "elapsed_seconds": 140.6,
+        "elapsed_seconds": 234.1,
         "active_action": "nav",
         "readiness_reason": "",
         "sensor_interruptions": 0,
@@ -171,17 +171,17 @@
           "diffdrive_controller": "active",
           "joint_state_broadcaster": "active"
         },
-        "confirmed_surface_cells": 71,
+        "confirmed_surface_cells": 8,
         "confirmed_face_anchors": 0,
         "reassociated_face_records": 0,
         "camera_diagnostics": {
-          "received": 719,
+          "received": 1187,
           "late": 0,
           "invalid_calibration": 0,
           "duplicate": 0,
-          "accepted": 719,
-          "coverage_updates": 714,
-          "tf_waits": 4
+          "accepted": 1187,
+          "coverage_updates": 1180,
+          "tf_waits": 6
         }
       }
     }
@@ -1278,10 +1278,10 @@
   "spatial_curriculum": "repository_snapshot/spatial_curriculum.json",
   "dashboard": "http://127.0.0.1:8765",
   "latest_goal_turn_evidence": [
-    "Completed evaluator-only viewing diagnosis:ID220decoded0,0modeled readable-FOV frames,closest bearing159deg;ID465decoded0,bearing-177deg.",
-    "Queued same-scene/same-weights face_intent_v2 with only3source/test-file changes vscompleted failed candidate.",
-    "10supervision checks pass;current nativePIDs1714850/1716779 retained;parent effective-input gates primed before slot wait.",
-    "Original integrated and CEM dispatchers suspended for one controlled insertion;their native missions continue and prepared scenes are preserved."
+    "Full recorded SLAM comparison now completed4/9episodes across4/7geometries;fine55 preserves original circle,triangle,trapezoid errors and corrects the recorded second-L failure.",
+    "Revalidated nativePIDs1714850/1716779 across45-second observation interval;both continue advancing with0contacts.",
+    "CEMcase16has3IDs but only2sensor-verified approaches;mission remains running,so partial recognition is not counted as completion.",
+    "Face-intent controlled native candidate remains prepared under verified coordinator1723546;no live process restarted."
   ],
   "latest_navigation_diagnosis": "repository_snapshot/local_navigation_diagnosis.json",
   "current_native_supervisor": "osp-spatial-cem-v6.service",
@@ -1350,7 +1350,7 @@
   "encoder_delta_native_early": "repository_snapshot/encoder_delta_native_early.json",
   "bottleneck_audit": "repository_snapshot/bottleneck_audit.json",
   "integrated_candidate": "repository_snapshot/integrated_candidate.json",
-  "captured_utc": "2026-11-13T03:25:09.149490+00:00",
+  "captured_utc": "2026-11-13T03:29:32.779534+00:00",
   "mixed_training_observed_rate": {
     "successes": 9,
     "completed": 16,
@@ -1383,8 +1383,10 @@
     "recorded_episodes": 9,
     "arms_per_episode": 3,
     "status": "running",
-    "completed_recorded_episodes": 2,
-    "background_cpu_quota_percent": 25
+    "completed_recorded_episodes": 4,
+    "background_cpu_quota_percent": 25,
+    "completed_geometry_families": 4,
+    "remaining_recorded_episodes": 5
   },
   "second_L_full_replay_initial": {
     "max_error_baseline_m": 1.8489038804802125,
