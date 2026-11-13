@@ -1,7 +1,7 @@
 {
-  "updated_utc": "2026-11-13T03:40:34.468770+00:00",
+  "updated_utc": "2026-11-13T03:49:54.662665+00:00",
   "release_url": "https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11",
-  "uploaded_verified": 193,
+  "uploaded_verified": 194,
   "videos": [
     {
       "asset": "fix_v10_escape_regression3__9802005.mp4",
@@ -401,6 +401,22 @@
       "actual_approach_1_5m": true,
       "recording_frames": 3003,
       "recording_seconds": 600.6,
+      "uploaded_verified": true
+    },
+    {
+      "asset": "directed_integrated_screen_v1__case_1__1191300404.mp4",
+      "local_path": "training_robust/native90/directed_integrated_screen_v1/case_1/episodes/1191300404/video/mission.mp4",
+      "bytes": 15113430,
+      "sha256": "8f2d98b2ce6dc0e9d8d98d8f173e0a70833ec199fe0225d79d7dfe5053278002",
+      "url": "https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/directed_integrated_screen_v1__case_1__1191300404.mp4",
+      "original_evaluator_success": true,
+      "reason": "all_targets_found",
+      "elapsed_sim_seconds": 596.1,
+      "targets": 3,
+      "collisions": 0,
+      "actual_approach_1_5m": true,
+      "recording_frames": 2983,
+      "recording_seconds": 596.6,
       "uploaded_verified": true
     },
     {
@@ -3102,10 +3118,6 @@
       "reason": "Final evaluation or recording metadata absent"
     },
     {
-      "path": "training_robust/native90/directed_integrated_screen_v1/case_1/episodes/1191300404/video/mission.mp4",
-      "reason": "Final evaluation or recording metadata absent"
-    },
-    {
       "path": "training_robust/native90/face_intent_regression_v2/case_0/episodes/1191300303/video/mission.mp4",
       "reason": "Final evaluation or recording metadata absent"
     },
@@ -3115,6 +3127,10 @@
     },
     {
       "path": "training_robust/native90/rpp_v7_service_screen3/episodes/8600133/video/mission.mp4",
+      "reason": "Final evaluation or recording metadata absent"
+    },
+    {
+      "path": "training_robust/native90/spatial_cem_v6/jobs/00017_train_g0_2/episodes/1191301717/video/mission.mp4",
       "reason": "Final evaluation or recording metadata absent"
     }
   ],

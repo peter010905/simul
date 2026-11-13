@@ -1,0 +1,1462 @@
+{
+  "captured_utc": "2026-11-13T03:49:02.580674+00:00",
+  "evidence_type": "completed_native_mission_with_independent_input_and_physical_credit_audits",
+  "verified_job": {
+    "scenario": {
+      "file": "/home/peter/simul/training_robust/native90/spatial_cem_v6/scenarios/1191300404.yaml",
+      "seed": 1191300404,
+      "sha256": "8d9c0bbdd1cab3106a6fe225e47d5859a800a1855ab49ed4c536f5d5c80e25c9",
+      "requested_obstacles": 32,
+      "actual_obstacles": 32,
+      "mount_profile": "walls",
+      "arena": {
+        "shape": "l_shape",
+        "width_m": 24.23388955234381,
+        "height_m": 15.850075605052517,
+        "area_m2": 292.65651405978275
+      },
+      "physical_sha256": "002075f44d2d1da6d88877304cf45061ab79b40bf64dddbadd806b55e4dc95b7"
+    },
+    "parameters": [
+      1.0,
+      2.409531985394154,
+      0.4889512207810997,
+      0.7812959734881743,
+      0.6473764656964455
+    ],
+    "phase": "diagnostic",
+    "baseline": {
+      "success": false,
+      "targets": 3,
+      "approached": 3,
+      "contacts": 0,
+      "seconds": 409.664,
+      "infrastructure_failure": false,
+      "reason": "all_targets_found"
+    },
+    "baseline_output": "/home/peter/simul/training_robust/native90/spatial_cem_v6/jobs/00004_train_g0_0",
+    "number": 1,
+    "generation": 0,
+    "role": "candidate",
+    "workspace": "/home/peter/simul/training_robust/native90/integrated_directed_v1/runtime",
+    "output": "/home/peter/simul/training_robust/native90/directed_integrated_screen_v1/case_1",
+    "status": "done",
+    "domain": 132,
+    "unit": "osp-directed-integrated-v1-01.service",
+    "slam_transport_gate": true,
+    "floor_sensor_gate": true,
+    "runtime_configuration_gate": true,
+    "velocity_profile_gate": true,
+    "witness_algorithm_gate": true,
+    "physical_credit_gate": true,
+    "outcome": {
+      "success": true,
+      "targets": 3,
+      "approached": 3,
+      "contacts": 0,
+      "seconds": 596.1,
+      "infrastructure_failure": false,
+      "reason": "all_targets_found"
+    },
+    "completed_utc": "2026-11-13T03:49:02.579257+00:00",
+    "directed_profile_gate": true,
+    "near_pass_profile_gate": true,
+    "pixel_profile_gate": true,
+    "graph_profile_gate": true,
+    "marker_directed_look": {
+      "version": 1,
+      "target_frame": "odom",
+      "camera_axis": "optical_z",
+      "maximum_turn_rad": 3.141592653589793,
+      "selected": 5,
+      "executed": 3,
+      "unavailable": 0,
+      "creates_recognition_or_approach_credit": false,
+      "ground_truth_inputs": false
+    },
+    "near_pass_inspection": {
+      "requested": 8,
+      "spent_sim_s": 24.486999999999995,
+      "maximum_sim_s": 35.0,
+      "maximum_looks": 8,
+      "maximum_camera_range_m": 1.2,
+      "active": false,
+      "history": [
+        {
+          "turn_rad": -1.3089969389957472,
+          "gain_surface_m": 0.30000000447034836,
+          "angular_gain_rad": 0.2275923236109872,
+          "estimated_sim_s": 4.279992797637052,
+          "odom_camera": [
+            -0.6509586419848943,
+            -0.3218357958980239,
+            1.4218940904384605
+          ],
+          "odom_yaw": 0.11289715144271328,
+          "face_count": 6,
+          "range_min_m": 0.9722801293565182,
+          "range_max_m": 1.18063024471672,
+          "started": 26.0,
+          "actual_sim_s": 3.5,
+          "reason": "processed_frame_dwell"
+        },
+        {
+          "turn_rad": 0.7853981633974478,
+          "gain_surface_m": 0.30000000447034836,
+          "angular_gain_rad": 0.23933461209041199,
+          "estimated_sim_s": 3.04799567858223,
+          "odom_camera": [
+            -0.44912223633181475,
+            1.5339445766674709,
+            2.0285641552461553
+          ],
+          "odom_yaw": 2.813962318643603,
+          "face_count": 6,
+          "range_min_m": 1.0340940559174365,
+          "range_max_m": 1.10549113316199,
+          "started": 50.5,
+          "actual_sim_s": 2.5,
+          "reason": "processed_frame_dwell"
+        },
+        {
+          "turn_rad": 1.308996938995746,
+          "gain_surface_m": 0.2500000037252903,
+          "angular_gain_rad": 0.3933204543952194,
+          "estimated_sim_s": 4.27999279763705,
+          "odom_camera": [
+            -0.3634741434518978,
+            4.090307515478494,
+            0.651531459341495
+          ],
+          "odom_yaw": 1.9605283983372406,
+          "face_count": 5,
+          "range_min_m": 0.5440226266805556,
+          "range_max_m": 0.5762960505711293,
+          "started": 77.013,
+          "actual_sim_s": 3.4869999999999948,
+          "reason": "processed_frame_dwell"
+        },
+        {
+          "turn_rad": -0.7853981633974485,
+          "gain_surface_m": 0.2500000037252903,
+          "angular_gain_rad": 0.20473928111145212,
+          "estimated_sim_s": 3.0479956785822315,
+          "odom_camera": [
+            0.4912659302150334,
+            5.602755856644783,
+            0.7645086750082777
+          ],
+          "odom_yaw": -0.02088948838917082,
+          "face_count": 5,
+          "range_min_m": 1.0445881177025258,
+          "range_max_m": 1.1118248308627308,
+          "started": 103.5,
+          "actual_sim_s": 3.0,
+          "reason": "processed_frame_dwell"
+        },
+        {
+          "turn_rad": -0.7853981633974485,
+          "gain_surface_m": 0.2500000037252903,
+          "angular_gain_rad": 0.20629318691698914,
+          "estimated_sim_s": 3.0479956785822315,
+          "odom_camera": [
+            4.253979616720901,
+            10.229463259913285,
+            -2.420048619895158
+          ],
+          "odom_yaw": 3.07773852388698,
+          "face_count": 5,
+          "range_min_m": 0.8629065468230382,
+          "range_max_m": 1.1660797006375303,
+          "started": 163.0,
+          "actual_sim_s": 2.5,
+          "reason": "processed_frame_dwell"
+        },
+        {
+          "turn_rad": -1.0471975511965979,
+          "gain_surface_m": 0.2500000037252903,
+          "angular_gain_rad": 0.17768898490537804,
+          "estimated_sim_s": 3.663994238109642,
+          "odom_camera": [
+            1.8597922631238524,
+            10.67498924724858,
+            2.2842304632837203
+          ],
+          "odom_yaw": 1.2370329120871224,
+          "face_count": 5,
+          "range_min_m": 1.0820011269574104,
+          "range_max_m": 1.1659915335238442,
+          "started": 179.0,
+          "actual_sim_s": 3.0,
+          "reason": "processed_frame_dwell"
+        },
+        {
+          "turn_rad": -0.7853981633974485,
+          "gain_surface_m": 0.4000000059604645,
+          "angular_gain_rad": 0.4797654247921763,
+          "estimated_sim_s": 3.0479956785822315,
+          "odom_camera": [
+            -8.567100270335159,
+            12.72863250594903,
+            -1.5353506682244564
+          ],
+          "odom_yaw": -2.3207488316219047,
+          "face_count": 8,
+          "range_min_m": 0.5910866584875938,
+          "range_max_m": 0.8453549297036953,
+          "started": 246.5,
+          "actual_sim_s": 3.0,
+          "reason": "processed_frame_dwell"
+        },
+        {
+          "turn_rad": -1.3089969389957472,
+          "gain_surface_m": 0.800000011920929,
+          "angular_gain_rad": 0.7579367613745074,
+          "estimated_sim_s": 4.279992797637052,
+          "odom_camera": [
+            -9.679973394131776,
+            11.485729308089102,
+            3.116248851797887
+          ],
+          "odom_yaw": 1.8072519128021396,
+          "face_count": 16,
+          "range_min_m": 0.7916807521970478,
+          "range_max_m": 1.1905336328491523,
+          "started": 261.5,
+          "actual_sim_s": 3.5,
+          "reason": "processed_frame_dwell"
+        }
+      ],
+      "ground_truth_input": false,
+      "creates_recognition_or_coverage_credit": false
+    },
+    "graph_landmark_update": {
+      "method": "confirmed_odom_landmarks_reprojected_by_final_SLAM_scan_poses",
+      "ground_truth_inputs": false,
+      "required_readable_frames": 3,
+      "required_distinct_scan_nodes": 3,
+      "maximum_scan_time_gap_sim_s": 0.35,
+      "maximum_inlier_deviation_m": 0.25,
+      "corrected_ids": [
+        674,
+        339,
+        826
+      ],
+      "rows": [
+        {
+          "id": 674,
+          "original_point": [
+            -16.775628594980503,
+            13.685625175094739
+          ],
+          "eligible_observations": 47,
+          "applied": true,
+          "inlier_observations": 47,
+          "distinct_scan_nodes": 46,
+          "point": [
+            -16.782343815451178,
+            13.6767094293172
+          ],
+          "shift_m": 0.011161752046138377,
+          "observations": [
+            {
+              "stamp": 240.2,
+              "node_id": 562,
+              "scan_stamp": 240.0,
+              "point": [
+                -16.760160106774034,
+                13.669298762337005
+              ]
+            },
+            {
+              "stamp": 287.2,
+              "node_id": 661,
+              "scan_stamp": 287.2,
+              "point": [
+                -16.780549364258185,
+                13.689507419570587
+              ]
+            },
+            {
+              "stamp": 287.4,
+              "node_id": 662,
+              "scan_stamp": 287.4,
+              "point": [
+                -16.780875145826094,
+                13.680628257065617
+              ]
+            },
+            {
+              "stamp": 287.6,
+              "node_id": 663,
+              "scan_stamp": 287.6,
+              "point": [
+                -16.780482022374372,
+                13.681267348550968
+              ]
+            },
+            {
+              "stamp": 287.8,
+              "node_id": 664,
+              "scan_stamp": 287.8,
+              "point": [
+                -16.778850033482925,
+                13.678537345837597
+              ]
+            },
+            {
+              "stamp": 288.0,
+              "node_id": 665,
+              "scan_stamp": 288.0,
+              "point": [
+                -16.778275594292587,
+                13.678352915150402
+              ]
+            },
+            {
+              "stamp": 288.2,
+              "node_id": 666,
+              "scan_stamp": 288.2,
+              "point": [
+                -16.777595333276217,
+                13.67720050180749
+              ]
+            },
+            {
+              "stamp": 288.4,
+              "node_id": 667,
+              "scan_stamp": 288.4,
+              "point": [
+                -16.778538301598267,
+                13.678186480199225
+              ]
+            },
+            {
+              "stamp": 288.6,
+              "node_id": 668,
+              "scan_stamp": 288.6,
+              "point": [
+                -16.786514401904675,
+                13.676688430933785
+              ]
+            },
+            {
+              "stamp": 288.8,
+              "node_id": 669,
+              "scan_stamp": 288.8,
+              "point": [
+                -16.78465067795382,
+                13.67429814416349
+              ]
+            },
+            {
+              "stamp": 289.0,
+              "node_id": 670,
+              "scan_stamp": 289.0,
+              "point": [
+                -16.784020368426024,
+                13.673696593840415
+              ]
+            },
+            {
+              "stamp": 289.2,
+              "node_id": 671,
+              "scan_stamp": 289.2,
+              "point": [
+                -16.782886252054137,
+                13.672341685553805
+              ]
+            },
+            {
+              "stamp": 289.4,
+              "node_id": 672,
+              "scan_stamp": 289.4,
+              "point": [
+                -16.78179799429194,
+                13.669799479119769
+              ]
+            },
+            {
+              "stamp": 289.6,
+              "node_id": 673,
+              "scan_stamp": 289.6,
+              "point": [
+                -16.787652214697836,
+                13.679676922519239
+              ]
+            },
+            {
+              "stamp": 289.8,
+              "node_id": 674,
+              "scan_stamp": 289.8,
+              "point": [
+                -16.787943799084005,
+                13.678922379385417
+              ]
+            },
+            {
+              "stamp": 290.0,
+              "node_id": 675,
+              "scan_stamp": 290.0,
+              "point": [
+                -16.78681782780526,
+                13.678259282582891
+              ]
+            },
+            {
+              "stamp": 290.2,
+              "node_id": 676,
+              "scan_stamp": 290.2,
+              "point": [
+                -16.786028312240397,
+                13.67546775750897
+              ]
+            },
+            {
+              "stamp": 290.4,
+              "node_id": 677,
+              "scan_stamp": 290.4,
+              "point": [
+                -16.784120167529977,
+                13.676121672132602
+              ]
+            },
+            {
+              "stamp": 290.6,
+              "node_id": 678,
+              "scan_stamp": 290.6,
+              "point": [
+                -16.782217428931343,
+                13.676003499042395
+              ]
+            },
+            {
+              "stamp": 290.8,
+              "node_id": 679,
+              "scan_stamp": 290.8,
+              "point": [
+                -16.781052835400182,
+                13.675078721824413
+              ]
+            },
+            {
+              "stamp": 291.0,
+              "node_id": 680,
+              "scan_stamp": 291.0,
+              "point": [
+                -16.77980504238736,
+                13.676292313191498
+              ]
+            },
+            {
+              "stamp": 291.2,
+              "node_id": 681,
+              "scan_stamp": 291.2,
+              "point": [
+                -16.780190412442163,
+                13.675870866498034
+              ]
+            },
+            {
+              "stamp": 291.4,
+              "node_id": 682,
+              "scan_stamp": 291.4,
+              "point": [
+                -16.777485607832393,
+                13.677876543147475
+              ]
+            },
+            {
+              "stamp": 291.6,
+              "node_id": 683,
+              "scan_stamp": 291.6,
+              "point": [
+                -16.787298884347525,
+                13.688640002612011
+              ]
+            },
+            {
+              "stamp": 291.8,
+              "node_id": 684,
+              "scan_stamp": 291.8,
+              "point": [
+                -16.776202529832403,
+                13.677708644104587
+              ]
+            },
+            {
+              "stamp": 292.0,
+              "node_id": 685,
+              "scan_stamp": 292.0,
+              "point": [
+                -16.78433738710891,
+                13.688987097971246
+              ]
+            },
+            {
+              "stamp": 292.2,
+              "node_id": 686,
+              "scan_stamp": 292.2,
+              "point": [
+                -16.783528206051127,
+                13.687044318535415
+              ]
+            },
+            {
+              "stamp": 292.4,
+              "node_id": 687,
+              "scan_stamp": 292.4,
+              "point": [
+                -16.783580605688904,
+                13.675912924485836
+              ]
+            },
+            {
+              "stamp": 292.6,
+              "node_id": 688,
+              "scan_stamp": 292.6,
+              "point": [
+                -16.781053608445646,
+                13.675663300014936
+              ]
+            },
+            {
+              "stamp": 292.8,
+              "node_id": 689,
+              "scan_stamp": 292.8,
+              "point": [
+                -16.780079383997247,
+                13.676304145901451
+              ]
+            },
+            {
+              "stamp": 293.0,
+              "node_id": 690,
+              "scan_stamp": 293.0,
+              "point": [
+                -16.781122272546455,
+                13.676967626456145
+              ]
+            },
+            {
+              "stamp": 293.2,
+              "node_id": 691,
+              "scan_stamp": 293.2,
+              "point": [
+                -16.78782672469809,
+                13.675518144677444
+              ]
+            },
+            {
+              "stamp": 293.4,
+              "node_id": 692,
+              "scan_stamp": 293.4,
+              "point": [
+                -16.786138174059083,
+                13.675146135371113
+              ]
+            },
+            {
+              "stamp": 293.6,
+              "node_id": 693,
+              "scan_stamp": 293.6,
+              "point": [
+                -16.785438051863714,
+                13.675675429969568
+              ]
+            },
+            {
+              "stamp": 293.8,
+              "node_id": 694,
+              "scan_stamp": 293.8,
+              "point": [
+                -16.783452988602665,
+                13.677344788123966
+              ]
+            },
+            {
+              "stamp": 294.0,
+              "node_id": 695,
+              "scan_stamp": 294.0,
+              "point": [
+                -16.782343815451178,
+                13.676179112762828
+              ]
+            },
+            {
+              "stamp": 294.2,
+              "node_id": 696,
+              "scan_stamp": 294.2,
+              "point": [
+                -16.781981073319457,
+                13.676747994540802
+              ]
+            },
+            {
+              "stamp": 294.4,
+              "node_id": 697,
+              "scan_stamp": 294.4,
+              "point": [
+                -16.781759529125477,
+                13.676295377949039
+              ]
+            },
+            {
+              "stamp": 294.6,
+              "node_id": 698,
+              "scan_stamp": 294.6,
+              "point": [
+                -16.788539366812003,
+                13.675594643546653
+              ]
+            },
+            {
+              "stamp": 294.8,
+              "node_id": 699,
+              "scan_stamp": 294.8,
+              "point": [
+                -16.7876983428717,
+                13.6767094293172
+              ]
+            },
+            {
+              "stamp": 295.0,
+              "node_id": 700,
+              "scan_stamp": 295.0,
+              "point": [
+                -16.786617429356237,
+                13.676663509104351
+              ]
+            },
+            {
+              "stamp": 295.2,
+              "node_id": 701,
+              "scan_stamp": 295.2,
+              "point": [
+                -16.784997226423556,
+                13.677178339159717
+              ]
+            },
+            {
+              "stamp": 295.4,
+              "node_id": 702,
+              "scan_stamp": 295.4,
+              "point": [
+                -16.785862223831398,
+                13.676654434409423
+              ]
+            },
+            {
+              "stamp": 295.6,
+              "node_id": 703,
+              "scan_stamp": 295.6,
+              "point": [
+                -16.783090653473774,
+                13.676776406045379
+              ]
+            },
+            {
+              "stamp": 295.8,
+              "node_id": 704,
+              "scan_stamp": 295.8,
+              "point": [
+                -16.78193974782659,
+                13.676828046465372
+              ]
+            },
+            {
+              "stamp": 296.0,
+              "node_id": 705,
+              "scan_stamp": 296.0,
+              "point": [
+                -16.781249339911543,
+                13.676972855449915
+              ]
+            },
+            {
+              "stamp": 296.2,
+              "node_id": 705,
+              "scan_stamp": 296.0,
+              "point": [
+                -16.781940079402514,
+                13.677567458916693
+              ]
+            }
+          ]
+        },
+        {
+          "id": 339,
+          "original_point": [
+            -8.103501158832728,
+            5.640973048833814
+          ],
+          "eligible_observations": 68,
+          "applied": true,
+          "inlier_observations": 68,
+          "distinct_scan_nodes": 67,
+          "point": [
+            -8.111554150172736,
+            5.655675112100136
+          ],
+          "shift_m": 0.016763094398385348,
+          "observations": [
+            {
+              "stamp": 365.4,
+              "node_id": 902,
+              "scan_stamp": 365.4,
+              "point": [
+                -8.125801194622145,
+                5.65223609692314
+              ]
+            },
+            {
+              "stamp": 365.8,
+              "node_id": 903,
+              "scan_stamp": 365.6,
+              "point": [
+                -8.129390000573668,
+                5.647444226306295
+              ]
+            },
+            {
+              "stamp": 366.8,
+              "node_id": 904,
+              "scan_stamp": 367.0,
+              "point": [
+                -8.115643716687876,
+                5.657187088556405
+              ]
+            },
+            {
+              "stamp": 367.0,
+              "node_id": 904,
+              "scan_stamp": 367.0,
+              "point": [
+                -8.115731234669854,
+                5.652131971867586
+              ]
+            },
+            {
+              "stamp": 367.2,
+              "node_id": 905,
+              "scan_stamp": 367.2,
+              "point": [
+                -8.118312298057129,
+                5.651079476205431
+              ]
+            },
+            {
+              "stamp": 367.4,
+              "node_id": 906,
+              "scan_stamp": 367.4,
+              "point": [
+                -8.119079482664556,
+                5.651263560337242
+              ]
+            },
+            {
+              "stamp": 367.6,
+              "node_id": 907,
+              "scan_stamp": 367.6,
+              "point": [
+                -8.122819835454553,
+                5.651257430186352
+              ]
+            },
+            {
+              "stamp": 368.0,
+              "node_id": 909,
+              "scan_stamp": 368.0,
+              "point": [
+                -8.11698923062254,
+                5.654727979722997
+              ]
+            },
+            {
+              "stamp": 368.2,
+              "node_id": 910,
+              "scan_stamp": 368.2,
+              "point": [
+                -8.120313877394155,
+                5.653998961937386
+              ]
+            },
+            {
+              "stamp": 368.4,
+              "node_id": 911,
+              "scan_stamp": 368.4,
+              "point": [
+                -8.119053758805151,
+                5.653085772076315
+              ]
+            },
+            {
+              "stamp": 368.6,
+              "node_id": 912,
+              "scan_stamp": 368.6,
+              "point": [
+                -8.11543465500646,
+                5.652334292472494
+              ]
+            },
+            {
+              "stamp": 368.8,
+              "node_id": 913,
+              "scan_stamp": 368.8,
+              "point": [
+                -8.11639697765169,
+                5.6523320964043915
+              ]
+            },
+            {
+              "stamp": 369.0,
+              "node_id": 914,
+              "scan_stamp": 369.0,
+              "point": [
+                -8.117786456717715,
+                5.655462728815379
+              ]
+            },
+            {
+              "stamp": 369.2,
+              "node_id": 915,
+              "scan_stamp": 369.2,
+              "point": [
+                -8.119929345402024,
+                5.655250980736777
+              ]
+            },
+            {
+              "stamp": 369.4,
+              "node_id": 916,
+              "scan_stamp": 369.4,
+              "point": [
+                -8.116900541486041,
+                5.652918537192258
+              ]
+            },
+            {
+              "stamp": 369.6,
+              "node_id": 917,
+              "scan_stamp": 369.6,
+              "point": [
+                -8.112841877218962,
+                5.6516660034111545
+              ]
+            },
+            {
+              "stamp": 369.8,
+              "node_id": 918,
+              "scan_stamp": 369.8,
+              "point": [
+                -8.10546008679114,
+                5.654675094858705
+              ]
+            },
+            {
+              "stamp": 370.0,
+              "node_id": 919,
+              "scan_stamp": 370.0,
+              "point": [
+                -8.108970835516567,
+                5.6556134602445525
+              ]
+            },
+            {
+              "stamp": 370.2,
+              "node_id": 920,
+              "scan_stamp": 370.2,
+              "point": [
+                -8.110779919340201,
+                5.658877255609399
+              ]
+            },
+            {
+              "stamp": 370.4,
+              "node_id": 921,
+              "scan_stamp": 370.4,
+              "point": [
+                -8.112096003159548,
+                5.659456860592865
+              ]
+            },
+            {
+              "stamp": 370.6,
+              "node_id": 922,
+              "scan_stamp": 370.6,
+              "point": [
+                -8.11292737045525,
+                5.657667558767291
+              ]
+            },
+            {
+              "stamp": 370.8,
+              "node_id": 923,
+              "scan_stamp": 370.8,
+              "point": [
+                -8.11027801969531,
+                5.657549325854603
+              ]
+            },
+            {
+              "stamp": 371.0,
+              "node_id": 924,
+              "scan_stamp": 371.0,
+              "point": [
+                -8.114126095970954,
+                5.658663997600167
+              ]
+            },
+            {
+              "stamp": 371.2,
+              "node_id": 925,
+              "scan_stamp": 371.2,
+              "point": [
+                -8.11458931832145,
+                5.661287904324457
+              ]
+            },
+            {
+              "stamp": 371.4,
+              "node_id": 926,
+              "scan_stamp": 371.4,
+              "point": [
+                -8.116753871687079,
+                5.662786030256754
+              ]
+            },
+            {
+              "stamp": 371.6,
+              "node_id": 927,
+              "scan_stamp": 371.6,
+              "point": [
+                -8.116924856092155,
+                5.663325895730663
+              ]
+            },
+            {
+              "stamp": 371.8,
+              "node_id": 928,
+              "scan_stamp": 371.8,
+              "point": [
+                -8.104808529256069,
+                5.65195943766353
+              ]
+            },
+            {
+              "stamp": 372.2,
+              "node_id": 930,
+              "scan_stamp": 372.2,
+              "point": [
+                -8.112121796869763,
+                5.655593909120645
+              ]
+            },
+            {
+              "stamp": 372.4,
+              "node_id": 931,
+              "scan_stamp": 372.4,
+              "point": [
+                -8.1118623534243,
+                5.656424015511585
+              ]
+            },
+            {
+              "stamp": 372.6,
+              "node_id": 932,
+              "scan_stamp": 372.6,
+              "point": [
+                -8.115287204310926,
+                5.657927354143135
+              ]
+            },
+            {
+              "stamp": 372.8,
+              "node_id": 933,
+              "scan_stamp": 372.8,
+              "point": [
+                -8.10984482309982,
+                5.6550971882524905
+              ]
+            },
+            {
+              "stamp": 373.0,
+              "node_id": 934,
+              "scan_stamp": 373.0,
+              "point": [
+                -8.111980384995556,
+                5.657810034256702
+              ]
+            },
+            {
+              "stamp": 373.2,
+              "node_id": 935,
+              "scan_stamp": 373.2,
+              "point": [
+                -8.11111473703134,
+                5.656329860940867
+              ]
+            },
+            {
+              "stamp": 373.4,
+              "node_id": 936,
+              "scan_stamp": 373.4,
+              "point": [
+                -8.115009109938258,
+                5.658749643313398
+              ]
+            },
+            {
+              "stamp": 373.6,
+              "node_id": 937,
+              "scan_stamp": 373.6,
+              "point": [
+                -8.108573649438656,
+                5.659145237078134
+              ]
+            },
+            {
+              "stamp": 373.8,
+              "node_id": 938,
+              "scan_stamp": 373.8,
+              "point": [
+                -8.109134950794013,
+                5.65065876275383
+              ]
+            },
+            {
+              "stamp": 374.0,
+              "node_id": 939,
+              "scan_stamp": 374.0,
+              "point": [
+                -8.111188433502479,
+                5.652460207495331
+              ]
+            },
+            {
+              "stamp": 374.2,
+              "node_id": 940,
+              "scan_stamp": 374.2,
+              "point": [
+                -8.110016842732716,
+                5.652523645718985
+              ]
+            },
+            {
+              "stamp": 374.4,
+              "node_id": 941,
+              "scan_stamp": 374.4,
+              "point": [
+                -8.110108145320092,
+                5.6542208268784115
+              ]
+            },
+            {
+              "stamp": 374.6,
+              "node_id": 942,
+              "scan_stamp": 374.6,
+              "point": [
+                -8.107577359844354,
+                5.652102466534047
+              ]
+            },
+            {
+              "stamp": 374.8,
+              "node_id": 943,
+              "scan_stamp": 374.8,
+              "point": [
+                -8.109081870232396,
+                5.653645128096474
+              ]
+            },
+            {
+              "stamp": 375.0,
+              "node_id": 944,
+              "scan_stamp": 375.0,
+              "point": [
+                -8.113308223177576,
+                5.6555926618014665
+              ]
+            },
+            {
+              "stamp": 375.2,
+              "node_id": 945,
+              "scan_stamp": 375.2,
+              "point": [
+                -8.111245946921175,
+                5.653384172113292
+              ]
+            },
+            {
+              "stamp": 375.4,
+              "node_id": 946,
+              "scan_stamp": 375.4,
+              "point": [
+                -8.113718758388083,
+                5.65573676395572
+              ]
+            },
+            {
+              "stamp": 375.6,
+              "node_id": 947,
+              "scan_stamp": 375.6,
+              "point": [
+                -8.114122922284443,
+                5.656972109246151
+              ]
+            },
+            {
+              "stamp": 375.8,
+              "node_id": 948,
+              "scan_stamp": 375.8,
+              "point": [
+                -8.10693727851637,
+                5.649885779073847
+              ]
+            },
+            {
+              "stamp": 376.0,
+              "node_id": 949,
+              "scan_stamp": 376.0,
+              "point": [
+                -8.109298093219156,
+                5.6494570274442815
+              ]
+            },
+            {
+              "stamp": 376.2,
+              "node_id": 950,
+              "scan_stamp": 376.2,
+              "point": [
+                -8.110116709717778,
+                5.650057723437038
+              ]
+            },
+            {
+              "stamp": 376.4,
+              "node_id": 951,
+              "scan_stamp": 376.4,
+              "point": [
+                -8.113147892164534,
+                5.653096117536885
+              ]
+            },
+            {
+              "stamp": 376.6,
+              "node_id": 952,
+              "scan_stamp": 376.6,
+              "point": [
+                -8.11542671726525,
+                5.654403520994309
+              ]
+            },
+            {
+              "stamp": 376.8,
+              "node_id": 953,
+              "scan_stamp": 376.8,
+              "point": [
+                -8.117801964077735,
+                5.654578880542473
+              ]
+            },
+            {
+              "stamp": 377.0,
+              "node_id": 954,
+              "scan_stamp": 377.0,
+              "point": [
+                -8.110372967220245,
+                5.656547083034793
+              ]
+            },
+            {
+              "stamp": 377.2,
+              "node_id": 955,
+              "scan_stamp": 377.2,
+              "point": [
+                -8.112901775051402,
+                5.656557574189457
+              ]
+            },
+            {
+              "stamp": 451.4,
+              "node_id": 1260,
+              "scan_stamp": 451.4,
+              "point": [
+                -8.088115936792729,
+                5.667171503296991
+              ]
+            },
+            {
+              "stamp": 451.8,
+              "node_id": 1262,
+              "scan_stamp": 451.8,
+              "point": [
+                -8.089716014536377,
+                5.666642444725084
+              ]
+            },
+            {
+              "stamp": 452.0,
+              "node_id": 1263,
+              "scan_stamp": 452.0,
+              "point": [
+                -8.098930468982307,
+                5.665318389200774
+              ]
+            },
+            {
+              "stamp": 452.2,
+              "node_id": 1264,
+              "scan_stamp": 452.2,
+              "point": [
+                -8.095448968196685,
+                5.665201577328466
+              ]
+            },
+            {
+              "stamp": 452.4,
+              "node_id": 1265,
+              "scan_stamp": 452.4,
+              "point": [
+                -8.100142668001926,
+                5.665106818136914
+              ]
+            },
+            {
+              "stamp": 452.6,
+              "node_id": 1266,
+              "scan_stamp": 452.6,
+              "point": [
+                -8.106864596764096,
+                5.664679140324274
+              ]
+            },
+            {
+              "stamp": 452.8,
+              "node_id": 1267,
+              "scan_stamp": 452.8,
+              "point": [
+                -8.094052647351331,
+                5.666910363273689
+              ]
+            },
+            {
+              "stamp": 453.0,
+              "node_id": 1268,
+              "scan_stamp": 453.0,
+              "point": [
+                -8.095063718486283,
+                5.666656128032244
+              ]
+            },
+            {
+              "stamp": 453.2,
+              "node_id": 1269,
+              "scan_stamp": 453.2,
+              "point": [
+                -8.110222545416248,
+                5.663454260510056
+              ]
+            },
+            {
+              "stamp": 453.4,
+              "node_id": 1270,
+              "scan_stamp": 453.4,
+              "point": [
+                -8.108192682560643,
+                5.665435125725756
+              ]
+            },
+            {
+              "stamp": 453.6,
+              "node_id": 1271,
+              "scan_stamp": 453.6,
+              "point": [
+                -8.105137540796187,
+                5.664532332705511
+              ]
+            },
+            {
+              "stamp": 453.8,
+              "node_id": 1272,
+              "scan_stamp": 453.8,
+              "point": [
+                -8.107112143503368,
+                5.664531867342137
+              ]
+            },
+            {
+              "stamp": 454.0,
+              "node_id": 1273,
+              "scan_stamp": 454.0,
+              "point": [
+                -8.10356045723947,
+                5.664790281678295
+              ]
+            },
+            {
+              "stamp": 454.2,
+              "node_id": 1274,
+              "scan_stamp": 454.2,
+              "point": [
+                -8.107147843938616,
+                5.665279375243983
+              ]
+            },
+            {
+              "stamp": 454.4,
+              "node_id": 1275,
+              "scan_stamp": 454.4,
+              "point": [
+                -8.09720267126312,
+                5.666596750414258
+              ]
+            }
+          ]
+        },
+        {
+          "id": 826,
+          "original_point": [
+            6.619579982275785,
+            6.946463017055683
+          ],
+          "eligible_observations": 8,
+          "applied": true,
+          "inlier_observations": 8,
+          "distinct_scan_nodes": 6,
+          "point": [
+            6.619948317059127,
+            6.9483826233529165
+          ],
+          "shift_m": 0.001954624989352002,
+          "observations": [
+            {
+              "stamp": 587.0,
+              "node_id": 1661,
+              "scan_stamp": 586.8,
+              "point": [
+                6.618389496243992,
+                6.942443711780789
+              ]
+            },
+            {
+              "stamp": 595.8,
+              "node_id": 1664,
+              "scan_stamp": 595.9,
+              "point": [
+                6.611840617706869,
+                6.9461785970739935
+              ]
+            },
+            {
+              "stamp": 596.0,
+              "node_id": 1664,
+              "scan_stamp": 595.9,
+              "point": [
+                6.611480790359615,
+                6.946853832913556
+              ]
+            },
+            {
+              "stamp": 597.6,
+              "node_id": 1671,
+              "scan_stamp": 597.6,
+              "point": [
+                6.61818173654018,
+                6.950207712224151
+              ]
+            },
+            {
+              "stamp": 598.2,
+              "node_id": 1674,
+              "scan_stamp": 598.3,
+              "point": [
+                6.622523888602366,
+                6.943151156291456
+              ]
+            },
+            {
+              "stamp": 598.4,
+              "node_id": 1674,
+              "scan_stamp": 598.3,
+              "point": [
+                6.62668710633017,
+                6.949911413792277
+              ]
+            },
+            {
+              "stamp": 599.6,
+              "node_id": 1680,
+              "scan_stamp": 599.8,
+              "point": [
+                6.6215071378742625,
+                6.95348715131315
+              ]
+            },
+            {
+              "stamp": 600.0,
+              "node_id": 1681,
+              "scan_stamp": 600.1,
+              "point": [
+                6.622880599115055,
+                6.9547750667421315
+              ]
+            }
+          ]
+        }
+      ],
+      "rejected": {
+        "scan_time_gap": 59
+      },
+      "applied": true,
+      "input_sha256": {
+        "map.data": "e34beba8bb14e51b825a227c79f976cb5185ee5149916841f68b6685429585c8",
+        "graph_scan_poses.csv": "aaa56d81af1603f72ed574675da1347362d67a62a48521e2d6bdb89eff3ce795",
+        "graph_marker_observations.json": "9a7e916503873f038b5de6b836af83f005984fe0cb736525243bafe7fa66ad12"
+      },
+      "finalization_wall_seconds": 0.3147830329835415,
+      "driving_time_and_approach_credits_modified": false
+    }
+  },
+  "ground_truth_audit": {
+    "available": true,
+    "correct_ids": true,
+    "correct_positions": true,
+    "position_tolerance_m": 0.5,
+    "position_errors_m": {
+      "674": 0.0176611853135846,
+      "826": 0.07154289018883199,
+      "339": 0.017217853766709562
+    },
+    "expected_ids": [
+      339,
+      674,
+      826
+    ],
+    "found_ids": [
+      339,
+      674,
+      826
+    ],
+    "closest_approach_m": {
+      "674": 1.1209048263759525,
+      "826": 1.130740817596891,
+      "339": 0.6638396809514535
+    },
+    "approached_within_1_5m": 3,
+    "approach_radius_m": 1.5,
+    "all_approached": true,
+    "approached_within_2m": 3,
+    "world_to_map": [
+      7.378895617111701,
+      12.454546665305523,
+      3.0170014643476906
+    ],
+    "trajectory_samples": 2933
+  },
+  "strict_success": true,
+  "original_campaign_state_modified": false,
+  "original_supervisor_collection_pending": true,
+  "production_promoted": false,
+  "limit": "Same formerly failed L world;composed source and asynchronous trajectory differ,so one596.1s success neither isolates a single correction nor establishes fresh-space generalization. Only3.9sim seconds remain before deadline."
+}

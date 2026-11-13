@@ -1,5 +1,5 @@
 {
-  "captured_utc": "2026-11-13T03:46:30.385317+00:00",
+  "captured_utc": "2026-11-13T03:49:27.823230+00:00",
   "purpose": "Repository upload snapshot; not a live dashboard",
   "tests_passed_final": 189,
   "native_validation_complete": false,
@@ -137,8 +137,8 @@
   "previous_regressions_complete": true,
   "latest_change": {
     "date": "2026-11-13",
-    "name": "Six retained-recording comparisons reveal old-L counterexample;first planned-face turn executed natively",
-    "status": "two_native_comparisons_active;candidate_not_qualified",
+    "name": "IntegratedL596.1sstrictnativepass,maxmarkererror7.15cm;deadline margin3.9s",
+    "status": "success_not_yet_fast_or_generalized",
     "generalization_verified": false
   },
   "latest_recording": {
@@ -298,7 +298,7 @@
   "pixel_focus_batch_replay": "pixel_focus_batch_replay.json",
   "pixel_focus_startup_failure": "pixel_focus_startup_failure.json",
   "fresh_space_failure_analysis": "fresh_space_failure_analysis.json",
-  "video_release_verified_count": 193,
+  "video_release_verified_count": 194,
   "priority_diagnostic": {
     "root": "/home/peter/simul/training_robust/native90/face_intent_regression_v2",
     "unit": "osp-face-intent-v2.service",
@@ -413,17 +413,15 @@
   "second_L_localization_failure": "repository_snapshot/second_L_localization_failure.json",
   "current_jobs": [
     {
-      "campaign": "directed_integrated_screen_v1",
-      "number": 1,
-      "verified_native_pid": 1716779,
+      "campaign": "spatial_cem_v6",
+      "number": 17,
+      "verified_native_pid": 1735261,
       "status": {
         "state": "running",
-        "approached_ids": [
-          674
-        ],
-        "targets": 2,
+        "approached_ids": [],
+        "targets": 0,
         "collisions": 0,
-        "elapsed_seconds": 448.6,
+        "elapsed_seconds": 20.314,
         "active_action": "nav",
         "readiness_reason": "",
         "sensor_interruptions": 0,
@@ -437,17 +435,17 @@
           "diffdrive_controller": "active",
           "joint_state_broadcaster": "active"
         },
-        "confirmed_surface_cells": 57,
+        "confirmed_surface_cells": 45,
         "confirmed_face_anchors": 0,
         "reassociated_face_records": 0,
         "camera_diagnostics": {
-          "received": 2259,
-          "late": 0,
+          "received": 120,
+          "late": 2,
           "invalid_calibration": 0,
           "duplicate": 0,
-          "accepted": 2259,
-          "coverage_updates": 2247,
-          "tf_waits": 11
+          "accepted": 118,
+          "coverage_updates": 116,
+          "tf_waits": 2
         }
       }
     },
@@ -457,10 +455,13 @@
       "verified_native_pid": 1725382,
       "status": {
         "state": "running",
-        "approached_ids": [],
-        "targets": 0,
+        "approached_ids": [
+          220,
+          465
+        ],
+        "targets": 3,
         "collisions": 0,
-        "elapsed_seconds": 200.127,
+        "elapsed_seconds": 383.127,
         "active_action": "nav",
         "readiness_reason": "",
         "sensor_interruptions": 0,
@@ -474,17 +475,17 @@
           "diffdrive_controller": "active",
           "joint_state_broadcaster": "active"
         },
-        "confirmed_surface_cells": 59,
+        "confirmed_surface_cells": 461,
         "confirmed_face_anchors": 0,
         "reassociated_face_records": 0,
         "camera_diagnostics": {
-          "received": 1023,
+          "received": 1938,
           "late": 0,
           "invalid_calibration": 0,
           "duplicate": 0,
-          "accepted": 1023,
-          "coverage_updates": 1013,
-          "tf_waits": 5
+          "accepted": 1938,
+          "coverage_updates": 1923,
+          "tf_waits": 10
         }
       }
     }
@@ -534,5 +535,13 @@
     "limit": "Partial live evidence;actual physical approach and final coordinates are independently scored at episode end"
   },
   "routed_approach_candidate": "repository_snapshot/routed_approach_candidate.json",
-  "fresh_trapezoid_role2_native": "repository_snapshot/fresh_trapezoid_role2_native.json"
+  "fresh_trapezoid_role2_native": "repository_snapshot/fresh_trapezoid_role2_native.json",
+  "integrated_L_native_success": "repository_snapshot/integrated_L_native_success.json",
+  "completed_pending_original_supervisor_collection": [
+    {
+      "campaign": "directed_integrated_screen_v1",
+      "number": 1,
+      "status": "completed_pending_original_supervisor_collection"
+    }
+  ]
 }
