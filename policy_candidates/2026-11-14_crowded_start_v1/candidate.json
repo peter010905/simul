@@ -1,0 +1,13 @@
+{
+  "candidate_id": "2026-11-14_crowded_start_v1",
+  "parent_candidate": "2026-11-14_tb4_platform_v1",
+  "status": "offline_regression_candidate",
+  "production_promoted": false,
+  "hardware_validated": false,
+  "overlay_files": {
+    "osp_mission/escape_connectivity.py": "aaf483f7788e4e2581bb57d9b87a61095527382b7d181ac369b741ee182cbd64",
+    "test/test_crowded_start.py": "732e28c8602886580fb59d97f5f0c36f42582472cdc7d18d414b9940a676bc04",
+    "test/test_escape_connectivity.py": "656ee5288bb7d6dc91d8c57475482d8cd2a740b009e37f8ee7f1aa4bfde5bd0d"
+  },
+  "build_script_sha256": "3e6ffb34f7029f90d89e2fe4654b7771572e7e8e1961429e9216ce9984b83377"
+}

@@ -671,7 +671,11 @@
   "tb4_platform_hardware_validated": false,
   "tb4_platform_native_screen_passed": true,
   "tb4_platform_full_task_validated": false,
-  "active_tb4_campaign": "tb4_platform_cem_v1",
+  "active_tb4_campaign": "tb4_platform_cem_v1 (dispatcher stopped; 2 running trials preserved, 10 queued)",
   "tb4_early_odometry_audit": "repository_snapshot/tb4_early_odometry_audit.json",
-  "tb4_long_run_localization_reliable": false
+  "tb4_long_run_localization_reliable": false,
+  "crowded_start_candidate": "repository_snapshot/crowded_start_candidate.json",
+  "crowded_start_native_validated": false,
+  "crowded_start_runtime_tests_passed": 378,
+  "active_priority_regression": "crowded_start_regression_v1"
 }
