@@ -1,0 +1,465 @@
+{
+  "captured_utc": "2026-11-14T13:48:37.313870+00:00",
+  "evidence": "Read-only NEW native Gazebo early-run audit; runs incomplete, not hardware validation",
+  "method": "Separate odom/map SE(2) alignment at first valid stationary sample only; no whole-trajectory fit. Compare each estimator at its own timestamp to linearly interpolated evaluator ground truth, unwrap GT yaw; accept messages within 0.25 s of paired trace row. Windows start at first recorded ground-truth pose.",
+  "ground_truth_given_to_policy": false,
+  "rows": [
+    {
+      "number": 0,
+      "shape": "c_shape",
+      "episode": "/home/peter/simul/training_robust/native90/tb4_platform_cem_v1/jobs/00000_train_g0_0/episodes/1195000000",
+      "pose_trace_sha256_at_capture": "9ba450768827397fc6041994f17e69c955d0fc6ad83940675b6475d5871e60a7",
+      "measurement": {
+        "odom": {
+          "anchor_stamp": 4.002,
+          "world_to_frame": [
+            -13.758096347229994,
+            -7.40838595457042,
+            0.3911638559038438
+          ],
+          "windows": {
+            "60": {
+              "samples": 295,
+              "position_m": {
+                "median": 0.3952429080330715,
+                "p95": 0.5551102519370152,
+                "maximum": 0.5602523342692302,
+                "last": 0.4704963178191582
+              },
+              "yaw_deg": {
+                "p95": 10.162522283432345,
+                "maximum": 13.326741184573592,
+                "last": 12.43768964757298
+              }
+            },
+            "200": {
+              "samples": 981,
+              "position_m": {
+                "median": 1.2596353587355749,
+                "p95": 2.145031489661404,
+                "maximum": 2.1883677276637203,
+                "last": 1.6908120147641248
+              },
+              "yaw_deg": {
+                "p95": 21.354582646861616,
+                "maximum": 24.7069371698597,
+                "last": 14.207374527847328
+              }
+            }
+          }
+        },
+        "map": {
+          "anchor_stamp": 4.152,
+          "world_to_frame": [
+            -13.758096347229994,
+            -7.40838595457042,
+            0.3911638559038438
+          ],
+          "windows": {
+            "60": {
+              "samples": 294,
+              "position_m": {
+                "median": 0.004247942889661167,
+                "p95": 0.011471639325176907,
+                "maximum": 0.023886331476481386,
+                "last": 0.010437039623374922
+              },
+              "yaw_deg": {
+                "p95": 6.171632669195072,
+                "maximum": 7.253389162566742,
+                "last": 0.2599145292188291
+              }
+            },
+            "200": {
+              "samples": 980,
+              "position_m": {
+                "median": 1.5157365419030597,
+                "p95": 1.6286674801531098,
+                "maximum": 1.6427174584977515,
+                "last": 1.5157693030716053
+              },
+              "yaw_deg": {
+                "p95": 6.770853545892569,
+                "maximum": 12.930071702421097,
+                "last": 7.583413613691813
+              }
+            }
+          }
+        }
+      },
+      "startup": {
+        "success": true,
+        "reason": "slam_active_map_tf_scan_ready",
+        "finished_wall_epoch_s": 1794663038.0406523,
+        "elapsed_wall_s": 6.235212367027998,
+        "observed_slam_state": 3,
+        "transitions": {
+          "1": 1,
+          "3": 1
+        },
+        "events": [
+          {
+            "event": "state_observed",
+            "elapsed_wall_s": 1.486275577917695,
+            "state": 1
+          },
+          {
+            "event": "transition_requested",
+            "elapsed_wall_s": 1.6859319019131362,
+            "from_state": 1,
+            "transition": 1
+          },
+          {
+            "event": "transition_response",
+            "elapsed_wall_s": 2.4845847841352224,
+            "success": true
+          },
+          {
+            "event": "state_observed",
+            "elapsed_wall_s": 2.987747840117663,
+            "state": 2
+          },
+          {
+            "event": "transition_requested",
+            "elapsed_wall_s": 2.9949812781997025,
+            "from_state": 2,
+            "transition": 3
+          },
+          {
+            "event": "transition_response",
+            "elapsed_wall_s": 3.234185616951436,
+            "success": true
+          },
+          {
+            "event": "state_observed",
+            "elapsed_wall_s": 3.7342166281305254,
+            "state": 3
+          },
+          {
+            "event": "finished",
+            "elapsed_wall_s": 6.234644430223852,
+            "success": true,
+            "reason": "slam_active_map_tf_scan_ready"
+          }
+        ],
+        "map_ready": true,
+        "nav2_released_after_readiness": true,
+        "tf_ready": {
+          "map": 1,
+          "odom": 1
+        },
+        "scan_stamp": 2.534,
+        "clock_stamp": 2.607
+      },
+      "live": {
+        "state": "running",
+        "approached_ids": [
+          784
+        ],
+        "targets": 1,
+        "collisions": 0,
+        "elapsed_seconds": 228.997,
+        "active_action": "nav",
+        "readiness_reason": "",
+        "sensor_interruptions": 0,
+        "nav2_lifecycle": {
+          "controller_server": 3,
+          "planner_server": 3,
+          "behavior_server": 3,
+          "bt_navigator": 3
+        },
+        "drive_controllers": {
+          "diffdrive_controller": "active",
+          "joint_state_broadcaster": "active"
+        },
+        "confirmed_surface_cells": 96,
+        "confirmed_face_anchors": 0,
+        "reassociated_face_records": 0,
+        "camera_diagnostics": {
+          "received": 6999,
+          "late": 0,
+          "invalid_calibration": 0,
+          "duplicate": 0,
+          "accepted": 6999,
+          "coverage_updates": 1261,
+          "tf_waits": 6184
+        }
+      },
+      "planning": {
+        "first": {
+          "raw_candidates": 37,
+          "eligible_candidates": 37,
+          "start_cell": [
+            60,
+            227
+          ],
+          "reason": "eligible_goals",
+          "elapsed_seconds": 1.9969999999999999,
+          "memory": {
+            "version": 2,
+            "visited_cells": 1,
+            "completed_viewpoints": 0,
+            "failed_viewpoints": 0,
+            "retry_after": 6.0,
+            "suppressed_redundant_viewpoints": 0,
+            "path_distance_m": 0.0,
+            "revisited_distance_m": 0.0,
+            "source": "odom + observed SLAM/TF only; revisits include necessary transit"
+          }
+        },
+        "first60_reasons": [
+          "eligible_goals",
+          "eligible_goals",
+          "eligible_goals",
+          "eligible_goals"
+        ]
+      },
+      "log_observations": {
+        "stale_velocity_warning_lines_first200": 590,
+        "unique_stale_command_stamps_first200": 36,
+        "maximum_stale_age_s_first200": 1.571,
+        "empty_path_failures": 1,
+        "goal_failures": 1,
+        "halt_result_errors": 3
+      },
+      "first_large_map_error_transition": {
+        "gt": 0.05098999386359162,
+        "odom": 0.051728116434009944,
+        "map": 1.5378700359418576,
+        "elapsed_seconds": 74.664,
+        "dt": 0.20400000000000773
+      },
+      "retained_trace_snapshot": "/home/peter/simul/training_robust/native90/tb4_platform_early_odometry_audit_v1/job_0_pose_trace.csv",
+      "retained_trace_sha256": "7e822321ebb3c1b645da00dd4a72ddd08e29853af7144b818ed889ae91495512"
+    },
+    {
+      "number": 1,
+      "shape": "u_shape",
+      "episode": "/home/peter/simul/training_robust/native90/tb4_platform_cem_v1/jobs/00001_train_g0_0/episodes/1195000101",
+      "pose_trace_sha256_at_capture": "0bbe29117b2e1f142ec4e4d3870d01c2f0b0bcd08274c071d09e3543e76e26a4",
+      "measurement": {
+        "odom": {
+          "anchor_stamp": 4.052,
+          "world_to_frame": [
+            2.93877347408338,
+            -14.396795451998715,
+            0.3121595846623766
+          ],
+          "windows": {
+            "60": {
+              "samples": 295,
+              "position_m": {
+                "median": 0.08219440930011047,
+                "p95": 1.2715421745512434,
+                "maximum": 1.3357848699027868,
+                "last": 1.3330296052184674
+              },
+              "yaw_deg": {
+                "p95": 20.468689726944923,
+                "maximum": 22.618416234790903,
+                "last": 12.864200988096899
+              }
+            },
+            "200": {
+              "samples": 981,
+              "position_m": {
+                "median": 2.9863325417905053,
+                "p95": 4.948637038997134,
+                "maximum": 5.649569365357768,
+                "last": 5.649569365357768
+              },
+              "yaw_deg": {
+                "p95": 24.21604011741151,
+                "maximum": 26.49336254591681,
+                "last": 25.23278247294188
+              }
+            }
+          }
+        },
+        "map": {
+          "anchor_stamp": 4.202,
+          "world_to_frame": [
+            2.93877347408338,
+            -14.396795451998715,
+            0.3121595846623766
+          ],
+          "windows": {
+            "60": {
+              "samples": 294,
+              "position_m": {
+                "median": 0.008670355232485362,
+                "p95": 0.012777127156935516,
+                "maximum": 0.020869483268809896,
+                "last": 0.0088116366260185
+              },
+              "yaw_deg": {
+                "p95": 7.580195412938698,
+                "maximum": 12.69283583995275,
+                "last": 1.53308248795045
+              }
+            },
+            "200": {
+              "samples": 980,
+              "position_m": {
+                "median": 0.03867877884325285,
+                "p95": 0.05210634396007161,
+                "maximum": 0.07421005939383787,
+                "last": 0.07421005939383787
+              },
+              "yaw_deg": {
+                "p95": 7.580195412938698,
+                "maximum": 14.499429880904001,
+                "last": 1.4836321582664564
+              }
+            }
+          }
+        }
+      },
+      "startup": {
+        "success": true,
+        "reason": "slam_active_map_tf_scan_ready",
+        "finished_wall_epoch_s": 1794663037.32784,
+        "elapsed_wall_s": 6.2804935169406235,
+        "observed_slam_state": 3,
+        "transitions": {
+          "1": 1,
+          "3": 1
+        },
+        "events": [
+          {
+            "event": "state_observed",
+            "elapsed_wall_s": 0.7792547130957246,
+            "state": 1
+          },
+          {
+            "event": "transition_requested",
+            "elapsed_wall_s": 0.8558603571727872,
+            "from_state": 1,
+            "transition": 1
+          },
+          {
+            "event": "transition_response",
+            "elapsed_wall_s": 1.2794238179922104,
+            "success": true
+          },
+          {
+            "event": "state_observed",
+            "elapsed_wall_s": 1.7805983372963965,
+            "state": 2
+          },
+          {
+            "event": "transition_requested",
+            "elapsed_wall_s": 1.7986508533358574,
+            "from_state": 2,
+            "transition": 3
+          },
+          {
+            "event": "transition_response",
+            "elapsed_wall_s": 2.279215306043625,
+            "success": true
+          },
+          {
+            "event": "state_observed",
+            "elapsed_wall_s": 2.7804794711992145,
+            "state": 3
+          },
+          {
+            "event": "finished",
+            "elapsed_wall_s": 6.27962071634829,
+            "success": true,
+            "reason": "slam_active_map_tf_scan_ready"
+          }
+        ],
+        "map_ready": true,
+        "nav2_released_after_readiness": true,
+        "tf_ready": {
+          "map": 1,
+          "odom": 1
+        },
+        "scan_stamp": 2.534,
+        "clock_stamp": 2.652
+      },
+      "live": {
+        "state": "running",
+        "approached_ids": [
+          310
+        ],
+        "targets": 1,
+        "collisions": 0,
+        "elapsed_seconds": 223.419,
+        "active_action": "nav",
+        "readiness_reason": "",
+        "sensor_interruptions": 0,
+        "nav2_lifecycle": {
+          "controller_server": 3,
+          "planner_server": 3,
+          "behavior_server": 3,
+          "bt_navigator": 3
+        },
+        "drive_controllers": {
+          "diffdrive_controller": "active",
+          "joint_state_broadcaster": "active"
+        },
+        "confirmed_surface_cells": 63,
+        "confirmed_face_anchors": 0,
+        "reassociated_face_records": 0,
+        "camera_diagnostics": {
+          "received": 6825,
+          "late": 0,
+          "invalid_calibration": 0,
+          "duplicate": 0,
+          "accepted": 6825,
+          "coverage_updates": 1150,
+          "tf_waits": 5944
+        }
+      },
+      "planning": {
+        "first": {
+          "raw_candidates": 40,
+          "eligible_candidates": 40,
+          "start_cell": [
+            230,
+            39
+          ],
+          "reason": "eligible_goals",
+          "elapsed_seconds": 1.9189999999999996,
+          "memory": {
+            "version": 2,
+            "visited_cells": 1,
+            "completed_viewpoints": 0,
+            "failed_viewpoints": 0,
+            "retry_after": 6.0,
+            "suppressed_redundant_viewpoints": 0,
+            "path_distance_m": 0.0,
+            "revisited_distance_m": 0.0,
+            "source": "odom + observed SLAM/TF only; revisits include necessary transit"
+          }
+        },
+        "first60_reasons": [
+          "eligible_goals",
+          "eligible_goals",
+          "eligible_goals"
+        ]
+      },
+      "log_observations": {
+        "stale_velocity_warning_lines_first200": 579,
+        "unique_stale_command_stamps_first200": 33,
+        "maximum_stale_age_s_first200": 1.584,
+        "empty_path_failures": 0,
+        "goal_failures": 0,
+        "halt_result_errors": 4
+      },
+      "retained_trace_snapshot": "/home/peter/simul/training_robust/native90/tb4_platform_early_odometry_audit_v1/job_1_pose_trace.csv",
+      "retained_trace_sha256": "73ebd20c0593c85ee66c8679fdb5b5cd874a0d4b650dc9e63df31b230e56f045"
+    }
+  ],
+  "interpretation": {
+    "startup": "Both runs had eligible observed-map goals at approximately 2 sim seconds; no initial no-path decision observed.",
+    "odom": "Raw encoder odometry drift is already visible in the first 60s; it does not reproduce Create3 fused odometry.",
+    "map": "C-shape map pose moved 1.538m in 0.204s at about 74.664s while ground truth and odom each moved about 0.051m. This is a SLAM map-to-odom correction jump, not a matching physical teleport. Exact scan-matching/loop-closure cause is not yet established.",
+    "navigation": "One empty-plan/goal failure is logged in C-shape near the correction; navigation selected another goal and continued. This is not proof of an odometry-only cause.",
+    "warnings": "Repeated stale-command log lines reuse old timestamps; line count is not a count of independent motion failures.",
+    "prior_screen": "Prior 60s native integration pass remains true, but does not establish longer-run localization reliability.",
+    "ongoing_runs": "Original runtime, queued scenarios and running native processes preserved. Final mission audits have not completed."
+  }
+}

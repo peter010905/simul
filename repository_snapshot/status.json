@@ -669,5 +669,7 @@
   "tb4_platform_hardware_validated": false,
   "tb4_platform_native_screen_passed": true,
   "tb4_platform_full_task_validated": false,
-  "active_tb4_campaign": "tb4_platform_cem_v1"
+  "active_tb4_campaign": "tb4_platform_cem_v1",
+  "tb4_early_odometry_audit": "repository_snapshot/tb4_early_odometry_audit.json",
+  "tb4_long_run_localization_reliable": false
 }

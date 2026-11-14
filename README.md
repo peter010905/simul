@@ -2,6 +2,8 @@
 
 **2026-11-14 TurtleBot4 플랫폼 정렬:** 실물의 `odom`·TF를 사용하는 구조와 공통 SLAM/Nav2 설정, RGB preview 입력, stamped 속도 명령 검사를 [별도 후보](policy_candidates/2026-11-14_tb4_platform_v1)에 추가했습니다. 시뮬레이션 전용 EKF·휠 보정은 새 launch에서 제거했습니다. **Create 3 내부 센서 융합까지 동일한 시뮬레이션은 아니며, 실제 로봇 검증은 미완료입니다.** 373개 런타임·3개 감독기·1개 ROS 통신 검사를 통과했습니다. 새 약60초 Gazebo 구성 검사는 실제9.93m 이동·충돌0회·지도/pose graph 저장을 확인했고, 이 구간 지도 위치 오차는 최대3.8cm였습니다. 마커0개인 짧은 구성 검사이므로 전체 과제 성공으로 집계하지 않습니다. 같은 구성으로 새12개 ㄷ/U/zigzag 맵에서600초 학습을 시작했습니다. 검증과 학습 상태는 [플랫폼 기록](repository_snapshot/tb4_platform_candidate.json)에 분리합니다.
 
+**후속 초반 위치추정 점검:** 새 ㄷ/U 주행의 처음200초에서 원시 encoder odom 최대 위치 오차는 각각2.19m/5.65m였습니다. SLAM 지도 위치 오차는 ㄷ자1.64m, U자7.4cm였습니다. ㄷ자는 약74.7초에 실제 몸체가5.1cm 이동하는 동안 지도 자세가1.54m 이동했고, 부근에서 빈 경로 실패1회 후 재계획했습니다. 처음60초의 구성 검사 통과를 장시간 위치추정 신뢰성으로 확대하지 않습니다. 진행 중 주행이며 실물 검증·전체 과제 성공률이 아닙니다. [측정 방법·초반 문제](repository_snapshot/tb4_early_odometry_audit.json).
+
 **이전 2026-11-14 실물 대응 후보:** 열린 길 오판·동일 경로 반복에 대응하는 [새 후보와 재현 방법](policy_candidates/2026-11-14_robot_transfer_v1)을 별도 준비했습니다. 시작점 연결·방문/실패 기억·실물 실행 기본값을 수정하고, ㄷ/U/zigzag에서 합성 LiDAR 잡음·지연·누락과 encoder 오차를 넣어 native 학습을 진행했습니다. 새 플랫폼으로 전환하며 원래 실험을 보존합니다. 새 후보357개, 동일 입력의 비교 기준348개 테스트를 통과했습니다. 사용자 실물은 **TurtleBot4**로 확인됐습니다. 시뮬레이션은 원래 과제의 Standard 모델을 유지하며, 실제 센서 설정·로그는 아직 확인하지 못했습니다. 실제 로봇 성공 여부와 개선 폭은 아직 검증하지 않았습니다. [변경·이전 학습 분석](repository_snapshot/robot_transfer_candidate.json).
 
 GitHub 진행 기록·완성 영상 게시용 로컬 `osp-training-progress.timer`를 **30분 간격**으로 활성화했고, 첫 자동 커밋·푸시까지 확인했습니다. 별도 checkout에서 요약 파일만 반영하며 호스트의 사용자 서비스가 실행되는 동안 동작합니다. 자동 코드 수정·무인 코드 리뷰나 실제 로봇 원격 조작은 구성하지 않았습니다. [게시 서비스 설정](scripts/systemd/osp-training-progress.service) · [타이머](scripts/systemd/osp-training-progress.timer).
