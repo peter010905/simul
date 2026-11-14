@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-14T12:31:44.758234+00:00",
+  "updated_utc": "2026-11-14T12:38:47.369188+00:00",
   "release_url": "https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11",
   "uploaded_verified": 281,
   "videos": [
@@ -4511,6 +4511,14 @@
     },
     {
       "path": "training_robust/native90/marker_focus_v6_service_screen3/episodes/8600133/video/mission.mp4",
+      "reason": "Final evaluation or recording metadata absent"
+    },
+    {
+      "path": "training_robust/native90/robot_transfer_cem_v1/jobs/00000_train_g0_0/episodes/1194000000/video/mission.mp4",
+      "reason": "Final evaluation or recording metadata absent"
+    },
+    {
+      "path": "training_robust/native90/robot_transfer_cem_v1/jobs/00001_train_g0_0/episodes/1194000101/video/mission.mp4",
       "reason": "Final evaluation or recording metadata absent"
     },
     {
