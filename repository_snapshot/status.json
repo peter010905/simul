@@ -649,5 +649,14 @@
     "captured_utc": "2026-11-14T12:38:47.499737+00:00",
     "synthetic_stress_is_real_robot_calibration": false,
     "automation_scope": "local systemd timer: summary and finished-video publication only"
+  },
+  "github_progress_automation": {
+    "timer_unit": "osp-training-progress.timer",
+    "interval_minutes": 30,
+    "enabled": true,
+    "first_push_verified_commit": "5664166ebc0175124b5037c7d10515558a487afb",
+    "scope": "Generated experiment summaries and completed videos only",
+    "automatic_code_review": false,
+    "host_user_services_required": true
   }
 }

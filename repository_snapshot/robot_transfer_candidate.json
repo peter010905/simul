@@ -79,6 +79,12 @@
     "repository_visibility": "PUBLIC",
     "public_video_upload_previously_authorized": true,
     "verified_finished_videos": 281,
-    "automatic_code_review": false
+    "automatic_code_review": false,
+    "timer_enabled": true,
+    "timer_unit": "osp-training-progress.timer",
+    "interval_minutes": 30,
+    "first_automatic_push_verified_commit": "5664166ebc0175124b5037c7d10515558a487afb",
+    "host_user_services_required": true,
+    "isolated_checkout": "deployment/github_progress"
   }
 }

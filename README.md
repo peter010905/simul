@@ -2,6 +2,8 @@
 
 **2026-11-14 실물 대응 학습:** 열린 길 오판·동일 경로 반복에 대응하는 [새 후보와 재현 방법](policy_candidates/2026-11-14_robot_transfer_v1)을 별도 준비했습니다. 시작점 연결·방문/실패 기억·실물 실행 기본값을 수정하고, ㄷ/U/zigzag에서 합성 LiDAR 잡음·지연·누락과 encoder 오차를 넣어 native 학습 중입니다. 새 후보357개, 동일 입력의 비교 기준348개 테스트를 통과했습니다. 실제 로봇 성공 여부와 개선 폭은 아직 검증하지 않았습니다. [변경·이전 학습 분석](repository_snapshot/robot_transfer_candidate.json).
 
+GitHub 진행 기록·완성 영상 게시용 로컬 `osp-training-progress.timer`를 **30분 간격**으로 활성화했고, 첫 자동 커밋·푸시까지 확인했습니다. 별도 checkout에서 요약 파일만 반영하며 호스트의 사용자 서비스가 실행되는 동안 동작합니다. 자동 코드 수정·무인 코드 리뷰나 실제 로봇 원격 조작은 구성하지 않았습니다. [게시 서비스 설정](scripts/systemd/osp-training-progress.service) · [타이머](scripts/systemd/osp-training-progress.timer).
+
 최신 실제 검증 정책: [정책 계수](policy_releases/2026-11-13_face_intent_v2/policy.json) · [고정 실행 소스·빌드 방법·검증 결과](policy_releases/2026-11-13_face_intent_v2) · [최신 묶음 정보](policy_releases/latest.json). 별도 작업 공간의 재빌드와348개 테스트를 확인했습니다. 직사각형388.627초 완주 후보이며, 여러 공간의 독립 검증과 실제 로봇 검증은 아직 완료하지 않았습니다.
 
 > **2026-11-13 병목 점검:** 같은 계수의 기준 정책은7종 새 공간에서4/7회 완주(57.1%)입니다. 다른 학습 계수까지 포함한 입력 검증 완료 주행은10/16회(62.5%)이며, 입력 검증 누락1건까지 포함한 전체 엄격 집계는10/17회(58.8%)입니다. 독립 검증 성공률은 아직 없습니다.
