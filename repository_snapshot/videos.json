@@ -1,7 +1,7 @@
 {
-  "updated_utc": "2026-11-14T12:38:47.369188+00:00",
+  "updated_utc": "2026-11-14T13:01:00.348276+00:00",
   "release_url": "https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11",
-  "uploaded_verified": 281,
+  "uploaded_verified": 283,
   "videos": [
     {
       "asset": "fix_v10_escape_regression3__9802005.mp4",
@@ -3236,6 +3236,38 @@
       "uploaded_verified": true
     },
     {
+      "asset": "robot_transfer_cem_v1__00000_train_g0_0__1194000000.mp4",
+      "local_path": "training_robust/native90/robot_transfer_cem_v1/jobs/00000_train_g0_0/episodes/1194000000/video/mission.mp4",
+      "bytes": 13140456,
+      "sha256": "77707b269c673a4d6f18583ea3d2bd9ea32732dc2d98518394c8fba4bfc11bb3",
+      "url": "https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/robot_transfer_cem_v1__00000_train_g0_0__1194000000.mp4",
+      "original_evaluator_success": false,
+      "reason": "timeout",
+      "elapsed_sim_seconds": 600.305,
+      "targets": 1,
+      "collisions": 0,
+      "actual_approach_1_5m": false,
+      "recording_frames": 3003,
+      "recording_seconds": 600.6,
+      "uploaded_verified": true
+    },
+    {
+      "asset": "robot_transfer_cem_v1__00001_train_g0_0__1194000101.mp4",
+      "local_path": "training_robust/native90/robot_transfer_cem_v1/jobs/00001_train_g0_0/episodes/1194000101/video/mission.mp4",
+      "bytes": 12633495,
+      "sha256": "427222fc1840c4f9a5fa1845070983693bf08d90a385464e156c1858fbd1271e",
+      "url": "https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/robot_transfer_cem_v1__00001_train_g0_0__1194000101.mp4",
+      "original_evaluator_success": false,
+      "reason": "timeout",
+      "elapsed_sim_seconds": 600.003,
+      "targets": 3,
+      "collisions": 0,
+      "actual_approach_1_5m": true,
+      "recording_frames": 3001,
+      "recording_seconds": 600.2,
+      "uploaded_verified": true
+    },
+    {
       "asset": "route_v14_timecost_screen3__9802001.mp4",
       "local_path": "training_robust/native90/route_v14_timecost_screen3/episodes/9802001/video/mission.mp4",
       "bytes": 11982150,
@@ -4514,11 +4546,7 @@
       "reason": "Final evaluation or recording metadata absent"
     },
     {
-      "path": "training_robust/native90/robot_transfer_cem_v1/jobs/00000_train_g0_0/episodes/1194000000/video/mission.mp4",
-      "reason": "Final evaluation or recording metadata absent"
-    },
-    {
-      "path": "training_robust/native90/robot_transfer_cem_v1/jobs/00001_train_g0_0/episodes/1194000101/video/mission.mp4",
+      "path": "training_robust/native90/robot_transfer_cem_v1/jobs/00002_train_g0_0/episodes/1194000202/video/mission.mp4",
       "reason": "Final evaluation or recording metadata absent"
     },
     {
