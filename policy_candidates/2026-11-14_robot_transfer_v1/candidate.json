@@ -1,0 +1,31 @@
+{
+  "candidate_id": "2026-11-14_robot_transfer_v1",
+  "base_release": "2026-11-13_face_intent_v2",
+  "status": "native_training_candidate",
+  "hardware_validated": false,
+  "production_promoted": false,
+  "tests": {
+    "runtime": 357,
+    "paired_baseline_runtime": 348,
+    "supervisor": 3
+  },
+  "overlay_files": {
+    "launch/bridge.launch.py": "e177ee356c6c6e56f07c1ce0cbff12fdb2cf75154119ae5081d26b2bbdc47cef",
+    "launch/control.launch.py": "bf6370ec682486c292dc187ad15271be37038f97d20d0345e01bf276383bf87b",
+    "launch/robot.launch.py": "571ce649cfe5b48cd3d1a502233decdc740df5b289fdd7d5a97b38d82311be6f",
+    "launch/simulation.launch.py": "7d00c9d341e1f50d4ffc039c8e3a6d5da00110910d1d00afcc5db68559c71322",
+    "osp_mission/calibrated_wheel_twist.py": "5f501bf5c5a2b0594378d481cdba06073010ee25e550f1d147ae3fbf2a384790",
+    "osp_mission/edge_policy.py": "857877826e44828d8ad8b5e8e5be8a6e9f7fea80ad8463b5b91f32133f3a7d1e",
+    "osp_mission/escape_connectivity.py": "0e92c37e1002e3010115f47fad0e559d749ada53f8810268539629a02075f4a7",
+    "osp_mission/exploration_memory.py": "b2411f465bcefa4ef8de9bd1005cc42076ae65018be421040dd07c5ce25d6b02",
+    "osp_mission/mission.py": "2910791d04afb2ca1a2ef7562218584b30ce076e7cc1f0eb6c60956050910334",
+    "osp_mission/planning_diagnostics.py": "0d41b1a2404ffac6e8e77e4b2e9318b3a1ac0515e59216c48a9a4de46b37002c",
+    "osp_mission/startup_guard.py": "fd4ddacc6258482ff89a1196047c6963696438ebc74d587f22ee8c84a894514a",
+    "osp_mission/transfer_noise.py": "03640d776cfe62f8f20c0e83b247eac6c070d3f96fd3210ab6b18731d28ce4ed",
+    "osp_mission/transfer_scan.py": "5897129fa8c1dbbfff5888085cf7f81ac7674a4f9688eef70b8d133e2b9c0fd0",
+    "setup.py": "d0b864731259557028a3686bc5772233705bb9f75306cdd12ec1853e530a1467",
+    "test/test_robot_transfer.py": "3a3aa6d41539bc1ae48e856bafc4ae48ab014c9d0c6967a49c108a4c855cecab",
+    "test/test_spatial_runtime.py": "540fd9ed5a217df91059803b92545c9c46d465b747dcf5115af267bca538abfe"
+  },
+  "build_script_sha256": "b1bd3a75491dd31ab3f480b5297cbb0b7a77c42f07e406f7ae18a8331998f7a7"
+}

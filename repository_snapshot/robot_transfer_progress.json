@@ -1,0 +1,62 @@
+{
+  "campaign": "robot_transfer_cem_v2",
+  "status": "running",
+  "coordinator_active": true,
+  "generation": 0,
+  "phase": "train",
+  "recorded_completed": 0,
+  "valid_completed": 0,
+  "successes": 0,
+  "infrastructure_failures": 0,
+  "by_phase_role_profile_shape": {},
+  "active": [
+    {
+      "number": 0,
+      "unit": "osp-spatial-nov14-transfer1-00000.service",
+      "service_active": true,
+      "shape": "c_shape",
+      "profile": "none",
+      "gates": {
+        "floor_sensor_gate": true,
+        "runtime_configuration_gate": true,
+        "slam_transport_gate": true,
+        "velocity_profile_gate": true,
+        "transfer_input_gate": true
+      },
+      "live": {
+        "state": "running",
+        "targets": 1,
+        "collisions": 0,
+        "elapsed_seconds": 129.805,
+        "readiness_reason": ""
+      }
+    },
+    {
+      "number": 1,
+      "unit": "osp-spatial-nov14-transfer1-00001.service",
+      "service_active": true,
+      "shape": "u_shape",
+      "profile": "mild",
+      "gates": {
+        "floor_sensor_gate": true,
+        "runtime_configuration_gate": true,
+        "slam_transport_gate": true,
+        "velocity_profile_gate": true,
+        "transfer_input_gate": true
+      },
+      "live": {
+        "state": "running",
+        "targets": 1,
+        "collisions": 0,
+        "elapsed_seconds": 134.001,
+        "readiness_reason": ""
+      }
+    }
+  ],
+  "evidence_type": "native_gazebo_training_and_paired_development_not_hardware",
+  "production_promoted": false,
+  "hardware_validated": false,
+  "captured_utc": "2026-11-14T12:36:22.532486+00:00",
+  "synthetic_stress_is_real_robot_calibration": false,
+  "automation_scope": "local systemd timer: summary and finished-video publication only"
+}

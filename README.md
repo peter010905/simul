@@ -1,5 +1,7 @@
 # OSP Final Project — ROS 2 Jazzy
 
+**2026-11-14 실물 대응 학습:** 열린 길 오판·동일 경로 반복에 대응하는 [새 후보와 재현 방법](policy_candidates/2026-11-14_robot_transfer_v1)을 별도 준비했습니다. 시작점 연결·방문/실패 기억·실물 실행 기본값을 수정하고, ㄷ/U/zigzag에서 합성 LiDAR 잡음·지연·누락과 encoder 오차를 넣어 native 학습 중입니다. 새 후보357개, 동일 입력의 비교 기준348개 테스트를 통과했습니다. 실제 로봇 성공 여부와 개선 폭은 아직 검증하지 않았습니다. [변경·이전 학습 분석](repository_snapshot/robot_transfer_candidate.json).
+
 최신 실제 검증 정책: [정책 계수](policy_releases/2026-11-13_face_intent_v2/policy.json) · [고정 실행 소스·빌드 방법·검증 결과](policy_releases/2026-11-13_face_intent_v2) · [최신 묶음 정보](policy_releases/latest.json). 별도 작업 공간의 재빌드와348개 테스트를 확인했습니다. 직사각형388.627초 완주 후보이며, 여러 공간의 독립 검증과 실제 로봇 검증은 아직 완료하지 않았습니다.
 
 > **2026-11-13 병목 점검:** 같은 계수의 기준 정책은7종 새 공간에서4/7회 완주(57.1%)입니다. 다른 학습 계수까지 포함한 입력 검증 완료 주행은10/16회(62.5%)이며, 입력 검증 누락1건까지 포함한 전체 엄격 집계는10/17회(58.8%)입니다. 독립 검증 성공률은 아직 없습니다.
@@ -303,7 +305,7 @@ python3 scripts/publish_simulation_videos.py --upload
 
 ## 저장된 Gazebo 영상
 
-[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 196개
+[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 281개
 
 아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다. 환경 오류로 종료한 영상은 정책 학습 표본에서 제외합니다.
 
@@ -329,6 +331,86 @@ python3 scripts/publish_simulation_videos.py --upload
 | [approach_v9_io_remaining2__8600133.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/approach_v9_io_remaining2__8600133.mp4) | 실패 | 확인 | 600.467 |
 | [approach_v9_io_remaining2__8600139.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/approach_v9_io_remaining2__8600139.mp4) | 성공 | 확인 | 524.0 |
 | [bounded_gain_fresh_probe_v1__case_0__1160000404.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/bounded_gain_fresh_probe_v1__case_0__1160000404.mp4) | 성공 | 확인 | 197.4 |
+| [concave_challenge_v3__00000_train_g0_0__1192700000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00000_train_g0_0__1192700000.mp4) | 성공 | 확인 | 273.5 |
+| [concave_challenge_v3__00001_train_g0_0__1192700101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00001_train_g0_0__1192700101.mp4) | 성공 | 확인 | 249.629 |
+| [concave_challenge_v3__00002_train_g0_0__1192700202.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00002_train_g0_0__1192700202.mp4) | 실패 | 미달 | 600.043 |
+| [concave_challenge_v3__00003_train_g0_1__1192700303.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00003_train_g0_1__1192700303.mp4) | 실패 | 확인 | 600.066 |
+| [concave_challenge_v3__00004_train_g0_1__1192700404.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00004_train_g0_1__1192700404.mp4) | 성공 | 확인 | 431.5 |
+| [concave_challenge_v3__00005_train_g0_1__1192700505.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00005_train_g0_1__1192700505.mp4) | 실패 | 확인 | 600.054 |
+| [concave_challenge_v3__00006_train_g0_2__1192700606.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00006_train_g0_2__1192700606.mp4) | 성공 | 확인 | 444.197 |
+| [concave_challenge_v3__00007_train_g0_2__1192700707.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00007_train_g0_2__1192700707.mp4) | 성공 | 확인 | 295.1 |
+| [concave_challenge_v3__00008_train_g0_2__1192700808.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00008_train_g0_2__1192700808.mp4) | 실패 | 확인 | 600.279 |
+| [concave_challenge_v3__00009_train_g0_3__1192700909.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00009_train_g0_3__1192700909.mp4) | 실패 | 확인 | 600.0 |
+| [concave_challenge_v3__00010_train_g0_3__1192701010.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00010_train_g0_3__1192701010.mp4) | 성공 | 확인 | 499.078 |
+| [concave_challenge_v3__00012_pilot_g0_candidate__1192701212.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00012_pilot_g0_candidate__1192701212.mp4) | 성공 | 확인 | 470.138 |
+| [concave_challenge_v3__00013_pilot_g0_baseline__1192701212.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00013_pilot_g0_baseline__1192701212.mp4) | 실패 | 확인 | 600.376 |
+| [concave_challenge_v3__00014_pilot_g0_candidate__1192701414.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00014_pilot_g0_candidate__1192701414.mp4) | 성공 | 확인 | 483.722 |
+| [concave_challenge_v3__00015_pilot_g0_baseline__1192701414.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00015_pilot_g0_baseline__1192701414.mp4) | 성공 | 확인 | 339.219 |
+| [concave_challenge_v3__00016_pilot_g0_candidate__1192701616.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00016_pilot_g0_candidate__1192701616.mp4) | 실패 | 확인 | 600.264 |
+| [concave_challenge_v3__00017_pilot_g0_baseline__1192701616.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00017_pilot_g0_baseline__1192701616.mp4) | 실패 | 확인 | 600.1 |
+| [concave_challenge_v3__00018_train_g1_0__1192701818.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00018_train_g1_0__1192701818.mp4) | 성공 | 확인 | 589.6 |
+| [concave_challenge_v3__00019_train_g1_0__1192701919.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00019_train_g1_0__1192701919.mp4) | 실패 | 확인 | 600.125 |
+| [concave_challenge_v3__00020_train_g1_0__1192702020.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00020_train_g1_0__1192702020.mp4) | 실패 | 확인 | 600.036 |
+| [concave_challenge_v3__00021_train_g1_1__1192702121.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00021_train_g1_1__1192702121.mp4) | 성공 | 확인 | 523.502 |
+| [concave_challenge_v3__00022_train_g1_1__1192702222.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00022_train_g1_1__1192702222.mp4) | 실패 | 확인 | 600.071 |
+| [concave_challenge_v3__00023_train_g1_1__1192702323.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00023_train_g1_1__1192702323.mp4) | 실패 | 확인 | 600.043 |
+| [concave_challenge_v3__00024_train_g1_2__1192702424.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00024_train_g1_2__1192702424.mp4) | 성공 | 확인 | 592.115 |
+| [concave_challenge_v3__00025_train_g1_2__1192702525.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00025_train_g1_2__1192702525.mp4) | 실패 | 확인 | 600.291 |
+| [concave_challenge_v3__00026_train_g1_2__1192702626.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00026_train_g1_2__1192702626.mp4) | 성공 | 확인 | 584.623 |
+| [concave_challenge_v3__00027_train_g1_3__1192702727.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00027_train_g1_3__1192702727.mp4) | 실패 | 확인 | 600.483 |
+| [concave_challenge_v3__00028_train_g1_3__1192702828.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00028_train_g1_3__1192702828.mp4) | 성공 | 확인 | 349.7 |
+| [concave_challenge_v3__00029_train_g1_3__1192702929.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00029_train_g1_3__1192702929.mp4) | 실패 | 확인 | 600.364 |
+| [concave_challenge_v3__00030_pilot_g1_candidate__1192703030.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00030_pilot_g1_candidate__1192703030.mp4) | 실패 | 확인 | 600.351 |
+| [concave_challenge_v3__00031_pilot_g1_baseline__1192703030.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00031_pilot_g1_baseline__1192703030.mp4) | 성공 | 확인 | 446.2 |
+| [concave_challenge_v3__00032_pilot_g1_candidate__1192703232.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00032_pilot_g1_candidate__1192703232.mp4) | 실패 | 확인 | 600.234 |
+| [concave_challenge_v3__00033_pilot_g1_baseline__1192703232.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00033_pilot_g1_baseline__1192703232.mp4) | 성공 | 확인 | 338.038 |
+| [concave_challenge_v3__00034_pilot_g1_candidate__1192703434.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00034_pilot_g1_candidate__1192703434.mp4) | 실패 | 확인 | 600.481 |
+| [concave_challenge_v3__00035_pilot_g1_baseline__1192703434.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00035_pilot_g1_baseline__1192703434.mp4) | 실패 | 확인 | 600.028 |
+| [concave_challenge_v3__00036_train_g2_0__1192703636.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00036_train_g2_0__1192703636.mp4) | 실패 | 확인 | 600.3 |
+| [concave_challenge_v3__00037_train_g2_0__1192703737.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00037_train_g2_0__1192703737.mp4) | 실패 | 확인 | 600.468 |
+| [concave_challenge_v3__00038_train_g2_0__1192703838.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00038_train_g2_0__1192703838.mp4) | 실패 | 확인 | 600.107 |
+| [concave_challenge_v3__00039_train_g2_1__1192703939.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00039_train_g2_1__1192703939.mp4) | 성공 | 확인 | 305.636 |
+| [concave_challenge_v3__00040_train_g2_1__1192704040.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00040_train_g2_1__1192704040.mp4) | 실패 | 확인 | 600.1 |
+| [concave_challenge_v3__00041_train_g2_1__1192704141.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00041_train_g2_1__1192704141.mp4) | 실패 | 확인 | 600.264 |
+| [concave_challenge_v3__00042_train_g2_2__1192704242.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00042_train_g2_2__1192704242.mp4) | 성공 | 확인 | 557.203 |
+| [concave_challenge_v3__00043_train_g2_2__1192704343.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00043_train_g2_2__1192704343.mp4) | 실패 | 확인 | 600.489 |
+| [concave_challenge_v3__00044_train_g2_2__1192704444.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00044_train_g2_2__1192704444.mp4) | 성공 | 확인 | 406.237 |
+| [concave_challenge_v3__00045_train_g2_3__1192704545.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00045_train_g2_3__1192704545.mp4) | 실패 | 확인 | 600.243 |
+| [concave_challenge_v3__00046_train_g2_3__1192704646.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00046_train_g2_3__1192704646.mp4) | 성공 | 확인 | 595.041 |
+| [concave_challenge_v3__00047_train_g2_3__1192704747.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00047_train_g2_3__1192704747.mp4) | 성공 | 확인 | 529.71 |
+| [concave_challenge_v3__00048_pilot_g2_candidate__1192704848.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00048_pilot_g2_candidate__1192704848.mp4) | 실패 | 확인 | 600.03 |
+| [concave_challenge_v3__00049_pilot_g2_baseline__1192704848.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00049_pilot_g2_baseline__1192704848.mp4) | 실패 | 확인 | 600.128 |
+| [concave_challenge_v3__00050_pilot_g2_candidate__1192705050.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00050_pilot_g2_candidate__1192705050.mp4) | 성공 | 확인 | 510.538 |
+| [concave_challenge_v3__00051_pilot_g2_baseline__1192705050.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00051_pilot_g2_baseline__1192705050.mp4) | 성공 | 확인 | 448.18 |
+| [concave_challenge_v3__00052_pilot_g2_candidate__1192705252.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00052_pilot_g2_candidate__1192705252.mp4) | 성공 | 확인 | 460.067 |
+| [concave_challenge_v3__00053_pilot_g2_baseline__1192705252.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00053_pilot_g2_baseline__1192705252.mp4) | 성공 | 확인 | 358.533 |
+| [concave_challenge_v3__00054_train_g3_0__1192705454.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00054_train_g3_0__1192705454.mp4) | 실패 | 확인 | 600.163 |
+| [concave_challenge_v3__00055_train_g3_0__1192705555.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00055_train_g3_0__1192705555.mp4) | 성공 | 확인 | 334.0 |
+| [concave_challenge_v3__00056_train_g3_0__1192705656.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00056_train_g3_0__1192705656.mp4) | 성공 | 확인 | 572.295 |
+| [concave_challenge_v3__00057_train_g3_1__1192705757.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00057_train_g3_1__1192705757.mp4) | 실패 | 확인 | 600.011 |
+| [concave_challenge_v3__00058_train_g3_1__1192705858.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00058_train_g3_1__1192705858.mp4) | 성공 | 확인 | 480.4 |
+| [concave_challenge_v3__00059_train_g3_1__1192705959.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00059_train_g3_1__1192705959.mp4) | 실패 | 확인 | 600.14 |
+| [concave_challenge_v3__00060_train_g3_2__1192706060.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00060_train_g3_2__1192706060.mp4) | 성공 | 확인 | 445.106 |
+| [concave_challenge_v3__00061_train_g3_2__1192706161.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00061_train_g3_2__1192706161.mp4) | 실패 | 확인 | 600.395 |
+| [concave_challenge_v3__00062_train_g3_2__1192706262.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00062_train_g3_2__1192706262.mp4) | 실패 | 미달 | 600.267 |
+| [concave_challenge_v3__00063_train_g3_3__1192706363.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00063_train_g3_3__1192706363.mp4) | 실패 | 확인 | 600.389 |
+| [concave_challenge_v3__00064_train_g3_3__1192706464.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00064_train_g3_3__1192706464.mp4) | 성공 | 확인 | 430.57 |
+| [concave_challenge_v3__00065_train_g3_3__1192706565.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00065_train_g3_3__1192706565.mp4) | 실패 | 미달 | 600.042 |
+| [concave_challenge_v3__00066_pilot_g3_candidate__1192706666.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00066_pilot_g3_candidate__1192706666.mp4) | 실패 | 확인 | 600.13 |
+| [concave_challenge_v3__00067_pilot_g3_baseline__1192706666.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00067_pilot_g3_baseline__1192706666.mp4) | 성공 | 확인 | 366.84 |
+| [concave_challenge_v3__00068_pilot_g3_candidate__1192706868.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00068_pilot_g3_candidate__1192706868.mp4) | 성공 | 확인 | 286.651 |
+| [concave_challenge_v3__00069_pilot_g3_baseline__1192706868.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00069_pilot_g3_baseline__1192706868.mp4) | 실패 | 확인 | 600.112 |
+| [concave_challenge_v3__00070_pilot_g3_candidate__1192707070.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00070_pilot_g3_candidate__1192707070.mp4) | 실패 | 확인 | 600.449 |
+| [concave_challenge_v3__00071_pilot_g3_baseline__1192707070.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00071_pilot_g3_baseline__1192707070.mp4) | 성공 | 확인 | 588.073 |
+| [concave_challenge_v3__00072_train_g4_0__1192707272.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00072_train_g4_0__1192707272.mp4) | 실패 | 확인 | 600.202 |
+| [concave_challenge_v3__00073_train_g4_0__1192707373.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00073_train_g4_0__1192707373.mp4) | 실패 | 미달 | 600.3 |
+| [concave_challenge_v3__00074_train_g4_0__1192707474.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00074_train_g4_0__1192707474.mp4) | 실패 | 확인 | 600.132 |
+| [concave_challenge_v3__00075_train_g4_1__1192707575.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00075_train_g4_1__1192707575.mp4) | 실패 | 확인 | 600.124 |
+| [concave_challenge_v3__00076_train_g4_1__1192707676.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00076_train_g4_1__1192707676.mp4) | 성공 | 확인 | 583.3 |
+| [concave_challenge_v3__00077_train_g4_1__1192707777.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00077_train_g4_1__1192707777.mp4) | 실패 | 확인 | 600.145 |
+| [concave_challenge_v3__00079_train_g4_2__1192707979.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00079_train_g4_2__1192707979.mp4) | 성공 | 확인 | 322.896 |
+| [concave_challenge_v3__00081_train_g4_3__1192708181.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00081_train_g4_3__1192708181.mp4) | 실패 | 확인 | 600.167 |
+| [concave_challenge_v3__00082_train_g4_3__1192708282.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/concave_challenge_v3__00082_train_g4_3__1192708282.mp4) | 성공 | 확인 | 548.179 |
 | [development_frontier_v1__runtime_probes__20261104T225516_124417Z.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/development_frontier_v1__runtime_probes__20261104T225516_124417Z.mp4) | 실패 | 미달 | 136.514 |
 | [development_imu_screen4__8600007.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/development_imu_screen4__8600007.mp4) | 실패 | 미달 | 600.049 |
 | [development_imu_screen4__8600040.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/development_imu_screen4__8600040.mp4) | 성공 | 미달 | 117.2 |
@@ -501,7 +583,12 @@ python3 scripts/publish_simulation_videos.py --upload
 | [spatial_cem_v6__00014_train_g0_2__1191301414.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00014_train_g0_2__1191301414.mp4) | 성공 | 확인 | 117.189 |
 | [spatial_cem_v6__00015_train_g0_2__1191301515.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00015_train_g0_2__1191301515.mp4) | 성공 | 확인 | 380.888 |
 | [spatial_cem_v6__00016_train_g0_2__1191301616.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00016_train_g0_2__1191301616.mp4) | 성공 | 확인 | 259.376 |
+| [spatial_cem_v6__00017_train_g0_2__1191301717.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00017_train_g0_2__1191301717.mp4) | 실패 | 미달 | 600.314 |
+| [spatial_cem_v6__00018_train_g0_2__1191301818.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00018_train_g0_2__1191301818.mp4) | 성공 | 확인 | 198.006 |
+| [spatial_cem_v6__00019_train_g0_2__1191301919.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00019_train_g0_2__1191301919.mp4) | 성공 | 확인 | 287.761 |
 | [spatial_cem_v6__00020_train_g0_2__1191302020.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00020_train_g0_2__1191302020.mp4) | 실패 | 미달 | 600.4 |
+| [spatial_cem_v6__00021_train_g0_3__1191302121.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00021_train_g0_3__1191302121.mp4) | 성공 | 확인 | 163.754 |
+| [spatial_cem_v6__00022_train_g0_3__1191302222.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00022_train_g0_3__1191302222.mp4) | 실패 | 확인 | 600.0 |
 | [strict_approach_regression_v1__case_0__1163000000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/strict_approach_regression_v1__case_0__1163000000.mp4) | 성공 | 확인 | 496.132 |
 | [tf_restamp_v1__regression__case_0__1121200000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_0__1121200000.mp4) | 성공 | 확인 | 231.867 |
 | [tf_restamp_v1__regression__case_1__1121200101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_1__1121200101.mp4) | 성공 | 확인 | 229.859 |
@@ -894,3 +981,12 @@ ros2 launch osp_mission simulation.launch.py planner:=edge camera_width:=960 \
 첫 새 ㄷ자 배치(seed1192700000)의 실제 Gazebo 주행 시작을 확인했습니다. 이는 시작 관측이며 완주 결과가 아닙니다. 새 맵/감독기 검사15개와 기본 소스를 포함한 전체189개 테스트가 통과했습니다.
 
 첫 ㄷ자 주행에서 실제 바닥 센서, 적용된 ROS 설정, 속도/인코더 설정, SLAM 통신 설정의 네 입력 검사가 모두 통과한 것을 확인했습니다. 주행 중의 관측이므로 완주 성공으로 집계하지 않습니다.
+
+<!-- ROBOT_TRANSFER_PROGRESS:START -->
+
+실물 대응 후보 `robot_transfer_cem_v2`: 상태 `running`, 세대 0, 단계 `train`.
+독립 입력 검사를 통과한 native 개발 회차 0개 중 엄격한 완주 0개; 인프라 실패 0개 별도.
+형태·잡음·후보/기준별 결과는 [진행 기록](repository_snapshot/robot_transfer_progress.json)에 분리합니다. 학습 중 관측이며 실물 검증·production 승격 결과가 아닙니다.
+관측 UTC: 2026-11-14T12:36:22.532486+00:00. 로컬 게시 작업은 요약·완성 영상만 갱신하며 자동 코드 수정/리뷰를 수행하지 않습니다.
+
+<!-- ROBOT_TRANSFER_PROGRESS:END -->

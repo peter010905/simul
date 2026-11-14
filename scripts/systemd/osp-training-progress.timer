@@ -1,0 +1,10 @@
+[Unit]
+Description=Update OSP GitHub experiment reports every 30 minutes
+
+[Timer]
+OnCalendar=*-*-* *:00,30:00
+Persistent=true
+Unit=osp-training-progress.service
+
+[Install]
+WantedBy=timers.target

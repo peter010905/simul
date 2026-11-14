@@ -57,6 +57,20 @@ class SelectivePublishingTest(unittest.TestCase):
             self.assertFalse(invalid['original_evaluator_success'])
             self.assertIn('환경 오류',(root/'repository_snapshot/videos.html').read_text())
             self.assertNotIn('로그인해야',(root/'repository_snapshot/videos.html').read_text())
+            isolated=root/'isolated';(isolated/'scripts').mkdir(parents=True)
+            (isolated/'repository_snapshot').mkdir();(isolated/'README.md').write_text('Separate checkout\n')
+            original_readme=(root/'README.md').read_text()
+            with patch.object(publisher,'__file__',str(isolated/'scripts/publish_simulation_videos.py')), \
+                 patch.object(publisher,'command',side_effect=command), \
+                 patch.object(publisher.subprocess,'run',side_effect=upload), \
+                 patch('sys.argv',['publish','--data-root',str(root),'--upload','--only-upload',str(videos[0])]), \
+                 contextlib.redirect_stdout(io.StringIO()):
+                publisher.main()
+            self.assertEqual((root/'README.md').read_text(),original_readme)
+            isolated_report=json.loads((isolated/'repository_snapshot/videos.json').read_text())
+            self.assertEqual(len(isolated_report['videos']),2)
+            self.assertEqual(isolated_report['uploaded_verified'],1)
+            self.assertEqual(uploaded,['requested__episode.mp4'])
 
 
 if __name__=='__main__':unittest.main()

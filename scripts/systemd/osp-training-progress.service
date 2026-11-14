@@ -1,0 +1,9 @@
+[Unit]
+Description=Publish OSP native training progress and finalized simulation videos
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/simul
+ExecStart=/usr/bin/python3 %h/simul/scripts/publish_training_progress.py --source %h/simul --campaign %h/simul/training_robust/native90/robot_transfer_cem_v2 --checkout %h/simul/deployment/github_progress --publish --videos
+MemoryMax=768M
+TimeoutStartSec=30min

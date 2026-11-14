@@ -1,0 +1,84 @@
+{
+  "captured_utc": "2026-11-14T12:36:22.453210+00:00",
+  "user_report": [
+    "open path judged unavailable at start",
+    "repeatedly traversing visited routes"
+  ],
+  "hardware_evidence_received": false,
+  "hardware_validated": false,
+  "production_promoted": false,
+  "historical_concave": {
+    "campaign": "concave_challenge_v3",
+    "recorded_completed": 87,
+    "valid_completed": 79,
+    "successes": 35,
+    "infrastructure_failures": 8,
+    "by_shape": {
+      "c_shape": {
+        "completed": 26,
+        "successes": 10
+      },
+      "u_shape": {
+        "completed": 28,
+        "successes": 18
+      },
+      "zigzag": {
+        "completed": 25,
+        "successes": 7
+      }
+    },
+    "limitation": "Mixed coefficient training and candidate/baseline development; not held-out success rate. One stale running entry is not counted as completed.",
+    "stopped_status": "needs_infrastructure_repair"
+  },
+  "code_findings": [
+    "Repeated high frontier score bypassed duplicate-view suppression",
+    "All-filtered fallback restored every duplicate",
+    "Map-frame excluded list mixed reached and failed goals; now edge uses odom memory",
+    "Tiny inflated start island and strictly monotonic escape could reject body-clear local path",
+    "Hardware launch defaulted to legacy planner and different Nav2 profile"
+  ],
+  "changes": [
+    "Known-free body-clear connector <=0.8m; no unknown/obstacle clearing",
+    "Bounded failure backoff and repeated-frontier cooldown; retain marker overrides",
+    "Classified planning diagnostics",
+    "Explicit edge/hardware configuration defaults",
+    "Simulator-only timestamp-preserving scan and encoder stress; matched paired baseline"
+  ],
+  "tests": {
+    "candidate_runtime": 357,
+    "baseline_runtime": 348,
+    "active_curriculum": 3
+  },
+  "native_campaign": "training_robust/native90/robot_transfer_cem_v2",
+  "observer_repair": {
+    "original": "robot_transfer_cem_v1",
+    "successor": "robot_transfer_cem_v2",
+    "reason": "Explicit ROS context needs matching executor",
+    "policy_source_changed": false,
+    "native_runs_restarted": false
+  },
+  "synthetic_stress_not_hardware_calibration": true,
+  "physical_gates": {
+    "ids": 3,
+    "actual_approach_m": 1.5,
+    "map_error_max_m": 0.5,
+    "contacts": 0,
+    "duration_s": 600
+  },
+  "policy_receives_ground_truth": false,
+  "initial_native_observation": {
+    "two_started": true,
+    "map_and_odom_tf_ready": true,
+    "applied_input_gates": true,
+    "minimum_odom_displacement_m": 9.0,
+    "contacts_so_far": 0,
+    "completed_missions": 0,
+    "limitation": "Partial running observation; not a performance claim"
+  },
+  "publication": {
+    "repository_visibility": "PUBLIC",
+    "public_video_upload_previously_authorized": true,
+    "verified_finished_videos": 281,
+    "automatic_code_review": false
+  }
+}

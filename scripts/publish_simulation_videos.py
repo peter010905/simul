@@ -38,12 +38,15 @@ def main():
     parser.add_argument('--repo',default='peter010905/simul')
     parser.add_argument('--tag',default='simulation-videos-2026-11')
     parser.add_argument('--upload',action='store_true')
+    parser.add_argument('--data-root',type=Path,
+                        help='Read recordings from another checkout; write only this checkout index')
     parser.add_argument('--only-upload',type=Path,action='append',default=[],
                         help='Upload only these video paths; preserve the complete index')
     args=parser.parse_args()
     root=Path(__file__).resolve().parents[1]
+    data_root=(args.data_root or root).resolve()
     gh=shutil.which('gh') or str(Path.home()/'.local/bin/gh')
-    base=root/'training_robust/native90'
+    base=data_root/'training_robust/native90'
     selected={p.resolve() for p in args.only_upload}
     repository=json.loads(command([gh,'api',f'repos/{args.repo}']))
     private=repository['private']
@@ -59,17 +62,17 @@ def main():
             episode=video.parent.parent
             evaluation=episode/'evaluation.json';recording=video.parent/'recording.json'
             if not evaluation.exists() or not recording.exists():
-                skipped.append(dict(path=str(video.relative_to(root)),reason='Final evaluation or recording metadata absent'));continue
+                skipped.append(dict(path=str(video.relative_to(data_root)),reason='Final evaluation or recording metadata absent'));continue
             result=json.loads(evaluation.read_text());rec=json.loads(recording.read_text())
             if rec.get('error') or rec.get('frames',0)<=0:
-                skipped.append(dict(path=str(video.relative_to(root)),reason='Recording error or empty video'));continue
+                skipped.append(dict(path=str(video.relative_to(data_root)),reason='Recording error or empty video'));continue
             capture=cv2.VideoCapture(str(video))
             frame_count=int(capture.get(cv2.CAP_PROP_FRAME_COUNT))
             first_ok,_=capture.read()
             capture.set(cv2.CAP_PROP_POS_FRAMES,max(0,frame_count-1))
             last_ok,_=capture.read();capture.release()
             if not first_ok or not last_ok or frame_count!=rec['frames']:
-                skipped.append(dict(path=str(video.relative_to(root)),reason='Final video frame count not verified'));continue
+                skipped.append(dict(path=str(video.relative_to(data_root)),reason='Final video frame count not verified'));continue
             parts=episode.relative_to(base).parts
             name='__'.join(p for p in parts if p not in ('jobs','episodes'))+'.mp4'
             sha=digest(video);size=video.stat().st_size
@@ -88,7 +91,7 @@ def main():
             audit=result.get('ground_truth_audit',{})
             distances=audit.get('closest_approach_m',{})
             approach=bool(len(distances)==3 and all(v is not None and v<=1.5 for v in distances.values()))
-            entry=dict(asset=name,local_path=str(video.relative_to(root)),bytes=size,sha256=sha,
+            entry=dict(asset=name,local_path=str(video.relative_to(data_root)),bytes=size,sha256=sha,
                 url=f'https://github.com/{args.repo}/releases/download/{args.tag}/{name}',
                 original_evaluator_success=result.get('success'),reason=result.get('reason'),
                 elapsed_sim_seconds=result.get('elapsed_seconds'),targets=result.get('targets'),collisions=result.get('collisions'),
@@ -137,9 +140,9 @@ def main():
     else:content+='\n'+block+'\n'
     readme.write_text(content)
     print(json.dumps(dict(uploaded_verified=report['uploaded_verified'],eligible=len(entries),skipped=len(skipped))),flush=True)
-    requested=[e for e in entries if not selected or (root/e['local_path']).resolve() in selected]
+    requested=[e for e in entries if not selected or (data_root/e['local_path']).resolve() in selected]
     if args.upload and (any(not e['uploaded_verified'] for e in requested) or
-                        selected-{(root/e['local_path']).resolve() for e in requested}):
+                        selected-{(data_root/e['local_path']).resolve() for e in requested}):
         raise RuntimeError('Not all requested videos were finalized and verified remotely')
 
 
