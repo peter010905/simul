@@ -309,7 +309,7 @@ python3 scripts/publish_simulation_videos.py --upload
 
 ## 저장된 Gazebo 영상
 
-[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 283개
+[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 286개
 
 아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다. 환경 오류로 종료한 영상은 정책 학습 표본에서 제외합니다.
 
@@ -521,6 +521,8 @@ python3 scripts/publish_simulation_videos.py --upload
 | [reacquisition_startup_regression_v2__case_0__1163000000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/reacquisition_startup_regression_v2__case_0__1163000000.mp4) | 실패 | 확인 | 188.674 |
 | [robot_transfer_cem_v1__00000_train_g0_0__1194000000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/robot_transfer_cem_v1__00000_train_g0_0__1194000000.mp4) | 실패 | 미달 | 600.305 |
 | [robot_transfer_cem_v1__00001_train_g0_0__1194000101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/robot_transfer_cem_v1__00001_train_g0_0__1194000101.mp4) | 실패 | 확인 | 600.003 |
+| [robot_transfer_cem_v1__00002_train_g0_0__1194000202.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/robot_transfer_cem_v1__00002_train_g0_0__1194000202.mp4) | 실패 | 확인 | 600.142 |
+| [robot_transfer_cem_v1__00004_train_g0_1__1194000404.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/robot_transfer_cem_v1__00004_train_g0_1__1194000404.mp4) | 성공 | 확인 | 451.301 |
 | [route_v14_timecost_screen3__9802001.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/route_v14_timecost_screen3__9802001.mp4) | 성공 | 확인 | 394.932 |
 | [route_v14_timecost_screen3__9802011.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/route_v14_timecost_screen3__9802011.mp4) | 성공 | 확인 | 302.6 |
 | [route_v14_timecost_screen3__9802014.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/route_v14_timecost_screen3__9802014.mp4) | 실패 | 미달 | 600.151 |
@@ -596,6 +598,7 @@ python3 scripts/publish_simulation_videos.py --upload
 | [spatial_cem_v6__00021_train_g0_3__1191302121.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00021_train_g0_3__1191302121.mp4) | 성공 | 확인 | 163.754 |
 | [spatial_cem_v6__00022_train_g0_3__1191302222.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/spatial_cem_v6__00022_train_g0_3__1191302222.mp4) | 실패 | 확인 | 600.0 |
 | [strict_approach_regression_v1__case_0__1163000000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/strict_approach_regression_v1__case_0__1163000000.mp4) | 성공 | 확인 | 496.132 |
+| [tb4_platform_screen_v2__1194900000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tb4_platform_screen_v2__1194900000.mp4) | 실패 | 미달 | 60.257 |
 | [tf_restamp_v1__regression__case_0__1121200000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_0__1121200000.mp4) | 성공 | 확인 | 231.867 |
 | [tf_restamp_v1__regression__case_1__1121200101.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tf_restamp_v1__regression__case_1__1121200101.mp4) | 성공 | 확인 | 229.859 |
 | [velocity_calibration_regression_v1__case_0__1163000000.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/velocity_calibration_regression_v1__case_0__1163000000.mp4) | 성공 | 확인 | 204.2 |
@@ -990,9 +993,9 @@ ros2 launch osp_mission simulation.launch.py planner:=edge camera_width:=960 \
 
 <!-- ROBOT_TRANSFER_PROGRESS:START -->
 
-실물 대응 후보 `robot_transfer_cem_v2`: 상태 `running`, 세대 0, 단계 `train`.
-독립 입력 검사를 통과한 native 개발 회차 2개 중 엄격한 완주 0개; 인프라 실패 0개 별도.
+실물 대응 후보 `robot_transfer_cem_v2`: 상태 `superseded_by_tb4_platform`, 세대 0, 단계 `train`.
+독립 입력 검사를 통과한 native 개발 회차 4개 중 엄격한 완주 1개; 인프라 실패 1개 별도.
 형태·잡음·후보/기준별 결과는 [진행 기록](repository_snapshot/robot_transfer_progress.json)에 분리합니다. 학습 중 관측이며 실물 검증·production 승격 결과가 아닙니다.
-관측 UTC: 2026-11-14T13:01:00.436979+00:00. 로컬 게시 작업은 요약·완성 영상만 갱신하며 자동 코드 수정/리뷰를 수행하지 않습니다.
+관측 UTC: 2026-11-14T13:30:51.021961+00:00. 로컬 게시 작업은 요약·완성 영상만 갱신하며 자동 코드 수정/리뷰를 수행하지 않습니다.
 
 <!-- ROBOT_TRANSFER_PROGRESS:END -->

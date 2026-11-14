@@ -1,7 +1,7 @@
 {
-  "updated_utc": "2026-11-14T13:01:00.348276+00:00",
+  "updated_utc": "2026-11-14T13:30:50.944121+00:00",
   "release_url": "https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11",
-  "uploaded_verified": 283,
+  "uploaded_verified": 286,
   "videos": [
     {
       "asset": "fix_v10_escape_regression3__9802005.mp4",
@@ -3268,6 +3268,38 @@
       "uploaded_verified": true
     },
     {
+      "asset": "robot_transfer_cem_v1__00002_train_g0_0__1194000202.mp4",
+      "local_path": "training_robust/native90/robot_transfer_cem_v1/jobs/00002_train_g0_0/episodes/1194000202/video/mission.mp4",
+      "bytes": 17204341,
+      "sha256": "2f07a0082361c01219ce40df2b5ceee6655b18c882f28a9cfc7f0814a38dcb52",
+      "url": "https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/robot_transfer_cem_v1__00002_train_g0_0__1194000202.mp4",
+      "original_evaluator_success": false,
+      "reason": "timeout",
+      "elapsed_sim_seconds": 600.142,
+      "targets": 2,
+      "collisions": 0,
+      "actual_approach_1_5m": true,
+      "recording_frames": 3003,
+      "recording_seconds": 600.6,
+      "uploaded_verified": true
+    },
+    {
+      "asset": "robot_transfer_cem_v1__00004_train_g0_1__1194000404.mp4",
+      "local_path": "training_robust/native90/robot_transfer_cem_v1/jobs/00004_train_g0_1/episodes/1194000404/video/mission.mp4",
+      "bytes": 11293361,
+      "sha256": "14500273edf848fb3165c4133a1dd4633d8d27a61c65a0a147858b1001559b24",
+      "url": "https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/robot_transfer_cem_v1__00004_train_g0_1__1194000404.mp4",
+      "original_evaluator_success": true,
+      "reason": "all_targets_found",
+      "elapsed_sim_seconds": 451.301,
+      "targets": 3,
+      "collisions": 0,
+      "actual_approach_1_5m": true,
+      "recording_frames": 2257,
+      "recording_seconds": 451.4,
+      "uploaded_verified": true
+    },
+    {
       "asset": "route_v14_timecost_screen3__9802001.mp4",
       "local_path": "training_robust/native90/route_v14_timecost_screen3/episodes/9802001/video/mission.mp4",
       "bytes": 11982150,
@@ -4472,6 +4504,22 @@
       "uploaded_verified": true
     },
     {
+      "asset": "tb4_platform_screen_v2__1194900000.mp4",
+      "local_path": "training_robust/native90/tb4_platform_screen_v2/episodes/1194900000/video/mission.mp4",
+      "bytes": 1685074,
+      "sha256": "b719610454342466757e20174516cb1730ae4238500a900d723263b44a7195b4",
+      "url": "https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/tb4_platform_screen_v2__1194900000.mp4",
+      "original_evaluator_success": false,
+      "reason": "timeout",
+      "elapsed_sim_seconds": 60.257,
+      "targets": 0,
+      "collisions": 0,
+      "actual_approach_1_5m": false,
+      "recording_frames": 303,
+      "recording_seconds": 60.6,
+      "uploaded_verified": true
+    },
+    {
       "asset": "tf_restamp_v1__regression__case_0__1121200000.mp4",
       "local_path": "training_robust/native90/tf_restamp_v1/regression/case_0/episodes/1121200000/video/mission.mp4",
       "bytes": 7248198,
@@ -4543,10 +4591,6 @@
     },
     {
       "path": "training_robust/native90/marker_focus_v6_service_screen3/episodes/8600133/video/mission.mp4",
-      "reason": "Final evaluation or recording metadata absent"
-    },
-    {
-      "path": "training_robust/native90/robot_transfer_cem_v1/jobs/00002_train_g0_0/episodes/1194000202/video/mission.mp4",
       "reason": "Final evaluation or recording metadata absent"
     },
     {

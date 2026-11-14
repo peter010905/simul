@@ -590,14 +590,14 @@
   "robot_transfer_progress": "repository_snapshot/robot_transfer_progress.json",
   "robot_transfer_training_observation": {
     "campaign": "robot_transfer_cem_v2",
-    "status": "running",
-    "coordinator_active": true,
+    "status": "superseded_by_tb4_platform",
+    "coordinator_active": false,
     "generation": 0,
     "phase": "train",
-    "recorded_completed": 2,
-    "valid_completed": 2,
-    "successes": 0,
-    "infrastructure_failures": 0,
+    "recorded_completed": 5,
+    "valid_completed": 4,
+    "successes": 1,
+    "infrastructure_failures": 1,
     "by_phase_role_profile_shape": {
       "train/0/none/c_shape": {
         "completed": 1,
@@ -608,50 +608,23 @@
         "completed": 1,
         "successes": 0,
         "contacts": 0
+      },
+      "train/0/moderate/zigzag": {
+        "completed": 1,
+        "successes": 0,
+        "contacts": 0
+      },
+      "train/1/mild/u_shape": {
+        "completed": 1,
+        "successes": 1,
+        "contacts": 0
       }
     },
-    "active": [
-      {
-        "number": 2,
-        "unit": "osp-spatial-nov14-transfer1-00002.service",
-        "service_active": true,
-        "shape": "zigzag",
-        "profile": "moderate",
-        "gates": {
-          "floor_sensor_gate": true,
-          "runtime_configuration_gate": true,
-          "slam_transport_gate": true,
-          "velocity_profile_gate": true,
-          "transfer_input_gate": true
-        },
-        "live": {
-          "state": "running",
-          "targets": 0,
-          "collisions": 0,
-          "elapsed_seconds": 40.142,
-          "readiness_reason": ""
-        }
-      },
-      {
-        "number": 3,
-        "unit": "osp-spatial-nov14-transfer1-00003.service",
-        "service_active": true,
-        "shape": "c_shape",
-        "profile": "none",
-        "gates": {},
-        "live": {
-          "state": null,
-          "targets": null,
-          "collisions": null,
-          "elapsed_seconds": null,
-          "readiness_reason": null
-        }
-      }
-    ],
+    "active": [],
     "evidence_type": "native_gazebo_training_and_paired_development_not_hardware",
     "production_promoted": false,
     "hardware_validated": false,
-    "captured_utc": "2026-11-14T13:01:00.436979+00:00",
+    "captured_utc": "2026-11-14T13:30:51.021961+00:00",
     "synthetic_stress_is_real_robot_calibration": false,
     "automation_scope": "local systemd timer: summary and finished-video publication only"
   },
