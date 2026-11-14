@@ -671,5 +671,7 @@
     "actual_sensor_models_verified": false,
     "actual_robot_logs_received": false,
     "hardware_validated": false
-  }
+  },
+  "tb4_platform_candidate": "repository_snapshot/tb4_platform_candidate.json",
+  "tb4_platform_hardware_validated": false
 }

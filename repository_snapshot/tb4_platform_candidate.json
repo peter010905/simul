@@ -1,0 +1,38 @@
+{
+  "captured_utc": "2026-11-14T13:22:47.384370+00:00",
+  "candidate": "2026-11-14_tb4_platform_v1",
+  "status": "awaiting_native_platform_screen",
+  "workspace": "/home/peter/simul/training_robust/native90/tb4_platform_v5/runtime",
+  "campaign": "tb4_platform_cem_v1",
+  "tests": {
+    "runtime": 373,
+    "supervisor": 3,
+    "ros_transport": 1
+  },
+  "software_model": "TurtleBot4 Standard Jazzy official nominal model and shared SLAM/Nav2/perception configuration",
+  "command": "cmd_vel geometry_msgs/msg/TwistStamped after official bringup launch remappings",
+  "localization": {
+    "hardware": "Create3 onboard fused odom and TF; no extra EKF",
+    "simulation": "official Gazebo wheel encoder odom 20Hz and TF",
+    "same_internal_firmware_estimator": false
+  },
+  "hardware_validated": false,
+  "production_promoted": false,
+  "real_robot_calibration": false,
+  "input_profile": "policy_candidates/2026-11-14_tb4_platform_v1/overlay/config/tb4_platform.json",
+  "geometry": {
+    "evidence": "offline generation check, not navigation success",
+    "episodes": 12,
+    "shapes": [
+      "c_shape",
+      "u_shape",
+      "zigzag"
+    ],
+    "unique_exteriors": 12,
+    "unique_occupancy": 12,
+    "all_approaches_reachable": true
+  },
+  "preserved_previous_campaign": "robot_transfer_cem_v2; dispatcher stopped, active native jobs finish unchanged; queued sources retained",
+  "performance_evidence": "No new 600s benchmark completed yet. Historical and replay results remain separate.",
+  "private_firmware_and_physical_calibration_not_reproduced": true
+}

@@ -1,0 +1,37 @@
+{
+  "hardware_family": "TurtleBot4",
+  "model_assumption": "Standard per original project; Standard/Lite not independently measured",
+  "hardware_validated": false,
+  "packages": {
+    "turtlebot4-description": "2.1.1-1noble.20260905.075729",
+    "turtlebot4-gz-bringup": "2.0.2-1noble.20260907.030119",
+    "turtlebot4-navigation": "2.1.1-1noble.20260907.024725",
+    "irobot-create-control": "3.0.4-1noble.20260905.075409",
+    "navigation2": "1.3.13-1noble.20260905.072714",
+    "slam-toolbox": "2.8.5-1noble.20260905.070219"
+  },
+  "robot_source_commit": "28e115f86930bb3273f1a1aa4738dbd8747513f0",
+  "sources": {
+    "robot_bringup": "https://github.com/turtlebot/turtlebot4_robot/tree/28e115f86930bb3273f1a1aa4738dbd8747513f0/turtlebot4_bringup",
+    "create3_odometry": "https://iroboteducation.github.io/create3_docs/api/odometry/",
+    "lidar": "https://www.slamtec.com/en/lidar/a1spec",
+    "depthai_preview": "https://github.com/luxonis/depthai-ros/blob/jazzy/depthai_ros_driver/src/param_handlers/sensor_param_handler.cpp"
+  },
+  "installed_config_sources": {
+    "nav2.yaml": "/opt/ros/jazzy/share/turtlebot4_navigation/config/nav2.yaml",
+    "slam.yaml": "/opt/ros/jazzy/share/turtlebot4_navigation/config/slam.yaml",
+    "control.yaml": "/opt/ros/jazzy/share/irobot_create_control/config/control.yaml"
+  },
+  "command_interface": "Resolved from launch remappings AND YAML, not YAML alone",
+  "unmeasured": [
+    "Create3 firmware version/fusion",
+    "wheel slip and floor friction",
+    "individual camera intrinsics/exposure/FOV",
+    "RPLIDAR sample count/noise",
+    "physical compute/network latency"
+  ],
+  "control_yaml_copy_normalization": {
+    "source_sha256": "5b0ef3d079e5d939690a6c66e8e44587b526fe0ad79a0eaebd2602aa5045c102",
+    "change": "trim trailing whitespace in vendored reference only; runtime configuration unaffected"
+  }
+}

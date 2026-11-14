@@ -1,0 +1,45 @@
+{
+  "candidate_id": "2026-11-14_tb4_platform_v1",
+  "base_release": "2026-11-13_face_intent_v2",
+  "parent_candidate": "2026-11-14_robot_transfer_v1",
+  "status": "platform_validation_candidate",
+  "hardware_validated": false,
+  "production_promoted": false,
+  "overlay_files": {
+    "config/tb4_control.yaml": "7edfe68125d906d07c866df9602fd3fe9f7e7eaf04f89f85af30830dc41053b4",
+    "config/tb4_nav2.yaml": "6b65333057f1130be9eca6a5fe56240229440f5b1b6bae9a20b2880dc8e93943",
+    "config/tb4_platform.json": "5fc35c10b3069cbd3ac19c3932078bffc2f6c4623524e5d4afd6dc57469d7846",
+    "config/tb4_republisher.yaml": "c9f809e82cb1200f2e4f0241f74bc1873355c3409d0f753f76409bfe26b42809",
+    "config/tb4_slam.yaml": "708c6fa1d600fa45328a82ce867ade809f7f427f6445c80f8f0a6d9c88553b2d",
+    "launch/bridge.launch.py": "36adf6682f2474348ca77c9df20fc67e0227e792a976d174329356b322a427b8",
+    "launch/control.launch.py": "4f8a724f1439d7f6dbefb1ea41406ea661e09479a40de293f1b737750ef28fb6",
+    "launch/create3_nodes.launch.py": "930619a35ded41509b56f6d7df2865f984386e3f5d23fa50ac74d379dfa522a4",
+    "launch/description.launch.py": "a368ee616c23e05904477e2558652a53cde863185d603552d452131675b26d62",
+    "launch/hardware.launch.py": "39bf358873285cb8f6ba81c36495514425b16c144a0ce2e91d1d265728e37bc1",
+    "launch/robot.launch.py": "294d186e971f4caecc46d57bb0e9c0f80c999a49ab5cec899ce0b49225492781",
+    "launch/simulation.launch.py": "fd843942748fa5e2cfc82bf52e1013d578123aa32f90c9f54a03244c3a891f16",
+    "osp_mission/detector.py": "0d1eec165e5c5af134493d167648271a59a78f3b610157f12cfb6679798df37e",
+    "osp_mission/gazebo_eval.py": "4f4ba23fa71a019bd60658d186d39a6aeaca5ed98bae167adbd1bb0bcb361d31",
+    "osp_mission/mission.py": "78453017ce074b06fc0d81b34d7460af169704de65f60a356d9d442d2f9e5c26",
+    "osp_mission/tb4_contract.py": "e2199af183e7afd5b62120d9df4f72c4b88ec8bb64d526e7b02a2354c1e19e0e",
+    "osp_mission/tb4_platform.py": "ea4786540780b82bf211477b62640489c6976b1b37be73c7b669b9b037b33adc",
+    "setup.py": "9150591431ddf7237a408c40463a8631ea1ef6710d1acffad1269948376d3175",
+    "test/test_tb4_platform.py": "10399e31a7c5402c2dc7f86086eca7125136ff13b237e83260614b1dd958d048"
+  },
+  "upstream_files": {
+    "LICENSE.turtlebot4_robot": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "control.yaml": "18c650f7dde961add8d57ba771e93ca6c999aa764b7ac9aeed35c63ba5ea4f5a",
+    "nav2.yaml": "f936bdee74f02e497317f31621b8d0013ff0f592b5d8ba7d570952bd33f5821f",
+    "oakd_lite.yaml": "1b9bc1c7cef2c6378220bfb02cbe2f6290789d73a2e4785408d64b549c0f05f9",
+    "oakd_pro.yaml": "907beb01911c1273359fd95e83ef3f403ea38aa8b41baa0f1fcabeb7176140e6",
+    "republisher.yaml": "908e5fbb4675326e02a2a301ef908abb5badf366cdc18193c994610b5ad0165b",
+    "robot.launch.py": "de9393c2dafe588773adf8c994f4c9ca682a71cf68d3f43758ed51c8ba488a86",
+    "slam.yaml": "c0e42df72f08af87272e5f71d67f1b664393810534298d2f50dc4d51698863d1"
+  },
+  "build_script_sha256": "0c6e65e47ac8e100a5359b1fce0f55a1cc476785110b666876471b95a854eafe",
+  "tests": {
+    "runtime": 373,
+    "supervisor": 3,
+    "ros_transport": 1
+  }
+}
