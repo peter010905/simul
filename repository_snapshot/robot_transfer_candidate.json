@@ -86,5 +86,13 @@
     "first_automatic_push_verified_commit": "5664166ebc0175124b5037c7d10515558a487afb",
     "host_user_services_required": true,
     "isolated_checkout": "deployment/github_progress"
+  },
+  "hardware_profile": {
+    "user_confirmed_model_family": "TurtleBot4",
+    "simulation_variant": "standard",
+    "variant_basis": "Original project requirement; Standard/Lite not reconfirmed by user",
+    "actual_sensor_models_verified": false,
+    "actual_robot_logs_received": false,
+    "hardware_validated": false
   }
 }

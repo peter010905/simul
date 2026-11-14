@@ -658,5 +658,13 @@
     "scope": "Generated experiment summaries and completed videos only",
     "automatic_code_review": false,
     "host_user_services_required": true
+  },
+  "user_robot_profile": {
+    "user_confirmed_model_family": "TurtleBot4",
+    "simulation_variant": "standard",
+    "variant_basis": "Original project requirement; Standard/Lite not reconfirmed by user",
+    "actual_sensor_models_verified": false,
+    "actual_robot_logs_received": false,
+    "hardware_validated": false
   }
 }
