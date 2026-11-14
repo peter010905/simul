@@ -2,7 +2,7 @@
   "candidate_id": "2026-11-14_tb4_platform_v1",
   "base_release": "2026-11-13_face_intent_v2",
   "parent_candidate": "2026-11-14_robot_transfer_v1",
-  "status": "platform_validation_candidate",
+  "status": "native_platform_screen_passed_training_candidate",
   "hardware_validated": false,
   "production_promoted": false,
   "overlay_files": {
@@ -41,5 +41,6 @@
     "runtime": 373,
     "supervisor": 3,
     "ros_transport": 1
-  }
+  },
+  "native_screen": "repository_snapshot/tb4_platform_candidate.json"
 }

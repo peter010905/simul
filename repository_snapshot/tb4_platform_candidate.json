@@ -1,7 +1,7 @@
 {
-  "captured_utc": "2026-11-14T13:22:47.384370+00:00",
+  "captured_utc": "2026-11-14T13:31:00.321825+00:00",
   "candidate": "2026-11-14_tb4_platform_v1",
-  "status": "awaiting_native_platform_screen",
+  "status": "native_platform_screen_passed_training_started",
   "workspace": "/home/peter/simul/training_robust/native90/tb4_platform_v5/runtime",
   "campaign": "tb4_platform_cem_v1",
   "tests": {
@@ -33,6 +33,310 @@
     "all_approaches_reachable": true
   },
   "preserved_previous_campaign": "robot_transfer_cem_v2; dispatcher stopped, active native jobs finish unchanged; queued sources retained",
-  "performance_evidence": "No new 600s benchmark completed yet. Historical and replay results remain separate.",
-  "private_firmware_and_physical_calibration_not_reproduced": true
+  "performance_evidence": "The 60s platform screen moved and saved maps with 0 contacts, but recognized 0 IDs and is NOT a successful full task. New 600s training is starting; no new full benchmark success rate.",
+  "private_firmware_and_physical_calibration_not_reproduced": true,
+  "native_platform_screen": {
+    "output": "/home/peter/simul/training_robust/native90/tb4_platform_screen_v2",
+    "evidence": "NEW native Gazebo, 60s integration screen; NOT 600s qualification",
+    "passed": true,
+    "mission_success": false,
+    "targets": 0,
+    "elapsed_seconds": 60.257,
+    "actual_path_m": 9.925527759148245,
+    "contacts": 0,
+    "files": {
+      "map.pgm": true,
+      "map.yaml": true,
+      "map.posegraph": true,
+      "map.data": true,
+      "markers.csv": true
+    },
+    "posegraph_serialize_result": 0,
+    "configuration_gate": true,
+    "platform_gate": true,
+    "floor_gate": true,
+    "localization": {
+      "evidence": "Independent synchronized evaluator poses during 60s native platform screen; not hardware and not full task validation",
+      "samples": 302,
+      "max_tf_age_s": 0.25,
+      "median_position_error_m": 0.010508549500761896,
+      "p95_position_error_m": 0.03099822187743408,
+      "max_position_error_m": 0.03753136449398044
+    },
+    "observed_inputs": {
+      "profile_id": "tb4_standard_jazzy_v1",
+      "passed": true,
+      "errors": [],
+      "stamp": 67.0,
+      "use_sim_time": true,
+      "observed": {
+        "camera_info": {
+          "frame": "oakd_rgb_camera_optical_frame",
+          "width": 250,
+          "height": 250,
+          "valid_intrinsics": true,
+          "count": 152,
+          "age_s": 0.01,
+          "rate_hz": 30.303
+        },
+        "rgb": {
+          "frame": "oakd_rgb_camera_optical_frame",
+          "width": 250,
+          "height": 250,
+          "count": 152,
+          "age_s": 0.01,
+          "rate_hz": 30.303
+        },
+        "scan": {
+          "frame": "turtlebot4/rplidar_link/rplidar",
+          "samples": 1440,
+          "range_min": 0.15000000596046448,
+          "range_max": 12.0,
+          "count": 28,
+          "age_s": 0.03,
+          "rate_hz": 5.525
+        },
+        "imu": {
+          "frame": "turtlebot4/imu_link/imu",
+          "count": 400,
+          "age_s": 0.01,
+          "rate_hz": 100.0
+        },
+        "hazards": {
+          "frame": "base_link",
+          "count": 310,
+          "age_s": 0.015,
+          "rate_hz": 62.5
+        },
+        "odom": {
+          "frame": "odom",
+          "child_frame": "base_link",
+          "count": 100,
+          "age_s": 0.004,
+          "rate_hz": 20.0
+        },
+        "odom_publishers": 1,
+        "odom_tf_authorities": 1,
+        "unexpected_tf_publishers": [],
+        "tf_authority_method": "graph endpoint ownership plus observed odom edge, not per-message GID",
+        "velocity_types": [
+          "geometry_msgs/msg/TwistStamped"
+        ],
+        "velocity_subscribers": 2,
+        "sensor_tf_connected": true
+      },
+      "hardware_calibrated": false,
+      "ground_truth_input": false
+    },
+    "command_graph": {
+      "cmd_vel_nav": {
+        "publishers": [
+          {
+            "node": "//controller_server",
+            "type": "geometry_msgs/msg/TwistStamped"
+          },
+          {
+            "node": "//behavior_server",
+            "type": "geometry_msgs/msg/TwistStamped"
+          },
+          {
+            "node": "//behavior_server",
+            "type": "geometry_msgs/msg/TwistStamped"
+          },
+          {
+            "node": "//behavior_server",
+            "type": "geometry_msgs/msg/TwistStamped"
+          },
+          {
+            "node": "//behavior_server",
+            "type": "geometry_msgs/msg/TwistStamped"
+          },
+          {
+            "node": "//behavior_server",
+            "type": "geometry_msgs/msg/TwistStamped"
+          }
+        ],
+        "subscribers": [
+          {
+            "node": "//velocity_smoother",
+            "type": "geometry_msgs/msg/TwistStamped"
+          }
+        ]
+      },
+      "cmd_vel_smoothed": {
+        "publishers": [
+          {
+            "node": "//velocity_smoother",
+            "type": "geometry_msgs/msg/TwistStamped"
+          }
+        ],
+        "subscribers": [
+          {
+            "node": "//collision_monitor",
+            "type": "geometry_msgs/msg/TwistStamped"
+          }
+        ]
+      },
+      "cmd_vel": {
+        "publishers": [
+          {
+            "node": "//collision_monitor",
+            "type": "geometry_msgs/msg/TwistStamped"
+          },
+          {
+            "node": "//docking_server",
+            "type": "geometry_msgs/msg/TwistStamped"
+          },
+          {
+            "node": "//cmd_vel_bridge",
+            "type": "geometry_msgs/msg/TwistStamped"
+          },
+          {
+            "node": "//mission",
+            "type": "geometry_msgs/msg/TwistStamped"
+          }
+        ],
+        "subscribers": [
+          {
+            "node": "//gazebo_evaluator",
+            "type": "geometry_msgs/msg/TwistStamped"
+          },
+          {
+            "node": "//motion_control",
+            "type": "geometry_msgs/msg/TwistStamped"
+          }
+        ]
+      },
+      "odom": {
+        "publishers": [
+          {
+            "node": "//diffdrive_controller",
+            "type": "nav_msgs/msg/Odometry"
+          }
+        ],
+        "subscribers": [
+          {
+            "node": "//controller_server",
+            "type": "nav_msgs/msg/Odometry"
+          },
+          {
+            "node": "//bt_navigator",
+            "type": "nav_msgs/msg/Odometry"
+          },
+          {
+            "node": "//gazebo_evaluator",
+            "type": "nav_msgs/msg/Odometry"
+          },
+          {
+            "node": "//motion_control",
+            "type": "nav_msgs/msg/Odometry"
+          },
+          {
+            "node": "//robot_state",
+            "type": "nav_msgs/msg/Odometry"
+          },
+          {
+            "node": "//tb4_contract",
+            "type": "nav_msgs/msg/Odometry"
+          },
+          {
+            "node": "//mission",
+            "type": "nav_msgs/msg/Odometry"
+          }
+        ]
+      },
+      "tf": {
+        "publishers": [
+          {
+            "node": "//diffdrive_controller",
+            "type": "tf2_msgs/msg/TFMessage"
+          },
+          {
+            "node": "//robot_state_publisher",
+            "type": "tf2_msgs/msg/TFMessage"
+          },
+          {
+            "node": "//odom_base_tf_bridge",
+            "type": "tf2_msgs/msg/TFMessage"
+          },
+          {
+            "node": "//slam_toolbox",
+            "type": "tf2_msgs/msg/TFMessage"
+          },
+          {
+            "node": "//slam_toolbox",
+            "type": "tf2_msgs/msg/TFMessage"
+          }
+        ],
+        "subscribers": [
+          {
+            "node": "//transform_listener_impl_6431b66958e0",
+            "type": "tf2_msgs/msg/TFMessage"
+          },
+          {
+            "node": "//smoother_server",
+            "type": "tf2_msgs/msg/TFMessage"
+          },
+          {
+            "node": "//transform_listener_impl_5cc26b0482f0",
+            "type": "tf2_msgs/msg/TFMessage"
+          },
+          {
+            "node": "//route_server",
+            "type": "tf2_msgs/msg/TFMessage"
+          },
+          {
+            "node": "//behavior_server",
+            "type": "tf2_msgs/msg/TFMessage"
+          },
+          {
+            "node": "//bt_navigator",
+            "type": "tf2_msgs/msg/TFMessage"
+          },
+          {
+            "node": "//collision_monitor",
+            "type": "tf2_msgs/msg/TFMessage"
+          },
+          {
+            "node": "//docking_server",
+            "type": "tf2_msgs/msg/TFMessage"
+          },
+          {
+            "node": "//gazebo_evaluator",
+            "type": "tf2_msgs/msg/TFMessage"
+          },
+          {
+            "node": "//motion_control",
+            "type": "tf2_msgs/msg/TFMessage"
+          },
+          {
+            "node": "//tb4_contract",
+            "type": "tf2_msgs/msg/TFMessage"
+          },
+          {
+            "node": "//tb4_contract",
+            "type": "tf2_msgs/msg/TFMessage"
+          },
+          {
+            "node": "//transform_listener_impl_616b4be86b80",
+            "type": "tf2_msgs/msg/TFMessage"
+          },
+          {
+            "node": "//aruco_detector",
+            "type": "tf2_msgs/msg/TFMessage"
+          },
+          {
+            "node": "//mission",
+            "type": "tf2_msgs/msg/TFMessage"
+          },
+          {
+            "node": "//mission_video_recorder",
+            "type": "tf2_msgs/msg/TFMessage"
+          }
+        ]
+      }
+    }
+  },
+  "previous_campaign_snapshot": "repository_snapshot/robot_transfer_at_platform_transition.json",
+  "coordinator_unit": "osp-tb4-platform-cem-v1.service"
 }

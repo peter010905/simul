@@ -1,6 +1,6 @@
 # OSP Final Project — ROS 2 Jazzy
 
-**2026-11-14 TurtleBot4 플랫폼 정렬:** 실물의 `odom`·TF를 사용하는 구조와 공통 SLAM/Nav2 설정, RGB preview 입력, stamped 속도 명령 검사를 [별도 후보](policy_candidates/2026-11-14_tb4_platform_v1)에 추가했습니다. 시뮬레이션 전용 EKF·휠 보정은 새 launch에서 제거했습니다. **Create 3 내부 센서 융합까지 동일한 시뮬레이션은 아니며, 실제 로봇 검증은 미완료입니다.** 새 native 검증과 학습 상태는 [플랫폼 기록](repository_snapshot/tb4_platform_candidate.json)에 분리합니다.
+**2026-11-14 TurtleBot4 플랫폼 정렬:** 실물의 `odom`·TF를 사용하는 구조와 공통 SLAM/Nav2 설정, RGB preview 입력, stamped 속도 명령 검사를 [별도 후보](policy_candidates/2026-11-14_tb4_platform_v1)에 추가했습니다. 시뮬레이션 전용 EKF·휠 보정은 새 launch에서 제거했습니다. **Create 3 내부 센서 융합까지 동일한 시뮬레이션은 아니며, 실제 로봇 검증은 미완료입니다.** 373개 런타임·3개 감독기·1개 ROS 통신 검사를 통과했습니다. 새 약60초 Gazebo 구성 검사는 실제9.93m 이동·충돌0회·지도/pose graph 저장을 확인했고, 이 구간 지도 위치 오차는 최대3.8cm였습니다. 마커0개인 짧은 구성 검사이므로 전체 과제 성공으로 집계하지 않습니다. 같은 구성으로 새12개 ㄷ/U/zigzag 맵에서600초 학습을 시작했습니다. 검증과 학습 상태는 [플랫폼 기록](repository_snapshot/tb4_platform_candidate.json)에 분리합니다.
 
 **이전 2026-11-14 실물 대응 후보:** 열린 길 오판·동일 경로 반복에 대응하는 [새 후보와 재현 방법](policy_candidates/2026-11-14_robot_transfer_v1)을 별도 준비했습니다. 시작점 연결·방문/실패 기억·실물 실행 기본값을 수정하고, ㄷ/U/zigzag에서 합성 LiDAR 잡음·지연·누락과 encoder 오차를 넣어 native 학습을 진행했습니다. 새 플랫폼으로 전환하며 원래 실험을 보존합니다. 새 후보357개, 동일 입력의 비교 기준348개 테스트를 통과했습니다. 사용자 실물은 **TurtleBot4**로 확인됐습니다. 시뮬레이션은 원래 과제의 Standard 모델을 유지하며, 실제 센서 설정·로그는 아직 확인하지 못했습니다. 실제 로봇 성공 여부와 개선 폭은 아직 검증하지 않았습니다. [변경·이전 학습 분석](repository_snapshot/robot_transfer_candidate.json).
 
@@ -993,9 +993,9 @@ ros2 launch osp_mission simulation.launch.py planner:=edge camera_width:=960 \
 
 <!-- ROBOT_TRANSFER_PROGRESS:START -->
 
-실물 대응 후보 `robot_transfer_cem_v2`: 상태 `superseded_by_tb4_platform`, 세대 0, 단계 `train`.
-독립 입력 검사를 통과한 native 개발 회차 4개 중 엄격한 완주 1개; 인프라 실패 1개 별도.
+실물 대응 후보 `tb4_platform_cem_v1`: 상태 `running`, 세대 0, 단계 `train`.
+독립 입력 검사를 통과한 native 개발 회차 0개 중 엄격한 완주 0개; 인프라 실패 0개 별도.
 형태·잡음·후보/기준별 결과는 [진행 기록](repository_snapshot/robot_transfer_progress.json)에 분리합니다. 학습 중 관측이며 실물 검증·production 승격 결과가 아닙니다.
-관측 UTC: 2026-11-14T13:30:51.021961+00:00. 로컬 게시 작업은 요약·완성 영상만 갱신하며 자동 코드 수정/리뷰를 수행하지 않습니다.
+관측 UTC: 2026-11-14T13:32:14.462205+00:00. 로컬 게시 작업은 요약·완성 영상만 갱신하며 자동 코드 수정/리뷰를 수행하지 않습니다.
 
 <!-- ROBOT_TRANSFER_PROGRESS:END -->

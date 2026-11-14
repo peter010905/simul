@@ -1,0 +1,286 @@
+{
+  "status": "superseded_by_tb4_platform",
+  "successor": "tb4_platform_cem_v1",
+  "jobs": [
+    {
+      "number": 0,
+      "status": "done",
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/robot_transfer_cem_v1/scenarios/1194000000.yaml",
+        "seed": 1194000000,
+        "sha256": "5eb82552519cc3372d78b00896d34503295df29f8971735248c0c275d4b399a1",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "hidden_obstacles",
+        "arena": {
+          "shape": "c_shape",
+          "width_m": 17.706739709775484,
+          "height_m": 15.42264859705142,
+          "area_m2": 160.07784350161972
+        },
+        "physical_sha256": "7ed43aaa924d207fe8678f9ef79d9b5aa068b45902091bc097bc09e76be534e5"
+      },
+      "outcome": {
+        "success": false,
+        "targets": 1,
+        "approached": 2,
+        "contacts": 0,
+        "seconds": 600.305,
+        "infrastructure_failure": false,
+        "reason": "timeout"
+      }
+    },
+    {
+      "number": 1,
+      "status": "done",
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/robot_transfer_cem_v1/scenarios/1194000101.yaml",
+        "seed": 1194000101,
+        "sha256": "beb4e12a001efe8c85e448d6f3982c0e98a81e03f98cf524fc31c32a300db9f0",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "hidden_obstacles",
+        "arena": {
+          "shape": "u_shape",
+          "width_m": 20.938338371663544,
+          "height_m": 16.34826256099138,
+          "area_m2": 159.73201290901542
+        },
+        "physical_sha256": "82678f14e45d9fb3363647835fc9157bee91182b98a05ae4f1f88406f3d7101a"
+      },
+      "outcome": {
+        "success": false,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 600.003,
+        "infrastructure_failure": false,
+        "reason": "timeout"
+      }
+    },
+    {
+      "number": 2,
+      "status": "done",
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/robot_transfer_cem_v1/scenarios/1194000202.yaml",
+        "seed": 1194000202,
+        "sha256": "8c747022cdf593ba6b10651b734fcdb74fea23846f868b3829cbb29b4c14e5b7",
+        "requested_obstacles": 16,
+        "actual_obstacles": 16,
+        "mount_profile": "hidden_obstacles",
+        "arena": {
+          "shape": "zigzag",
+          "width_m": 17.07263049547447,
+          "height_m": 17.199204337226305,
+          "area_m2": 199.8464066660691
+        },
+        "physical_sha256": "542d14c332b41a37e7c07a56e019ca191d462695e6c60dc9cddf7206795d4d61"
+      },
+      "outcome": {
+        "success": false,
+        "targets": 2,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 600.142,
+        "infrastructure_failure": false,
+        "reason": "timeout"
+      }
+    },
+    {
+      "number": 3,
+      "status": "done",
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/robot_transfer_cem_v1/scenarios/1194000303.yaml",
+        "seed": 1194000303,
+        "sha256": "d5d5ec6334c16aafede874b17d802d6b670e030a0253e7311ce5e91699e38362",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "hidden_obstacles",
+        "arena": {
+          "shape": "c_shape",
+          "width_m": 20.0565310882092,
+          "height_m": 14.518680316996786,
+          "area_m2": 168.74951631983006
+        },
+        "physical_sha256": "16a96272384a16883403324bc0cc9b92a9714c5d3c6d0c0465ef78228af62673"
+      },
+      "outcome": {
+        "success": false,
+        "targets": 0,
+        "approached": 0,
+        "contacts": 0,
+        "seconds": 600.0,
+        "infrastructure_failure": true,
+        "reason": "synthetic_stress_input_unverified"
+      }
+    },
+    {
+      "number": 4,
+      "status": "done",
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/robot_transfer_cem_v1/scenarios/1194000404.yaml",
+        "seed": 1194000404,
+        "sha256": "37005e41a959d3983bfbb3ee2702e6fa5ecf03856e111f20bf8d771ee4fd1682",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "hidden_obstacles",
+        "arena": {
+          "shape": "u_shape",
+          "width_m": 21.11211416262881,
+          "height_m": 16.560569622049677,
+          "area_m2": 173.26517910086963
+        },
+        "physical_sha256": "f38e8467d1a5c0bbd1c7240ce909a7787d15f82a4f9348e20aee44e725039c09"
+      },
+      "outcome": {
+        "success": true,
+        "targets": 3,
+        "approached": 3,
+        "contacts": 0,
+        "seconds": 451.301,
+        "infrastructure_failure": false,
+        "reason": "all_targets_found"
+      }
+    },
+    {
+      "number": 5,
+      "status": "prepared",
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/robot_transfer_cem_v1/scenarios/1194000505.yaml",
+        "seed": 1194000505,
+        "sha256": "3206534c08439dcded092e1c23483578281727cdf26a5a127d0b5d6b14f00c90",
+        "requested_obstacles": 16,
+        "actual_obstacles": 16,
+        "mount_profile": "hidden_obstacles",
+        "arena": {
+          "shape": "zigzag",
+          "width_m": 17.96244697758263,
+          "height_m": 17.641856245509487,
+          "area_m2": 215.03335178063722
+        },
+        "physical_sha256": "472981bb0370a9aeda9e18b6de168b0dc8c21e8e2406bf1915384df3e41a54da"
+      },
+      "outcome": null
+    },
+    {
+      "number": 6,
+      "status": "prepared",
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/robot_transfer_cem_v1/scenarios/1194000606.yaml",
+        "seed": 1194000606,
+        "sha256": "3378e025e9e90ca75a4bb4a2255ca1cc4dbcec8a488c692573f09cf02f1ce82b",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "hidden_obstacles",
+        "arena": {
+          "shape": "c_shape",
+          "width_m": 19.13021050371558,
+          "height_m": 14.722693392657892,
+          "area_m2": 136.71214265258757
+        },
+        "physical_sha256": "399a7b05b5bca18a8d6830bdb000162dfb7ed0249d12b5e4ae96d2b98293f1e0"
+      },
+      "outcome": null
+    },
+    {
+      "number": 7,
+      "status": "prepared",
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/robot_transfer_cem_v1/scenarios/1194000707.yaml",
+        "seed": 1194000707,
+        "sha256": "c5d98fb3eecc250c1743390f5edde3ed8df0cb1228811af5cf4777678c522b44",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "hidden_obstacles",
+        "arena": {
+          "shape": "u_shape",
+          "width_m": 19.88915371021384,
+          "height_m": 16.4398117388509,
+          "area_m2": 165.31856559025263
+        },
+        "physical_sha256": "6185d0f92cbd2c4b89ee79dbf15f0a464e4680cd0c7e980fb6f39758604c23a6"
+      },
+      "outcome": null
+    },
+    {
+      "number": 8,
+      "status": "prepared",
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/robot_transfer_cem_v1/scenarios/1194000808.yaml",
+        "seed": 1194000808,
+        "sha256": "5c17af46ae4d49d32bef68b159a0ef2ee2a3f304bc46b4a52f448c7d6b6917d9",
+        "requested_obstacles": 16,
+        "actual_obstacles": 16,
+        "mount_profile": "hidden_obstacles",
+        "arena": {
+          "shape": "zigzag",
+          "width_m": 21.640178001029177,
+          "height_m": 18.269679075080823,
+          "area_m2": 263.9179582043719
+        },
+        "physical_sha256": "c2389eb3eb8c0e699a25a7d3bbe2934ec1a478eafb08f734ea2c6e17f7a71c2f"
+      },
+      "outcome": null
+    },
+    {
+      "number": 9,
+      "status": "prepared",
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/robot_transfer_cem_v1/scenarios/1194000909.yaml",
+        "seed": 1194000909,
+        "sha256": "f23d070ad1699d75a6a4d44d11fc400a181f7762a4b2cf214475c9f7f9892282",
+        "requested_obstacles": 8,
+        "actual_obstacles": 8,
+        "mount_profile": "hidden_obstacles",
+        "arena": {
+          "shape": "c_shape",
+          "width_m": 18.56305076535565,
+          "height_m": 13.399307841437308,
+          "area_m2": 161.5706041458699
+        },
+        "physical_sha256": "782c6ab725ed47d2d5118cf40be9957cc8e9729887bf12f03ecdd859b8bb5cc9"
+      },
+      "outcome": null
+    },
+    {
+      "number": 10,
+      "status": "prepared",
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/robot_transfer_cem_v1/scenarios/1194001010.yaml",
+        "seed": 1194001010,
+        "sha256": "c96c755aed1abed2836f0efcf96794ebff2944ee999bba2dfc8e36892365ff86",
+        "requested_obstacles": 12,
+        "actual_obstacles": 12,
+        "mount_profile": "hidden_obstacles",
+        "arena": {
+          "shape": "u_shape",
+          "width_m": 21.980131732216055,
+          "height_m": 14.15260104876898,
+          "area_m2": 132.88957475510026
+        },
+        "physical_sha256": "58643bf6ea4d57109f607ba493d3bceaca1f6115c066f08b539bbc2ea8b8124a"
+      },
+      "outcome": null
+    },
+    {
+      "number": 11,
+      "status": "prepared",
+      "scenario": {
+        "file": "/home/peter/simul/training_robust/native90/robot_transfer_cem_v1/scenarios/1194001111.yaml",
+        "seed": 1194001111,
+        "sha256": "2764715aa35bebf40718b9401cc60fe0ce4a13b9c80b36f189dbf2da4256b70a",
+        "requested_obstacles": 16,
+        "actual_obstacles": 16,
+        "mount_profile": "hidden_obstacles",
+        "arena": {
+          "shape": "zigzag",
+          "width_m": 17.112159380023616,
+          "height_m": 15.808804162716637,
+          "area_m2": 182.30712898840287
+        },
+        "physical_sha256": "2265ccfc5fcb374a696085ddb43d178ea0c97e97b96bcadfd7b50265de4be7d1"
+      },
+      "outcome": null
+    }
+  ]
+}
