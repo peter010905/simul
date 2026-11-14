@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-14T13:30:50.944121+00:00",
+  "updated_utc": "2026-11-14T14:00:58.847971+00:00",
   "release_url": "https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11",
   "uploaded_verified": 286,
   "videos": [
@@ -4595,6 +4595,14 @@
     },
     {
       "path": "training_robust/native90/rpp_v7_service_screen3/episodes/8600133/video/mission.mp4",
+      "reason": "Final evaluation or recording metadata absent"
+    },
+    {
+      "path": "training_robust/native90/tb4_platform_cem_v1/jobs/00000_train_g0_0/episodes/1195000000/video/mission.mp4",
+      "reason": "Final evaluation or recording metadata absent"
+    },
+    {
+      "path": "training_robust/native90/tb4_platform_cem_v1/jobs/00001_train_g0_0/episodes/1195000101/video/mission.mp4",
       "reason": "Final evaluation or recording metadata absent"
     }
   ],

@@ -20,13 +20,14 @@
         "floor_sensor_gate": true,
         "runtime_configuration_gate": true,
         "slam_transport_gate": true,
-        "velocity_profile_gate": true
+        "velocity_profile_gate": true,
+        "transfer_input_gate": true
       },
       "live": {
         "state": "running",
-        "targets": 0,
+        "targets": 1,
         "collisions": 0,
-        "elapsed_seconds": 13.997,
+        "elapsed_seconds": 375.497,
         "readiness_reason": ""
       }
     },
@@ -40,13 +41,14 @@
         "floor_sensor_gate": true,
         "runtime_configuration_gate": true,
         "slam_transport_gate": true,
-        "velocity_profile_gate": true
+        "velocity_profile_gate": true,
+        "transfer_input_gate": true
       },
       "live": {
         "state": "running",
-        "targets": 0,
+        "targets": 1,
         "collisions": 0,
-        "elapsed_seconds": 14.919,
+        "elapsed_seconds": 373.424,
         "readiness_reason": ""
       }
     }
@@ -54,7 +56,7 @@
   "evidence_type": "native_gazebo_training_and_paired_development_not_hardware",
   "production_promoted": false,
   "hardware_validated": false,
-  "captured_utc": "2026-11-14T13:32:14.462205+00:00",
+  "captured_utc": "2026-11-14T14:00:58.937018+00:00",
   "synthetic_stress_is_real_robot_calibration": false,
   "automation_scope": "local systemd timer: summary and finished-video publication only"
 }
