@@ -1,4 +1,13 @@
 {
+  "passing_glance_replay": {
+    "report": "policy_candidates/2026-11-18_flow_v3_passing_glance/README.md",
+    "holdout_runs": 14,
+    "background_turns_old": 7,
+    "background_turns_new": 1,
+    "holdout_target_reads": 0,
+    "new_mean_ms_with_decode": 3.23,
+    "physical_trial": false
+  },
   "single_frame_edge_glance": {
     "report": "policy_candidates/2026-11-18_flow_v3_edge_glance/README.md",
     "unseen_runs": 14,
