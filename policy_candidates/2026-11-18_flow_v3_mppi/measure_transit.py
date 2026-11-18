@@ -113,6 +113,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('output', type=Path)
     parser.add_argument('--fixed-route', action='store_true', help='Drive three identical Nav2 waypoints in robust_demo')
+    parser.add_argument('--scenario', type=Path, help='Override the Gazebo world for an exploration test')
     parser.add_argument('--repo', type=Path, default=Path.home()/'simul')
     args = parser.parse_args()
     if os.environ.get('ROS_DOMAIN_ID') not in ('184', '185') or os.environ.get('ROS_LOCALHOST_ONLY') != '1':
@@ -123,6 +124,10 @@ def main():
                 'planner:=edge','record_video:=false','duration:=120.0','camera_width:=320',
                 'output_dir:='+str(out), 'nav2_params:='+str(args.repo/'robot_profiles/wired_flow_v3/nav2_hardware_profile.yaml'),
                 'policy_file:='+str(args.repo/'policy_releases/2026-11-13_face_intent_v2/policy.json')]
+    if args.scenario:
+        if args.fixed_route:
+            parser.error('The fixed waypoints are defined only in robust_demo')
+        args_ros.append('scenario:='+str(args.scenario.resolve()))
     rclpy.init()
     node = rclpy.create_node('transit_measurement')
     state, samples = {}, []

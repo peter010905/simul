@@ -1,0 +1,7 @@
+seed: 8111803
+randomize: false
+start: [8.0, 5.0, 0.0]
+obstacles:
+  - {type: cylinder, x: 8.0, y: 3.82, radius: 0.16, height: 1.0}
+targets:
+  - {id: 68, x: 8.0, y: 3.99, yaw: 1.57079632679, size: 0.16}

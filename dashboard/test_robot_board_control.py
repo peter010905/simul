@@ -116,7 +116,7 @@ def test_start_command_uses_same_prebuilt_session_and_recorder(tmp_path):
 
 
 @pytest.mark.parametrize(('action','workspace'), [('start-r32','r32_drive_original18_ws'),
-                                                ('start-v3-mppi','face_intent_v3_contact_r1_ws')])
+                                                ('start-v3-mppi','face_intent_v3_surface_ws')])
 def test_alternate_start_uses_its_own_overlay_and_shares_the_original_stop_lock(tmp_path, action, workspace):
     board = BoardControl(tmp_path, tmp_path/'baseline', 184, state_dir=tmp_path)
     cmd = board.command(action)

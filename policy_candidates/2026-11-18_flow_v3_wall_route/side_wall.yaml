@@ -1,0 +1,7 @@
+seed: 8111802
+randomize: false
+start: [8.0, 5.0, 0.0]
+obstacles:
+  - {type: box, x: 9.0, y: 6.10, sx: 8.0, sy: 0.16, height: 1.1, yaw: 0.0}
+targets:
+  - {id: 42, x: 8.0, y: 6.01, yaw: -1.57079632679, size: 0.16}

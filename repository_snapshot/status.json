@@ -1,4 +1,33 @@
 {
+  "physical_surface_search": {
+    "candidate": "policy_candidates/2026-11-18_flow_v3_wall_route/README.md",
+    "prepared_runtime": "face_intent_v3_surface_ws",
+    "physical_reference": "20261118T065425-f31b351826",
+    "physical_reference_distance_m": 45.806,
+    "physical_reference_revisit_m": 6.723,
+    "first_120s_replayed_choices": 7,
+    "changed_choices": 3,
+    "gazebo_tests": [
+      {
+        "scene": "side_wall",
+        "confirmed_and_approached_id": 42,
+        "requested_turn_deg": 81,
+        "contacts": 0,
+        "odom_path_m": 4.244
+      },
+      {
+        "scene": "side_obstacle",
+        "confirmed_and_approached_id": 68,
+        "requested_turn_deg": -84,
+        "contacts": 0,
+        "odom_path_m": 5.854
+      }
+    ],
+    "baseline_side_obstacle_50s": {"targets": 0, "contacts": 0, "odom_path_m": 10.043},
+    "runtime_tests_passed": 392,
+    "control_tests_passed": 30,
+    "new_hardware_drive_tested": false
+  },
   "flow_v3_mppi_transit": {
     "parent": "2026-11-17_face_intent_flow_v3",
     "weights": "2026-11-13_face_intent_v2",

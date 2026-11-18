@@ -68,7 +68,7 @@ class BoardControl:
 
     def command(self, action):
         workspace = self.workspace
-        alternatives = {"start-r32": "r32_drive_original18_ws", "start-v3-mppi": "face_intent_v3_contact_r1_ws"}
+        alternatives = {"start-r32": "r32_drive_original18_ws", "start-v3-mppi": "face_intent_v3_surface_ws"}
         if action in alternatives:
             workspace = self.workspace.parent / alternatives[action]
             action = "start"
