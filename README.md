@@ -1,5 +1,7 @@
 # OSP Final Project — ROS 2 Jazzy
 
+**11월 18일 인접 마커 구분** · 실물 보드의 Flow v3 · MPPI 구동에 7번·103번 동시 확인 판정을 적용했다. [합성 입력 시험과 원본 주행 재생 결과](policy_candidates/2026-11-18_flow_v3_marker_pair/README.md)
+
 **11월 18일 벽·장애물 마커 탐색** · Flow v3 · MPPI가 주행 중 카메라 시야 밖의 벽이나 기둥 옆면으로 회전하고 최근에 지나간 경로에는 감점을 준다. Gazebo에서 왼쪽 벽의 42번과 오른쪽 기둥의 68번을 각각 확인했다. [실물 로그 재생과 두 장면의 시험 결과](policy_candidates/2026-11-18_flow_v3_wall_route/README.md)
 
 **11월 18일 범퍼·마커 관측 개선** · 실물 접촉 26회와 후진 실패 2회를 분석해 Flow v3 · MPPI 버튼에 새 후보를 연결했습니다. [주행 분석과 검증](policy_candidates/2026-11-18_flow_v3_contact/README.md).

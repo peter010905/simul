@@ -1,4 +1,13 @@
 {
+  "flow_v3_adjacent_markers": {
+    "report": "policy_candidates/2026-11-18_flow_v3_marker_pair/README.md",
+    "prepared_runtime": "face_intent_v3_pair_r2_ws",
+    "composite_pairs_accepted": 35,
+    "composite_pairs_tested": 35,
+    "first_joint_registration_frame": 3,
+    "map_separation_m": 0.1,
+    "simultaneous_physical_trial": false
+  },
   "physical_surface_search": {
     "candidate": "policy_candidates/2026-11-18_flow_v3_wall_route/README.md",
     "prepared_runtime": "face_intent_v3_surface_ws",
