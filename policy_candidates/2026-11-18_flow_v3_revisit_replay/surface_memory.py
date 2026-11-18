@@ -129,7 +129,7 @@ class SurfaceMemory:
         return [i for i,f in enumerate(self.faces) if f.queued is not None and not f.confirmed
                 and now-f.last_poor<=120 and now-f.queued>=2 and now-self.requests.get(i,-1e20)>=30]
 
-    def choose(self, snapshot, pose, now, focal, mapped_ids):
+    def choose(self, snapshot, pose, now, focal, mapped_ids, *, report_covered=False):
         """Rerank only saved feasible alternatives; do not override marker-directed decisions."""
         from osp_mission.edge_policy import visible
         rows=snapshot['candidates']
@@ -176,7 +176,12 @@ class SurfaceMemory:
             offset=math.atan2(math.sin(bearing-center), math.cos(bearing-center))
             # Require the bearing to cross the central portion of the saved camera sweep.
             return abs(offset)<=abs(sweep)/2+math.radians(10)
-        if any(already_covered(fid) for fid in base_faces):return None
+        for fid in base_faces:
+            if already_covered(fid):
+                if not report_covered:return None
+                return dict(kind="covered", baseline_xy=rows[base,:2].tolist(),
+                            goal_xy=rows[base,:2].tolist(), goal_yaw=float(rows[base,2]),
+                            face_id=fid, extra_path_m=0.)
         choices=[base] if base_faces else sorted((i for i in range(len(rows)) if i!=base and rows[i,6]<=rows[base,6]+1.),
                        key=lambda i:rows[i,6])
         for i in choices:

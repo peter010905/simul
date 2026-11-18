@@ -1,4 +1,11 @@
 {
+  "flow_v3_square_face_replay": {
+    "report": "policy_candidates/2026-11-18_flow_v3_square_face/README.md",
+    "recorded_runs": 4,
+    "matched_before_video_decode": 1,
+    "waypoints_changed_by_square_priority": 0,
+    "physical_trial": false
+  },
   "flow_v3_surface_memory_replay": {
     "report": "policy_candidates/2026-11-18_flow_v3_revisit_replay/README.md",
     "recorded_runs": 4,

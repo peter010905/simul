@@ -33,7 +33,7 @@ def nearest(rows,t,tolerance):
     return row[1] if row and abs(row[0]-t)<=tolerance else None
 
 
-def replay(run,output):
+def replay(run,output,*,memory=None,inspect_frame=None,record_reference=None):
     events=[json.loads(line) for line in (run/'artifacts/startup.jsonl').read_text().splitlines()]
     start=next(e['wall_epoch_s'] for e in events if e['event']=='mission_started')
     stop=min(e['wall_epoch_s'] for e in events if e['event'] in ('stopped','safety_stop','mission_finished'))
@@ -50,7 +50,8 @@ def replay(run,output):
     topics=[rgb,info,scan,'/odom','/tf_static','/mission/marker_observations','/mission/status']
     types={x.name:get_message(x.type) for x in reader.get_all_topics_and_types() if x.name in topics}
     reader.set_filter(bag.StorageFilter(topics=topics))
-    static=Buffer();bridge=CvBridge();memory=SurfaceMemory();cal=None
+    static=Buffer();bridge=CvBridge();cal=None
+    if memory is None:memory=SurfaceMemory()
     poses=deque(maxlen=60);scans=deque(maxlen=15);path=[];decisions=[];audits={}
     seen_baseline=set();coverage_checks=set();marker_positions=defaultdict(list);approached=set()
     counts=Counter();last=-1e20;frame_cache={};pos=0
@@ -115,6 +116,7 @@ def replay(run,output):
             if ident in audits:continue
             base=nearest(poses,e['stamp'],.25)
             if base is None:continue
+            if record_reference is not None:record_reference(ident,t,point,base)
             close=[]
             for idx,f in enumerate(memory.faces):
                 dist=np.linalg.norm(f.xy-point)
@@ -126,8 +128,10 @@ def replay(run,output):
                                prior_s=round(t-memory.faces[min(close)[1]].queued,2) if close else None)
         elif t>=start and topic==rgb:
             stamp=header_time(msg)
-            if stamp-last<.25:continue
-            last=stamp;counts['sampled']+=1
+            sample=stamp-last>=.25
+            if not sample and inspect_frame is None:continue
+            if sample:
+                last=stamp;counts['sampled']+=1
             laser=nearest(scans,stamp,.18);base=nearest(poses,stamp,.15)
             if laser is None or base is None or cal is None or cal.width!=msg.width or cal.height!=msg.height:continue
             laser_base=nearest(poses,header_time(laser),.15)
@@ -137,7 +141,11 @@ def replay(run,output):
                 origin=project(laser_base,cached(laser.header.frame_id))
             except Exception:
                 counts['missing_camera_transform']+=1;continue
-            path.append(base[:2]);image=bridge.imgmsg_to_cv2(msg,'mono8')
+            image=bridge.imgmsg_to_cv2(msg,'mono8')
+            if inspect_frame is not None:
+                inspect_frame(t,stamp,laser,origin,cam,cal,image)
+            if not sample:continue
+            path.append(base[:2])
             memory.update(local_observations(laser,origin,cam,cal,image),cam,t)
             counts['used']+=1
     faces=memory.faces;poor=[f for f in faces if f.queued is not None]

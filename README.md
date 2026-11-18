@@ -1,5 +1,7 @@
 # OSP Final Project — ROS 2 Jazzy
 
+**11월 18일 흑백 테두리 우선 재관찰** · 녹화 4회 중 17:08 주행에서 103번 면을 첫 영상 판독보다 0.40초 먼저 골랐다. [주행별 시각과 선택 비교](policy_candidates/2026-11-18_flow_v3_square_face/README.md)
+
 **11월 18일 벽·장애물 면 재관찰 재생** · 주행 기록 4회에서 92개 결정 중 23개에 새 관찰 지점을 제안했다. 마커 관측 기록이 있는 3회에서 발견 전에 해당 면을 고른 사례는 0회였다. [비교 결과와 재생 방법](policy_candidates/2026-11-18_flow_v3_revisit_replay/README.md)
 
 **11월 18일 표면 관찰 회전 확대** · 벽이나 장애물의 옆면이 충분히 이어지면 중심을 지나 같은 면의 끝까지 더 본다. [회전 조건과 시험 결과](policy_candidates/2026-11-18_flow_v3_surface_sweep/README.md)
