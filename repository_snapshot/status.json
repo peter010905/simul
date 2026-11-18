@@ -1,4 +1,12 @@
 {
+  "flow_v3_warped_original": {
+    "report": "policy_candidates/2026-11-18_flow_v3_warp/README.md",
+    "runtime": "face_intent_v3_warp_ws",
+    "reference_run": "20261118T080829-46b72fd54a",
+    "image_frames_replayed": 1943,
+    "id_103_readable_frames": 14,
+    "runtime_tests": 394
+  },
   "flow_v3_adjacent_markers": {
     "report": "policy_candidates/2026-11-18_flow_v3_marker_pair/README.md",
     "prepared_runtime": "face_intent_v3_pair_r2_ws",
