@@ -1,0 +1,43 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+Visualization Manager:
+  Enabled: true
+  Global Options:
+    Fixed Frame: map
+  Displays:
+    - Class: rviz_default_plugins/Map
+      Enabled: true
+      Name: SLAM Map
+      Topic:
+        Value: /map
+        Durability Policy: Transient Local
+    - Class: rviz_default_plugins/RobotModel
+      Enabled: true
+      Name: TurtleBot4
+      Description Source: Topic
+      Description Topic:
+        Value: /robot_description
+        Durability Policy: Transient Local
+    - Class: rviz_default_plugins/LaserScan
+      Enabled: true
+      Name: LiDAR
+      Topic:
+        Value: /scan
+        Reliability Policy: Best Effort
+      Size (m): 0.025
+    - Class: rviz_default_plugins/MarkerArray
+      Enabled: true
+      Name: ArUco Targets
+      Marker Topic:
+        Value: /targets
+  Views:
+    Current:
+      Class: rviz_default_plugins/TopDownOrtho
+      Scale: 24
+      X: 8
+      Y: 4
+      Target Frame: map
+Window Geometry:
+  Width: 1280
+  Height: 800
