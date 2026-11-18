@@ -1,4 +1,15 @@
 {
+  "flow_v3_surface_sweep": {
+    "report": "policy_candidates/2026-11-18_flow_v3_surface_sweep/README.md",
+    "runtime": "face_intent_v3_sweep_ws",
+    "gazebo_side_wall_center_deg": 81,
+    "gazebo_side_wall_end_deg": 105,
+    "approached_ids": [
+      42
+    ],
+    "contacts": 0,
+    "runtime_tests": 397
+  },
   "flow_v3_warped_original": {
     "report": "policy_candidates/2026-11-18_flow_v3_warp/README.md",
     "runtime": "face_intent_v3_warp_ws",

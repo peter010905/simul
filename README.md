@@ -1,5 +1,7 @@
 # OSP Final Project — ROS 2 Jazzy
 
+**11월 18일 표면 관찰 회전 확대** · 벽이나 장애물의 옆면이 충분히 이어지면 중심을 지나 같은 면의 끝까지 더 본다. [회전 조건과 시험 결과](policy_candidates/2026-11-18_flow_v3_surface_sweep/README.md)
+
 **11월 18일 벽면 마커 판독** · 기존 실물 주행에서 놓친 103번을 같은 영상의 14프레임에서 복원했다. [Flow v3 판독 보완과 검증](policy_candidates/2026-11-18_flow_v3_warp/README.md)
 
 **11월 18일 인접 마커 구분** · 실물 보드의 Flow v3 · MPPI 구동에 7번·103번 동시 확인 판정을 적용했다. [합성 입력 시험과 원본 주행 재생 결과](policy_candidates/2026-11-18_flow_v3_marker_pair/README.md)
