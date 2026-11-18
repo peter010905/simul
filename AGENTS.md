@@ -1,7 +1,7 @@
 # Project maintenance
 
 - Physical robot commands on this Mac use `./robot.sh start` and
-  `./robot.sh stop` with the prepared `face_intent_flow_v4_ws` in `osp-jazzy`.
+  `./robot.sh stop` with the prepared `face_intent_flow_v4r2_ws` in `osp-jazzy`.
   The physical board also supports explicit start/stop buttons when launched
   with `--enable-control`. Both use `scripts/robot_session.py` and the same
   readiness checks. Do not rebuild, redeploy, restart the board, or manually

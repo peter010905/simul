@@ -67,13 +67,17 @@ class BoardControl:
             return {}
 
     def command(self, action):
+        workspace = self.workspace
+        if action == "start-r32":
+            workspace = self.workspace.parent / "r32_drive_original18_ws"
+            action = "start"
         command = [sys.executable, "-u", str(self.repo / "scripts/robot_session.py"), action,
-                   "--repo", str(self.repo), "--workspace", str(self.workspace),
+                   "--repo", str(self.repo), "--workspace", str(workspace),
                    "--domain", str(self.domain), "--ntp-server", self.ntp_server,
                    "--duration", str(self.duration)]
         if action == "start":
             command = ["bash", str(self.repo / "run_policy.sh"), "--mode", "robot",
-                       "--workspace", str(self.workspace), "--policy",
+                       "--workspace", str(workspace), "--policy",
                        str(self.repo / "policy_releases/2026-11-13_face_intent_v2/policy.json"),
                        "--", *command]
         return command
@@ -137,13 +141,13 @@ class BoardControl:
 
     def request(self, action):
         with self.lock:
-            if action == "start":
+            if action in ("start", "start-r32"):
                 if not self.snapshot()["can_start"]:
                     raise RuntimeError("이미 구동 준비 또는 주행 중입니다.")
                 self.stop_process = None
                 self.stop_log = None
                 self.started_at = time.time()
-                self.start_process, self.start_log = self.spawn("start")
+                self.start_process, self.start_log = self.spawn(action)
             elif action == "stop":
                 if self.stop_process is not None and self.stop_process.poll() is None:
                     return self.snapshot()

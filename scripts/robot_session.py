@@ -40,6 +40,16 @@ class Sensors:
             self.odom.append((received, *value))
 
     def reason(self, wall, ros_now):
+        # The dock powers down lidar and RGB. Report a fresh positive dock or
+        # hazard signal even when one of those streams has not produced a frame.
+        dock = self.samples.get("dock")
+        if dock and 0 <= wall - dock[0] <= 2. and dock[2]:
+            return "robot_docked: move off the dock before start (no automatic undock)"
+        hazards = self.samples.get("hazards")
+        if hazards and 0 <= wall - hazards[0] <= 2.:
+            dangerous = sorted(set(hazards[2]) & {1, 2, 3, 4})
+            if dangerous:
+                return "active_hazard_types:" + ",".join(map(str, dangerous))
         for name in REQUIRED:
             sample = self.samples.get(name)
             if sample is None:
@@ -50,11 +60,6 @@ class Sensors:
             limit = 0.65 if name in ("camera", "camera_info") else 2.0
             if stamp is not None and not -0.1 <= ros_now - stamp <= limit:
                 return name + "_clock_or_stamp_stale"
-        if self.samples["dock"][2]:
-            return "robot_docked: move off the dock before start (no automatic undock)"
-        dangerous = set(self.samples["hazards"][2]) & {1, 2, 3, 4}
-        if dangerous:
-            return "active_hazard_types:" + ",".join(map(str, sorted(dangerous)))
         return ""
 
     def stationary(self, wall):
@@ -430,7 +435,8 @@ def start(args, io, flag, state_path):
         wait_for_start(io, flag, process, args.timeout, report)
         state["phase"] = "running"
         save(state_path, state)
-        first_motion = first_nav = False
+        first_motion = first_nav = first_forward = False
+        running_since = time.monotonic()
         bump_guard = BumpRecoveryGuard()
         while not flag.stopped:
             io.spin()
@@ -449,6 +455,11 @@ def start(args, io, flag, state_path):
             if not first_motion and io.sensors.odom and any(abs(v) > 0.01 for v in io.sensors.odom[-1][1:]):
                 report("first_motion")
                 first_motion = True
+            if not first_forward and io.sensors.odom:
+                received, linear, _ = io.sensors.odom[-1]
+                if received >= running_since and linear > .02:
+                    report("first_forward_odometry", linear_m_s=round(linear, 3))
+                    first_forward = True
             if not first_nav and io.status.get("active_action") == "nav":
                 report("first_navigation")
                 first_nav = True
@@ -517,7 +528,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("action", choices=("start", "stop", "check", "status", "dry-run"))
     parser.add_argument("--repo", type=Path, default=Path(__file__).resolve().parents[1])
-    parser.add_argument("--workspace", type=Path, default=Path.home() / "face_intent_flow_v4_ws")
+    parser.add_argument("--workspace", type=Path, default=Path.home() / "face_intent_flow_v4r2_ws")
     parser.add_argument("--domain", type=int, default=int(os.environ.get("ROS_DOMAIN_ID", "4")))
     parser.add_argument("--ntp-server", default="192.168.185.3")
     parser.add_argument("--duration", type=float, default=600.0)

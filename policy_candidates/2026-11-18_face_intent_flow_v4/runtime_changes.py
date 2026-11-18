@@ -52,4 +52,36 @@ def apply(package):
                             (m.info.origin.position.x, m.info.origin.position.y),
                             (tr.transform.translation.x, tr.transform.translation.y))
         memory_transform=None""")
+    edit("            visit=self.tf.lookup_transform('odom',self.p('base_frame'),Time()).transform.translation",
+         """            odom_pose = self.tf.lookup_transform('odom', self.p('base_frame'), Time()).transform
+            visit = odom_pose.translation""")
+    edit('                flow.observe_position(visit.x,visit.y,self.now())',
+         """                flow.observe_position(visit.x,visit.y,self.now())
+                if isinstance(flow, RecoveryFlow):
+                    q = odom_pose.rotation
+                    yaw = math.atan2(2*(q.w*q.z+q.x*q.y), 1-2*(q.y*q.y+q.z*q.z))
+                    flow.observe_heading(yaw, self.now())""")
+    edit('        if self.scan_after and self.now()<self.spin_blocked_until:',
+         """        if (isinstance(flow, RecoveryFlow) and self.scan_after and self.initial_scan
+                and self.edge_mode and not any(getattr(getattr(self, name, None), 'pending', None)
+                                              is not None for name in ('marker_look', 'face_look'))):
+            self.initial_scan = False
+            self.scan_after = False
+        if self.scan_after and self.now()<self.spin_blocked_until:""")
+    path.write_text(source)
+
+    path = package / 'launch/robot.launch.py'
+    source = path.read_text()
+    edit('    if filtering:\n        nav_config=route_costmap_scans(yaml.safe_load(Path(nav2_params).read_text()),raw_scan,planning_scan)',
+         """    flow_enabled = value('navigation_flow_enabled') == 'true'
+    if filtering or flow_enabled:
+        nav_config = yaml.safe_load(Path(nav2_params).read_text())
+        if filtering:
+            nav_config = route_costmap_scans(nav_config, raw_scan, planning_scan)
+        if flow_enabled:
+            params = nav_config['controller_server']['ros__parameters']
+            for name in params.get('progress_checker_plugins', ['progress_checker']):
+                checker = params.get(name, {})
+                if checker.get('plugin') == 'nav2_controller::SimpleProgressChecker':
+                    checker.update(plugin='nav2_controller::PoseProgressChecker', required_movement_angle=.35)""")
     path.write_text(source)

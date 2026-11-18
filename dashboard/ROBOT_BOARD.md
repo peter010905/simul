@@ -39,6 +39,8 @@ LAN에서 `--host 0.0.0.0`을 사용합니다. 인터넷에는 공개하지 마�
 
 ## 이 Mac의 실물 제어
 
+**기존 정책 구동**은 보완된 face_intent 탐색, **R32 혼합 구동**은 R32 주행과 같은 Original/18 마커 탐지를 사용합니다. 셸에서는 각각 `./robot.sh start`, `./robot.sh start-r32`입니다. 두 버전 모두 같은 정지 버튼을 사용합니다.
+
 준비된 Flow v4 런타임과 유선 DDS·NTP 설정을 재사용합니다. 브라우저에서
 <http://192.168.252.2:8767/>을 열고 **구동**을 누르면 시간·센서·실제 범퍼·도크
 상태 확인, SLAM/Nav2 실행, 준비 직후 미션 시작까지 자동 처리합니다.
@@ -52,11 +54,11 @@ LAN에서 `--host 0.0.0.0`을 사용합니다. 인터넷에는 공개하지 마�
 
 ```bash
 source /opt/ros/jazzy/setup.bash
-source /home/ubuntu/face_intent_flow_v4_ws/install/setup.bash
+source /home/ubuntu/face_intent_flow_v4r2_ws/install/setup.bash
 export ROS_DOMAIN_ID=4 RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 export FASTRTPS_DEFAULT_PROFILES_FILE=/home/ubuntu/simul/robot_profiles/wired_flow_v3/fastdds_vm.xml
 python3 -u dashboard/robot_board.py --domain 4 --host 0.0.0.0 --port 8767 \
-  --enable-control --control-workspace /home/ubuntu/face_intent_flow_v4_ws
+  --enable-control --control-workspace /home/ubuntu/face_intent_flow_v4r2_ws
 ```
 
 버튼은 같은 보드 페이지에서 보낸 토큰 포함 POST만 받습니다. GET·페이지 새로고침은

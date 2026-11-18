@@ -47,6 +47,12 @@ class StartSafetyTest(unittest.TestCase):
             sensors.update("odom", 10., value=value)
             self.assertFalse(sensors.stationary(10.))
 
+    def test_fresh_dock_reports_even_when_lidar_sleeps(self):
+        sensors = session.Sensors()
+        sensors.update("dock", 10., value=True)
+        self.assertIn("robot_docked", sensors.reason(10.1, 100.))
+        self.assertEqual(sensors.reason(13., 103.), "waiting_for_scan")
+
     def test_camera_is_rejected_before_mission_would_reject_it(self):
         sensors = self.healthy()
         sensors.update("camera", 10., 99.2)
@@ -177,7 +183,7 @@ class StartSafetyTest(unittest.TestCase):
         root = Path(__file__).resolve().parents[1]
         result = subprocess.run(["bash", str(root / "robot.sh"), "dry-run"], capture_output=True, text=True, check=True)
         self.assertIn("robot_session.py start", result.stdout)
-        self.assertIn("face_intent_flow_v4_ws", result.stdout)
+        self.assertIn("face_intent_flow_v4r2_ws", result.stdout)
         self.assertNotIn("colcon", result.stdout)
         result = subprocess.run(["python3", str(root / "scripts/robot_session.py"), "dry-run"], capture_output=True, text=True, check=True)
         command = json.loads(result.stdout)

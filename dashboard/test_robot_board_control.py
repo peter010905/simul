@@ -113,3 +113,15 @@ def test_start_command_uses_same_prebuilt_session_and_recorder(tmp_path):
     assert 'colcon' not in command
     stop = control.command('stop')
     assert 'stop' in stop and str(tmp_path/'run_policy.sh') not in stop
+
+
+def test_r32_start_uses_its_own_overlay_and_shares_the_original_stop_lock(tmp_path):
+    board = BoardControl(tmp_path, tmp_path/'baseline', 184, state_dir=tmp_path)
+    cmd = board.command('start-r32')
+    assert cmd[cmd.index('--workspace')+1] == str(tmp_path/'r32_drive_original18_ws')
+    assert cmd[cmd.index('--')+1:].count('start') == 1
+    assert '2026-11-13_face_intent_v2/policy.json' in cmd[cmd.index('--policy')+1]
+    with patch.object(board, 'spawn', return_value=(process(1), tmp_path/'start.log')):
+        board.request('start-r32')
+        with pytest.raises(RuntimeError):
+            board.request('start')

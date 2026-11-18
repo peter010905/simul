@@ -4,8 +4,9 @@
   "physical_validation": false,
   "overlay_files": {
     "osp_mission/local_recovery.py": "52284e00154c7e14f914bb275dccfe120c61e8625ffd0ff6e377b9f00d075e7f",
-    "osp_mission/recovery_control.py": "a18c52eb88d973e14f68774c3328f12189916f3f231e74579b93c288836ab5f1",
-    "test/test_local_recovery.py": "9bc678b3d60d356226a01276db28b9bc9c66e71e76375a41dd3404ca463b1415"
+    "osp_mission/recovery_control.py": "d59b08ee7b7fab1d83bd6595099ec12a701f359a8756eafcb688879e0e1b32c9",
+    "test/test_local_recovery.py": "7372bfbd727d4b2a5b7638c3d02619d6d49504f5cca7177b39264be451ecd0a9"
   },
-  "transform_sha256": "ac6e7cd5831cd2492df5a9503b6cd179ab37a5f4c08b5a8fbe3c075b0b12d8f9"
+  "transform_sha256": "ccd24c9051c5f7516cab06bb4a20191a10b95956be67f50144cebcd72c47f62d",
+  "revision": "shared-exit-and-alignment"
 }

@@ -1,0 +1,10 @@
+{
+  "parent": "2026-11-18_face_intent_flow_v4",
+  "reference_commit": "a40cbdfaf812544eff988e27934823b8501a4f4b",
+  "overlay_files": {
+    "osp_mission/r32_drive.py": "7981a8ec22131fa2f479e2d6dd677594153c54b89835de9ed914088a317e77fb",
+    "osp_mission/r32_nav_config.py": "47e9e99007c41bc60dc194f9a117f19953c514756b686a70123fd7ffa5b6bdb6",
+    "test/test_r32_drive.py": "24f161fa1b72933ddc7ff68609848c94d7439b1fdc56541feb07450998e4c718"
+  },
+  "transform_sha256": "f731f62b7b037017502e4b0c281807875e6cb47c425364a52a5398cf98e7d868"
+}

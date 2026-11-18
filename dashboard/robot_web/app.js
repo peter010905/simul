@@ -13,9 +13,9 @@ function renderControl(control){
   $('control-state').textContent=labels[control.phase]||control.phase;
   $('control-state').className=['failed','stop_unverified'].includes(control.phase)?'bad':control.phase==='running'?'good':'';
   $('control-detail').textContent=control.detail||'';
-  $('robot-start').disabled=!controlToken||!control.can_start||pendingCommands.size>0;
+  $('robot-start-r32').disabled=$('robot-start').disabled=!controlToken||!control.can_start||pendingCommands.size>0;
   $('robot-stop').disabled=!controlToken||pendingCommands.has('stop');
-  $('robot-start').textContent=['queued','preflight','starting'].includes(control.phase)?'준비 중…':'구동';
+  $('robot-start').textContent=['queued','preflight','starting'].includes(control.phase)?'준비 중…':'기존 정책 구동';
   const started=(control.events||[]).find(e=>e.event==='mission_started');
   $('control-timing').textContent=started?`자동 시작까지 ${number(started.elapsed_s,1)}초`:'';
 }
@@ -23,9 +23,9 @@ async function controlCommand(action){
   if(!controlToken||pendingCommands.has(action))return;
   const sequence=++commandSequence;
   pendingCommands.add(action);
-  $('robot-start').disabled=true;
+  $('robot-start-r32').disabled=$('robot-start').disabled=true;
   $('robot-stop').disabled=pendingCommands.has('stop');
-  $('control-detail').textContent=action==='start'?'구동 요청을 보내는 중…':'정지 요청을 보내는 중…';
+  $('control-detail').textContent=action!=='stop'?'구동 요청을 보내는 중…':'정지 요청을 보내는 중…';
   try{
     const response=await fetch(`/api/control/${action}`,{method:'POST',headers:{'Content-Type':'application/json','X-OSP-Control-Token':controlToken},body:'{}'});
     const result=await response.json();
@@ -62,7 +62,8 @@ function render(data){
   const statusLimit=sim?10:3,visualLimit=sim?15:5;
   $('board-title').textContent=sim?'Gazebo 시뮬 주행 보드':'실물 주행 보드';
   $('board-subtitle').textContent=`${sim?'ROS 시뮬 시간':'실물 ROS'} · ${data.control?.enabled?'보드에서 직접 구동·정지':'읽기 전용'}`;
-  renderControl(data.control);
+  const dockBlocksStart=data.docked===true&&data.control?.can_start;
+  renderControl(dockBlocksStart?{...data.control,can_start:false,detail:'로봇이 도크에 있어요. 바닥으로 옮기면 구동할 수 있어요.'}:data.control);
   const live=(ages.mission_status!==undefined&&ages.mission_status<statusLimit)||(ages.raw_scan!==undefined&&ages.raw_scan<5);
   $('connection').textContent=live?'ROS 수신 중':sim&&ages.raw_scan!==undefined?'시뮬 종료 · 마지막 화면':sim?'시뮬 시작 대기':'ROS 데이터 대기 / 끊김';
   $('connection').classList.toggle('offline',!live);
@@ -100,6 +101,8 @@ function render(data){
   const pose=data.robot_pose;
   rows('nav-details',[
     ['현재 동작',status.active_action||'없음'],
+    ...(status.drive_policy ? [['R32 주행 판단',({detour:'짧은 우회',frontier:'미지 경계로 이동',inspect:'관측 위치로 이동',no_route:'안전한 경로 대기',waiting_for_global_costmap:'비용 지도 대기'})[status.drive_policy.kind||status.drive_policy.reason]||status.drive_policy.kind||'대기']] : []),
+    ...(status.navigation_flow?.candidates?.proposed!==undefined ? [['기존 정책 후보',`${status.navigation_flow.candidates.proposed}개 중 ${status.navigation_flow.candidates.selected_from}개${status.navigation_flow.candidates.shared_exit?' · 같은 출구의 다른 목표 허용':''}`]] : []),
     ['종료 사유',outcome.detail||'진행 중 / 대기'],
     ['미션 경과',status.elapsed_seconds===undefined?'—':`${number(status.elapsed_seconds,1)} s`],
     ['시작 준비',status.readiness_reason||'별도 거절 사유 없음',status.readiness_reason?'warn':''],
@@ -136,12 +139,13 @@ async function poll(){
     if(!response.ok)throw new Error(`HTTP ${response.status}`);
     render(await response.json());
   }catch(error){
-    $('robot-start').disabled=true;
+    $('robot-start-r32').disabled=$('robot-start').disabled=true;
     $('connection').textContent='보드 서버 연결 끊김';$('connection').classList.add('offline');
     $('warning').textContent=`보드 서버 응답 없음: ${error.message}`;$('warning').hidden=false;
   }
 }
 $('map-fullscreen').addEventListener('click',()=>$('map-frame').requestFullscreen?.());
+$('robot-start-r32').addEventListener('click',()=>controlCommand('start-r32'));
 $('robot-start').addEventListener('click',()=>controlCommand('start'));
 $('robot-stop').addEventListener('click',()=>controlCommand('stop'));
 poll();setInterval(poll,1000);

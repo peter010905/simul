@@ -3,17 +3,22 @@
 set -euo pipefail
 action="${1:-status}"
 if (($#)); then shift; fi
+default_workspace=/home/ubuntu/face_intent_flow_v4r2_ws
 case "$action" in
+  start-r32|dry-run-r32)
+    action="${action%-r32}"
+    default_workspace=/home/ubuntu/r32_drive_original18_ws ;;
   start|stop|check|status|dry-run) ;;
   -h|--help)
     cat <<'HELP'
-Usage: ./robot.sh {start|stop|check|status|dry-run} [--duration SECONDS]
+Usage: ./robot.sh {start|start-r32|stop|check|status|dry-run|dry-run-r32} [--duration SECONDS]
   start    Check clocks/sensors, launch the prepared runtime, then start when ready.
+  start-r32  Run the separate R32 drive with the Original/18 marker policy.
   stop     Cancel motion, terminate this session, and verify stationary odometry.
   check    Read-only readiness check; never launches the policy or moves the robot.
   status   Read-only live state and tracked process status.
   dry-run  Print the command without contacting the VM.
-Defaults: osp-jazzy VM, ROS domain 4, prepared face_intent_flow_v4_ws.
+Defaults: osp-jazzy VM, ROS domain 4, prepared face_intent_flow_v4r2_ws.
 Override OSP_ROBOT_VM, OSP_ROBOT_REPO, OSP_ROBOT_WORKSPACE,
 OSP_ROBOT_DOMAIN, OSP_ROBOT_DDS_PROFILE or OSP_ROBOT_NTP_SERVER if needed.
 Start runs in the foreground; Ctrl-C stops the session. Stop also works in another terminal.
@@ -23,7 +28,7 @@ HELP
 esac
 robot_vm="${OSP_ROBOT_VM:-osp-jazzy}"
 robot_repo="${OSP_ROBOT_REPO:-/home/ubuntu/simul}"
-robot_workspace="${OSP_ROBOT_WORKSPACE:-/home/ubuntu/face_intent_flow_v4_ws}"
+robot_workspace="${OSP_ROBOT_WORKSPACE:-$default_workspace}"
 robot_domain="${OSP_ROBOT_DOMAIN:-4}"
 robot_profile="${OSP_ROBOT_DDS_PROFILE:-$robot_repo/robot_profiles/wired_flow_v3/fastdds_vm.xml}"
 robot_ntp="${OSP_ROBOT_NTP_SERVER:-192.168.185.3}"

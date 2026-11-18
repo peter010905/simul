@@ -116,3 +116,36 @@ def test_single_blocked_exit_can_request_a_retreat_when_no_other_goal_remains():
     assert flow.local.request_retreat(clock[0])
     assert not flow.local.request_retreat(clock[0] + 2.)
     assert flow.local.request_retreat(clock[0] + 15.)
+
+
+def test_single_exit_keeps_original_untried_goals_and_marker_override():
+    _, flow, clock, _ = mission()
+    flow.local.observe(0., 0., clock[0])
+    failed = dict(x=1., y=0., departure=(.4, 0.))
+    onward = dict(x=3., y=1., departure=(.4, .01))
+    side = dict(x=0., y=4., departure=(0., .4))
+    tf = (0., 0., 0.)
+    flow.selected(failed, tf)
+    flow.record_navigation_result(6, '', clock[0])
+    flow.local.failed(flow.departure, 'no_progress', clock[0])
+    assert flow.filter_goals([failed, onward], tf, clock[0]) == [onward]
+    assert not flow.blocked(onward, tf, clock[0]) and flow.blocked(failed, tf, clock[0])
+    assert flow.filter_goals([failed, onward, side], tf, clock[0]) == [side]
+    assert flow.blocked(onward, tf, clock[0])
+
+
+def test_real_heading_alignment_is_bounded_and_oscillation_cannot_extend_it():
+    from math import radians
+    for improving in (True, False):
+        _, flow, _, _ = mission()
+        flow.local.observe(0., 0., 0.)
+        flow.selected(dict(x=2.,y=0.,departure=(.4,0.)), (0.,0.,0.))
+        flow.begin_navigation()
+        for t in range(21):
+            flow.local.observe(0.,0.,t)
+            flow.observe_position(0.,0.,t)
+            yaw = 170 - t * 6 if improving else 100 + 10*(t % 2)
+            flow.observe_heading(radians(yaw),t)
+            if t == 12:
+                assert flow.stalled(t) == (not improving)
+        assert flow.stalled(20.)

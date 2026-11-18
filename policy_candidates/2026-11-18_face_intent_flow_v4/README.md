@@ -1,5 +1,7 @@
 # Flow v4 physical navigation and recovery
 
+The active revision preserves all eligible untried goals when every goal shares the same departure. It lets the original policy rank them. Generic startup scanning is deferred until planning finds no target. Nav2 counts a 0.35 rad turn as progress; the mission allows recent measured improvements in heading error to extend the translation watchdog only up to 20 s. The original v4 measurements below predate this correction. The corrected baseline passed 396 tests and a 0.35 m closed-loop Gazebo start. [Paired replay and separate R32 version](../2026-11-18_r32_drive_original18/README.md).
+
 For each exploration NavigateToPose goal the mission selects the installed Jazzy
 `navigate_w_replanning_time.xml`. It replans at 1 Hz and follows the path. A
 controller failure is returned to the mission. Dedicated marker observations
@@ -24,7 +26,7 @@ cause and whether the mission dispatched a local retreat.
 Build in a fresh workspace with isolated ROS domain 184:
 
 ```sh
-ROS_DOMAIN_ID=184 ROS_LOCALHOST_ONLY=1 python3 policy_candidates/2026-11-18_face_intent_flow_v4/build.py --workspace /home/ubuntu/face_intent_flow_v4_ws --test
+ROS_DOMAIN_ID=184 ROS_LOCALHOST_ONLY=1 python3 policy_candidates/2026-11-18_face_intent_flow_v4/build.py --workspace /home/ubuntu/face_intent_flow_v4r2_ws --test
 ```
 
 The 394 Jazzy runtime tests include the actual mission goal, result and retreat

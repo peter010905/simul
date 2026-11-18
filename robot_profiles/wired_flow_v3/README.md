@@ -6,7 +6,7 @@ The original run manifest has no Git commit; this capture does not invent one.
 
 The normal `./start_robot.command` or `./robot.sh start` entry point now reads
 `nav2_hardware_profile.yaml` and `fastdds_vm.xml` from this versioned directory.
-The current launcher uses `/home/ubuntu/face_intent_flow_v4_ws` with the same sensor and speed profile. The captured v3 workspace in `profile.json` identifies the reference run. There is no
+The current launcher uses `/home/ubuntu/face_intent_flow_v4r2_ws` with the same sensor and speed profile. The captured v3 workspace in `profile.json` identifies the reference run. There is no
 rebuild or policy/dictionary change at start. The physical board uses the same
 session launcher and navigation file.
 

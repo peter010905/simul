@@ -18,6 +18,35 @@ class RecoveryFlow(NavigationFlow):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.local = LocalRecovery()
+        self.pool = {}
+        self.shared_exit = False
+        self.begin_navigation()
+
+    def begin_navigation(self):
+        super().begin_navigation()
+        self.best_heading_error = math.inf
+        self.last_heading_gain = -math.inf
+
+    def observe_heading(self, yaw, now):
+        # Use the departure near the start. Once moving, translation owns progress.
+        if self.current_goal is None or self.local.position is None:
+            return
+        if self.selected_at is None or math.dist(self.selected_at, self.local.position) > .20:
+            return
+        bearing = self.local.bearing(self.departure, now)
+        if bearing is None:
+            return
+        error = abs(math.remainder(bearing - yaw, 2 * math.pi))
+        if error + math.radians(12) < self.best_heading_error:
+            if math.isfinite(self.best_heading_error):
+                self.last_heading_gain = now
+            self.best_heading_error = error
+
+    def stalled(self, now):
+        if not super().stalled(now):
+            return False
+        aligning = now - self.last_heading_gain <= 4. and now - self.progress_time < 20.
+        return not aligning
 
     def departure_point(self, goal, transform):
         if 'departure' in goal:
@@ -36,12 +65,28 @@ class RecoveryFlow(NavigationFlow):
             return self.departure
         return self.current_goal
 
+    def filter_goals(self, goals, transform, now):
+        # Failed destinations keep their cooldown. A shared departure ranks below
+        # a fresh direction, but cannot erase every untried policy destination.
+        destination_blocked = super().blocked
+        eligible = [g for g in goals if not destination_blocked(g, transform, now)]
+        preferred = [g for g in eligible if not self.direction_blocked(g, transform, now)]
+        self.shared_exit = bool(eligible) and not preferred
+        kept = preferred or eligible
+        self.filtered_goals += len(goals) - len(kept)
+        self.pool = dict(proposed=len(goals), eligible=len(eligible), selected_from=len(kept),
+                         shared_exit=self.shared_exit)
+        return kept
+
+    def direction_blocked(self, goal, transform, now):
+        return not goal.get('stationary') and self.local.excludes(self.departure_point(goal, transform), now)
+
     def blocked(self, goal, transform, now):
         return (super().blocked(goal, transform, now) or
-                (not goal.get('stationary') and self.local.excludes(self.departure_point(goal, transform), now)))
+                (not self.shared_exit and self.direction_blocked(goal, transform, now)))
 
     def report(self):
-        return dict(super().report(), local_recovery=self.local.report())
+        return dict(super().report(), local_recovery=self.local.report(), candidates=self.pool)
 
 
 def navigation_finished(mission, result):

@@ -1,4 +1,13 @@
 {
+  "physical_drive_variants": {
+    "report": "policy_candidates/2026-11-18_r32_drive_original18/README.md",
+    "reference_failure": "20261118T031950-f538c233fa",
+    "baseline_replay_nonempty_out_of_19": 19,
+    "hybrid_gazebo_elapsed_s": 50.076,
+    "hybrid_gazebo_odom_path_m": 6.7914,
+    "hybrid_gazebo_bump_reports": 0,
+    "new_physical_drive_tested": false
+  },
   "physical_navigation_recovery": {
     "candidate": "policy_candidates/2026-11-18_face_intent_flow_v4",
     "reference_run": "20261118T025452-9e81af1edd",
@@ -11,7 +20,8 @@
     "status": "deployed_buttons_no_new_hardware_drive",
     "report": "repository_snapshot/robot_board_control_20261117.json",
     "instructions": "dashboard/ROBOT_BOARD.md",
-    "prepared_runtime": "face_intent_flow_v4_ws",
+    "prepared_runtime": "face_intent_flow_v4r2_ws",
+    "alternate_runtime": "r32_drive_original18_ws",
     "hardware_start_latency_verified": false
   },
   "captured_utc": "2026-11-14T20:19:56.963709+00:00",
