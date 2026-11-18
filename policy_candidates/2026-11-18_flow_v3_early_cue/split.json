@@ -1,0 +1,8 @@
+{
+  "development": ["20261118T055232-1f01e08087"],
+  "evaluation": ["20261117T131955-a91e136260","20261118T035817-a943a066df","20261117T131010-6b8219501f","20261118T065425-f31b351826","20261118T082157-308335606a"],
+  "target_ids": [7,103],
+  "primary": "First immediate request before the earlier of first 18px video decode and first logged observation, within 0.30 m of that recorded point on the observer side.",
+  "secondary": "Count all immediate requests across each complete mission and review added requests visually.",
+  "focal_scale": 1.79
+}

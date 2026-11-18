@@ -1,0 +1,271 @@
+[
+  {
+    "run": "20261118T055232-1f01e08087",
+    "frames": 2310,
+    "requests": [
+      1,
+      3
+    ],
+    "markers": {
+      "0": {
+        "cutoff": 18.709,
+        "first_video": null,
+        "recorded": 18.709,
+        "old": {
+          "first_match": false,
+          "any_match": false,
+          "count": 0,
+          "matching_t": null,
+          "first_distance": null
+        },
+        "new": {
+          "first_match": false,
+          "any_match": false,
+          "count": 0,
+          "matching_t": null,
+          "first_distance": null
+        }
+      },
+      "103": {
+        "cutoff": 200.267,
+        "first_video": 200.267,
+        "recorded": 206.974,
+        "old": {
+          "first_match": false,
+          "any_match": false,
+          "count": 0,
+          "matching_t": null,
+          "first_distance": null
+        },
+        "new": {
+          "first_match": false,
+          "any_match": true,
+          "count": 2,
+          "matching_t": 192.269,
+          "first_distance": 7.5590458229885815
+        }
+      }
+    }
+  },
+  {
+    "run": "20261117T131955-a91e136260",
+    "frames": 1412,
+    "requests": [
+      1,
+      2
+    ],
+    "markers": {
+      "103": {
+        "cutoff": 21.686,
+        "first_video": 21.686,
+        "recorded": 26.098,
+        "old": {
+          "first_match": false,
+          "any_match": false,
+          "count": 0,
+          "matching_t": null,
+          "first_distance": null
+        },
+        "new": {
+          "first_match": false,
+          "any_match": false,
+          "count": 0,
+          "matching_t": null,
+          "first_distance": null
+        }
+      }
+    }
+  },
+  {
+    "run": "20261118T035817-a943a066df",
+    "frames": 3446,
+    "requests": [
+      2,
+      2
+    ],
+    "markers": {
+      "0": {
+        "cutoff": 12.555,
+        "first_video": null,
+        "recorded": 12.555,
+        "old": {
+          "first_match": false,
+          "any_match": false,
+          "count": 0,
+          "matching_t": null,
+          "first_distance": null
+        },
+        "new": {
+          "first_match": false,
+          "any_match": false,
+          "count": 0,
+          "matching_t": null,
+          "first_distance": null
+        }
+      },
+      "7": {
+        "cutoff": 208.723,
+        "first_video": 208.723,
+        "recorded": 208.831,
+        "old": {
+          "first_match": false,
+          "any_match": false,
+          "count": 0,
+          "matching_t": null,
+          "first_distance": null
+        },
+        "new": {
+          "first_match": false,
+          "any_match": false,
+          "count": 0,
+          "matching_t": null,
+          "first_distance": null
+        }
+      }
+    }
+  },
+  {
+    "run": "20261117T131010-6b8219501f",
+    "frames": 2687,
+    "requests": [
+      3,
+      3
+    ],
+    "markers": {
+      "0": {
+        "cutoff": 178.684,
+        "first_video": 178.684,
+        "recorded": 178.801,
+        "old": {
+          "first_match": false,
+          "any_match": false,
+          "count": 0,
+          "matching_t": null,
+          "first_distance": null
+        },
+        "new": {
+          "first_match": false,
+          "any_match": false,
+          "count": 0,
+          "matching_t": null,
+          "first_distance": null
+        }
+      },
+      "45": {
+        "cutoff": 253.278,
+        "first_video": 253.278,
+        "recorded": 253.292,
+        "old": {
+          "first_match": false,
+          "any_match": false,
+          "count": 1,
+          "matching_t": null,
+          "first_distance": 7.405107544601601
+        },
+        "new": {
+          "first_match": false,
+          "any_match": false,
+          "count": 1,
+          "matching_t": null,
+          "first_distance": 7.405107544601601
+        }
+      },
+      "84": {
+        "cutoff": 264.586,
+        "first_video": null,
+        "recorded": 264.586,
+        "old": {
+          "first_match": false,
+          "any_match": false,
+          "count": 2,
+          "matching_t": null,
+          "first_distance": 8.34301288111631
+        },
+        "new": {
+          "first_match": false,
+          "any_match": false,
+          "count": 2,
+          "matching_t": null,
+          "first_distance": 8.34301288111631
+        }
+      },
+      "68": {
+        "cutoff": 264.77,
+        "first_video": 264.77,
+        "recorded": 264.783,
+        "old": {
+          "first_match": false,
+          "any_match": false,
+          "count": 2,
+          "matching_t": null,
+          "first_distance": 8.336407675661858
+        },
+        "new": {
+          "first_match": false,
+          "any_match": false,
+          "count": 2,
+          "matching_t": null,
+          "first_distance": 8.336407675661858
+        }
+      }
+    }
+  },
+  {
+    "run": "20261118T065425-f31b351826",
+    "frames": 4716,
+    "requests": [
+      2,
+      3
+    ],
+    "markers": {
+      "0": {
+        "cutoff": 135.43,
+        "first_video": null,
+        "recorded": 135.43,
+        "old": {
+          "first_match": false,
+          "any_match": false,
+          "count": 1,
+          "matching_t": null,
+          "first_distance": 6.160756822442099
+        },
+        "new": {
+          "first_match": false,
+          "any_match": false,
+          "count": 1,
+          "matching_t": null,
+          "first_distance": 6.160756822442099
+        }
+      }
+    }
+  },
+  {
+    "run": "20261118T082157-308335606a",
+    "frames": 819,
+    "requests": [
+      1,
+      1
+    ],
+    "markers": {
+      "0": {
+        "cutoff": 9.497,
+        "first_video": 9.497,
+        "recorded": 9.509,
+        "old": {
+          "first_match": false,
+          "any_match": false,
+          "count": 0,
+          "matching_t": null,
+          "first_distance": null
+        },
+        "new": {
+          "first_match": false,
+          "any_match": false,
+          "count": 0,
+          "matching_t": null,
+          "first_distance": null
+        }
+      }
+    }
+  }
+]

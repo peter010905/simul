@@ -1,4 +1,11 @@
 {
+  "early_cue_heldout": {
+    "report": "policy_candidates/2026-11-18_flow_v3_early_cue/README.md",
+    "heldout_runs": 5,
+    "heldout_target_cases": 2,
+    "heldout_predecode_matches": 0,
+    "physical_trial": false
+  },
   "flow_v3_preview_bearing_replay": {
     "report": "policy_candidates/2026-11-18_flow_v3_preview_bearing/README.md",
     "fit_run": "20261118T080829-46b72fd54a",
