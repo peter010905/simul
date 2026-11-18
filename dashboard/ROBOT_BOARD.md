@@ -43,7 +43,7 @@ LAN에서 `--host 0.0.0.0`을 사용합니다. 인터넷에는 공개하지 마�
 
 | 버튼 | 주행 정책 | Mac 명령 |
 |---|---|---|
-| Flow v3 · MPPI 구동 | 11월 17일 Flow v3의 탐색·마커 판정과 MPPI 경로 추종 | `./robot.sh start-v3-mppi` |
+| Flow v3 · MPPI 구동 | Flow v3 · MPPI + 범퍼 접촉 후 방향 전환·카메라 관측 회전 | `./robot.sh start-v3-mppi` |
 | Flow v4 구동 | 기존 Flow v4r2 | `./robot.sh start` |
 | R32 혼합 구동 | R32 탐색과 Original/18 마커 판정 | `./robot.sh start-r32` |
 

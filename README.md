@@ -1,5 +1,7 @@
 # OSP Final Project — ROS 2 Jazzy
 
+**11월 18일 범퍼·마커 관측 개선** · 실물 접촉 26회와 후진 실패 2회를 분석해 Flow v3 · MPPI 버튼에 새 후보를 연결했습니다. [주행 분석과 검증](policy_candidates/2026-11-18_flow_v3_contact/README.md).
+
 **Flow v3 · MPPI 주행 후보**를 실물 보드와 `./robot.sh start-v3-mppi`로 선택할 수 있습니다. 11월 17일의 `face_intent_v2` 탐색·마커 판정에 곡선 주행과 회전 중 정체 판정을 적용했습니다. [동일 경로 비교와 실물 로그 병목 분석](policy_candidates/2026-11-18_flow_v3_mppi/README.md).
 
 보드에서 **Flow v4 구동** 또는 **R32 혼합 구동**도 선택할 수 있습니다. 후자는 r32 탐색·MPPI 주행과 기존 Original/18 마커 인식을 결합했습니다. 최근 정체 지도 19장 재생 및 별도 Gazebo 확인을 마쳤고, 혼합판은 50초 주행에서 오도메트리 6.79m·범퍼 0회를 기록했습니다. [동작·구동 명령·검증 범위](policy_candidates/2026-11-18_r32_drive_original18/README.md).

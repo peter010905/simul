@@ -1,0 +1,8 @@
+{
+  "parent": "2026-11-18_flow_v3_mppi",
+  "overlay_files": {
+    "osp_mission/contact_inspection.py": "3856124b4662ae6fbe5e2554c1e26c18b53479a8c7833c7f96489609eaee8b79",
+    "test/test_contact_inspection.py": "c43d7f70298877001da08003d8b76f04804af3ae11a74e1cb2db8cbf3386fad2"
+  },
+  "transform_sha256": "0e1bb8374c2ef8f92fd5d1b2e613875c5eda28bdc558d2a18d40caa25c426900"
+}

@@ -1439,5 +1439,18 @@
     "fixed_marker_autonomy_verified": false,
     "new_hardware_run_started": false,
     "policy_changed": false
+  },
+  "flow_v3_contact_inspection": {
+    "hardware_reference_run": "20261118T055232-1f01e08087",
+    "contacts": 26,
+    "backup_attempts": 2,
+    "backup_successes": 0,
+    "confirmed_ids": [
+      103
+    ],
+    "prepared_runtime": "face_intent_v3_contact_r1_ws",
+    "sim_injected_contact_replanned": true,
+    "physical_candidate_run": false,
+    "report": "policy_candidates/2026-11-18_flow_v3_contact/README.md"
   }
 }
