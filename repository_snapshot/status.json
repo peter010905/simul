@@ -1,4 +1,11 @@
 {
+  "flow_v3_border_recovery_replay": {
+    "report": "policy_candidates/2026-11-18_flow_v3_border_recovery/README.md",
+    "paired_runs": 4,
+    "previous_early_face_matches": 1,
+    "current_early_face_matches": 3,
+    "physical_trial": false
+  },
   "flow_v3_square_face_replay": {
     "report": "policy_candidates/2026-11-18_flow_v3_square_face/README.md",
     "recorded_runs": 4,

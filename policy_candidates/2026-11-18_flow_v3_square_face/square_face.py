@@ -71,13 +71,13 @@ class SquarePriority(SurfaceMemory):
         self.decision_times = []
         self.looks = []
 
-    def track_frame(self, detections, stamp, now, camera):
+    def track_frame(self, detections, stamp, now, camera, *, confirmable=None):
         if stamp <= self.last_stamp:
             return
         self.last_stamp = stamp
         self.tracks = [tr for tr in self.tracks if stamp-tr.stamp <= .4]
         ready = []
-        for point, normal, size in detections:
+        for index,(point, normal, size) in enumerate(detections):
             matches = [tr for tr in self.tracks if np.linalg.norm(tr.point-point) <= .10
                        and tr.normal@normal >= .82 and .6 <= size/tr.size <= 1.67]
             if not matches:
@@ -90,6 +90,8 @@ class SquarePriority(SurfaceMemory):
             tr.normal = normal
             tr.stamp, tr.size = stamp, size
             tr.count += 1
+            if confirmable is not None and index not in confirmable:
+                continue
             self.signals.append((now, tr.point.copy(), normal.copy(), tr.count))
             ready.append(tr)
         if not ready or (self.looks and now-self.looks[-1]['t'] < 12):

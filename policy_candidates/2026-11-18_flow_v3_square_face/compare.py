@@ -17,7 +17,7 @@ from surface_memory import local_observations
 from osp_mission.marker_pair import decode
 
 
-def compare(run, output, baseline_dir):
+def compare(run, output, baseline_dir, detect_borders=borders, trace=None, associate_target=associate, confirm_border=None):
     memory = SquarePriority()
     recorded, decoded = {}, {}
     dictionary = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_ARUCO_ORIGINAL)
@@ -30,7 +30,7 @@ def compare(run, output, baseline_dir):
 
     def frame(t, stamp, laser, origin, cam, cal, image):
         counts['synchronized_frames'] += 1
-        candidates = borders(image)
+        candidates = detect_borders(image)
         # Separate evaluation channel. Its values cannot affect tracking or choices.
         corners, ids = decode(image, dictionary)
         readable = []
@@ -40,13 +40,19 @@ def compare(run, output, baseline_dir):
                 readable.append((int(ident), float(np.mean(quad[0,:,0])), float(min(edges))))
         samples = list(local_observations(laser, origin, cam, cal, image)) if candidates or readable else []
         tracks = []
+        confirmable = set()
         for u, _, size in candidates:
-            hit = associate(u, size, samples, cam, cal)
+            hit = associate_target(u, size, samples, cam, cal)
             if hit is not None:
+                if confirm_border is not None and confirm_border(u, size, image.shape[1]):
+                    confirmable.add(len(tracks))
                 tracks.append((*hit, size))
         counts['frames_with_border'] += bool(candidates)
         counts['frames_with_attached_border'] += bool(tracks)
-        memory.track_frame(tracks, stamp, t, cam)
+        previous_looks = len(memory.looks)
+        memory.track_frame(tracks, stamp, t, cam, confirmable=confirmable if confirm_border else None)
+        if trace is not None:
+            trace(t-start, candidates, tracks, memory.looks[previous_looks:], readable, cam, cal)
         for ident, u, size in readable:
             entry = decoded.setdefault(ident, {'t': t, 'points': [], 'observers': []})
             if t-entry['t'] > 1:
@@ -84,6 +90,11 @@ def compare(run, output, baseline_dir):
                          action=first['action'] if first else None,
                          lead_s=round(cutoff-first['t'],3) if first else None,
                          yaw_delta_deg=first['yaw_delta_deg'] if first else None)
+        if pre_looks and trace is not None:
+            initial = pre_looks[0]
+            immediate.update(first_choice_s=round(initial['t']-start,3),
+                             first_choice_distance_m=round(float(np.linalg.norm(initial['point']-point)),3),
+                             first_choice_observer_side=bool(initial['normal']@(observer-initial['point'])>0))
         return dict(immediate=immediate,eligible_decisions_between_signal_and_reference=
                     sum(min(relevant)<t<cutoff for t in memory.decision_times) if relevant else None,
                     first_same_face_signal_s=round(min(relevant)-start,3) if relevant else None,
