@@ -1,5 +1,7 @@
 # OSP Final Project — ROS 2 Jazzy
 
+**11월 18일 미리보기 방위 보정** · 17:43 녹화에서 103번 첫 재관찰 위치와 기록 좌표의 차이가 49.8cm에서 12.0cm로 줄었다. [원인과 네 주행 비교](policy_candidates/2026-11-18_flow_v3_preview_bearing/README.md)
+
 **11월 18일 가장자리·흐린 마커 재관찰** · 같은 실물 녹화 4회에서 첫 판독 전에 마커 위치 30cm 안의 면을 1회에서 3회로 더 자주 골랐다. [실패 프레임과 주행별 비교](policy_candidates/2026-11-18_flow_v3_border_recovery/README.md)
 
 **11월 18일 흑백 테두리 우선 재관찰** · 녹화 4회 중 17:08 주행에서 103번 면을 첫 영상 판독보다 0.40초 먼저 골랐다. [주행별 시각과 선택 비교](policy_candidates/2026-11-18_flow_v3_square_face/README.md)

@@ -1,0 +1,252 @@
+[
+  {
+    "run": "20261118T080829-46b72fd54a",
+    "eligible_decisions": 13,
+    "old_choices": 3,
+    "frame_counts": {
+      "synchronized_frames": 1781,
+      "frames_with_border": 50,
+      "frames_with_attached_border": 38
+    },
+    "repeat_frame_signals": 32,
+    "mapped_signal_decisions": 4,
+    "decisions_by_source_and_action": {
+      "geometry_waypoint": 3
+    },
+    "immediate_actions": {
+      "hold": 1
+    },
+    "marker_checks": {
+      "103": {
+        "first_recorded_s": null,
+        "first_video_decode_s": 112.224,
+        "reference": "video bearing plus lidar proxy",
+        "proxy_frames": 4,
+        "proxy_max_spread_m": 0.124,
+        "before_first_observation": {
+          "immediate": {
+            "all_choices_before": 1,
+            "matching_choices": 1,
+            "first_choice_matched": true,
+            "matched_s": 111.126,
+            "action": "hold",
+            "lead_s": 1.098,
+            "yaw_delta_deg": 1.05,
+            "first_choice_s": 111.126,
+            "first_choice_distance_m": 0.018,
+            "first_choice_observer_side": true
+          },
+          "eligible_decisions_between_signal_and_reference": 1,
+          "first_same_face_signal_s": 111.126,
+          "old_selected_s": null,
+          "new_selected_s": null,
+          "square_selected_s": null,
+          "existing_goal_already_covers_square_s": null,
+          "all_square_choices_before": 0
+        }
+      }
+    }
+  },
+  {
+    "run": "20261118T082353-9f8e401d05",
+    "eligible_decisions": 16,
+    "old_choices": 5,
+    "frame_counts": {
+      "synchronized_frames": 2245,
+      "frames_with_border": 89,
+      "frames_with_attached_border": 25
+    },
+    "repeat_frame_signals": 20,
+    "mapped_signal_decisions": 2,
+    "decisions_by_source_and_action": {
+      "geometry_waypoint": 5
+    },
+    "immediate_actions": {
+      "turn": 1
+    },
+    "marker_checks": {
+      "7": {
+        "first_recorded_s": 201.391,
+        "first_video_decode_s": 201.373,
+        "reference": "recorded marker odometry",
+        "before_first_observation": {
+          "immediate": {
+            "all_choices_before": 1,
+            "matching_choices": 1,
+            "first_choice_matched": true,
+            "matched_s": 201.274,
+            "action": "turn",
+            "lead_s": 0.117,
+            "yaw_delta_deg": -15.25,
+            "first_choice_s": 201.274,
+            "first_choice_distance_m": 0.126,
+            "first_choice_observer_side": true
+          },
+          "eligible_decisions_between_signal_and_reference": 0,
+          "first_same_face_signal_s": 201.274,
+          "old_selected_s": null,
+          "new_selected_s": null,
+          "square_selected_s": null,
+          "existing_goal_already_covers_square_s": null,
+          "all_square_choices_before": 0
+        },
+        "before_either_decoder_or_log": {
+          "immediate": {
+            "all_choices_before": 1,
+            "matching_choices": 1,
+            "first_choice_matched": true,
+            "matched_s": 201.274,
+            "action": "turn",
+            "lead_s": 0.099,
+            "yaw_delta_deg": -15.25,
+            "first_choice_s": 201.274,
+            "first_choice_distance_m": 0.126,
+            "first_choice_observer_side": true
+          },
+          "eligible_decisions_between_signal_and_reference": 0,
+          "first_same_face_signal_s": 201.274,
+          "old_selected_s": null,
+          "new_selected_s": null,
+          "square_selected_s": null,
+          "existing_goal_already_covers_square_s": null,
+          "all_square_choices_before": 0
+        }
+      }
+    }
+  },
+  {
+    "run": "20261118T083739-28a113496c",
+    "eligible_decisions": 25,
+    "old_choices": 6,
+    "frame_counts": {
+      "synchronized_frames": 2934,
+      "frames_with_border": 57,
+      "frames_with_attached_border": 34
+    },
+    "repeat_frame_signals": 30,
+    "mapped_signal_decisions": 1,
+    "decisions_by_source_and_action": {
+      "geometry_waypoint": 6
+    },
+    "immediate_actions": {
+      "hold": 1
+    },
+    "marker_checks": {
+      "7": {
+        "first_recorded_s": 33.181,
+        "first_video_decode_s": 33.061,
+        "reference": "recorded marker odometry",
+        "before_first_observation": {
+          "immediate": {
+            "all_choices_before": 1,
+            "matching_choices": 1,
+            "first_choice_matched": true,
+            "matched_s": 25.061,
+            "action": "hold",
+            "lead_s": 8.12,
+            "yaw_delta_deg": -2.94,
+            "first_choice_s": 25.061,
+            "first_choice_distance_m": 0.223,
+            "first_choice_observer_side": true
+          },
+          "eligible_decisions_between_signal_and_reference": 0,
+          "first_same_face_signal_s": 25.061,
+          "old_selected_s": null,
+          "new_selected_s": null,
+          "square_selected_s": null,
+          "existing_goal_already_covers_square_s": null,
+          "all_square_choices_before": 0
+        },
+        "before_either_decoder_or_log": {
+          "immediate": {
+            "all_choices_before": 1,
+            "matching_choices": 1,
+            "first_choice_matched": true,
+            "matched_s": 25.061,
+            "action": "hold",
+            "lead_s": 8.0,
+            "yaw_delta_deg": -2.94,
+            "first_choice_s": 25.061,
+            "first_choice_distance_m": 0.223,
+            "first_choice_observer_side": true
+          },
+          "eligible_decisions_between_signal_and_reference": 0,
+          "first_same_face_signal_s": 25.061,
+          "old_selected_s": null,
+          "new_selected_s": null,
+          "square_selected_s": null,
+          "existing_goal_already_covers_square_s": null,
+          "all_square_choices_before": 0
+        }
+      }
+    }
+  },
+  {
+    "run": "20261118T084307-e58115524e",
+    "eligible_decisions": 38,
+    "old_choices": 9,
+    "frame_counts": {
+      "synchronized_frames": 4640,
+      "frames_with_border": 141,
+      "frames_with_attached_border": 90
+    },
+    "repeat_frame_signals": 80,
+    "mapped_signal_decisions": 14,
+    "decisions_by_source_and_action": {
+      "geometry_waypoint": 9
+    },
+    "immediate_actions": {
+      "turn": 1,
+      "hold": 1
+    },
+    "marker_checks": {
+      "103": {
+        "first_recorded_s": 62.211,
+        "first_video_decode_s": 62.192,
+        "reference": "recorded marker odometry",
+        "before_first_observation": {
+          "immediate": {
+            "all_choices_before": 1,
+            "matching_choices": 1,
+            "first_choice_matched": true,
+            "matched_s": 61.388,
+            "action": "turn",
+            "lead_s": 0.823,
+            "yaw_delta_deg": -15.23,
+            "first_choice_s": 61.388,
+            "first_choice_distance_m": 0.12,
+            "first_choice_observer_side": true
+          },
+          "eligible_decisions_between_signal_and_reference": 0,
+          "first_same_face_signal_s": 61.388,
+          "old_selected_s": null,
+          "new_selected_s": null,
+          "square_selected_s": null,
+          "existing_goal_already_covers_square_s": null,
+          "all_square_choices_before": 0
+        },
+        "before_either_decoder_or_log": {
+          "immediate": {
+            "all_choices_before": 1,
+            "matching_choices": 1,
+            "first_choice_matched": true,
+            "matched_s": 61.388,
+            "action": "turn",
+            "lead_s": 0.803,
+            "yaw_delta_deg": -15.23,
+            "first_choice_s": 61.388,
+            "first_choice_distance_m": 0.12,
+            "first_choice_observer_side": true
+          },
+          "eligible_decisions_between_signal_and_reference": 0,
+          "first_same_face_signal_s": 61.388,
+          "old_selected_s": null,
+          "new_selected_s": null,
+          "square_selected_s": null,
+          "existing_goal_already_covers_square_s": null,
+          "all_square_choices_before": 0
+        }
+      }
+    }
+  }
+]

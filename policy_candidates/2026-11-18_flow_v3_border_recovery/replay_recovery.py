@@ -13,7 +13,7 @@ from compare import compare
 from recovery import borders, plane_hit, can_confirm
 
 
-def evaluate(run, output, baseline):
+def evaluate(run, output, baseline, *, target_calibration=None):
     trace=[]
     def frame(t,candidates,tracks,looks,readable,camera,cal):
         if not candidates and not readable:
@@ -24,7 +24,7 @@ def evaluate(run, output, baseline):
             bearing=math.atan2(xy[1]-camera[1],xy[0]-camera[0])-camera[2]
             choices.append(dict(action=look['action'],u=round(cal.k[2]-cal.k[0]*math.tan(bearing),1)))
         trace.append(dict(t=round(t,3),image=candidates,attached=len(tracks),choices=choices,readable=readable))
-    result=compare(run,output,baseline,detect_borders=borders,trace=frame,associate_target=plane_hit,confirm_border=can_confirm)
+    result=compare(run,output,baseline,detect_borders=borders,trace=frame,associate_target=plane_hit,confirm_border=can_confirm,target_calibration=target_calibration)
     (output/(run.name+'-trace.json')).write_text(json.dumps(trace))
     return result
 

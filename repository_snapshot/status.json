@@ -1,4 +1,13 @@
 {
+  "flow_v3_preview_bearing_replay": {
+    "report": "policy_candidates/2026-11-18_flow_v3_preview_bearing/README.md",
+    "fit_run": "20261118T080829-46b72fd54a",
+    "horizontal_focal_scale": 1.79,
+    "recorded_runs": 4,
+    "previous_early_face_matches": 3,
+    "current_early_face_matches": 4,
+    "physical_trial": false
+  },
   "flow_v3_border_recovery_replay": {
     "report": "policy_candidates/2026-11-18_flow_v3_border_recovery/README.md",
     "paired_runs": 4,
