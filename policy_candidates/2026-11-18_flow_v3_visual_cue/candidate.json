@@ -1,0 +1,8 @@
+{
+  "parent": "2026-11-18_flow_v3_surface_sweep",
+  "transform_sha256": "536bba568da71b80623cb1e134016b9006e3990bd6f0aaee9229a967273d339c",
+  "overlay_files": {
+    "osp_mission/visual_cue.py": "79d8e8d0cd65ea1e24f22edc2360ec04d81a81a65038d76d367eeb4b92abe96a",
+    "test/test_visual_cue.py": "25be592090e246371c2814b71d385165b35d8d2b894efd15bc30932a76193836"
+  }
+}
