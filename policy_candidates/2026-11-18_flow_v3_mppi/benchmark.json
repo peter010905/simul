@@ -1,0 +1,299 @@
+{
+  "date": "2026-11-18",
+  "scenario": "robust_demo",
+  "seed": 8000001,
+  "camera_width_px": 320,
+  "weights": "2026-11-13_face_intent_v2",
+  "weights_sha256": "ca67b32c20a17e74e0bc8292b117240e19d80f24137cbf092d473a743be5eb36",
+  "nav2_profile": "robot_profiles/wired_flow_v3/nav2_hardware_profile.yaml",
+  "sim_planner_start_ignore_radius_m": 0.0,
+  "physical_planner_start_ignore_radius_m": 0.3,
+  "gazebo_local_domains": [
+    184,
+    185
+  ],
+  "trial_1_order": [
+    "v3",
+    "v3_mppi"
+  ],
+  "trial_2_order": [
+    "v3_mppi",
+    "v3"
+  ],
+  "thresholds": {
+    "linear_speed_m_s": 0.02,
+    "angular_speed_rad_s": 0.08,
+    "pause_duration_s": 0.5
+  },
+  "velocity_resample_interval_s": 0.2,
+  "fixed_goals_xy_yaw": [
+    [
+      0.46,
+      0.09,
+      0.35
+    ],
+    [
+      1.29,
+      1.04,
+      0.95
+    ],
+    [
+      2.63,
+      3.43,
+      1.05
+    ]
+  ],
+  "runtime_tests": 385,
+  "board_and_command_tests": 38,
+  "physical_candidate_run": false,
+  "runs": [
+    {
+      "trial": 1,
+      "policy": "v3",
+      "mode": "exploration_50s",
+      "controller": "RegulatedPurePursuitController",
+      "controller_rate_warnings": 0,
+      "path_m": 6.998363537001193,
+      "net_m": 6.655764230969855,
+      "moving_s": 34.469,
+      "turning_only_s": 11.657999999999994,
+      "stopped_s": 3.8560000000000016,
+      "rolling_turn_s": 18.91700000000001,
+      "pauses_ge_0_5s": 3,
+      "missing_s": 0.0,
+      "observed_s": 49.983,
+      "odom_samples": 3100,
+      "mission_elapsed_s": 50.262,
+      "bumps": 0,
+      "targets": 0,
+      "sensor_interruptions": 0,
+      "nav_stall_cancels": 0
+    },
+    {
+      "trial": 1,
+      "policy": "v3_mppi",
+      "mode": "exploration_50s",
+      "controller": "MPPIController",
+      "controller_rate_warnings": 3,
+      "path_m": 8.785814832003014,
+      "net_m": 7.705070182080045,
+      "moving_s": 38.868,
+      "turning_only_s": 8.821000000000005,
+      "stopped_s": 2.3109999999999955,
+      "rolling_turn_s": 20.206000000000014,
+      "pauses_ge_0_5s": 1,
+      "missing_s": 0.0,
+      "observed_s": 50.0,
+      "odom_samples": 3101,
+      "mission_elapsed_s": 50.416,
+      "bumps": 0,
+      "targets": 0,
+      "sensor_interruptions": 0,
+      "nav_stall_cancels": 0
+    },
+    {
+      "trial": 2,
+      "policy": "v3",
+      "mode": "exploration_50s",
+      "controller": "RegulatedPurePursuitController",
+      "controller_rate_warnings": 0,
+      "linear_accel_m_s2": {
+        "mean_abs": 0.05092828950837952,
+        "p95_abs": 0.24186441022807786
+      },
+      "angular_accel_rad_s2": {
+        "mean_abs": 0.18327250952019453,
+        "p95_abs": 0.8770124173288572
+      },
+      "path_m": 6.405873988405464,
+      "net_m": 6.223417545440943,
+      "moving_s": 31.662000000000003,
+      "turning_only_s": 15.080000000000002,
+      "stopped_s": 3.241999999999999,
+      "rolling_turn_s": 13.837000000000002,
+      "pauses_ge_0_5s": 3,
+      "missing_s": 0.0,
+      "observed_s": 49.984,
+      "odom_samples": 3100,
+      "mission_elapsed_s": 50.143,
+      "bumps": 0,
+      "targets": 0,
+      "sensor_interruptions": 0,
+      "nav_stall_cancels": 0
+    },
+    {
+      "trial": 2,
+      "policy": "v3_mppi",
+      "mode": "exploration_50s",
+      "controller": "MPPIController",
+      "controller_rate_warnings": 1,
+      "path_m": 10.06790210415157,
+      "net_m": 7.315058478565418,
+      "moving_s": 42.78900000000001,
+      "turning_only_s": 5.483999999999995,
+      "stopped_s": 1.7110000000000003,
+      "rolling_turn_s": 15.455000000000009,
+      "pauses_ge_0_5s": 1,
+      "missing_s": 0.0,
+      "observed_s": 49.984,
+      "odom_samples": 3093,
+      "mission_elapsed_s": 50.191,
+      "bumps": 0,
+      "targets": 0,
+      "sensor_interruptions": 0,
+      "nav_stall_cancels": 0
+    },
+    {
+      "trial": 1,
+      "policy": "v3",
+      "mode": "fixed_route",
+      "controller": "RegulatedPurePursuitController",
+      "controller_rate_warnings": 1,
+      "waypoint_status": [
+        4,
+        4,
+        4
+      ],
+      "all_reached": true,
+      "path_m": 4.1619694621857475,
+      "net_m": 4.010176669907029,
+      "moving_s": 19.580999999999996,
+      "turning_only_s": 0.2900000000000027,
+      "stopped_s": 0.04900000000000038,
+      "rolling_turn_s": 8.741,
+      "pauses_ge_0_5s": 0,
+      "missing_s": 0.0,
+      "observed_s": 19.92,
+      "odom_samples": 1235
+    },
+    {
+      "trial": 1,
+      "policy": "v3_mppi",
+      "mode": "fixed_route",
+      "controller": "MPPIController",
+      "controller_rate_warnings": 1,
+      "waypoint_status": [
+        4,
+        4,
+        4
+      ],
+      "all_reached": true,
+      "path_m": 4.388325934171858,
+      "net_m": 4.160613874356672,
+      "moving_s": 17.854000000000003,
+      "turning_only_s": 0.0,
+      "stopped_s": 0.09799999999999986,
+      "rolling_turn_s": 7.803000000000001,
+      "pauses_ge_0_5s": 0,
+      "missing_s": 0.0,
+      "observed_s": 17.952,
+      "odom_samples": 1084
+    },
+    {
+      "trial": 2,
+      "policy": "v3",
+      "mode": "fixed_route",
+      "controller": "RegulatedPurePursuitController",
+      "controller_rate_warnings": 0,
+      "waypoint_status": [
+        4,
+        4,
+        4
+      ],
+      "all_reached": true,
+      "linear_accel_m_s2": {
+        "mean_abs": 0.07513075524273644,
+        "p95_abs": 0.2357918073038637
+      },
+      "angular_accel_rad_s2": {
+        "mean_abs": 0.19786334966136768,
+        "p95_abs": 0.6443263455098873
+      },
+      "path_m": 4.154288865392717,
+      "net_m": 4.001852907399464,
+      "moving_s": 19.871999999999996,
+      "turning_only_s": 0.2410000000000032,
+      "stopped_s": 0.0470000000000006,
+      "rolling_turn_s": 9.836000000000002,
+      "pauses_ge_0_5s": 0,
+      "missing_s": 0.0,
+      "observed_s": 20.160000000000004,
+      "odom_samples": 1251
+    },
+    {
+      "trial": 2,
+      "policy": "v3_mppi",
+      "mode": "fixed_route",
+      "controller": "MPPIController",
+      "controller_rate_warnings": 0,
+      "waypoint_status": [
+        4,
+        4,
+        4
+      ],
+      "all_reached": true,
+      "linear_accel_m_s2": {
+        "mean_abs": 0.06800003048406444,
+        "p95_abs": 0.2103937972832543
+      },
+      "angular_accel_rad_s2": {
+        "mean_abs": 0.1561731848048146,
+        "p95_abs": 0.3850533135313479
+      },
+      "path_m": 4.372151286176786,
+      "net_m": 4.160023019338456,
+      "moving_s": 17.999999999999996,
+      "turning_only_s": 0.0,
+      "stopped_s": 0.0810000000000004,
+      "rolling_turn_s": 7.628999999999999,
+      "pauses_ge_0_5s": 0,
+      "missing_s": 0.0,
+      "observed_s": 18.081,
+      "odom_samples": 1121
+    }
+  ],
+  "map_profile": [
+    {
+      "decisions": 27,
+      "ms": {
+        "options": {
+          "p50": 48.212237000370806,
+          "p95": 68.96337749940358,
+          "max": 71.06627300072432
+        },
+        "choose": {
+          "p50": 0.08020899986149743,
+          "p95": 0.10701619985411526,
+          "max": 0.1142920000347658
+        },
+        "audit_write": {
+          "p50": 3.073373999541218,
+          "p95": 4.0025658004196885,
+          "max": 4.005707000032999
+        }
+      },
+      "run_id": "20261117T131010-6b8219501f"
+    },
+    {
+      "decisions": 19,
+      "ms": {
+        "options": {
+          "p50": 34.86386499935179,
+          "p95": 35.59710730023653,
+          "max": 35.64240699961374
+        },
+        "choose": {
+          "p50": 0.05708299977413844,
+          "p95": 0.06382020055752946,
+          "max": 0.06408299941540463
+        },
+        "audit_write": {
+          "p50": 2.8423320000001695,
+          "p95": 3.0289240995443834,
+          "max": 3.0631249992438825
+        }
+      },
+      "run_id": "20261118T025452-9e81af1edd"
+    }
+  ]
+}

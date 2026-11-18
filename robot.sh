@@ -5,14 +5,18 @@ action="${1:-status}"
 if (($#)); then shift; fi
 default_workspace=/home/ubuntu/face_intent_flow_v4r2_ws
 case "$action" in
+  start-v3-mppi|dry-run-v3-mppi)
+    action="${action%-v3-mppi}"
+    default_workspace=/home/ubuntu/face_intent_v3_mppi_ws ;;
   start-r32|dry-run-r32)
     action="${action%-r32}"
     default_workspace=/home/ubuntu/r32_drive_original18_ws ;;
   start|stop|check|status|dry-run) ;;
   -h|--help)
     cat <<'HELP'
-Usage: ./robot.sh {start|start-r32|stop|check|status|dry-run|dry-run-r32} [--duration SECONDS]
+Usage: ./robot.sh {start|start-v3-mppi|start-r32|stop|check|status|dry-run|dry-run-v3-mppi|dry-run-r32} [--duration SECONDS]
   start    Check clocks/sensors, launch the prepared runtime, then start when ready.
+  start-v3-mppi  Run the Nov 17 Flow v3 marker policy with the MPPI transit controller.
   start-r32  Run the separate R32 drive with the Original/18 marker policy.
   stop     Cancel motion, terminate this session, and verify stationary odometry.
   check    Read-only readiness check; never launches the policy or moves the robot.

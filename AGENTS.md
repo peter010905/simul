@@ -2,6 +2,8 @@
 
 - Physical robot commands on this Mac use `./robot.sh start` and
   `./robot.sh stop` with the prepared `face_intent_flow_v4r2_ws` in `osp-jazzy`.
+  The separate Nov 17 Flow v3 + MPPI candidate uses `./robot.sh start-v3-mppi`
+  and `face_intent_v3_mppi_ws` in the same VM.
   The physical board also supports explicit start/stop buttons when launched
   with `--enable-control`. Both use `scripts/robot_session.py` and the same
   readiness checks. Do not rebuild, redeploy, restart the board, or manually

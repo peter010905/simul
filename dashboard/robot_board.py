@@ -29,7 +29,7 @@ def make_handler(monitor, control=None):
             self.wfile.write(content)
 
         def do_POST(self):
-            if self.path not in ('/api/control/start', '/api/control/start-r32', '/api/control/stop'):
+            if self.path not in ('/api/control/start', '/api/control/start-r32', '/api/control/start-v3-mppi', '/api/control/stop'):
                 self.send_json(404, {'error': 'Unknown control action'})
                 return
             if control is None or not valid_request(self.headers, control.token):

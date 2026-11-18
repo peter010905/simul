@@ -8,7 +8,9 @@ The normal `./start_robot.command` or `./robot.sh start` entry point now reads
 `nav2_hardware_profile.yaml` and `fastdds_vm.xml` from this versioned directory.
 The current launcher uses `/home/ubuntu/face_intent_flow_v4r2_ws` with the same sensor and speed profile. The captured v3 workspace in `profile.json` identifies the reference run. There is no
 rebuild or policy/dictionary change at start. The physical board uses the same
-session launcher and navigation file.
+session launcher and navigation file. The opt-in `./robot.sh start-v3-mppi`
+selects the Nov 17 Flow v3 runtime with the MPPI controller and bounded turning
+watchdog. Its isolated Gazebo measurements are in the [candidate report](../../policy_candidates/2026-11-18_flow_v3_mppi/README.md).
 
 - Dictionary: `DICT_ARUCO_ORIGINAL`; minimum edge: 18 px; three readable frames.
 - Linear limit: 0.25 m/s; angular limit: 0.5 rad/s; no automatic undock.

@@ -1,4 +1,20 @@
 {
+  "flow_v3_mppi_transit": {
+    "parent": "2026-11-17_face_intent_flow_v3",
+    "weights": "2026-11-13_face_intent_v2",
+    "prepared_runtime": "face_intent_v3_mppi_ws",
+    "board_action": "start-v3-mppi",
+    "report": "policy_candidates/2026-11-18_flow_v3_mppi/README.md",
+    "measurements": "policy_candidates/2026-11-18_flow_v3_mppi/benchmark.json",
+    "paired_fixed_route_trials": 2,
+    "fixed_route_mean_s": {
+      "v3": 20.04,
+      "v3_mppi": 18.02
+    },
+    "paired_exploration_50s_trials": 2,
+    "saved_physical_decisions_profiled": 46,
+    "physical_candidate_run": false
+  },
   "physical_drive_variants": {
     "report": "policy_candidates/2026-11-18_r32_drive_original18/README.md",
     "reference_failure": "20261118T031950-f538c233fa",

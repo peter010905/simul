@@ -4,6 +4,8 @@ const oldest=(...values)=>{const known=values.filter(v=>v!==undefined&&v!==null)
 const number=(value,digits=2)=>value===null||value===undefined?'—':Number(value).toFixed(digits);
 let controlToken='',commandSequence=0;
 const pendingCommands=new Set();
+const startButtons = document.querySelectorAll('.control-buttons .start-button');
+function disableStarts(disabled){for(const button of startButtons)button.disabled=disabled}
 function renderControl(control){
   const enabled=Boolean(control?.enabled);
   $('robot-controls').hidden=!enabled;
@@ -13,9 +15,8 @@ function renderControl(control){
   $('control-state').textContent=labels[control.phase]||control.phase;
   $('control-state').className=['failed','stop_unverified'].includes(control.phase)?'bad':control.phase==='running'?'good':'';
   $('control-detail').textContent=control.detail||'';
-  $('robot-start-r32').disabled=$('robot-start').disabled=!controlToken||!control.can_start||pendingCommands.size>0;
+  disableStarts(!controlToken||!control.can_start||pendingCommands.size>0);
   $('robot-stop').disabled=!controlToken||pendingCommands.has('stop');
-  $('robot-start').textContent=['queued','preflight','starting'].includes(control.phase)?'준비 중…':'기존 정책 구동';
   const started=(control.events||[]).find(e=>e.event==='mission_started');
   $('control-timing').textContent=started?`자동 시작까지 ${number(started.elapsed_s,1)}초`:'';
 }
@@ -23,7 +24,7 @@ async function controlCommand(action){
   if(!controlToken||pendingCommands.has(action))return;
   const sequence=++commandSequence;
   pendingCommands.add(action);
-  $('robot-start-r32').disabled=$('robot-start').disabled=true;
+  disableStarts(true);
   $('robot-stop').disabled=pendingCommands.has('stop');
   $('control-detail').textContent=action!=='stop'?'구동 요청을 보내는 중…':'정지 요청을 보내는 중…';
   try{
@@ -139,12 +140,13 @@ async function poll(){
     if(!response.ok)throw new Error(`HTTP ${response.status}`);
     render(await response.json());
   }catch(error){
-    $('robot-start-r32').disabled=$('robot-start').disabled=true;
+    disableStarts(true);
     $('connection').textContent='보드 서버 연결 끊김';$('connection').classList.add('offline');
     $('warning').textContent=`보드 서버 응답 없음: ${error.message}`;$('warning').hidden=false;
   }
 }
 $('map-fullscreen').addEventListener('click',()=>$('map-frame').requestFullscreen?.());
+$('robot-start-v3-mppi').addEventListener('click',()=>controlCommand('start-v3-mppi'));
 $('robot-start-r32').addEventListener('click',()=>controlCommand('start-r32'));
 $('robot-start').addEventListener('click',()=>controlCommand('start'));
 $('robot-stop').addEventListener('click',()=>controlCommand('stop'));

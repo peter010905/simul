@@ -185,6 +185,10 @@ class StartSafetyTest(unittest.TestCase):
         self.assertIn("robot_session.py start", result.stdout)
         self.assertIn("face_intent_flow_v4r2_ws", result.stdout)
         self.assertNotIn("colcon", result.stdout)
+        candidate = subprocess.run(["bash", str(root / "robot.sh"), "dry-run-v3-mppi"],
+                                   capture_output=True, text=True, check=True)
+        self.assertIn("face_intent_v3_mppi_ws", candidate.stdout)
+        self.assertIn("2026-11-13_face_intent_v2/policy.json", candidate.stdout)
         result = subprocess.run(["python3", str(root / "scripts/robot_session.py"), "dry-run"], capture_output=True, text=True, check=True)
         command = json.loads(result.stdout)
         self.assertIn("undock:=false", command)

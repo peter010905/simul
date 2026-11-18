@@ -1,0 +1,8 @@
+{
+  "parent": "2026-11-17_face_intent_flow_v3",
+  "overlay_files": {
+    "osp_mission/transit_control.py": "4459ed007b26d4fa0e349f79b2d281a50d1cdb6c15f84121657be62bfd554bf1",
+    "test/test_transit_control.py": "71084118ec7dda5ed8286c8df41dce5d5583231535f9610cbc70548bf36619e4"
+  },
+  "transform_sha256": "76e797786ffe770851bf4fdffca0ec9a1d441f3cc41fea884b784c6cfa07458f"
+}

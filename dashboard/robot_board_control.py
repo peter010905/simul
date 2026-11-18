@@ -68,8 +68,9 @@ class BoardControl:
 
     def command(self, action):
         workspace = self.workspace
-        if action == "start-r32":
-            workspace = self.workspace.parent / "r32_drive_original18_ws"
+        alternatives = {"start-r32": "r32_drive_original18_ws", "start-v3-mppi": "face_intent_v3_mppi_ws"}
+        if action in alternatives:
+            workspace = self.workspace.parent / alternatives[action]
             action = "start"
         command = [sys.executable, "-u", str(self.repo / "scripts/robot_session.py"), action,
                    "--repo", str(self.repo), "--workspace", str(workspace),
@@ -141,7 +142,7 @@ class BoardControl:
 
     def request(self, action):
         with self.lock:
-            if action in ("start", "start-r32"):
+            if action in ("start", "start-r32", "start-v3-mppi"):
                 if not self.snapshot()["can_start"]:
                     raise RuntimeError("이미 구동 준비 또는 주행 중입니다.")
                 self.stop_process = None
