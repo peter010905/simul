@@ -1,0 +1,201 @@
+{
+  "reference": "b1ed300e0052e147f17590f0219d8c794fb66f8a",
+  "tests_passed": 404,
+  "physical_run": false,
+  "marker_replay": [
+    {
+      "run": "20261118T083739-28a113496c",
+      "id": 7,
+      "first_decode_s": 33.061,
+      "first_spatial_match_s": [
+        24.761
+      ],
+      "matched_frames": 7,
+      "proposals": [
+        {
+          "sec": 25.461,
+          "target_error_m": 0.2203789735462383,
+          "robot_to_goal_m": 0.8687134248805424,
+          "stationary": false
+        }
+      ],
+      "errors": {}
+    },
+    {
+      "run": "20261118T082353-9f8e401d05",
+      "id": 7,
+      "first_decode_s": 201.373,
+      "first_spatial_match_s": [
+        201.172
+      ],
+      "matched_frames": 2,
+      "proposals": [],
+      "errors": {}
+    },
+    {
+      "run": "20261118T035817-a943a066df",
+      "id": 7,
+      "first_decode_s": 208.723,
+      "first_spatial_match_s": [],
+      "matched_frames": 0,
+      "proposals": [],
+      "errors": {}
+    }
+  ],
+  "route_replay": [
+    {
+      "run": "20261118T025452-9e81af1edd",
+      "counts": {
+        "flow": 17,
+        "box_look": 1,
+        "detour": 1
+      },
+      "examples": [
+        {
+          "t": 96.58,
+          "kind": "box_look",
+          "xy": [
+            6.349998200122318,
+            -3.5549233074200326
+          ]
+        },
+        {
+          "t": 241.08,
+          "kind": "detour",
+          "xy": [
+            7.438607363027704,
+            0.08441574616856506
+          ]
+        }
+      ]
+    },
+    {
+      "run": "20261118T083739-28a113496c",
+      "counts": {
+        "detour": 1,
+        "flow": 24
+      },
+      "examples": [
+        {
+          "t": 4.87,
+          "kind": "detour",
+          "xy": [
+            9.078210806852729,
+            -0.9052002428978145
+          ]
+        }
+      ]
+    },
+    {
+      "run": "20261118T082353-9f8e401d05",
+      "counts": {
+        "detour": 1,
+        "flow": 13,
+        "box_look": 1,
+        "corridor": 1,
+        "reserved_marker_decision": 1
+      },
+      "examples": [
+        {
+          "t": 2.81,
+          "kind": "detour",
+          "xy": [
+            5.985027596520814,
+            -8.600203167819537
+          ]
+        },
+        {
+          "t": 117.87,
+          "kind": "box_look",
+          "xy": [
+            17.037226078540115,
+            -9.278935680751172
+          ]
+        },
+        {
+          "t": 162.91,
+          "kind": "corridor",
+          "xy": [
+            11.961874981153883,
+            -1.5342377008572066
+          ]
+        }
+      ]
+    }
+  ],
+  "gazebo": {
+    "baseline": {
+      "reason": "timeout",
+      "sim_s": 120.0,
+      "collisions": 0,
+      "success": false,
+      "ids": [
+        388
+      ],
+      "approached_ids": [
+        388
+      ],
+      "ground_truth_min_distance_m": {
+        "388": 0.495,
+        "337": 4.78,
+        "283": 9.579
+      },
+      "distance_m": 11.87,
+      "decoder_frames": 618,
+      "decoder_errors": 14,
+      "last_decoder_error": "Lookup would require extrapolation into the future.  Requested time 112.400000 but the latest data is at time 112.389000, when looking up transform from frame [oakd_rgb_camera_optical_frame] to frame [map]",
+      "position_error_m": {
+        "388": 0.01902158599482778
+      }
+    },
+    "pre_box": {
+      "reason": "timeout",
+      "sim_s": 120.12,
+      "collisions": 0,
+      "success": false,
+      "ids": [],
+      "approached_ids": [],
+      "ground_truth_min_distance_m": {
+        "388": 4.144,
+        "337": 1.003,
+        "283": 0.798
+      },
+      "distance_m": 14.13,
+      "decoder_frames": 614,
+      "decoder_errors": 0,
+      "goal_sources": {
+        "flow": 11
+      },
+      "last_decoder_error": "",
+      "position_error_m": {}
+    },
+    "hybrid_final": {
+      "reason": "timeout",
+      "sim_s": 120.08,
+      "collisions": 0,
+      "success": false,
+      "ids": [
+        388
+      ],
+      "approached_ids": [
+        388
+      ],
+      "ground_truth_min_distance_m": {
+        "388": 0.515,
+        "337": 5.117,
+        "283": 10.086
+      },
+      "distance_m": 13.94,
+      "decoder_frames": 619,
+      "decoder_errors": 19,
+      "goal_sources": {
+        "flow": 9,
+        "approach": 1
+      },
+      "last_decoder_error": "Lookup would require extrapolation into the future.  Requested time 121.400000 but the latest data is at time 121.388000, when looking up transform from frame [oakd_rgb_camera_optical_frame] to frame [map]",
+      "position_error_m": {
+        "388": 0.03111422326050786
+      }
+    }
+  }
+}

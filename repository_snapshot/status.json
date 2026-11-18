@@ -1,4 +1,9 @@
 {
+  "flow_r32_print": {
+    "report": "policy_candidates/2026-11-18_flow_v3_r32_print/README.md",
+    "reference_commit": "b1ed300e0052e147f17590f0219d8c794fb66f8a",
+    "physical_trial": false
+  },
   "passing_glance_replay": {
     "report": "policy_candidates/2026-11-18_flow_v3_passing_glance/README.md",
     "holdout_runs": 14,

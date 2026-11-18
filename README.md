@@ -1,5 +1,7 @@
 # OSP Final Project — ROS 2 Jazzy
 
+**Flow v3 · R32 합성 후보** · 같은 면의 인쇄 테두리를 반복해서 보면 안전한 관찰 지점을 요청하고, 일반 탐색에는 R32 복도 전진·우회를 사용할 수 있다. [선택 실행과 검증 결과](policy_candidates/2026-11-18_flow_v3_r32_print/README.md)
+
 **스쳐 지나가는 마커 재관찰** · 17:37 녹화에서 제자리 관찰을 마커 방향 3.14도 회전 요청으로 바꿨다. 별도 주행 14개의 배경 회전 요청은 7회에서 1회로 줄었다. [재생 결과와 처리 시간](policy_candidates/2026-11-18_flow_v3_passing_glance/README.md)
 
 **가장자리 단일 프레임 재관찰** · 미사용 주행 14회의 배경 회전 요청이 0회에서 7회로 늘었다. 이 자료에는 7·103번의 유효 판독이 없어 조기 반응은 기존 영상에서 따로 비교했다. [평가 결과](policy_candidates/2026-11-18_flow_v3_edge_glance/README.md)
