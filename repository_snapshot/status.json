@@ -1,4 +1,12 @@
 {
+  "flow_v3_surface_memory_replay": {
+    "report": "policy_candidates/2026-11-18_flow_v3_revisit_replay/README.md",
+    "recorded_runs": 4,
+    "eligible_decisions": 92,
+    "alternate_waypoints": 23,
+    "recorded_marker_runs_with_pre_detection_nearby_proposal": 0,
+    "physical_trial": false
+  },
   "flow_v3_surface_sweep": {
     "report": "policy_candidates/2026-11-18_flow_v3_surface_sweep/README.md",
     "runtime": "face_intent_v3_sweep_ws",

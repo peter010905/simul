@@ -1,0 +1,159 @@
+[
+  {
+    "run": "20261118T080829-46b72fd54a",
+    "mission_s": 178.1,
+    "counts": {
+      "sampled": 594,
+      "used": 594,
+      "baseline_decisions": 13
+    },
+    "faces": 180,
+    "queued": 142,
+    "later_good": 0,
+    "different_view": 0,
+    "unresolved": 142,
+    "matched_saved_coverage": 131,
+    "marked_viewed_by_baseline": 2,
+    "reranked": 3,
+    "proposal_types": {
+      "waypoint": 3
+    },
+    "marker_audit": {},
+    "actual_approached": [],
+    "reason_face_counts": {
+      "edge": 122,
+      "too_small": 142,
+      "oblique": 49,
+      "low_detail_or_blur": 22,
+      "exposure": 1
+    },
+    "max_extra_planned_m": -0.32,
+    "median_extra_planned_m": -1.1,
+    "targeted_later_observed_well": 0
+  },
+  {
+    "run": "20261118T082353-9f8e401d05",
+    "mission_s": 228.6,
+    "counts": {
+      "sampled": 762,
+      "used": 749,
+      "baseline_decisions": 16
+    },
+    "faces": 238,
+    "queued": 216,
+    "later_good": 5,
+    "different_view": 1,
+    "unresolved": 211,
+    "matched_saved_coverage": 189,
+    "marked_viewed_by_baseline": 2,
+    "reranked": 5,
+    "proposal_types": {
+      "waypoint": 5
+    },
+    "marker_audit": {
+      "7": {
+        "active_prior_faces": 3,
+        "previously_targeted": false,
+        "time_s": 201.39,
+        "prior_weak_face_count": 5,
+        "prior_s": 0.02
+      }
+    },
+    "actual_approached": [
+      7
+    ],
+    "reason_face_counts": {
+      "too_small": 216,
+      "low_detail_or_blur": 84,
+      "edge": 192,
+      "oblique": 94,
+      "exposure": 5
+    },
+    "max_extra_planned_m": 0.82,
+    "median_extra_planned_m": -1.38,
+    "targeted_later_observed_well": 0
+  },
+  {
+    "run": "20261118T083739-28a113496c",
+    "mission_s": 293.6,
+    "counts": {
+      "sampled": 979,
+      "used": 979,
+      "baseline_decisions": 25
+    },
+    "faces": 299,
+    "queued": 252,
+    "later_good": 3,
+    "different_view": 1,
+    "unresolved": 249,
+    "matched_saved_coverage": 215,
+    "marked_viewed_by_baseline": 7,
+    "reranked": 6,
+    "proposal_types": {
+      "waypoint": 6
+    },
+    "marker_audit": {
+      "7": {
+        "active_prior_faces": 3,
+        "previously_targeted": false,
+        "time_s": 33.18,
+        "prior_weak_face_count": 3,
+        "prior_s": 9.12
+      }
+    },
+    "actual_approached": [
+      7
+    ],
+    "reason_face_counts": {
+      "too_small": 252,
+      "low_detail_or_blur": 85,
+      "edge": 209,
+      "oblique": 101
+    },
+    "max_extra_planned_m": 0.36,
+    "median_extra_planned_m": -2.05,
+    "targeted_later_observed_well": 0
+  },
+  {
+    "run": "20261118T084307-e58115524e",
+    "mission_s": 464.0,
+    "counts": {
+      "sampled": 1547,
+      "used": 1547,
+      "baseline_decisions": 38
+    },
+    "faces": 524,
+    "queued": 432,
+    "later_good": 4,
+    "different_view": 2,
+    "unresolved": 428,
+    "matched_saved_coverage": 378,
+    "marked_viewed_by_baseline": 10,
+    "reranked": 9,
+    "proposal_types": {
+      "waypoint": 9
+    },
+    "marker_audit": {
+      "103": {
+        "active_prior_faces": 4,
+        "previously_targeted": false,
+        "time_s": 62.21,
+        "prior_weak_face_count": 4,
+        "prior_s": 7.22
+      }
+    },
+    "actual_approached": [
+      103
+    ],
+    "reason_face_counts": {
+      "oblique": 168,
+      "too_small": 431,
+      "edge": 348,
+      "low_detail_or_blur": 114,
+      "exposure": 9
+    },
+    "max_extra_planned_m": 0.07,
+    "median_extra_planned_m": -0.95,
+    "targeted_later_observed_well": 0
+  }
+]
