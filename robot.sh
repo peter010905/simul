@@ -55,4 +55,8 @@ if [[ "$action" == dry-run ]]; then
   printf 'VM: %s\n%s\n' "$robot_vm" "$robot_command"
   exit 0
 fi
+if [[ "$action" == start && "$robot_domain" == 4 ]]; then
+  robot_script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+  python3 "$robot_script_dir/scripts/robot_vm_recovery.py" --vm "$robot_vm" --repo "$robot_repo" --server "$robot_ntp"
+fi
 exec multipass exec "$robot_vm" -- bash -lc "$robot_command"
