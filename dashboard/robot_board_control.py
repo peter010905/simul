@@ -13,6 +13,19 @@ import time
 from urllib.parse import urlsplit
 
 
+# The first two actions remain available to existing clients.
+START_WORKSPACES = {
+    "start": None,
+    "start-r32": "r32_drive_original18_ws",
+    "start-v3-mppi": "face_intent_v3_sweep_ws",
+    "start-mixed": "flow_v3_r32_print_ws",
+    "start-upstream-r32": "r32_upstream_b1ed300_ws",
+}
+LABELS = {"start": "Flow v4", "start-r32": "R32 주행 혼합 (이전)",
+          "start-v3-mppi": "기존 · Flow v3", "start-mixed": "Mixed · Flow v3 + R32",
+          "start-upstream-r32": "원본 · R32"}
+
+
 def valid_request(headers, token):
     """No GET action, cross-origin form command or DNS-rebinding hostname."""
     host, origin = headers.get("Host", ""), headers.get("Origin", "")
@@ -59,6 +72,7 @@ class BoardControl:
         self.start_process = self.stop_process = None
         self.start_log = self.stop_log = None
         self.started_at = 0.
+        self.selected = None
 
     def read_state(self):
         try:
@@ -68,14 +82,17 @@ class BoardControl:
 
     def command(self, action):
         workspace = self.workspace
-        alternatives = {"start-r32": "r32_drive_original18_ws", "start-v3-mppi": "face_intent_v3_sweep_ws"}
-        if action in alternatives:
-            workspace = self.workspace.parent / alternatives[action]
+        native = action == "start-upstream-r32"
+        if START_WORKSPACES.get(action):
+            workspace = self.workspace.parent / START_WORKSPACES[action]
             action = "start"
         command = [sys.executable, "-u", str(self.repo / "scripts/robot_session.py"), action,
                    "--repo", str(self.repo), "--workspace", str(workspace),
                    "--domain", str(self.domain), "--ntp-server", self.ntp_server,
                    "--duration", str(self.duration)]
+        if native:
+            return ["bash", "-c", 'source /opt/ros/jazzy/setup.bash && source "$1/install/setup.bash" && shift && exec "$@"',
+                    "r32-board", str(workspace), *command, "--runtime", "upstream-r32"]
         if action == "start":
             command = ["bash", str(self.repo / "run_policy.sh"), "--mode", "robot",
                        "--workspace", str(workspace), "--policy",
@@ -137,18 +154,23 @@ class BoardControl:
                         events.append(json.loads(line))
                     except ValueError:
                         continue
-            return dict(enabled=True, token=self.token, phase=phase, detail=detail,
+            selected = self.selected
+            if belongs and state.get("workspace"):
+                name = Path(state["workspace"]).name
+                selected = next((key for key, value in START_WORKSPACES.items() if value == name), "start")
+            return dict(policy=LABELS.get(selected), enabled=True, token=self.token, phase=phase, detail=detail,
                         can_start=not busy, can_stop=True, events=events[-8:])
 
     def request(self, action):
         with self.lock:
-            if action in ("start", "start-r32", "start-v3-mppi"):
+            if action in START_WORKSPACES:
                 if not self.snapshot()["can_start"]:
                     raise RuntimeError("이미 구동 준비 또는 주행 중입니다.")
                 self.stop_process = None
                 self.stop_log = None
                 self.started_at = time.time()
                 self.start_process, self.start_log = self.spawn(action)
+                self.selected = action
             elif action == "stop":
                 if self.stop_process is not None and self.stop_process.poll() is None:
                     return self.snapshot()

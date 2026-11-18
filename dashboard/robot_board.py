@@ -4,10 +4,13 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 from pathlib import Path
 import signal
+import sys
 import threading
 import time
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parent / 'scripts'))
+from r32_board_status import normalize as normalize_r32
 
 
 def topic(namespace, name):
@@ -17,7 +20,8 @@ def topic(namespace, name):
 
 
 def make_handler(monitor, control=None):
-    from robot_board_control import valid_request
+    from robot_board_control import START_WORKSPACES, valid_request
+    routes = {"/api/control/" + action for action in (*START_WORKSPACES, "stop")}
     class Handler(BaseHTTPRequestHandler):
         def send_json(self, status, value):
             content = json.dumps(value).encode()
@@ -29,7 +33,7 @@ def make_handler(monitor, control=None):
             self.wfile.write(content)
 
         def do_POST(self):
-            if self.path not in ('/api/control/start', '/api/control/start-r32', '/api/control/start-v3-mppi', '/api/control/stop'):
+            if self.path not in routes:
                 self.send_json(404, {'error': 'Unknown control action'})
                 return
             if control is None or not valid_request(self.headers, control.token):
@@ -135,6 +139,7 @@ def run(args):
             if not args.sim:
                 from irobot_create_msgs.msg import DockStatus
                 self.create_subscription(DockStatus, topic(base, 'dock_status'), self.on_dock, qos_profile_sensor_data)
+                self.create_subscription(String, topic(base, 'osp/status'), lambda msg: self.on_status(msg, native=True), latched)
             self.create_subscription(OccupancyGrid, topic(base, 'map'), self.on_map, latched)
             self.create_subscription(LaserScan, topic(base, args.scan), self.on_raw, qos_profile_sensor_data)
             self.create_subscription(LaserScan, topic(base, args.filtered_scan), self.on_filtered, qos_profile_sensor_data)
@@ -188,7 +193,7 @@ def run(args):
                 self.filtered_scan = message
                 self.mark('filtered_scan')
 
-        def on_status(self, message):
+        def on_status(self, message, native=False):
             try:
                 parsed = json.loads(message.data)
                 if not isinstance(parsed, dict):
@@ -196,7 +201,16 @@ def run(args):
             except ValueError:
                 return
             with self.lock:
+                parsed = normalize_r32(parsed) if native else parsed
+                if (self.status.get('runtime') != parsed.get('runtime')
+                        or (parsed.get('state') == 'idle' and self.status.get('state') != 'idle')
+                        or (native and self.status.get('run_id') != parsed.get('run_id'))):
+                    self.targets = []
+                    self.discovered_ids.clear()
+                    self.latest_discovery = None
                 self.status = parsed
+                if native:
+                    self.update_targets(parsed['confirmed_targets'])
                 self.mark('mission_status')
 
         def on_collision(self, message):
@@ -209,14 +223,18 @@ def run(args):
 
         def on_targets(self, message):
             with self.lock:
-                self.targets = [(int(m.id), m.pose.position.x, m.pose.position.y)
-                                for m in message.markers if m.ns == 'point' and m.action == 0
-                                and m.header.frame_id == args.map_frame]
-                new_ids = sorted({ident for ident, _, _ in self.targets} - self.discovered_ids)
-                if new_ids:
-                    self.discovered_ids.update(new_ids)
-                    self.latest_discovery = {'ids': new_ids, 'time': time.time()}
-                self.mark('targets')
+                if self.status.get('runtime') != 'upstream-r32':
+                    self.update_targets([(int(m.id), m.pose.position.x, m.pose.position.y)
+                                         for m in message.markers if m.ns == 'point' and m.action == 0
+                                         and m.header.frame_id == args.map_frame])
+
+        def update_targets(self, targets):
+            self.targets = targets
+            new_ids = sorted({ident for ident, _, _ in targets} - self.discovered_ids)
+            if new_ids:
+                self.discovered_ids.update(new_ids)
+                self.latest_discovery = {'ids': new_ids, 'time': time.time()}
+            self.mark('targets')
 
         def on_plan(self, message, kind):
             if message.header.frame_id != args.map_frame:

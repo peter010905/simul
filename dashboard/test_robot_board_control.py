@@ -53,14 +53,15 @@ def test_get_and_cross_origin_requests_never_start(board_server):
     control.request.assert_not_called()
 
 
-def test_authorized_post_dispatches_exactly_one_action(board_server):
+@pytest.mark.parametrize('action', ['start', 'start-v3-mppi', 'start-mixed', 'start-upstream-r32', 'stop'])
+def test_authorized_post_dispatches_exactly_one_action(board_server, action):
     url, control = board_server
-    request = Request(url + '/api/control/start', data=b'{}', headers={
+    request = Request(url + '/api/control/' + action, data=b'{}', headers={
         'Origin': url, 'Content-Type': 'application/json', 'X-OSP-Control-Token': 'secret'})
     with urlopen(request) as result:
         assert result.status == 202
         assert json.load(result)['phase'] == 'queued'
-    control.request.assert_called_once_with('start')
+    control.request.assert_called_once_with(action)
 
 
 def test_wrong_body_and_unknown_action_never_dispatch(board_server):
@@ -116,7 +117,8 @@ def test_start_command_uses_same_prebuilt_session_and_recorder(tmp_path):
 
 
 @pytest.mark.parametrize(('action','workspace'), [('start-r32','r32_drive_original18_ws'),
-                                                ('start-v3-mppi','face_intent_v3_sweep_ws')])
+                                                ('start-v3-mppi','face_intent_v3_sweep_ws'),
+                                                ('start-mixed','flow_v3_r32_print_ws')])
 def test_alternate_start_uses_its_own_overlay_and_shares_the_original_stop_lock(tmp_path, action, workspace):
     board = BoardControl(tmp_path, tmp_path/'baseline', 184, state_dir=tmp_path)
     cmd = board.command(action)
@@ -127,3 +129,18 @@ def test_alternate_start_uses_its_own_overlay_and_shares_the_original_stop_lock(
         board.request(action)
         with pytest.raises(RuntimeError):
             board.request('start')
+
+
+def test_upstream_separate_detector_common_stop_and_interlock(tmp_path):
+    board = BoardControl(tmp_path, tmp_path/'default', 184, state_dir=tmp_path)
+    cmd = board.command('start-upstream-r32')
+    assert cmd[cmd.index('--workspace') + 1] == str(tmp_path/'r32_upstream_b1ed300_ws')
+    assert cmd[cmd.index('--runtime') + 1] == 'upstream-r32'
+    assert '--policy' not in cmd and 'run_policy.sh' not in ' '.join(cmd)
+    with patch.object(board, 'spawn', return_value=(process(123), tmp_path/'cmd.log')):
+        assert board.request('start-upstream-r32')['policy'] == '원본 · R32'
+        for action in ('start-mixed', 'start-v3-mppi'):
+            with pytest.raises(RuntimeError):
+                board.request(action)
+        with patch('robot_board_control.os.killpg'):
+            assert board.request('stop')['phase'] == 'stopping'

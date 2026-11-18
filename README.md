@@ -1,5 +1,8 @@
 # OSP Final Project — ROS 2 Jazzy
 
+실물 보드에서 기존 Flow v3, Mixed, 원본 R32를 각각 선택해 비교할 수 있습니다. [버튼별 정책과 실험 기록](dashboard/ROBOT_BOARD.md#실물-정책-비교)
+
+
 **Flow v3 · R32 합성 후보** · 같은 면의 인쇄 테두리를 반복해서 보면 안전한 관찰 지점을 요청하고, 일반 탐색에는 R32 복도 전진·우회를 사용할 수 있다. [선택 실행과 검증 결과](policy_candidates/2026-11-18_flow_v3_r32_print/README.md)
 
 **스쳐 지나가는 마커 재관찰** · 17:37 녹화에서 제자리 관찰을 마커 방향 3.14도 회전 요청으로 바꿨다. 별도 주행 14개의 배경 회전 요청은 7회에서 1회로 줄었다. [재생 결과와 처리 시간](policy_candidates/2026-11-18_flow_v3_passing_glance/README.md)

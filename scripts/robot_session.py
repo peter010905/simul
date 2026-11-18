@@ -7,6 +7,7 @@ are lazy so the safety/start state machine can also be tested on the Mac.
 import argparse
 from collections import deque
 from dataclasses import dataclass
+from r32_board_status import normalize as normalize_r32
 import fcntl
 import json
 import math
@@ -142,13 +143,13 @@ class StartGate:
 
 
 class RobotIO:
-    def __init__(self, domain):
+    def __init__(self, domain, runtime="flow"):
         import rclpy
         from action_msgs.srv import CancelGoal
         from geometry_msgs.msg import TwistStamped
         from irobot_create_msgs.msg import DockStatus, HazardDetectionVector
         from nav_msgs.msg import Odometry
-        from rclpy.qos import qos_profile_sensor_data
+        from rclpy.qos import DurabilityPolicy, QoSProfile, qos_profile_sensor_data
         from rclpy.signals import SignalHandlerOptions
         from sensor_msgs.msg import CameraInfo, Image, LaserScan
         from std_msgs.msg import String
@@ -160,8 +161,11 @@ class RobotIO:
         self.status = {}
         self.status_at = -math.inf
         self.TwistStamped, self.Trigger, self.CancelGoal = TwistStamped, Trigger, CancelGoal
-        self.start_client = self.node.create_client(Trigger, "/mission/start")
-        self.stop_client = self.node.create_client(Trigger, "/mission/stop")
+        self.runtime = runtime
+        prefix = "/osp" if runtime == "upstream-r32" else "/mission"
+        status_qos = QoSProfile(depth=1, durability=DurabilityPolicy.TRANSIENT_LOCAL) if runtime == "upstream-r32" else 10
+        self.start_client = self.node.create_client(Trigger, prefix + "/start")
+        self.stop_client = self.node.create_client(Trigger, prefix + "/stop")
         self.cancel_clients = {name: self.node.create_client(CancelGoal, "/" + name + "/_action/cancel_goal")
                                for name in CANCEL_ACTIONS}
         # Creating a publisher is deferred until an explicit stop or owned cleanup.
@@ -176,14 +180,14 @@ class RobotIO:
             self.node.create_subscription(Odometry, "/odom", lambda m: stamped("odom", m, (m.twist.twist.linear.x, m.twist.twist.angular.z)), qos_profile_sensor_data),
             self.node.create_subscription(HazardDetectionVector, "/hazard_detection", lambda m: self.sensors.update("hazards", time.monotonic(), value=[v.type for v in m.detections]), qos_profile_sensor_data),
             self.node.create_subscription(DockStatus, "/dock_status", lambda m: self.sensors.update("dock", time.monotonic(), value=m.is_docked), qos_profile_sensor_data),
-            self.node.create_subscription(String, "/mission/status", self.on_status, 10),
+            self.node.create_subscription(String, prefix + "/status", self.on_status, status_qos),
         ]
 
     def on_status(self, msg):
         try:
             parsed = json.loads(msg.data)
             if isinstance(parsed, dict):
-                self.status = parsed
+                self.status = normalize_r32(parsed) if self.runtime == "upstream-r32" else parsed
                 self.status_at = time.monotonic()
         except ValueError:
             pass
@@ -222,13 +226,21 @@ def clock_check(server):
         raise RuntimeError("VM NTP server is " + actual + "; expected robot " + server)
 
 
+def upstream_config(workspace):
+    return workspace / "install/osp_project/share/osp_project/resources/mission_r32_hardware.yaml"
+
+
 def runtime_check(args):
     from ament_index_python.packages import get_package_prefix
-    expected = args.workspace / "install/osp_mission"
-    if Path(get_package_prefix("osp_mission")).resolve() != expected.resolve():
-        raise RuntimeError("Wrong osp_mission overlay; source the prepared workspace")
-    for path in (args.workspace / "install/setup.bash", args.repo / "robot_profiles/wired_flow_v3/nav2_hardware_profile.yaml",
-                 args.repo / "policy_releases/2026-11-13_face_intent_v2/policy.json"):
+    native = getattr(args, "runtime", "flow") == "upstream-r32"
+    package = "osp_project" if native else "osp_mission"
+    expected = args.workspace / "install" / package
+    if Path(get_package_prefix(package)).resolve() != expected.resolve():
+        raise RuntimeError("Wrong " + package + " overlay; source the prepared workspace")
+    files = [upstream_config(args.workspace)] if native else [
+        args.repo / "robot_profiles/wired_flow_v3/nav2_hardware_profile.yaml",
+        args.repo / "policy_releases/2026-11-13_face_intent_v2/policy.json"]
+    for path in [args.workspace / "install/setup.bash", *files]:
         if not path.is_file():
             raise FileNotFoundError("Prepare this file before start: " + str(path))
     profile = os.environ.get("FASTRTPS_DEFAULT_PROFILES_FILE", "")
@@ -239,6 +251,10 @@ def runtime_check(args):
 
 
 def launch_command(args, output):
+    if getattr(args, "runtime", "flow") == "upstream-r32":
+        return ["ros2", "launch", "osp_project", "mission.launch.py",
+                "config:=" + str(upstream_config(args.workspace)), "output_directory:=" + str(output / "upstream"),
+                "use_sim_time:=false", "bringup:=true", "rviz:=false"]
     return ["ros2", "launch", "osp_mission", "robot.launch.py", "use_sim_time:=false",
             "rviz:=false", "planner:=edge", "planner_start_ignore_radius_m:=0.30",
             "navigation_flow_enabled:=true", "allow_mid_route_wall_inspection:=false",
@@ -356,6 +372,8 @@ def wait_for_start(io, flag, process, timeout, report):
             io.spin()
             reason = io.safety_reason()
             state = io.status.get("state", "") if time.monotonic() - io.status_at < 2 else ""
+            if getattr(io, "runtime", "flow") == "upstream-r32" and state == "idle":
+                reason = reason or io.status.get("readiness_reason")
             detail = reason or io.status.get("readiness_reason", "waiting_for_mission_service")
             if detail != previous_reason:
                 report("waiting", reason=detail)
@@ -412,7 +430,8 @@ def start(args, io, flag, state_path):
     process = None
     state = dict(supervisor_pid=os.getpid(), supervisor_start=identity(os.getpid()),
                  boot_id=Path("/proc/sys/kernel/random/boot_id").read_text().strip(),
-                 phase="preflight", output=str(output), domain=args.domain, requested_wall_epoch_s=time.time())
+                 phase="preflight", workspace=str(args.workspace), runtime=getattr(args, "runtime", "flow"),
+                 output=str(output), domain=args.domain, requested_wall_epoch_s=time.time())
     save(state_path, state)
     try:
         report("entry")
@@ -471,6 +490,9 @@ def start(args, io, flag, state_path):
         state["phase"] = "stopping" if process else "preflight_ended"
         save(state_path, state)
         if process is not None:
+            # Give the native recorder a stationary final status while its nodes are alive.
+            if state["runtime"] == "upstream-r32" and process.poll() is None:
+                stop_motion(io, 3.0)
             # Signal launch immediately; keep zero/cancel coverage during teardown.
             if process.poll() is None:
                 try:
@@ -504,6 +526,8 @@ def stop(args, io, state_path):
             os.kill(state["supervisor_pid"], signal.SIGTERM)
         except ProcessLookupError:
             pass
+    if state.get("runtime") == "upstream-r32" and tracked_group_active(state):
+        stop_motion(io, 3.0)
     if tracked_group_active(state):
         try:
             os.killpg(state["launch_pid"], signal.SIGINT)
@@ -527,6 +551,7 @@ def stop(args, io, state_path):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("action", choices=("start", "stop", "check", "status", "dry-run"))
+    parser.add_argument("--runtime", choices=("flow", "upstream-r32"), default="flow")
     parser.add_argument("--repo", type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument("--workspace", type=Path, default=Path.home() / "face_intent_flow_v4r2_ws")
     parser.add_argument("--domain", type=int, default=int(os.environ.get("ROS_DOMAIN_ID", "4")))
@@ -556,7 +581,9 @@ def main():
             signal.signal(sig, lambda *_: setattr(flag, "stopped", True))
     io = None
     try:
-        io = RobotIO(args.domain)
+        if args.action == "stop":
+            args.runtime = read_state(state_path).get("runtime", "flow")
+        io = RobotIO(args.domain, args.runtime)
         if args.action == "start":
             return start(args, io, flag, state_path)
         if args.action == "stop":

@@ -1,5 +1,18 @@
 # TurtleBot4 실물·시뮬 주행 보드
 
+## 실물 정책 비교
+
+상단에서 정책 이름을 누르면 해당 실험의 준비 검사를 시작한다. 실물 도크·센서·시계 검사를 통과하면 출발한다. 세 정책은 도메인별 실행 잠금과 정지 버튼을 공유한다. 실험 도중 다른 정책으로 바꾸려면 정지 완료를 확인한 뒤 다음 버튼을 누른다.
+
+| 버튼 | 주행과 마커 탐지 | VM 작업공간 |
+| --- | --- | --- |
+| 기존 · Flow v3 | 기존 Flow v3 MPPI 주행과 face_intent_v2 | `~/face_intent_v3_sweep_ws` |
+| Mixed · Flow v3 + R32 | Flow v3 마커 판독·후보 재관찰과 R32 복도 전진·우회 | `~/flow_v3_r32_print_ws` |
+| 원본 · R32 | 원본 osp_project 주행·탐지와 600초 실물 프리셋 | `~/r32_upstream_b1ed300_ws` |
+
+원본 R32는 [비교에 사용한 커밋](https://github.com/yeonslay/turtlebot4-marker-slam/tree/b1ed300e0052e147f17590f0219d8c794fb66f8a)을 별도 작업공간의 `src/upstream`에 체크아웃한 뒤 ROS Jazzy에서 `colcon build --packages-select osp_project`로 설치한다. 보드는 `/osp/status`의 확정 ID와 접근 완료 ID를 별도로 표시한다. 원본 기록은 해당 작업공간의 `session_logs/<실험>/artifacts/upstream/<run_id>/latest.json`에서 확인할 수 있다.
+
+
 기존 `dashboard/server.py`는 Gazebo 캠페인용입니다. 이 보드는 실물 로봇의
 ROS 토픽을 직접 구독합니다. 기본 실행은 읽기 전용이며, 실물 전용
 `--enable-control`을 지정하면 상단 **구동·정지 버튼**을 사용할 수 있습니다.
@@ -39,15 +52,7 @@ LAN에서 `--host 0.0.0.0`을 사용합니다. 인터넷에는 공개하지 마�
 
 ## 이 Mac의 실물 제어
 
-구동 버튼은 같은 정지 버튼과 시간·센서 점검을 사용합니다.
-
-| 버튼 | 주행 정책 | Mac 명령 |
-|---|---|---|
-| Flow v3 · MPPI 구동 | Flow v3 · MPPI + 벽·장애물 쪽으로 마커 탐색 회전, 반복 경로 감점, 범퍼 복구 | `./robot.sh start-v3-mppi` |
-| Flow v4 구동 | 기존 Flow v4r2 | `./robot.sh start` |
-| R32 혼합 구동 | R32 탐색과 Original/18 마커 판정 | `./robot.sh start-r32` |
-
-준비된 Flow v4 런타임과 유선 DDS·NTP 설정을 재사용합니다. 브라우저에서
+위의 세 실험은 각각 준비된 작업공간과 공통 유선 DDS·NTP 설정을 사용합니다. 브라우저에서
 <http://192.168.252.2:8767/>을 열고 **구동**을 누르면 시간·센서·실제 범퍼·도크
 상태 확인, SLAM/Nav2 실행, 준비 직후 미션 시작까지 자동 처리합니다.
 재빌드나 수동 시작 서비스 호출은 없습니다. **정지**는 준비 중인 요청도 취소하고,

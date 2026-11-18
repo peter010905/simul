@@ -11,6 +11,27 @@ import robot_session as session
 
 
 class StartSafetyTest(unittest.TestCase):
+    def test_upstream_status_separates_discovery_approach_and_stop(self):
+        targets = [dict(id=i, x=.1, y=.5, confirmed=i != 8, approached=i in (7, 8)) for i in (7, 8, 103)]
+        packet = dict(state='FINISHED', reason='operator_stop', targets=targets, stop_confirmed=True)
+        result = session.normalize_r32(packet)
+        self.assertEqual(result['approached_ids'], [7])
+        self.assertEqual([point[0] for point in result['confirmed_targets']], [7, 103])
+        self.assertEqual(result['state'], 'done')
+        self.assertFalse(result['task_success'])
+        for target in targets:
+            target.update(confirmed=True, approached=True)
+        self.assertTrue(session.normalize_r32(dict(packet, reason='targets_complete'))['task_success'])
+        self.assertEqual(session.normalize_r32(dict(state='READY', readiness='tf_missing_or_stale'))['state'], 'idle')
+
+    def test_upstream_launch_uses_hardware_yaml_and_separate_output(self):
+        args = SimpleNamespace(workspace=Path('/ws'), runtime='upstream-r32')
+        cmd = session.launch_command(args, Path('/trial'))
+        self.assertEqual(cmd[2:4], ['osp_project', 'mission.launch.py'])
+        self.assertIn('config:=/ws/install/osp_project/share/osp_project/resources/mission_r32_hardware.yaml', cmd)
+        self.assertIn('output_directory:=/trial/upstream', cmd)
+        self.assertIn('use_sim_time:=false', cmd)
+
     def healthy(self):
         sensors = session.Sensors()
         for name in session.REQUIRED:
