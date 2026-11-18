@@ -1,5 +1,7 @@
 # OSP Final Project — ROS 2 Jazzy
 
+**가장자리 단일 프레임 재관찰** · 미사용 주행 14회의 배경 회전 요청이 0회에서 7회로 늘었다. 이 자료에는 7·103번의 유효 판독이 없어 조기 반응은 기존 영상에서 따로 비교했다. [평가 결과](policy_candidates/2026-11-18_flow_v3_edge_glance/README.md)
+
 **원거리 테두리 보류 로그 검증** · 각도 보정 1.79를 고정한 후 2.6m 밖의 마커 면을 연결했다. 별도로 보류한 7번·103번 두 사례에서 판독 전 선택은 0/2였다. [원인과 비교](policy_candidates/2026-11-18_flow_v3_early_cue/README.md)
 
 **11월 18일 미리보기 방위 보정** · 17:43 녹화에서 103번 첫 재관찰 위치와 기록 좌표의 차이가 49.8cm에서 12.0cm로 줄었다. [원인과 네 주행 비교](policy_candidates/2026-11-18_flow_v3_preview_bearing/README.md)

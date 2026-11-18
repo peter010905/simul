@@ -1,4 +1,12 @@
 {
+  "single_frame_edge_glance": {
+    "report": "policy_candidates/2026-11-18_flow_v3_edge_glance/README.md",
+    "unseen_runs": 14,
+    "unseen_target_reads": 0,
+    "unseen_background_turns_old": 0,
+    "unseen_background_turns_new": 7,
+    "physical_trial": false
+  },
   "early_cue_heldout": {
     "report": "policy_candidates/2026-11-18_flow_v3_early_cue/README.md",
     "heldout_runs": 5,

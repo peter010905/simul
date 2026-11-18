@@ -1,0 +1,7 @@
+{
+ "unseen_selection":"All mission-started/stopped recordings with >=100 RGB preview messages and filtered lidar, matching the 250x250 camera profile, excluding named runs in prior marker experiments. Evaluate only synchronized frames. Record skips.",
+ "exclude":["20261117T131010","20261117T131955","20261118T025452","20261118T035817","20261118T055232","20261118T065425","20261118T074011","20261118T080235","20261118T080829","20261118T082157","20261118T082353","20261118T083739","20261118T084307"],
+ "previously_reviewed":["20261117T131955","20261118T035817","20261118T074011","20261118T025452"],
+ "scoring":"Count only an emitted turn strictly before the first synchronized 18px Original decode or earlier recorded observation. Inspect linked frames for identity when there is no recorded map reference, and distinguish from 30 cm position agreement. Audit every turn image in both replay outputs as marker, nonmarker, or uncertain, including any single-frame extra turn. Holds excluded.",
+ "focal_scale":1.79
+}
