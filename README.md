@@ -1,3 +1,5 @@
+**2026-11-19 Mixed 상자 전면 관찰 후보:** 실물 보드의 Mixed 버튼을 별도 빌드 `flow_v3_r32_full_box_ws`에 연결했습니다. 확인된 상자에서 네 면의 안전 관측점과 연결 경로가 모두 있는 경우만 차례로 살펴봅니다. 모의 격자에서 네 면 선택과 막힌 경로의 거부를 확인했으며 실물 주행 성능은 아직 측정하지 않았습니다. [구현·검증 범위](policy_candidates/2026-11-19_mixed_full_box/README.md).
+
 # OSP Final Project — ROS 2 Jazzy
 
 실물 보드와 랜덤 트랙 보드에서 [원본 R32 Resume](dashboard/ROBOT_BOARD.md#실물-정책-비교)를 선택할 수 있다. 최신 설치 커밋은 `5e95333`이다.

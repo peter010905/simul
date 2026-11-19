@@ -7,7 +7,7 @@
 | 버튼 | 주행과 마커 탐지 | VM 작업공간 |
 | --- | --- | --- |
 | 기존 · Flow v3 | 기존 Flow v3 MPPI 주행과 face_intent_v2 | `~/face_intent_v3_sweep_ws` |
-| Mixed · Flow v3 + R32 | Flow v3 마커 판독·후보 재관찰과 R32 복도 전진·우회 | `~/flow_v3_r32_print_ws` |
+| Mixed · 상자 전면 관찰 | Flow v3 마커 판독·R32 복도 전진·우회. 확인된 상자의 네 면을 경로가 허용할 때 관찰 | `~/flow_v3_r32_full_box_ws` |
 | R32 Resume · 5e95333 | 원본 osp_project 주행·탐지와 600초 실물 프리셋 | `~/r32_upstream_5e95333_ws` |
 
 원본 R32는 [비교에 사용한 커밋](https://github.com/yeonslay/turtlebot4-marker-slam/tree/5e9533380aa9233d22656862b2c1b42ce2cdcbf3)을 별도 작업공간의 `src/osp_project`에 체크아웃한 뒤 ROS Jazzy에서 `colcon build --packages-select osp_project`로 설치한다. 보드는 `/osp/status`의 확정 ID, 접근 완료 ID와 RGB 마커 재접근 횟수를 표시한다. 같은 버전의 읽기 전용 검사는 `./robot.sh check-r32-resume`, 명시적 출발은 `./robot.sh start-r32-resume`이다. 원본 기록은 해당 작업공간의 `session_logs/<실험>/artifacts/upstream/<run_id>/latest.json`에서 확인할 수 있다.

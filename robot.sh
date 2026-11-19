@@ -9,6 +9,9 @@ case "$action" in
   start-v3-mppi|dry-run-v3-mppi)
     action="${action%-v3-mppi}"
     default_workspace=/home/ubuntu/face_intent_v3_sweep_ws ;;
+  start-mixed|dry-run-mixed)
+    action="${action%-mixed}"
+    default_workspace=/home/ubuntu/flow_v3_r32_full_box_ws ;;
   start-r32-resume|dry-run-r32-resume|check-r32-resume)
     action="${action%-r32-resume}"
     runtime=upstream-r32
@@ -19,9 +22,10 @@ case "$action" in
   start|stop|check|status|dry-run) ;;
   -h|--help)
     cat <<'HELP'
-Usage: ./robot.sh {start|start-v3-mppi|start-r32|start-r32-resume|stop|check|check-r32-resume|status|dry-run|dry-run-r32-resume|dry-run-v3-mppi|dry-run-r32} [--duration SECONDS]
+Usage: ./robot.sh {start|start-v3-mppi|start-mixed|start-r32|start-r32-resume|stop|check|check-r32-resume|status|dry-run|dry-run-mixed|dry-run-r32-resume|dry-run-v3-mppi|dry-run-r32} [--duration SECONDS]
   start    Check clocks/sensors, launch the prepared runtime, then start when ready.
   start-v3-mppi  Run the Nov 17 Flow v3 marker policy with the MPPI transit controller.
+  start-mixed  Run Mixed with confirmed four-face box inspection.
   start-r32  Run the separate R32 drive with the Original/18 marker policy.
   start-r32-resume  Run the native R32 Resume hardware preset (5e95333).
   check-r32-resume  Check native hardware readiness without sending motion.
