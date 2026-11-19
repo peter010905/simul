@@ -1,0 +1,17 @@
+seed: 719103
+randomize: false
+start: [3.24, 2.40, 0.0]
+arena:
+  width_m: 12
+  height_m: 4.0
+  polygon: [[0, 0.90], [12, 0.90], [12, 3.90], [0, 3.90]]
+  walls:
+    - {x: 0.0, y: 2.40, sx: 0.12, sy: 3.0, height: 1.4, yaw: 0}
+    - {x: 12.0, y: 2.40, sx: 0.12, sy: 3.0, height: 1.4, yaw: 0}
+    - {x: 6.0, y: 0.90, sx: 12, sy: 0.12, height: 1.4, yaw: 0}
+    - {x: 6.0, y: 3.90, sx: 12, sy: 0.12, height: 1.4, yaw: 0}
+obstacles:
+  - {type: box, kind: box, x: 7.20, y: 3.04, sx: 0.70, sy: 0.68, height: 0.90, yaw: 0.0}
+targets:
+  - {id: 7, x: 5.76, y: 3.83, yaw: -1.5707963267948966, size: 0.14}
+  - {id: 103, x: 7.56, y: 3.04, yaw: 0.0, size: 0.14}

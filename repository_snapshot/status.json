@@ -1,4 +1,6 @@
 {
+  "random_track": {"report": "experiments/2026-11-19_random_track/README.md", "fresh_obstacles_per_run": true, "wall_targets": 1, "distinct_box_targets": 2, "layout_checks": 24, "verified_start_seed": 3416493641, "physical_trial": false},
+  "side_wall_box_rear": {"report": "experiments/2026-11-19_corridor_box/README.md", "environment": "Gazebo Harmonic", "trials_per_policy": 3, "results": {"flow": {"completed": 0, "reached": {"7": 0, "103": 3}, "bumps": 0}, "mixed": {"completed": 2, "reached": {"7": 2, "103": 3}, "bumps": 0}}},
   "paired_wall_7_103": {
     "report": "experiments/2026-11-19_pair_7_103/README.md",
     "environment": "Gazebo Harmonic",

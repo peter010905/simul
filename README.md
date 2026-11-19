@@ -1,5 +1,7 @@
 # OSP Final Project — ROS 2 Jazzy
 
+[복도 옆 벽·상자 뒷면 Gazebo 6회 비교](experiments/2026-11-19_corridor_box/README.md)와 [무작위 트랙 주행](experiments/2026-11-19_random_track/README.md)을 추가했다.
+
 [Gazebo 9회 비교 · 10cm 간격의 7번과 103번](experiments/2026-11-19_pair_7_103/README.md)에서 두 ID의 개별 등록과 실제 1.5m 접근은 기존 Flow v3 3/3, Mixed 3/3, 원본 R32 0/3이었습니다. 범퍼 접촉은 총 0회였습니다.
 
 

@@ -30,6 +30,7 @@ class Trial:
     def __init__(self, folder, scene, native):
         self.path, self.native = folder, native
         self.targets = {t['id']: (t['x'], t['y']) for t in scene['targets']}
+        self.duration = float(scene.get('duration', 120.))
         self.sim = self.start_sim = self.start_wall = self.pose = None
         self.status = {}
         self.current = set()
@@ -141,13 +142,13 @@ class Trial:
                 pending = self.start_client.call_async(Trigger.Request())
         if self.start_sim is None:
             raise RuntimeError('Start was not acknowledged')
-        while time.monotonic()-self.start_wall < 1200.:
+        while time.monotonic()-self.start_wall < max(1200., self.duration*10):
             rclpy.spin_once(self.node,timeout_sec=.1)
             phase = self.status.get('state')
             if self.pair_at is not None:
-                reason = 'both_registered_and_within_1.5m'
+                reason = ('both_registered_and_within_1.5m' if len(self.targets)==2 else 'all_registered_and_within_1.5m')
                 break
-            if self.sim-self.start_sim >= 120.:
+            if self.sim-self.start_sim >= self.duration:
                 reason = 'common_time_limit'
                 break
             if phase in ('FINISHED','done','saving','FINISHING'):
@@ -166,14 +167,14 @@ class Trial:
         return report
 
 
-def main():
+def main(trial_type=Trial, launch_path=None):
     root,folder = map(Path,(os.environ['BENCH_ROOT'],os.environ['BENCH_RUN']))
-    if os.environ['ROS_DOMAIN_ID'] != '173' or os.environ.get('ROS_LOCALHOST_ONLY') != '1':
+    if os.environ['ROS_DOMAIN_ID'] not in ('173','174') or os.environ.get('ROS_LOCALHOST_ONLY') != '1':
         raise RuntimeError('Simulation-only domain and loopback required')
     rclpy.init()
-    trial = Trial(folder, yaml.safe_load((root/'scene.yaml').read_text()), os.environ['BENCH_POLICY']=='r32')
+    trial = trial_type(folder, yaml.safe_load((root/'scene.yaml').read_text()), os.environ['BENCH_POLICY']=='r32')
     with (folder/'launch.log').open('w') as log:
-        child = subprocess.Popen(['ros2','launch',str(root/'pair.launch.py')],stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
+        child = subprocess.Popen(['ros2','launch',str(launch_path or root/'pair.launch.py')],stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
         try:
             report = trial.run()
             report['world_sha256'] = hashlib.sha256((root/'world/osp_studio.sdf').read_bytes()).hexdigest()
