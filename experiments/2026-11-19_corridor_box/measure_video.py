@@ -1,5 +1,6 @@
 """Record the full robot RGB stream with simulation timestamps and measured heading."""
 import csv
+import json
 import math
 from pathlib import Path
 import sys
@@ -33,6 +34,16 @@ class CameraTrial(Trial):
         self.heading_log = (self.path/'headings.csv').open('w')
         self.headings_csv = csv.writer(self.heading_log)
         self.headings_csv.writerow(['elapsed_sim_s','x','y','yaw_rad'])
+
+    def on_status(self, msg):
+        super().on_status(msg)
+        if self.native and 'rgb_resumptions' in self.status:
+            counts = {k: self.status.get(k) for k in ('rgb_candidate_activations','rgb_resumptions')}
+            if counts != getattr(self,'last_resume_counts',None):
+                tmp = self.path/'resume_status.tmp'
+                tmp.write_text(json.dumps(counts))
+                tmp.replace(self.path/'resume_status.json')
+                self.last_resume_counts = counts
 
     def prepare_start(self):
         if self.map_rate_client is None:

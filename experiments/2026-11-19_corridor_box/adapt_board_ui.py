@@ -8,7 +8,25 @@ live = dashboard/'web/app.js'
 live.write_text(live.read_text().replace(' / 3',' / 2'))
 script = dashboard/'sim_web/app.js'
 app = script.read_text()
+def add_resume(app):
+    if '<option value="r32">' not in app:
+        anchor = '원본 R32 + 최신 Mixed 동시 주행</option>'
+        if anchor not in app:
+            raise ValueError('Missing track policy selector')
+        app = app.replace(anchor,'R32 Resume + 최신 Mixed 동시 주행</option><option value="r32">R32 Resume 단독 · 5e95333</option>')
+    if 'd.rgb_resumptions' not in app:
+        anchor = "  $('detailStats').replaceChildren"
+        if anchor not in app:
+            raise ValueError('Missing run statistics')
+        app = app.replace(anchor, """  if (d.policy_revision === '5e9533380aa9233d22656862b2c1b42ce2cdcbf3') {
+    stats.push(['주행 정책', 'R32 Resume · 5e95333'], ['RGB 마커 접근 재개', d.rgb_resumptions ?? '수신 대기']);
+  }
+""" + anchor)
+    return app
+
+
 if 'function experimentCamera' in app:
+    script.write_text(add_resume(app))
     sys.exit(0)
 app = app.replace('보낸 목표','기록된 탐색 목표').replace(", 지도 ${card.final.map_passed ? '통과' : '미통과'}","")
 app = app.replace("아직 기록이 없습니다(30초마다 기록).", "이 주행은 지도 진행률을 기록하지 않았습니다.")
@@ -82,4 +100,4 @@ trackActions.addEventListener('submit', async event => {
   finally { button.disabled = false; }
 });
 """
-script.write_text(app)
+script.write_text(add_resume(app))

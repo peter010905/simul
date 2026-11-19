@@ -102,6 +102,7 @@ function render(data){
   const pose=data.robot_pose;
   rows('nav-details',[
     ['현재 동작',status.active_action||'없음'],
+    ...(Number.isInteger(status.rgb_resumptions) ? [['RGB 마커 접근 재개',status.rgb_resumptions+'회']] : []),
     ...(status.drive_policy ? [['R32 주행 판단',({detour:'짧은 우회',frontier:'미지 경계로 이동',inspect:'관측 위치로 이동',no_route:'안전한 경로 대기',waiting_for_global_costmap:'비용 지도 대기'})[status.drive_policy.kind||status.drive_policy.reason]||status.drive_policy.kind||'대기']] : []),
     ...(status.navigation_flow?.candidates?.proposed!==undefined ? [['기존 정책 후보',`${status.navigation_flow.candidates.proposed}개 중 ${status.navigation_flow.candidates.selected_from}개${status.navigation_flow.candidates.shared_exit?' · 같은 출구의 다른 목표 허용':''}`]] : []),
     ['종료 사유',outcome.detail||'진행 중 / 대기'],

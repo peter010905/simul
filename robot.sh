@@ -4,20 +4,27 @@ set -euo pipefail
 action="${1:-status}"
 if (($#)); then shift; fi
 default_workspace=/home/ubuntu/face_intent_flow_v4r2_ws
+runtime=flow
 case "$action" in
   start-v3-mppi|dry-run-v3-mppi)
     action="${action%-v3-mppi}"
     default_workspace=/home/ubuntu/face_intent_v3_sweep_ws ;;
+  start-r32-resume|dry-run-r32-resume|check-r32-resume)
+    action="${action%-r32-resume}"
+    runtime=upstream-r32
+    default_workspace=/home/ubuntu/r32_upstream_5e95333_ws ;;
   start-r32|dry-run-r32)
     action="${action%-r32}"
     default_workspace=/home/ubuntu/r32_drive_original18_ws ;;
   start|stop|check|status|dry-run) ;;
   -h|--help)
     cat <<'HELP'
-Usage: ./robot.sh {start|start-v3-mppi|start-r32|stop|check|status|dry-run|dry-run-v3-mppi|dry-run-r32} [--duration SECONDS]
+Usage: ./robot.sh {start|start-v3-mppi|start-r32|start-r32-resume|stop|check|check-r32-resume|status|dry-run|dry-run-r32-resume|dry-run-v3-mppi|dry-run-r32} [--duration SECONDS]
   start    Check clocks/sensors, launch the prepared runtime, then start when ready.
   start-v3-mppi  Run the Nov 17 Flow v3 marker policy with the MPPI transit controller.
   start-r32  Run the separate R32 drive with the Original/18 marker policy.
+  start-r32-resume  Run the native R32 Resume hardware preset (5e95333).
+  check-r32-resume  Check native hardware readiness without sending motion.
   stop     Cancel motion, terminate this session, and verify stationary odometry.
   check    Read-only readiness check; never launches the policy or moves the robot.
   status   Read-only live state and tracked process status.
@@ -39,11 +46,16 @@ robot_ntp="${OSP_ROBOT_NTP_SERVER:-192.168.185.3}"
 robot_args=(python3 -u "$robot_repo/scripts/robot_session.py" "$action"
   --repo "$robot_repo" --workspace "$robot_workspace" --domain "$robot_domain"
   --ntp-server "$robot_ntp" "$@")
+if [[ "$runtime" == upstream-r32 ]]; then
+  robot_args+=(--runtime upstream-r32)
+fi
 if [[ "$action" == start || "$action" == dry-run ]]; then
   robot_args[3]=start
-  robot_args=(bash "$robot_repo/run_policy.sh" --mode robot --workspace "$robot_workspace"
+  if [[ "$runtime" == flow ]]; then
+    robot_args=(bash "$robot_repo/run_policy.sh" --mode robot --workspace "$robot_workspace"
     --policy "$robot_repo/policy_releases/2026-11-13_face_intent_v2/policy.json"
-    -- "${robot_args[@]}")
+      -- "${robot_args[@]}")
+  fi
 fi
 printf -v robot_command 'source /opt/ros/jazzy/setup.bash\nif [[ -f %q ]]; then source %q; fi\n' \
   "$robot_workspace/install/setup.bash" "$robot_workspace/install/setup.bash"

@@ -13,5 +13,6 @@ def normalize(status):
                 termination_reason={'targets_complete': 'all_targets_found', 'time_limit': 'timeout'}.get(reason, reason)
                 if state in ('saving', 'done') else '',
                 task_success=bool(status.get('stop_confirmed') and reason == 'targets_complete' and len(approached) >= 3),
+                rgb_resumptions=status.get('rgb_resumptions'),
                 approached_ids=approached,
                 confirmed_targets=[(target['id'], target['x'], target['y']) for target in confirmed])

@@ -1,4 +1,5 @@
 {
+  "r32_resume": {"upstream":"5e9533380aa9233d22656862b2c1b42ce2cdcbf3","simulation_board":true,"hardware_board":true,"new_physical_drive":false},
   "mixed_corner_pair": {"report":"policy_candidates/2026-11-19_mixed_corner_pair/README.md","stage":"sensor_replay_verified","matched_probes":122,"two_face_probes_v2":52,"two_face_probes_v3":76,"physical_trial":false},
   "mixed_two_views": {"report": "policy_candidates/2026-11-19_mixed_two_views/README.md", "gazebo_seed": 1983050120, "matched_trials": 1, "box_ids_reached_v1": [103], "box_ids_reached_v2": [32, 103], "v2_completion_sim_s": 332.7, "simulation_only": true},
   "mixed_box_views": {"report": "policy_candidates/2026-11-19_mixed_box_views/README.md", "decision_map_replay_runs": 3, "revision": "mixed-box-views-v1", "physical_trial": false},

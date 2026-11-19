@@ -4,7 +4,7 @@ here="$(cd "$(dirname "$0")" && pwd)"
 reference="${TRACK_REFERENCE:-$HOME/track-reference-73bbb05}"
 runs="${TRACK_RUNS:-$HOME/track-recordings}"
 mode="${1:-pair}"
-case "$mode" in flow|mixed|pair|compare-mixed) ;; *) echo 'Choose pair, compare-mixed, mixed or flow' >&2; exit 2 ;; esac
+case "$mode" in flow|mixed|r32|pair|compare-mixed) ;; *) echo 'Choose pair, compare-mixed, r32, mixed or flow' >&2; exit 2 ;; esac
 mkdir -p "$runs/.layouts"
 exec 9>"$runs/.domain.lock"
 if [[ "$mode" == compare-mixed ]]; then
@@ -33,19 +33,22 @@ drive() (
         source "$HOME/face_intent_v3_sweep_ws/install/setup.bash"
     fi
     if [[ "$BENCH_POLICY" == r32 ]]; then
-        source "$HOME/r32_upstream_73bbb05_ws/install/local_setup.bash"
-        if [[ -n "${TRACK_RECORDER_OVERLAY:-}" ]]; then
-            export PYTHONPATH="$TRACK_RECORDER_OVERLAY:${PYTHONPATH:-}"
-        fi
+        source "$HOME/r32_upstream_5e95333_ws/install/local_setup.bash"
+        export PYTHONPATH="$HOME/track-recorder-zstd-5e95333:${PYTHONPATH:-}"
         python3 - "$BENCH_ROOT/r32-sim.yaml" <<'PY'
 from pathlib import Path
+import hashlib
 import sys
 import yaml
 from ament_index_python.packages import get_package_share_directory
+from osp_project import mission
+if hashlib.sha256(Path(mission.__file__).read_bytes()).hexdigest() != '2c2c9cf3d157da0575c121e54ea65cb7ec0ce578b3f8e00209ae1bd64db7fb18':
+    raise RuntimeError('R32 Resume module does not match the selected version')
 config = Path(get_package_share_directory('osp_project'))/'resources/mission_r32_hardware.yaml'
 settings = yaml.safe_load(config.read_text())
 settings['mission']['ros__parameters'].update(mission_time_source='ros', duration=600.)
 Path(sys.argv[1]).write_text(yaml.safe_dump(settings))
+Path(sys.argv[1]).with_name('policy_revision.txt').write_text('5e9533380aa9233d22656862b2c1b42ce2cdcbf3\n')
 PY
     fi
     export ROS_LOCALHOST_ONLY=1 ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST

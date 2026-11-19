@@ -1,5 +1,7 @@
 # OSP Final Project — ROS 2 Jazzy
 
+실물 보드와 랜덤 트랙 보드에서 [원본 R32 Resume](dashboard/ROBOT_BOARD.md#실물-정책-비교)를 선택할 수 있다. 최신 설치 커밋은 `5e95333`이다.
+
 [Mixed 두 면 동시 관찰 후보](policy_candidates/2026-11-19_mixed_corner_pair/README.md)는 같은 기록 122시점에서 두 미관측 면을 함께 볼 위치를 52→76번 선택했다. Gazebo 동일 맵 비교는 별도 실행한다.
 
 [Mixed 두 시점 상자 관찰의 동일 맵 Gazebo 비교](policy_candidates/2026-11-19_mixed_two_views/README.md)에서 기존판은 상자 1/2개로 600초에 종료했고, 개선판은 332.7초에 상자 2개와 벽 마커까지 접근했다. 범퍼 접촉은 두 정책 모두 0회였다.

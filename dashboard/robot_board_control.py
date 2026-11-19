@@ -19,11 +19,11 @@ START_WORKSPACES = {
     "start-r32": "r32_drive_original18_ws",
     "start-v3-mppi": "face_intent_v3_sweep_ws",
     "start-mixed": "flow_v3_r32_print_ws",
-    "start-upstream-r32": "r32_upstream_b1ed300_ws",
+    "start-upstream-r32": "r32_upstream_5e95333_ws",
 }
 LABELS = {"start": "Flow v4", "start-r32": "R32 주행 혼합 (이전)",
           "start-v3-mppi": "기존 · Flow v3", "start-mixed": "Mixed · Flow v3 + R32",
-          "start-upstream-r32": "원본 · R32"}
+          "start-upstream-r32": "R32 Resume · 5e95333"}
 
 
 def valid_request(headers, token):

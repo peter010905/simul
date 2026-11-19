@@ -175,7 +175,7 @@ def main():
                 policy = json.loads(self.rfile.read(int(self.headers['Content-Length'])))['policy']
             except (ValueError, KeyError, TypeError):
                 return self.send(400, {'error': '잘못된 정책'})
-            if policy not in ('flow','mixed','pair'):
+            if policy not in ('flow','mixed','r32','pair'):
                 return self.send(400, {'error': '알 수 없는 정책'})
             args.track_source.mkdir(parents=True, exist_ok=True)
             with (args.track_source/'launch-console.log').open('a') as log:
@@ -191,6 +191,20 @@ def main():
 
         def do_GET(self):
             url=urlsplit(self.path)
+            if url.path == '/api/run' and args.track_source:
+                run = board.get(parse_qs(url.query).get('id',[''])[0])
+                if run and run.label.startswith('r32-track-'):
+                    folder = args.track_source/run.label
+                    revision = folder/'policy_revision.txt'
+                    detail = run.summary(time.time(), detail=True)
+                    if revision.is_file():
+                        detail['policy_revision'] = revision.read_text().strip()
+                        counts = folder/'resume_status.json'
+                        if counts.is_file():
+                            status = json.loads(counts.read_text())
+                            detail['rgb_resumptions'] = status.get('rgb_resumptions')
+                            detail['rgb_activations'] = status.get('rgb_candidate_activations')
+                    return self.send(200,detail)
             if url.path in ('/camera.jpg','/video.mp4','/api/media','/track-floor.jpg'):
                 run=board.get(parse_qs(url.query).get('id',[''])[0])
                 if not run: return self.send(404,{'error':'unknown run'})
