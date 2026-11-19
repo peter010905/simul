@@ -1,0 +1,94 @@
+{
+  "seed": 1983050120,
+  "box_markers": {
+    "32": "aisle_box_c",
+    "103": "aisle_box_s"
+  },
+  "baseline": {
+    "box_goal_to_next_dispatch_s": 134.5,
+    "approx_printed_face_dwell_s": {
+      "32": 0.0,
+      "103": 9.38
+    },
+    "run": "mixed-baseline-track-BVOucwt9",
+    "revision": "mixed-box-views-v1",
+    "registered_s": {
+      "103": 118.69200000000001
+    },
+    "registered_within_1_5m_s": {
+      "103": 118.70400000000001
+    },
+    "both_boxes_s": null,
+    "elapsed_sim_s": 600.0,
+    "elapsed_wall_s": 1681.8151871930022,
+    "stop_reason": "common_time_limit",
+    "bumper_events": 0,
+    "goal_counts": {
+      "flow": 30,
+      "focus": 1,
+      "approach": 2,
+      "box_face_view": 11,
+      "detour": 1
+    },
+    "camera": {
+      "received": 2952,
+      "late": 47,
+      "invalid_calibration": 0,
+      "duplicate": 0,
+      "accepted": 2905,
+      "coverage_updates": 2785,
+      "tf_waits": 115
+    },
+    "camera_decoded_frames": {
+      "103": 51,
+      "32": 0
+    },
+    "world_sha256": "b05ed917f949beed8ef737ca2efd043e650676ec9793d1b109c3914d91297dc5"
+  },
+  "candidate": {
+    "box_goal_to_next_dispatch_s": 139.0,
+    "approx_printed_face_dwell_s": {
+      "32": 6.14,
+      "103": 1.28
+    },
+    "run": "mixed-track-BVOucwt9",
+    "revision": "mixed-box-views-v2",
+    "registered_s": {
+      "32": 255.2,
+      "103": 332.69599999999997
+    },
+    "registered_within_1_5m_s": {
+      "32": 255.21999999999997,
+      "103": 332.7
+    },
+    "both_boxes_s": 332.7,
+    "elapsed_sim_s": 332.7,
+    "elapsed_wall_s": 1225.3670799590036,
+    "stop_reason": "all_registered_and_within_1.5m",
+    "bumper_events": 0,
+    "goal_counts": {
+      "flow": 7,
+      "box_face_view": 10,
+      "approach": 2
+    },
+    "camera": {
+      "received": 1664,
+      "late": 6,
+      "invalid_calibration": 0,
+      "duplicate": 0,
+      "accepted": 1658,
+      "coverage_updates": 1622,
+      "tf_waits": 35,
+      "two_view_frames": 658,
+      "confirmed_boxes": 4,
+      "observed_box_faces": 13
+    },
+    "camera_decoded_frames": {
+      "103": 16,
+      "32": 35
+    },
+    "world_sha256": "b05ed917f949beed8ef737ca2efd043e650676ec9793d1b109c3914d91297dc5"
+  },
+  "both_boxes_delta_s": null,
+  "runtime_delta_sim_s": -267.3
+}

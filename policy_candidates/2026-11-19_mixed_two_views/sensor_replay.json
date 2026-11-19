@@ -1,0 +1,73 @@
+[
+  {
+    "run": "r32-track-8yVAosBO",
+    "frames": 926,
+    "confirmed": [
+      {
+        "world": [
+          7.184581453574145,
+          1.6639868331692957
+        ],
+        "nearest": "aisle_box_c",
+        "error_m": 0.04,
+        "covered_faces": 1
+      },
+      {
+        "world": [
+          -0.6537359441576855,
+          -0.15914982985105564
+        ],
+        "nearest": "aisle_box_s",
+        "error_m": 0.16,
+        "covered_faces": 0
+      },
+      {
+        "world": [
+          -8.068038772246602,
+          -2.7814197068546127
+        ],
+        "nearest": "aisle_box_w",
+        "error_m": 0.28,
+        "covered_faces": 3
+      }
+    ]
+  },
+  {
+    "run": "r32-track-f6myvZ0l",
+    "frames": 753,
+    "confirmed": [
+      {
+        "world": [
+          6.741827438312735,
+          -3.700900384141706
+        ],
+        "nearest": "perimeter_box_e",
+        "error_m": 0.11,
+        "covered_faces": 3
+      },
+      {
+        "world": [
+          -5.759292463518307,
+          4.149487172055178
+        ],
+        "nearest": "aisle_box_s",
+        "error_m": 0.17,
+        "covered_faces": 0
+      },
+      {
+        "world": [
+          -8.054162399496121,
+          3.060872377328205
+        ],
+        "nearest": "aisle_box_w",
+        "error_m": 0.22,
+        "covered_faces": 0
+      }
+    ]
+  },
+  {
+    "run": "r32-track-wevIgT2q",
+    "frames": 1157,
+    "confirmed": []
+  }
+]

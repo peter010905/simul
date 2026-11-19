@@ -19,7 +19,7 @@ VM에서 `run.sh pair`를 실행하면 월드를 한 번 생성하고 두 주행
 
 ### Mac에서 연속 실행
 
-등록된 로그인 에이전트 `local.turtlebot.track-pairs`가 30초마다 새 회차를 시작할 수 있는지 확인한다. 이전 두 주행과 영상 저장이 끝나서 VM의 잠금이 풀리면 `~/track-continuous/2026-11-19_random_track/run.sh pair`가 새 배치를 한 번 생성한다. 같은 배치를 사용한 두 정책의 카드에는 같은 회차 식별자가 붙는다. 현재 주행이 일찍 끝나더라도 나머지 정책이 마칠 때까지 다음 회차는 기다린다. 회차 수 제한은 없다.
+등록된 로그인 에이전트 `local.turtlebot.track-pairs`가 30초마다 새 회차를 시작할 수 있는지 확인한다. 이전 두 주행과 영상 저장이 끝나서 VM의 잠금이 풀리면 `~/track-continuous-box-v2/2026-11-19_random_track/run.sh pair`가 새 배치를 한 번 생성한다. 같은 배치를 사용한 두 정책의 카드에는 같은 회차 식별자가 붙는다. 현재 주행이 일찍 끝나더라도 나머지 정책이 마칠 때까지 다음 회차는 기다린다. 회차 수 제한은 없다.
 
 연속 실행에서는 R32의 센서 원본을 MCAP의 무손실 Zstandard 형식으로 기록한다. 카메라 영상, 마커 판정, 궤적은 회차별 폴더에 저장한다. Mac 또는 VM의 여유 공간이 6GiB 미만이면 기존 기록을 보존하고 공간이 확보될 때까지 새 회차를 기다린다. Mac이 깨어 있고 해당 계정에 로그인해 있어야 한다.
 
@@ -29,3 +29,5 @@ Mac의 등록 파일은 `~/Library/LaunchAgents/local.turtlebot.track-pairs.plis
 launchctl disable "gui/$(id -u)/local.turtlebot.track-pairs"
 launchctl bootout "gui/$(id -u)/local.turtlebot.track-pairs"
 ```
+
+Mixed 자동 회차와 수동 보드에서는 두 시점 상자 확인 후보를 사용한다. 기존 Mixed와의 동일 맵 비교에는 선택 모드 `compare-mixed`를 사용한다. [판정 조건과 비교 실행법](../../policy_candidates/2026-11-19_mixed_two_views/README.md)

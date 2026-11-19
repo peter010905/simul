@@ -4,17 +4,21 @@ here="$(cd "$(dirname "$0")" && pwd)"
 reference="${TRACK_REFERENCE:-$HOME/track-reference-73bbb05}"
 runs="${TRACK_RUNS:-$HOME/track-recordings}"
 mode="${1:-pair}"
-case "$mode" in flow|mixed|pair) ;; *) echo 'Choose pair, mixed or flow' >&2; exit 2 ;; esac
+case "$mode" in flow|mixed|pair|compare-mixed) ;; *) echo 'Choose pair, compare-mixed, mixed or flow' >&2; exit 2 ;; esac
 mkdir -p "$runs/.layouts"
 exec 9>"$runs/.domain.lock"
-flock -n 9 || { echo 'A track trial is already running' >&2; exit 75; }
+if [[ "$mode" == compare-mixed ]]; then
+    flock 9
+else
+    flock -n 9 || { echo 'A track trial is already running' >&2; exit 75; }
+fi
 source /opt/ros/jazzy/setup.bash
 layout="$(mktemp -d "$runs/.layouts/XXXXXXXX")"
 PYTHONPATH="$reference:${PYTHONPATH:-}" python3 "$here/prepare.py" "$reference" "$layout"
 
 drive() (
     export BENCH_POLICY="$1" ROS_DOMAIN_ID="$2"
-    export BENCH_RUN="$runs/$BENCH_POLICY-track-${layout##*/}"
+    export BENCH_RUN="$runs/${3:-$BENCH_POLICY}-track-${layout##*/}"
     export BENCH_ROOT="$BENCH_RUN"
     mkdir "$BENCH_RUN"
     ln -s "$layout"/{scene.json,scene.yaml,run,world} "$BENCH_RUN/"
@@ -52,9 +56,15 @@ PY
     python3 "$here/../2026-11-19_corridor_box/finish_trial.py" "$BENCH_RUN" "$BENCH_RUN" >>"$BENCH_RUN/observer.log" 2>&1
 )
 
-if [[ "$mode" == pair ]]; then
-    drive mixed 174 & mixed_pid=$!
-    drive r32 175 & r32_pid=$!
+if [[ "$mode" == pair || "$mode" == compare-mixed ]]; then
+    if [[ "$mode" == compare-mixed ]]; then
+        : "${TRACK_BASELINE_OVERLAY:?}" "${TRACK_MIXED_OVERLAY:?}"
+        TRACK_MIXED_OVERLAY="$TRACK_BASELINE_OVERLAY" drive mixed 175 mixed-baseline & r32_pid=$!
+        drive mixed 174 & mixed_pid=$!
+    else
+        drive mixed 174 & mixed_pid=$!
+        drive r32 175 & r32_pid=$!
+    fi
     result=0
     wait "$mixed_pid" || result=$?
     wait "$r32_pid" || result=$?

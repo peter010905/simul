@@ -1,5 +1,7 @@
 # OSP Final Project — ROS 2 Jazzy
 
+[Mixed 두 시점 상자 관찰의 동일 맵 Gazebo 비교](policy_candidates/2026-11-19_mixed_two_views/README.md)에서 기존판은 상자 1/2개로 600초에 종료했고, 개선판은 332.7초에 상자 2개와 벽 마커까지 접근했다. 범퍼 접촉은 두 정책 모두 0회였다.
+
 [Mixed 무작위 트랙 상자 관찰](policy_candidates/2026-11-19_mixed_box_views/README.md) 후보를 다음 시뮬 회차에 연결했다. 기존 주행의 지도 재생에서 32번·103번 상자의 인쇄면을 향하는 위치를 모두 골랐다.
 
 [복도 옆 벽·상자 뒷면 Gazebo 6회 비교](experiments/2026-11-19_corridor_box/README.md)와 [무작위 트랙 주행](experiments/2026-11-19_random_track/README.md)을 추가했다.
