@@ -127,8 +127,10 @@ class BoardControl:
                     phase, detail = "stopped", "주행 종료 · 실제 정지 확인 완료"
                 else:
                     phase, detail = "stop_unverified", "정지 요청을 보냈지만 실제 속도를 확인하지 못했습니다."
-            elif belongs and state.get("phase") in ("not_started", "stop_unverified"):
-                phase, detail = "failed", "시작 또는 정지 확인 실패"
+            elif belongs and state.get("phase") == "stop_unverified":
+                phase, detail = "stop_unverified", "주행 프로세스가 종료됐지만 실제 속도를 확인하지 못했습니다."
+            elif belongs and state.get("phase") == "not_started":
+                phase, detail = "failed", "마지막 요청에서 주행을 시작하지 못했습니다."
             elif belongs and state.get("phase") == "stopped":
                 phase, detail = "stopped", "주행 종료 · 실제 정지 확인 완료" if state.get("stationary_verified") else "주행 프로세스 종료"
             elif start_alive:

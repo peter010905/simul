@@ -11,7 +11,7 @@ function renderControl(control){
   $('robot-controls').hidden=!enabled;
   if(!enabled){controlToken='';return}
   controlToken=control.token||'';
-  const labels={idle:'구동 대기',queued:'구동 요청 접수',preflight:'시간·센서 확인 중',starting:'주행 준비 중',running:'주행 중',stopping:'정지 중',stopped:'정지 완료',failed:'구동 확인 필요',stop_unverified:'정지 확인 필요'};
+  const labels={idle:'구동 대기',docked:'도크에 있음 · 출발 대기',queued:'구동 요청 접수',preflight:'시간·센서 확인 중',starting:'주행 준비 중',running:'주행 중',stopping:'정지 중',stopped:'정지 완료',failed:'마지막 구동 요청 실패',stop_unverified:'정지 확인 필요'};
   $('control-state').textContent=labels[control.phase]||control.phase;
   $('control-state').className=['failed','stop_unverified'].includes(control.phase)?'bad':control.phase==='running'?'good':'';
   $('control-detail').textContent=[control.policy,control.detail].filter(Boolean).join(' · ');
@@ -64,10 +64,19 @@ function render(data){
   $('board-title').textContent=sim?'Gazebo 시뮬 주행 보드':'실물 주행 보드';
   $('board-subtitle').textContent=`${sim?'ROS 시뮬 시간':'실물 ROS'} · ${data.control?.enabled?'보드에서 직접 구동·정지':'읽기 전용'}`;
   const dockBlocksStart=data.docked===true&&data.control?.can_start;
-  renderControl(dockBlocksStart?{...data.control,can_start:false,detail:'로봇이 도크에 있어요. 바닥으로 옮기면 구동할 수 있어요.'}:data.control);
+  let control=data.control;
+  if(dockBlocksStart){
+    control={...control,can_start:false};
+    if(control.phase!=='stop_unverified'){
+      control.phase='docked';
+      control.detail='도크 밖 평평한 바닥에 놓고 구동을 누르면 센서와 시간을 다시 확인합니다.';
+    }
+  }
+  renderControl(control);
   const live=(ages.mission_status!==undefined&&ages.mission_status<statusLimit)||(ages.raw_scan!==undefined&&ages.raw_scan<5);
-  $('connection').textContent=live?'ROS 수신 중':sim&&ages.raw_scan!==undefined?'시뮬 종료 · 마지막 화면':sim?'시뮬 시작 대기':'ROS 데이터 대기 / 끊김';
-  $('connection').classList.toggle('offline',!live);
+  const dockLive=!sim&&typeof data.docked==='boolean';
+  $('connection').textContent=live?'ROS 수신 중':dockLive?'도크 상태 수신 중 · LiDAR 대기':sim&&ages.raw_scan!==undefined?'시뮬 종료 · 마지막 화면':sim?'시뮬 시작 대기':'ROS 데이터 대기 / 끊김';
+  $('connection').classList.toggle('offline',!live&&!dockLive);
   const outcome=data.mission_display||{label:status.state==='done'?'종료 · 미완료':status.state||'상태 대기',detail:'',kind:''};
   $('mission-state').textContent=!live&&sim&&ages.raw_scan!==undefined?'시뮬 종료':outcome.label;
   $('mission-state').className=ages.mission_status>statusLimit?'bad':outcome.kind;

@@ -105,6 +105,14 @@ def test_missing_sensor_failure_remains_visible_and_retryable(tmp_path):
     assert 'LiDAR' in result['detail']
 
 
+def test_reopened_board_keeps_unverified_stop_separate_from_start_failure(tmp_path):
+    control = BoardControl(tmp_path, tmp_path, 184, state_dir=tmp_path)
+    (tmp_path/'session.json').write_text(json.dumps({'phase': 'stop_unverified', 'requested_wall_epoch_s': 1.}))
+    result = control.snapshot()
+    assert result['phase'] == 'stop_unverified'
+    assert '실제 속도' in result['detail']
+
+
 def test_start_command_uses_same_prebuilt_session_and_recorder(tmp_path):
     control = BoardControl(tmp_path, tmp_path/'runtime', 184, state_dir=tmp_path)
     command = control.command('start')
