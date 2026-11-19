@@ -1,6 +1,7 @@
 """Attribute each dispatched box inspection to its independently recorded simulator host."""
 import bisect
 from collections import Counter
+import csv
 import json
 import math
 from pathlib import Path
@@ -27,6 +28,42 @@ def host_for(point, spawn, boxes):
         if distance<=.35:
             matches.append(box['name'])
     return matches[0] if len(matches)==1 else None
+
+
+def coverage_changes(path, intervals):
+    if not path.is_file():
+        return None
+    with path.open() as stream:
+        samples = [(float(r['mission_elapsed_s']),int(r['confirmed_boxes']),int(r['observed_faces']))
+                   for r in csv.DictReader(stream)]
+    times = [s[0] for s in samples]
+    if any(b<a for a,b in zip(times,times[1:])):
+        raise ValueError('Coverage trace clock moved backwards')
+    counts=Counter()
+    for item in intervals:
+        start=item['start_s']
+        end=start+item['duration_s']
+        first=bisect.bisect_right(times,start)-1
+        last=bisect.bisect_right(times,end)-1
+        if first<0 or last<=first or start-times[first]>1.5 or end-times[last]>1.5:
+            counts['unmeasured_intervals']+=1
+            continue
+        span=samples[first:last+1]
+        if any(b[0]-a[0]>1.5 or b[1]<a[1] or b[2]<a[2] for a,b in zip(span,span[1:])):
+            counts['unmeasured_intervals']+=1
+            continue
+        boxes=span[-1][1]-span[0][1]
+        faces=span[-1][2]-span[0][2]
+        item.update(newly_confirmed_boxes=boxes,reported_face_increase=faces)
+        # When an object becomes confirmed, faces observed before this interval
+        # can enter the reported total at once. Separate those intervals.
+        if boxes:
+            counts['intervals_with_new_confirmation']+=1
+        else:
+            counts['intervals_without_new_confirmation']+=1
+            counts['face_increase_without_new_confirmation']+=faces
+            counts['zero_gain_without_new_confirmation']+=int(faces==0)
+    return dict(samples=len(samples),**counts)
 
 
 def summarize(folder):
@@ -68,7 +105,8 @@ def summarize(folder):
     registered=set(audit['registered_s'])
     truth={str(t['id']) for t in scene['targets']}
     saved=set(audit['saved_map_xy'])
-    return dict(run=folder.name,unexpected_registered_ids=sorted(registered-truth),
+    trace=coverage_changes(folder/'box_coverage.csv',intervals)
+    return dict(run=folder.name,coverage_changes=trace,unexpected_registered_ids=sorted(registered-truth),
                 missing_saved_ids=sorted(truth-saved),unexpected_saved_ids=sorted(saved-truth),
                 goals=dict(counts),seconds={k:round(v,3) for k,v in host_seconds.items()},
                 intervals=intervals)

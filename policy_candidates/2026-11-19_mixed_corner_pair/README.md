@@ -23,6 +23,8 @@ R32의 별도 기록 두 건에서 카메라 보정 시각, 시야각, 라이다
 
 완료된 동일 맵 두 회차에 `python3 report.py BASELINE CANDIDATE`를 실행하면 전체 등록 ID, 저장 누락과 예상 외 ID, 실측 접근 시각, 범퍼 횟수, 마커 좌표 오차, 위 상자별 시간 집계를 함께 평가할 수 있다. 로컬 SLAM 지도와 실제 궤적을 정합할 수 없는 회차는 위치 오차를 미측정으로 기록한다.
 
+두 정책의 격리된 ROS 도메인에서 `coverage_trace.py`가 `/mission/status`를 구독하면 회차별 `box_coverage.csv`에 정책의 누적 확인 상자 수와 관측 면 수가 남는다. 평가 시 각 상자 목표 구간의 증분을 계산한다. 새 상자가 확인되면서 이전 관측까지 합산된 구간과 관측이 끊긴 구간은 따로 센다. 증분은 로봇이 기억한 전체 상자의 변화로, 그 목표의 상자에만 귀속되지 않는다.
+
 ## 재현
 
 VM에서 `python3 stage.py ~/mixed-box-views-v2/osp_mission ~/mixed-box-views-v3`로 별도 설치한다. Gazebo 비교는 트랙 실행기에 `TRACK_BASELINE_OVERLAY=~/mixed-box-views-v2`, `TRACK_MIXED_OVERLAY=~/mixed-box-views-v3`를 지정하고 `compare-mixed`를 실행한다. 센서 재생은 ROS와 Mixed를 로드한 환경에서 해당 버전의 오버레이를 PYTHONPATH 맨 앞에 두고 `python3 replay.py RUN_DIRECTORY`로 실행한다.
