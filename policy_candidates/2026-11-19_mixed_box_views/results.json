@@ -1,0 +1,272 @@
+{
+  "baseline_run": "mixed-track-wevIgT2q",
+  "baseline_partial": {
+    "rgb_frames": 1878,
+    "original_dictionary_frames_by_id": {
+      "7": 159,
+      "32": 0,
+      "103": 0
+    },
+    "min_distance_m": {
+      "32": 0.579,
+      "103": 0.759
+    },
+    "seconds_within_1_5m_and_printed_side_and_heading_error_under_30_degrees": {
+      "32": 0,
+      "103": 0
+    }
+  },
+  "decision_replays": {
+    "mixed-track-wevIgT2q": {
+      "input_maps": 28,
+      "suggestions": [
+        {
+          "geometrically_facing_ids": [],
+          "time": 127.8,
+          "nearest": "aisle_box_s",
+          "error_m": 0.13,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [],
+          "time": 150.3,
+          "nearest": "perimeter_box_e",
+          "error_m": 0.12,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [
+            32
+          ],
+          "time": 164.8,
+          "nearest": "perimeter_box_e",
+          "error_m": 0.12,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [
+            32
+          ],
+          "time": 177.3,
+          "nearest": "perimeter_box_e",
+          "error_m": 0.14,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [
+            103
+          ],
+          "time": 192.8,
+          "nearest": "aisle_box_w",
+          "error_m": 0.14,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [],
+          "time": 214.8,
+          "nearest": "aisle_box_w",
+          "error_m": 0.14,
+          "matches_box": true
+        }
+      ]
+    },
+    "mixed-track-X5SQ7e6v": {
+      "input_maps": 43,
+      "suggestions": [
+        {
+          "geometrically_facing_ids": [],
+          "time": 99.6,
+          "nearest": "perimeter_box_e",
+          "error_m": 0.03,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [],
+          "time": 121.6,
+          "nearest": "perimeter_box_e",
+          "error_m": 0.04,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [],
+          "time": 143.1,
+          "nearest": "perimeter_box_e",
+          "error_m": 0.04,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [],
+          "time": 243.1,
+          "nearest": "aisle_box_s",
+          "error_m": 0.06,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [],
+          "time": 258.1,
+          "nearest": "aisle_box_w",
+          "error_m": 0.1,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [],
+          "time": 276.1,
+          "nearest": "aisle_box_s",
+          "error_m": 0.06,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [
+            32
+          ],
+          "time": 288.1,
+          "nearest": "aisle_box_c",
+          "error_m": 0.05,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [],
+          "time": 302.1,
+          "nearest": "aisle_box_c",
+          "error_m": 0.04,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [
+            32
+          ],
+          "time": 313.6,
+          "nearest": "aisle_box_c",
+          "error_m": 0.04,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [],
+          "time": 475.6,
+          "nearest": "aisle_box_s",
+          "error_m": 0.08,
+          "matches_box": true
+        }
+      ]
+    },
+    "mixed-track-8yVAosBO": {
+      "input_maps": 46,
+      "suggestions": [
+        {
+          "geometrically_facing_ids": [],
+          "time": 4.4,
+          "nearest": "aisle_box_c",
+          "error_m": 0.05,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [],
+          "time": 14.9,
+          "nearest": "perimeter_box_e",
+          "error_m": 0.05,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [],
+          "time": 49.9,
+          "nearest": "aisle_box_s",
+          "error_m": 0.19,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [],
+          "time": 64.4,
+          "nearest": "aisle_box_s",
+          "error_m": 0.2,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [
+            103
+          ],
+          "time": 79.9,
+          "nearest": "aisle_box_s",
+          "error_m": 0.04,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [],
+          "time": 163.4,
+          "nearest": "aisle_box_w",
+          "error_m": 0.01,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [],
+          "time": 180.9,
+          "nearest": "aisle_box_w",
+          "error_m": 0.03,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [],
+          "time": 198.4,
+          "nearest": "aisle_box_w",
+          "error_m": 0.03,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [],
+          "time": 338.9,
+          "nearest": "perimeter_box_e",
+          "error_m": 0.04,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [],
+          "time": 351.4,
+          "nearest": "perimeter_box_e",
+          "error_m": 0.04,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [],
+          "time": 363.4,
+          "nearest": "perimeter_box_e",
+          "error_m": 0.03,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [],
+          "time": 451.4,
+          "nearest": "aisle_box_c",
+          "error_m": 0.04,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [],
+          "time": 462.4,
+          "nearest": "aisle_box_c",
+          "error_m": 0.04,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [],
+          "time": 481.9,
+          "nearest": "aisle_box_c",
+          "error_m": 0.04,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [],
+          "time": 577.4,
+          "nearest": "aisle_box_c",
+          "error_m": 0.03,
+          "matches_box": true
+        },
+        {
+          "geometrically_facing_ids": [],
+          "time": 592.4,
+          "nearest": "aisle_box_c",
+          "error_m": 0.03,
+          "matches_box": true
+        }
+      ]
+    }
+  }
+}

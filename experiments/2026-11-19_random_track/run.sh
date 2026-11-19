@@ -20,6 +20,11 @@ drive() (
     ln -s "$layout"/{scene.json,scene.yaml,run,world} "$BENCH_RUN/"
     if [[ "$BENCH_POLICY" == mixed ]]; then
         source "$HOME/flow_v3_r32_print_ws/install/setup.bash"
+        if [[ -n "${TRACK_MIXED_OVERLAY:-}" ]]; then
+            test -f "$TRACK_MIXED_OVERLAY/osp_mission/box_views.py"
+            export PYTHONPATH="$TRACK_MIXED_OVERLAY:${PYTHONPATH:-}"
+            basename "$TRACK_MIXED_OVERLAY" > "$BENCH_RUN/policy_revision.txt"
+        fi
     else
         source "$HOME/face_intent_v3_sweep_ws/install/setup.bash"
     fi

@@ -21,5 +21,6 @@ exec /usr/local/bin/multipass exec osp-jazzy -- bash -c '
     fi
     # run.sh takes the same lock again, atomically, before generating a new layout.
     export TRACK_RECORDER_OVERLAY="$HOME/track-recorder-zstd"
-    exec "$HOME/track-continuous/2026-11-19_random_track/run.sh" pair
+    export TRACK_MIXED_OVERLAY="$HOME/mixed-box-views-v1"
+    exec "$HOME/track-continuous-box-v1/2026-11-19_random_track/run.sh" pair
 '
