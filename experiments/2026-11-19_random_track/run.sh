@@ -25,6 +25,9 @@ drive() (
     fi
     if [[ "$BENCH_POLICY" == r32 ]]; then
         source "$HOME/r32_upstream_73bbb05_ws/install/local_setup.bash"
+        if [[ -n "${TRACK_RECORDER_OVERLAY:-}" ]]; then
+            export PYTHONPATH="$TRACK_RECORDER_OVERLAY:${PYTHONPATH:-}"
+        fi
         python3 - "$BENCH_ROOT/r32-sim.yaml" <<'PY'
 from pathlib import Path
 import sys

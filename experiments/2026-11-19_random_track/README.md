@@ -16,3 +16,16 @@ VM에서 `run.sh pair`를 실행하면 월드를 한 번 생성하고 두 주행
 시드 3768776676에서 두 마커는 서로 다른 상자(7, 103), 한 마커는 북쪽 벽(32)에 붙었다. R32는 초반 0.8m 이동 후 전역 장애물 지도의 수신 간격이 실시간 3초를 넘겨 목표를 반복 취소했다. 지도 갱신과 발행을 1Hz에서 4Hz로 바꾼 뒤 정체 위치에서 2.45m 이탈했다. 이후 동시 트랙에서는 출발 전에 같은 설정을 적용한다. 이 변경은 장애물·범퍼 판정 기준을 바꾸지 않는다.
 
 두 시뮬의 물리 계산 간격을 실행 도중 1ms에서 4ms로 변경했다. 이후 트랙은 4ms로 시작한다. 카메라 100프레임 간격으로 계산한 배율은 Mixed 0.20→0.33, R32 0.21→0.32였다. 주행 중에 설정이 달라진 이 회차의 시간은 초기부터 동일한 조건으로 진행한 성능 시험과 구분한다.
+
+### Mac에서 연속 실행
+
+등록된 로그인 에이전트 `local.turtlebot.track-pairs`가 30초마다 새 회차를 시작할 수 있는지 확인한다. 이전 두 주행과 영상 저장이 끝나서 VM의 잠금이 풀리면 `~/track-continuous/2026-11-19_random_track/run.sh pair`가 새 배치를 한 번 생성한다. 같은 배치를 사용한 두 정책의 카드에는 같은 회차 식별자가 붙는다. 현재 주행이 일찍 끝나더라도 나머지 정책이 마칠 때까지 다음 회차는 기다린다. 회차 수 제한은 없다.
+
+연속 실행에서는 R32의 센서 원본을 MCAP의 무손실 Zstandard 형식으로 기록한다. 카메라 영상, 마커 판정, 궤적은 회차별 폴더에 저장한다. Mac 또는 VM의 여유 공간이 6GiB 미만이면 기존 기록을 보존하고 공간이 확보될 때까지 새 회차를 기다린다. Mac이 깨어 있고 해당 계정에 로그인해 있어야 한다.
+
+Mac의 등록 파일은 `~/Library/LaunchAgents/local.turtlebot.track-pairs.plist`, 실행 로그는 `~/Library/Application Support/TurtleBotTrack/campaign.log`다. 반복 실행을 해제하려면 Mac 터미널에서 다음을 실행한다.
+
+```bash
+launchctl disable "gui/$(id -u)/local.turtlebot.track-pairs"
+launchctl bootout "gui/$(id -u)/local.turtlebot.track-pairs"
+```
