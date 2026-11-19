@@ -17,6 +17,12 @@ R32의 별도 기록 두 건에서 카메라 보정 시각, 시야각, 라이다
 
 직전 완료 회차 BVOucwt9의 저장 좌표를 확인했다. 각 정책의 의사결정 시각에 기록한 SLAM 로봇 위치와 시뮬 실제 위치로 평면 강체 변환을 추정한 후, 마커 좌표를 변환해 오차를 구했다. 마커 좌표는 변환 추정에서 제외했다. v2는 7·32·103번의 위치 오차가 각각 1.5·1.4·1.7cm였다. 로봇 위치 정합 자체의 RMS 오차는 1.8cm였다. [좌표 평가](previous_map_check.json)
 
+## 상자 관찰 시간의 사용처
+
+직전 BVOucwt9에서 v2가 상자 목표를 보낸 뒤 다음 목표를 고를 때까지는 총 139.0초였다. 그중 73.0초(5회)는 마커 없는 상자, 66.0초(5회)는 아직 등록하지 않은 마커가 붙은 상자에 할당됐다. 상자 4개 중 어디에 마커가 있는지는 평가할 때만 시뮬 정답으로 대조했다. v1에서는 같은 기준으로 빈 상자 52.5초, 마커 상자 72.5초, 어느 상자인지 대응할 수 없던 구간 9.5초였다. 한 목표 구간에는 이동·회전·대기가 모두 들어간다. [목표별 기록](previous_inspection_time.json)
+
+완료된 동일 맵 두 회차에 `python3 report.py BASELINE CANDIDATE`를 실행하면 전체 등록 ID, 저장 누락과 예상 외 ID, 실측 접근 시각, 범퍼 횟수, 마커 좌표 오차, 위 상자별 시간 집계를 함께 평가할 수 있다. 로컬 SLAM 지도와 실제 궤적을 정합할 수 없는 회차는 위치 오차를 미측정으로 기록한다.
+
 ## 재현
 
 VM에서 `python3 stage.py ~/mixed-box-views-v2/osp_mission ~/mixed-box-views-v3`로 별도 설치한다. Gazebo 비교는 트랙 실행기에 `TRACK_BASELINE_OVERLAY=~/mixed-box-views-v2`, `TRACK_MIXED_OVERLAY=~/mixed-box-views-v3`를 지정하고 `compare-mixed`를 실행한다. 센서 재생은 ROS와 Mixed를 로드한 환경에서 해당 버전의 오버레이를 PYTHONPATH 맨 앞에 두고 `python3 replay.py RUN_DIRECTORY`로 실행한다.

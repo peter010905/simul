@@ -1,0 +1,185 @@
+[
+  {
+    "run": "mixed-baseline-track-BVOucwt9",
+    "unexpected_registered_ids": [],
+    "missing_saved_ids": [
+      "32"
+    ],
+    "unexpected_saved_ids": [],
+    "goals": {
+      "unregistered_marked_box": 5,
+      "unmarked_box": 5,
+      "unmatched": 1
+    },
+    "seconds": {
+      "unregistered_marked_box": 72.5,
+      "unmarked_box": 52.5,
+      "unmatched": 9.5
+    },
+    "intervals": [
+      {
+        "host": "aisle_box_s",
+        "id": "103",
+        "start_s": 75.192,
+        "duration_s": 16.0,
+        "classification_at_dispatch": "unregistered_marked_box"
+      },
+      {
+        "host": "aisle_box_s",
+        "id": "103",
+        "start_s": 91.192,
+        "duration_s": 13.0,
+        "classification_at_dispatch": "unregistered_marked_box"
+      },
+      {
+        "host": "aisle_box_s",
+        "id": "103",
+        "start_s": 104.192,
+        "duration_s": 16.0,
+        "classification_at_dispatch": "unregistered_marked_box"
+      },
+      {
+        "host": "aisle_box_c",
+        "id": "32",
+        "start_s": 125.692,
+        "duration_s": 14.0,
+        "classification_at_dispatch": "unregistered_marked_box"
+      },
+      {
+        "host": "aisle_box_c",
+        "id": "32",
+        "start_s": 139.692,
+        "duration_s": 13.5,
+        "classification_at_dispatch": "unregistered_marked_box"
+      },
+      {
+        "host": "perimeter_box_e",
+        "id": null,
+        "start_s": 216.692,
+        "duration_s": 9.0,
+        "classification_at_dispatch": "unmarked_box"
+      },
+      {
+        "host": "perimeter_box_e",
+        "id": null,
+        "start_s": 234.192,
+        "duration_s": 12.0,
+        "classification_at_dispatch": "unmarked_box"
+      },
+      {
+        "host": "aisle_box_w",
+        "id": null,
+        "start_s": 263.692,
+        "duration_s": 6.0,
+        "classification_at_dispatch": "unmarked_box"
+      },
+      {
+        "host": "aisle_box_w",
+        "id": null,
+        "start_s": 275.692,
+        "duration_s": 13.0,
+        "classification_at_dispatch": "unmarked_box"
+      },
+      {
+        "host": "aisle_box_w",
+        "id": null,
+        "start_s": 288.692,
+        "duration_s": 12.5,
+        "classification_at_dispatch": "unmarked_box"
+      },
+      {
+        "host": null,
+        "id": null,
+        "start_s": 503.692,
+        "duration_s": 9.5,
+        "classification_at_dispatch": "unmatched"
+      }
+    ]
+  },
+  {
+    "run": "mixed-track-BVOucwt9",
+    "unexpected_registered_ids": [],
+    "missing_saved_ids": [],
+    "unexpected_saved_ids": [],
+    "goals": {
+      "unmarked_box": 5,
+      "unregistered_marked_box": 5
+    },
+    "seconds": {
+      "unmarked_box": 73.0,
+      "unregistered_marked_box": 66.0
+    },
+    "intervals": [
+      {
+        "host": "perimeter_box_e",
+        "id": null,
+        "start_s": 59.7,
+        "duration_s": 13.5,
+        "classification_at_dispatch": "unmarked_box"
+      },
+      {
+        "host": "perimeter_box_e",
+        "id": null,
+        "start_s": 73.2,
+        "duration_s": 13.0,
+        "classification_at_dispatch": "unmarked_box"
+      },
+      {
+        "host": "aisle_box_w",
+        "id": null,
+        "start_s": 86.2,
+        "duration_s": 16.5,
+        "classification_at_dispatch": "unmarked_box"
+      },
+      {
+        "host": "aisle_box_w",
+        "id": null,
+        "start_s": 102.7,
+        "duration_s": 15.0,
+        "classification_at_dispatch": "unmarked_box"
+      },
+      {
+        "host": "perimeter_box_e",
+        "id": null,
+        "start_s": 117.7,
+        "duration_s": 15.0,
+        "classification_at_dispatch": "unmarked_box"
+      },
+      {
+        "host": "aisle_box_c",
+        "id": "32",
+        "start_s": 227.2,
+        "duration_s": 15.5,
+        "classification_at_dispatch": "unregistered_marked_box"
+      },
+      {
+        "host": "aisle_box_c",
+        "id": "32",
+        "start_s": 242.7,
+        "duration_s": 13.0,
+        "classification_at_dispatch": "unregistered_marked_box"
+      },
+      {
+        "host": "aisle_box_s",
+        "id": "103",
+        "start_s": 295.2,
+        "duration_s": 11.0,
+        "classification_at_dispatch": "unregistered_marked_box"
+      },
+      {
+        "host": "aisle_box_s",
+        "id": "103",
+        "start_s": 306.2,
+        "duration_s": 12.0,
+        "classification_at_dispatch": "unregistered_marked_box"
+      },
+      {
+        "host": "aisle_box_s",
+        "id": "103",
+        "start_s": 318.2,
+        "duration_s": 14.5,
+        "classification_at_dispatch": "unregistered_marked_box"
+      }
+    ]
+  }
+]
