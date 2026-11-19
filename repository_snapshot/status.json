@@ -1,4 +1,11 @@
 {
+  "paired_wall_7_103": {
+    "report": "experiments/2026-11-19_pair_7_103/README.md",
+    "environment": "Gazebo Harmonic",
+    "trials_per_policy": 3,
+    "successes": {"flow_v3": 3, "mixed": 3, "upstream_r32": 0},
+    "total_bumper_events": 0
+  },
   "hardware_board_experiments": {
     "choices": ["flow_v3", "flow_v3_r32_print", "upstream_r32"],
     "upstream_commit": "b1ed300e0052e147f17590f0219d8c794fb66f8a",
