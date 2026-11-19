@@ -1,0 +1,21 @@
+[
+  {
+    "run": "mixed-baseline-track-BVOucwt9",
+    "matched_poses": 45,
+    "pose_alignment_rms_m": 0.025,
+    "marker_position_errors_m": {
+      "7": 0.038,
+      "103": 0.006
+    }
+  },
+  {
+    "run": "mixed-track-BVOucwt9",
+    "matched_poses": 19,
+    "pose_alignment_rms_m": 0.018,
+    "marker_position_errors_m": {
+      "7": 0.015,
+      "32": 0.014,
+      "103": 0.017
+    }
+  }
+]

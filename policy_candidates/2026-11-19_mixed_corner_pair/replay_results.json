@@ -1,0 +1,36 @@
+[
+  {
+    "run": "r32-track-8yVAosBO",
+    "frames": 926,
+    "matched": 63,
+    "v2_only": 0,
+    "v3_only": 0,
+    "v2": {
+      "two_face_poses": 33,
+      "mean_grid_path_m": 1.531,
+      "measured_lengths": 63
+    },
+    "v3": {
+      "two_face_poses": 47,
+      "mean_grid_path_m": 1.334,
+      "measured_lengths": 63
+    }
+  },
+  {
+    "run": "r32-track-f6myvZ0l",
+    "frames": 753,
+    "matched": 59,
+    "v2_only": 0,
+    "v3_only": 0,
+    "v2": {
+      "two_face_poses": 19,
+      "mean_grid_path_m": 1.861,
+      "measured_lengths": 59
+    },
+    "v3": {
+      "two_face_poses": 29,
+      "mean_grid_path_m": 1.612,
+      "measured_lengths": 59
+    }
+  }
+]
