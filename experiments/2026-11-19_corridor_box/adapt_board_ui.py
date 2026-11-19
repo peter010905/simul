@@ -68,7 +68,7 @@ $('detail').addEventListener('close', () => document.querySelector('#trial-camer
 app=app.replace(anchor,camera+'\n'+anchor).replace("  $('detailTitle').textContent = d.label;", "  experimentCamera(d);\n  $('detailTitle').textContent = d.label;")
 app += """
 const trackActions = document.createElement('form');
-trackActions.innerHTML = '<label>트랙 정책 <select><option value="mixed">Mixed</option><option value="flow">기존 Flow v3</option></select></label> <button type="submit">새 랜덤 트랙 주행</button> <span role="status"></span>';
+trackActions.innerHTML = '<label>트랙 정책 <select><option value="pair">원본 R32 + 최신 Mixed 동시 주행</option><option value="mixed">Mixed</option><option value="flow">기존 Flow v3</option></select></label> <button type="submit">새 랜덤 트랙 주행</button> <span role="status"></span>';
 document.querySelector('header').appendChild(trackActions);
 trackActions.addEventListener('submit', async event => {
   event.preventDefault();

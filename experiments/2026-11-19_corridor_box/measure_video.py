@@ -6,6 +6,8 @@ import sys
 
 import cv2
 from cv_bridge import CvBridge
+from rcl_interfaces.srv import SetParametersAtomically
+from rclpy.parameter import Parameter
 
 BASE = Path(__file__).resolve().parent.parent / '2026-11-19_pair_7_103'
 sys.path.insert(0, str(BASE))
@@ -23,9 +25,33 @@ class CameraTrial(Trial):
         self.frame_log = (self.path/'frames.csv').open('w')
         self.frames_csv = csv.writer(self.frame_log)
         self.frames_csv.writerow(['frame', 'elapsed_sim_s'])
+        self.map_rate_client = None
+        self.map_rate_request = None
+        if self.native and '-track-' in self.path.name:
+            self.map_rate_client = self.node.create_client(SetParametersAtomically,
+                '/global_costmap/global_costmap/set_parameters_atomically')
         self.heading_log = (self.path/'headings.csv').open('w')
         self.headings_csv = csv.writer(self.heading_log)
         self.headings_csv.writerow(['elapsed_sim_s','x','y','yaw_rad'])
+
+    def prepare_start(self):
+        if self.map_rate_client is None:
+            return True
+        if self.map_rate_request is None:
+            if self.map_rate_client.service_is_ready():
+                request = SetParametersAtomically.Request()
+                request.parameters = [Parameter(name, value=4.).to_parameter_msg()
+                                      for name in ('update_frequency', 'publish_frequency')]
+                self.map_rate_request = self.map_rate_client.call_async(request)
+            return False
+        if not self.map_rate_request.done():
+            return False
+        result = self.map_rate_request.result().result
+        if not result.successful:
+            raise RuntimeError(f'Global costmap setup failed: {result.reason}')
+        self.map_rate_client = None
+        self.event('global_costmap_configured', update_hz=4., publish_hz=4.)
+        return True
 
     def image(self, msg):
         if self.start_sim is None or self.finished:

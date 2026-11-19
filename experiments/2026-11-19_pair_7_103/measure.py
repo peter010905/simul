@@ -115,6 +115,9 @@ class Trial:
             if self.targets.keys() <= self.current and self.targets.keys() <= self.witness.keys() and self.pair_at is None:
                 self.pair_at = dt
 
+    def prepare_start(self):
+        return True
+
     def run(self):
         pending = None
         deadline = time.monotonic()+235
@@ -137,7 +140,7 @@ class Trial:
                     self.set_ids(self.current)
                     break
                 next_request = time.monotonic()+1.
-            if (pending is None and ready and self.bump is False and time.monotonic()>=next_request
+            if (pending is None and ready and self.bump is False and self.prepare_start() and time.monotonic()>=next_request
                     and self.start_client.service_is_ready()):
                 pending = self.start_client.call_async(Trigger.Request())
         if self.start_sim is None:
@@ -169,7 +172,7 @@ class Trial:
 
 def main(trial_type=Trial, launch_path=None):
     root,folder = map(Path,(os.environ['BENCH_ROOT'],os.environ['BENCH_RUN']))
-    if os.environ['ROS_DOMAIN_ID'] not in ('173','174') or os.environ.get('ROS_LOCALHOST_ONLY') != '1':
+    if os.environ['ROS_DOMAIN_ID'] not in ('173','174','175') or os.environ.get('ROS_LOCALHOST_ONLY') != '1':
         raise RuntimeError('Simulation-only domain and loopback required')
     rclpy.init()
     trial = trial_type(folder, yaml.safe_load((root/'scene.yaml').read_text()), os.environ['BENCH_POLICY']=='r32')

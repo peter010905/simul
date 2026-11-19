@@ -74,6 +74,17 @@ def refresh(src, dst, scene, cache, origin=(6, 2.4), duration=120):
     snapshots=dst/'mission_results/flow'
     snapshots.mkdir(parents=True,exist_ok=True)
     decisions,snapshot=decision_maps(src,snapshots)
+    marker_files=list((src/'native').glob('*/markers.csv'))
+    if src.name.startswith('r32-track-'):
+        for latest in (src/'native').glob('*/latest.json'):
+            manifest=json.loads(latest.read_text())
+            native=latest.parent/manifest['snapshot']
+            marker_files=[native/'markers.csv']
+            if (native/'map.pgm').is_file() and (native/'map.yaml').is_file():
+                snapshot=native.name
+                reference=snapshots/snapshot
+                if not reference.exists():
+                    reference.symlink_to(native, target_is_directory=True)
     goal_times=[item[0] for item in decisions]
     htimes=[float(row['elapsed_sim_s']) for row in headings if row.get('elapsed_sim_s')]
     count,approached=cache.get(src.name,(0,set()))
@@ -104,7 +115,7 @@ def refresh(src, dst, scene, cache, origin=(6, 2.4), duration=120):
     ids=measured['final_ids'] if measured else list(map(int,path[n-1]['registered_ids'].split()))
     if measured: approached=set(map(int,measured['registered_and_within_s']))
     found={}
-    for markers in (src/'native').glob('*/markers.csv'):
+    for markers in marker_files:
         found={int(r['id']):(float(r['x']),float(r['y'])) for r in rows(markers)}
     put(snapshots/'latest.json',dict(snapshot=snapshot,status=dict(reason=measured['reason'] if measured else '',
         targets=[dict(id=i,x=found.get(i,(None,None))[0],y=found.get(i,(None,None))[1],confirmed=True,approached=i in approached) for i in ids])))
@@ -164,7 +175,7 @@ def main():
                 policy = json.loads(self.rfile.read(int(self.headers['Content-Length'])))['policy']
             except (ValueError, KeyError, TypeError):
                 return self.send(400, {'error': '잘못된 정책'})
-            if policy not in ('flow','mixed'):
+            if policy not in ('flow','mixed','pair'):
                 return self.send(400, {'error': '알 수 없는 정책'})
             args.track_source.mkdir(parents=True, exist_ok=True)
             with (args.track_source/'launch-console.log').open('a') as log:

@@ -23,6 +23,11 @@ def finish(root, folder):
     assert result['bumper_events']==sum(e['event']=='bumper' and e['sim']<=start+result['elapsed_sim_s']+1e-3 for e in events)
     saved={}
     files=list((folder/'native').glob('*/markers.csv'))
+    if result['policy']=='r32':
+        files = []
+        for latest in (folder/'native').glob('*/latest.json'):
+            manifest = json.loads(latest.read_text())
+            files.append(latest.parent/manifest['snapshot']/'markers.csv')
     if files:
         with files[0].open() as f:
             saved={int(r['id']):[float(r['x']),float(r['y'])] for r in csv.DictReader(f)}
@@ -62,6 +67,13 @@ def finish(root, folder):
              video=dict(frames=count,duration_s=count/5,recorded_frames=len(frames),max_frame_gap_s=float(np.diff(stamps).max()),
                         sha256=hashlib.sha256((folder/'mission.mp4').read_bytes()).hexdigest()),hybrid_goal_types=choices,
              offline_rgb={k:dict(frames=len(v),first=v[0] if v else None,last=v[-1] if v else None) for k,v in decodes.items()})
+    if (folder/'scene.json').is_file() and '-track-' in folder.name:
+        from importlib.util import module_from_spec, spec_from_file_location
+        path = Path(__file__).resolve().parent.parent/'2026-11-19_random_track/diagnostics.py'
+        spec = spec_from_file_location('track_diagnostics', path)
+        module = module_from_spec(spec)
+        spec.loader.exec_module(module)
+        r['track_diagnostics'] = module.summarize(folder)
     (folder/'audit.json').write_text(json.dumps(r,indent=2))
     return r
 

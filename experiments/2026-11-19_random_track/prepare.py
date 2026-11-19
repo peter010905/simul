@@ -74,6 +74,7 @@ def prepare(reference, output, seed=None):
     world = ET.parse(generated / 'room.sdf')
     node = world.find('world')
     node.set('name', 'osp_studio')
+    node.find('physics/max_step_size').text = '0.004'
     for system in ('Contact', 'Imu'):
         ET.SubElement(node, 'plugin', filename=f'gz-sim-{system.lower()}-system', name=f'gz::sim::systems::{system}')
     destination = output / 'world'
