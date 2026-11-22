@@ -1,0 +1,22 @@
+--- a/osp_mission/mission.py
++++ b/osp_mission/mission.py
+@@ -429,9 +429,17 @@
+                 seeds[ident]=(stamp,point);self.marker_hint_seeds=seeds
+                 if previous is None or stamp-previous[0]>1. or np.linalg.norm(point-previous[1])>.3:return
+             accepted=self.marker_focus.observe(evidence,observer[:2],self.get_clock().now().nanoseconds/1e9,self.p('map_frame'))
+-            if (accepted and self.state=='running' and getattr(self,'kind','')=='nav'
++            if not accepted:
++                return
++            ident=int(evidence['id'])
++            look=getattr(getattr(self,'marker_look',None),'pending',None)
++            # Evidence has already updated the track. An action dedicated to this
++            # same ID must be able to reach its planned camera viewpoint.
++            if look and look.get('kind') in ('focus','approach') and look.get('id')==ident:
++                return
++            if (self.state=='running' and getattr(self,'kind','')=='nav'
+                     and (self.goal_handle or self.pending) and not self.cancel_reason
+-                    and self.marker_focus.request_interrupt(int(evidence['id']),self.targets,self.get_clock().now().nanoseconds/1e9)):
++                    and self.marker_focus.request_interrupt(ident,self.targets,self.get_clock().now().nanoseconds/1e9)):
+                 self.get_logger().info(f"Pausing navigation to verify accepted marker {evidence['id']}")
+                 self.cancel_action('marker_hint');self.zero()
+         except (KeyError,TypeError,ValueError):

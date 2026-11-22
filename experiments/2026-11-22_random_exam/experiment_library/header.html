@@ -1,0 +1,36 @@
+  <header class="library-header">
+    <div><h1>시뮬레이션 실험 보드</h1><p>8780 시험장 · TurtleBot4</p></div>
+  </header>
+  <main class="library">
+    <div class="library-tools">
+      <nav class="library-tabs" aria-label="실험 목록">
+        <button id="currentTab" type="button" aria-pressed="true">실험 <span id="currentCount"></span></button>
+        <button id="archiveTab" type="button" aria-pressed="false">보관함 <span id="archiveCount"></span></button>
+      </nav>
+      <div class="library-filters">
+        <label><span class="sr-only">정책 버전</span><select id="versionFilter"><option value="">전체 버전</option></select></label>
+        <label><span class="sr-only">맵 번호 또는 주행 이름 검색</span><input id="runSearch" type="search" placeholder="맵 번호·주행 이름 검색" autocomplete="off"></label>
+      </div>
+    </div>
+    <section id="liveSection" hidden aria-labelledby="liveTitle">
+      <div class="section-head"><h2 id="liveTitle">진행 중</h2><span id="updated" class="muted"></span></div>
+      <div id="grid" class="live-grid"></div>
+    </section>
+    <section aria-labelledby="historyTitle">
+      <div class="section-head"><h2 id="historyTitle">버전별 주행 기록</h2><span id="historyCount" class="muted"></span></div>
+      <div id="versionGroups" class="version-groups"></div>
+      <p id="empty" class="library-empty" hidden></p>
+    </section>
+    <details class="map-options">
+      <summary>지도 표시 설정</summary>
+      <label><input type="checkbox" id="showSlam" checked> SLAM 지도</label>
+      <label><input type="checkbox" id="showTruth" checked> 정답 배치</label>
+      <ul class="legend" aria-label="지도 범례">
+        <li><span class="key path"></span>이동 경로</li><li><span class="key robot"></span>로봇</li>
+        <li><span class="key goal"></span>현재 목표</li><li><span class="key start"></span>출발</li>
+        <li><span class="key marker unseen"></span>미발견</li><li><span class="key marker confirmed"></span>확정</li>
+        <li><span class="key marker approached"></span>접근 완료</li>
+      </ul>
+    </details>
+    <p id="libraryStatus" class="library-status" role="status"></p>
+  </main>

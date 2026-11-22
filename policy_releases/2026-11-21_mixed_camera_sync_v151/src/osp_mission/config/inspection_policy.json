@@ -1,0 +1,36 @@
+{
+  "planner": "inspection",
+  "parameters": [
+    1.0,
+    2.0,
+    1.0,
+    0.3,
+    1.0
+  ],
+  "validation": {
+    "episodes": 24,
+    "success_rate": 0.8333333333333334,
+    "mean_found": 2.8333333333333335,
+    "mean_seconds": 362.7417370872842,
+    "successful_mean_seconds": 315.290084504741,
+    "collisions": 0,
+    "mean_reward": 589.905406103574,
+    "by_obstacles": {
+      "4": {
+        "success_rate": 0.75,
+        "episodes": 8
+      },
+      "6": {
+        "success_rate": 0.875,
+        "episodes": 8
+      },
+      "8": {
+        "success_rate": 0.875,
+        "episodes": 8
+      }
+    }
+  },
+  "camera_width": 960,
+  "training_episodes": 648,
+  "seed": 20261105
+}

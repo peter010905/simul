@@ -61,7 +61,17 @@ def refresh(src, dst, scene, cache, origin=(6, 2.4), duration=120):
         put(dst/'scene.json',scene)
         (dst/'mission.yaml').write_text(f'duration: {duration}\n')
         put(dst/'manifest.json',{})
+    exam_score = json.loads((src/'exam-score.json').read_text()) if (src/'exam-score.json').is_file() else None
     if (dst/'simulation_evaluation.json').exists():
+        if exam_score is not None:
+            previous=json.loads((dst/'simulation_evaluation.json').read_text())
+            if previous.get('exam_score') != exam_score:
+                put(dst/'simulation_evaluation.json',dict(
+                    evaluation=(f"{exam_score['expected']}개 마커 등록·접근 완료"
+                                if exam_score.get('strict') else '일부 미달'),
+                    marker_evaluation=', '.join(str(i) for i,r in exam_score['records'].items()
+                                                if r.get('registered_s') is not None) or '없음',
+                    exam_score=exam_score))
         return
     if not (src/'headings.csv').is_file() or not (src/'trajectory.csv').is_file():
         return
@@ -122,8 +132,12 @@ def refresh(src, dst, scene, cache, origin=(6, 2.4), duration=120):
     if measured:
         if n<measured['truth_samples']:
             return
-        put(dst/'simulation_evaluation.json',dict(evaluation=f'{len(actual_targets)}개 마커 등록·접근 완료' if measured['pair_time_s'] is not None else '일부 미달',
-                                                   marker_evaluation=', '.join(map(str,ids)) or '없음'))
+        put(dst/'simulation_evaluation.json',dict(
+            evaluation=(f"{exam_score['expected']}개 마커 등록·접근 완료" if exam_score.get('strict')
+                        else '일부 미달') if exam_score is not None else
+                       (f'{len(actual_targets)}개 마커 등록·접근 완료' if measured['pair_time_s'] is not None else '일부 미달'),
+            marker_evaluation=', '.join(map(str,ids)) or '없음',
+            **(dict(exam_score=exam_score) if exam_score is not None else {})))
 
 
 def main():
@@ -172,21 +186,33 @@ def main():
             if self.headers.get_content_type() != 'application/json' or not length.isdecimal() or int(length)>128:
                 return self.send(400, {'error': '잘못된 주행 요청'})
             try:
-                policy = json.loads(self.rfile.read(int(self.headers['Content-Length'])))['policy']
+                request = json.loads(self.rfile.read(int(self.headers['Content-Length'])))
+                policy = request['policy']
             except (ValueError, KeyError, TypeError):
                 return self.send(400, {'error': '잘못된 정책'})
-            if policy not in ('flow','mixed','r32','pair'):
+            if policy not in ('flow','mixed','center','adaptive','shared','r32','pair'):
                 return self.send(400, {'error': '알 수 없는 정책'})
+            reference_dir = ''
+            if 'layout_run_id' in request:
+                run_id = request['layout_run_id']
+                reference = board.get(run_id) if isinstance(run_id, str) else None
+                if reference is None and isinstance(run_id, str):
+                    board.discover()
+                    reference = board.get(run_id)
+                if not reference or '-track-' not in reference.label:
+                    return self.send(400, {'error': '기준 트랙을 찾을 수 없습니다.'})
+                reference_dir = str(args.track_source/reference.label)
             args.track_source.mkdir(parents=True, exist_ok=True)
             with (args.track_source/'launch-console.log').open('a') as log:
                 process = subprocess.Popen([str(args.track_runner),policy], stdin=subprocess.DEVNULL,
                     stdout=log, stderr=log, start_new_session=True,
-                    env=dict(os.environ, TRACK_RUNS=str(args.track_source)))
+                    env=dict(os.environ, TRACK_RUNS=str(args.track_source), TRACK_REPLAY_DIR=reference_dir))
             try:
                 code = process.wait(timeout=.4)
             except subprocess.TimeoutExpired:
                 threading.Thread(target=process.wait, daemon=True).start()
-                return self.send(202, {'message': '새 무작위 트랙을 준비하고 있습니다.'})
+                message = '같은 맵에서 주행을 준비하고 있습니다.' if reference_dir else '새 무작위 트랙을 준비하고 있습니다.'
+                return self.send(202, {'message': message})
             return self.send(409, {'error': '이미 주행 중입니다.'} if code==75 else {'error': '실행 기록을 확인해 주세요.'})
 
         def do_GET(self):

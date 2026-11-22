@@ -1,0 +1,18 @@
+{
+  "scope": "offline screening on original Gazebo JPEG and MCAP, no motion commands; native Gazebo comparison remains frozen",
+  "proposal_sha256": "e54bfc23c6d699f78629663ac62eea588582a9d5f2a6d9fd28f9a628b8ddd395",
+  "design_case": 1817236217,
+  "untuned_layouts": [
+    3477870352,
+    2293287138,
+    4138722517
+  ],
+  "ablation": [
+    "active CameraVisualRange 18px",
+    "active CameraVisualRange 10px, unchanged geometry",
+    "10px native pattern agreement, angle 15-120 deg, two three-frame views, 8m history / 5.5m present, three consistent estimates within 20cm"
+  ],
+  "novel_early_hint": "First within 25cm of true printed location at least 5 simulation seconds before the earliest logged mapped candidate, accepted observation or registered ID. A missing earlier event counts as no prior cue.",
+  "advance_to_closed_loop": "Require a novel early hint on at least two of three held-out layouts with zero false IDs or first hint errors above 0.25m on all six native recordings. Later outliers are reported separately. Count each marker once per run; repeat of layout 1 and different spawns are not independent.",
+  "controls": "Analyst scores the estimates only after each run. No scene, IDs, physical marker size or true pose is supplied to the hint module. No near approach or completion credit for offline hints."
+}

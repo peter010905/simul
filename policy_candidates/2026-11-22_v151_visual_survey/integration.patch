@@ -1,0 +1,286 @@
+--- a/osp_mission/detector.py
++++ b/osp_mission/detector.py
+@@ -33,7 +33,7 @@
+         super().__init__('aruco_detector')
+         defaults={'rgb_topic':'oakd/rgb/preview/image_raw','depth_topic':'oakd/rgb/preview/depth',
+                   'camera_info_topic':'oakd/rgb/preview/camera_info','scan_topic':'scan',
+-                  'map_frame':'map','odom_frame':'odom','confirmations':3,'min_marker_pixels':18}
++                  'map_frame':'map','odom_frame':'odom','confirmations':3,'min_marker_pixels':18,'survey_distant_enabled':True}
+         for k,v in defaults.items(): self.declare_parameter(k,v)
+         self.p=lambda k:self.get_parameter(k).value
+         self.tf=Buffer(); self.listener=TransformListener(self.tf,self)
+@@ -45,6 +45,10 @@
+         from osp_mission.camera_multiview import CameraVisualRange
+         from osp_mission.camera_work import ExposureQueue, PipelineTiming
+         self.visual_range=CameraVisualRange()
++        from osp_mission.distant_hint import DistantHint
++        self.distant_hint = DistantHint()
++        self.distant_published = {}
++        self.distant_pub = self.create_publisher(String, 'mission/distant_marker_hint', 5)
+         self.exposure_queue=ExposureQueue()
+         self.pipeline_timing=PipelineTiming()
+         from osp_mission.sensor_history import SensorHistory
+@@ -137,6 +141,22 @@
+         if point is None:
+             return None
+         return ray * float((point-origin) @ direction / np.linalg.norm(ray))
++
++    def distant_sighting(self, ident, quad, native, ray, pixels, frame, stamp):
++        if (not self.p('survey_distant_enabled') or self.observations.get(ident) or self.provisional.last_published.get(ident) is not None
++                or not any(i == ident and np.array_equal(q, quad) for i, q, _ in native)):
++            return
++        tr = self.tf.lookup_transform(self.p('odom_frame'), frame, stamp).transform
++        origin, direction = sight_in_odom(tr, ray)
++        t = stamp.nanoseconds / 1.e9
++        point = self.distant_hint.observe(ident, t, origin, direction, pixels)
++        if point is None or t - self.distant_published.get(ident, -float('inf')) < 2.:
++            return
++        self.distant_published[ident] = t
++        self.distant_pub.publish(String(data=json.dumps(dict(source='distant_native_multiview',
++            id=ident, stamp=t, point_odom=point.tolist(), observer_odom=origin.tolist(),
++            min_edge_pixels=pixels), allow_nan=False)))
++        self.diagnostics['distant_hints'] = self.diagnostics.get('distant_hints', 0) + 1
+ 
+     def enqueue_rgb(self,msg):
+         if self.info is None:return
+@@ -251,6 +271,10 @@
+                             self.diagnostics['multiview_ranges'] = self.diagnostics.get('multiview_ranges', 0) + 1
+                     if xyz is None:
+                         self.reject(ident,'no_range')
++                        try:
++                            self.distant_sighting(int(ident), c, native, ray, float(edges.min()), frame, stamp)
++                        except Exception as exc:
++                            self.get_logger().debug(f'Distant print pose unavailable: {exc}')
+                         timestamp=stamp.nanoseconds/1e9
+                         angle=-float(np.arctan(normalized[0]))
+                         if provisional and self.bearing_cue.observe(int(ident),timestamp,angle):
+--- a/osp_mission/mission.py
++++ b/osp_mission/mission.py
+@@ -59,6 +59,7 @@
+         super().__init__('mission')
+         for k,v in {'duration':600.,'expected_marker_count':3,'output_dir':str(Path.home()/'simul/results'),
+                     'map_frame':'map','base_frame':'base_link','odom_frame':'odom','scan_topic':'scan',
++                    'survey_reference_marker_m':.14,'survey_readable_pixels':18.,'survey_distant_enabled':True,
+                     'undock':False,'policy_file':'','planner':'legacy','require_drive_controller':False,'planner_start_ignore_radius_m':0.,'navigation_flow_enabled':True,'allow_mid_route_wall_inspection':False}.items(): self.declare_parameter(k,v)
+         self.p=lambda k:self.get_parameter(k).value
+         self.tf=Buffer(); self.listener=TransformListener(self.tf,self)
+@@ -129,6 +130,9 @@
+         self.contact_pending=False
+         self.hybrid=Hybrid() if self.edge_mode else None
+         if self.hybrid is not None:
++            self.create_subscription(String, 'mission/distant_marker_hint', self.on_distant_hint, 5)
++            self.hybrid.schedule.survey.reference_m = self.p('survey_reference_marker_m')
++            self.hybrid.schedule.survey.readable_px = self.p('survey_readable_pixels')
+             self.create_subscription(OccupancyGrid,'global_costmap/costmap',self.hybrid.drive.update_costmap,qos_profile_sensor_data)
+             self.create_subscription(String,'mission/small_wall_bearings',self.on_small_wall,10)
+             self.create_subscription(String, 'mission/edge_print_bearing', self.near_pass.receive_print, 5)
+@@ -399,6 +403,15 @@
+         if getattr(self,'approach',None) is not None:self.approach.reconcile_targets(self.targets)
+         self.registered_pending = ((getattr(self, 'registered_pending', set()) | (set(self.targets) - previous))
+                                    & set(self.targets))
++
++    def on_distant_hint(self, msg):
++        if self.state != 'running' or self.hybrid is None or not self.p('survey_distant_enabled'):
++            return
++        try:
++            self.hybrid.schedule.survey.printed(json.loads(msg.data),
++                self.get_clock().now().nanoseconds/1.e9, self.now()-self.started)
++        except (ValueError, TypeError) as exc:
++            self.get_logger().debug(f'Invalid distant marker cue: {exc}')
+ 
+     def on_marker_hint(self,m):
+         try:
+@@ -673,6 +686,8 @@
+             if hasattr(self,'contact_inspection'):
+                 self.contact_inspection.position=(visit.x,visit.y)
+             self.exploration_memory.observe(visit.x,visit.y,self.now())
++            if self.hybrid is not None:
++                self.hybrid.schedule.survey.position(visit.x, visit.y, self.now()-self.started)
+             flow=getattr(self,'navigation_flow',None)
+             if flow is not None and getattr(self,'kind','')=='nav' and (self.goal_handle or self.pending):
+                 flow.observe_position(visit.x,visit.y,self.now())
+--- a/osp_mission/center_wall.py
++++ b/osp_mission/center_wall.py
+@@ -13,6 +13,7 @@
+ from osp_mission.cluster_exit import ClusterExit
+ from osp_mission.box_batch import BoxBatch
+ from osp_mission.wall_bearings import WallBearings
++from osp_mission.visual_survey import VisualSurvey
+ 
+ 
+ def partly_mapped_objects(labels, boxes, floor, resolution):
+@@ -115,6 +116,7 @@
+         self.batch = BoxBatch()
+         self.cluster = ClusterExit()
+         self.weak = WallBearings()
++        self.survey = VisualSurvey()
+         self.weak_known = []
+         self.weak_clock = 0.
+         self.counts = {}
+@@ -152,6 +154,7 @@
+                 if view:
+                     candidates['interior'].append(view)
+         # Compare generic and fitted faces together, including completed boxes.
++        wall_normals = None if probe_only or self.survey.camera is None else self.survey.normals.update(grid.cells,grid.resolution)
+         for (kind, _, side, _, _), cells in samples.items():
+             if probe_only and kind != 'interior':
+                 continue
+@@ -165,6 +168,8 @@
+             dy,dx = DIRECTIONS[side]
+             face = grid.world(row+.5*dy, col+.5*dx)
+             normal = (grid.world(row+dy,col+dx)-grid.world(row,col))/grid.resolution
++            if kind == 'wall' and wall_normals is not None:
++                normal = self.survey.wall_normal(wall_normals,row,col,dx,dy,grid.origin[2])
+             normal_yaw = math.atan2(normal[1],normal[0])+transform[2]
+             anchor = odom_point(face,transform)
+             radius = .5 if kind == 'interior' else .85
+@@ -177,7 +182,11 @@
+                 history_point = owner_face.anchor if owner_face is not None else anchor
+                 history_yaw = owner_face.yaw if owner_face is not None else normal_yaw
+             attempts = self.attempts(kind, history_point, history_yaw, radius)
+-            if len(attempts)>=2 or (attempts and elapsed-attempts[-1]<45.):
++            if kind == 'wall':
++                deferred = attempts and elapsed-attempts[-1] < min(120., 45.*len(attempts))
++            else:
++                deferred = len(attempts)>=2 or (attempts and elapsed-attempts[-1]<45.)
++            if deferred:
+                 continue
+             if kind == 'interior':
+                 fields = dict(r32_kind='interior_surface', surface_odom=history_point.tolist(),
+@@ -190,7 +199,7 @@
+                 continue
+             tangent = np.array([-normal[1],normal[0]])
+             best = None
+-            for stand in (.67,.88,1.15):
++            for stand in self.survey.standoffs():
+                 for shift in (0.,-.28,.28):
+                     point = face+normal*stand+tangent*shift
+                     cell = grid.index(*point)
+@@ -221,8 +230,9 @@
+                 candidates[kind].append(best)
+         self.counts = {k:len(v) for k,v in candidates.items()}
+         ordered = sorted(candidates['interior'], key=self.batch.rank)
+-        deferred = [item for item in ordered if item[1]['completed_box']]
+-        candidates['interior'] = [item for item in ordered if not item[1]['completed_box']]
++        # A registered marker does not establish that the other sides are empty.
++        # Fitted and generic candidates above already exclude camera-observed faces.
++        candidates['interior'] = ordered
+         fresh = [item for item in candidates['interior'] if not item[1]['previous_attempts']]
+         boxes = [item for item in fresh if item[1].get('batch_box') is not None]
+         crowded = self.cluster.crowded_centers(elapsed)
+@@ -237,6 +247,29 @@
+                 return boxes[0][1] if boxes else None
+             preferred = boxes if getattr(self,'on_weak_route',False) else fresh
+             return preferred[0][1] if preferred else None
++        self.survey.progress(samples, grid, viewed, transform, pose, elapsed, DIRECTIONS)
++        alternative = self.survey.choose(grid, costmap, nav, reachable, distances, pose, transform,
++                                         candidates['wall'], fresh, elapsed, duration, veto)
++        if alternative is not None:
++            self.phase = 'wall' if 'survey_wall' in alternative else 'interior'
++            self.reason = ('unobserved_wall_reserved' if self.phase == 'wall' else
++                           'inspect_new_cluster_face' if alternative.get('survey_new_face') else 'triangulated_print_revisit')
++            if self.survey.loop_center is not None and 'survey_wall' in alternative:
++                alternative['survey_escape'] = True
++            return alternative
++        center = self.survey.loop_center
++        if center is not None and elapsed-self.survey.last_escape >= 35.:
++            # Restrict endpoints, so a necessary shared transit corridor stays usable.
++            remote = [item for item in fresh if np.linalg.norm(item[1]['surface_odom']-center)>=2.2]
++            frontier = discovery_frontier((c for c in choices
++                if np.linalg.norm(odom_point((c['x'],c['y']),transform)-center)>=2.2),costmap,nav,veto)
++            escape = remote[0][1] if remote else frontier
++            if escape is None:
++                escape = self.survey.remote_view(choices,grid,costmap,nav,reachable,distances,transform,
++                                                 elapsed,duration-elapsed,veto)
++            if escape is not None:
++                self.phase,self.reason = 'interior','leave_repeated_low_gain_route'
++                return dict(escape,survey_escape=True)
+         if not boxes:
+             goal = self.weak.choose(candidates['wall'],grid,transform,self.weak_known,
+                                     self.weak_clock,duration-elapsed)
+@@ -285,9 +318,6 @@
+                   and elapsed>=min(60.,duration*.22)):
+                 self.phase,self.reason = 'wall','no_reachable_interior_views'
+         best = min(candidates[self.phase],key=lambda x:x[0],default=None)
+-        if best is None and deferred and not probe_only:
+-            self.phase, self.reason = 'interior', 'completed_box_fallback'
+-            return deferred[0][1]
+         return best[1] if best else None
+ 
+     def attempts(self, kind, anchor, normal_yaw, radius):
+@@ -297,6 +327,7 @@
+     def dispatched(self, goal, elapsed):
+         self.on_weak_route = bool(goal.get('weak_wall'))
+         self.weak.dispatched(goal)
++        self.survey.dispatched(goal, elapsed)
+         self.on_cluster_exit = bool(goal.get('cluster_exit'))
+         self.cluster.dispatched(goal,elapsed)
+         self.batch.dispatched(goal)
+--- a/osp_mission/phased_hybrid.py
++++ b/osp_mission/phased_hybrid.py
+@@ -41,7 +41,7 @@
+                         np.hypot(goal['x']-x,goal['y']-y)<.45 for x,y in owner.excluded[-8:])))
+ 
+         cue = self.memory.choose(grid,cost,pose,transform,owner.targets,clock,veto)
+-        if cue is not None or (print_only and not box_probe):
++        if print_only and (cue is not None or not box_probe):
+             return cue
+         if print_only:
+             # Reuse the navigation owner's interrupt, cancel and replan sequence.
+@@ -58,12 +58,20 @@
+                     if owner.approach.verified(ident, point)]
+         self.schedule.weak_known = [odom_point(point,transform) for point in owner.targets.values()]
+         self.schedule.weak_clock = clock
++        self.schedule.survey.camera = getattr(owner, 'inspection_camera', None)
++        current_ids = set(owner.targets)
++        if current_ids - self.schedule.survey.known:
++            self.schedule.survey.last_progress = now-owner.started
++            self.schedule.survey.loop_center = None
++        self.schedule.survey.known = current_ids
+         self.schedule.batch.update(centers, verified, odom_point(pose[:2], transform))
+         self.schedule.cluster.observed = [track.center for track in self.box_views.tracks
+             if track.confirmed and (len(track.seen) >= 2 or
+                                     tuple(track.center) in self.schedule.batch.completed)]
+         goal = self.schedule.decide(grid,cost,pose,transform,viewed,
+                                     now-owner.started,owner.p('duration'),veto,choices,fitted,probe_only=print_only)
++        if cue is not None and (goal is None or not any(k in goal for k in ('distant_hint_id','survey_wall','survey_escape'))):
++            return cue
+         if goal is not None:
+             return goal
+         return selected
+@@ -73,7 +81,11 @@
+         elapsed = owner.now()-owner.started
+         self.schedule.dispatched(goal,elapsed)
+         self.next_box_probe = owner.now()+3. if (goal.get('r32_kind')=='wall_surface' or goal.get('cluster_exit')) else float('inf')
+-        row = dict(elapsed=elapsed,phase=self.schedule.phase,reason=self.schedule.reason,
++        if goal.get('survey_escape') or 'distant_hint_id' in goal or 'survey_wall' in goal:
++            self.next_box_probe = float('inf')
++        row = dict(survey_wall=goal.get('survey_wall'),survey_visible_sections=goal.get('survey_visible_sections'),
++                   survey_escape=bool(goal.get('survey_escape')), distant_hint_id=goal.get('distant_hint_id'),
++                   elapsed=elapsed,phase=self.schedule.phase,reason=self.schedule.reason,
+                    available=self.schedule.counts,kind=goal.get('r32_kind','flow_or_marker'),
+                    cluster_exit=bool(goal.get('cluster_exit')),
+                    crowded_centers=[list(c) for c in self.schedule.cluster.crowded_centers(elapsed)],
+--- a/launch/robot.launch.py
++++ b/launch/robot.launch.py
+@@ -68,10 +68,11 @@
+     actions=[PushRosNamespace(value('namespace')),SetRemap('/tf','tf'),SetRemap('/tf_static','tf_static'),
+         *filter_actions,slam_action,
+         Node(package='osp_mission',executable='detector',output='screen',additional_env=image_environment(pkg) if sim else {},parameters=[{'use_sim_time':sim,
+-            'rgb_topic':value('rgb_topic'),'depth_topic':value('depth_topic'),
++            'survey_distant_enabled':value('survey_distant_enabled')=='true','rgb_topic':value('rgb_topic'),'depth_topic':value('depth_topic'),
+             'camera_info_topic':value('camera_info_topic'),'scan_topic':planning_scan}]),
+         Node(package='osp_mission',executable='mission',output='screen',parameters=[{'use_sim_time':sim,
+             'expected_marker_count':int(value('expected_marker_count')),
++            'survey_distant_enabled':value('survey_distant_enabled')=='true',
+             'duration':float(value('duration')),'output_dir':value('output_dir'),'undock':value('undock')=='true',
+             'require_drive_controller':value('require_drive_controller')=='true',
+             'planner_start_ignore_radius_m':float(value('planner_start_ignore_radius_m')),
+@@ -101,6 +102,7 @@
+         'resume_pose':'0,0,0','resolution':'0.05','base_frame':'base_link','scan_topic':'scan',
+         'rgb_topic':'oakd/rgb/preview/image_raw','depth_topic':'unused_depth',
+         'camera_info_topic':'oakd/rgb/preview/camera_info','duration':'600.0',
++        'survey_distant_enabled':EnvironmentVariable('OSP_SURVEY_DISTANT_HINTS',default_value='true'),
+         'expected_marker_count':EnvironmentVariable('OSP_PUBLIC_MARKER_COUNT',default_value='3'),
+         'policy_file':'','planner':'legacy','nav2_params':'','output_dir':str(Path.home()/'simul/results'),'undock':'false','rviz':'true','require_drive_controller':'false','planner_start_ignore_radius_m':'0.0','body_scan_filter':'true','navigation_flow_enabled':'true','allow_mid_route_wall_inspection':'false','forward_045':'false'}
+     choices={'slam_mode':['async','sync'],'session':['new','continue','localization']}

@@ -1,0 +1,326 @@
+--- a/launch/robot.launch.py
++++ b/launch/robot.launch.py
+@@ -4,6 +4,7 @@
+ import yaml
+ from ament_index_python.packages import get_package_share_directory as share
+ from launch import LaunchDescription
++from launch.substitutions import EnvironmentVariable
+ from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, OpaqueFunction, GroupAction, RegisterEventHandler, LogInfo, SetEnvironmentVariable
+ from launch.launch_description_sources import PythonLaunchDescriptionSource
+ from launch_ros.actions import Node, PushRosNamespace, SetRemap
+@@ -70,6 +71,7 @@
+             'rgb_topic':value('rgb_topic'),'depth_topic':value('depth_topic'),
+             'camera_info_topic':value('camera_info_topic'),'scan_topic':planning_scan}]),
+         Node(package='osp_mission',executable='mission',output='screen',parameters=[{'use_sim_time':sim,
++            'expected_marker_count':int(value('expected_marker_count')),
+             'duration':float(value('duration')),'output_dir':value('output_dir'),'undock':value('undock')=='true',
+             'require_drive_controller':value('require_drive_controller')=='true',
+             'planner_start_ignore_radius_m':float(value('planner_start_ignore_radius_m')),
+@@ -99,6 +101,7 @@
+         'resume_pose':'0,0,0','resolution':'0.05','base_frame':'base_link','scan_topic':'scan',
+         'rgb_topic':'oakd/rgb/preview/image_raw','depth_topic':'unused_depth',
+         'camera_info_topic':'oakd/rgb/preview/camera_info','duration':'600.0',
++        'expected_marker_count':EnvironmentVariable('OSP_PUBLIC_MARKER_COUNT',default_value='3'),
+         'policy_file':'','planner':'legacy','nav2_params':'','output_dir':str(Path.home()/'simul/results'),'undock':'false','rviz':'true','require_drive_controller':'false','planner_start_ignore_radius_m':'0.0','body_scan_filter':'true','navigation_flow_enabled':'true','allow_mid_route_wall_inspection':'false','forward_045':'false'}
+     choices={'slam_mode':['async','sync'],'session':['new','continue','localization']}
+     return LaunchDescription([DeclareLaunchArgument(k,default_value=v,**({'choices':choices[k]} if k in choices else {})) for k,v in defaults.items()]+[OpaqueFunction(function=setup)])
+--- a/osp_mission/marker_approach.py
++++ b/osp_mission/marker_approach.py
+@@ -13,7 +13,10 @@
+     radius = 1.3
+     witness_window_s = 1.0
+ 
+-    def __init__(self):
++    def __init__(self, expected_marker_count=3):
++        if type(expected_marker_count) is not int or not 0 <= expected_marker_count <= 1024:
++            raise ValueError('expected_marker_count must be 0 (undisclosed) or a valid roster size')
++        self.expected_marker_count = expected_marker_count
+         self.hints = {}
+         self.near = {}
+         self.last_attempt = {}
+@@ -104,10 +107,11 @@
+         self.confirmed_ids=current
+ 
+     def complete(self, targets):
+-        return len(targets) == 3 and all(self.verified(i, point) for i, point in targets.items())
++        return (self.expected_marker_count > 0 and len(targets) == self.expected_marker_count
++                and all(self.verified(i, point) for i, point in targets.items()))
+ 
+     def report(self):
+-        return dict(required_actual_radius_m=1.5, operating_radius_m=self.radius,
++        return dict(expected_marker_count=self.expected_marker_count, required_actual_radius_m=1.5, operating_radius_m=self.radius,
+                     near_confirmations=self.near,
+                     approach_evidence=self.positions, completion_radius_m=1.5,
+                     verification_mode='confirmed_id_and_three_readable_sensor_relative_frames',
+--- a/osp_mission/marker_pair.py
++++ b/osp_mission/marker_pair.py
+@@ -40,7 +40,7 @@
+     return area > 0
+ 
+ 
+-def decode(image, dictionary, small=None):
++def decode(image, dictionary, small=None, native=None):
+     results = []
+     for scale in (1, 2):
+         frame = image if scale == 1 else cv2.resize(
+@@ -59,6 +59,8 @@
+             edge = np.linalg.norm(quad[0] - np.roll(quad[0], 1, axis=0), axis=1).min()
+             if edge < 10 or not printed_pattern_matches(image, quad, int(ident), dictionary):
+                 continue
++            if scale == 1 and native is not None:
++                native.append((int(ident), quad, float(edge)))
+             if scale == 2 and any(overlapping(quad, other) for other, _ in results):
+                 continue
+             results.append((quad, int(ident)))
+--- a/osp_mission/detector.py
++++ b/osp_mission/detector.py
+@@ -22,6 +22,7 @@
+ from osp_mission.hybrid_geometry import preview_geometry
+ from osp_mission.marker_relook import VisualRange, sight_in_odom
+ from osp_mission.marker_pair import SeparateMarkers, decode
++from osp_mission.edge_print import edge_print
+ from osp_mission.landmark_identity import resolved_ids
+ from osp_mission.provisional_marker_cues import ProvisionalMarkerCues
+ from osp_mission.landmark_reacquisition import ObservationConsensus
+@@ -49,6 +50,7 @@
+         from osp_mission.sensor_history import SensorHistory
+         self.sensor_history=SensorHistory()
+         self.bearing_pub=self.create_publisher(String,'mission/marker_bearing',10)
++        self.edge_print_pub = self.create_publisher(String, 'mission/edge_print_bearing', 5)
+         from osp_mission.hybrid_passing import PassingGlance
+         self.print_glance=PassingGlance()
+         self.glance_pub=self.create_publisher(String,'mission/anonymous_glance',10)
+@@ -170,7 +172,21 @@
+             k=preview_geometry(self.info).k
+             if not np.isfinite(k).all() or k[0]<=0 or k[4]<=0 or self.info.width!=msg.width or self.info.height!=msg.height: return
+             small=[]
+-            corners,ids=decode(image,self.dictionary,small)
++            native = []
++            corners,ids=decode(image,self.dictionary,small,native)
++            cue = edge_print(native, corners, msg.width, msg.height, self.p('min_marker_pixels'))
++            if cue is not None:
++                ident, u, v, pixels = cue
++                try:
++                    stamp = Time.from_msg(msg.header.stamp)
++                    point = cv2.undistortPoints(np.float64([[[u,v]]]), np.asarray(k).reshape(3,3), np.asarray(self.info.d))[0,0]
++                    transform = self.tf.lookup_transform(self.p('odom_frame'), msg.header.frame_id, stamp).transform
++                    origin, direction = sight_in_odom(transform, np.r_[point,1.])
++                    evidence = dict(id=ident, stamp=stamp.nanoseconds/1e9, origin_odom=origin[:2].tolist(),
++                                    yaw_odom=math.atan2(direction[1], direction[0]), pixels=pixels)
++                    self.edge_print_pub.publish(String(data=json.dumps(evidence, allow_nan=False)))
++                except Exception as exc:
++                    self.get_logger().debug(f'Edge print exposure transform unavailable: {exc}')
+             if small:
+                 try:
+                     from osp_mission.wall_route import camera_pose
+--- a/osp_mission/mission.py
++++ b/osp_mission/mission.py
+@@ -57,7 +57,7 @@
+ class Mission(Node):
+     def __init__(self):
+         super().__init__('mission')
+-        for k,v in {'duration':600.,'output_dir':str(Path.home()/'simul/results'),
++        for k,v in {'duration':600.,'expected_marker_count':3,'output_dir':str(Path.home()/'simul/results'),
+                     'map_frame':'map','base_frame':'base_link','odom_frame':'odom','scan_topic':'scan',
+                     'undock':False,'policy_file':'','planner':'legacy','require_drive_controller':False,'planner_start_ignore_radius_m':0.,'navigation_flow_enabled':True,'allow_mid_route_wall_inspection':False}.items(): self.declare_parameter(k,v)
+         self.p=lambda k:self.get_parameter(k).value
+@@ -118,7 +118,7 @@
+             self.create_subscription(CameraInfo,'mission/processed_camera',self.on_camera,qos_profile_sensor_data)
+         self.create_service(Trigger,'mission/start',self.start)
+         self.create_service(Trigger,'mission/stop',self.abort)
+-        self.approach=MarkerApproach()
++        self.approach=MarkerApproach(self.p('expected_marker_count'))
+         self.graph_observations=[]
+         self.create_subscription(String,'mission/marker_observations',self.on_approach_image,10)
+         self.map=None; self.targets={}; self.last_scan=0.; self.state='idle'
+@@ -131,6 +131,7 @@
+         if self.hybrid is not None:
+             self.create_subscription(OccupancyGrid,'global_costmap/costmap',self.hybrid.drive.update_costmap,qos_profile_sensor_data)
+             self.create_subscription(String,'mission/small_wall_bearings',self.on_small_wall,10)
++            self.create_subscription(String, 'mission/edge_print_bearing', self.near_pass.receive_print, 5)
+             self.create_subscription(String,'mission/anonymous_print',self.on_anonymous_print,10)
+             self.create_subscription(String,'mission/anonymous_glance',self.on_anonymous_glance,10)
+         self.create_timer(.5,self.tick)
+@@ -261,6 +262,9 @@
+         return True
+ 
+     def on_hazard(self,m):
++        if getattr(self, 'near_pass', None) is not None:
++            self.near_pass.print_hazard = bool(m.detections)
++            self.near_pass.hazard_received = self.now()
+         bump=any(d.type==1 for d in m.detections)
+         guard=getattr(self,'contact_inspection',None)
+         rising=(guard.hazard([d.header.frame_id for d in m.detections if d.type==1],self.now())
+@@ -708,6 +712,8 @@
+             if not busy or (self.kind in ('nav','spin') and not self.cancel_reason):
+                 pending_ids.clear()
+                 if unresolved and (current not in self.targets or self.approach.verified(current)):
++                    if self.near_pass.task and self.near_pass.task.get('source') == 'edge_print':
++                        self.near_pass.abort('registered_marker')
+                     self.readable_cue = None
+                     self.scan_after = False
+                     self.resume_action = None
+@@ -717,6 +723,8 @@
+                         self.cancel_action('registered_marker')
+                         return
+         if getattr(self, 'readable_cue', None) and self.follow_readable_cue(now):
++            return
++        if getattr(self, 'near_pass', None) is not None and self.near_pass.request_print():
+             return
+         bearing_fresh=guard is not None and guard.bearing is not None and now-guard.bearing[0]<=2.
+         protected=any(getattr(getattr(self,name,None),'pending',None) is not None for name in ('marker_look','face_look'))
+--- a/osp_mission/near_pass_runtime.py
++++ b/osp_mission/near_pass_runtime.py
+@@ -10,12 +10,92 @@
+ 
+ from osp_mission.near_pass_inspection import NearPassInspection
+ from osp_mission.policy import wrap
++from osp_mission.edge_print import budget, camera_turn, clearance_at
++from osp_mission.wall_route import camera_pose as optical_pose
+ 
+ 
+ class NearPassRuntime:
+     def __init__(self,owner):
+         self.owner=owner;self.policy=NearPassInspection();self.task=None
+         self.protected_navigation=False
++        self.print_hint = None
++        self.last_print_stamp = -math.inf
++        self.print_hazard = True
++        self.hazard_received = -math.inf
++
++    def receive_print(self, message):
++        if self.owner.state != 'running':
++            return
++        try:
++            cue = json.loads(message.data)
++            stamp = cue['stamp']
++            origin = cue['origin_odom']
++            if (type(cue['id']) is not int or not 0 <= cue['id'] < 1024 or len(origin) != 2 or
++                    not all(math.isfinite(v) for v in (stamp, *origin, cue['yaw_odom'], cue['pixels'])) or
++                    cue['pixels'] < 10 or stamp <= self.last_print_stamp):
++                return
++            clock = self.owner.get_clock().now().nanoseconds/1e9
++            if not -.1 <= clock-stamp <= .65:
++                return
++            self.last_print_stamp = stamp
++            self.print_hint = cue
++        except (ValueError, KeyError, TypeError):
++            return
++
++    def request_print(self):
++        cue, self.print_hint = self.print_hint, None
++        if cue is None:
++            return False
++        owner = self.owner
++        now = owner.now()
++        guard = owner.contact_inspection
++        if (self.task or not owner.edge_mode or owner.kind != 'nav' or not owner.goal_handle or owner.pending
++                or self.protected_navigation or owner.cancel_reason or owner.marker_look.pending
++                or owner.contact_pending or owner.recovery_pending or guard.phase or guard.action or guard.pressed
++                or self.print_hazard or not 0 <= now-self.hazard_received <= .85
++                or now < owner.spin_blocked_until or not owner.spin.server_is_ready()
++                or getattr(owner, 'registered_pending', None) or owner.readable_cue or cue['id'] in owner.targets
++                or cue['id'] in owner.visual_ids or owner.map is None):
++            return False
++        calibration = getattr(owner, 'inspection_camera', None)
++        duration = owner.p('duration')
++        limit = budget(self.policy.history, self.policy.spent, now, duration, duration-(now-owner.started), cue)
++        if not limit or not calibration:
++            return False
++        try:
++            clock = owner.get_clock().now().nanoseconds/1e9
++            odom = owner.tf.lookup_transform(owner.p('odom_frame'), owner.inspection_camera_frame, Time())
++            base = owner.tf.lookup_transform(owner.p('map_frame'), owner.p('base_frame'), Time())
++            if any(not -.1 <= clock-Time.from_msg(tr.header.stamp).nanoseconds/1e9 <= .5 for tr in (odom,base)):
++                return False
++            camera = optical_pose(odom.transform)
++            turn = camera_turn(cue, clock, camera, calibration[1]/2) if camera is not None else None
++            xy = base.transform.translation
++            if turn is None or not clearance_at(owner.map, (xy.x,xy.y)):
++                return False
++            self.begin(dict(source='edge_print', candidate_id=cue['id'], measured_pixels=cue['pixels'],
++                            odom_camera=list(camera), odom_yaw=cue['yaw_odom'], turn_rad=turn,
++                            turn_limit=min(.75, calibration[1]/2+.10), time_limit=limit), now)
++            return True
++        except Exception as exc:
++            owner.get_logger().debug(f'Edge print relook unavailable: {exc}')
++            return False
++
++    def begin(self, choice, now):
++        owner = self.owner
++        resume_goal = copy.deepcopy(owner.active_goal)
++        self.policy.reserve(choice, now)
++        self.task = dict(phase='cancel_nav', resume_goal=resume_goal,
++                         desired_odom_yaw=choice['odom_yaw'], started=now,
++                         request_origin=tuple(choice['odom_camera'][:2]),
++                         source=choice.get('source', 'near_pass'),
++                         turn_limit=choice.get('turn_limit', self.policy.maximum_turn_rad+.05),
++                         time_limit=choice.get('time_limit', 10.),
++                         cue_stamps={ident: hint['stamp'] for ident,hint in owner.marker_focus.hints.items()},
++                         confirmed_ids=set(owner.targets))
++        self.event('requested', choice=choice)
++        owner.cancel_action('near_pass_inspection')
++        owner.zero()
+ 
+     def camera_pose(self,frame):
+         transform=self.owner.tf.lookup_transform(frame,self.owner.inspection_camera_frame,Time()).transform
+@@ -48,13 +128,7 @@
+             choice=self.policy.choose(data,grid.info.resolution,origin,camera,(base.x,base.y),
+                 viewed,*calibration,odom,owner.now(),elapsed,owner.p('duration')-elapsed)
+             if choice is None:return
+-            self.policy.reserve(choice,owner.now())
+-            self.task=dict(phase='cancel_nav',resume_goal=copy.deepcopy(owner.active_goal),
+-                desired_odom_yaw=choice['odom_yaw'],started=owner.now(),
+-                cue_stamps={ident:hint['stamp'] for ident,hint in owner.marker_focus.hints.items()},
+-                confirmed_ids=set(owner.targets))
+-            self.event('requested',choice=choice)
+-            owner.cancel_action('near_pass_inspection');owner.zero()
++            self.begin(choice, owner.now())
+         except Exception as exc:owner.get_logger().debug(f'Near-pass opportunity unavailable: {exc}')
+ 
+     def abort(self,reason,retain_navigation=False):
+@@ -66,12 +140,20 @@
+ 
+     def poll(self):
+         if self.task is None:return
+-        limit=min(10.,max(0.,self.policy.maximum_total_sim_s-self.policy.spent))
++        if (self.task.get('source') == 'edge_print' and
++                (self.print_hazard or not 0 <= self.owner.now()-self.hazard_received <= .85)):
++            self.owner.cancel_action('edge_print_hazard')
++            self.owner.zero()
++            self.abort('hazard_or_stale_hazard')
++            self.owner.scan_after = False
++            return
++        limit=min(self.task.get('time_limit',10.), max(0.,self.policy.maximum_total_sim_s-self.policy.spent))
+         if self.owner.now()-self.task['started']<limit:return
+         owner=self.owner
+         if not owner.cancel_reason:owner.cancel_action('near_pass_time_limit')
+         if owner.goal_handle is not None:owner.goal_handle.cancel_goal_async()
+-        self.abort('inspection_time_limit')
++        settled = self.task.get('source') == 'edge_print' and self.task['phase'] in ('ready_turn','dwell')
++        self.abort('inspection_time_limit', retain_navigation=settled)
+         owner.scan_after=False
+ 
+     def completed(self,status,kind,cancel_reason):
+@@ -108,9 +190,19 @@
+         if self.task is None:return False
+         owner=self.owner;task=self.task
+         if task['phase']=='ready_turn':
+-            try:turn=wrap(task['desired_odom_yaw']-self.camera_pose('odom')[2])
++            try:
++                if task.get('source') == 'edge_print':
++                    tr=owner.tf.lookup_transform(owner.p('odom_frame'),owner.inspection_camera_frame,Time())
++                    age=(owner.get_clock().now()-Time.from_msg(tr.header.stamp)).nanoseconds/1e9
++                    current=optical_pose(tr.transform)
++                    if (current is None or not -.1<=age<=.5 or
++                            math.dist(task['request_origin'],current[:2])>.22):
++                        self.abort('camera_pose_moved_or_stale',retain_navigation=True);return True
++                    turn=wrap(task['desired_odom_yaw']-current[2])
++                else:
++                    turn=wrap(task['desired_odom_yaw']-self.camera_pose('odom')[2])
+             except Exception:return True  # Fresh TF is required;poll bounds the wait.
+-            if abs(turn)>self.policy.maximum_turn_rad+.05:
++            if abs(turn)>task.get('turn_limit', self.policy.maximum_turn_rad+.05):
+                 self.abort('view_moved_outside_angular_cap',retain_navigation=True);return True
+             if abs(turn)<.05:
+                 task.update(phase='dwell',frames_before=owner.camera_diagnostics['accepted'],

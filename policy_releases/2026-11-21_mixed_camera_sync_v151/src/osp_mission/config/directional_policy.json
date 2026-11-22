@@ -1,0 +1,170 @@
+{
+  "planner": "directional",
+  "parameters": [
+    1.0,
+    3.38639904033944,
+    0.6112551463080941,
+    1.9374402427472013,
+    0.33852529819113647
+  ],
+  "status": "experimental_ros_integration_not_gazebo_validated",
+  "source": "training_robust/diverse_initial.json",
+  "validation_2d": {
+    "episodes": 80,
+    "success_rate": 0.7625,
+    "mean_found": 2.725,
+    "mean_seconds": 438.67246116026536,
+    "successful_mean_seconds": 388.42289988231516,
+    "collisions": 0,
+    "mean_reward": 546.8688808259601,
+    "by_obstacles": {
+      "8": {
+        "success_rate": 0.6875,
+        "episodes": 16
+      },
+      "12": {
+        "success_rate": 0.875,
+        "episodes": 16
+      },
+      "16": {
+        "success_rate": 0.875,
+        "episodes": 16
+      },
+      "24": {
+        "success_rate": 0.75,
+        "episodes": 16
+      },
+      "32": {
+        "success_rate": 0.625,
+        "episodes": 16
+      }
+    },
+    "by_mount": {
+      "hidden_obstacles": {
+        "episodes": 20,
+        "success_rate": 0.6,
+        "mean_found": 2.55,
+        "mean_seconds": 476.96421191736,
+        "successful_mean_seconds": 394.9403531955999,
+        "collisions": 0,
+        "mean_reward": 476.246368212396,
+        "by_obstacles": {
+          "8": {
+            "success_rate": 0.75,
+            "episodes": 4
+          },
+          "12": {
+            "success_rate": 0.75,
+            "episodes": 4
+          },
+          "16": {
+            "success_rate": 0.75,
+            "episodes": 4
+          },
+          "24": {
+            "success_rate": 0.5,
+            "episodes": 4
+          },
+          "32": {
+            "success_rate": 0.25,
+            "episodes": 4
+          }
+        }
+      },
+      "mixed": {
+        "episodes": 20,
+        "success_rate": 0.85,
+        "mean_found": 2.8,
+        "mean_seconds": 420.142216178337,
+        "successful_mean_seconds": 388.40260726863187,
+        "collisions": 0,
+        "mean_reward": 583.3016675732495,
+        "by_obstacles": {
+          "8": {
+            "success_rate": 0.5,
+            "episodes": 4
+          },
+          "12": {
+            "success_rate": 1.0,
+            "episodes": 4
+          },
+          "16": {
+            "success_rate": 1.0,
+            "episodes": 4
+          },
+          "24": {
+            "success_rate": 1.0,
+            "episodes": 4
+          },
+          "32": {
+            "success_rate": 0.75,
+            "episodes": 4
+          }
+        }
+      },
+      "obstacles": {
+        "episodes": 20,
+        "success_rate": 0.6,
+        "mean_found": 2.55,
+        "mean_seconds": 459.7111367774931,
+        "successful_mean_seconds": 366.1852279624884,
+        "collisions": 0,
+        "mean_reward": 477.4653294833761,
+        "by_obstacles": {
+          "8": {
+            "success_rate": 0.5,
+            "episodes": 4
+          },
+          "12": {
+            "success_rate": 0.75,
+            "episodes": 4
+          },
+          "16": {
+            "success_rate": 0.75,
+            "episodes": 4
+          },
+          "24": {
+            "success_rate": 0.5,
+            "episodes": 4
+          },
+          "32": {
+            "success_rate": 0.5,
+            "episodes": 4
+          }
+        }
+      },
+      "walls": {
+        "episodes": 20,
+        "success_rate": 1.0,
+        "mean_found": 3.0,
+        "mean_seconds": 397.8722797678714,
+        "successful_mean_seconds": 397.8722797678714,
+        "collisions": 0,
+        "mean_reward": 650.4621580348193,
+        "by_obstacles": {
+          "8": {
+            "success_rate": 1.0,
+            "episodes": 4
+          },
+          "12": {
+            "success_rate": 1.0,
+            "episodes": 4
+          },
+          "16": {
+            "success_rate": 1.0,
+            "episodes": 4
+          },
+          "24": {
+            "success_rate": 1.0,
+            "episodes": 4
+          },
+          "32": {
+            "success_rate": 1.0,
+            "episodes": 4
+          }
+        }
+      }
+    },
+    "mean_approached": 2.275
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "version": "1.5.1",
+  "text_files": 221,
+  "text_source_unchanged": true,
+  "binaries": {
+    "osp_mission/_raycast.so": {
+      "sha256": "5f175eca9fb024abd83d428bdf2275e0271b8fa15165514ba1ba320ed791f866",
+      "matches_frozen_vm": true
+    },
+    "tools/export_slam_graph_poses": {
+      "sha256": "aaa22964f6677f13e4fdd89fdbb0390100a2f36e27f0e9ca6e7f44f56a750521",
+      "matches_frozen_vm": true
+    }
+  },
+  "ros_nodes_started": false,
+  "physical_validated": false
+}
