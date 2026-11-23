@@ -1,0 +1,200 @@
+--- a/regional_surface.py
++++ b/regional_surface.py
+@@ -65,8 +65,21 @@
+             return None
+
+         active = self.can_continue(elapsed)
++        # Only the existing wall reservation chooses a deliberate wall stop
++        # when there is reachable new object work or a feasible frontier.
++        # All visible walls still count as incidental gain on an object route.
++        alternate_work = any(v.key[0] != 'wall' and not v.goal.get('previous_attempts')
++                             and not v.goal.get('completed_box') and not (self.anchor is not None
++                             and math.dist(v.goal['surface_odom'], self.anchor) <= 2.2
++                             and v.key in self.attempted) for v in views)
++        if frontier is not None:
++            cell = grid.index(frontier['x'], frontier['y'])
++            alternate_work |= bool(grid.inside(*cell) and safe[cell] and
++                                   0 <= distances[cell] <= .20 * (remaining - 8))
+         ranked = []
+         for view in views:
++            if alternate_work and view.key[0] == 'wall' and view.goal is not reserved:
++                continue
+             point = view.goal['surface_odom']
+             same_area = self.anchor is not None and math.dist(point, self.anchor) <= 2.2
+             if same_area and view.key in self.attempted:
+@@ -86,11 +99,19 @@
+             score = gain / (1. + .45 * view.walk + .10 * turn + repeat_cost)
+             ranked.append((score, view, seen, same_area))
+         if not ranked:
++            if frontier is not None:
++                cell = grid.index(frontier['x'], frontier['y'])
++                if grid.inside(*cell) and safe[cell] and 0 <= distances[cell] <= .20*(remaining-8):
++                    return frontier
+             return None
+         ranked.sort(key=lambda p: -p[0])
+         score, selected, seen, _ = ranked[0]
+         local = [p for p in ranked if active and p[3] and p[1].walk <= 2.7]
+-        continuing = bool(local and local[0][0] >= .78 * score)
++        same_box = [row for row in local if row[1].goal.get('local_batch')
++                    and not row[1].goal.get('completed_box') and not row[1].goal.get('previous_attempts')]
++        if same_box:
++            local = same_box
++        continuing = bool(local and (same_box or local[0][0] >= .78 * score))
+         if continuing:
+             score, selected, seen, _ = local[0]
+         elif frontier is not None:
+--- a/center_wall.py
++++ b/center_wall.py
+@@ -208,41 +208,43 @@
+                     candidates[kind].append(view)
+                 continue
+             tangent = np.array([-normal[1],normal[0]])
+-            best = None
++            positions = []
++            reference = standoffs[-1]
++            anchor_cost = 0.
++            if self.wall_anchor is not None:
++                last, last_normal = self.wall_anchor
++                step = anchor-last
++                forward = np.array([-math.sin(last_normal), math.cos(last_normal)])
++                anchor_cost = .55*np.linalg.norm(step) + 2.5*max(0.,-float(step@forward))
+             for stand in standoffs:
+-                for shift in (0.,-.28,.28):
+-                    point = face+normal*stand+tangent*shift
+-                    cell = grid.index(*point)
+-                    if not grid.inside(*cell) or not reachable[cell] or not np.isfinite(distances[cell]):
++                for shift in (0., -.28, .28):
++                    point = face + normal*stand + tangent*shift
++                    cell, nc = grid.index(*point), costmap.index(*point)
++                    if (not grid.inside(*cell) or not reachable[cell] or not np.isfinite(distances[cell])
++                            or not costmap.inside(*nc) or not nav[nc]):
+                         continue
+-                    nc = costmap.index(*point)
+-                    if not costmap.inside(*nc) or not nav[nc] or not grid.line_clear(point,face+.06*normal):
+-                        continue
+-                    heading = math.atan2(face[1]-point[1],face[0]-point[0])
+-                    sweep = math.radians(36)
+-                    goal = dict(x=float(point[0]), y=float(point[1]), yaw=heading-sweep/2,
+-                                scan_angle=sweep, face_inspection=True, stationary=False,
+-                                distance=float(np.linalg.norm(point-pose[:2])), features=np.zeros(5),
+-                                r32_kind=kind+'_surface', wall_path_m=float(distances[cell]), surface_odom=anchor.tolist(),
+-                                normal_odom=normal_yaw, surface_map=face.tolist(),
+-                                previous_attempts=len(attempts))
+-                    if veto(goal):
+-                        continue
+-                    reference = standoffs[-1]
+-                    score = distances[cell] + .65*abs(stand-reference) + .3*abs(shift) + 2.*len(attempts)
+-                    if kind=='wall' and self.wall_anchor is not None:
+-                        last, last_normal = self.wall_anchor
+-                        step = anchor-last
+-                        forward = np.array([-math.sin(last_normal), math.cos(last_normal)])
+-                        score += .55*np.linalg.norm(step) + 2.5*max(0.,-float(step@forward))
++                    walk = float(distances[cell])
++                    score = walk + .65*abs(stand-reference) + .3*abs(shift) + 2.*len(attempts) + anchor_cost
+                     distance = math.hypot(stand, shift)
+                     coverable = bool(inside_coverage_range(distance, stand / distance, wall_limit))
+-                    goal['wall_coverage_possible'] = coverable
+-                    ranking = (not coverable, score)
+-                    if best is None or ranking < best[0]:
+-                        best = ranking, goal
+-            if best is not None:
+-                candidates[kind].append((best[0][1], best[1]))
++                    positions.append(((not coverable, score), point, walk))
++            # Only the best admissible endpoint for this wall is consumed.
++            # Check legal endpoints in stable cost order, stopping at the first
++            # visible non-vetoed one. The safety masks above are still mandatory.
++            for (outside, score), point, walk in sorted(positions, key=lambda row: row[0]):
++                if not grid.line_clear(point, face+.06*normal):
++                    continue
++                sweep = math.radians(36)
++                goal = dict(x=float(point[0]), y=float(point[1]), scan_angle=sweep,
++                            yaw=math.atan2(face[1]-point[1], face[0]-point[0])-sweep/2,
++                            face_inspection=True, stationary=False, features=np.zeros(5),
++                            distance=float(np.linalg.norm(point-pose[:2])), r32_kind='wall_surface',
++                            wall_path_m=walk, surface_odom=anchor.tolist(), normal_odom=normal_yaw,
++                            surface_map=face.tolist(), previous_attempts=len(attempts),
++                            wall_coverage_possible=not outside)
++                if not veto(goal):
++                    candidates[kind].append((score, goal))
++                    break
+         weak_walls = candidates['wall']
+         candidates['wall'] = [item for item in weak_walls if item[1]['wall_coverage_possible']]
+         self.counts = {k:len(v) for k,v in candidates.items()}
+@@ -268,8 +270,7 @@
+         alternative = self.survey.choose(grid, costmap, nav, reachable, distances, pose, transform,
+                                          candidates['wall'], fresh, elapsed, duration, veto)
+         reserved = alternative if alternative is not None and 'survey_wall' in alternative else None
+-        urgent_wall = (reserved is not None and elapsed-self.survey.last_wall >= 150.
+-                       and not self.joint.can_continue(elapsed))
++        urgent_wall = reserved is not None and elapsed-self.survey.last_wall >= 150.
+         if alternative is not None and (reserved is None or self.survey.loop_center is not None or urgent_wall):
+             self.phase = 'wall' if 'survey_wall' in alternative else 'interior'
+             self.reason = ('unobserved_wall_reserved' if self.phase == 'wall' else
+--- a/phased_hybrid.py
++++ b/phased_hybrid.py
+@@ -22,6 +22,7 @@
+     def select(self, owner, selected, data, viewed, pose, transform, *,
+                print_only=False, box_probe=False, choices=()):
+         if selected and any(k in selected for k in ('approach_id','focus_id')):
++            self.schedule.reason = 'verified_marker_approach' if 'approach_id' in selected else 'accepted_marker_followup'
+             return selected
+         msg = self.drive.costmap
+         clock = owner.get_clock().now().nanoseconds/1e9
+--- a/visual_survey.py
++++ b/visual_survey.py
+@@ -39,6 +39,7 @@
+         self.trail = deque(maxlen=480)
+         self.normals = AxisNormalCache()
+         self.evidence = set()
++        self.confirmed_wall_bins = {}
+         self.last_progress = -math.inf
+         self.wall_times = {}
+         self.last_wall = 0.
+@@ -119,7 +120,7 @@
+         axes = rotation(a)
+         start = grid.index(*pose[:2])
+         new = set()
+-        for (_, _, side, _, _), cells in samples.items():
++        for (kind, _, side, _, _), cells in samples.items():
+             rc = np.asarray(cells)
+             if np.linalg.norm(rc[0]-start)*grid.resolution > 4.5:
+                 continue
+@@ -131,7 +132,14 @@
+             angle_bin = round(math.atan2(normal[1],normal[0])/(math.pi/4)) % 8
+             xy = ((rc[:, ::-1]+.5+.5*np.array([dx,dy]))*grid.resolution) @ axes.T + origin
+             bins = np.floor(xy/.35).astype(int)
+-            new.update((int(x),int(y),angle_bin) for x,y in bins)
++            observed = {(int(x),int(y),angle_bin) for x,y in bins}
++            new.update(observed)
++            if kind == 'wall':
++                bucket = self.confirmed_wall_bins.setdefault(angle_bin, set())
++                fresh = observed - bucket
++                if fresh:
++                    self.last_direction[angle_bin] = elapsed
++                    bucket.update(fresh)
+         if len(new-self.evidence) >= 2:
+             self.last_progress = elapsed
+             self.loop_center = None
+@@ -221,6 +229,14 @@
+                 (elapsed-self.last_wall < period or (interiors and self.last_was_wall))):
+             return None
+         entries.sort(key=lambda x:-x[0])
++        # Evaluate the best feasible section from every represented normal
++        # direction before assigning leftover slots to nearby fragments.
++        by_side = {}
++        for entry in entries:
++            by_side.setdefault(entry[2][0], entry)
++        first = list(by_side.values())
++        first_keys = {item[2] for item in first}
++        entries = first + [item for item in entries if item[2] not in first_keys]
+         all_faces = np.array([g['surface_map'] for _,g in walls])
+         all_normals = np.array([g['normal_odom']-transform[2] for _,g in walls])
+         units = np.stack((np.cos(all_normals),np.sin(all_normals)), axis=1)
+@@ -297,7 +313,6 @@
+             key = tuple(goal['survey_wall'])
+             self.wall_times[key] = self.wall_times[key][0],elapsed
+             self.last_wall=elapsed
+-            self.last_direction[key[0]]=elapsed
+         if 'distant_hint_id' in goal:
+             self.hint_attempts[goal['distant_hint_id']]=elapsed
+         if goal.get('survey_escape'):
