@@ -1,0 +1,77 @@
+--- a/regional_surface.py
++++ b/regional_surface.py
+@@ -13,3 +13,4 @@
+         self.anchor = None
+-        self.entered = 0.
++        self.entered = None
++        self.robot_xy = None
+         self.stops = 0
+@@ -17,3 +18,10 @@
+         self.recent_regions = {}
++
++    def position(self, x, y, elapsed):
++        if not all(math.isfinite(value) for value in (x, y, elapsed)):
++            return
++        self.robot_xy = x, y
++        if self.anchor is not None and self.entered is None and math.dist(self.robot_xy, self.anchor) <= 2.2:
++            self.entered = elapsed
+-
++
+     def dispatched(self, goal, elapsed):
+@@ -26,3 +34,4 @@
+             return
+-        if not goal['joint_continuation']:
++        # A new face in the same area cannot reset a visit's stop/time budget.
++        if self.anchor is None or math.dist(self.anchor, goal['region_anchor']) > 2.2:
+             if self.anchor is not None:
+@@ -30,3 +39,8 @@
+             self.anchor = tuple(goal['region_anchor'])
+-            self.entered = elapsed
++            self.entered = None
++            if self.robot_xy is not None:
++                self.position(*self.robot_xy, elapsed)
++            else:
++                # Retain bounded behavior when no odometry sample has arrived.
++                self.entered = elapsed
+             self.stops = 0
+@@ -37,4 +51,5 @@
+     def can_continue(self, elapsed):
+-        return self.anchor is not None and self.stops < 4 and elapsed - self.entered < 55.
++        return (self.anchor is not None and self.entered is not None and
++                self.stops < 4 and 0 <= elapsed - self.entered < 55.)
+-
++
+     def choose(self, grid, safe, distances, transform, survey,
+@@ -108,3 +123,14 @@
+         score, selected, seen, _ = ranked[0]
+-        local = [p for p in ranked if active and p[3] and p[1].walk <= 2.7]
++        local = []
++        if active:
++            # Known free routes around the same obstacle may exceed its direct radius.
++            # Reserve time for the actual inspection before accepting a larger detour.
++            time_left = min(duration - elapsed, 55. - (elapsed - self.entered))
++            for row in ranked:
++                _, view, _, same_area = row
++                allowance = 2.7
++                if view.key[0] != 'wall' and not view.goal.get('previous_attempts'):
++                    allowance = min(4.4, max(0., .20 * (time_left - 8.)))
++                if same_area and view.walk <= allowance:
++                    local.append(row)
+         same_box = [row for row in local if row[1].goal.get('local_batch')
+--- a/mission.py
++++ b/mission.py
+@@ -726,3 +726,5 @@
+             if self.hybrid is not None:
+-                self.hybrid.schedule.survey.position(visit.x, visit.y, self.now()-self.started)
++                elapsed = self.now() - self.started
++                self.hybrid.schedule.survey.position(visit.x, visit.y, elapsed)
++                self.hybrid.schedule.joint.position(visit.x, visit.y, elapsed)
+             flow=getattr(self,'navigation_flow',None)
+--- a/phased_hybrid.py
++++ b/phased_hybrid.py
+@@ -93,3 +93,4 @@
+             self.next_box_probe = float('inf')
+-        row = dict(face_frontier_gap_m=goal.get('face_frontier_gap_m'),
++        row = dict(region_arrived_s=self.schedule.joint.entered if self.schedule.joint.anchor is not None else None,
++                   region_stops=self.schedule.joint.stops, face_frontier_gap_m=goal.get('face_frontier_gap_m'),
+                    original_wall_route_m=goal.get('original_wall_route_m'), survey_wall=goal.get('survey_wall'),survey_visible_sections=goal.get('survey_visible_sections'),
