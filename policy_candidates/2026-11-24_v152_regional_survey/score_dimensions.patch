@@ -1,0 +1,15 @@
+--- a/experiments/2026-11-22_v151_adaptive_survey/validation/validate.py
++++ b/experiments/2026-11-22_v151_adaptive_survey/validation/validate.py
+@@ -143,2 +143,4 @@
+-    valid=bool(n and m['hazard_packets'] and info.get('width')==info.get('height')==480
+-               and camera['requested_fps']==5 and m['world_sha256']==world['files']['world/osp_studio.sdf']
++    expected_camera = tuple(world.get('camera', (480, 480, 5)))
++    measured_camera = info.get('width'), info.get('height'), camera['requested_fps']
++    valid=bool(n and m['hazard_packets'] and measured_camera == expected_camera
++               and m['world_sha256']==world['files']['world/osp_studio.sdf']
+--- a/tools/team_sim/random_exam.py
++++ b/tools/team_sim/random_exam.py
+@@ -63,1 +63,2 @@
+-    world={'files':{'world/osp_studio.sdf':config['effective_world_sha256']}}
++    world={'files':{'world/osp_studio.sdf':config['effective_world_sha256']},
++           'camera': config.get('camera', (480, 480, 5))}

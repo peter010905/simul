@@ -1,0 +1,17 @@
+--- a/trial.py
++++ b/trial.py
+@@ -22,0 +23,2 @@
++        self.inject_gap = os.environ.get('OSP_EXAM_FAULT') == 'rgb_gap'
++        self.gap_start = self.gap_end = None
+@@ -25,0 +28,11 @@
++        if self.inject_gap and not self.finished and self.start_sim is not None:
++            elapsed = stamp-self.start_sim
++            if (self.gap_start is None and elapsed >= 35.
++                    and self.status.get('active_action') == 'nav'):
++                self.gap_start = elapsed
++                print(f'RGB_GAP_START {elapsed:.3f}', flush=True)
++            if self.gap_start is not None and self.gap_end is None:
++                if elapsed-self.gap_start < 4.4:
++                    return super().image(msg)
++                self.gap_end = elapsed
++                print(f'RGB_GAP_END {elapsed:.3f}', flush=True)

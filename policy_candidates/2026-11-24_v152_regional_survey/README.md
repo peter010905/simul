@@ -13,3 +13,5 @@ python3 policy_candidates/2026-11-24_v152_regional_survey/install.py \
 ```
 
 시험장 라이브 SLAM 실행은 `run_exam_640.py`에 기존 `run_archived.py`와 시험장 인자를 전달한다. 기존 시험장에서 실행할 때 바뀐 두 카메라 값은 실행 기록의 `protocol.json`에 저장한다.
+
+정사각형 입력만 허용하는 기존 관측기에는 [가로·세로 검증 패치](observer_dimensions.patch)를 적용한다. 기준값은 각각 `CAMERA_BENCH_WIDTH`와 `CAMERA_BENCH_HEIGHT`이다.

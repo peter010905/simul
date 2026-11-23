@@ -1,0 +1,7 @@
+--- a/trial.py
++++ b/trial.py
+@@ -45 +45,3 @@
+-            assert msg.width==msg.height==int(os.environ['CAMERA_BENCH_WIDTH'])
++            width = int(os.environ['CAMERA_BENCH_WIDTH'])
++            height = int(os.environ.get('CAMERA_BENCH_HEIGHT', width))
++            assert (msg.width, msg.height) == (width, height)
