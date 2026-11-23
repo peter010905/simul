@@ -100,8 +100,15 @@ def install(parent_workspace, destination):
              '            stronger = any(sum(structured for *_,structured in t.samples) >= 2 for t in tracks)'),
             ('            if not stronger and not independent:', '            if not stronger and (not independent or walls[i][0] > 2.4):'),
         ])
+        joint.edit(package / 'sensor_model.py', [
+            ("    if width not in (250,320,400,480,640) or height!=width or fps not in (5.,10.,15.):\n"
+             "        raise ValueError('Expected a square 250/320/400/480/640 camera at 5/10/15 FPS')",
+             """    square = width in (250, 320, 400, 480, 640) and height == width
+    if (not square and (width, height) != (640, 480)) or fps not in (5., 10., 15.):
+        raise ValueError('Expected an installed square profile or 640×480 at 5/10/15 FPS')"""),
+        ])
         names = ('center_wall.py', 'phased_hybrid.py', 'regional_surface.py', 'hybrid.py',
-                 'small_wall_cues.py', 'detector.py', 'mission.py', 'wall_bearings.py', 'original_filter.py')
+                 'small_wall_cues.py', 'detector.py', 'mission.py', 'wall_bearings.py', 'original_filter.py', 'sensor_model.py')
         manifest = dict(version='1.5.2.15-regional-survey',
                         parent_sha256=joint.digest(stage / 'focus_continuity_manifest.json'),
                         sources={name: joint.digest(package / name) for name in names})
