@@ -1,4 +1,26 @@
 {
+  "mixed_v15217_open_regions": {
+    "version": "1.5.2.17-open-regions",
+    "seed": 417608489,
+    "camera": [
+      640,
+      480,
+      5
+    ],
+    "map_source": "live_slam",
+    "marker_verifications": 3,
+    "verified_s": {
+      "350": 32.344,
+      "768": 450.844,
+      "476": 593.844
+    },
+    "travel_m": 69.8388,
+    "bumps": 0,
+    "repeated_worlds_tested": 1,
+    "physical_drive": false,
+    "production_promoted": false,
+    "report": "policy_candidates/2026-11-24_v152_open_regions/README.md"
+  },
   "r32_resume": {
     "upstream": "5e9533380aa9233d22656862b2c1b42ce2cdcbf3",
     "simulation_board": true,
