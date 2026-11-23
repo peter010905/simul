@@ -1,0 +1,158 @@
+--- a/marker_approach.py
++++ b/marker_approach.py
+@@ -7,4 +7,5 @@
+ from osp_mission.edge_policy import visible
+ from osp_mission.policy import wrap
++from osp_mission.joint_surface import connecting_distances
+
+
+@@ -21,4 +22,5 @@
+         self.near = {}
+         self.last_attempt = {}
++        self.routed_views = {}
+         self.positions = {}
+         self.range_witnesses = {}
+@@ -103,5 +105,5 @@
+         current=set(targets)
+         for ident in self.confirmed_ids-current:
+-            for mapping in (self.positions,self.range_witnesses,self.witness_runs,self.hints,self.near,self.last_attempt):
++            for mapping in (self.positions,self.range_witnesses,self.witness_runs,self.hints,self.near,self.last_attempt,self.routed_views):
+                 mapping.pop(ident,None)
+         self.confirmed_ids=current
+@@ -139,12 +141,6 @@
+             choices = [dict(x=float(robot[0]), y=float(robot[1]), distance=0., stationary=True, features=np.zeros(5)), *candidates]
+             # Additional viewpoints stay on the actually observed marker side.
+-            for offset in (-.45, -.22, 0., .22, .45):
+-                if (robot-target)@direction <= 0.:
+-                    continue
+-                angle = math.atan2(direction[1], direction[0])+offset
+-                # .90 m + Nav2 .25 m stopping tolerance leaves room for the
+-                # 1.30 m sensor proof, inside the actual 1.50 m task limit.
+-                for standoff in (.75, .85, .9):
+-                    position = target+standoff*np.array([math.cos(angle), math.sin(angle)])
++            if (robot-target)@direction > 0.:
++                for _, position in self.near_views(target, direction):
+                     a, b = (robot-origin)/resolution, (position-origin)/resolution
+                     if not visible(safe, a[1], a[0], np.array([b[1]]), np.array([b[0]]))[0]:
+@@ -173,2 +169,71 @@
+         self.last_attempt[ident] = now
+         return result
++
++    @staticmethod
++    def near_views(target, direction):
++        # Keep the existing approach geometry on the observed printed side.
++        base_yaw = math.atan2(direction[1], direction[0])
++        for offset in (-.45, -.22, 0., .22, .45):
++            yaw = base_yaw + offset
++            normal = np.array((math.cos(yaw), math.sin(yaw)))
++            for standoff in (.75, .85, .9):
++                yield offset, target + standoff * normal
++
++    def routed_approach(self, grid, cost, safe, nav, distances, pose, targets, now, remaining, veto):
++        """Use a measured viewing side and a connected route for the final outstanding proofs."""
++        if not self.expected_marker_count or len(targets) != self.expected_marker_count:
++            return None
++        start = grid.index(*pose[:2])
++        nav_start = cost.index(*pose[:2])
++        if (not grid.inside(*start) or not safe[start] or not cost.inside(*nav_start) or not nav[nav_start]):
++            return None
++        # Same 65s Nav2 action timeout and 8s inspection reserve as the normal scheduler.
++        limit = .20 * (min(remaining, 65.) - 8.)
++        if limit <= 0:
++            return None
++        candidates = []
++        for ident, point in targets.items():
++            attempts = self.routed_views.get(ident, ())
++            hint = self.hints.get(ident)
++            if (ident not in self.confirmed_ids or self.verified(ident) or hint is None
++                    or now - self.last_attempt.get(ident, -math.inf) < 15. or len(attempts) >= 2):
++                continue
++            target = np.asarray(point, dtype=float)
++            if not np.isfinite(target).all() or np.linalg.norm(target-hint['point']) > .25:
++                continue
++            direction = hint['observer'] - target
++            if not np.isfinite(direction).all() or np.linalg.norm(direction) < .3:
++                continue
++            for offset, position in self.near_views(target, direction):
++                # Do not send the same side twice if an approach failed to produce evidence.
++                if offset in attempts:
++                    continue
++                cell = grid.index(*position)
++                nc = cost.index(*position)
++                if (not grid.inside(*cell) or not safe[cell] or not 0 < distances[cell] <= limit
++                        or not cost.inside(*nc) or not nav[nc]):
++                    continue
++                delta = position - target
++                end = grid.index(*(target + .25 * delta / np.linalg.norm(delta)))
++                if not visible(grid.cells, *cell, np.array([end[0]]), np.array([end[1]]))[0]:
++                    continue
++                yaw = math.atan2(-delta[1], -delta[0])
++                goal = dict(x=float(position[0]), y=float(position[1]), yaw=yaw,
++                            approach_id=ident, routed_offset=offset, scan_angle=0., stationary=False)
++                if not veto(goal):
++                    candidates.append((cell, goal))
++        if not candidates:
++            return None
++        routes = connecting_distances(grid, cost, safe, nav, start, (cell for cell, _ in candidates), limit)
++        scored = [(routes[cell]/.3 + abs(wrap(goal['yaw']-pose[2]))/.85, routes[cell], goal)
++                  for cell, goal in candidates if cell in routes]
++        if not scored:
++            return None
++        _, walk, goal = min(scored, key=lambda row: row[0])
++        return dict(goal, distance=walk, routed_approach_m=walk, features=np.array([0., 0., walk, 0., 0.]))
++
++    def routed_dispatched(self, goal, now):
++        if 'routed_offset' in goal:
++            ident = goal['approach_id']
++            self.routed_views.setdefault(ident, []).append(goal['routed_offset'])
++            self.last_attempt[ident] = now
+--- a/phased_hybrid.py
++++ b/phased_hybrid.py
+@@ -74,5 +74,8 @@
+                                     tuple(track.center) in self.schedule.batch.completed)]
+         goal = self.schedule.decide(grid,cost,pose,transform,viewed,
+-                                    now-owner.started,owner.p('duration'),veto,choices,fitted,probe_only=print_only)
++                                    now-owner.started,owner.p('duration'),veto,choices,fitted,probe_only=print_only,
++                                    pending_approach=(owner.approach, owner.targets, clock))
++        if goal is not None and 'routed_approach_m' in goal:
++            return goal
+         protected = goal is not None and (goal.get('weak_wall') or 'bearing_advance_id' in goal or goal.get('joint_continuation')
+             or any(k in goal for k in ('distant_hint_id', 'survey_escape'))
+@@ -88,9 +91,11 @@
+         super().dispatched(owner,goal)
+         elapsed = owner.now()-owner.started
++        if 'routed_offset' in goal:
++            owner.approach.routed_dispatched(goal, owner.now())
+         self.schedule.dispatched(goal,elapsed)
+         self.next_box_probe = owner.now()+3. if (goal.get('r32_kind')=='wall_surface' or goal.get('cluster_exit')) else float('inf')
+         if goal.get('survey_escape') or 'distant_hint_id' in goal or 'survey_wall' in goal:
+             self.next_box_probe = float('inf')
+-        row = dict(region_arrived_s=self.schedule.joint.entered if self.schedule.joint.anchor is not None else None,
++        row = dict(routed_approach_m=goal.get('routed_approach_m'), region_arrived_s=self.schedule.joint.entered if self.schedule.joint.anchor is not None else None,
+                    region_stops=self.schedule.joint.stops, face_frontier_gap_m=goal.get('face_frontier_gap_m'),
+                    original_wall_route_m=goal.get('original_wall_route_m'), survey_wall=goal.get('survey_wall'),survey_visible_sections=goal.get('survey_visible_sections'),
+--- a/center_wall.py
++++ b/center_wall.py
+@@ -130,8 +130,7 @@
+         self.counts = {}
+
+-    def decide(self, grid, costmap, pose, transform, viewed, elapsed, duration, veto, choices=(), fitted=(), probe_only=False):
++    def decide(self, grid, costmap, pose, transform, viewed, elapsed, duration, veto, choices=(), fitted=(), probe_only=False, pending_approach=None):
+         if transform is None or viewed is None or viewed.shape != (4,)+grid.cells.shape:
+             return None
+-        samples = surface_cells(grid, pose)
+         free = (grid.cells >= 0) & (grid.cells <= 25)
+         distance_cells = ndimage.distance_transform_edt(np.pad(free, 1))[1:-1, 1:-1]
+@@ -139,4 +138,12 @@
+         nav = r32.connected_nav_cells(costmap, pose)
+         self.counts = {'interior': 0, 'wall': 0}
++        if pending_approach is not None and not probe_only:
++            approach, targets, clock = pending_approach
++            goal = approach.routed_approach(grid, costmap, reachable, nav, distances, pose,
++                                            targets, clock, duration-elapsed, veto)
++            if goal is not None:
++                self.reason = 'route_to_confirmed_print_side'
++                return goal
++        samples = surface_cells(grid, pose)
+         clearance = distance_cells * grid.resolution
+         candidates = {'interior': [], 'wall': []}
