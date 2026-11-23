@@ -1,0 +1,282 @@
+--- a/osp_mission/center_wall.py
++++ b/osp_mission/center_wall.py
+@@ -12,6 +12,7 @@
+ from osp_mission.tracked_faces import TrackedFaces
+ from osp_mission.cluster_exit import ClusterExit
+ from osp_mission.box_batch import BoxBatch
++from osp_mission.wall_first import WallFirst
+ from osp_mission.wall_bearings import WallBearings
+ from osp_mission.visual_survey import VisualSurvey
+
+@@ -73,7 +74,7 @@
+     return frontier
+
+
+-def surface_cells(grid, pose):
++def surface_cells(grid, pose, object_centers=None):
+     """Separate occupied islands inside explored free space from its exterior."""
+     data = grid.cells
+     free = (data >= 0) & (data <= 25)
+@@ -100,6 +101,12 @@
+                 continue
+             kind = 'interior' if inner else 'wall'
+             stride = max(1, round((.45 if inner else .75)/grid.resolution))
++            if object_centers is not None and inner and component not in object_centers:
++                height = (rr.stop-rr.start)*grid.resolution
++                width = (cc.stop-cc.start)*grid.resolution
++                # Thin fragments stay in the collision map without interrupting a wall leg.
++                object_centers[component] = (grid.world((rr.start+rr.stop-1)/2, (cc.start+cc.stop-1)/2)
++                                             if min(height, width) >= .30 and max(height, width) >= .45 else None)
+             key = (kind, component, side, row//stride, col//stride)
+             samples.setdefault(key, []).append((row, col))
+     return samples
+@@ -107,7 +114,9 @@
+
+ class CenterWall:
+     def __init__(self):
+-        self.phase = 'interior'
++        self.phase = 'wall'
++        self.patrol = WallFirst()
++        self.wall_started = False
+         self.reason = 'mission_start'
+         self.idle_since = None
+         self.wall_anchor = None
+@@ -124,7 +133,8 @@
+     def decide(self, grid, costmap, pose, transform, viewed, elapsed, duration, veto, choices=(), fitted=(), probe_only=False):
+         if transform is None or viewed is None or viewed.shape != (4,)+grid.cells.shape:
+             return None
+-        samples = surface_cells(grid, pose)
++        object_centers = {}
++        samples = surface_cells(grid, pose, object_centers)
+         reachable, distances = grid.reachable(pose[:2], .32)
+         nav = r32.connected_nav_cells(costmap, pose)
+         self.counts = {'interior': 0, 'wall': 0}
+@@ -155,7 +165,7 @@
+                     candidates['interior'].append(view)
+         # Compare generic and fitted faces together, including completed boxes.
+         wall_normals = None if probe_only or self.survey.camera is None else self.survey.normals.update(grid.cells,grid.resolution)
+-        for (kind, _, side, _, _), cells in samples.items():
++        for (kind, component, side, _, _), cells in samples.items():
+             if probe_only and kind != 'interior':
+                 continue
+             # Keep one-off scan speckles out of each inspection target.
+@@ -189,7 +199,9 @@
+             if deferred:
+                 continue
+             if kind == 'interior':
++                center = object_centers.get(component)
+                 fields = dict(r32_kind='interior_surface', surface_odom=history_point.tolist(),
++                              patrol_object=odom_point(center, transform).tolist() if center is not None else None,
+                               normal_odom=history_yaw, surface_map=face.tolist(), previous_attempts=len(attempts),
+                               features=np.zeros(5), stationary=False, face_inspection=True, scan_angle=math.radians(36))
+                 view = inspection_pose(grid, costmap, nav, distances, clearance, face, normal,
+@@ -229,102 +241,80 @@
+             if best is not None:
+                 candidates[kind].append(best)
+         self.counts = {k:len(v) for k,v in candidates.items()}
+-        ordered = sorted(candidates['interior'], key=self.batch.rank)
+-        # A registered marker does not establish that the other sides are empty.
+-        # Fitted and generic candidates above already exclude camera-observed faces.
+-        candidates['interior'] = ordered
+-        fresh = [item for item in candidates['interior'] if not item[1]['previous_attempts']]
+-        boxes = [item for item in fresh if item[1].get('batch_box') is not None]
++        interiors = sorted(candidates['interior'], key=self.batch.rank)
+         crowded = self.cluster.crowded_centers(elapsed)
+-        if crowded:
+-            outside = [item for item in fresh if not self.cluster.local_fragment(item[1], crowded)]
+-            # Keep genuine box evidence ahead of the weak wall cue, including close neighbours.
+-            boxes = [item for item in outside if item[1].get('batch_box') is not None]
++        patrol_interiors = [item for item in interiors if item[1].get('batch_box') is not None
++                            or not self.cluster.local_fragment(item[1], crowded)]
++        remaining = duration-elapsed
++        obstacle = self.patrol.obstacle(patrol_interiors, odom_point(pose[:2], transform), elapsed, remaining)
+         if probe_only:
+-            if crowded:
+-                fresh = outside
+-            if getattr(self, 'on_cluster_exit', False):
+-                return boxes[0][1] if boxes else None
+-            preferred = boxes if getattr(self,'on_weak_route',False) else fresh
+-            return preferred[0][1] if preferred else None
++            return obstacle
++
++        walls = candidates['wall']
+         self.survey.progress(samples, grid, viewed, transform, pose, elapsed, DIRECTIONS)
+-        alternative = self.survey.choose(grid, costmap, nav, reachable, distances, pose, transform,
+-                                         candidates['wall'], fresh, elapsed, duration, veto)
+-        if alternative is not None:
+-            self.phase = 'wall' if 'survey_wall' in alternative else 'interior'
+-            self.reason = ('unobserved_wall_reserved' if self.phase == 'wall' else
+-                           'inspect_new_cluster_face' if alternative.get('survey_new_face') else 'triangulated_print_revisit')
+-            if self.survey.loop_center is not None and 'survey_wall' in alternative:
+-                alternative['survey_escape'] = True
+-            return alternative
+-        center = self.survey.loop_center
+-        if center is not None and elapsed-self.survey.last_escape >= 35.:
+-            # Restrict endpoints, so a necessary shared transit corridor stays usable.
+-            remote = [item for item in fresh if np.linalg.norm(item[1]['surface_odom']-center)>=2.2]
+-            frontier = discovery_frontier((c for c in choices
+-                if np.linalg.norm(odom_point((c['x'],c['y']),transform)-center)>=2.2),costmap,nav,veto)
+-            escape = remote[0][1] if remote else frontier
++        survey = self.survey.choose(grid, costmap, nav, reachable, distances, pose, transform,
++                                    walls, (), elapsed, duration, veto)
++        if survey is not None and 'distant_hint_id' in survey:
++            self.reason = 'triangulated_print_revisit'
++            return survey
++        returning = self.patrol.object_center is not None
++        if obstacle is not None and (returning or self.wall_started):
++            self.phase, self.reason = 'interior', 'inspect_nearby_obstacle'
++            return obstacle
++
++        loop = self.survey.loop_center
++        if loop is not None and not returning and elapsed-self.survey.last_escape >= 35.:
++            remote_walls = [item for item in walls if np.linalg.norm(item[1]['surface_odom']-loop) >= 2.2]
++            if remote_walls:
++                self.phase, self.reason = 'wall', 'leave_repeated_low_gain_route'
++                return dict(min(remote_walls, key=lambda item:item[0])[1], survey_escape=True)
++            remote = (c for c in choices if np.linalg.norm(odom_point((c['x'], c['y']), transform)-loop) >= 2.2)
++            escape = discovery_frontier(remote, costmap, nav, veto)
+             if escape is None:
+-                escape = self.survey.remote_view(choices,grid,costmap,nav,reachable,distances,transform,
+-                                                 elapsed,duration-elapsed,veto)
++                escape = self.survey.remote_view(choices, grid, costmap, nav, reachable, distances,
++                                                 transform, elapsed, remaining, veto)
+             if escape is not None:
+-                self.phase,self.reason = 'interior','leave_repeated_low_gain_route'
+-                return dict(escape,survey_escape=True)
+-        if not boxes:
+-            goal = self.weak.choose(candidates['wall'],grid,transform,self.weak_known,
+-                                    self.weak_clock,duration-elapsed)
+-            if goal is not None:
+-                self.phase,self.reason = 'wall','persistent_small_wall_candidate'
+-                return goal
+-        if crowded and not boxes:
+-            if outside:
+-                self.phase, self.reason = 'interior', 'inspect_other_surface'
+-                return outside[0][1]
+-            # Keep the original frontier gain, safety, reachability and failed-goal filters.
+-            remote = (c for c in choices if all(np.linalg.norm(odom_point((c['x'], c['y']), transform)-center) >= 2.4
+-                                           for center in crowded))
+-            frontier = discovery_frontier(remote, costmap, nav, veto)
+-            if frontier is not None and duration-elapsed > min(.15*duration, 12. + 5.*self.counts['wall']):
+-                self.phase, self.reason = 'interior', 'discover_beyond_inspected_boxes'
+-                self.idle_since, self.wall_anchor = None, None
+-                return dict(frontier, cluster_exit=True)
+-        if crowded and boxes:
+-            fresh = outside
+-        wall_reserve = min(.15*duration, 12. + 5.*self.counts['wall'])
+-        frontier = None if fresh else discovery_frontier(choices, costmap, nav, veto)
+-        if fresh or (frontier is not None and duration-elapsed > wall_reserve):
+-            if self.phase == 'wall':
+-                self.wall_anchor = None
+-            self.phase = 'interior'
+-            self.idle_since = None
+-            if fresh:
+-                self.reason = 'unseen_reachable_object'
+-                return fresh[0][1]
+-            if not candidates['interior']:
+-                self.reason = 'explore_open_frontier'
+-                return frontier
+-        if self.phase == 'interior':
+-            # Reserve a small final wall pass only when real wall viewpoints
+-            # exist. A longer mapped perimeter merits more of the remaining time.
+-            if candidates['wall'] and duration-elapsed <= wall_reserve:
+-                self.phase,self.reason = 'wall','remaining_time_for_mapped_walls'
+-            elif frontier is None and elapsed >= duration*.55 and candidates['wall']:
+-                self.phase,self.reason = 'wall','no_untried_reachable_interior_view'
+-            elif candidates['interior']:
+-                self.idle_since = None
+-            elif self.idle_since is None:
+-                self.idle_since = elapsed
+-            elif (candidates['wall'] and elapsed-self.idle_since>=min(35.,duration*.13)
+-                  and elapsed>=min(60.,duration*.22)):
+-                self.phase,self.reason = 'wall','no_reachable_interior_views'
+-        best = min(candidates[self.phase],key=lambda x:x[0],default=None)
+-        return best[1] if best else None
++                self.phase, self.reason = 'wall', 'leave_repeated_low_gain_route'
++                return dict(escape, survey_escape=True)
++
++        if walls:
++            self.phase = 'wall'
++            if returning:
++                self.reason = 'resume_wall_after_obstacle'
++                continuations = walls
++                if self.wall_anchor is not None:
++                    last, normal = self.wall_anchor
++                    forward = np.array([-math.sin(normal), math.cos(normal)])
++                    same_wall = [item for item in walls
++                                 if math.cos(item[1]['normal_odom']-normal) > .70
++                                 and (step := np.asarray(item[1]['surface_odom'])-last) @ forward >= -.25
++                                 and np.linalg.norm(step) <= 3.]
++                    if same_wall:
++                        continuations = same_wall
++                return min(continuations, key=lambda item:item[0])[1]
++            weak = self.weak.choose(walls, grid, transform, self.weak_known, self.weak_clock, remaining)
++            if weak is not None:
++                self.reason = 'persistent_small_wall_candidate'
++                return weak
++            self.reason = 'follow_wall_patrol'
++            return survey if survey is not None else min(walls, key=lambda item:item[0])[1]
++
++        frontier = discovery_frontier(choices, costmap, nav, veto)
++        if frontier is not None:
++            self.phase, self.reason = 'wall', 'discover_next_wall'
++            return frontier
++        if interiors and not returning:
++            self.phase, self.reason = 'interior', 'no_reachable_wall_view'
++            return obstacle if obstacle is not None else interiors[0][1]
++        return None
+
+     def attempts(self, kind, anchor, normal_yaw, radius):
+         return [t for k,p,a,t in self.history if k == kind and
+                 np.linalg.norm(anchor-p)<radius and math.cos(normal_yaw-a)>.70]
+
+     def dispatched(self, goal, elapsed):
++        self.patrol.dispatched(goal, elapsed)
++        self.wall_started |= goal.get('r32_kind') == 'wall_surface'
+         self.on_weak_route = bool(goal.get('weak_wall'))
+         self.weak.dispatched(goal)
+         self.survey.dispatched(goal, elapsed)
+@@ -334,6 +324,7 @@
+         if 'surface_odom' in goal:
+             anchor = np.asarray(goal['surface_odom'])
+             normal = goal['normal_odom']
+-            self.history.append((self.phase,anchor,normal,elapsed))
+-            if self.phase=='wall':
++            kind = 'wall' if goal.get('r32_kind') == 'wall_surface' else 'interior'
++            self.history.append((kind,anchor,normal,elapsed))
++            if kind == 'wall':
+                 self.wall_anchor = anchor,normal
+--- a/osp_mission/phased_hybrid.py
++++ b/osp_mission/phased_hybrid.py
+@@ -80,9 +80,7 @@
+         super().dispatched(owner,goal)
+         elapsed = owner.now()-owner.started
+         self.schedule.dispatched(goal,elapsed)
+-        self.next_box_probe = owner.now()+3. if (goal.get('r32_kind')=='wall_surface' or goal.get('cluster_exit')) else float('inf')
+-        if goal.get('survey_escape') or 'distant_hint_id' in goal or 'survey_wall' in goal:
+-            self.next_box_probe = float('inf')
++        self.next_box_probe = owner.now()+3. if self.schedule.patrol.probe_wall else float('inf')
+         row = dict(survey_wall=goal.get('survey_wall'),survey_visible_sections=goal.get('survey_visible_sections'),
+                    survey_escape=bool(goal.get('survey_escape')), distant_hint_id=goal.get('distant_hint_id'),
+                    elapsed=elapsed,phase=self.schedule.phase,reason=self.schedule.reason,
+@@ -91,6 +89,7 @@
+                    crowded_centers=[list(c) for c in self.schedule.cluster.crowded_centers(elapsed)],
+                    weak_wall=bool(goal.get('weak_wall')),local_batch=goal.get('local_batch'), completed_box=goal.get('completed_box'),
+                    batch_box=goal.get('batch_box'), marker_id=goal.get('approach_id',goal.get('focus_id')),
++                   patrol_inspection=goal.get('patrol_inspection'),
+                    surface=goal.get('surface_map'), fitted_face=goal.get('fitted_face'),
+                    standoff_m=goal.get('standoff_m'), clearance_m=goal.get('clearance_m'))
+         try:
+--- a/osp_mission/mission.py
++++ b/osp_mission/mission.py
+@@ -759,7 +759,9 @@
+                   and wall.check(self,now))
+         if self.goal_handle or self.pending:
+             hybrid=getattr(self,'hybrid',None)
+-            if (hybrid is not None and self.kind=='nav' and not protected and not self.cancel_reason
++            patrol = getattr(getattr(hybrid, 'schedule', None), 'patrol', None)
++            wall_probe = patrol is not None and patrol.probe_wall and self.marker_look.pending is None
++            if (hybrid is not None and self.kind=='nav' and (not protected or wall_probe) and not self.cancel_reason
+                     and not self.contact_pending and not self.recovery_pending and not guard.phase
+                     and not bearing_fresh and now>=self.spin_blocked_until
+                     and not getattr(self.near_pass,'protected_navigation',False)
