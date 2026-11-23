@@ -35,7 +35,9 @@ def generate_launch_description():
         prior = Path(prior)
         previous = json.loads((prior/'protocol.json').read_text())
         current = json.loads((run/'protocol.json').read_text())
-        if (previous['physical_drive'] or previous['seed'] != current['seed'] or
+        initial = json.loads((prior/'scene.json').read_text())['robot_spawn']
+        if (list(map(float, cfg['start'])) != [float(initial[k]) for k in ('x', 'y', 'yaw')] or
+                previous['physical_drive'] or previous['seed'] != current['seed'] or
                 previous['fixture_sha256'] != current['fixture_sha256'] or
                 previous['effective_world_sha256'] != current['effective_world_sha256']):
             raise ValueError('Prior mapping requires the same simulated world and starting scene')
