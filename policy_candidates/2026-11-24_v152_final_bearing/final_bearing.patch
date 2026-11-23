@@ -1,0 +1,49 @@
+--- a/bearing_advance.py
++++ b/bearing_advance.py
+@@ -36,6 +36,16 @@
+         self.supported[ident] = row
+
+-    def choose(self, grid, cost, safe, nav, distances, pose, transform, known, now, remaining, veto):
+-        if remaining < 12. or len(self.attempts) >= 4 or not self.supported:
++    def mission_limit(self, known, expected_count):
++        # A confirmed print that used a closer look can release one opportunity
++        # for the only outstanding ID. Unconfirmed signals never earn credit.
++        if not expected_count or len(known) != expected_count - 1:
++            return 4
++        supported_registrations = {item[0] for item in self.attempts if item[0] in known}
++        return 4 + min(2, len(supported_registrations))
++
++    def choose(self, grid, cost, safe, nav, distances, pose, transform, known, now, remaining, veto,
++               expected_count=0):
++        limit = self.mission_limit(known, expected_count)
++        if remaining < 12. or len(self.attempts) >= limit or not self.supported:
+             return None
+         best = None
+@@ -78,5 +88,6 @@
+                                 scan_angle=sweep, distance=walk, features=np.array([0., 0., walk, 0., 0.]),
+                                 bearing_advance_id=ident, bearing_stamp=stamp, bearing_origin=origin,
+-                                bearing_pixels=pixels, bearing_progress_m=progress)
++                                bearing_pixels=pixels, bearing_progress_m=progress,
++                                bearing_attempt_limit=limit, bearing_attempt_number=len(self.attempts)+1)
+                     if veto(goal):
+                         continue
+--- a/center_wall.py
++++ b/center_wall.py
+@@ -310,5 +310,6 @@
+         if not local_box:
+             closer = self.bearing_advance.choose(grid, costmap, reachable, nav, distances, pose, transform,
+-                                                self.survey.known, self.weak_clock, duration-elapsed, veto)
++                                                self.survey.known, self.weak_clock, duration-elapsed, veto,
++                                                expected_count=pending_approach[0].expected_marker_count if pending_approach else 0)
+             if closer is not None:
+                 self.reason = 'advance_toward_repeated_unranged_id'
+--- a/phased_hybrid.py
++++ b/phased_hybrid.py
+@@ -97,5 +97,6 @@
+         if goal.get('survey_escape') or 'distant_hint_id' in goal or 'survey_wall' in goal:
+             self.next_box_probe = float('inf')
+-        row = dict(routed_approach_m=goal.get('routed_approach_m'), region_arrived_s=self.schedule.joint.entered if self.schedule.joint.anchor is not None else None,
++        row = dict(bearing_attempt_number=goal.get('bearing_attempt_number'),
++                   bearing_attempt_limit=goal.get('bearing_attempt_limit'), routed_approach_m=goal.get('routed_approach_m'), region_arrived_s=self.schedule.joint.entered if self.schedule.joint.anchor is not None else None,
+                    region_stops=self.schedule.joint.stops, face_frontier_gap_m=goal.get('face_frontier_gap_m'),
+                    original_wall_route_m=goal.get('original_wall_route_m'), survey_wall=goal.get('survey_wall'),survey_visible_sections=goal.get('survey_visible_sections'),
