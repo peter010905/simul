@@ -1,0 +1,61 @@
+--- a/open_regions.py
++++ b/open_regions.py
+@@ -9,5 +9,6 @@
+ def choose_unvisited(choices, grid, cost, nav, safe, distances, transform,
+-                     trail, elapsed, remaining, veto):
+-    recent = np.asarray([p[1:] for p in trail if 0 <= elapsed-p[0] <= 200.])
+-    if len(recent) < 4:
++                     trail, elapsed, remaining, veto, *, visited_xy=None):
++    visited = (np.asarray([p[1:] for p in trail if p[0] <= elapsed])
++               if visited_xy is None else visited_xy)
++    if len(visited) < 4:
+         return None
+@@ -27,3 +28,3 @@
+         position = odom_point(point, transform)
+-        novelty = float(np.linalg.norm(recent-position, axis=1).min())
++        novelty = float(np.linalg.norm(visited-position, axis=1).min())
+         if novelty < 1.5:
+--- a/visual_survey.py
++++ b/visual_survey.py
+@@ -39,2 +39,3 @@
+         self.trail = deque(maxlen=480)
++        self.travel_memory = None
+         self.normals = AxisNormalCache()
+@@ -97,3 +98,11 @@
+         self.trail.append((t, x, y))
++
++    def visited_positions(self, elapsed):
++        # A representative actually visited position per odometry cell plus
++        # recent detailed trajectory. Neither marks a surface as camera-observed.
++        points = [p[1:] for p in self.trail if p[0] <= elapsed]
++        if self.travel_memory is not None:
++            points.extend(v['sample_xy'] for v in self.travel_memory.cells.values() if 'sample_xy' in v)
++        return np.asarray(points, dtype=float).reshape(-1, 2)
+-
++
+     def printed(self, event, clock, elapsed):
+@@ -285,3 +294,3 @@
+             return None
+-        visited = np.array([p[1:] for p in self.trail if elapsed-p[0] <= 170.])
++        visited = self.visited_positions(elapsed)
+         options = []
+--- a/phased_hybrid.py
++++ b/phased_hybrid.py
+@@ -61,2 +61,3 @@
+         self.schedule.weak_clock = clock
++        self.schedule.survey.travel_memory = getattr(owner, 'exploration_memory', None)
+         self.schedule.survey.camera = getattr(owner, 'inspection_camera', None)
+--- a/center_wall.py
++++ b/center_wall.py
+@@ -321,3 +321,4 @@
+                 region = choose_unvisited(choices, grid, costmap, nav, reachable, distances, transform,
+-                                          self.survey.trail, elapsed, duration-elapsed, veto)
++                                          self.survey.trail, elapsed, duration-elapsed, veto,
++                                          visited_xy=self.survey.visited_positions(elapsed))
+                 if region is not None:
+--- a/exploration_memory.py
++++ b/exploration_memory.py
+@@ -45,2 +45,3 @@
+             previous['entries'] += 1
++        previous['sample_xy'] = (float(x), float(y))
+         previous['last_exit'] = stamp
