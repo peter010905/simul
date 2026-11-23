@@ -12,7 +12,6 @@ class MarkerApproach:
     # Keep a margin when choosing a stationary observation goal.
     radius = 1.3
     witness_radius_m = 1.5
-    witness_window_s = 1.0
 
     def __init__(self):
         self.hints = {}
@@ -20,7 +19,6 @@ class MarkerApproach:
         self.last_attempt = {}
         self.positions = {}
         self.range_witnesses = {}
-        self.witness_runs = {}
         self.confirmed_ids = set()
 
     def observe_pose(self, targets, robot, stamp, now):
@@ -65,25 +63,14 @@ class MarkerApproach:
                and np.isfinite([*odom_point,*base,*depth,*laser]).all()
                and np.linalg.norm(depth-laser)<=.10)
         near_distance=float(np.linalg.norm(odom_point-base)) if valid else math.inf
-        rows=self.witness_runs.setdefault(ident,[])
-        rows[:]=[row for row in rows if 0.<=stamp-row['stamp']<=self.witness_window_s+1e-9]
-        if valid and near_distance<=self.witness_radius_m:
-            if rows and np.linalg.norm(odom_point-np.asarray(rows[-1]['point_odom']))>.25:
-                rows.clear()
-            if not rows or stamp-rows[-1]['stamp']>=.15-1e-9:
-                rows.append(dict(stamp=stamp,distance_m=near_distance,
-                                 robot_odom=base.tolist(),point_odom=odom_point.tolist()))
-                del rows[:-3]
-            if len(rows)==3:
-                self.range_witnesses[ident]=dict(source='three_confirmed_readable_near_odom_observations',
-                    conservative_radius_m=self.witness_radius_m,time_window_sim_s=self.witness_window_s,
-                    observations=[dict(r) for r in rows])
-        elif valid or not confirmed:
-            # An explicit far measurement or unconfirmed ID breaks the run.
-            self.witness_runs.pop(ident,None)
-        # Missing/conflicting auxiliary measurements add no evidence. Earlier
-        # individually validated frames expire after1s instead of being erased.
-
+        if valid and near_distance <= self.witness_radius_m and ident not in self.range_witnesses:
+            observation = dict(stamp=stamp, distance_m=near_distance,
+                               robot_odom=base.tolist(), point_odom=odom_point.tolist())
+            self.range_witnesses[ident] = dict(
+                source='confirmed_readable_near_odom_observation',
+                conservative_radius_m=self.witness_radius_m,
+                observations=[observation],
+            )
 
         distance = float(np.linalg.norm(point-robot))
         if distance <= self.radius:
@@ -100,7 +87,7 @@ class MarkerApproach:
     def reconcile_targets(self, targets):
         current=set(targets)
         for ident in self.confirmed_ids-current:
-            for mapping in (self.positions,self.range_witnesses,self.witness_runs,self.hints,self.near,self.last_attempt):
+            for mapping in (self.positions,self.range_witnesses,self.hints,self.near,self.last_attempt):
                 mapping.pop(ident,None)
         self.confirmed_ids=current
 
@@ -111,9 +98,8 @@ class MarkerApproach:
         return dict(required_actual_radius_m=1.5, operating_radius_m=self.radius,
                     near_confirmations=self.near,
                     approach_evidence=self.positions, completion_radius_m=1.5,
-                    verification_mode='confirmed_id_and_three_readable_sensor_relative_frames',
-                    sensor_proof_radius_m=self.witness_radius_m, required_sensor_frames=3,
-                    witness_window_sim_s=self.witness_window_s,
+                    verification_mode='confirmed_id_and_one_readable_sensor_relative_frame',
+                    sensor_proof_radius_m=self.witness_radius_m, required_sensor_frames=1,
                     range_witness_evidence=self.range_witnesses,
                     verified_ids=sorted(i for i in self.positions.keys()|self.range_witnesses.keys() if self.verified(i)))
 

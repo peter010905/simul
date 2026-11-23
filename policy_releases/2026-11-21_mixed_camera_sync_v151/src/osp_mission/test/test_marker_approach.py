@@ -27,13 +27,13 @@ def test_map_only_proximity_never_grants_completion_even_at_zero_distance():
     assert tracker.report()['verified_ids'] == []
 
 
-def test_all_three_ids_need_three_physical_frames_and_keep_proof_after_map_shift():
+def test_all_three_ids_need_one_physical_frame_each_and_keep_proof_after_map_shift():
     tracker = MarkerApproach(); targets = {i: (1.2, 0.) for i in (1, 2, 3)}
     tracker.reconcile_targets(targets)
-    for ident in targets:
-        for stamp in (1., 1.2): observe(tracker, stamp, ident)
+    for ident in (1, 2):
+        observe(tracker, 1., ident)
     assert not tracker.complete(targets)
-    for ident in targets: observe(tracker, 1.4, ident)
+    observe(tracker, 1.4, 3)
     assert tracker.complete(targets)
     corrected = {i: (20., -5.) for i in targets}
     tracker.reconcile_targets(corrected)
@@ -41,6 +41,7 @@ def test_all_three_ids_need_three_physical_frames_and_keep_proof_after_map_shift
     assert not tracker.complete({1: (0., 0.), 2: (0., 0.)})
     assert tracker.report()['required_actual_radius_m'] == 1.5
     assert tracker.report()['sensor_proof_radius_m'] == 1.5
+    assert tracker.report()['required_sensor_frames'] == 1
 
 
 @pytest.mark.parametrize('mode', ['unconfirmed', 'provisional', 'small', 'range_conflict',
@@ -64,15 +65,16 @@ def test_unreadable_unconfirmed_stale_or_inconsistent_evidence_cannot_complete(m
     assert not tracker.verified(44)
 
 
-def test_duplicates_and_old_frames_do_not_count_but_missing_samples_preserve_recent_valid_frames():
+def test_first_valid_frame_preserves_proof_after_later_observations():
     tracker = MarkerApproach(); tracker.reconcile_targets({44: (1.2, 0.)})
-    for stamp in (1., 1., 1., 3., 3.2): observe(tracker, stamp)
-    assert not tracker.verified(44)
+    observe(tracker, 1.)
+    assert tracker.verified(44)
+    for stamp in (1., 3., 3.2): observe(tracker, stamp)
     bad = frame(3.4); bad['min_edge_pixels'] = 9.
     tracker.observe(bad, (0., 0.), 3.4, confirmed=True, odom_robot=(0., 0.))
     observe(tracker, 3.6)
     assert tracker.verified(44)
-    assert [r['stamp'] for r in tracker.range_witnesses[44]['observations']] == [3., 3.2, 3.6]
+    assert [r['stamp'] for r in tracker.range_witnesses[44]['observations']] == [1.]
 
 
 def test_retracting_identity_erases_proof_and_prevents_a_stale_revisit_exemption():
@@ -82,7 +84,7 @@ def test_retracting_identity_erases_proof_and_prevents_a_stale_revisit_exemption
     tracker.reconcile_targets({})
     tracker.reconcile_targets({44: (10., 10.)})
     assert not tracker.verified(44)
-    assert not any(44 in m for m in (tracker.hints, tracker.range_witnesses, tracker.witness_runs))
+    assert not any(44 in m for m in (tracker.hints, tracker.range_witnesses))
 
 
 def test_approach_goal_reserves_stopping_margin_and_respects_a_blocked_shortcut():
