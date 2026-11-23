@@ -1,0 +1,96 @@
+--- a/detector.py
++++ b/detector.py
+@@ -271,6 +271,16 @@
+                             self.diagnostics['multiview_ranges'] = self.diagnostics.get('multiview_ranges', 0) + 1
+                     if xyz is None:
+                         self.reject(ident,'no_range')
++                        if any(i == ident and np.array_equal(q, c) for i, q, _ in native):
++                            try:
++                                optical = self.tf.lookup_transform(self.p('odom_frame'), frame, stamp).transform
++                                origin, direction = sight_in_odom(optical, ray)
++                                self.bearing_pub.publish(String(data=json.dumps(dict(
++                                    source='native_without_range', stamp=stamp.nanoseconds/1e9, id=int(ident),
++                                    origin_odom=origin[:2].tolist(), yaw_odom=math.atan2(direction[1], direction[0]),
++                                    pixels=float(edges.min())), allow_nan=False)))
++                            except Exception as exc:
++                                self.get_logger().debug(f'Unranged print ray unavailable: {exc}')
+                         try:
+                             self.distant_sighting(int(ident), c, native, ray, float(edges.min()), frame, stamp)
+                         except Exception as exc:
+--- a/mission.py
++++ b/mission.py
+@@ -213,7 +213,15 @@
+         return self.get_clock().now().nanoseconds/1e9 if self.get_parameter('use_sim_time').value else time.monotonic()
+     def on_marker_bearing(self, m):
+         cue=json.loads(m.data)
+-        age=self.get_clock().now().nanoseconds/1e9-cue['stamp']
++        clock = self.get_clock().now().nanoseconds/1e9
++        if cue.get('source') == 'native_without_range':
++            if self.state == 'running' and self.hybrid is not None:
++                try:
++                    self.hybrid.schedule.bearing_advance.observe(cue, clock)
++                except (TypeError, ValueError, KeyError, OverflowError) as exc:
++                    self.get_logger().debug(f'Invalid native print bearing: {exc}')
++            return
++        age=clock-cue['stamp']
+         if cue.get('readable') and self.state == 'running' and -.1 <= age <= .5:
+             self.visual_ids.add(int(cue['id']))
+             if 'yaw_odom' in cue and 'origin_odom' in cue:
+--- a/phased_hybrid.py
++++ b/phased_hybrid.py
+@@ -70,7 +70,7 @@
+                                     tuple(track.center) in self.schedule.batch.completed)]
+         goal = self.schedule.decide(grid,cost,pose,transform,viewed,
+                                     now-owner.started,owner.p('duration'),veto,choices,fitted,probe_only=print_only)
+-        protected = goal is not None and (goal.get('weak_wall') or goal.get('joint_continuation')
++        protected = goal is not None and (goal.get('weak_wall') or 'bearing_advance_id' in goal or goal.get('joint_continuation')
+             or any(k in goal for k in ('distant_hint_id', 'survey_escape'))
+             or ('survey_wall' in goal and 'joint_views' not in goal))
+         if cue is not None and not protected:
+@@ -95,6 +95,8 @@
+                    crowded_centers=[list(c) for c in self.schedule.cluster.crowded_centers(elapsed)],
+                    weak_wall=bool(goal.get('weak_wall')),local_batch=goal.get('local_batch'), completed_box=goal.get('completed_box'),
+                    batch_box=goal.get('batch_box'), marker_id=goal.get('approach_id',goal.get('focus_id')),
++                   bearing_advance_id=goal.get('bearing_advance_id'), bearing_pixels=goal.get('bearing_pixels'),
++                   bearing_progress_m=goal.get('bearing_progress_m'),
+                    surface=goal.get('surface_map'), fitted_face=goal.get('fitted_face'),
+                    joint_views=goal.get('joint_views'), joint_walk_m=goal.get('joint_walk_m'),
+                    joint_route_m=goal.get('joint_route_m'), joint_score=goal.get('joint_score'),
+--- a/center_wall.py
++++ b/center_wall.py
+@@ -15,6 +15,7 @@
+ from osp_mission.wall_bearings import WallBearings
+ from osp_mission.visual_survey import VisualSurvey
+ from osp_mission.regional_surface import RegionalSurface
++from osp_mission.bearing_advance import BearingAdvance
+ from osp_mission.open_regions import choose_unvisited
+
+
+@@ -120,6 +121,7 @@
+         self.weak = WallBearings()
+         self.survey = VisualSurvey()
+         self.joint = RegionalSurface()
++        self.bearing_advance = BearingAdvance()
+         self.last_new_region = 0.
+         self.weak_known = []
+         self.weak_clock = 0.
+@@ -292,6 +294,11 @@
+         local_box = self.joint.can_continue(elapsed) and any(
+             goal.get('local_batch') and not goal.get('completed_box') for _, goal in boxes)
+         if not local_box:
++            closer = self.bearing_advance.choose(grid, costmap, reachable, nav, distances, pose, transform,
++                                                self.survey.known, self.weak_clock, duration-elapsed, veto)
++            if closer is not None:
++                self.reason = 'advance_toward_repeated_unranged_id'
++                return closer
+             goal = self.weak.choose(weak_walls,grid,transform,self.weak_known,
+                                     self.weak_clock,duration-elapsed, self.survey.camera, self.survey.reference_m)
+             if goal is not None:
+@@ -369,6 +376,7 @@
+     def dispatched(self, goal, elapsed):
+         self.on_weak_route = bool(goal.get('weak_wall'))
+         self.weak.dispatched(goal)
++        self.bearing_advance.dispatched(goal)
+         self.survey.dispatched(goal, elapsed)
+         self.on_cluster_exit = bool(goal.get('cluster_exit'))
+         self.cluster.dispatched(goal,elapsed)

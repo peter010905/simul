@@ -1,0 +1,161 @@
+--- a/edge_policy.py
++++ b/edge_policy.py
+@@ -57,6 +57,11 @@
+     return .85*focal*.08/18
+
+
++def inside_coverage_range(distance, incidence, frontal_limit):
++    """Scalar or array camera geometry shared by prediction and RGB evidence."""
++    return (distance > .25) & (incidence > .6) & (distance < frontal_limit * incidence)
++
++
+ class EdgeCoverage:
+     """Camera evidence is attached to a physical side, not an arbitrary view bin."""
+
+@@ -97,9 +102,9 @@
+         dy=camera_y-f['py'];dx=camera_x-f['px'];lengths=np.hypot(dy,dx)
+         incidence=(dy*f['ny']+dx*f['nx'])/np.maximum(lengths,1e-9)
+         relative=(np.arctan2(-dy,-dx)-camera[2]+math.pi)%(2*math.pi)-math.pi
+-        reliable=hit[f['y'],f['x']]&(lengths*resolution>.25)&(incidence>.6)
++        reliable = hit[f['y'],f['x']] & inside_coverage_range(
++            lengths * resolution, incidence, readable_distance(focal))
+         reliable &= np.abs(relative)<horizontal_fov/2
+-        reliable &= lengths*resolution<readable_distance(focal)*incidence
+         reliable &= lengths*resolution*np.cos(relative)<8.
+         indices=np.flatnonzero(reliable)
+         clear=visible(data,camera_y,camera_x,f['py'][indices],f['px'][indices])
+--- a/visual_survey.py
++++ b/visual_survey.py
+@@ -5,6 +5,7 @@
+ import numpy as np
+
+ from osp_mission.normal_cache import AxisNormalCache
++from osp_mission.edge_policy import inside_coverage_range, readable_distance
+
+
+ def rotation(angle):
+@@ -58,7 +59,16 @@
+         if not self.camera or self.reference_m <= 0 or self.readable_px <= 0:
+             return (.67,.88,1.15)
+         distance = float(np.clip(.85*self.camera[0]*self.reference_m/self.readable_px,1.25,3.))
+-        return (.67,.88,1.15,.75*distance,distance)
++        # Keep distant endpoints available to corroborated prints. A generic
++        # wall survey prefers a point where the coverage ledger accepts RGB.
++        survey = min(distance, .85 * self.coverage_limit())
++        return tuple(x for x in dict.fromkeys((.67, .88, 1.15, .75 * distance, distance, .75 * survey)) if x != survey) + (survey,)
++
++    def coverage_limit(self):
++        if self.camera is None or self.readable_px <= 0:
++            return 0.
++        fx = self.camera[0]
++        return min(readable_distance(fx), fx * self.reference_m / self.readable_px)
+
+     @staticmethod
+     def wall_normal(fields, row, col, dx, dy, yaw):
+@@ -226,14 +236,18 @@
+             for point in points:
+                 goal = safe_goal(grid,cost,nav,safe,distances,point,face,normal,veto,
+                                  dict(g,scan_angle=math.radians(22),survey_wall=list(key)))
+-                if goal is None or goal['distance']/.20+4 > duration-elapsed:
++                target_ray = point - face
++                target_distance = float(np.linalg.norm(target_ray))
++                target_incidence = float(target_ray @ normal) / max(.01, target_distance)
++                if (goal is None or not inside_coverage_range(target_distance, target_incidence, self.coverage_limit())
++                        or goal['distance']/.20+4 > duration-elapsed):
+                     continue
+                 delta = all_faces-point
+                 ranges = np.maximum(np.linalg.norm(delta,axis=1),.01)
+                 aligned = -(units*delta).sum(axis=1)/ranges
+                 yaw = goal['yaw']+.5*goal['scan_angle']
+                 visible = (delta@np.array([math.cos(yaw),math.sin(yaw)])/ranges >= math.cos(.44*hfov))
+-                readable = (aligned >= .55) & (fx*self.reference_m*aligned/ranges >= self.readable_px)
++                readable = inside_coverage_range(ranges, aligned, self.coverage_limit())
+                 ids = np.flatnonzero(visible & readable)
+                 # Count distinct, actually unobserved wall sections in line of sight.
+                 seen = set()
+--- a/center_wall.py
++++ b/center_wall.py
+@@ -8,7 +8,7 @@
+ from osp_mission import _r32_navigation_core as r32
+ from osp_mission.adaptive_faces import inspection_pose
+ from osp_mission.box_views import odom_point
+-from osp_mission.edge_policy import DIRECTIONS
++from osp_mission.edge_policy import DIRECTIONS, inside_coverage_range
+ from osp_mission.tracked_faces import TrackedFaces
+ from osp_mission.cluster_exit import ClusterExit
+ from osp_mission.box_batch import BoxBatch
+@@ -161,6 +161,8 @@
+                     candidates['interior'].append(view)
+         # Compare generic and fitted faces together, including completed boxes.
+         wall_normals = None if probe_only or self.survey.camera is None else self.survey.normals.update(grid.cells,grid.resolution)
++        wall_limit = self.survey.coverage_limit()
++        standoffs = self.survey.standoffs()
+         for (kind, _, side, _, _), cells in samples.items():
+             if probe_only and kind != 'interior':
+                 continue
+@@ -205,7 +207,7 @@
+                 continue
+             tangent = np.array([-normal[1],normal[0]])
+             best = None
+-            for stand in self.survey.standoffs():
++            for stand in standoffs:
+                 for shift in (0.,-.28,.28):
+                     point = face+normal*stand+tangent*shift
+                     cell = grid.index(*point)
+@@ -224,17 +226,23 @@
+                                 previous_attempts=len(attempts))
+                     if veto(goal):
+                         continue
+-                    reference = self.survey.standoffs()[-1]
++                    reference = standoffs[-1]
+                     score = distances[cell] + .65*abs(stand-reference) + .3*abs(shift) + 2.*len(attempts)
+                     if kind=='wall' and self.wall_anchor is not None:
+                         last, last_normal = self.wall_anchor
+                         step = anchor-last
+                         forward = np.array([-math.sin(last_normal), math.cos(last_normal)])
+                         score += .55*np.linalg.norm(step) + 2.5*max(0.,-float(step@forward))
+-                    if best is None or score<best[0]:
+-                        best = score,goal
++                    distance = math.hypot(stand, shift)
++                    coverable = bool(inside_coverage_range(distance, stand / distance, wall_limit))
++                    goal['wall_coverage_possible'] = coverable
++                    ranking = (not coverable, score)
++                    if best is None or ranking < best[0]:
++                        best = ranking, goal
+             if best is not None:
+-                candidates[kind].append(best)
++                candidates[kind].append((best[0][1], best[1]))
++        weak_walls = candidates['wall']
++        candidates['wall'] = [item for item in weak_walls if item[1]['wall_coverage_possible']]
+         self.counts = {k:len(v) for k,v in candidates.items()}
+         ordered = sorted(candidates['interior'], key=self.batch.rank)
+         # A registered marker does not establish that the other sides are empty.
+@@ -285,7 +293,7 @@
+         local_box = self.joint.can_continue(elapsed) and any(
+             goal.get('local_batch') and not goal.get('completed_box') for _, goal in boxes)
+         if not local_box:
+-            goal = self.weak.choose(candidates['wall'],grid,transform,self.weak_known,
++            goal = self.weak.choose(weak_walls,grid,transform,self.weak_known,
+                                     self.weak_clock,duration-elapsed, self.survey.camera, self.survey.reference_m)
+             if goal is not None:
+                 self.phase,self.reason = 'wall','persistent_small_wall_candidate'
+--- a/joint_surface.py
++++ b/joint_surface.py
+@@ -1,6 +1,8 @@
+ """Compare safe inspection poses by new camera coverage and route cost."""
+ from collections import deque
+ from dataclasses import dataclass
++
++from osp_mission.edge_policy import inside_coverage_range, readable_distance
+ import math
+
+
+@@ -71,6 +73,8 @@
+             continue
+         normal = target.goal['normal_odom'] - rotation
+         alignment = -math.cos(bearing - normal)
++        if target.key[0] == 'wall' and not inside_coverage_range(distance, alignment, readable_distance(fx)):
++            continue
+         if alignment < .55 or fx * reference_m * alignment / distance < readable_px:
+             continue
+         if grid.line_clear((x, y), (sx + .10 * math.cos(normal), sy + .10 * math.sin(normal))):

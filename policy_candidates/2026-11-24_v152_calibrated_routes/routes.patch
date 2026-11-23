@@ -1,0 +1,161 @@
+--- a/_r32_navigation_core.py
++++ b/_r32_navigation_core.py
+@@ -6,6 +6,8 @@
+
+ import numpy as np
+ from scipy import ndimage
++
++from osp_mission.grid_travel import travel_distances
+
+
+ # Shortest marker edge, in pixels, that perception accepts for a metric fix.
+@@ -139,10 +141,11 @@
+         cells[inside.astype(bool) & (cells < 0)] = 0
+         return Grid(cells,self.resolution,self.origin)
+
+-    def reachable(self, robot, clearance, minimum_clearance=.23):
++    def reachable(self, robot, clearance, minimum_clearance=.23, *, distance_cells=None):
+         free = (self.cells >= 0) & (self.cells <= 25)
+         # Padding makes the map edge an obstacle as well as occupied/unknown cells.
+-        distance = ndimage.distance_transform_edt(np.pad(free, 1))[1:-1, 1:-1]
++        distance = (ndimage.distance_transform_edt(np.pad(free, 1))[1:-1, 1:-1]
++                    if distance_cells is None else distance_cells)
+         safe = free & (distance*self.resolution >= clearance)
+         row, col = self.index(*robot)
+         if not self.inside(row, col):
+@@ -177,17 +180,7 @@
+             while endpoint is not None:
+                 traversable[endpoint] = True
+                 endpoint = previous[endpoint]
+-        distances = np.full(safe.shape, np.inf)
+-        distances[row, col] = 0
+-        queue = deque([(row, col)])
+-        # Four-connected paths avoid diagonal corner cutting.
+-        while queue:
+-            r, c = queue.popleft()
+-            for nr, nc in ((r-1,c), (r+1,c), (r,c-1), (r,c+1)):
+-                if self.inside(nr, nc) and traversable[nr,nc] and np.isinf(distances[nr,nc]):
+-                    distances[nr,nc] = distances[r,c]+self.resolution
+-                    queue.append((nr,nc))
+-        return safe, distances
++        return safe, travel_distances(traversable, row, col, self.resolution)
+
+     def line_clear(self, start, target, allow_unknown=False):
+         a, b = np.array(start), np.array(target)
+--- a/wall_bearings.py
++++ b/wall_bearings.py
+@@ -51,6 +51,9 @@
+     def choose(self, walls, grid, transform, known, now, time_left, camera, marker_m):
+         if not walls or time_left<8 or len(self.tried)>=2 or camera is None or marker_m<=0:
+             return None
++        focal_px = camera[0]
++        if not math.isfinite(focal_px) or focal_px <= 0:
++            return None
+         usable=[t for t in self.tracks if t.stable() and not t.used and 0<=now-t.last<=600]
+         if not usable:
+             return None
+@@ -71,21 +74,22 @@
+                 length=np.linalg.norm(delta,axis=1)
+                 axis=np.array([math.cos(angle),math.sin(angle)])
+                 lateral=np.abs(delta[:,0]*axis[1]-delta[:,1]*axis[0])
+-                maximum_range = 1.25 * camera[0] * marker_m / pixels
++                maximum_range = 1.25 * focal_px * marker_m / pixels
+                 ids &= (delta@axis>0)&(length>=.9)&(length<=maximum_range)&(lateral<.22+.018*length)
+                 error+=lateral/(.22+.018*length)
+             matches=[]
+             for i in np.flatnonzero(ids):
+-                cost,g=walls[i]
++                _,g=walls[i]
++                cost = g['wall_path_m']
+                 if cost/.22+6>time_left:
+                     continue
+                 surface=np.array(g['surface_map'])
+-                camera=np.asarray(in_map(('odom',*rays[-1][1]),transform))
+-                vector=camera-surface
++                observer_map=np.asarray(in_map(('odom',*rays[-1][1]),transform))
++                vector=observer_map-surface
+                 norm=np.linalg.norm(vector)
+                 if norm<.1 or vector@(np.array([g['x'],g['y']])-surface)<=0:
+                     continue
+-                if grid.line_clear(camera,surface+.12*vector/norm):
++                if grid.line_clear(observer_map,surface+.12*vector/norm):
+                     matches.append((error[i],int(i),norm))
+             if not matches:
+                 continue
+@@ -101,9 +105,10 @@
+             # Two glimpses from distinct positions can corroborate a very small silhouette.
+             origins = [t.samples[0][1] for t in tracks]
+             independent = any(math.dist(a,b)>=.50 for j,a in enumerate(origins) for b in origins[j+1:])
+-            if not stronger and (not independent or walls[i][0] > 2.4):
++            if not stronger and (not independent or walls[i][1]['wall_path_m'] > 2.4):
+                 continue
+-            cost, goal = walls[i]
++            _, goal = walls[i]
++            cost = goal['wall_path_m']
+             score = cost + min(e for _,e in supports) + (0. if stronger else 1.)
+             if best is None or score < best[0]:
+                 best = (score,goal,[(t.samples[0][0],t.samples[0][2]) for t in tracks])
+--- a/center_wall.py
++++ b/center_wall.py
+@@ -6,7 +6,7 @@
+ from scipy import ndimage
+
+ from osp_mission import _r32_navigation_core as r32
+-from osp_mission.adaptive_faces import clearance_grid, inspection_pose
++from osp_mission.adaptive_faces import inspection_pose
+ from osp_mission.box_views import odom_point
+ from osp_mission.edge_policy import DIRECTIONS
+ from osp_mission.tracked_faces import TrackedFaces
+@@ -129,10 +129,12 @@
+         if transform is None or viewed is None or viewed.shape != (4,)+grid.cells.shape:
+             return None
+         samples = surface_cells(grid, pose)
+-        reachable, distances = grid.reachable(pose[:2], .32)
++        free = (grid.cells >= 0) & (grid.cells <= 25)
++        distance_cells = ndimage.distance_transform_edt(np.pad(free, 1))[1:-1, 1:-1]
++        reachable, distances = grid.reachable(pose[:2], .32, distance_cells=distance_cells)
+         nav = r32.connected_nav_cells(costmap, pose)
+         self.counts = {'interior': 0, 'wall': 0}
+-        clearance = clearance_grid(grid)
++        clearance = distance_cells * grid.resolution
+         candidates = {'interior': [], 'wall': []}
+         self.tracked_faces.update(fitted, transform, elapsed)
+         start = grid.index(*pose[:2])
+@@ -217,7 +219,7 @@
+                     goal = dict(x=float(point[0]), y=float(point[1]), yaw=heading-sweep/2,
+                                 scan_angle=sweep, face_inspection=True, stationary=False,
+                                 distance=float(np.linalg.norm(point-pose[:2])), features=np.zeros(5),
+-                                r32_kind=kind+'_surface', surface_odom=anchor.tolist(),
++                                r32_kind=kind+'_surface', wall_path_m=float(distances[cell]), surface_odom=anchor.tolist(),
+                                 normal_odom=normal_yaw, surface_map=face.tolist(),
+                                 previous_attempts=len(attempts))
+                     if veto(goal):
+@@ -278,7 +280,11 @@
+             if escape is not None:
+                 self.phase,self.reason = 'interior','leave_repeated_low_gain_route'
+                 return dict(escape,survey_escape=True)
+-        if not boxes:
++        # Finish genuinely local box work within the existing visit budget.
++        # A remote or completed box must not starve a supported wall bearing.
++        local_box = self.joint.can_continue(elapsed) and any(
++            goal.get('local_batch') and not goal.get('completed_box') for _, goal in boxes)
++        if not local_box:
+             goal = self.weak.choose(candidates['wall'],grid,transform,self.weak_known,
+                                     self.weak_clock,duration-elapsed, self.survey.camera, self.survey.reference_m)
+             if goal is not None:
+--- a/phased_hybrid.py
++++ b/phased_hybrid.py
+@@ -70,8 +70,11 @@
+                                     tuple(track.center) in self.schedule.batch.completed)]
+         goal = self.schedule.decide(grid,cost,pose,transform,viewed,
+                                     now-owner.started,owner.p('duration'),veto,choices,fitted,probe_only=print_only)
+-        if cue is not None and (goal is None or 'joint_views' in goal
+-                                or not any(k in goal for k in ('distant_hint_id','survey_wall','survey_escape'))):
++        protected = goal is not None and (goal.get('weak_wall') or goal.get('joint_continuation')
++            or any(k in goal for k in ('distant_hint_id', 'survey_escape'))
++            or ('survey_wall' in goal and 'joint_views' not in goal))
++        if cue is not None and not protected:
++            self.schedule.reason = 'local_print_candidate'
+             return cue
+         if goal is not None:
+             return goal
