@@ -1,4 +1,36 @@
 {
+  "mixed_v15229_final_bearing": {
+    "version": "1.5.2.29-final-bearing",
+    "baseline": "1.5.2.1-focus-continuity",
+    "physical_drive": false,
+    "production_promoted": false,
+    "camera": [
+      640,
+      480,
+      5
+    ],
+    "cold_pairs": 4,
+    "strict_completed": {
+      "original": 3,
+      "candidate": 4
+    },
+    "wall_markers": {
+      "original": 3,
+      "candidate": 4
+    },
+    "object_markers": {
+      "original": 8,
+      "candidate": 8
+    },
+    "candidate_bumps": 0,
+    "prior_slam": {
+      "seed": 550866253,
+      "verified": 3,
+      "verified_s": 346.94
+    },
+    "report": "experiments/2026-11-24_focus_multimap/README.md",
+    "results": "experiments/2026-11-24_focus_multimap/v15229_results.json"
+  },
   "mixed_v15217_open_regions": {
     "version": "1.5.2.17-open-regions",
     "seed": 417608489,

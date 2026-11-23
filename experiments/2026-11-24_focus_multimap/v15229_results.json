@@ -1,0 +1,549 @@
+{
+  "camera": [
+    640,
+    480,
+    5
+  ],
+  "public_marker_count": 3,
+  "time_limit_sim_s": 600,
+  "physical_drive": false,
+  "targets_per_layout": {
+    "wall": 1,
+    "separate_boxes": 2
+  },
+  "outcome_unseen_seed": 101002202,
+  "cold": [
+    {
+      "seed": 2248916956,
+      "effective_world_sha256": "0155cc2290bc9c223a62a4611c1eea11ac5eb31dde621caa86af5224851ac515",
+      "start": {
+        "x": 1.1500000000000021,
+        "y": 4.1000000000000005,
+        "yaw": -0.12175869298875908
+      },
+      "original": {
+        "strict": true,
+        "verified": 3,
+        "wall": 1,
+        "box": 2,
+        "completion_s": 436.08,
+        "elapsed_s": 436.56,
+        "path_m": 62.93,
+        "bumps": 0,
+        "false_ids": 0,
+        "map_error_max_m": 0.217,
+        "goals": 27,
+        "nav_cancels": 6,
+        "nav_aborts": 0,
+        "repeat_no_new_m": 1.5,
+        "turns_at_rest_s": 93.25,
+        "stationary_s": 63.25,
+        "wall_seen_fraction": 0.648,
+        "object_seen_fraction": 0.922,
+        "boxes_all_four": 2,
+        "boxes": 3,
+        "image_p95_s": 0.096,
+        "prior_map": null,
+        "stop_reason": "all_targets_found",
+        "turn_reversals": 18,
+        "markers": {
+          "6": {
+            "host": "wall_west",
+            "mounted": "wall",
+            "registered_s": 270.556,
+            "after_registration_near_s": 307.428,
+            "onboard_near_proof_s": 309.06,
+            "verified_s": 309.06
+          },
+          "102": {
+            "host": "movable_1",
+            "mounted": "obstacle",
+            "registered_s": 434.544,
+            "after_registration_near_s": 434.548,
+            "onboard_near_proof_s": 436.08,
+            "verified_s": 436.08
+          },
+          "2": {
+            "host": "movable_3",
+            "mounted": "obstacle",
+            "registered_s": 149.56,
+            "after_registration_near_s": 165.788,
+            "onboard_near_proof_s": 167.556,
+            "verified_s": 167.556
+          }
+        },
+        "diagnostic_actions": []
+      },
+      "final_bearing": {
+        "strict": true,
+        "verified": 3,
+        "wall": 1,
+        "box": 2,
+        "completion_s": 419.296,
+        "elapsed_s": 419.79,
+        "path_m": 72.48,
+        "bumps": 0,
+        "false_ids": 0,
+        "map_error_max_m": 0.114,
+        "goals": 24,
+        "nav_cancels": 6,
+        "nav_aborts": 0,
+        "repeat_no_new_m": 0.0,
+        "turns_at_rest_s": 69.5,
+        "stationary_s": 45.0,
+        "wall_seen_fraction": 0.699,
+        "object_seen_fraction": 0.922,
+        "boxes_all_four": 2,
+        "boxes": 3,
+        "image_p95_s": 0.096,
+        "prior_map": null,
+        "stop_reason": "all_targets_found",
+        "turn_reversals": 15,
+        "markers": {
+          "6": {
+            "host": "wall_west",
+            "mounted": "wall",
+            "registered_s": 164.296,
+            "after_registration_near_s": 181.16,
+            "onboard_near_proof_s": 182.796,
+            "verified_s": 182.796
+          },
+          "102": {
+            "host": "movable_1",
+            "mounted": "obstacle",
+            "registered_s": 405.296,
+            "after_registration_near_s": 417.74,
+            "onboard_near_proof_s": 419.296,
+            "verified_s": 419.296
+          },
+          "2": {
+            "host": "movable_3",
+            "mounted": "obstacle",
+            "registered_s": 80.292,
+            "after_registration_near_s": 93.14,
+            "onboard_near_proof_s": 99.308,
+            "verified_s": 99.308
+          }
+        },
+        "diagnostic_actions": []
+      }
+    },
+    {
+      "seed": 101002202,
+      "effective_world_sha256": "99aa95924d1a7db39fbb219567d0549a1495e04e2ccdd2f78991e83eb79d2224",
+      "start": {
+        "x": 2.900000000000002,
+        "y": -1.799999999999999,
+        "yaw": -1.6054596811504906
+      },
+      "original": {
+        "strict": false,
+        "verified": 2,
+        "wall": 0,
+        "box": 2,
+        "completion_s": null,
+        "elapsed_s": 600.01,
+        "path_m": 94.5,
+        "bumps": 0,
+        "false_ids": 0,
+        "map_error_max_m": 0.168,
+        "goals": 30,
+        "nav_cancels": 4,
+        "nav_aborts": 0,
+        "repeat_no_new_m": 3.0,
+        "turns_at_rest_s": 127.5,
+        "stationary_s": 71.25,
+        "wall_seen_fraction": 0.74,
+        "object_seen_fraction": 0.911,
+        "boxes_all_four": 2,
+        "boxes": 3,
+        "image_p95_s": 0.096,
+        "prior_map": null,
+        "stop_reason": "common_time_limit",
+        "turn_reversals": 18,
+        "markers": {
+          "602": {
+            "host": "wall_south_recess_east",
+            "mounted": "wall",
+            "registered_s": null,
+            "after_registration_near_s": null,
+            "onboard_near_proof_s": null,
+            "verified_s": null
+          },
+          "656": {
+            "host": "movable_2",
+            "mounted": "obstacle",
+            "registered_s": 257.776,
+            "after_registration_near_s": 257.78,
+            "onboard_near_proof_s": 258.852,
+            "verified_s": 258.852
+          },
+          "139": {
+            "host": "movable_3",
+            "mounted": "obstacle",
+            "registered_s": 218.264,
+            "after_registration_near_s": 218.28,
+            "onboard_near_proof_s": 219.28,
+            "verified_s": 219.28
+          }
+        },
+        "diagnostic_actions": []
+      },
+      "final_bearing": {
+        "strict": true,
+        "verified": 3,
+        "wall": 1,
+        "box": 2,
+        "completion_s": 370.132,
+        "elapsed_s": 370.63,
+        "path_m": 58.68,
+        "bumps": 0,
+        "false_ids": 0,
+        "map_error_max_m": 0.16,
+        "goals": 26,
+        "nav_cancels": 9,
+        "nav_aborts": 0,
+        "repeat_no_new_m": 0.0,
+        "turns_at_rest_s": 80.0,
+        "stationary_s": 40.75,
+        "wall_seen_fraction": 0.691,
+        "object_seen_fraction": 0.6,
+        "boxes_all_four": 0,
+        "boxes": 3,
+        "image_p95_s": 0.092,
+        "prior_map": null,
+        "stop_reason": "all_targets_found",
+        "turn_reversals": 15,
+        "markers": {
+          "602": {
+            "host": "wall_south_recess_east",
+            "mounted": "wall",
+            "registered_s": 24.62,
+            "after_registration_near_s": 31.852,
+            "onboard_near_proof_s": 33.632,
+            "verified_s": 33.632
+          },
+          "656": {
+            "host": "movable_2",
+            "mounted": "obstacle",
+            "registered_s": 227.12,
+            "after_registration_near_s": 234.832,
+            "onboard_near_proof_s": 236.632,
+            "verified_s": 236.632
+          },
+          "139": {
+            "host": "movable_3",
+            "mounted": "obstacle",
+            "registered_s": 367.664,
+            "after_registration_near_s": 367.672,
+            "onboard_near_proof_s": 370.132,
+            "verified_s": 370.132
+          }
+        },
+        "diagnostic_actions": [
+          {
+            "elapsed": 363.636,
+            "reason": "advance_toward_repeated_unranged_id",
+            "bearing_advance_id": 139,
+            "bearing_attempt_number": 5,
+            "bearing_attempt_limit": 6
+          }
+        ]
+      }
+    },
+    {
+      "seed": 2445263333,
+      "effective_world_sha256": "39f7dcbca6bdd1c400ab1c571b5d635f8b92f9e9ced55119b72bc95f7fef9a22",
+      "start": {
+        "x": 6.350000000000001,
+        "y": 3.2,
+        "yaw": -2.274816652347419
+      },
+      "original": {
+        "strict": true,
+        "verified": 3,
+        "wall": 1,
+        "box": 2,
+        "completion_s": 526.592,
+        "elapsed_s": 527.09,
+        "path_m": 74.46,
+        "bumps": 0,
+        "false_ids": 0,
+        "map_error_max_m": 0.042,
+        "goals": 31,
+        "nav_cancels": 11,
+        "nav_aborts": 0,
+        "repeat_no_new_m": 4.25,
+        "turns_at_rest_s": 111.5,
+        "stationary_s": 90.25,
+        "wall_seen_fraction": 0.6,
+        "object_seen_fraction": 1.0,
+        "boxes_all_four": 5,
+        "boxes": 5,
+        "image_p95_s": 0.1,
+        "prior_map": null,
+        "stop_reason": "all_targets_found",
+        "turn_reversals": 19,
+        "markers": {
+          "571": {
+            "host": "movable_2",
+            "mounted": "obstacle",
+            "registered_s": 428.092,
+            "after_registration_near_s": 428.1,
+            "onboard_near_proof_s": 428.592,
+            "verified_s": 428.592
+          },
+          "1000": {
+            "host": "wall_south_west",
+            "mounted": "wall",
+            "registered_s": 299.592,
+            "after_registration_near_s": 305.94,
+            "onboard_near_proof_s": 307.608,
+            "verified_s": 307.608
+          },
+          "645": {
+            "host": "movable_3",
+            "mounted": "obstacle",
+            "registered_s": 525.588,
+            "after_registration_near_s": 525.6,
+            "onboard_near_proof_s": 526.592,
+            "verified_s": 526.592
+          }
+        },
+        "diagnostic_actions": []
+      },
+      "final_bearing": {
+        "strict": true,
+        "verified": 3,
+        "wall": 1,
+        "box": 2,
+        "completion_s": 555.016,
+        "elapsed_s": 555.51,
+        "path_m": 87.15,
+        "bumps": 0,
+        "false_ids": 0,
+        "map_error_max_m": 0.043,
+        "goals": 32,
+        "nav_cancels": 7,
+        "nav_aborts": 0,
+        "repeat_no_new_m": 0.0,
+        "turns_at_rest_s": 115.25,
+        "stationary_s": 68.0,
+        "wall_seen_fraction": 0.744,
+        "object_seen_fraction": 0.847,
+        "boxes_all_four": 2,
+        "boxes": 5,
+        "image_p95_s": 0.124,
+        "prior_map": null,
+        "stop_reason": "all_targets_found",
+        "turn_reversals": 25,
+        "markers": {
+          "571": {
+            "host": "movable_2",
+            "mounted": "obstacle",
+            "registered_s": 64.996,
+            "after_registration_near_s": 65.008,
+            "onboard_near_proof_s": 68.016,
+            "verified_s": 68.016
+          },
+          "1000": {
+            "host": "wall_south_west",
+            "mounted": "wall",
+            "registered_s": 533.512,
+            "after_registration_near_s": 553.388,
+            "onboard_near_proof_s": 555.016,
+            "verified_s": 555.016
+          },
+          "645": {
+            "host": "movable_3",
+            "mounted": "obstacle",
+            "registered_s": 100.504,
+            "after_registration_near_s": 100.508,
+            "onboard_near_proof_s": 101.012,
+            "verified_s": 101.012
+          }
+        },
+        "diagnostic_actions": []
+      }
+    },
+    {
+      "seed": 550866253,
+      "effective_world_sha256": "dfcb215f592872824bc2900dcaeccd64ebf67bfd196c099eb20e792d52eceb79",
+      "start": {
+        "x": 8.25,
+        "y": 1.5000000000000009,
+        "yaw": 2.855113079303126
+      },
+      "original": {
+        "strict": true,
+        "verified": 3,
+        "wall": 1,
+        "box": 2,
+        "completion_s": 457.456,
+        "elapsed_s": 457.96,
+        "path_m": 74.9,
+        "bumps": 0,
+        "false_ids": 0,
+        "map_error_max_m": 0.037,
+        "goals": 23,
+        "nav_cancels": 6,
+        "nav_aborts": 0,
+        "repeat_no_new_m": 0.0,
+        "turns_at_rest_s": 87.0,
+        "stationary_s": 55.5,
+        "wall_seen_fraction": 0.684,
+        "object_seen_fraction": 0.756,
+        "boxes_all_four": 1,
+        "boxes": 3,
+        "image_p95_s": 0.096,
+        "prior_map": null,
+        "stop_reason": "all_targets_found",
+        "turn_reversals": 14,
+        "markers": {
+          "418": {
+            "host": "wall_north",
+            "mounted": "wall",
+            "registered_s": 364.956,
+            "after_registration_near_s": 455.716,
+            "onboard_near_proof_s": 457.456,
+            "verified_s": 457.456
+          },
+          "282": {
+            "host": "movable_3",
+            "mounted": "obstacle",
+            "registered_s": 30.448,
+            "after_registration_near_s": 39.036,
+            "onboard_near_proof_s": 40.956,
+            "verified_s": 40.956
+          },
+          "347": {
+            "host": "movable_1",
+            "mounted": "obstacle",
+            "registered_s": 240.46,
+            "after_registration_near_s": 240.476,
+            "onboard_near_proof_s": 241.464,
+            "verified_s": 241.464
+          }
+        },
+        "diagnostic_actions": []
+      },
+      "final_bearing": {
+        "strict": true,
+        "verified": 3,
+        "wall": 1,
+        "box": 2,
+        "completion_s": 274.388,
+        "elapsed_s": 274.89,
+        "path_m": 42.23,
+        "bumps": 0,
+        "false_ids": 0,
+        "map_error_max_m": 0.068,
+        "goals": 23,
+        "nav_cancels": 7,
+        "nav_aborts": 0,
+        "repeat_no_new_m": 0.0,
+        "turns_at_rest_s": 53.0,
+        "stationary_s": 37.25,
+        "wall_seen_fraction": 0.527,
+        "object_seen_fraction": 0.756,
+        "boxes_all_four": 1,
+        "boxes": 3,
+        "image_p95_s": 0.092,
+        "prior_map": null,
+        "stop_reason": "all_targets_found",
+        "turn_reversals": 10,
+        "markers": {
+          "418": {
+            "host": "wall_north",
+            "mounted": "wall",
+            "registered_s": 181.876,
+            "after_registration_near_s": 196.948,
+            "onboard_near_proof_s": 198.388,
+            "verified_s": 198.388
+          },
+          "282": {
+            "host": "movable_3",
+            "mounted": "obstacle",
+            "registered_s": 28.904,
+            "after_registration_near_s": 37.108,
+            "onboard_near_proof_s": 38.388,
+            "verified_s": 38.388
+          },
+          "347": {
+            "host": "movable_1",
+            "mounted": "obstacle",
+            "registered_s": 260.376,
+            "after_registration_near_s": 272.568,
+            "onboard_near_proof_s": 274.388,
+            "verified_s": 274.388
+          }
+        },
+        "diagnostic_actions": [
+          {
+            "elapsed": 251.9,
+            "reason": "advance_toward_repeated_unranged_id",
+            "bearing_advance_id": 347,
+            "bearing_attempt_number": 5,
+            "bearing_attempt_limit": 6
+          }
+        ]
+      }
+    }
+  ],
+  "warm": {
+    "seed": 550866253,
+    "final_bearing": {
+      "strict": true,
+      "verified": 3,
+      "wall": 1,
+      "box": 2,
+      "completion_s": 346.94,
+      "elapsed_s": 347.4,
+      "path_m": 50.5,
+      "bumps": 0,
+      "false_ids": 0,
+      "map_error_max_m": 0.059,
+      "goals": 22,
+      "nav_cancels": 10,
+      "nav_aborts": 0,
+      "repeat_no_new_m": 1.25,
+      "turns_at_rest_s": 75.0,
+      "stationary_s": 50.25,
+      "wall_seen_fraction": 0.67,
+      "object_seen_fraction": 0.744,
+      "boxes_all_four": 2,
+      "boxes": 3,
+      "image_p95_s": 0.096,
+      "prior_map": "6c7758c46de741773afc0950ecda68b4a54b3c5b5f1a146cbb9da163458b9a58",
+      "stop_reason": "all_targets_found",
+      "turn_reversals": 14,
+      "markers": {
+        "418": {
+          "host": "wall_north",
+          "mounted": "wall",
+          "registered_s": 327.936,
+          "after_registration_near_s": 345.62,
+          "onboard_near_proof_s": 346.94,
+          "verified_s": 346.94
+        },
+        "282": {
+          "host": "movable_3",
+          "mounted": "obstacle",
+          "registered_s": 24.936,
+          "after_registration_near_s": 32.86,
+          "onboard_near_proof_s": 34.444,
+          "verified_s": 34.444
+        },
+        "347": {
+          "host": "movable_1",
+          "mounted": "obstacle",
+          "registered_s": 264.436,
+          "after_registration_near_s": 264.44,
+          "onboard_near_proof_s": 264.94,
+          "verified_s": 264.94
+        }
+      },
+      "diagnostic_actions": []
+    }
+  }
+}
