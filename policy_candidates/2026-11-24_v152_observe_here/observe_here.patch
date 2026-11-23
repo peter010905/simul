@@ -1,0 +1,108 @@
+--- a/center_wall.py
++++ b/center_wall.py
+@@ -123,6 +123,8 @@
+         self.joint = RegionalSurface()
+         self.bearing_advance = BearingAdvance()
+         self.last_new_region = 0.
++        self.last_wall_look_pose = None
++        self.wall_camera = None
+         self.weak_known = []
+         self.weak_clock = 0.
+         self.counts = {}
+@@ -323,7 +325,8 @@
+                 self.reason = ('discover_beyond_current_region' if combined['r32_kind'] == 'interior_frontier' else
+                                'continue_local_surface_group' if combined['joint_continuation'] else
+                                'regional_camera_gain_per_route')
+-                return combined
++                return self.observe_wall_here(combined, grid, costmap, nav, reachable, pose,
++                                              transform, wall_limit, veto)
+         if reserved is not None:
+             self.phase, self.reason = 'wall', 'unobserved_wall_reserved'
+             return reserved
+@@ -371,11 +374,55 @@
+         best = min(candidates[self.phase],key=lambda x:x[0],default=None)
+         return best[1] if best else None
+
++    def observe_wall_here(self, goal, grid, costmap, nav, reachable, pose, transform, wall_limit, veto):
++        """Replace a trip to a single wall face only if this pose already qualifies."""
++        if (goal['r32_kind'] != 'wall_surface' or goal.get('joint_views') != 1 or
++                (goal.get('survey_visible_sections') or 0) > 1 or goal.get('previous_attempts')):
++            return goal
++        xy = np.asarray(pose[:2])
++        here = odom_point(xy, transform)
++        if self.last_wall_look_pose is not None and math.dist(here, self.last_wall_look_pose) < .32:
++            return goal
++        cell, nc = grid.index(*xy), costmap.index(*xy)
++        if not grid.inside(*cell) or not reachable[cell] or not costmap.inside(*nc) or not nav[nc]:
++            return goal
++        face = np.asarray(goal['surface_map'])
++        normal_yaw = goal['normal_odom'] - transform[2]
++        normal = np.array([math.cos(normal_yaw), math.sin(normal_yaw)])
++        if self.wall_camera is None or self.survey.camera is None:
++            return goal
++        optical = np.array(self.wall_camera[:2])
++        heading = self.wall_camera[2]
++        aim = math.atan2(face[1]-optical[1], face[0]-optical[0])
++        sweep = goal['scan_angle']
++        if abs(math.remainder(aim+sweep/2-heading, math.tau)) > 2*math.pi/3:
++            return goal
++        # Account for the optical centre sweeping around the base during a turn.
++        offset = optical - xy
++        for look_yaw in (aim-sweep/2, aim, aim+sweep/2):
++            rotation = look_yaw-heading
++            c, s = math.cos(rotation), math.sin(rotation)
++            eye = xy + np.array([c*offset[0]-s*offset[1], s*offset[0]+c*offset[1]])
++            ray = face - eye
++            distance = float(np.linalg.norm(ray))
++            if not distance or not inside_coverage_range(distance, -float(ray @ normal)/distance, wall_limit):
++                return goal
++            if abs(math.remainder(math.atan2(ray[1], ray[0])-look_yaw, math.tau)) >= self.survey.camera[1]/2:
++                return goal
++            if not grid.line_clear(eye, face + .06*normal):
++                return goal
++        look = dict(goal, stationary=True, x=float(xy[0]), y=float(xy[1]), yaw=aim-sweep/2,
++                    distance=0., joint_walk_m=0., original_wall_route_m=goal['joint_walk_m'],
++                    current_wall_pose_odom=here.tolist())
++        return goal if veto(look) else look
++
+     def attempts(self, kind, anchor, normal_yaw, radius):
+         return [t for k,p,a,t in self.history if k == kind and
+                 np.linalg.norm(anchor-p)<radius and math.cos(normal_yaw-a)>.70]
+
+     def dispatched(self, goal, elapsed):
++        if 'current_wall_pose_odom' in goal:
++            self.last_wall_look_pose = tuple(goal['current_wall_pose_odom'])
+         self.on_weak_route = bool(goal.get('weak_wall'))
+         self.weak.dispatched(goal)
+         self.bearing_advance.dispatched(goal)
+--- a/phased_hybrid.py
++++ b/phased_hybrid.py
+@@ -60,6 +60,8 @@
+         self.schedule.weak_known = [odom_point(point,transform) for point in owner.targets.values()]
+         self.schedule.weak_clock = clock
+         self.schedule.survey.camera = getattr(owner, 'inspection_camera', None)
++        sample = getattr(owner, 'wall_camera_sample', None)
++        self.schedule.wall_camera = sample[1:] if sample and 0 <= clock-sample[0] <= .25 else None
+         current_ids = set(owner.targets)
+         if current_ids - self.schedule.survey.known:
+             self.schedule.survey.last_progress = now-owner.started
+@@ -88,7 +90,7 @@
+         self.next_box_probe = owner.now()+3. if (goal.get('r32_kind')=='wall_surface' or goal.get('cluster_exit')) else float('inf')
+         if goal.get('survey_escape') or 'distant_hint_id' in goal or 'survey_wall' in goal:
+             self.next_box_probe = float('inf')
+-        row = dict(survey_wall=goal.get('survey_wall'),survey_visible_sections=goal.get('survey_visible_sections'),
++        row = dict(original_wall_route_m=goal.get('original_wall_route_m'), survey_wall=goal.get('survey_wall'),survey_visible_sections=goal.get('survey_visible_sections'),
+                    survey_escape=bool(goal.get('survey_escape')), distant_hint_id=goal.get('distant_hint_id'),
+                    elapsed=elapsed,phase=self.schedule.phase,reason=self.schedule.reason,
+                    available=self.schedule.counts,kind=goal.get('r32_kind','flow_or_marker'),
+--- a/mission.py
++++ b/mission.py
+@@ -360,6 +360,8 @@
+             dx=2*(q.x*q.z+q.w*q.y);dy=2*(q.y*q.z-q.w*q.x)
+             if math.hypot(dx,dy)<.5:return
+             yaw=math.atan2(dy,dx);ranges=np.asarray(scan.ranges)
++            self.wall_camera_sample = (stamp.nanoseconds/1e9, camera.transform.translation.x,
++                                       camera.transform.translation.y, yaw)
+             angles=scan.angle_min+np.arange(len(ranges))*scan.angle_increment+angle
+             valid=np.isfinite(ranges)&(ranges>max(.25,scan.range_min))&(ranges<scan.range_max)
+             endpoints=np.column_stack((tr.transform.translation.x+ranges[valid]*np.cos(angles[valid]),
