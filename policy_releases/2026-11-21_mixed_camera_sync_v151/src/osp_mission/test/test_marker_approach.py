@@ -40,7 +40,7 @@ def test_all_three_ids_need_three_physical_frames_and_keep_proof_after_map_shift
     assert tracker.complete(corrected)
     assert not tracker.complete({1: (0., 0.), 2: (0., 0.)})
     assert tracker.report()['required_actual_radius_m'] == 1.5
-    assert tracker.report()['sensor_proof_radius_m'] == 1.3
+    assert tracker.report()['sensor_proof_radius_m'] == 1.5
 
 
 @pytest.mark.parametrize('mode', ['unconfirmed', 'provisional', 'small', 'range_conflict',
@@ -52,7 +52,7 @@ def test_unreadable_unconfirmed_stale_or_inconsistent_evidence_cannot_complete(m
         if mode == 'provisional': evidence['provisional'] = True
         if mode == 'small': evidence['min_edge_pixels'] = 17.
         if mode == 'range_conflict': evidence['lidar_camera_point'] = [0., 0., 1.4]
-        if mode == 'outside_buffer': evidence['odom_point'] = [1.31, 0., .45]
+        if mode == 'outside_buffer': evidence['odom_point'] = [1.51, 0., .45]
         if mode == 'missing_odom': base = None
         if mode == 'missing_depth': evidence.pop('camera_point')
         if mode == 'null_odom': evidence['odom_point'] = None

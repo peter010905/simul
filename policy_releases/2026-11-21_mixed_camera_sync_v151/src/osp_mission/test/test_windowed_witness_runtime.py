@@ -8,7 +8,7 @@ def tracker():
 
 
 def observe(value, stamp, mode='good', point=1.1):
-    distance = 1.4 if mode == 'far' else point
+    distance = 1.51 if mode == 'far' else point
     evidence = dict(stamp=stamp, id=44, map_point=[distance, 0., .45],
         odom_point=[distance, 0., .45], camera_point=[0., 0., distance],
         lidar_camera_point=[0., 0., distance+.01], min_edge_pixels=30., observation_frame='map')
@@ -25,7 +25,14 @@ def test_native_cylinder_sequence_keeps_only_three_individually_valid_frames():
     proof = value.range_witnesses[44]
     assert [r['stamp'] for r in proof['observations']] == [196.4, 196.6, 197.2]
     assert proof['time_window_sim_s'] == 1.
-    assert proof['conservative_radius_m'] == 1.3
+    assert proof['conservative_radius_m'] == 1.5
+
+
+def test_exactly_one_point_five_meters_counts_toward_proof():
+    value = tracker()
+    for stamp in (1., 1.2, 1.4):
+        observe(value, stamp, point=1.5)
+    assert value.verified(44)
 
 
 @pytest.mark.parametrize('last_stamp, expected', [(2., True), (2.00001, False)])

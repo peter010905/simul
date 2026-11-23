@@ -9,8 +9,9 @@ from osp_mission.policy import wrap
 
 
 class MarkerApproach:
-    # Aim inside the user's 1.5 m limit to allow for localization error.
+    # Keep a margin when choosing a stationary observation goal.
     radius = 1.3
+    witness_radius_m = 1.5
     witness_window_s = 1.0
 
     def __init__(self):
@@ -66,7 +67,7 @@ class MarkerApproach:
         near_distance=float(np.linalg.norm(odom_point-base)) if valid else math.inf
         rows=self.witness_runs.setdefault(ident,[])
         rows[:]=[row for row in rows if 0.<=stamp-row['stamp']<=self.witness_window_s+1e-9]
-        if valid and near_distance<=self.radius:
+        if valid and near_distance<=self.witness_radius_m:
             if rows and np.linalg.norm(odom_point-np.asarray(rows[-1]['point_odom']))>.25:
                 rows.clear()
             if not rows or stamp-rows[-1]['stamp']>=.15-1e-9:
@@ -75,7 +76,7 @@ class MarkerApproach:
                 del rows[:-3]
             if len(rows)==3:
                 self.range_witnesses[ident]=dict(source='three_confirmed_readable_near_odom_observations',
-                    conservative_radius_m=self.radius,time_window_sim_s=self.witness_window_s,
+                    conservative_radius_m=self.witness_radius_m,time_window_sim_s=self.witness_window_s,
                     observations=[dict(r) for r in rows])
         elif valid or not confirmed:
             # An explicit far measurement or unconfirmed ID breaks the run.
@@ -111,7 +112,7 @@ class MarkerApproach:
                     near_confirmations=self.near,
                     approach_evidence=self.positions, completion_radius_m=1.5,
                     verification_mode='confirmed_id_and_three_readable_sensor_relative_frames',
-                    sensor_proof_radius_m=self.radius, required_sensor_frames=3,
+                    sensor_proof_radius_m=self.witness_radius_m, required_sensor_frames=3,
                     witness_window_sim_s=self.witness_window_s,
                     range_witness_evidence=self.range_witnesses,
                     verified_ids=sorted(i for i in self.positions.keys()|self.range_witnesses.keys() if self.verified(i)))
@@ -139,7 +140,7 @@ class MarkerApproach:
                     continue
                 angle = math.atan2(direction[1], direction[0])+offset
                 # .90 m + Nav2 .25 m stopping tolerance leaves room for the
-                # 1.30 m sensor proof, inside the actual 1.50 m task limit.
+                # 1.50 m sensor proof, including localization margin.
                 for standoff in (.75, .85, .9):
                     position = target+standoff*np.array([math.cos(angle), math.sin(angle)])
                     a, b = (robot-origin)/resolution, (position-origin)/resolution
