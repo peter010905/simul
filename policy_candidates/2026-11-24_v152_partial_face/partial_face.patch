@@ -1,0 +1,86 @@
+--- a/center_wall.py
++++ b/center_wall.py
+@@ -8,5 +8,5 @@
+ from osp_mission import _r32_navigation_core as r32
+-from osp_mission.adaptive_faces import inspection_pose
++from osp_mission.adaptive_faces import inspection_pose, partial_face_pose
+ from osp_mission.box_views import odom_point
+ from osp_mission.edge_policy import DIRECTIONS, inside_coverage_range
+ from osp_mission.tracked_faces import TrackedFaces
+@@ -161,6 +161,9 @@
+                               features=np.zeros(5), previous_attempts=len(attempts))
+                 view = inspection_pose(grid, costmap, nav, distances, clearance, face, normal,
+                                        half_width, pose, fields, veto, visibility_offset=.12)
++                if view is None and not attempts:
++                    view = partial_face_pose(grid, costmap, nav, distances, clearance, face, normal,
++                                             half_width, pose, fields, veto, max_walk=2.7)
+                 if view:
+                     candidates['interior'].append(view)
+         # Compare generic and fitted faces together, including completed boxes.
+--- a/adaptive_faces.py
++++ b/adaptive_faces.py
+@@ -51,3 +51,52 @@
+         if not veto(goal) and grid.line_clear(point, face + visibility_offset*normal):
+             return float(distances[rows[i],cols[i]]), goal
+     return None
++
++
++def partial_face_pose(grid, cost, nav, distances, clearance, face, normal, half_width,
++                      pose, fields, veto, max_walk):
++    """Aim at a mapped portion of a confirmed box when its centre is still unknown."""
++    if half_width < 3 * grid.resolution:
++        return None
++    centre = grid.index(*(face + .12 * normal))
++    if not grid.inside(*centre) or grid.cells[centre] >= 0:
++        return None
++
++    # Only an unobserved strip contiguous with this confirmed face is eligible.
++    # A measured obstacle in the strip rules out this view entirely.
++    direction = np.array(normal)
++    gap_limit = min(.45, half_width + grid.resolution)
++    for gap in np.arange(.12, gap_limit + .001, .5 * grid.resolution):
++        boundary = face + gap * direction
++        cell = grid.index(*boundary)
++        if not grid.inside(*cell):
++            return None
++        value = grid.cells[cell]
++        if value > 25:
++            return None
++        if value < 0:
++            continue
++        # The camera aims toward the missing face, from a known safe viewpoint
++        # with a clear view of the known side of the mapping frontier.
++        point = boundary + grid.resolution * direction
++        outer = grid.index(*point)
++        if not grid.inside(*outer) or not 0 <= grid.cells[outer] <= 25:
++            continue
++
++        def unavailable(goal):
++            xy = (goal['x'], goal['y'])
++            return (distances[grid.index(*xy)] > max_walk or math.dist(xy, face) > 1.5
++                    or not grid.line_clear(xy, point) or veto(goal))
++
++        details = dict(fields, surface_map=face.tolist(), face_frontier_gap_m=float(gap))
++        view = inspection_pose(grid, cost, nav, distances, clearance, point, normal,
++                               half_width, pose, details, unavailable, visibility_offset=0.)
++        if view:
++            walk, goal = view
++            # Look through the visible frontier along the predicted side bearing.
++            # Credit still requires real RGB exposures and supported scan returns.
++            goal['yaw'] = math.atan2(face[1]-goal['y'], face[0]-goal['x']) - goal['scan_angle']/2
++            if not veto(goal):
++                return walk, goal
++        return None
++    return None
+--- a/phased_hybrid.py
++++ b/phased_hybrid.py
+@@ -90,7 +90,8 @@
+         self.next_box_probe = owner.now()+3. if (goal.get('r32_kind')=='wall_surface' or goal.get('cluster_exit')) else float('inf')
+         if goal.get('survey_escape') or 'distant_hint_id' in goal or 'survey_wall' in goal:
+             self.next_box_probe = float('inf')
+-        row = dict(original_wall_route_m=goal.get('original_wall_route_m'), survey_wall=goal.get('survey_wall'),survey_visible_sections=goal.get('survey_visible_sections'),
++        row = dict(face_frontier_gap_m=goal.get('face_frontier_gap_m'),
++                   original_wall_route_m=goal.get('original_wall_route_m'), survey_wall=goal.get('survey_wall'),survey_visible_sections=goal.get('survey_visible_sections'),
+                    survey_escape=bool(goal.get('survey_escape')), distant_hint_id=goal.get('distant_hint_id'),
+                    elapsed=elapsed,phase=self.schedule.phase,reason=self.schedule.reason,
+                    available=self.schedule.counts,kind=goal.get('r32_kind','flow_or_marker'),
