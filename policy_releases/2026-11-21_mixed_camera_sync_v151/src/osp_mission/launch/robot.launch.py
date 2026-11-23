@@ -45,6 +45,14 @@ def setup(context):
             from osp_mission.transit_control import configure_controller
             vendor = Path(share('turtlebot4_navigation'))/'config/nav2.yaml'
             configure_controller(nav_config, yaml.safe_load(vendor.read_text()))
+            if not sim:
+                follower = nav_config['controller_server']['ros__parameters']['FollowPath']
+                follower.update(vx_max=0.30, wz_max=0.80)
+                velocity = nav_config['velocity_smoother']['ros__parameters']
+                velocity['max_velocity'][0] = 0.30
+                velocity['max_velocity'][2] = 0.80
+                velocity['min_velocity'][2] = -0.80
+                nav_config['behavior_server']['ros__parameters']['max_rotational_vel'] = 0.80
         if value('forward_045') == 'true':
             follower = nav_config['controller_server']['ros__parameters']['FollowPath']
             if follower['plugin'] != 'nav2_mppi_controller::MPPIController':

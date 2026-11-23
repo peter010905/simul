@@ -9,7 +9,7 @@
     "launch/control.launch.py": "9800f7e2f716decce16b957c086bd3b251970f2b55d90930b02642b51041f6e5",
     "launch/description.launch.py": "e7d09c7728caa0242d1ef6aac1eebf0373c65988d881f6dfd06c2bfde546d115",
     "launch/spawn.launch.py": "b7aeb337d7ee67f744741070d239f57131d11bfedbc254ce48fdac6cc6bf79e4",
-    "launch/robot.launch.py": "9472bf2382fcac997fe309ea6941a5fb40184a9442be6ecdc108349636146fd7",
+    "launch/robot.launch.py": "3d435b9d504ce6955874c5b408d5d4e784b4ffe2274d66bd13b30f3b0438087f",
     "launch/create3_nodes.launch.py": "930619a35ded41509b56f6d7df2865f984386e3f5d23fa50ac74d379dfa522a4",
     "launch/bridge.launch.py": "57cf6e5e18ba8ca71b86cb6eba8278fb2b7788fa8f91d2f9d026b2bdc6f5c26d",
     "osp_mission/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
