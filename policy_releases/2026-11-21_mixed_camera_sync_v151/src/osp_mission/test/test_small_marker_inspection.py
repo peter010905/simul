@@ -1,4 +1,5 @@
 from types import SimpleNamespace
+import json
 
 import cv2
 from cv_bridge import CvBridge
@@ -93,6 +94,44 @@ def test_small_image_candidates_never_count_as_recognized_ids():
         for stamp in (4., 4.2, 4.4):
             frame(14, stamp)
         assert len(hints) == before
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
+
+
+def test_unreadable_ten_pixel_print_is_kept_beside_decoded_marker():
+    rclpy.init()
+    node = Detector()
+    try:
+        pose = TransformStamped()
+        pose.transform.rotation.w = 1.
+        node.tf = SimpleNamespace(lookup_transform=lambda *args, **kwargs: pose)
+        node.lidar_point = lambda ray, frame, stamp: ray * 2.
+        info = CameraInfo(width=320, height=220, k=[250., 0., 160., 0., 250., 110., 0., 0., 1.],
+                          d=[0.] * 5)
+        node.on_info(info)
+        outlines = []
+        node.print_pub = SimpleNamespace(publish=lambda msg: outlines.append(json.loads(msg.data)))
+        dictionary = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_ARUCO_ORIGINAL)
+        draw = getattr(cv2.aruco, 'generateImageMarker', None) or cv2.aruco.drawMarker
+        bridge = CvBridge()
+
+        for side in (10, 11):
+            pixels = np.full((220, 320), 185, np.uint8)
+            pixels[70:102, 62:132] = 255
+            patch = draw(dictionary, 42, side)
+            centre = side // 2
+            patch[centre:centre + 2, centre:centre + 2] ^= 255
+            pixels[80:80 + side, 78:78 + side] = patch
+            pixels[80:104, 250:274] = draw(dictionary, 103, 24)
+            msg = bridge.cv2_to_imgmsg(pixels, 'mono8')
+            msg.header.frame_id = 'calibrated_camera'
+            msg.header.stamp.sec = side
+            node.on_rgb(msg)
+
+        assert [cue['size'] for cue in outlines] == [10.]
+        assert node.diagnostics['decoded']['103'] == 2
+        assert '42' not in node.diagnostics['decoded']
     finally:
         node.destroy_node()
         rclpy.shutdown()

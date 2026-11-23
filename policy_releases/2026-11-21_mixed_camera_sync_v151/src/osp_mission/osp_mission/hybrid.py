@@ -4,6 +4,7 @@ import math
 from collections import deque
 from pathlib import Path
 
+import cv2
 import numpy as np
 from geometry_msgs.msg import PointStamped
 from rclpy.time import Time
@@ -19,13 +20,16 @@ from osp_mission.hybrid_geometry import preview_geometry
 from osp_mission.general_surface import GeneralSurfaceFollowup
 
 
-def publish_print(node, msg, image):
+def publish_print(node, msg, image, *, decoded=(), min_edge_pixels=0.):
     """Use only measured RGB outlines, exposure-time geometry, and synchronized range."""
     cal = preview_geometry(node.info)
     if cal is node.info and (msg.width,msg.height)==(250,250):
         return
     stamp = Time.from_msg(msg.header.stamp)
-    outlines=borders(image)
+    outlines = [(u, v, size) for u, v, size in borders(image)
+                if size >= min_edge_pixels and not any(
+                    cv2.pointPolygonTest(quad.reshape(4, 2), (u, v), False) >= 0
+                    for quad in decoded)]
     if not outlines:
         return
     transform=node.tf.lookup_transform(node.p('odom_frame'),msg.header.frame_id,stamp)

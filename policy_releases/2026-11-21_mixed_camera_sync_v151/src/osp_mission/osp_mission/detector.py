@@ -187,12 +187,15 @@ class Detector(Node):
             accepted_quads={}
             processed=copy.deepcopy(self.info);processed.header=msg.header
             processed.k=list(k)
-            if ids is None:
+            hardware = not self.p('use_sim_time')
+            if ids is None or hardware:
                 try:
                     from osp_mission.hybrid import publish_print
-                    publish_print(self,msg,image)
+                    publish_print(self, msg, image, decoded=corners if ids is not None else (),
+                                  min_edge_pixels=10. if hardware else 0.)
                 except Exception as exc:
                     self.get_logger().debug(f'Anonymous print projection unavailable: {exc}')
+            if ids is None:
                 return
             # CameraInfo distortion is applied before back projection.
             for c,ident in zip(corners,ids.flatten()):
