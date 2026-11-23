@@ -9,6 +9,13 @@ class WallFirst:
         self.visits = 0
         self.deferred = []
         self.probe_wall = False
+        self.surface_visits = 0
+        self.expansion_due_since = None
+
+    def expansion_due(self, elapsed):
+        return self.surface_visits >= 3 or (
+            self.expansion_due_since is not None and elapsed - self.expansion_due_since >= 45.
+        )
 
     def obstacle(self, interiors, robot, elapsed, remaining):
         """Choose a fresh, already reachable view of one nearby obstacle."""
@@ -34,6 +41,14 @@ class WallFirst:
         if any(key in goal for key in ('approach_id', 'focus_id', 'distant_hint_id', 'print_point')):
             self.probe_wall = False
             return
+        kind = goal.get('r32_kind')
+        if kind == 'interior_frontier':
+            self.surface_visits = 0
+            self.expansion_due_since = None
+        elif kind in ('wall_surface', 'interior_surface'):
+            self.surface_visits += 1
+            if self.expansion_due_since is None:
+                self.expansion_due_since = elapsed
         center = goal.get('patrol_inspection')
         if center is not None:
             if self.object_center is None:
@@ -47,4 +62,4 @@ class WallFirst:
             self.deferred.append((self.object_center, elapsed + 75.))
             self.object_center = None
         # Complete a wall leg after a detour before allowing another interruption.
-        self.probe_wall = goal.get('r32_kind') == 'wall_surface' and not returning
+        self.probe_wall = kind == 'wall_surface' and not returning

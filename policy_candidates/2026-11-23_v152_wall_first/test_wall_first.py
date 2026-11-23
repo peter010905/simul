@@ -47,3 +47,16 @@ def test_marker_approach_preserves_active_obstacle_and_deadline():
     patrol.dispatched({'approach_id': 42}, 15.)
     assert patrol.object_center == [1., 0.]
     assert patrol.obstacle([(1., box)], (0., 0.), 55., 100.) is None
+
+
+def test_surface_goals_cannot_indefinitely_delay_space_exploration():
+    patrol = WallFirst()
+    assert not patrol.expansion_due(20.)
+    patrol.dispatched(WALL, 5.)
+    assert not patrol.expansion_due(49.9)
+    assert patrol.expansion_due(50.)
+    patrol.dispatched(WALL, 12.)
+    patrol.dispatched(WALL, 25.)
+    assert patrol.expansion_due(26.)
+    patrol.dispatched({'r32_kind': 'interior_frontier'}, 27.)
+    assert not patrol.expansion_due(100.)

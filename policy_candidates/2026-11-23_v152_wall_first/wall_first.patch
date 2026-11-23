@@ -70,7 +70,7 @@
                                normal_odom=history_yaw, surface_map=face.tolist(), previous_attempts=len(attempts),
                                features=np.zeros(5), stationary=False, face_inspection=True, scan_angle=math.radians(36))
                  view = inspection_pose(grid, costmap, nav, distances, clearance, face, normal,
-@@ -229,102 +241,80 @@
+@@ -229,102 +241,86 @@
              if best is not None:
                  candidates[kind].append(best)
          self.counts = {k:len(v) for k,v in candidates.items()}
@@ -97,7 +97,7 @@
 -                return boxes[0][1] if boxes else None
 -            preferred = boxes if getattr(self,'on_weak_route',False) else fresh
 -            return preferred[0][1] if preferred else None
-+            return obstacle
++            return None if self.patrol.expansion_due(elapsed) else obstacle
 +
 +        walls = candidates['wall']
          self.survey.progress(samples, grid, viewed, transform, pose, elapsed, DIRECTIONS)
@@ -123,6 +123,12 @@
 +            self.reason = 'triangulated_print_revisit'
 +            return survey
 +        returning = self.patrol.object_center is not None
++        if not returning and self.wall_started and self.patrol.expansion_due(elapsed):
++            nearby_frontiers = (goal for goal in choices if goal['distance'] >= 2.)
++            frontier = discovery_frontier(nearby_frontiers, costmap, nav, veto)
++            if frontier is not None:
++                self.phase, self.reason = 'wall', 'expand_beyond_observed_walls'
++                return frontier
 +        if obstacle is not None and (returning or self.wall_started):
 +            self.phase, self.reason = 'interior', 'inspect_nearby_obstacle'
 +            return obstacle
@@ -236,7 +242,7 @@
          self.on_weak_route = bool(goal.get('weak_wall'))
          self.weak.dispatched(goal)
          self.survey.dispatched(goal, elapsed)
-@@ -334,6 +324,7 @@
+@@ -334,6 +330,7 @@
          if 'surface_odom' in goal:
              anchor = np.asarray(goal['surface_odom'])
              normal = goal['normal_odom']
