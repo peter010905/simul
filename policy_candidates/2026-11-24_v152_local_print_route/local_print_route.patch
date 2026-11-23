@@ -1,0 +1,76 @@
+--- a/hybrid.py
++++ b/hybrid.py
+@@ -12,6 +12,7 @@
+ from osp_mission import _r32_navigation_core as r32
+ from osp_mission.r32_drive import R32Drive, grid_from_message, in_map
+ from osp_mission.edge_policy import visible
++from osp_mission.joint_surface import connecting_distances
+ from osp_mission import dock_geometry
+ from osp_mission.wall_route import yaw,camera_pose
+ from osp_mission.thorough_borders import borders
+@@ -77,11 +78,17 @@
+             return None
+         self.used=[r for r in self.used if now-r[1]<180]
+         recent=[r for r in self.tracks if r['count']>=3 and 0<=now-r['stamp']<=30
+-                and not any(np.linalg.norm(r['point']-p)<.55 for p,_ in self.used)]
++                and not any(np.linalg.norm(r['point']-p)<.75 for p,_ in self.used)]
+         if not recent:
+             return None
+-        connected,distances=r32.nav_goal_reachability(grid,cost,pose,grid.reachable(pose[:2],.32))
+-        best=None
++        safe, distances = grid.reachable(pose[:2], .32)
++        start = grid.index(*pose[:2])
++        nav_start = cost.index(*pose[:2])
++        nav = r32.connected_nav_cells(cost, pose)
++        if not grid.inside(*start) or not cost.inside(*nav_start) or not nav[nav_start]:
++            return None
++        candidates = []
++        max_detour_m = 2.4
+         for r in recent:
+             point=np.asarray(in_map(('odom',*r['point']),transform))
+             if any(np.linalg.norm(point-np.asarray(t[:2]))<.40 for t in targets.values()):
+@@ -100,7 +107,9 @@
+                 if not stay and on_view_side and np.linalg.norm(robot-point)-standoff<.25:
+                     continue
+                 cell=grid.index(*position)
+-                if not grid.inside(*cell) or not connected[cell] or not np.isfinite(distances[cell]):
++                nc = cost.index(*position)
++                if (not grid.inside(*cell) or not safe[cell] or not 0 <= distances[cell] <= max_detour_m+1e-8
++                        or not cost.inside(*nc) or not nav[nc] or np.linalg.norm(position-point) < 1.e-6):
+                     continue
+                 end=grid.index(*(point+.20*(position-point)/np.linalg.norm(position-point)))
+                 if not visible(grid.cells,*cell,np.array([end[0]]),np.array([end[1]]))[0]:
+@@ -112,13 +121,18 @@
+                           print_odom=r['point'].tolist())
+                 if veto(goal):
+                     continue
+-                walk = distances[cell] * grid.resolution
+-                if walk > 2.4 or any(np.linalg.norm(r['point']-p)<.75 for p,_ in self.used):
+-                    continue
+-                score=walk + abs(standoff-1.2)
+-                if best is None or score<best[0]:
+-                    best=score,goal
+-        return best[1] if best else None
++                candidates.append((cell, standoff, goal))
++        if not candidates:
++            return None
++        routes = connecting_distances(grid, cost, safe, nav, start,
++                                      (cell for cell, _, _ in candidates), max_detour_m+1e-8)
++        reachable = [(routes[cell] + abs(stand-1.2), goal, routes[cell])
++                     for cell, stand, goal in candidates if cell in routes]
++        if not reachable:
++            return None
++        _, goal, walk = min(reachable, key=lambda row: row[0])
++        goal['print_route_m'] = walk
++        return goal
+
+
+ class Hybrid:
+@@ -243,6 +257,6 @@
+                       'approach' if 'approach_id' in goal else 'focus' if 'focus_id' in goal else 'flow')
+         try:
+             with (Path(owner.p('output_dir'))/'hybrid_goals.jsonl').open('a') as f:
+-                f.write(json.dumps(dict(t=owner.now(),kind=kind,x=goal['x'],y=goal['y'],box_view_scope=goal.get('box_view_scope')))+'\n')
++                f.write(json.dumps(dict(t=owner.now(),kind=kind,x=goal['x'],y=goal['y'],print_route_m=goal.get('print_route_m'),box_view_scope=goal.get('box_view_scope')))+'\n')
+         except OSError as exc:
+             owner.get_logger().debug(str(exc))
