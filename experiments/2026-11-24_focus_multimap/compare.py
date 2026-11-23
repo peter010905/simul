@@ -24,7 +24,8 @@ def result(directory):
             manifest['public_marker_count'] != 3 or
             (camera['width'], camera['height'], camera['requested_fps']) != (640, 480, 5)):
         raise ValueError(f'Incompatible trial protocol: {directory}')
-    return dict(version=name, seed=manifest['seed'], valid=score['valid'], strict=score['strict'],
+    prior = manifest.get('prior_slam_map', {})
+    return dict(version=name, seed=manifest['seed'], prior_map=prior.get('graph_sha256', {}).get('.posegraph'), valid=score['valid'], strict=score['strict'],
                 verified=score['verified'], wall=score['wall_near'], box=score['obstacle_near'],
                 completion_s=score['goal_complete_by_s'], elapsed_s=round(score['elapsed_s'], 2),
                 path_m=round(score['travel_m'], 2), bumps=score['bumps'], false_ids=len(score['false_ids']),
