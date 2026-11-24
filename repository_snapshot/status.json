@@ -2,6 +2,8 @@
   "mixed_v15231_start_sweep": {
     "version": "1.5.2.31-start-sweep",
     "parent": "1.5.2.30-single-read",
+    "physical_board_action": "start-sweep31",
+    "chairs_4101_results": "experiments/2026-11-24_focus_multimap/v15231_chairs4101.json",
     "fresh_runs": 3,
     "fresh_completed": 3,
     "fresh_wall_markers": 3,

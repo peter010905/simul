@@ -1,0 +1,248 @@
+{
+  "seed": 4101,
+  "policy": "Mixed v1.5.2.31 · Start Sweep",
+  "run": "team-v15231_start_sweep_640_1124_ws-track-m4101-1795491061365294119",
+  "fixture": {
+    "seed": 4101,
+    "old_run": "team-v15231_start_sweep_640_1124_ws-track-m4101-1795490291681218570",
+    "observation_wall_s": 8,
+    "imu_messages": 0,
+    "odom_messages": 102,
+    "wheel_odom_messages": 102,
+    "old_physics_step": 0.001,
+    "new_physics_step": 0.004,
+    "identical_world_geometry": true,
+    "collisions": 1010,
+    "updated_world_plugins": [
+      "gz::sim::systems::Physics",
+      "gz::sim::systems::UserCommands",
+      "gz::sim::systems::SceneBroadcaster",
+      "gz::sim::systems::Contact",
+      "gz::sim::systems::Imu"
+    ],
+    "fixture_hash": "3f7fba8b48043ab926f6c35d155d9fb498528b1f76af1148800e509d95e1cfb6"
+  },
+  "camera": [
+    640,
+    480,
+    5
+  ],
+  "physical_drive": false,
+  "tables": 14,
+  "chairs": 92,
+  "chair_collision_shapes": 920,
+  "imu_after": {
+    "/imu": {
+      "received": 250,
+      "publishers": 1
+    },
+    "/odom": {
+      "received": 249,
+      "publishers": 1
+    },
+    "/wheel/odom": {
+      "received": 250,
+      "publishers": 1
+    }
+  },
+  "alignment_early": [
+    {
+      "case": "single31",
+      "last_snapshot_sim_s": 97.736,
+      "position_error_m": 4.688427153463637,
+      "heading_error_deg": -64.03299495510176
+    },
+    {
+      "case": "single31-repaired",
+      "last_snapshot_sim_s": 89.972,
+      "position_error_m": 0.01054900101980445,
+      "heading_error_deg": -0.5458041937081362
+    }
+  ],
+  "rtf_first_90": {
+    "original": 0.177,
+    "repaired": 0.469
+  },
+  "score": {
+    "strict": false,
+    "goal_complete_by_s": null,
+    "elapsed_s": 600.008,
+    "travel_m": 68.48430775187812,
+    "stop_reason": "common_time_limit",
+    "expected": 3,
+    "registered": 1,
+    "verified": 1,
+    "records": {
+      "7": {
+        "host": "aisle_box_s",
+        "mounted": "obstacle",
+        "registered_s": null,
+        "after_registration_near_s": null,
+        "onboard_near_proof_s": null,
+        "verified_s": null
+      },
+      "15": {
+        "host": "aisle_box_c",
+        "mounted": "obstacle",
+        "registered_s": null,
+        "after_registration_near_s": null,
+        "onboard_near_proof_s": null,
+        "verified_s": null
+      },
+      "32": {
+        "host": "wall_north",
+        "mounted": "wall",
+        "registered_s": 427.96,
+        "after_registration_near_s": 458.464,
+        "onboard_near_proof_s": 458.96,
+        "verified_s": 458.96
+      }
+    },
+    "wall": 1,
+    "wall_near": 1,
+    "obstacle": 2,
+    "obstacle_near": 0,
+    "false_ids": [],
+    "bumps": 0,
+    "max_saved_error_m": 0.05757205159188519,
+    "valid": true,
+    "start_position_error_m": 0.001241803764288122,
+    "start_yaw_error_rad": 9.05488534437282e-05,
+    "prestart_ids": []
+  },
+  "decision_count": 43,
+  "decision_reasons": {
+    "regional_camera_gain_per_route": 12,
+    "discover_beyond_current_region": 1,
+    "continue_local_surface_group": 18,
+    "open_new_region_for_camera_coverage": 4,
+    "inspect_new_cluster_face": 1,
+    "unobserved_wall_reserved": 2,
+    "advance_toward_repeated_unranged_id": 2,
+    "accepted_marker_followup": 1,
+    "verified_marker_approach": 1,
+    "unseen_reachable_object": 1
+  },
+  "surface_selection_geometry": {
+    "matched_surface_decisions": 34,
+    "near_table_or_chair_clear_of_boxes": 24,
+    "near_box": 5
+  },
+  "surface_classification": "Selected surface endpoint within 0.35 m of a known chair or table footprint and at least 0.8 m away from all box footprints. Frame aligned using simulated pose and synchronized policy snapshot for offline attribution. Counts include repeat selections.",
+  "closest_truth_range_m": {
+    "7": 1.372,
+    "15": 1.394,
+    "32": 0.975
+  },
+  "stalled_nav_cancels": 4,
+  "elapsed_wall_s": 1569.451592862999,
+  "stationary_s": 266.61999999999995,
+  "completed_run": true,
+  "offline_rgb": {
+    "7": {
+      "frames": 0,
+      "first": null,
+      "last": null
+    },
+    "15": {
+      "frames": 125,
+      "first": {
+        "t": 377.476,
+        "center_x": 0.07
+      },
+      "last": {
+        "t": 575.276,
+        "center_x": 0.927
+      }
+    },
+    "32": {
+      "frames": 295,
+      "first": {
+        "t": 299.876,
+        "center_x": 0.103
+      },
+      "last": {
+        "t": 591.676,
+        "center_x": 0.034
+      }
+    }
+  },
+  "detector_by_id": {
+    "32": {
+      "last_min_edge_pixels": 33.0,
+      "last_stamp": 595.2,
+      "small": 111,
+      "no_range": 72,
+      "border": 2,
+      "accepted": 183
+    },
+    "15": {
+      "last_min_edge_pixels": 23.53720474243164,
+      "last_stamp": 578.8,
+      "small": 79,
+      "no_range": 125
+    }
+  },
+  "measured_bearings": {
+    "7": {
+      "t_nearest_s": 317.42,
+      "nearest_m": 1.372,
+      "abs_bearing_at_nearest_deg": 90.8,
+      "min_abs_bearing_within_1_5m_deg": 55.8,
+      "within_s": 3.42
+    },
+    "15": {
+      "t_nearest_s": 576.8,
+      "nearest_m": 1.394,
+      "abs_bearing_at_nearest_deg": 83.0,
+      "min_abs_bearing_within_1_5m_deg": 36.9,
+      "within_s": 24.54
+    },
+    "32": {
+      "t_nearest_s": 477.62,
+      "nearest_m": 0.975,
+      "abs_bearing_at_nearest_deg": 89.8,
+      "min_abs_bearing_within_1_5m_deg": 0.0,
+      "within_s": 23.68
+    }
+  },
+  "video": {
+    "frames": 3000,
+    "duration_s": 600.0,
+    "recorded_frames": 3000,
+    "max_frame_gap_s": 0.20000000000004547,
+    "sha256": "3163ab741edf17ce69da777a80508ef545d731699ed3e97c6c8ed06c1bd716d7"
+  },
+  "camera_metrics": {
+    "width": 640,
+    "height": 480,
+    "requested_fps": 5.0,
+    "camera_info": {
+      "width": 640,
+      "height": 480,
+      "k": [
+        443.5300081599877,
+        0.0,
+        320.0,
+        0.0,
+        443.53000815998763,
+        240.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "input_frames": 3000,
+    "input_fps_sim": 5.0,
+    "processed_frames": 3000,
+    "processed_fps_sim": 5.0,
+    "processed_age_sim_p50_s": 0.06399999999996453,
+    "processed_age_sim_p95_s": 0.09199999999998454,
+    "input_max_gap_sim_s": 0.20000000000004547,
+    "real_time_factor": 0.3823042410027208,
+    "limitations": "Gazebo render/VM test only; excludes real camera exposure, USB and Create3 DDS overload"
+  },
+  "sweep_action_final_rad": 6.291,
+  "repaired_fixture": "yeonslay-chair-comparison-4101/chairs-runtime31",
+  "board_version_action": "start-sweep31"
+}

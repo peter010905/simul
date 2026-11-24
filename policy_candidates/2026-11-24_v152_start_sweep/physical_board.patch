@@ -1,0 +1,69 @@
+--- a/dashboard/robot_board_control.py
++++ b/dashboard/robot_board_control.py
+@@ -16,6 +16,7 @@
+ # The first two actions remain available to existing clients.
+ START_WORKSPACES = {
+     "prepare-focus": "v152_focus_continuity_box1122_ws",
++    "prepare-sweep31": "v15231_start_sweep_640_1124_ws",
+     "prepare-wall-first": "v152_wall_first1123_ws",
+     "prepare-balanced": "flow_v151_exposure_sync_r2_ws",
+     "start": None,
+@@ -35,11 +36,13 @@
+     "start-crowded": "flow_v3_r32_crowded_ws",
+     "start-balanced": "flow_v151_exposure_sync_r2_ws",
+     "start-focus": "v152_focus_continuity_box1122_ws",
++    "start-sweep31": "v15231_start_sweep_640_1124_ws",
+     "start-wall-first": "v152_wall_first1123_ws",
+     "start-upstream-r32": "r32_upstream_5e95333_ws",
+ }
+ LABELS = {"start": "Flow v4", "start-r32": "R32 주행 혼합 (이전)",
+           "prepare-focus": "Mixed v1.5.2.1 · Focus Continuity",
++          "prepare-sweep31": "Mixed v1.5.2.31 · Start Sweep",
+           "prepare-wall-first": "Mixed v1.5.2 · 벽 우선 복귀",
+           "prepare-balanced": "Mixed v1.5.1-balanced",
+           "start-v3-mppi": "기존 · Flow v3", "start-mixed": "Mixed · 상자 전면 관찰",
+@@ -56,8 +59,13 @@
+           "start-crowded": "Mixed · 밀집 장애물 판단 (v1.4 실험 · 0.30 m/s)",
+           "start-balanced": "Mixed v1.5.1-balanced",
+           "start-focus": "Mixed v1.5.2.1 · Focus Continuity",
++          "start-sweep31": "Mixed v1.5.2.31 · Start Sweep",
+           "start-wall-first": "Mixed v1.5.2 · 벽 우선 복귀",
+           "start-upstream-r32": "R32 Resume · 5e95333"}
++
++
++FOCUS_CAMERA_ACTIONS = {"start-focus", "prepare-focus", "start-wall-first", "prepare-wall-first",
++                        "start-sweep31", "prepare-sweep31"}
+ 
+ 
+ def valid_request(headers, token):
+@@ -109,7 +117,7 @@
+         self.selected = None
+         # Keep legacy API-only actions out of the operator menu.
+         hidden = {"start", "start-r32", "start-marker-relook-045"}
+-        preferred = ["start-focus", "start-wall-first", "start-balanced"]
++        preferred = ["start-focus", "start-sweep31", "start-wall-first", "start-balanced"]
+         order = preferred + [key for key in START_WORKSPACES
+                              if key not in hidden and key not in preferred and not key.startswith("prepare-")]
+         self.policies = [{"action": key, "label": LABELS[key]} for key in order
+@@ -124,7 +132,7 @@
+     def command(self, action):
+         workspace = self.workspace
+         preparing = action.startswith("prepare-")
+-        share_camera = action in ("start-focus", "prepare-focus", "start-wall-first", "prepare-wall-first")
++        share_camera = action in FOCUS_CAMERA_ACTIONS
+         forward_045 = action == "start-marker-relook-045"
+         recover_stall = action in ("start-stall-recovery", "start-crowded")
+         native = action == "start-upstream-r32"
+@@ -161,10 +169,9 @@
+                    RMW_IMPLEMENTATION="rmw_fastrtps_cpp",
+                    FASTRTPS_DEFAULT_PROFILES_FILE=str(profile),
+                    OPENBLAS_NUM_THREADS="1", OMP_NUM_THREADS="1")
+-        if action in ("start-focus", "prepare-focus", "start-wall-first", "prepare-wall-first"):
++        if action in FOCUS_CAMERA_ACTIONS:
+             env.update(OSP_PUBLIC_MARKER_COUNT="3", OSP_SURVEY_DISTANT_HINTS="false")
+-        if action in ("start-focus", "start-balanced", "prepare-focus", "prepare-balanced",
+-                      "start-wall-first", "prepare-wall-first"):
++        if action in FOCUS_CAMERA_ACTIONS or action in ("start-balanced", "prepare-balanced"):
+             env["OSP_SHARE_CAMERA"] = "1"
+         with path.open("wb") as output:
+             process = subprocess.Popen(self.command(action), cwd=self.repo, env=env,
