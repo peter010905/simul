@@ -1,0 +1,285 @@
+{
+  "camera": [
+    640,
+    480,
+    5
+  ],
+  "limit_sim_s": 600,
+  "physical_drive": false,
+  "trial_results": {
+    "run29-1300007177": {
+      "workspace": "v15229_final_bearing_640_1124_ws",
+      "fixture": "c648e62eefa89b08dc0da62a4fe7964c35f34fd67ef703abc9283d7ceae6b02e",
+      "effective_world": "b6ae036aca1c8ddcb60859518807dc27cd46c86103ba3251662db48ecd65789e",
+      "source_hashes": {
+        "osp_mission/osp_mission/marker_approach.py": "8797137b6d403dfeaeff7b18277d54a281ecd3898be80cbbfea5fd461cfc1deb",
+        "osp_mission/osp_mission/landmark_identity.py": "e9b2828304d8d5afb2c7a2cb200fab55dba10f070dcdad19e4a8ef8a602c10ac",
+        "osp_mission/osp_mission/detector.py": "67b6e6f482538b7be738fcfab2c67c00d95bb8b82432c49fab771a0bbf531dfa"
+      },
+      "strict": false,
+      "goal_complete_by_s": null,
+      "elapsed_s": 600.0,
+      "travel_m": 93.59804207455845,
+      "stop_reason": "common_time_limit",
+      "expected": 3,
+      "registered": 3,
+      "verified": 2,
+      "records": {
+        "714": {
+          "host": "movable_3",
+          "mounted": "obstacle",
+          "registered_s": 232.544,
+          "after_registration_near_s": 240.68,
+          "onboard_near_proof_s": 242.05200000000002,
+          "verified_s": 242.05200000000002
+        },
+        "448": {
+          "host": "wall_east",
+          "mounted": "wall",
+          "registered_s": 82.548,
+          "after_registration_near_s": 88.2,
+          "onboard_near_proof_s": 89.568,
+          "verified_s": 89.568
+        },
+        "751": {
+          "host": "movable_1",
+          "mounted": "obstacle",
+          "registered_s": 473.05199999999996,
+          "after_registration_near_s": 473.06,
+          "onboard_near_proof_s": null,
+          "verified_s": null
+        }
+      },
+      "wall": 1,
+      "wall_near": 1,
+      "obstacle": 2,
+      "obstacle_near": 1,
+      "false_ids": [],
+      "bumps": 0,
+      "max_saved_error_m": 0.09579779726516739,
+      "valid": true,
+      "start_position_error_m": 0.0009095608113421774,
+      "start_yaw_error_rad": 0.0003758223774430469,
+      "prestart_ids": []
+    },
+    "run30-1300007177": {
+      "workspace": "v15230_single_read_640_1124_ws",
+      "fixture": "c648e62eefa89b08dc0da62a4fe7964c35f34fd67ef703abc9283d7ceae6b02e",
+      "effective_world": "b6ae036aca1c8ddcb60859518807dc27cd46c86103ba3251662db48ecd65789e",
+      "source_hashes": {
+        "osp_mission/osp_mission/marker_approach.py": "339efbd8d054cd0646925beb9e72ae656b328ba8971f1a600d4c9923d0adfdea",
+        "osp_mission/osp_mission/landmark_identity.py": "15516e41aed105dc15d38893d5675a561d4f7644a0d4da5742421cb4b714c933",
+        "osp_mission/osp_mission/detector.py": "f81fc296f6f31841091e865f901985f91daac5116f4b55d4cd179fd381ab02fc"
+      },
+      "strict": true,
+      "goal_complete_by_s": 512.4960000000001,
+      "elapsed_s": 512.9920000000001,
+      "travel_m": 76.48079064709177,
+      "stop_reason": "all_targets_found",
+      "expected": 3,
+      "registered": 3,
+      "verified": 3,
+      "records": {
+        "714": {
+          "host": "movable_3",
+          "mounted": "obstacle",
+          "registered_s": 236.484,
+          "after_registration_near_s": 238.84,
+          "onboard_near_proof_s": 239.5,
+          "verified_s": 239.5
+        },
+        "448": {
+          "host": "wall_east",
+          "mounted": "wall",
+          "registered_s": 93.99199999999999,
+          "after_registration_near_s": 99.48,
+          "onboard_near_proof_s": 99.99199999999999,
+          "verified_s": 99.99199999999999
+        },
+        "751": {
+          "host": "movable_1",
+          "mounted": "obstacle",
+          "registered_s": 510.99600000000004,
+          "after_registration_near_s": 512.1,
+          "onboard_near_proof_s": 512.4960000000001,
+          "verified_s": 512.4960000000001
+        }
+      },
+      "wall": 1,
+      "wall_near": 1,
+      "obstacle": 2,
+      "obstacle_near": 2,
+      "false_ids": [],
+      "bumps": 0,
+      "max_saved_error_m": 0.030715986938992954,
+      "valid": true,
+      "start_position_error_m": 0.0009095608113421774,
+      "start_yaw_error_rad": 0.0003758223774430469,
+      "prestart_ids": [],
+      "first_near_sensor_frames": {
+        "448": {
+          "elapsed_s": 99.508,
+          "measured_m": 1.4729082700112577,
+          "source": "lidar",
+          "truth_m": 1.4898729870410852
+        },
+        "714": {
+          "elapsed_s": 239.108,
+          "measured_m": 1.4285172369165122,
+          "source": "lidar",
+          "truth_m": 1.4300846317510119
+        },
+        "751": {
+          "elapsed_s": 512.308,
+          "measured_m": 1.4548458911791973,
+          "source": "lidar",
+          "truth_m": 1.4565348347178295
+        }
+      }
+    },
+    "run30-39651653": {
+      "workspace": "v15230_single_read_640_1124_ws",
+      "fixture": "874f7366e7022afbcee52bd083cac64e2f7687f57cc8dbdd34fdaf88dd50fa42",
+      "effective_world": "cfa3d0207e9b06747262d403248ceb6534c91a5790ee3ca19308267e57bb6e3f",
+      "source_hashes": {
+        "osp_mission/osp_mission/marker_approach.py": "339efbd8d054cd0646925beb9e72ae656b328ba8971f1a600d4c9923d0adfdea",
+        "osp_mission/osp_mission/landmark_identity.py": "15516e41aed105dc15d38893d5675a561d4f7644a0d4da5742421cb4b714c933",
+        "osp_mission/osp_mission/detector.py": "f81fc296f6f31841091e865f901985f91daac5116f4b55d4cd179fd381ab02fc"
+      },
+      "strict": true,
+      "goal_complete_by_s": 359.06,
+      "elapsed_s": 359.536,
+      "travel_m": 55.62217620034186,
+      "stop_reason": "all_targets_found",
+      "expected": 3,
+      "registered": 3,
+      "verified": 3,
+      "records": {
+        "858": {
+          "host": "wall_east",
+          "mounted": "wall",
+          "registered_s": 235.056,
+          "after_registration_near_s": 246.128,
+          "onboard_near_proof_s": 246.556,
+          "verified_s": 246.556
+        },
+        "356": {
+          "host": "movable_1",
+          "mounted": "obstacle",
+          "registered_s": 209.556,
+          "after_registration_near_s": 216.208,
+          "onboard_near_proof_s": 216.54000000000002,
+          "verified_s": 216.54000000000002
+        },
+        "554": {
+          "host": "movable_2",
+          "mounted": "obstacle",
+          "registered_s": 346.03999999999996,
+          "after_registration_near_s": 358.968,
+          "onboard_near_proof_s": 359.06,
+          "verified_s": 359.06
+        }
+      },
+      "wall": 1,
+      "wall_near": 1,
+      "obstacle": 2,
+      "obstacle_near": 2,
+      "false_ids": [],
+      "bumps": 0,
+      "max_saved_error_m": 0.05629673338649294,
+      "valid": true,
+      "start_position_error_m": 0.0009401642072935448,
+      "start_yaw_error_rad": 0.0018347005815368966,
+      "prestart_ids": [],
+      "first_near_sensor_frames": {
+        "356": {
+          "elapsed_s": 216.35600000000002,
+          "measured_m": 1.452626848631899,
+          "source": "lidar",
+          "truth_m": 1.4545853140730252
+        },
+        "858": {
+          "elapsed_s": 246.156,
+          "measured_m": 1.4855149303944826,
+          "source": "lidar",
+          "truth_m": 1.4893618282800123
+        },
+        "554": {
+          "elapsed_s": 358.95599999999996,
+          "measured_m": 1.4941682282496735,
+          "source": "lidar",
+          "truth_m": 1.5002462878514453
+        }
+      }
+    },
+    "run30-301946810": {
+      "workspace": "v15230_single_read_640_1124_ws",
+      "fixture": "6de13b8291f8d849d80ca2d1a118bd17b5d0f288a5b1368db3ee15679bf61adf",
+      "effective_world": "59470ab18e5f4535e376cbe8ef09d1e5bb33fcea19ec00fde012a5a9d204eecc",
+      "source_hashes": {
+        "osp_mission/osp_mission/marker_approach.py": "339efbd8d054cd0646925beb9e72ae656b328ba8971f1a600d4c9923d0adfdea",
+        "osp_mission/osp_mission/landmark_identity.py": "15516e41aed105dc15d38893d5675a561d4f7644a0d4da5742421cb4b714c933",
+        "osp_mission/osp_mission/detector.py": "f81fc296f6f31841091e865f901985f91daac5116f4b55d4cd179fd381ab02fc"
+      },
+      "strict": false,
+      "goal_complete_by_s": null,
+      "elapsed_s": 600.004,
+      "travel_m": 86.58970999431622,
+      "stop_reason": "common_time_limit",
+      "expected": 3,
+      "registered": 3,
+      "verified": 2,
+      "records": {
+        "664": {
+          "host": "movable_2",
+          "mounted": "obstacle",
+          "registered_s": 383.464,
+          "after_registration_near_s": 383.464,
+          "onboard_near_proof_s": 383.468,
+          "verified_s": 383.468
+        },
+        "321": {
+          "host": "movable_1",
+          "mounted": "obstacle",
+          "registered_s": 122.96,
+          "after_registration_near_s": 125.744,
+          "onboard_near_proof_s": 126.484,
+          "verified_s": 126.484
+        },
+        "448": {
+          "host": "wall_west",
+          "mounted": "wall",
+          "registered_s": 589.452,
+          "after_registration_near_s": null,
+          "onboard_near_proof_s": null,
+          "verified_s": null
+        }
+      },
+      "wall": 1,
+      "wall_near": 0,
+      "obstacle": 2,
+      "obstacle_near": 2,
+      "false_ids": [],
+      "bumps": 0,
+      "max_saved_error_m": 0.04143134318365488,
+      "valid": true,
+      "start_position_error_m": 0.0009619250680060293,
+      "start_yaw_error_rad": 0.0008012702033977082,
+      "prestart_ids": [],
+      "first_near_sensor_frames": {
+        "321": {
+          "elapsed_s": 125.98,
+          "measured_m": 1.4612750554349567,
+          "source": "lidar",
+          "truth_m": 1.4398360756508382
+        },
+        "664": {
+          "elapsed_s": 383.18,
+          "measured_m": 0.8015627687662285,
+          "source": "lidar",
+          "truth_m": 0.8045028758128085
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,15 @@
 {
+  "mixed_v15230_single_read": {
+    "version": "1.5.2.30-single-read",
+    "parent": "1.5.2.29-final-bearing",
+    "strict_runs": 2,
+    "exam_runs": 3,
+    "per_marker_frames": 1,
+    "radius_m": 1.5,
+    "physical_drive": false,
+    "production_promoted": false,
+    "results": "experiments/2026-11-24_focus_multimap/v15230_results.json"
+  },
   "mixed_v15229_final_bearing": {
     "version": "1.5.2.29-final-bearing",
     "baseline": "1.5.2.1-focus-continuity",
