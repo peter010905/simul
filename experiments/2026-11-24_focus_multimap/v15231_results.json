@@ -1,0 +1,440 @@
+{
+  "policy": "1.5.2.31-start-sweep",
+  "parent": "1.5.2.30-single-read",
+  "physical_drive": false,
+  "paired_seed": 301946810,
+  "paired_parent": {
+    "strict": false,
+    "goal_complete_by_s": null,
+    "elapsed_s": 600.004,
+    "travel_m": 86.58970999431622,
+    "stop_reason": "common_time_limit",
+    "expected": 3,
+    "registered": 3,
+    "verified": 2,
+    "records": {
+      "664": {
+        "host": "movable_2",
+        "mounted": "obstacle",
+        "registered_s": 383.464,
+        "after_registration_near_s": 383.464,
+        "onboard_near_proof_s": 383.468,
+        "verified_s": 383.468
+      },
+      "321": {
+        "host": "movable_1",
+        "mounted": "obstacle",
+        "registered_s": 122.96,
+        "after_registration_near_s": 125.744,
+        "onboard_near_proof_s": 126.484,
+        "verified_s": 126.484
+      },
+      "448": {
+        "host": "wall_west",
+        "mounted": "wall",
+        "registered_s": 589.452,
+        "after_registration_near_s": null,
+        "onboard_near_proof_s": null,
+        "verified_s": null
+      }
+    },
+    "wall": 1,
+    "wall_near": 0,
+    "obstacle": 2,
+    "obstacle_near": 2,
+    "false_ids": [],
+    "bumps": 0,
+    "max_saved_error_m": 0.04143134318365488,
+    "valid": true,
+    "start_position_error_m": 0.0009619250680060293,
+    "start_yaw_error_rad": 0.0008012702033977082,
+    "prestart_ids": []
+  },
+  "fresh_seeds": [
+    488913181,
+    2225725937,
+    4146734450
+  ],
+  "runs": [
+    {
+      "seed": 301946810,
+      "world_sha256": "59470ab18e5f4535e376cbe8ef09d1e5bb33fcea19ec00fde012a5a9d204eecc",
+      "camera": [
+        640,
+        480,
+        5
+      ],
+      "score": {
+        "strict": true,
+        "goal_complete_by_s": 546.724,
+        "elapsed_s": 547.22,
+        "travel_m": 93.15930467461399,
+        "stop_reason": "all_targets_found",
+        "expected": 3,
+        "registered": 3,
+        "verified": 3,
+        "records": {
+          "664": {
+            "host": "movable_2",
+            "mounted": "obstacle",
+            "registered_s": 417.716,
+            "after_registration_near_s": 417.728,
+            "onboard_near_proof_s": 418.232,
+            "verified_s": 418.232
+          },
+          "321": {
+            "host": "movable_1",
+            "mounted": "obstacle",
+            "registered_s": 531.2040000000001,
+            "after_registration_near_s": 546.388,
+            "onboard_near_proof_s": 546.724,
+            "verified_s": 546.724
+          },
+          "448": {
+            "host": "wall_west",
+            "mounted": "wall",
+            "registered_s": 4.244,
+            "after_registration_near_s": 27.488,
+            "onboard_near_proof_s": 27.744,
+            "verified_s": 27.744
+          }
+        },
+        "wall": 1,
+        "wall_near": 1,
+        "obstacle": 2,
+        "obstacle_near": 2,
+        "false_ids": [],
+        "bumps": 0,
+        "max_saved_error_m": 0.022159019536476445,
+        "valid": true,
+        "start_position_error_m": 0.0009619250680060293,
+        "start_yaw_error_rad": 0.0008012702033977082,
+        "prestart_ids": []
+      },
+      "first_goal_s": 13.244,
+      "world_turn_before_first_goal_deg": 362.5964474644336,
+      "max_start_displacement_m": 0.00035282989175540013,
+      "spin_results": [
+        {
+          "status": 4,
+          "feedback_rad": 6.297
+        }
+      ],
+      "marked_box_ids": {
+        "664": {
+          "first_s": 418.744,
+          "decisions": 7
+        }
+      },
+      "max_face_groups_skipped_in_one_decision": 16,
+      "decisions_reporting_box_exclusion": 7,
+      "erroneously_closed_wall_ids": [],
+      "sensor_witnesses": {
+        "448": {
+          "elapsed_s": 27.64,
+          "measured_m": 1.471185277407046,
+          "source": "lidar",
+          "truth_m": 1.4584347835692397
+        },
+        "664": {
+          "elapsed_s": 417.44,
+          "measured_m": 0.9877576426448915,
+          "source": "lidar",
+          "truth_m": 0.9909282806475603
+        },
+        "321": {
+          "elapsed_s": 546.44,
+          "measured_m": 1.4790333408549652,
+          "source": "lidar",
+          "truth_m": 1.48159291585566
+        }
+      }
+    },
+    {
+      "seed": 488913181,
+      "world_sha256": "7dc6dcb13faa339e2826ca818e8a368cfb6ef9ac77cdbda9526fd41560fb5a74",
+      "camera": [
+        640,
+        480,
+        5
+      ],
+      "score": {
+        "strict": true,
+        "goal_complete_by_s": 194.44,
+        "elapsed_s": 194.91199999999998,
+        "travel_m": 29.7102390642124,
+        "stop_reason": "all_targets_found",
+        "expected": 3,
+        "registered": 3,
+        "verified": 3,
+        "records": {
+          "325": {
+            "host": "movable_3",
+            "mounted": "obstacle",
+            "registered_s": 141.928,
+            "after_registration_near_s": 151.412,
+            "onboard_near_proof_s": 151.94799999999998,
+            "verified_s": 151.94799999999998
+          },
+          "912": {
+            "host": "wall_north",
+            "mounted": "wall",
+            "registered_s": 173.428,
+            "after_registration_near_s": 193.632,
+            "onboard_near_proof_s": 194.44,
+            "verified_s": 194.44
+          },
+          "316": {
+            "host": "movable_2",
+            "mounted": "obstacle",
+            "registered_s": 41.456,
+            "after_registration_near_s": 41.472,
+            "onboard_near_proof_s": 41.94,
+            "verified_s": 41.94
+          }
+        },
+        "wall": 1,
+        "wall_near": 1,
+        "obstacle": 2,
+        "obstacle_near": 2,
+        "false_ids": [],
+        "bumps": 0,
+        "max_saved_error_m": 0.04508127181670421,
+        "valid": true,
+        "start_position_error_m": 0.0009867697160225461,
+        "start_yaw_error_rad": 0.0009484780246191704,
+        "prestart_ids": []
+      },
+      "first_goal_s": 12.96,
+      "world_turn_before_first_goal_deg": 360.5594487500493,
+      "max_start_displacement_m": 0.00035281255853907695,
+      "spin_results": [
+        {
+          "status": 4,
+          "feedback_rad": 6.284
+        }
+      ],
+      "marked_box_ids": {
+        "316": {
+          "first_s": 44.46,
+          "decisions": 10
+        },
+        "325": {
+          "first_s": 155.46,
+          "decisions": 3
+        }
+      },
+      "max_face_groups_skipped_in_one_decision": 26,
+      "decisions_reporting_box_exclusion": 10,
+      "erroneously_closed_wall_ids": [],
+      "sensor_witnesses": {
+        "316": {
+          "elapsed_s": 41.256,
+          "measured_m": 0.8724028780815678,
+          "source": "lidar",
+          "truth_m": 0.8747810478193262
+        },
+        "325": {
+          "elapsed_s": 151.456,
+          "measured_m": 1.4851931502339568,
+          "source": "lidar",
+          "truth_m": 1.4892100857546873
+        },
+        "912": {
+          "elapsed_s": 193.856,
+          "measured_m": 1.4564001908279625,
+          "source": "lidar",
+          "truth_m": 1.4427572542470832
+        }
+      }
+    },
+    {
+      "seed": 2225725937,
+      "world_sha256": "420c86e8a98e898331b90fc1fddb4bedf6564d3bab4bbcbf0b48b3e14a78a80e",
+      "camera": [
+        640,
+        480,
+        5
+      ],
+      "score": {
+        "strict": true,
+        "goal_complete_by_s": 391.252,
+        "elapsed_s": 391.68,
+        "travel_m": 60.48778134017341,
+        "stop_reason": "all_targets_found",
+        "expected": 3,
+        "registered": 3,
+        "verified": 3,
+        "records": {
+          "521": {
+            "host": "movable_1",
+            "mounted": "obstacle",
+            "registered_s": 57.208,
+            "after_registration_near_s": 57.212,
+            "onboard_near_proof_s": 57.712,
+            "verified_s": 57.712
+          },
+          "938": {
+            "host": "wall_north",
+            "mounted": "wall",
+            "registered_s": 90.71199999999999,
+            "after_registration_near_s": 96.612,
+            "onboard_near_proof_s": 97.216,
+            "verified_s": 97.216
+          },
+          "271": {
+            "host": "movable_3",
+            "mounted": "obstacle",
+            "registered_s": 385.704,
+            "after_registration_near_s": 390.512,
+            "onboard_near_proof_s": 391.252,
+            "verified_s": 391.252
+          }
+        },
+        "wall": 1,
+        "wall_near": 1,
+        "obstacle": 2,
+        "obstacle_near": 2,
+        "false_ids": [],
+        "bumps": 0,
+        "max_saved_error_m": 0.1116846629786357,
+        "valid": true,
+        "start_position_error_m": 0.000960006086171475,
+        "start_yaw_error_rad": 0.0006663917059317459,
+        "prestart_ids": []
+      },
+      "first_goal_s": 13.236,
+      "world_turn_before_first_goal_deg": 361.4127248574012,
+      "max_start_displacement_m": 0.0003528311498903355,
+      "spin_results": [
+        {
+          "status": 4,
+          "feedback_rad": 6.293
+        }
+      ],
+      "marked_box_ids": {
+        "521": {
+          "first_s": 72.236,
+          "decisions": 21
+        }
+      },
+      "max_face_groups_skipped_in_one_decision": 19,
+      "decisions_reporting_box_exclusion": 21,
+      "erroneously_closed_wall_ids": [],
+      "sensor_witnesses": {
+        "521": {
+          "elapsed_s": 57.028,
+          "measured_m": 0.9853236929238725,
+          "source": "lidar",
+          "truth_m": 1.0007379940439234
+        },
+        "938": {
+          "elapsed_s": 96.82799999999999,
+          "measured_m": 1.4789257929443478,
+          "source": "lidar",
+          "truth_m": 1.4402724210385551
+        },
+        "271": {
+          "elapsed_s": 390.628,
+          "measured_m": 1.4596497175659382,
+          "source": "lidar",
+          "truth_m": 1.4687508390722015
+        }
+      }
+    },
+    {
+      "seed": 4146734450,
+      "world_sha256": "106991dc8da3bde6733f6788a13254a9158f5b53f6b87b358998738a50e0dfae",
+      "camera": [
+        640,
+        480,
+        5
+      ],
+      "score": {
+        "strict": true,
+        "goal_complete_by_s": 450.816,
+        "elapsed_s": 451.316,
+        "travel_m": 71.21012040902446,
+        "stop_reason": "all_targets_found",
+        "expected": 3,
+        "registered": 3,
+        "verified": 3,
+        "records": {
+          "829": {
+            "host": "movable_2",
+            "mounted": "obstacle",
+            "registered_s": 450.3,
+            "after_registration_near_s": 450.312,
+            "onboard_near_proof_s": 450.816,
+            "verified_s": 450.816
+          },
+          "191": {
+            "host": "wall_south_east",
+            "mounted": "wall",
+            "registered_s": 3.8120000000000003,
+            "after_registration_near_s": 42.532,
+            "onboard_near_proof_s": 42.82,
+            "verified_s": 42.82
+          },
+          "452": {
+            "host": "movable_1",
+            "mounted": "obstacle",
+            "registered_s": 184.808,
+            "after_registration_near_s": 184.852,
+            "onboard_near_proof_s": 185.32,
+            "verified_s": 185.32
+          }
+        },
+        "wall": 1,
+        "wall_near": 1,
+        "obstacle": 2,
+        "obstacle_near": 2,
+        "false_ids": [],
+        "bumps": 0,
+        "max_saved_error_m": 0.05913459996419162,
+        "valid": true,
+        "start_position_error_m": 0.0009439281680386229,
+        "start_yaw_error_rad": 0.0007083475648852477,
+        "prestart_ids": []
+      },
+      "first_goal_s": 12.84,
+      "world_turn_before_first_goal_deg": 361.142473761339,
+      "max_start_displacement_m": 0.00035282138791276074,
+      "spin_results": [
+        {
+          "status": 4,
+          "feedback_rad": 6.287
+        }
+      ],
+      "marked_box_ids": {
+        "452": {
+          "first_s": 185.84,
+          "decisions": 14
+        }
+      },
+      "max_face_groups_skipped_in_one_decision": 13,
+      "decisions_reporting_box_exclusion": 14,
+      "erroneously_closed_wall_ids": [],
+      "sensor_witnesses": {
+        "191": {
+          "elapsed_s": 42.632,
+          "measured_m": 1.4708179693389467,
+          "source": "lidar",
+          "truth_m": 1.4723414257524994
+        },
+        "452": {
+          "elapsed_s": 184.632,
+          "measured_m": 1.4979125713796115,
+          "source": "lidar",
+          "truth_m": 1.5042815723110388
+        },
+        "829": {
+          "elapsed_s": 449.832,
+          "measured_m": 1.0144908757624331,
+          "source": "lidar",
+          "truth_m": 1.0744400341477274
+        }
+      }
+    }
+  ]
+}

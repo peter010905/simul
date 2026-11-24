@@ -1,0 +1,222 @@
+--- a/mission.py
++++ b/mission.py
+@@ -482,6 +482,8 @@
+         if self.state!='idle': res.message='Mission already started; restart launch for another run'; return res
+         if not self.ready(): res.message='Waiting for map, fresh scan/camera, TF and Nav2'; return res
+         if self.p('undock') and not self.undock.server_is_ready(): res.message='Undock action unavailable'; return res
++        self.start_sweep_remaining = math.tau
++        self.start_sweep_attempts = 0
+         self.started=self.now(); self.state='running'; self.targets={}; res.success=True; res.message='Mission started'
+         if self.p('undock'): self.send(self.undock,Undock.Goal(),'undock')
+         return res
+@@ -509,10 +511,10 @@
+         generation=self.action_generation
+         flow=getattr(self,'navigation_flow',None)
+         if flow is not None and kind=='nav':flow.begin_navigation()
+-        feedback={'feedback_callback':lambda m:self.spin_feedback(m,generation)} if kind=='spin' else {}
++        feedback={'feedback_callback':lambda m:self.spin_feedback(m,generation)} if kind in ('spin','startup_spin') else {}
+         client.send_goal_async(goal,**feedback).add_done_callback(lambda result:self.accepted(result,generation))
+     def spin_feedback(self,message,generation):
+-        if generation!=self.action_generation or self.kind!='spin':return
++        if generation!=self.action_generation or self.kind not in ('spin','startup_spin'):return
+         distance=float(message.feedback.angular_distance_traveled)
+         if math.isfinite(distance):self.spin_progress=distance
+     def cancel_action(self,reason):
+@@ -556,7 +558,7 @@
+                 self.excluded.append(self.destination)
+                 flow=getattr(self,'navigation_flow',None)
+                 if flow is not None:flow.record_navigation_result(6,'action_rejected',self.now())
+-            if self.kind=='spin':
++            if self.kind in ('spin','startup_spin'):
+                 self.spin_blocked_until=self.now()+30.; self.scan_after=False; self.recovery_pending=True
+             if self.kind=='undock': self.finish('undock_rejected')
+             return
+@@ -597,6 +599,15 @@
+                 self.excluded.append(self.destination)
+                 flow=getattr(self,'navigation_flow',None)
+                 if flow is not None:flow.record_navigation_result(result.status,'bump_contact',self.now())
++            return
++        if self.kind == 'startup_spin':
++            travelled = abs(self.spin_progress)
++            remaining = max(0., self.active_goal.target_yaw-travelled)
++            if result.status == 5 and self.cancel_reason in SENSOR_REASONS and self.start_sweep_attempts < 2 and remaining > .04:
++                self.start_sweep_remaining = remaining
++            elif result.status != 4:
++                self.spin_blocked_until = self.now()+30.
++            self.get_logger().info(f'Startup sweep status={result.status} feedback={travelled:.3f} rad remaining={remaining:.3f}')
+             return
+         if self.cancel_reason == 'inspection_due' and result.status == 5:
+             self.scan_after = True
+@@ -762,6 +773,25 @@
+         if getattr(self,'near_pass',None) is not None:self.near_pass.poll()
+         guard=getattr(self,'contact_inspection',None)
+         now=self.now()
++        if getattr(self, 'kind', '') == 'startup_spin' and (self.goal_handle or self.pending):
++            if now-self.action_start > 35. and not self.cancel_reason:
++                self.cancel_action('action_timeout')
++            return
++        if getattr(self, 'start_sweep_remaining', 0.) > 0.:
++            if self.contact_pending or self.recovery_pending or (guard and (guard.pressed or guard.phase)):
++                self.start_sweep_remaining = 0.
++                self.get_logger().warning('Startup sweep yielded to contact recovery')
++            elif not (self.goal_handle or self.pending):
++                goal = Spin.Goal()
++                goal.target_yaw = self.start_sweep_remaining
++                goal.time_allowance.sec = 32
++                self.start_sweep_attempts += 1
++                self.start_sweep_remaining = 0.
++                self.scan_after = False
++                self.initial_scan = False
++                self.send(self.spin, goal, 'startup_spin')
++                self.get_logger().info(f'Startup sweep requested {goal.target_yaw:.3f} rad')
++                return
+         pending_ids = getattr(self, 'registered_pending', set())
+         if pending_ids and not self.contact_pending and not self.recovery_pending and not (guard and guard.phase):
+             unresolved = {i for i in pending_ids if not self.approach.verified(i)}
+--- a/center_wall.py
++++ b/center_wall.py
+@@ -12,6 +12,7 @@
+ from osp_mission.tracked_faces import TrackedFaces
+ from osp_mission.cluster_exit import ClusterExit
+ from osp_mission.box_batch import BoxBatch
++from osp_mission.marked_boxes import MarkedBoxes
+ from osp_mission.wall_bearings import WallBearings
+ from osp_mission.visual_survey import VisualSurvey
+ from osp_mission.regional_surface import RegionalSurface
+@@ -76,7 +77,7 @@
+     return frontier
+ 
+ 
+-def surface_cells(grid, pose):
++def surface_cells(grid, pose, marked=None, targets=None):
+     """Separate occupied islands inside explored free space from its exterior."""
+     data = grid.cells
+     free = (data >= 0) & (data <= 25)
+@@ -89,6 +90,8 @@
+     occupied, _ = ndimage.label(data >= 65, structure=np.ones((3, 3)))
+     boxes = ndimage.find_objects(occupied)
+     partial = partly_mapped_objects(occupied, boxes, floor, grid.resolution)
++    if marked is not None:
++        marked.update(grid, occupied, boxes, interior, partial, targets or {})
+     # A wall occupies many cells. Bin samples in metres, independently on each side.
+     samples = {}
+     for side, (dy, dx) in enumerate(DIRECTIONS):
+@@ -117,6 +120,7 @@
+         self.history = deque(maxlen=200)
+         self.tracked_faces = TrackedFaces()
+         self.batch = BoxBatch()
++        self.marked_boxes = MarkedBoxes()
+         self.cluster = ClusterExit()
+         self.weak = WallBearings()
+         self.survey = VisualSurvey()
+@@ -144,7 +148,9 @@
+             if goal is not None:
+                 self.reason = 'route_to_confirmed_print_side'
+                 return goal
+-        samples = surface_cells(grid, pose)
++        targets = pending_approach[1] if pending_approach else {}
++        self.marked_boxes = MarkedBoxes()
++        samples = surface_cells(grid, pose, self.marked_boxes, targets)
+         clearance = distance_cells * grid.resolution
+         candidates = {'interior': [], 'wall': []}
+         self.tracked_faces.update(fitted, transform, elapsed)
+@@ -152,6 +158,9 @@
+         if not grid.inside(*start) or clearance[start] < .32:
+             fitted = ()
+         for center, faces, seen_angles in fitted:
++            if self.marked_boxes.fitted_done(center, faces):
++                self.marked_boxes.skipped += len(faces)
++                continue
+             for side, (face, normal) in enumerate(faces):
+                 normal_yaw = math.atan2(normal[1], normal[0]) + transform[2]
+                 if any(math.cos(normal_yaw - angle) >= math.cos(math.radians(35)) for angle in seen_angles):
+@@ -177,7 +186,10 @@
+         wall_normals = None if probe_only or self.survey.camera is None else self.survey.normals.update(grid.cells,grid.resolution)
+         wall_limit = self.survey.coverage_limit()
+         standoffs = self.survey.standoffs()
+-        for (kind, _, side, _, _), cells in samples.items():
++        for (kind, component, side, _, _), cells in samples.items():
++            if kind == 'interior' and component in self.marked_boxes.by_component:
++                self.marked_boxes.skipped += 1
++                continue
+             if probe_only and kind != 'interior':
+                 continue
+             # Keep one-off scan speckles out of each inspection target.
+--- a/phased_hybrid.py
++++ b/phased_hybrid.py
+@@ -96,7 +96,9 @@
+         self.next_box_probe = owner.now()+3. if (goal.get('r32_kind')=='wall_surface' or goal.get('cluster_exit')) else float('inf')
+         if goal.get('survey_escape') or 'distant_hint_id' in goal or 'survey_wall' in goal:
+             self.next_box_probe = float('inf')
+-        row = dict(bearing_attempt_number=goal.get('bearing_attempt_number'),
++        row = dict(marked_box_ids=sorted(self.schedule.marked_boxes.markers),
++                   suppressed_box_face_groups=self.schedule.marked_boxes.skipped,
++                   bearing_attempt_number=goal.get('bearing_attempt_number'),
+                    bearing_attempt_limit=goal.get('bearing_attempt_limit'), routed_approach_m=goal.get('routed_approach_m'), region_arrived_s=self.schedule.joint.entered if self.schedule.joint.anchor is not None else None,
+                    region_stops=self.schedule.joint.stops, face_frontier_gap_m=goal.get('face_frontier_gap_m'),
+                    original_wall_route_m=goal.get('original_wall_route_m'), survey_wall=goal.get('survey_wall'),survey_visible_sections=goal.get('survey_visible_sections'),
+--- /dev/null
++++ b/marked_boxes.py
+@@ -0,0 +1,62 @@
++"""Identify an inspected compact object from a registered ID on its mapped surface."""
++import math
++import cv2
++import numpy as np
++
++
++class MarkedBoxes:
++    def __init__(self):
++        self.by_component = {}
++        self.markers = {}
++        self.skipped = 0
++
++    def update(self, grid, occupied, bounds, interior, partial, targets):
++        # Component numbers change whenever SLAM updates. Rebind them using the
++        # persistent ID and current map position, including after ID withdrawal.
++        self.by_component.clear()
++        self.markers.clear()
++        self.skipped = 0
++        if not targets:
++            return
++        tolerance = max(.10, 2 * grid.resolution)
++        span = math.ceil(tolerance / grid.resolution) + 1
++        for ident, xy in targets.items():
++            r, c = grid.index(*xy)
++            if not grid.inside(r, c):
++                continue
++            r0, c0 = max(0, r-span), max(0, c-span)
++            tile = occupied[r0:r+span+1, c0:c+span+1]
++            near = set()
++            for y, x in np.argwhere(tile > 0):
++                if math.dist(grid.world(r0+y, c0+x), xy) <= tolerance:
++                    near.add(int(tile[y, x]))
++            if len(near) != 1:
++                continue
++            component = near.pop()
++            window = bounds[component-1]
++            if max(s.stop-s.start for s in window)*grid.resolution > 1.65:
++                continue
++            mask = occupied[window] == component
++            if component not in partial and not np.any(interior[window] & mask):
++                continue
++            pts = np.argwhere(mask).astype(np.float32)
++            if len(pts) < 5:
++                continue
++            _, dims, _ = cv2.minAreaRect(pts)
++            short, long = sorted(v*grid.resolution for v in dims)
++            if not (.14 <= short and .30 <= long <= 1.15):
++                continue
++            self.by_component.setdefault(component, set()).add(int(ident))
++            self.markers[int(ident)] = np.asarray(xy, dtype=float)
++
++    def fitted_done(self, center, faces):
++        # Fitted goals have no component index. Only suppress rectangles whose
++        # finite face segment coincides with an already attributed print.
++        for anchor, normal in faces:
++            tangent = np.array([-normal[1], normal[0]])
++            width = max(abs((p-center) @ tangent) for p, _ in faces)
++            for xy in self.markers.values():
++                delta = xy-anchor
++                if abs(delta @ normal) <= .10 and abs(delta @ tangent) <= width+.04:
++                    return True
++        return False

@@ -1,4 +1,18 @@
 {
+  "mixed_v15231_start_sweep": {
+    "version": "1.5.2.31-start-sweep",
+    "parent": "1.5.2.30-single-read",
+    "fresh_runs": 3,
+    "fresh_completed": 3,
+    "fresh_wall_markers": 3,
+    "fresh_box_markers": 6,
+    "fresh_bumps": 0,
+    "fresh_false_ids": 0,
+    "paired_retest_seed": 301946810,
+    "physical_drive": false,
+    "production_promoted": false,
+    "results": "experiments/2026-11-24_focus_multimap/v15231_results.json"
+  },
   "mixed_v15230_single_read": {
     "version": "1.5.2.30-single-read",
     "parent": "1.5.2.29-final-bearing",
