@@ -1,0 +1,45 @@
+{
+  "evidence_type": "matched_native_exam_sensor_probe_not_mission",
+  "fixture_sha256": "6de13b8291f8d849d80ca2d1a118bd17b5d0f288a5b1368db3ee15679bf61adf",
+  "baseline": {
+    "camera_dimensions": [
+      640,
+      480
+    ],
+    "camera_hz": 5.000000000000007,
+    "scan_hz": 10.000000000000036,
+    "beams": 640,
+    "raw_max_range_m": 12.0,
+    "angle_min": -3.1415927410125732,
+    "angle_max": 3.1415927410125732
+  },
+  "measured": {
+    "camera_dimensions": [
+      250,
+      250
+    ],
+    "camera_hz": 10.000000000000036,
+    "scan_hz": 8.06451612903228,
+    "beams": 720,
+    "raw_max_range_m": 12.0,
+    "angle_min": -3.1241393089294434,
+    "angle_max": 3.1415927410125732
+  },
+  "checks": {
+    "camera_dimensions": true,
+    "camera_rate": true,
+    "lidar_rate": true,
+    "lidar_beams": true,
+    "lidar_raw_range": true
+  },
+  "acquisition_match_passed": true,
+  "actual_slam_range_in_probe_tested": false,
+  "navigation_or_detection_improvement_tested": false,
+  "physical_drive": false,
+  "unknowns": [
+    "Optical distortion/FOV calibration",
+    "Rolling scan timing and missing returns",
+    "Wheel slip, payload motion and real contact geometry",
+    "Recorded sensor interruptions under mission load"
+  ]
+}

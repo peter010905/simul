@@ -1,4 +1,22 @@
 {
+  "real_sim_20261126": {
+    "physical_drive": false,
+    "policy_changed": false,
+    "real_runs": 8,
+    "slam5_runs": 5,
+    "slam12_runs": 3,
+    "calibration_runs": 6,
+    "heldout_runs": 2,
+    "native_sensor_probe_passed": true,
+    "full_mission_comparison": false,
+    "persistent_geometry_runs_supported": 2,
+    "persistent_geometry_runs_missing_tf": 2,
+    "simulator_tables": 14,
+    "simulator_table_legs": 56,
+    "physical_table_leg_count": null,
+    "focused_checks": 12,
+    "report": "experiments/2026-11-26_real_sim/README.md"
+  },
   "mixed_v15231_start_sweep": {
     "version": "1.5.2.31-start-sweep",
     "parent": "1.5.2.30-single-read",

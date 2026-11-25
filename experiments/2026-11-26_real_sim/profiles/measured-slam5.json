@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "physical_drive": false,
+  "slam_max_range_m": 5.0,
+  "camera": {
+    "width": 250,
+    "height": 250,
+    "fps": 10.0,
+    "calibration": "Resolution/rate only. Optical model and distortion require independent calibration."
+  },
+  "lidar": {
+    "hz": 8.11,
+    "beams": 720,
+    "angle_min": -3.1241393089294434,
+    "angle_max": 3.1415927410125732,
+    "raw_max_range_m": 12.0
+  },
+  "calibration_runs": [
+    "20261125T165202-662e78a865",
+    "20261125T171523-c383cb3a86",
+    "20261125T182719-5f14de4dad",
+    "20261125T184804-71cb633767",
+    "20261125T193519-1149595c02",
+    "20261125T195126-1cce5b818a"
+  ],
+  "validation_runs": [
+    "20261125T174857-2f02f6e167",
+    "20261125T195426-a84b4e02f7"
+  ],
+  "heldout_errors": [
+    {
+      "run": "20261125T174857-2f02f6e167",
+      "scan_rate_error_percent": 0.0057656764984259645,
+      "camera_rate_error_percent": 0.014162063598632812,
+      "detector_dimensions_match": true
+    },
+    {
+      "run": "20261125T195426-a84b4e02f7",
+      "scan_rate_error_percent": 0.12893438339235397,
+      "camera_rate_error_percent": 0.014162063598632812,
+      "detector_dimensions_match": true
+    }
+  ],
+  "limitations": [
+    "Scene-dependent no-return rates are not simulated as random dropped rays",
+    "Recorded camera age includes recorder/processing paths and is not injected as pure transport delay",
+    "No independently measured payload friction, slip, motor lag or LiDAR range noise fit",
+    "Native 640x480 5fps remains a separate intended-camera sensitivity profile",
+    "Simulation sensor matching is not evidence of improved physical mission success"
+  ]
+}

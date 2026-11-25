@@ -1,0 +1,128 @@
+[
+  {
+    "run": "20261125T174857-2f02f6e167",
+    "slam_max_range_m": 12.0,
+    "map_frame": "map",
+    "views": 0,
+    "occupied_cells": 12807,
+    "repeated_supported_cells": 0,
+    "unverified_cells": 12807,
+    "components": 0,
+    "small_components_1_to_0_04_m2": 0,
+    "rejected": {
+      "missing_or_stale_tf": 4654
+    },
+    "thresholds": {
+      "minimum_views": 3,
+      "minimum_span_s": 6.0,
+      "minimum_view_translation_m": 0.25,
+      "minimum_view_turn_deg": 15.0,
+      "range_tolerance_m": 0.12,
+      "maximum_free_to_hit_ratio": 0.25
+    },
+    "limitations": [
+      "Repeated returns do not identify a table leg, person or box semantically",
+      "Stationary people and map/TF bias can persist; this is a conservative reconstruction candidate",
+      "Unverified cells are not free space; physical costmaps and collision checks are untouched",
+      "Separate runs use separate map frames and are not merged",
+      "Geometry is only a horizontal LiDAR slice, not complete 3D shape"
+    ],
+    "status": "unavailable_missing_timestamped_tf",
+    "physical_table_leg_count": null
+  },
+  {
+    "run": "20261125T184804-71cb633767",
+    "slam_max_range_m": 5.0,
+    "map_frame": "map",
+    "views": 0,
+    "occupied_cells": 6629,
+    "repeated_supported_cells": 0,
+    "unverified_cells": 6629,
+    "components": 0,
+    "small_components_1_to_0_04_m2": 0,
+    "rejected": {
+      "missing_or_stale_tf": 4570
+    },
+    "thresholds": {
+      "minimum_views": 3,
+      "minimum_span_s": 6.0,
+      "minimum_view_translation_m": 0.25,
+      "minimum_view_turn_deg": 15.0,
+      "range_tolerance_m": 0.12,
+      "maximum_free_to_hit_ratio": 0.25
+    },
+    "limitations": [
+      "Repeated returns do not identify a table leg, person or box semantically",
+      "Stationary people and map/TF bias can persist; this is a conservative reconstruction candidate",
+      "Unverified cells are not free space; physical costmaps and collision checks are untouched",
+      "Separate runs use separate map frames and are not merged",
+      "Geometry is only a horizontal LiDAR slice, not complete 3D shape"
+    ],
+    "status": "unavailable_missing_timestamped_tf",
+    "physical_table_leg_count": null
+  },
+  {
+    "run": "20261125T195126-1cce5b818a",
+    "slam_max_range_m": 5.0,
+    "map_frame": "map",
+    "views": 76,
+    "occupied_cells": 2346,
+    "repeated_supported_cells": 1021,
+    "unverified_cells": 1325,
+    "components": 43,
+    "small_components_1_to_0_04_m2": 35,
+    "rejected": {
+      "missing_or_stale_tf": 27,
+      "same_viewpoint": 53
+    },
+    "thresholds": {
+      "minimum_views": 3,
+      "minimum_span_s": 6.0,
+      "minimum_view_translation_m": 0.25,
+      "minimum_view_turn_deg": 15.0,
+      "range_tolerance_m": 0.12,
+      "maximum_free_to_hit_ratio": 0.25
+    },
+    "limitations": [
+      "Repeated returns do not identify a table leg, person or box semantically",
+      "Stationary people and map/TF bias can persist; this is a conservative reconstruction candidate",
+      "Unverified cells are not free space; physical costmaps and collision checks are untouched",
+      "Separate runs use separate map frames and are not merged",
+      "Geometry is only a horizontal LiDAR slice, not complete 3D shape"
+    ],
+    "status": "evidence_available",
+    "physical_table_leg_count": null
+  },
+  {
+    "run": "20261125T195426-a84b4e02f7",
+    "slam_max_range_m": 5.0,
+    "map_frame": "map",
+    "views": 173,
+    "occupied_cells": 5685,
+    "repeated_supported_cells": 3111,
+    "unverified_cells": 2574,
+    "components": 34,
+    "small_components_1_to_0_04_m2": 23,
+    "rejected": {
+      "missing_or_stale_tf": 24,
+      "same_viewpoint": 156
+    },
+    "thresholds": {
+      "minimum_views": 3,
+      "minimum_span_s": 6.0,
+      "minimum_view_translation_m": 0.25,
+      "minimum_view_turn_deg": 15.0,
+      "range_tolerance_m": 0.12,
+      "maximum_free_to_hit_ratio": 0.25
+    },
+    "limitations": [
+      "Repeated returns do not identify a table leg, person or box semantically",
+      "Stationary people and map/TF bias can persist; this is a conservative reconstruction candidate",
+      "Unverified cells are not free space; physical costmaps and collision checks are untouched",
+      "Separate runs use separate map frames and are not merged",
+      "Geometry is only a horizontal LiDAR slice, not complete 3D shape"
+    ],
+    "status": "evidence_available",
+    "physical_table_leg_count": null
+  }
+]

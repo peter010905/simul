@@ -1,0 +1,3026 @@
+[
+  {
+    "run": "20261125T165202-662e78a865",
+    "workspace": "/home/ubuntu/v15240_box_safe_views_640_1124_ws",
+    "duration_s": 489.774276885,
+    "config_snapshot_sha256": "16ab21d573ae732f376c195853a84f8b57d8fbc6659d339344f7c4bec46b3788",
+    "slam": {
+      "max_laser_range": 12.0,
+      "resolution": 0.05,
+      "minimum_time_interval": 0.5,
+      "minimum_travel_distance": 0.05,
+      "minimum_travel_heading": 0.05,
+      "map_update_interval": 0.5,
+      "check_min_dist_and_heading_precisely": null
+    },
+    "timing": {
+      "/scan": {
+        "count": 3805,
+        "period_s": {
+          "p05": 0.12224321365356446,
+          "p50": 0.12324082851409912,
+          "p95": 0.13559370040893554
+        },
+        "stamp_span_s": 487.7853841781616,
+        "reception_span_s": 487.7854382991791,
+        "median_hz": 8.114194070722245,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.0002315044403076172,
+          "p50": 0.0004658699035644531,
+          "p95": 0.0009491920471191394
+        },
+        "first_reception_after_bag_start_s": 1.9333641529083252,
+        "last_reception_before_bag_end_s": 0.05547451972961426
+      },
+      "/scan_self_filtered": {
+        "count": 3727,
+        "period_s": {
+          "p05": 0.12227475643157959,
+          "p50": 0.12323594093322754,
+          "p95": 0.13554543256759644
+        },
+        "stamp_span_s": 477.76389384269714,
+        "reception_span_s": 477.76802277565,
+        "median_hz": 8.114515882520232,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.0008950948715209961,
+          "p50": 0.00124359130859375,
+          "p95": 0.002113676071166992
+        },
+        "first_reception_after_bag_start_s": 5.667831659317017,
+        "last_reception_before_bag_end_s": 6.338422536849976
+      },
+      "/odom": {
+        "count": 9722,
+        "period_s": {
+          "p05": 0.04604697227478027,
+          "p50": 0.048035621643066406,
+          "p95": 0.0644078254699707
+        },
+        "stamp_span_s": 488.547824382782,
+        "reception_span_s": 488.5428204536438,
+        "median_hz": 20.8178840159622,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.02321547269821167,
+          "p50": 0.02993178367614746,
+          "p95": 0.042210519313812256
+        },
+        "first_reception_after_bag_start_s": 1.1824140548706055,
+        "last_reception_before_bag_end_s": 0.049042463302612305
+      },
+      "/cmd_vel": {
+        "count": 9580,
+        "period_s": {
+          "p05": 0.008721637725830081,
+          "p50": 0.05002331733703613,
+          "p95": 0.10013284683227539
+        },
+        "stamp_span_s": 477.3701243400574,
+        "reception_span_s": 477.2482533454895,
+        "median_hz": 19.99067741274373,
+        "nonpositive_intervals": 1684,
+        "gaps_over_0_5s": 71,
+        "recorded_age_s": {
+          "p05": 0.0002429485321044922,
+          "p50": 0.11049962043762207,
+          "p95": 0.6075606703758238
+        },
+        "first_reception_after_bag_start_s": 12.484001159667969,
+        "last_reception_before_bag_end_s": 0.0420224666595459
+      },
+      "/map": {
+        "count": 949,
+        "period_s": {
+          "p05": 0.3808640122413635,
+          "p50": 0.51569664478302,
+          "p95": 0.516719377040863
+        },
+        "stamp_span_s": 474.0514373779297,
+        "reception_span_s": 474.02564907073975,
+        "median_hz": 1.939124502973548,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 843,
+        "recorded_age_s": {
+          "p05": 0.06350526809692383,
+          "p50": 0.1252002716064453,
+          "p95": 0.18436741828918457
+        },
+        "first_reception_after_bag_start_s": 8.991044044494629,
+        "last_reception_before_bag_end_s": 6.757583856582642
+      },
+      "/oakd/rgb/preview/camera_info": {
+        "count": 4896,
+        "period_s": {
+          "p05": 0.09998559951782227,
+          "p50": 0.09998583793640137,
+          "p95": 0.09998631477355957
+        },
+        "stamp_span_s": 489.43337655067444,
+        "reception_span_s": 489.4262435436249,
+        "median_hz": 10.001416406952316,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.030140340328216553,
+          "p50": 0.032494544982910156,
+          "p95": 0.03725332021713257
+        },
+        "first_reception_after_bag_start_s": 0.3051445484161377,
+        "last_reception_before_bag_end_s": 0.04288887977600098
+      },
+      "/mission/processed_camera": {
+        "count": 4748,
+        "period_s": {
+          "p05": 0.09998559951782227,
+          "p50": 0.09998583793640137,
+          "p95": 0.09998631477355957
+        },
+        "stamp_span_s": 474.6343414783478,
+        "reception_span_s": 474.6188142299652,
+        "median_hz": 10.001416406952316,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.052510392665863034,
+          "p50": 0.07784128189086914,
+          "p95": 0.09325706958770752
+        },
+        "first_reception_after_bag_start_s": 8.850214004516602,
+        "last_reception_before_bag_end_s": 6.305248737335205
+      },
+      "/oakd/rgb/preview/image_raw/compressed": {
+        "count": 4896,
+        "period_s": {
+          "p05": 0.09998559951782227,
+          "p50": 0.09998583793640137,
+          "p95": 0.09998631477355957
+        },
+        "stamp_span_s": 489.43337655067444,
+        "reception_span_s": 489.4289107322693,
+        "median_hz": 10.001416406952316,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.028088033199310303,
+          "p50": 0.029930830001831055,
+          "p95": 0.03343123197555542
+        },
+        "first_reception_after_bag_start_s": 0.30132532119750977,
+        "last_reception_before_bag_end_s": 0.04404091835021973
+      }
+    },
+    "cameras": {
+      "/oakd/rgb/preview/camera_info": [
+        {
+          "width": 250,
+          "height": 250,
+          "k": [
+            199.2552947998047,
+            0.0,
+            123.67389678955078,
+            0.0,
+            199.2552947998047,
+            127.07687377929688,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "d": [
+            4.709591865539551,
+            -103.1653060913086,
+            -0.0012447114568203688,
+            0.0012852484360337257,
+            396.68414306640625,
+            4.526153564453125,
+            -101.39205932617188,
+            390.82220458984375
+          ],
+          "distortion": "rational_polynomial",
+          "count": 4896
+        }
+      ],
+      "/mission/processed_camera": [
+        {
+          "width": 250,
+          "height": 250,
+          "k": [
+            356.6669776916504,
+            0.0,
+            123.67389678955078,
+            0.0,
+            199.2552947998047,
+            127.07687377929688,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "d": [
+            4.709591865539551,
+            -103.1653060913086,
+            -0.0012447114568203688,
+            0.0012852484360337257,
+            396.68414306640625,
+            4.526153564453125,
+            -101.39205932617188,
+            390.82220458984375
+          ],
+          "distortion": "rational_polynomial",
+          "count": 4748
+        }
+      ]
+    },
+    "scans": {
+      "/scan": {
+        "range_max_counts": {
+          "12.0": 3805
+        },
+        "geometries": [
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.12123826146125793,
+            "time_increment_s": 0.00016862066695466638,
+            "count": 2
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.13392335176467896,
+            "time_increment_s": 0.00018626335076987743,
+            "count": 2
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.13390842080116272,
+            "time_increment_s": 0.00018624258518684655,
+            "count": 2
+          }
+        ],
+        "finite_fraction": {
+          "p05": 0.3680555555555556,
+          "p50": 0.4708333333333333,
+          "p95": 0.5763888888888888
+        },
+        "beyond_slam_fraction": {
+          "p05": 0.0,
+          "p50": 0.0,
+          "p95": 0.0
+        },
+        "observed_max_m": {
+          "p05": 8.064000129699707,
+          "p50": 9.84000015258789,
+          "p95": 11.583999633789062
+        }
+      },
+      "/scan_self_filtered": {
+        "range_max_counts": {
+          "12.0": 3727
+        },
+        "geometries": [
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.12123826146125793,
+            "time_increment_s": 0.00016862066695466638,
+            "count": 2
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.13392335176467896,
+            "time_increment_s": 0.00018626335076987743,
+            "count": 2
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.13390842080116272,
+            "time_increment_s": 0.00018624258518684655,
+            "count": 2
+          }
+        ],
+        "finite_fraction": {
+          "p05": 0.3680555555555556,
+          "p50": 0.4708333333333333,
+          "p95": 0.5736111111111111
+        },
+        "beyond_slam_fraction": {
+          "p05": 0.0,
+          "p50": 0.0,
+          "p95": 0.0
+        },
+        "observed_max_m": {
+          "p05": 8.071999549865723,
+          "p50": 9.824000358581543,
+          "p95": 11.583999633789062
+        }
+      }
+    },
+    "maps": {
+      "/map": {
+        "changes": 445,
+        "published": 949,
+        "change_period_s": {
+          "p05": 0.38114681243896487,
+          "p50": 0.5158203840255737,
+          "p95": 3.980148458480835
+        },
+        "resolutions": {
+          "0.05000000074505806": 949
+        }
+      }
+    },
+    "motions": {
+      "/odom": {
+        "absolute_linear_m_s": {
+          "p05": 0.0,
+          "p50": 0.03844942993593323,
+          "p95": 0.2980342159175603
+        },
+        "absolute_angular_rad_s": {
+          "p05": 0.0,
+          "p50": 0.2127414271235466,
+          "p95": 0.8046859681606292
+        }
+      },
+      "/cmd_vel": {
+        "absolute_linear_m_s": {
+          "p05": 0.0,
+          "p50": 0.026735433377325535,
+          "p95": 0.29999998211860657
+        },
+        "absolute_angular_rad_s": {
+          "p05": 0.0,
+          "p50": 0.19541174242986808,
+          "p95": 0.8
+        }
+      }
+    },
+    "first_compressed_image_shapes": {
+      "/oakd/rgb/preview/image_raw/compressed": [
+        250,
+        250,
+        3
+      ]
+    }
+  },
+  {
+    "run": "20261125T171523-c383cb3a86",
+    "workspace": "/home/ubuntu/v15241_region_transit_r1_640_1124_ws",
+    "duration_s": 260.757299151,
+    "config_snapshot_sha256": "16ab21d573ae732f376c195853a84f8b57d8fbc6659d339344f7c4bec46b3788",
+    "slam": {
+      "max_laser_range": 12.0,
+      "resolution": 0.05,
+      "minimum_time_interval": 0.5,
+      "minimum_travel_distance": 0.05,
+      "minimum_travel_heading": 0.05,
+      "map_update_interval": 0.5,
+      "check_min_dist_and_heading_precisely": null
+    },
+    "timing": {
+      "/scan": {
+        "count": 2015,
+        "period_s": {
+          "p05": 0.12221302986145019,
+          "p50": 0.12331008911132812,
+          "p95": 0.13553504943847655
+        },
+        "stamp_span_s": 258.14526414871216,
+        "reception_span_s": 258.14529609680176,
+        "median_hz": 8.109636504253674,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.0006646394729614257,
+          "p50": 0.0009634494781494141,
+          "p95": 0.002684378623962401
+        },
+        "first_reception_after_bag_start_s": 2.548074722290039,
+        "last_reception_before_bag_end_s": 0.06392836570739746
+      },
+      "/scan_self_filtered": {
+        "count": 1933,
+        "period_s": {
+          "p05": 0.12227020263671876,
+          "p50": 0.12326085567474365,
+          "p95": 0.13550678491592408
+        },
+        "stamp_span_s": 247.59842991828918,
+        "reception_span_s": 247.6039445400238,
+        "median_hz": 8.11287569379499,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.0013355731964111329,
+          "p50": 0.0018298625946044922,
+          "p95": 0.005336523056030273
+        },
+        "first_reception_after_bag_start_s": 6.79636025428772,
+        "last_reception_before_bag_end_s": 6.356994390487671
+      },
+      "/odom": {
+        "count": 5157,
+        "period_s": {
+          "p05": 0.03978651762008667,
+          "p50": 0.04997515678405762,
+          "p95": 0.06872612237930298
+        },
+        "stamp_span_s": 260.04481625556946,
+        "reception_span_s": 260.03449630737305,
+        "median_hz": 20.009942226314458,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.01663203239440918,
+          "p50": 0.02589273452758789,
+          "p95": 0.03964400291442871
+        },
+        "first_reception_after_bag_start_s": 0.6990456581115723,
+        "last_reception_before_bag_end_s": 0.023757219314575195
+      },
+      "/cmd_vel": {
+        "count": 5282,
+        "period_s": {
+          "p05": 0.0005545616149902344,
+          "p50": 0.04997539520263672,
+          "p95": 0.10000338554382324
+        },
+        "stamp_span_s": 247.87421989440918,
+        "reception_span_s": 247.79049611091614,
+        "median_hz": 20.009846764498217,
+        "nonpositive_intervals": 772,
+        "gaps_over_0_5s": 25,
+        "recorded_age_s": {
+          "p05": 0.00025779008865356445,
+          "p50": 0.09881281852722168,
+          "p95": 0.4079431772232043
+        },
+        "first_reception_after_bag_start_s": 12.94341254234314,
+        "last_reception_before_bag_end_s": 0.023390531539916992
+      },
+      "/map": {
+        "count": 492,
+        "period_s": {
+          "p05": 0.3809894323348999,
+          "p50": 0.5156373977661133,
+          "p95": 0.5165493488311768
+        },
+        "stamp_span_s": 245.5541250705719,
+        "reception_span_s": 245.54408240318298,
+        "median_hz": 1.9393473094315543,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 431,
+        "recorded_age_s": {
+          "p05": 0.05342503786087036,
+          "p50": 0.11461842060089111,
+          "p95": 0.18099460601806638
+        },
+        "first_reception_after_bag_start_s": 8.599604845046997,
+        "last_reception_before_bag_end_s": 6.613611936569214
+      },
+      "/oakd/rgb/preview/camera_info": {
+        "count": 2597,
+        "period_s": {
+          "p05": 0.09998559951782227,
+          "p50": 0.09998583793640137,
+          "p95": 0.09998631477355957
+        },
+        "stamp_span_s": 259.5622355937958,
+        "reception_span_s": 259.53151297569275,
+        "median_hz": 10.001416406952316,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.030971527099609375,
+          "p50": 0.0335695743560791,
+          "p95": 0.03947467803955078
+        },
+        "first_reception_after_bag_start_s": 1.1465771198272705,
+        "last_reception_before_bag_end_s": 0.0792090892791748
+      },
+      "/mission/processed_camera": {
+        "count": 2457,
+        "period_s": {
+          "p05": 0.09998559951782227,
+          "p50": 0.09998583793640137,
+          "p95": 0.09998631477355957
+        },
+        "stamp_span_s": 245.56655645370483,
+        "reception_span_s": 245.54616904258728,
+        "median_hz": 10.001416406952316,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.04829583168029785,
+          "p50": 0.06903314590454102,
+          "p95": 0.10627064704895019
+        },
+        "first_reception_after_bag_start_s": 8.8686044216156,
+        "last_reception_before_bag_end_s": 6.3425257205963135
+      },
+      "/oakd/rgb/preview/image_raw/compressed": {
+        "count": 2597,
+        "period_s": {
+          "p05": 0.09998559951782227,
+          "p50": 0.09998583793640137,
+          "p95": 0.09998631477355957
+        },
+        "stamp_span_s": 259.5622355937958,
+        "reception_span_s": 259.54316997528076,
+        "median_hz": 10.001416406952316,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.0287320613861084,
+          "p50": 0.03077101707458496,
+          "p95": 0.03534445762634277
+        },
+        "first_reception_after_bag_start_s": 1.1333189010620117,
+        "last_reception_before_bag_end_s": 0.0808103084564209
+      }
+    },
+    "cameras": {
+      "/oakd/rgb/preview/camera_info": [
+        {
+          "width": 250,
+          "height": 250,
+          "k": [
+            199.2552947998047,
+            0.0,
+            123.67389678955078,
+            0.0,
+            199.2552947998047,
+            127.07687377929688,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "d": [
+            4.709591865539551,
+            -103.1653060913086,
+            -0.0012447114568203688,
+            0.0012852484360337257,
+            396.68414306640625,
+            4.526153564453125,
+            -101.39205932617188,
+            390.82220458984375
+          ],
+          "distortion": "rational_polynomial",
+          "count": 2597
+        }
+      ],
+      "/mission/processed_camera": [
+        {
+          "width": 250,
+          "height": 250,
+          "k": [
+            356.6669776916504,
+            0.0,
+            123.67389678955078,
+            0.0,
+            199.2552947998047,
+            127.07687377929688,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "d": [
+            4.709591865539551,
+            -103.1653060913086,
+            -0.0012447114568203688,
+            0.0012852484360337257,
+            396.68414306640625,
+            4.526153564453125,
+            -101.39205932617188,
+            390.82220458984375
+          ],
+          "distortion": "rational_polynomial",
+          "count": 2457
+        }
+      ]
+    },
+    "scans": {
+      "/scan": {
+        "range_max_counts": {
+          "12.0": 2015
+        },
+        "geometries": [
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.13407295942306519,
+            "time_increment_s": 0.00018647142860572785,
+            "count": 2
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.1341964155435562,
+            "time_increment_s": 0.00018664314120542258,
+            "count": 2
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.12194036692380905,
+            "time_increment_s": 0.00016959717322606593,
+            "count": 2
+          }
+        ],
+        "finite_fraction": {
+          "p05": 0.38055555555555554,
+          "p50": 0.46944444444444444,
+          "p95": 0.5680555555555555
+        },
+        "beyond_slam_fraction": {
+          "p05": 0.0,
+          "p50": 0.0,
+          "p95": 0.0
+        },
+        "observed_max_m": {
+          "p05": 9.359999656677246,
+          "p50": 10.97599983215332,
+          "p95": 11.640000343322754
+        }
+      },
+      "/scan_self_filtered": {
+        "range_max_counts": {
+          "12.0": 1933
+        },
+        "geometries": [
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.13407295942306519,
+            "time_increment_s": 0.00018647142860572785,
+            "count": 2
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.1341964155435562,
+            "time_increment_s": 0.00018664314120542258,
+            "count": 2
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.12194036692380905,
+            "time_increment_s": 0.00016959717322606593,
+            "count": 2
+          }
+        ],
+        "finite_fraction": {
+          "p05": 0.38,
+          "p50": 0.4652777777777778,
+          "p95": 0.5588888888888887
+        },
+        "beyond_slam_fraction": {
+          "p05": 0.0,
+          "p50": 0.0,
+          "p95": 0.0
+        },
+        "observed_max_m": {
+          "p05": 9.392000198364258,
+          "p50": 10.97599983215332,
+          "p95": 11.64799976348877
+        }
+      }
+    },
+    "maps": {
+      "/map": {
+        "changes": 299,
+        "published": 492,
+        "change_period_s": {
+          "p05": 0.3810990333557129,
+          "p50": 0.5156857967376709,
+          "p95": 3.138124084472648
+        },
+        "resolutions": {
+          "0.05000000074505806": 492
+        }
+      }
+    },
+    "motions": {
+      "/odom": {
+        "absolute_linear_m_s": {
+          "p05": 0.0,
+          "p50": 0.17128788714983817,
+          "p95": 0.3027567283818747
+        },
+        "absolute_angular_rad_s": {
+          "p05": 0.0,
+          "p50": 0.18990644812583923,
+          "p95": 0.8018597006797791
+        }
+      },
+      "/cmd_vel": {
+        "absolute_linear_m_s": {
+          "p05": 0.0,
+          "p50": 0.1422313079237938,
+          "p95": 0.3
+        },
+        "absolute_angular_rad_s": {
+          "p05": 0.0,
+          "p50": 0.1497999057173729,
+          "p95": 0.8
+        }
+      }
+    },
+    "first_compressed_image_shapes": {
+      "/oakd/rgb/preview/image_raw/compressed": [
+        250,
+        250,
+        3
+      ]
+    }
+  },
+  {
+    "run": "20261125T174857-2f02f6e167",
+    "workspace": "/home/ubuntu/v15243_1_sweep_mapping_640_1124_ws",
+    "duration_s": 611.191050367,
+    "config_snapshot_sha256": "16ab21d573ae732f376c195853a84f8b57d8fbc6659d339344f7c4bec46b3788",
+    "slam": {
+      "max_laser_range": 12.0,
+      "resolution": 0.05,
+      "minimum_time_interval": 0.5,
+      "minimum_travel_distance": 0.05,
+      "minimum_travel_heading": 0.05,
+      "map_update_interval": 0.5,
+      "check_min_dist_and_heading_precisely": null
+    },
+    "timing": {
+      "/scan": {
+        "count": 4735,
+        "period_s": {
+          "p05": 0.12226724624633789,
+          "p50": 0.12329745292663574,
+          "p95": 0.13550456762313842
+        },
+        "stamp_span_s": 607.3867616653442,
+        "reception_span_s": 607.3864278793335,
+        "median_hz": 8.11046762332567,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.0005273818969726562,
+          "p50": 0.0007851123809814453,
+          "p95": 0.0012310266494750977
+        },
+        "first_reception_after_bag_start_s": 3.7953450679779053,
+        "last_reception_before_bag_end_s": 0.00927734375
+      },
+      "/scan_self_filtered": {
+        "count": 4654,
+        "period_s": {
+          "p05": 0.12228598594665527,
+          "p50": 0.12328982353210449,
+          "p95": 0.13549280166625977
+        },
+        "stamp_span_s": 596.9539906978607,
+        "reception_span_s": 596.9525060653687,
+        "median_hz": 8.110969513551144,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.0011904120445251464,
+          "p50": 0.0015739202499389648,
+          "p95": 0.0023861050605773924
+        },
+        "first_reception_after_bag_start_s": 7.917225360870361,
+        "last_reception_before_bag_end_s": 6.321318864822388
+      },
+      "/odom": {
+        "count": 12164,
+        "period_s": {
+          "p05": 0.04634997844696045,
+          "p50": 0.048037052154541016,
+          "p95": 0.06430244445800781
+        },
+        "stamp_span_s": 610.0577969551086,
+        "reception_span_s": 610.0422410964966,
+        "median_hz": 20.81726407321746,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.02419302463531494,
+          "p50": 0.03074502944946289,
+          "p95": 0.04288264513015747
+        },
+        "first_reception_after_bag_start_s": 1.144989252090454,
+        "last_reception_before_bag_end_s": 0.0038199424743652344
+      },
+      "/cmd_vel": {
+        "count": 11233,
+        "period_s": {
+          "p05": 0.044442725181579594,
+          "p50": 0.05006742477416992,
+          "p95": 0.10028657913208008
+        },
+        "stamp_span_s": 597.7374422550201,
+        "reception_span_s": 597.6446766853333,
+        "median_hz": 19.97306641015629,
+        "nonpositive_intervals": 2177,
+        "gaps_over_0_5s": 106,
+        "recorded_age_s": {
+          "p05": 0.07856016159057617,
+          "p50": 0.11593484878540039,
+          "p95": 0.6437945842742918
+        },
+        "first_reception_after_bag_start_s": 13.346797943115234,
+        "last_reception_before_bag_end_s": 0.19957566261291504
+      },
+      "/map": {
+        "count": 1192,
+        "period_s": {
+          "p05": 0.380703330039978,
+          "p50": 0.5157132148742676,
+          "p95": 0.5167641639709473
+        },
+        "stamp_span_s": 595.5336768627167,
+        "reception_span_s": 595.5759348869324,
+        "median_hz": 1.9390621980547909,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 1040,
+        "recorded_age_s": {
+          "p05": 0.053849315643310545,
+          "p50": 0.12067282199859619,
+          "p95": 0.18800824880599976
+        },
+        "first_reception_after_bag_start_s": 9.28757643699646,
+        "last_reception_before_bag_end_s": 6.327538967132568
+      },
+      "/oakd/rgb/preview/camera_info": {
+        "count": 6093,
+        "period_s": {
+          "p05": 0.09998559951782227,
+          "p50": 0.09998583793640137,
+          "p95": 0.09998631477355957
+        },
+        "stamp_span_s": 609.11709856987,
+        "reception_span_s": 609.1165418624878,
+        "median_hz": 10.001416406952316,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.03050708770751953,
+          "p50": 0.03298640251159668,
+          "p95": 0.03762359619140625
+        },
+        "first_reception_after_bag_start_s": 2.0619053840637207,
+        "last_reception_before_bag_end_s": 0.012603044509887695
+      },
+      "/mission/processed_camera": {
+        "count": 5956,
+        "period_s": {
+          "p05": 0.09998559951782227,
+          "p50": 0.09998583793640137,
+          "p95": 0.09998631477355957
+        },
+        "stamp_span_s": 595.4189283847809,
+        "reception_span_s": 595.3847854137421,
+        "median_hz": 10.001416406952316,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.04822152853012085,
+          "p50": 0.07629740238189697,
+          "p95": 0.10231894254684448
+        },
+        "first_reception_after_bag_start_s": 9.527729511260986,
+        "last_reception_before_bag_end_s": 6.27853536605835
+      },
+      "/oakd/rgb/preview/image_raw/compressed": {
+        "count": 6093,
+        "period_s": {
+          "p05": 0.09998559951782227,
+          "p50": 0.09998583793640137,
+          "p95": 0.09998631477355957
+        },
+        "stamp_span_s": 609.11709856987,
+        "reception_span_s": 609.1180658340454,
+        "median_hz": 10.001416406952316,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.028519868850708008,
+          "p50": 0.030358552932739258,
+          "p95": 0.03389582633972168
+        },
+        "first_reception_after_bag_start_s": 2.059893846511841,
+        "last_reception_before_bag_end_s": 0.01309061050415039
+      }
+    },
+    "cameras": {
+      "/oakd/rgb/preview/camera_info": [
+        {
+          "width": 250,
+          "height": 250,
+          "k": [
+            199.2552947998047,
+            0.0,
+            123.67389678955078,
+            0.0,
+            199.2552947998047,
+            127.07687377929688,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "d": [
+            4.709591865539551,
+            -103.1653060913086,
+            -0.0012447114568203688,
+            0.0012852484360337257,
+            396.68414306640625,
+            4.526153564453125,
+            -101.39205932617188,
+            390.82220458984375
+          ],
+          "distortion": "rational_polynomial",
+          "count": 6093
+        }
+      ],
+      "/mission/processed_camera": [
+        {
+          "width": 250,
+          "height": 250,
+          "k": [
+            356.6669776916504,
+            0.0,
+            123.67389678955078,
+            0.0,
+            199.2552947998047,
+            127.07687377929688,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "d": [
+            4.709591865539551,
+            -103.1653060913086,
+            -0.0012447114568203688,
+            0.0012852484360337257,
+            396.68414306640625,
+            4.526153564453125,
+            -101.39205932617188,
+            390.82220458984375
+          ],
+          "distortion": "rational_polynomial",
+          "count": 5956
+        }
+      ]
+    },
+    "scans": {
+      "/scan": {
+        "range_max_counts": {
+          "12.0": 4735
+        },
+        "geometries": [
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.13416869938373566,
+            "time_increment_s": 0.0001866045786300674,
+            "count": 3
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.13418665528297424,
+            "time_increment_s": 0.00018662956426851451,
+            "count": 2
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.12199465930461884,
+            "time_increment_s": 0.00016967268311418593,
+            "count": 2
+          }
+        ],
+        "finite_fraction": {
+          "p05": 0.38333333333333336,
+          "p50": 0.4583333333333333,
+          "p95": 0.5486111111111112
+        },
+        "beyond_slam_fraction": {
+          "p05": 0.0,
+          "p50": 0.0,
+          "p95": 0.0
+        },
+        "observed_max_m": {
+          "p05": 7.74399995803833,
+          "p50": 9.968000411987305,
+          "p95": 11.720000267028809
+        }
+      },
+      "/scan_self_filtered": {
+        "range_max_counts": {
+          "12.0": 4654
+        },
+        "geometries": [
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.13416869938373566,
+            "time_increment_s": 0.0001866045786300674,
+            "count": 3
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.13418665528297424,
+            "time_increment_s": 0.00018662956426851451,
+            "count": 2
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.12199465930461884,
+            "time_increment_s": 0.00016967268311418593,
+            "count": 2
+          }
+        ],
+        "finite_fraction": {
+          "p05": 0.38423611111111117,
+          "p50": 0.4583333333333333,
+          "p95": 0.5449305555555547
+        },
+        "beyond_slam_fraction": {
+          "p05": 0.0,
+          "p50": 0.0,
+          "p95": 0.0
+        },
+        "observed_max_m": {
+          "p05": 7.749199891090393,
+          "p50": 9.95199966430664,
+          "p95": 11.72280006408691
+        }
+      }
+    },
+    "maps": {
+      "/map": {
+        "changes": 966,
+        "published": 1192,
+        "change_period_s": {
+          "p05": 0.38074684143066406,
+          "p50": 0.5157780647277832,
+          "p95": 1.535175371170044
+        },
+        "resolutions": {
+          "0.05000000074505806": 1192
+        }
+      }
+    },
+    "motions": {
+      "/odom": {
+        "absolute_linear_m_s": {
+          "p05": 0.0,
+          "p50": 0.03475092308031882,
+          "p95": 0.3000345375105657
+        },
+        "absolute_angular_rad_s": {
+          "p05": 0.0,
+          "p50": 0.1981930285692215,
+          "p95": 0.8016127437353134
+        }
+      },
+      "/cmd_vel": {
+        "absolute_linear_m_s": {
+          "p05": 0.0,
+          "p50": 0.05689673870801926,
+          "p95": 0.29999998211860657
+        },
+        "absolute_angular_rad_s": {
+          "p05": 0.0,
+          "p50": 0.1977977603673935,
+          "p95": 0.8
+        }
+      }
+    },
+    "first_compressed_image_shapes": {
+      "/oakd/rgb/preview/image_raw/compressed": [
+        250,
+        250,
+        3
+      ]
+    }
+  },
+  {
+    "run": "20261125T182719-5f14de4dad",
+    "workspace": "/home/ubuntu/v15240_box_safe_views_lidar5_640_1124_ws",
+    "duration_s": 623.812028245,
+    "config_snapshot_sha256": "b267232585869aa701489e82f9a732489901b2fc3d1628d29ec3836a3ec399b4",
+    "slam": {
+      "max_laser_range": 5.0,
+      "resolution": 0.05,
+      "minimum_time_interval": 0.5,
+      "minimum_travel_distance": 0.05,
+      "minimum_travel_heading": 0.05,
+      "map_update_interval": 0.5,
+      "check_min_dist_and_heading_precisely": null
+    },
+    "timing": {
+      "/scan": {
+        "count": 4052,
+        "period_s": {
+          "p05": 0.12224304676055908,
+          "p50": 0.12316083908081055,
+          "p95": 0.13548457622528076
+        },
+        "stamp_span_s": 623.3431844711304,
+        "reception_span_s": 623.3411362171173,
+        "median_hz": 8.119464007092885,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 1,
+        "recorded_age_s": {
+          "p05": 0.0003593206405639648,
+          "p50": 0.0012253522872924805,
+          "p95": 0.0036288261413574214
+        },
+        "first_reception_after_bag_start_s": 0.3672356605529785,
+        "last_reception_before_bag_end_s": 0.10365629196166992
+      },
+      "/scan_self_filtered": {
+        "count": 3950,
+        "period_s": {
+          "p05": 0.12226634025573731,
+          "p50": 0.12315869331359863,
+          "p95": 0.13546957969665527
+        },
+        "stamp_span_s": 610.339802980423,
+        "reception_span_s": 610.3506016731262,
+        "median_hz": 8.119605470753923,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 1,
+        "recorded_age_s": {
+          "p05": 0.0016946792602539062,
+          "p50": 0.003140568733215332,
+          "p95": 0.007291460037231443
+        },
+        "first_reception_after_bag_start_s": 7.0419981479644775,
+        "last_reception_before_bag_end_s": 6.41942834854126
+      },
+      "/odom": {
+        "count": 10139,
+        "period_s": {
+          "p05": 0.04606626033782959,
+          "p50": 0.048033833503723145,
+          "p95": 0.0644035816192627
+        },
+        "stamp_span_s": 510.48010063171387,
+        "reception_span_s": 510.48191237449646,
+        "median_hz": 20.818658996319524,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.024937963485717772,
+          "p50": 0.0316925048828125,
+          "p95": 0.04411833286285401
+        },
+        "first_reception_after_bag_start_s": 0.5100977420806885,
+        "last_reception_before_bag_end_s": 112.82001805305481
+      },
+      "/cmd_vel": {
+        "count": 9323,
+        "period_s": {
+          "p05": 0.043832588195800784,
+          "p50": 0.05081748962402344,
+          "p95": 0.20006823539733884
+        },
+        "stamp_span_s": 609.5420370101929,
+        "reception_span_s": 609.4235303401947,
+        "median_hz": 19.67826445970799,
+        "nonpositive_intervals": 2029,
+        "gaps_over_0_5s": 183,
+        "recorded_age_s": {
+          "p05": 0.03448755741119386,
+          "p50": 0.10279393196105957,
+          "p95": 0.6558635711669918
+        },
+        "first_reception_after_bag_start_s": 14.105044841766357,
+        "last_reception_before_bag_end_s": 0.28345298767089844
+      },
+      "/map": {
+        "count": 1215,
+        "period_s": {
+          "p05": 0.38091901540756223,
+          "p50": 0.5153599977493286,
+          "p95": 0.5166228294372559
+        },
+        "stamp_span_s": 500.9750370979309,
+        "reception_span_s": 607.0555486679077,
+        "median_hz": 1.9403911913365084,
+        "nonpositive_intervals": 212,
+        "gaps_over_0_5s": 890,
+        "recorded_age_s": {
+          "p05": 0.06358814239501953,
+          "p50": 0.13849830627441406,
+          "p95": 75.81408841609952
+        },
+        "first_reception_after_bag_start_s": 10.080135345458984,
+        "last_reception_before_bag_end_s": 6.676344156265259
+      },
+      "/oakd/rgb/preview/camera_info": {
+        "count": 5110,
+        "period_s": {
+          "p05": 0.09998536109924316,
+          "p50": 0.09998583793640137,
+          "p95": 0.09998655319213867
+        },
+        "stamp_span_s": 510.83067631721497,
+        "reception_span_s": 510.77126264572144,
+        "median_hz": 10.001416406952316,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.030825877189636232,
+          "p50": 0.03359389305114746,
+          "p95": 0.03887157440185547
+        },
+        "first_reception_after_bag_start_s": 0.16755986213684082,
+        "last_reception_before_bag_end_s": 112.87320566177368
+      },
+      "/mission/processed_camera": {
+        "count": 5006,
+        "period_s": {
+          "p05": 0.09998536109924316,
+          "p50": 0.09998583793640137,
+          "p95": 0.09998655319213867
+        },
+        "stamp_span_s": 500.7319986820221,
+        "reception_span_s": 500.61987471580505,
+        "median_hz": 10.001416406952316,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.054640114307403564,
+          "p50": 0.08225798606872559,
+          "p95": 0.11258429288864136
+        },
+        "first_reception_after_bag_start_s": 10.329652309417725,
+        "last_reception_before_bag_end_s": 112.86250114440918
+      },
+      "/oakd/rgb/preview/image_raw/compressed": {
+        "count": 5110,
+        "period_s": {
+          "p05": 0.09998536109924316,
+          "p50": 0.09998583793640137,
+          "p95": 0.09998655319213867
+        },
+        "stamp_span_s": 510.83067631721497,
+        "reception_span_s": 510.769389629364,
+        "median_hz": 10.001416406952316,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.02868896722793579,
+          "p50": 0.030920982360839844,
+          "p95": 0.035453855991363525
+        },
+        "first_reception_after_bag_start_s": 0.16705775260925293,
+        "last_reception_before_bag_end_s": 112.87558078765869
+      }
+    },
+    "cameras": {
+      "/oakd/rgb/preview/camera_info": [
+        {
+          "width": 250,
+          "height": 250,
+          "k": [
+            199.2552947998047,
+            0.0,
+            123.67389678955078,
+            0.0,
+            199.2552947998047,
+            127.07687377929688,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "d": [
+            4.709591865539551,
+            -103.1653060913086,
+            -0.0012447114568203688,
+            0.0012852484360337257,
+            396.68414306640625,
+            4.526153564453125,
+            -101.39205932617188,
+            390.82220458984375
+          ],
+          "distortion": "rational_polynomial",
+          "count": 5110
+        }
+      ],
+      "/mission/processed_camera": [
+        {
+          "width": 250,
+          "height": 250,
+          "k": [
+            356.6669776916504,
+            0.0,
+            123.67389678955078,
+            0.0,
+            199.2552947998047,
+            127.07687377929688,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "d": [
+            4.709591865539551,
+            -103.1653060913086,
+            -0.0012447114568203688,
+            0.0012852484360337257,
+            396.68414306640625,
+            4.526153564453125,
+            -101.39205932617188,
+            390.82220458984375
+          ],
+          "distortion": "rational_polynomial",
+          "count": 5006
+        }
+      ]
+    },
+    "scans": {
+      "/scan": {
+        "range_max_counts": {
+          "12.0": 4052
+        },
+        "geometries": [
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.12175675481557846,
+            "time_increment_s": 0.00016934180166572332,
+            "count": 2
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.12194115668535233,
+            "time_increment_s": 0.0001695982791716233,
+            "count": 2
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.12191745638847351,
+            "time_increment_s": 0.0001695653045317158,
+            "count": 2
+          }
+        ],
+        "finite_fraction": {
+          "p05": 0.375,
+          "p50": 0.4486111111111111,
+          "p95": 0.5236111111111111
+        },
+        "beyond_slam_fraction": {
+          "p05": 0.03888888888888889,
+          "p50": 0.10694444444444444,
+          "p95": 0.2125
+        },
+        "observed_max_m": {
+          "p05": 7.584000110626221,
+          "p50": 9.880000114440918,
+          "p95": 11.607999801635742
+        }
+      },
+      "/scan_self_filtered": {
+        "range_max_counts": {
+          "12.0": 3950
+        },
+        "geometries": [
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.12194115668535233,
+            "time_increment_s": 0.0001695982791716233,
+            "count": 2
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.12191745638847351,
+            "time_increment_s": 0.0001695653045317158,
+            "count": 2
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.12164197862148285,
+            "time_increment_s": 0.00016918216715566814,
+            "count": 2
+          }
+        ],
+        "finite_fraction": {
+          "p05": 0.375,
+          "p50": 0.44583333333333336,
+          "p95": 0.5208333333333334
+        },
+        "beyond_slam_fraction": {
+          "p05": 0.0375,
+          "p50": 0.10833333333333334,
+          "p95": 0.2132638888888885
+        },
+        "observed_max_m": {
+          "p05": 8.088000297546387,
+          "p50": 9.880000114440918,
+          "p95": 11.588399839401243
+        }
+      }
+    },
+    "maps": {
+      "/map": {
+        "changes": 499,
+        "published": 1215,
+        "change_period_s": {
+          "p05": 0.3810317039489746,
+          "p50": 0.5156960487365723,
+          "p95": 4.05080823898314
+        },
+        "resolutions": {
+          "0.05000000074505806": 1215
+        }
+      }
+    },
+    "motions": {
+      "/odom": {
+        "absolute_linear_m_s": {
+          "p05": 0.0,
+          "p50": 0.04829083708629014,
+          "p95": 0.30017892534400514
+        },
+        "absolute_angular_rad_s": {
+          "p05": 0.0,
+          "p50": 0.19168893992900848,
+          "p95": 0.8029321730136872
+        }
+      },
+      "/cmd_vel": {
+        "absolute_linear_m_s": {
+          "p05": 0.0,
+          "p50": 0.04521968588232994,
+          "p95": 0.29999998211860657
+        },
+        "absolute_angular_rad_s": {
+          "p05": 0.0,
+          "p50": 0.18896931409835815,
+          "p95": 0.8
+        }
+      }
+    },
+    "first_compressed_image_shapes": {
+      "/oakd/rgb/preview/image_raw/compressed": [
+        250,
+        250,
+        3
+      ]
+    }
+  },
+  {
+    "run": "20261125T184804-71cb633767",
+    "workspace": "/home/ubuntu/v15244_box_continuity_r1_lidar5_640_1124_ws",
+    "duration_s": 625.560852466,
+    "config_snapshot_sha256": "b267232585869aa701489e82f9a732489901b2fc3d1628d29ec3836a3ec399b4",
+    "slam": {
+      "max_laser_range": 5.0,
+      "resolution": 0.05,
+      "minimum_time_interval": 0.5,
+      "minimum_travel_distance": 0.05,
+      "minimum_travel_heading": 0.05,
+      "map_update_interval": 0.5,
+      "check_min_dist_and_heading_precisely": null
+    },
+    "timing": {
+      "/scan": {
+        "count": 4623,
+        "period_s": {
+          "p05": 0.12225785255432128,
+          "p50": 0.12313246726989746,
+          "p95": 0.13548506498336793
+        },
+        "stamp_span_s": 590.8305077552795,
+        "reception_span_s": 590.8299231529236,
+        "median_hz": 8.121334869446516,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.0005560159683227539,
+          "p50": 0.0010671615600585938,
+          "p95": 0.004076194763183593
+        },
+        "first_reception_after_bag_start_s": 0.12574458122253418,
+        "last_reception_before_bag_end_s": 34.60518479347229
+      },
+      "/scan_self_filtered": {
+        "count": 4570,
+        "period_s": {
+          "p05": 0.12228579521179199,
+          "p50": 0.12312650680541992,
+          "p95": 0.13546676635742186
+        },
+        "stamp_span_s": 584.1720623970032,
+        "reception_span_s": 584.165798664093,
+        "median_hz": 8.121728017349882,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.0016660690307617188,
+          "p50": 0.0029380321502685547,
+          "p95": 0.008063173294067385
+        },
+        "first_reception_after_bag_start_s": 6.791183948516846,
+        "last_reception_before_bag_end_s": 34.603869915008545
+      },
+      "/odom": {
+        "count": 11712,
+        "period_s": {
+          "p05": 0.04631054401397705,
+          "p50": 0.048029184341430664,
+          "p95": 0.06437444686889648
+        },
+        "stamp_span_s": 590.6980173587799,
+        "reception_span_s": 590.634889125824,
+        "median_hz": 20.820674215310078,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.025789284706115724,
+          "p50": 0.03279316425323486,
+          "p95": 0.04560418128967285
+        },
+        "first_reception_after_bag_start_s": 0.3379814624786377,
+        "last_reception_before_bag_end_s": 34.587981939315796
+      },
+      "/cmd_vel": {
+        "count": 10450,
+        "period_s": {
+          "p05": 0.04464678764343262,
+          "p50": 0.050830841064453125,
+          "p95": 0.10260472297668456
+        },
+        "stamp_span_s": 607.962991476059,
+        "reception_span_s": 607.8841197490692,
+        "median_hz": 19.673095684803002,
+        "nonpositive_intervals": 1960,
+        "gaps_over_0_5s": 99,
+        "recorded_age_s": {
+          "p05": 0.056792688369750974,
+          "p50": 0.08598136901855469,
+          "p95": 0.5510931491851806
+        },
+        "first_reception_after_bag_start_s": 17.676733016967773,
+        "last_reception_before_bag_end_s": -2.384185791015625e-07
+      },
+      "/map": {
+        "count": 1215,
+        "period_s": {
+          "p05": 0.3807322859764099,
+          "p50": 0.5153883695602417,
+          "p95": 0.6385053277015686
+        },
+        "stamp_span_s": 578.9419395923615,
+        "reception_span_s": 607.122524023056,
+        "median_hz": 1.9402843740017963,
+        "nonpositive_intervals": 56,
+        "gaps_over_0_5s": 983,
+        "recorded_age_s": {
+          "p05": 0.05883469581604004,
+          "p50": 0.12680435180664062,
+          "p95": 0.2167411088943481
+        },
+        "first_reception_after_bag_start_s": 12.076383352279663,
+        "last_reception_before_bag_end_s": 6.361945152282715
+      },
+      "/oakd/rgb/preview/camera_info": {
+        "count": 5901,
+        "period_s": {
+          "p05": 0.09998559951782227,
+          "p50": 0.09998583793640137,
+          "p95": 0.09998631477355957
+        },
+        "stamp_span_s": 589.9197981357574,
+        "reception_span_s": 589.9133901596069,
+        "median_hz": 10.001416406952316,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.030704975128173828,
+          "p50": 0.03342437744140625,
+          "p95": 0.038878440856933594
+        },
+        "first_reception_after_bag_start_s": 1.0661280155181885,
+        "last_reception_before_bag_end_s": 34.581334352493286
+      },
+      "/mission/processed_camera": {
+        "count": 5782,
+        "period_s": {
+          "p05": 0.09998559951782227,
+          "p50": 0.09998583793640137,
+          "p95": 0.09998631477355957
+        },
+        "stamp_span_s": 578.6206998825073,
+        "reception_span_s": 578.5205609798431,
+        "median_hz": 10.001416406952316,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.05536319017410278,
+          "p50": 0.08426928520202637,
+          "p95": 0.11069408655166625
+        },
+        "first_reception_after_bag_start_s": 12.380220174789429,
+        "last_reception_before_bag_end_s": 34.66007137298584
+      },
+      "/oakd/rgb/preview/image_raw/compressed": {
+        "count": 5901,
+        "period_s": {
+          "p05": 0.09998559951782227,
+          "p50": 0.09998583793640137,
+          "p95": 0.09998631477355957
+        },
+        "stamp_span_s": 589.9197981357574,
+        "reception_span_s": 589.9131495952606,
+        "median_hz": 10.001416406952316,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.02848052978515625,
+          "p50": 0.03056168556213379,
+          "p95": 0.03514909744262695
+        },
+        "first_reception_after_bag_start_s": 1.0637214183807373,
+        "last_reception_before_bag_end_s": 34.58398151397705
+      }
+    },
+    "cameras": {
+      "/oakd/rgb/preview/camera_info": [
+        {
+          "width": 250,
+          "height": 250,
+          "k": [
+            199.2552947998047,
+            0.0,
+            123.67389678955078,
+            0.0,
+            199.2552947998047,
+            127.07687377929688,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "d": [
+            4.709591865539551,
+            -103.1653060913086,
+            -0.0012447114568203688,
+            0.0012852484360337257,
+            396.68414306640625,
+            4.526153564453125,
+            -101.39205932617188,
+            390.82220458984375
+          ],
+          "distortion": "rational_polynomial",
+          "count": 5901
+        }
+      ],
+      "/mission/processed_camera": [
+        {
+          "width": 250,
+          "height": 250,
+          "k": [
+            356.6669776916504,
+            0.0,
+            123.67389678955078,
+            0.0,
+            199.2552947998047,
+            127.07687377929688,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "d": [
+            4.709591865539551,
+            -103.1653060913086,
+            -0.0012447114568203688,
+            0.0012852484360337257,
+            396.68414306640625,
+            4.526153564453125,
+            -101.39205932617188,
+            390.82220458984375
+          ],
+          "distortion": "rational_polynomial",
+          "count": 5782
+        }
+      ]
+    },
+    "scans": {
+      "/scan": {
+        "range_max_counts": {
+          "12.0": 4623
+        },
+        "geometries": [
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.12149060517549515,
+            "time_increment_s": 0.00016897163004614413,
+            "count": 3
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.1338282823562622,
+            "time_increment_s": 0.0001861311320681125,
+            "count": 2
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.13419893383979797,
+            "time_increment_s": 0.0001866466336650774,
+            "count": 2
+          }
+        ],
+        "finite_fraction": {
+          "p05": 0.3875,
+          "p50": 0.4527777777777778,
+          "p95": 0.5305555555555556
+        },
+        "beyond_slam_fraction": {
+          "p05": 0.025,
+          "p50": 0.09861111111111111,
+          "p95": 0.2388888888888889
+        },
+        "observed_max_m": {
+          "p05": 8.015999794006348,
+          "p50": 10.095999717712402,
+          "p95": 11.67199993133545
+        }
+      },
+      "/scan_self_filtered": {
+        "range_max_counts": {
+          "12.0": 4570
+        },
+        "geometries": [
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.12149060517549515,
+            "time_increment_s": 0.00016897163004614413,
+            "count": 3
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.1338282823562622,
+            "time_increment_s": 0.0001861311320681125,
+            "count": 2
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.13419893383979797,
+            "time_increment_s": 0.0001866466336650774,
+            "count": 2
+          }
+        ],
+        "finite_fraction": {
+          "p05": 0.3875,
+          "p50": 0.4527777777777778,
+          "p95": 0.5305555555555556
+        },
+        "beyond_slam_fraction": {
+          "p05": 0.025,
+          "p50": 0.1,
+          "p95": 0.2388888888888889
+        },
+        "observed_max_m": {
+          "p05": 8.015999794006348,
+          "p50": 10.075999736785889,
+          "p95": 11.663999557495117
+        }
+      }
+    },
+    "maps": {
+      "/map": {
+        "changes": 975,
+        "published": 1215,
+        "change_period_s": {
+          "p05": 0.38073004484176637,
+          "p50": 0.515623927116394,
+          "p95": 1.4123718738555908
+        },
+        "resolutions": {
+          "0.05000000074505806": 1215
+        }
+      }
+    },
+    "motions": {
+      "/odom": {
+        "absolute_linear_m_s": {
+          "p05": 0.0,
+          "p50": 0.06919708499079102,
+          "p95": 0.30229881364849287
+        },
+        "absolute_angular_rad_s": {
+          "p05": 0.0,
+          "p50": 0.17009314894676208,
+          "p95": 0.8033618539571762
+        }
+      },
+      "/cmd_vel": {
+        "absolute_linear_m_s": {
+          "p05": 0.0,
+          "p50": 0.08698223903775215,
+          "p95": 0.29999998211860657
+        },
+        "absolute_angular_rad_s": {
+          "p05": 0.0,
+          "p50": 0.1739293709397316,
+          "p95": 0.8
+        }
+      }
+    },
+    "first_compressed_image_shapes": {
+      "/oakd/rgb/preview/image_raw/compressed": [
+        250,
+        250,
+        3
+      ]
+    }
+  },
+  {
+    "run": "20261125T193519-1149595c02",
+    "workspace": "/home/ubuntu/v15247_wall_entry_lidar5_640_1124_ws",
+    "duration_s": 112.146123485,
+    "config_snapshot_sha256": "b267232585869aa701489e82f9a732489901b2fc3d1628d29ec3836a3ec399b4",
+    "slam": {
+      "max_laser_range": 5.0,
+      "resolution": 0.05,
+      "minimum_time_interval": 0.5,
+      "minimum_travel_distance": 0.05,
+      "minimum_travel_heading": 0.05,
+      "map_update_interval": 0.5,
+      "check_min_dist_and_heading_precisely": null
+    },
+    "timing": {
+      "/scan": {
+        "count": 869,
+        "period_s": {
+          "p05": 0.12090101242065429,
+          "p50": 0.12427067756652832,
+          "p95": 0.13681190013885497
+        },
+        "stamp_span_s": 111.2153160572052,
+        "reception_span_s": 111.21517086029053,
+        "median_hz": 8.046950572589015,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 5.8889389038085944e-05,
+          "p50": 0.0004780292510986328,
+          "p95": 0.004206657409667967
+        },
+        "first_reception_after_bag_start_s": 0.8364717960357666,
+        "last_reception_before_bag_end_s": 0.09448075294494629
+      },
+      "/scan_self_filtered": {
+        "count": 775,
+        "period_s": {
+          "p05": 0.12125754356384277,
+          "p50": 0.12411665916442871,
+          "p95": 0.1365865707397461
+        },
+        "stamp_span_s": 99.15171360969543,
+        "reception_span_s": 99.1519603729248,
+        "median_hz": 8.05693616579873,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.001237773895263672,
+          "p50": 0.002381563186645508,
+          "p95": 0.00597255229949951
+        },
+        "first_reception_after_bag_start_s": 7.889124870300293,
+        "last_reception_before_bag_end_s": 5.105038166046143
+      },
+      "/odom": {
+        "count": 2136,
+        "period_s": {
+          "p05": 0.0398190975189209,
+          "p50": 0.04999899864196777,
+          "p95": 0.06392199993133545
+        },
+        "stamp_span_s": 111.30194568634033,
+        "reception_span_s": 111.28357195854187,
+        "median_hz": 20.000400551234794,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.02007502317428589,
+          "p50": 0.029850244522094727,
+          "p95": 0.04630178213119507
+        },
+        "first_reception_after_bag_start_s": 0.8346037864685059,
+        "last_reception_before_bag_end_s": 0.027947664260864258
+      },
+      "/cmd_vel": {
+        "count": 1814,
+        "period_s": {
+          "p05": 0.00036007165908813477,
+          "p50": 0.04952681064605713,
+          "p95": 0.10118566751480103
+        },
+        "stamp_span_s": 98.11705565452576,
+        "reception_span_s": 98.00092124938965,
+        "median_hz": 20.191084121012562,
+        "nonpositive_intervals": 263,
+        "gaps_over_0_5s": 30,
+        "recorded_age_s": {
+          "p05": 0.00023038387298583983,
+          "p50": 0.10572993755340576,
+          "p95": 0.18409199714660632
+        },
+        "first_reception_after_bag_start_s": 14.11836314201355,
+        "last_reception_before_bag_end_s": 0.026839017868041992
+      },
+      "/map": {
+        "count": 198,
+        "period_s": {
+          "p05": 0.3823665142059326,
+          "p50": 0.515272855758667,
+          "p95": 0.5179638385772705
+        },
+        "stamp_span_s": 98.52670121192932,
+        "reception_span_s": 98.51784014701843,
+        "median_hz": 1.9407193466996049,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 170,
+        "recorded_age_s": {
+          "p05": 0.050474715232849125,
+          "p50": 0.10897910594940186,
+          "p95": 0.17092032432556153
+        },
+        "first_reception_after_bag_start_s": 8.373768329620361,
+        "last_reception_before_bag_end_s": 5.254514932632446
+      },
+      "/oakd/rgb/preview/camera_info": {
+        "count": 1121,
+        "period_s": {
+          "p05": 0.09998536109924316,
+          "p50": 0.09998583793640137,
+          "p95": 0.09998631477355957
+        },
+        "stamp_span_s": 111.98470664024353,
+        "reception_span_s": 111.93301963806152,
+        "median_hz": 10.001416406952316,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.03038477897644043,
+          "p50": 0.03386402130126953,
+          "p95": 0.09594416618347168
+        },
+        "first_reception_after_bag_start_s": 0.1274428367614746,
+        "last_reception_before_bag_end_s": 0.08566093444824219
+      },
+      "/mission/processed_camera": {
+        "count": 982,
+        "period_s": {
+          "p05": 0.09998536109924316,
+          "p50": 0.09998583793640137,
+          "p95": 0.09998631477355957
+        },
+        "stamp_span_s": 98.08553814888,
+        "reception_span_s": 97.96470618247986,
+        "median_hz": 10.001416406952316,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.04944640398025513,
+          "p50": 0.06810760498046875,
+          "p95": 0.10885019302368164
+        },
+        "first_reception_after_bag_start_s": 9.138344526290894,
+        "last_reception_before_bag_end_s": 5.043072700500488
+      },
+      "/oakd/rgb/preview/image_raw/compressed": {
+        "count": 1121,
+        "period_s": {
+          "p05": 0.09998536109924316,
+          "p50": 0.09998583793640137,
+          "p95": 0.09998631477355957
+        },
+        "stamp_span_s": 111.98470664024353,
+        "reception_span_s": 111.94072723388672,
+        "median_hz": 10.001416406952316,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.02782464027404785,
+          "p50": 0.03030562400817871,
+          "p95": 0.073974609375
+        },
+        "first_reception_after_bag_start_s": 0.11821126937866211,
+        "last_reception_before_bag_end_s": 0.08718490600585938
+      }
+    },
+    "cameras": {
+      "/oakd/rgb/preview/camera_info": [
+        {
+          "width": 250,
+          "height": 250,
+          "k": [
+            199.2552947998047,
+            0.0,
+            123.67389678955078,
+            0.0,
+            199.2552947998047,
+            127.07687377929688,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "d": [
+            4.709591865539551,
+            -103.1653060913086,
+            -0.0012447114568203688,
+            0.0012852484360337257,
+            396.68414306640625,
+            4.526153564453125,
+            -101.39205932617188,
+            390.82220458984375
+          ],
+          "distortion": "rational_polynomial",
+          "count": 1121
+        }
+      ],
+      "/mission/processed_camera": [
+        {
+          "width": 250,
+          "height": 250,
+          "k": [
+            356.6669776916504,
+            0.0,
+            123.67389678955078,
+            0.0,
+            199.2552947998047,
+            127.07687377929688,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "d": [
+            4.709591865539551,
+            -103.1653060913086,
+            -0.0012447114568203688,
+            0.0012852484360337257,
+            396.68414306640625,
+            4.526153564453125,
+            -101.39205932617188,
+            390.82220458984375
+          ],
+          "distortion": "rational_polynomial",
+          "count": 982
+        }
+      ]
+    },
+    "scans": {
+      "/scan": {
+        "range_max_counts": {
+          "12.0": 869
+        },
+        "geometries": [
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.12161348015069962,
+            "time_increment_s": 0.00016914252773858607,
+            "count": 2
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.13416005671024323,
+            "time_increment_s": 0.000186592573300004,
+            "count": 2
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.10442505776882172,
+            "time_increment_s": 0.00014523652498610318,
+            "count": 1
+          }
+        ],
+        "finite_fraction": {
+          "p05": 0.49027777777777776,
+          "p50": 0.5333333333333333,
+          "p95": 0.6027777777777777
+        },
+        "beyond_slam_fraction": {
+          "p05": 0.015277777777777777,
+          "p50": 0.07361111111111111,
+          "p95": 0.11944444444444445
+        },
+        "observed_max_m": {
+          "p05": 7.969600105285645,
+          "p50": 9.95199966430664,
+          "p95": 11.479999542236328
+        }
+      },
+      "/scan_self_filtered": {
+        "range_max_counts": {
+          "12.0": 775
+        },
+        "geometries": [
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.12161348015069962,
+            "time_increment_s": 0.00016914252773858607,
+            "count": 2
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.13416005671024323,
+            "time_increment_s": 0.000186592573300004,
+            "count": 2
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.11338680237531662,
+            "time_increment_s": 0.00015770069148857147,
+            "count": 1
+          }
+        ],
+        "finite_fraction": {
+          "p05": 0.49166666666666664,
+          "p50": 0.5319444444444444,
+          "p95": 0.6027777777777777
+        },
+        "beyond_slam_fraction": {
+          "p05": 0.0125,
+          "p50": 0.07777777777777778,
+          "p95": 0.11986111111111106
+        },
+        "observed_max_m": {
+          "p05": 7.960000038146973,
+          "p50": 9.904000282287598,
+          "p95": 11.472000122070312
+        }
+      }
+    },
+    "maps": {
+      "/map": {
+        "changes": 129,
+        "published": 198,
+        "change_period_s": {
+          "p05": 0.3813470482826233,
+          "p50": 0.5153675079345703,
+          "p95": 0.6385515689849853
+        },
+        "resolutions": {
+          "0.05000000074505806": 198
+        }
+      }
+    },
+    "motions": {
+      "/odom": {
+        "absolute_linear_m_s": {
+          "p05": 0.0,
+          "p50": 0.003648589390963992,
+          "p95": 0.29634630896803793
+        },
+        "absolute_angular_rad_s": {
+          "p05": 0.0,
+          "p50": 0.12898708134889603,
+          "p95": 0.8091772347688675
+        }
+      },
+      "/cmd_vel": {
+        "absolute_linear_m_s": {
+          "p05": 0.0,
+          "p50": 0.0,
+          "p95": 0.29999998211860657
+        },
+        "absolute_angular_rad_s": {
+          "p05": 0.0,
+          "p50": 0.16021302521228792,
+          "p95": 0.8
+        }
+      }
+    },
+    "first_compressed_image_shapes": {
+      "/oakd/rgb/preview/image_raw/compressed": [
+        250,
+        250,
+        3
+      ]
+    }
+  },
+  {
+    "run": "20261125T195126-1cce5b818a",
+    "workspace": "/home/ubuntu/v15248_wall_departure_lidar5_640_1124_ws",
+    "duration_s": 172.860157424,
+    "config_snapshot_sha256": "b267232585869aa701489e82f9a732489901b2fc3d1628d29ec3836a3ec399b4",
+    "slam": {
+      "max_laser_range": 5.0,
+      "resolution": 0.05,
+      "minimum_time_interval": 0.5,
+      "minimum_travel_distance": 0.05,
+      "minimum_travel_heading": 0.05,
+      "map_update_interval": 0.5,
+      "check_min_dist_and_heading_precisely": null
+    },
+    "timing": {
+      "/scan": {
+        "count": 1346,
+        "period_s": {
+          "p05": 0.12224230766296387,
+          "p50": 0.12323594093322754,
+          "p95": 0.13549818992614746
+        },
+        "stamp_span_s": 172.16558146476746,
+        "reception_span_s": 172.1621072292328,
+        "median_hz": 8.114515882520232,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.0006167888641357422,
+          "p50": 0.000861048698425293,
+          "p95": 0.001642465591430664
+        },
+        "first_reception_after_bag_start_s": 0.6758193969726562,
+        "last_reception_before_bag_end_s": 0.022230863571166992
+      },
+      "/scan_self_filtered": {
+        "count": 1290,
+        "period_s": {
+          "p05": 0.12233047485351563,
+          "p50": 0.12322139739990234,
+          "p95": 0.13546910285949706
+        },
+        "stamp_span_s": 165.2297239303589,
+        "reception_span_s": 165.2252073287964,
+        "median_hz": 8.115473619850318,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.0013365626335144043,
+          "p50": 0.0016847848892211914,
+          "p95": 0.002865052223205566
+        },
+        "first_reception_after_bag_start_s": 4.0154523849487305,
+        "last_reception_before_bag_end_s": 3.619497776031494
+      },
+      "/odom": {
+        "count": 3382,
+        "period_s": {
+          "p05": 0.03987741470336914,
+          "p50": 0.04997611045837402,
+          "p95": 0.06863927841186523
+        },
+        "stamp_span_s": 172.4082419872284,
+        "reception_span_s": 172.3484706878662,
+        "median_hz": 20.00956038451447,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.019535863399505617,
+          "p50": 0.028621792793273926,
+          "p95": 0.04284117221832275
+        },
+        "first_reception_after_bag_start_s": 0.5116868019104004,
+        "last_reception_before_bag_end_s": 0.0
+      },
+      "/cmd_vel": {
+        "count": 3294,
+        "period_s": {
+          "p05": 0.019711792469024658,
+          "p50": 0.049986958503723145,
+          "p95": 0.060055434703826904
+        },
+        "stamp_span_s": 159.78309965133667,
+        "reception_span_s": 159.68733668327332,
+        "median_hz": 20.005217959510734,
+        "nonpositive_intervals": 157,
+        "gaps_over_0_5s": 3,
+        "recorded_age_s": {
+          "p05": 0.0003176927566528321,
+          "p50": 0.07580816745758057,
+          "p95": 0.13101316690444945
+        },
+        "first_reception_after_bag_start_s": 12.973044872283936,
+        "last_reception_before_bag_end_s": 0.19977593421936035
+      },
+      "/map": {
+        "count": 324,
+        "period_s": {
+          "p05": 0.38092951774597167,
+          "p50": 0.5156188011169434,
+          "p95": 0.5164364576339722
+        },
+        "stamp_span_s": 161.63271713256836,
+        "reception_span_s": 161.53044271469116,
+        "median_hz": 1.9394172552160254,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 292,
+        "recorded_age_s": {
+          "p05": 0.06749457120895386,
+          "p50": 0.1300886869430542,
+          "p95": 0.18901370763778685
+        },
+        "first_reception_after_bag_start_s": 7.637840270996094,
+        "last_reception_before_bag_end_s": 3.6918745040893555
+      },
+      "/oakd/rgb/preview/camera_info": {
+        "count": 1724,
+        "period_s": {
+          "p05": 0.09998536109924316,
+          "p50": 0.09998583793640137,
+          "p95": 0.09998631477355957
+        },
+        "stamp_span_s": 172.27652287483215,
+        "reception_span_s": 172.17025113105774,
+        "median_hz": 10.001416406952316,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.031173622608184813,
+          "p50": 0.03375113010406494,
+          "p95": 0.04300415515899658
+        },
+        "first_reception_after_bag_start_s": 0.6790950298309326,
+        "last_reception_before_bag_end_s": 0.010811328887939453
+      },
+      "/mission/processed_camera": {
+        "count": 1607,
+        "period_s": {
+          "p05": 0.09998536109924316,
+          "p50": 0.09998583793640137,
+          "p95": 0.09998631477355957
+        },
+        "stamp_span_s": 160.57701110839844,
+        "reception_span_s": 160.52871823310852,
+        "median_hz": 10.001416406952316,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.04513890743255615,
+          "p50": 0.06048178672790527,
+          "p95": 0.10641705989837646
+        },
+        "first_reception_after_bag_start_s": 8.752046823501587,
+        "last_reception_before_bag_end_s": 3.579392433166504
+      },
+      "/oakd/rgb/preview/image_raw/compressed": {
+        "count": 1724,
+        "period_s": {
+          "p05": 0.09998536109924316,
+          "p50": 0.09998583793640137,
+          "p95": 0.09998631477355957
+        },
+        "stamp_span_s": 172.27652287483215,
+        "reception_span_s": 172.1986129283905,
+        "median_hz": 10.001416406952316,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.029034996032714845,
+          "p50": 0.03078937530517578,
+          "p95": 0.03793463706970212
+        },
+        "first_reception_after_bag_start_s": 0.6502819061279297,
+        "last_reception_before_bag_end_s": 0.011262655258178711
+      }
+    },
+    "cameras": {
+      "/oakd/rgb/preview/camera_info": [
+        {
+          "width": 250,
+          "height": 250,
+          "k": [
+            199.2552947998047,
+            0.0,
+            123.67389678955078,
+            0.0,
+            199.2552947998047,
+            127.07687377929688,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "d": [
+            4.709591865539551,
+            -103.1653060913086,
+            -0.0012447114568203688,
+            0.0012852484360337257,
+            396.68414306640625,
+            4.526153564453125,
+            -101.39205932617188,
+            390.82220458984375
+          ],
+          "distortion": "rational_polynomial",
+          "count": 1724
+        }
+      ],
+      "/mission/processed_camera": [
+        {
+          "width": 250,
+          "height": 250,
+          "k": [
+            356.6669776916504,
+            0.0,
+            123.67389678955078,
+            0.0,
+            199.2552947998047,
+            127.07687377929688,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "d": [
+            4.709591865539551,
+            -103.1653060913086,
+            -0.0012447114568203688,
+            0.0012852484360337257,
+            396.68414306640625,
+            4.526153564453125,
+            -101.39205932617188,
+            390.82220458984375
+          ],
+          "distortion": "rational_polynomial",
+          "count": 1607
+        }
+      ]
+    },
+    "scans": {
+      "/scan": {
+        "range_max_counts": {
+          "12.0": 1346
+        },
+        "geometries": [
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.1216353327035904,
+            "time_increment_s": 0.00016917292668949813,
+            "count": 2
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.1342928111553192,
+            "time_increment_s": 0.0001867771934485063,
+            "count": 2
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.1339377462863922,
+            "time_increment_s": 0.0001862833887571469,
+            "count": 2
+          }
+        ],
+        "finite_fraction": {
+          "p05": 0.4236111111111111,
+          "p50": 0.4722222222222222,
+          "p95": 0.6052083333333333
+        },
+        "beyond_slam_fraction": {
+          "p05": 0.013888888888888888,
+          "p50": 0.06388888888888888,
+          "p95": 0.10694444444444444
+        },
+        "observed_max_m": {
+          "p05": 8.184000015258789,
+          "p50": 10.215999603271484,
+          "p95": 11.275999784469604
+        }
+      },
+      "/scan_self_filtered": {
+        "range_max_counts": {
+          "12.0": 1290
+        },
+        "geometries": [
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.1216353327035904,
+            "time_increment_s": 0.00016917292668949813,
+            "count": 2
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.1342928111553192,
+            "time_increment_s": 0.0001867771934485063,
+            "count": 2
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.1339377462863922,
+            "time_increment_s": 0.0001862833887571469,
+            "count": 2
+          }
+        ],
+        "finite_fraction": {
+          "p05": 0.4236111111111111,
+          "p50": 0.4701388888888889,
+          "p95": 0.5965972222222221
+        },
+        "beyond_slam_fraction": {
+          "p05": 0.016666666666666666,
+          "p50": 0.06666666666666667,
+          "p95": 0.10694444444444444
+        },
+        "observed_max_m": {
+          "p05": 8.184000015258789,
+          "p50": 10.21999979019165,
+          "p95": 11.244399976730346
+        }
+      }
+    },
+    "maps": {
+      "/map": {
+        "changes": 308,
+        "published": 324,
+        "change_period_s": {
+          "p05": 0.38103060722351073,
+          "p50": 0.5156328678131104,
+          "p95": 0.5167419672012329
+        },
+        "resolutions": {
+          "0.05000000074505806": 324
+        }
+      }
+    },
+    "motions": {
+      "/odom": {
+        "absolute_linear_m_s": {
+          "p05": 0.0,
+          "p50": 0.013574316677244947,
+          "p95": 0.29917942244422324
+        },
+        "absolute_angular_rad_s": {
+          "p05": 8.3027389621293e-07,
+          "p50": 0.3045666068792343,
+          "p95": 0.8082697570323943
+        }
+      },
+      "/cmd_vel": {
+        "absolute_linear_m_s": {
+          "p05": 0.0,
+          "p50": 0.014918453991413116,
+          "p95": 0.29999998211860657
+        },
+        "absolute_angular_rad_s": {
+          "p05": 0.0,
+          "p50": 0.31307485699653625,
+          "p95": 0.8
+        }
+      }
+    },
+    "first_compressed_image_shapes": {
+      "/oakd/rgb/preview/image_raw/compressed": [
+        250,
+        250,
+        3
+      ]
+    }
+  },
+  {
+    "run": "20261125T195426-a84b4e02f7",
+    "workspace": "/home/ubuntu/v15245_interior_first_lidar5_640_1124_ws",
+    "duration_s": 623.026220389,
+    "config_snapshot_sha256": "b267232585869aa701489e82f9a732489901b2fc3d1628d29ec3836a3ec399b4",
+    "slam": {
+      "max_laser_range": 5.0,
+      "resolution": 0.05,
+      "minimum_time_interval": 0.5,
+      "minimum_travel_distance": 0.05,
+      "minimum_travel_heading": 0.05,
+      "map_update_interval": 0.5,
+      "check_min_dist_and_heading_precisely": null
+    },
+    "timing": {
+      "/scan": {
+        "count": 2998,
+        "period_s": {
+          "p05": 0.12218747138977051,
+          "p50": 0.12314558029174805,
+          "p95": 0.13550591468811035
+        },
+        "stamp_span_s": 383.31005907058716,
+        "reception_span_s": 383.0521352291107,
+        "median_hz": 8.12047007802366,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.0005957722663879394,
+          "p50": 0.0008699893951416016,
+          "p95": 0.0013514399528503419
+        },
+        "first_reception_after_bag_start_s": 0.43123912811279297,
+        "last_reception_before_bag_end_s": 239.54284596443176
+      },
+      "/scan_self_filtered": {
+        "count": 2948,
+        "period_s": {
+          "p05": 0.12223179340362549,
+          "p50": 0.1231377124786377,
+          "p95": 0.1354851245880127
+        },
+        "stamp_span_s": 376.89063262939453,
+        "reception_span_s": 376.88390159606934,
+        "median_hz": 8.120988930775233,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.0012838959693908692,
+          "p50": 0.0016156435012817383,
+          "p95": 0.002317607402801514
+        },
+        "first_reception_after_bag_start_s": 6.601646423339844,
+        "last_reception_before_bag_end_s": 239.5406723022461
+      },
+      "/odom": {
+        "count": 7548,
+        "period_s": {
+          "p05": 0.03995735645294189,
+          "p50": 0.049407243728637695,
+          "p95": 0.06535027027130126
+        },
+        "stamp_span_s": 381.33718490600586,
+        "reception_span_s": 381.32677364349365,
+        "median_hz": 20.239947111649432,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 1,
+        "recorded_age_s": {
+          "p05": 0.020388317108154298,
+          "p50": 0.03056621551513672,
+          "p95": 0.04488999843597412
+        },
+        "first_reception_after_bag_start_s": 2.1518468856811523,
+        "last_reception_before_bag_end_s": 239.54759979248047
+      },
+      "/cmd_vel": {
+        "count": 7483,
+        "period_s": {
+          "p05": 0.04795317649841309,
+          "p50": 0.05015921592712402,
+          "p95": 0.49958951473236085
+        },
+        "stamp_span_s": 609.4529831409454,
+        "reception_span_s": 609.3861231803894,
+        "median_hz": 19.936515783119358,
+        "nonpositive_intervals": 1215,
+        "gaps_over_0_5s": 284,
+        "recorded_age_s": {
+          "p05": 0.0002052545547485352,
+          "p50": 0.08968687057495117,
+          "p95": 0.5168241024017329
+        },
+        "first_reception_after_bag_start_s": 13.640097379684448,
+        "last_reception_before_bag_end_s": -2.384185791015625e-07
+      },
+      "/map": {
+        "count": 1215,
+        "period_s": {
+          "p05": 0.3809699058532715,
+          "p50": 0.5154774188995361,
+          "p95": 0.5166996717453003
+        },
+        "stamp_span_s": 373.5479063987732,
+        "reception_span_s": 607.0561010837555,
+        "median_hz": 1.939949187560619,
+        "nonpositive_intervals": 467,
+        "gaps_over_0_5s": 668,
+        "recorded_age_s": {
+          "p05": 0.06165876388549805,
+          "p50": 0.1591498851776123,
+          "p95": 203.3160949230194
+        },
+        "first_reception_after_bag_start_s": 9.945650815963745,
+        "last_reception_before_bag_end_s": 6.024468421936035
+      },
+      "/oakd/rgb/preview/camera_info": {
+        "count": 3828,
+        "period_s": {
+          "p05": 0.09998559951782227,
+          "p50": 0.09998583793640137,
+          "p95": 0.09998631477355957
+        },
+        "stamp_span_s": 382.64800572395325,
+        "reception_span_s": 382.6397886276245,
+        "median_hz": 10.001416406952316,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.03081427812576294,
+          "p50": 0.033296942710876465,
+          "p95": 0.03867061138153076
+        },
+        "first_reception_after_bag_start_s": 0.826434850692749,
+        "last_reception_before_bag_end_s": 239.559996843338
+      },
+      "/mission/processed_camera": {
+        "count": 3737,
+        "period_s": {
+          "p05": 0.09998559951782227,
+          "p50": 0.09998583793640137,
+          "p95": 0.09998631477355957
+        },
+        "stamp_span_s": 373.64863443374634,
+        "reception_span_s": 373.61771965026855,
+        "median_hz": 10.001416406952316,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.045578813552856444,
+          "p50": 0.07306313514709473,
+          "p95": 0.09994645118713377
+        },
+        "first_reception_after_bag_start_s": 9.87091851234436,
+        "last_reception_before_bag_end_s": 239.53758215904236
+      },
+      "/oakd/rgb/preview/image_raw/compressed": {
+        "count": 3828,
+        "period_s": {
+          "p05": 0.09998559951782227,
+          "p50": 0.09998583793640137,
+          "p95": 0.09998631477355957
+        },
+        "stamp_span_s": 382.64800572395325,
+        "reception_span_s": 382.64138293266296,
+        "median_hz": 10.001416406952316,
+        "nonpositive_intervals": 0,
+        "gaps_over_0_5s": 0,
+        "recorded_age_s": {
+          "p05": 0.028589820861816405,
+          "p50": 0.03055548667907715,
+          "p95": 0.03445286750793457
+        },
+        "first_reception_after_bag_start_s": 0.824087381362915,
+        "last_reception_before_bag_end_s": 239.5607500076294
+      }
+    },
+    "cameras": {
+      "/oakd/rgb/preview/camera_info": [
+        {
+          "width": 250,
+          "height": 250,
+          "k": [
+            199.2552947998047,
+            0.0,
+            123.67389678955078,
+            0.0,
+            199.2552947998047,
+            127.07687377929688,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "d": [
+            4.709591865539551,
+            -103.1653060913086,
+            -0.0012447114568203688,
+            0.0012852484360337257,
+            396.68414306640625,
+            4.526153564453125,
+            -101.39205932617188,
+            390.82220458984375
+          ],
+          "distortion": "rational_polynomial",
+          "count": 3828
+        }
+      ],
+      "/mission/processed_camera": [
+        {
+          "width": 250,
+          "height": 250,
+          "k": [
+            356.6669776916504,
+            0.0,
+            123.67389678955078,
+            0.0,
+            199.2552947998047,
+            127.07687377929688,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "d": [
+            4.709591865539551,
+            -103.1653060913086,
+            -0.0012447114568203688,
+            0.0012852484360337257,
+            396.68414306640625,
+            4.526153564453125,
+            -101.39205932617188,
+            390.82220458984375
+          ],
+          "distortion": "rational_polynomial",
+          "count": 3737
+        }
+      ]
+    },
+    "scans": {
+      "/scan": {
+        "range_max_counts": {
+          "12.0": 2998
+        },
+        "geometries": [
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.12154216319322586,
+            "time_increment_s": 0.00016904334188438952,
+            "count": 2
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.13385073840618134,
+            "time_increment_s": 0.00018616236047819257,
+            "count": 2
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.13428042829036713,
+            "time_increment_s": 0.00018675999308470637,
+            "count": 2
+          }
+        ],
+        "finite_fraction": {
+          "p05": 0.4013888888888889,
+          "p50": 0.46111111111111114,
+          "p95": 0.575
+        },
+        "beyond_slam_fraction": {
+          "p05": 0.025,
+          "p50": 0.14305555555555555,
+          "p95": 0.2777777777777778
+        },
+        "observed_max_m": {
+          "p05": 7.51200008392334,
+          "p50": 9.631999969482422,
+          "p95": 11.62399959564209
+        }
+      },
+      "/scan_self_filtered": {
+        "range_max_counts": {
+          "12.0": 2948
+        },
+        "geometries": [
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.12154216319322586,
+            "time_increment_s": 0.00016904334188438952,
+            "count": 2
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.13385073840618134,
+            "time_increment_s": 0.00018616236047819257,
+            "count": 2
+          },
+          {
+            "beams": 720,
+            "angle_min": -3.1241393089294434,
+            "angle_max": 3.1415927410125732,
+            "scan_time_s": 0.13428042829036713,
+            "time_increment_s": 0.00018675999308470637,
+            "count": 2
+          }
+        ],
+        "finite_fraction": {
+          "p05": 0.4013888888888889,
+          "p50": 0.4597222222222222,
+          "p95": 0.5652777777777778
+        },
+        "beyond_slam_fraction": {
+          "p05": 0.029166666666666667,
+          "p50": 0.14444444444444443,
+          "p95": 0.2777777777777778
+        },
+        "observed_max_m": {
+          "p05": 7.522799944877624,
+          "p50": 9.62399959564209,
+          "p95": 11.621199798583985
+        }
+      }
+    },
+    "maps": {
+      "/map": {
+        "changes": 645,
+        "published": 1215,
+        "change_period_s": {
+          "p05": 0.3810113787651062,
+          "p50": 0.5155844688415527,
+          "p95": 1.0298086404800417
+        },
+        "resolutions": {
+          "0.05000000074505806": 1215
+        }
+      }
+    },
+    "motions": {
+      "/odom": {
+        "absolute_linear_m_s": {
+          "p05": 0.0,
+          "p50": 0.06577336738444708,
+          "p95": 0.30247680223207424
+        },
+        "absolute_angular_rad_s": {
+          "p05": 0.0,
+          "p50": 0.19656091183423996,
+          "p95": 0.8070089638233184
+        }
+      },
+      "/cmd_vel": {
+        "absolute_linear_m_s": {
+          "p05": 0.0,
+          "p50": 0.052320484071969986,
+          "p95": 0.29999998211860657
+        },
+        "absolute_angular_rad_s": {
+          "p05": 0.0,
+          "p50": 0.17650549113750458,
+          "p95": 0.8
+        }
+      }
+    },
+    "first_compressed_image_shapes": {
+      "/oakd/rgb/preview/image_raw/compressed": [
+        250,
+        250,
+        3
+      ]
+    }
+  }
+]
