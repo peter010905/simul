@@ -105,14 +105,20 @@ def stream(folder, topics):
         yield topic, deserialize_message(raw, types[topic])
 
 
-def analyze(folder, output):
+def analyze(folder, output, use_slam_pose=False):
     import yaml
     tf = Transforms()
     final = None
-    for topic, msg in stream(folder, ['/map', '/tf', '/tf_static']):
+    topics = ['/map', '/tf', '/tf_static'] + (['/pose'] if use_slam_pose else [])
+    for topic, msg in stream(folder, topics):
         if topic == '/map':
             final = msg
-        else:
+        elif topic == '/pose':
+            from types import SimpleNamespace
+            pose = msg.pose.pose
+            tr = SimpleNamespace(translation=pose.position, rotation=pose.orientation)
+            tf.dynamic[(msg.header.frame_id, 'base_link')].append((stamp(msg.header.stamp), matrix(tr)))
+        elif topic == '/tf_static' or not use_slam_pose:
             tf.add(msg, topic == '/tf_static')
     if final is None:
         raise ValueError('No saved SLAM map')
@@ -156,7 +162,7 @@ def analyze(folder, output):
     persistent = evidence.mask()
     components, count = label(persistent)
     sizes = np.bincount(components.ravel())[1:]
-    result = dict(run=folder.name, slam_max_range_m=limit, map_frame=final.header.frame_id,
+    result = dict(use_direct_slam_pose=use_slam_pose, run=folder.name, slam_max_range_m=limit, map_frame=final.header.frame_id,
         status='evidence_available' if evidence.views else 'unavailable_missing_timestamped_tf',
         views=len(evidence.views), occupied_cells=int(occupied.sum()),
         repeated_supported_cells=int(persistent.sum()), unverified_cells=int((occupied & ~persistent).sum()),
@@ -194,5 +200,6 @@ if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('run', type=Path)
     p.add_argument('output', type=Path)
+    p.add_argument('--use-slam-pose', action='store_true')
     a = p.parse_args()
-    print(json.dumps(analyze(a.run, a.output), indent=2))
+    print(json.dumps(analyze(a.run, a.output, a.use_slam_pose), indent=2))

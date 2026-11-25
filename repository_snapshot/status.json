@@ -1,4 +1,15 @@
 {
+  "classroom_twin_20261126": {
+    "physical_drive": false,
+    "archived_real_runs": 8,
+    "registered_room_frame_runs": 1,
+    "symmetric_tables": 16,
+    "modeled_legs": 64,
+    "slam_anchors_used": 14,
+    "code_and_metrics": "experiments/2026-11-26_real_sim/twin",
+    "matched_policy": "v1.5.2.43.1",
+    "trajectory_equivalence_validated": false
+  },
   "real_sim_20261126": {
     "physical_drive": false,
     "policy_changed": false,

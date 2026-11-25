@@ -1,0 +1,529 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>실물 · Gazebo 경로 비교</title><style>
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    background: #f3f2ee;
+    color: #192725;
+    font: 15px -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif
+}
+
+main {
+    max-width: 1450px;
+    margin: auto;
+    padding: 30px 4vw
+}
+
+h1 {
+    font-size: clamp(25px, 3vw, 42px);
+    margin: 0;
+    letter-spacing: -.055em
+}
+
+header,
+.row,
+.top {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    flex-wrap: wrap
+}
+
+header {
+    justify-content: space-between;
+    border-bottom: 1px solid #c4cdc6;
+    padding-bottom: 21px
+}
+
+.card {
+    background: white;
+    border: 1px solid #d6ddd6;
+    border-radius: 12px;
+    padding: 18px;
+    margin-top: 16px
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: minmax(0, 2.3fr) minmax(245px, 1fr);
+    gap: 16px
+}
+
+h2 {
+    font-size: 18px;
+    margin: 0 0 12px
+}
+
+p {
+    line-height: 1.6;
+    margin: 8px 0;
+    color: #46544e
+}
+
+label,
+small {
+    font-size: 13px;
+    color: #4c5c56
+}
+
+select,
+button {
+    background: white;
+    border: 1px solid #a3b1a7;
+    border-radius: 6px;
+    padding: 8px;
+    color: inherit;
+    font: inherit
+}
+
+button {
+    cursor: pointer
+}
+
+button.primary {
+    background: #174d40;
+    color: white
+}
+
+button:disabled {
+    opacity: .5;
+    cursor: wait
+}
+
+.track {
+    display: block;
+    width: 100%;
+    aspect-ratio: 22/14;
+    background: #f5f6f2;
+    border-radius: 8px
+}
+
+.legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px
+}
+
+.dot {
+    display: inline-block;
+    border-radius: 50%;
+    width: 9px;
+    height: 9px
+}
+
+.real {
+    background: #1668bc
+}
+
+.sim {
+    background: #dd5b25
+}
+
+.odom {
+    background: #8a599a
+}
+
+input[type=range] {
+    flex: 1;
+    min-width: 110px
+}
+
+dl {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px 6px;
+    margin: 0
+}
+
+dt {
+    color: #45524d
+}
+
+dd {
+    margin: 0;
+    font-weight: 650;
+    font-variant-numeric: tabular-nums
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #dce2dc;
+    margin: 16px 0
+}
+
+.sub {
+    margin-top: 10px
+}
+
+.top {
+    justify-content: space-between
+}
+
+output {
+    font-variant-numeric: tabular-nums
+}
+
+#status {
+    color: #8e421a
+}
+
+footer {
+    margin-top: 20px;
+    color: #51605a
+}
+
+svg text {
+    font-family: inherit
+}
+
+@media(max-width:850px) {
+    .grid {
+        display: block
+    }
+
+    main {
+        padding: 16px
+    }
+}
+</style><main><header><h1>실물 · Gazebo 경로 비교</h1><span>ROS 2 Jazzy &nbsp; / &nbsp; TurtleBot4</span></header>
+<div class="card top"><div><label>실물 주행 기록 <select id="archive"></select></label></div><div class="row"><label>정책 <select id="policy"></select></label><label>시뮬 배치 <select id="scene"><option value="departure">책상 + 출발 주변 재관측 반사</option><option value="returns">책상 + 반복 반사</option><option value="desks">책상만</option></select></label><label>카메라 <select id="optical"><option id="scanner-option" value="scanner">실물 화각 + LiDAR 수신 특성</option><option value="true">실물 화각 보정</option><option value="false">기본 화각</option></select></label><button class="primary" id="start">시뮬 주행 시작</button></div></div>
+<label id="hyp-wrap" hidden><input id="hyp" type="checkbox">다른 주행의 추정 위치를 시험장 위에 표시</label><div id="status" role="status"></div><div class="grid"><section class="card"><div class="top"><h2 id="viewtitle">주행 경로</h2><select id="run" aria-label="비교할 시뮬 실행"></select></div>
+<svg id="map" class="track" viewBox="-11 -7 22 14" role="img" aria-label="실물과 시뮬 경로 및 책상 배치"></svg>
+<div class="row legend sub"><span><i class="dot real"></i>실물 SLAM</span><span><i class="dot sim"></i>Gazebo 실제 위치</span><label><input type="checkbox" id="slam" checked>실물 SLAM</label><label><input type="checkbox" id="legs">책상 다리 대조</label><label><input type="checkbox" id="odom">바퀴 주행 기록</label><label><input id="proxies" type="checkbox" checked>반복 반사</label></div>
+<div class="row sub"><button id="play">재생</button><input type="range" id="time" value="0" min="0" step=".5" aria-label="경과 시간"><output id="clock">0초</output></div></section>
+<aside class="card"><h2>공통 관측 구간의 위치 오차</h2><dl id="metrics"></dl><div id="repeat-card" hidden><hr><h2>같은 설정의 시뮬 재실행</h2><dl id="repeat"></dl></div><hr><h2>첫 탐색 목표 선택</h2><dl id="decision"></dl><hr><h2>주행 종료</h2><dl id="stop"></dl><p id="limit"></p></aside></div>
+<section class="card"><h2>같은 경과 시간의 전방 카메라</h2><div class="row"><figure style="margin:0"><img id="realcam" width="200" height="200" alt="해당 시각 실물 영상 없음"><figcaption>실물 OAK-D</figcaption></figure><figure style="margin:0"><img id="simcam" width="200" height="200" alt="해당 시각 시뮬 영상 없음"><figcaption>Gazebo RGB</figcaption></figure></div></section><section class="card" id="decision-card" hidden><h2>첫 목표를 고를 때 두 로봇이 본 지도</h2><p>같은 축척에서 각 로봇의 위치를 중앙에 놓았습니다. 회색은 미탐색, 흰색은 알려진 자유 공간, 진한 점은 장애물입니다.</p><dl id="goals"></dl><img id="first-map" style="display:block;width:100%;max-width:1050px" alt="실물과 시뮬의 첫 지도 및 선택 후보"></section><section class="card"><h2>시험장 복원 근거</h2><p id="evidence"></p><small>실물 로그마다 지도 원점이 달라요. 책상과 대응된 기록에서만 시험장 위에 두 경로를 겹칩니다. 시간은 각 정책의 시작 시점을 0초로 맞췄습니다.</small></section></main>
+<script>
+const get = id => document.getElementById(id),
+    api = async path => {
+        const r = await fetch(path);
+        if (!r.ok) throw Error(r.status);
+        return r.json()
+    }, ns = "http://www.w3.org/2000/svg";
+let data, runs = [],
+    sim = null,
+    playing = false,
+    follow = true,
+    version = 0,
+    requestedRun = new URLSearchParams(location.search).get("run");
+
+function el(tag, props) {
+    let n = document.createElementNS(ns, tag);
+    for (let [k, v] of Object.entries(props)) n.setAttribute(k, v);
+    get('map').append(n);
+    return n
+}
+
+function path(rows, color, t, width, dash) {
+    let d = '',
+        prev = -Infinity;
+    for (let p of rows) {
+        if (p[0] > t) break;
+        d += (p[0] - prev > 2 ? 'M' : 'L') + p[1].toFixed(3) + ' ' + (-p[2]).toFixed(3) + ' ';
+        prev = p[0]
+    }
+    el('path', {
+        d,
+        fill: 'none',
+        stroke: color,
+        'stroke-width': width,
+        'stroke-dasharray': dash || ''
+    })
+}
+
+function pos(rows, t, color) {
+    let p;
+    for (let r of rows) {
+        if (r[0] > t) break;
+        p = r
+    }
+    if (!p || t - p[0] > 2) return;
+    el('path', {
+        d: 'M .18 0 L -.12 -.09 L -.12 .09 Z',
+        fill: color,
+        transform: 'translate(' + p[1] + ' ' + (-p[2]) + ') rotate(' + (-p[3] * 180 / Math.PI) + ')'
+    })
+}
+
+function rect(x, y, w, h, fill, yaw = 0) {
+    el('rect', {
+        x: -w / 2,
+        y: -h / 2,
+        width: w,
+        height: h,
+        fill,
+        transform: 'translate(' + x + ' ' + (-y) + ') rotate(' + (-yaw * 180 / Math.PI) + ')'
+    })
+}
+
+function fmt(x, u, n = 1) {
+    return Number.isFinite(x) ? x.toFixed(n) + u : '—'
+}
+
+function list(id, rows) {
+    let n = get(id);
+    n.replaceChildren();
+    for (let [k, v] of rows) {
+        let a = document.createElement('dt'),
+            b = document.createElement('dd');
+        a.textContent = k;
+        b.textContent = v;
+        n.append(a, b)
+    }
+}
+
+function draw() {
+    if (!data) return;
+    let selected = data.library[get('archive').value],
+        aligned = selected.room_frame,
+        hypothesis = data.hypotheses[get('archive').value],
+        estimated = !aligned && hypothesis && get('hyp').checked,
+        t = +get('time').value;
+    get('clock').value = fmt(t, '초');
+    for (let [node, kind, id] of [
+            ['realcam', 'real', get('archive').value],
+            ['simcam', 'sim', aligned && sim ? sim.id : null]
+        ]) {
+        const im = get(node),
+            link = id ? '/camera.jpg?kind=' + kind + '&id=' + encodeURIComponent(id) + '&time=' + Math.round(t) : '';
+        if (im.getAttribute('src') !== link) {
+            if (link) im.src = link;
+            else im.removeAttribute('src')
+        }
+    }
+    let m = get('map');
+    m.replaceChildren();
+    get('hyp-wrap').hidden = !hypothesis;
+    let real = aligned ? data.ref.trace : estimated ? hypothesis.trace : (selected.traces['/pose'] || []),
+        odom = selected.traces['/odom'] || [];
+    if (aligned || estimated) {
+        m.setAttribute('viewBox', '-11 -7 22 14');
+        el('path', {
+            d: 'M -10 -5.6 H 10 V 5.6 H 5.75 V 6.2 H -1.65 V 5.6 H -10 Z',
+            fill: '#fffdf9',
+            stroke: '#89928a',
+            'stroke-width': .07
+        });
+        const layer = data.slam_layer;
+        if (get('slam').checked && layer) {
+            m.setAttribute('viewBox', [layer.x,layer.y,layer.width,layer.height].join(' '));
+            el('image', {...layer, href:'/registered-slam.png', preserveAspectRatio:'none', 'image-rendering':'pixelated'})
+        }
+        for (let a of data.tables) {
+            rect(a.x, a.y, a.sx, a.sy, get('legs').checked ? '#c4aa8350' : '#c4aa83', a.yaw);
+            if (get('legs').checked) {
+                for (let i of [-1,1]) for (let j of [-1,1]) {
+                    const dx = i*data.fit.leg_dimensions[0]/2, dy = j*data.fit.leg_dimensions[1]/2;
+                    const px=a.x+dx*Math.cos(a.yaw)-dy*Math.sin(a.yaw), py=a.y+dx*Math.sin(a.yaw)+dy*Math.cos(a.yaw);
+                    el('rect',{x:px-.045,y:-py-.045,width:.09,height:.09,fill:'#a14c12'})
+                }
+            }
+        }
+        if (get('legs').checked) for (let p of data.anchors) {
+            el('circle',{cx:p.x,cy:-p.y,r:.105,stroke:'#116ca5','stroke-width':.035,fill:'none'});
+            el('text',{x:p.x+.12,y:-p.y-.10,'font-size':.24,fill:'#145d85'}).textContent=p.id
+        }
+        if (aligned && get('proxies').checked && (sim?.scene === 'returns' || sim?.scene === 'departure'))
+            for (let a of (sim.scene === 'departure' ? data.departure_returns : data.returns) || []) rect(a.x, a.y, a.sx, a.sy, '#738078');
+        for (let [id, p] of Object.entries(aligned ? data.ref.markers : {})) {
+            el('circle', {
+                cx: p[0],
+                cy: -p[1],
+                r: .10,
+                fill: '#287647'
+            });
+            let n = el('text', {
+                x: p[0] + .14,
+                y: -p[1],
+                'font-size': .33,
+                fill: '#174a29'
+            });
+            n.textContent = 'ID ' + id
+        }
+    } else {
+        let xs = [0],
+            ys = [0];
+        for (let p of real.concat(odom)) {
+            xs.push(p[1]);
+            ys.push(-p[2])
+        }
+        let x = Math.min(...xs) - 1,
+            y = Math.min(...ys) - 1;
+        m.setAttribute('viewBox', [x, y, Math.max(...xs) + 1 - x, Math.max(...ys) + 1 - y].join(' '))
+    }
+    path(real, '#1668bc', t, .055);
+    pos(real, t, '#1668bc');
+    if (!estimated && get('odom').checked) {
+        path(odom, '#8a599a', t, .04, '.11 .07');
+        pos(odom, t, '#8a599a')
+    }
+    if (aligned && sim) {
+        path(sim.trace, '#dd5b25', t, .055);
+        pos(sim.trace, t, '#dd5b25')
+    }
+    let c = aligned && sim?.paired ? sim?.comparison : null;
+    const repeat = aligned && sim?.repeat;
+    get('repeat-card').hidden = !repeat?.comparison?.samples;
+    if (repeat?.comparison?.samples) list('repeat', [
+        ['비교 주행', repeat.id],
+        ['두 시뮬 위치 RMS', fmt(repeat.comparison.rmse,' m',2)],
+        ['두 시뮬 첫 0.5m 이탈',fmt(repeat.comparison.first_divergence,'초')],
+        ['공통 구간 끝',fmt(repeat.comparison.common_end,'초')]
+    ]);
+    list('metrics', [
+        ['위치 RMS', fmt(c?.rmse, ' m', 2)],
+        ['위치 오차 95백분위', fmt(c?.p95, ' m', 2)],
+        ['25cm 이내인 시간', fmt(c?.within_025 * 100, '%')],
+        ['방향 오차 중앙값', fmt(c?.median_heading_error_deg, '°')],
+        ['첫 0.5m 이탈¹', fmt(c?.first_divergence, '초')],
+        ['공통 비교 구간 끝', fmt(c?.common_end, '초')],
+        ['유효 표본 비율', fmt(c?.coverage * 100, '%')],
+        ['동일 구간 거리 · 실물', fmt(c?.real_length, ' m')],
+        ['동일 구간 거리 · 시뮬', fmt(c?.sim_length, ' m')]
+    ]);
+    const first = aligned && sim?.paired ? sim.first_decision : null;
+    const ref = aligned ? data.reference_decision : null;
+    get('decision-card').hidden = !first || !ref;
+    const names={interior_frontier:'중앙 미탐색 구역', interior_surface:'중앙 표면', print:'인쇄물 단서', wall_surface:'벽면'};
+    const goalLabel=g=>g ? fmt(g.elapsed,'초')+' '+(names[g.kind]||g.kind) : '—';
+    list('goals', (first ? data.reference_goals : []).map((g,i)=>[(i+1)+'번째 · 실물 / 시뮬', goalLabel(g)+' / '+goalLabel(sim.initial_goals?.[i])]));
+
+    if (first && ref && get('first-map').dataset.id !== sim.id) {
+        get('first-map').dataset.id = sim.id;
+        get('first-map').src = '/first-decision.png?id=' + encodeURIComponent(sim.id)
+    }
+    const separation = first?.goal && ref?.goal && sim?.hardware_parity ? Math.hypot(first.goal[0]-ref.goal[0], first.goal[1]-ref.goal[1]) : null;
+    list('decision', [
+        ['실물 · 선택 시각 / 후보 수', ref ? fmt(ref.elapsed, '초') + ' / ' + ref.candidates : '—'],
+        ['시뮬 · 선택 시각 / 후보 수', first ? fmt(first.elapsed, '초') + ' / ' + first.candidates : '—'],
+        ['실물 · 지도에 알려진 면적', fmt(ref?.known_m2, ' m²')],
+        ['시뮬 · 지도에 알려진 면적', fmt(first?.known_m2, ' m²')],
+        ['두 목표 사이 거리', fmt(separation, ' m', 2)]
+    ]);
+    list('stop', [
+        ['실물 정지 시각', fmt(selected.duration, '초')],
+        ['실물 기록 사유', selected.stop || '미기록'],
+        ['시뮬 경과', aligned ? fmt(sim?.duration ?? sim?.elapsed, '초') : '—'],
+        ['시뮬 실행에 걸린 실제 시간', aligned ? fmt(sim?.wall_elapsed,'초') : '—'],
+        ['실시간 배속', aligned && sim?.wall_elapsed ? fmt(sim.duration / sim.wall_elapsed, '×',2) : '—'],
+        ...[1,3,5].map(m => [m+'m 이탈 · 실물 / 시뮬', aligned && sim?.paired ? fmt(data.ref.first_displacements[m],'초')+' / '+fmt(sim.first_displacements[m],'초') : '—']),
+        ...Object.keys(data.ref.first_seen).map(id => ['ID '+id+' 등록 · 실물 / 시뮬', aligned && sim?.paired ? fmt(data.ref.first_seen[id],'초')+' / '+(Number.isFinite(sim.registered_s?.[id]) ? fmt(sim.registered_s[id],'초') : (sim.finished ? '미등록' : '아직 미등록')) : '—']),
+        ['시뮬 상태', aligned && sim ? (sim.terminal || '측정 중') : '대응 주행 없음']
+    ]);
+    get('limit').textContent = (sim && !sim.paired ? '이 실행은 다른 정책을 같은 시험장 배치에서 시험했습니다. 실물 경로 오차를 집계하지 않습니다. ' : '') + '¹ 0.5초 간격 표본 6개가 연속으로 벗어난 첫 시각. 2초를 넘는 관측 공백은 위치 오차에서 제외합니다.';
+    get('viewtitle').textContent = aligned ? '시험장 좌표의 주행 경로' : estimated ? '추정 정합 · 실내 점 일치 ' + fmt(hypothesis.interior_agreement*100,'%') : '출발 자세 기준 실물 경로';
+    get('run').disabled = !aligned;
+    get('start').disabled = !aligned;
+    get('scene').disabled = !aligned;
+    get('scanner-option').disabled = !data.scanner_policies.includes(get('policy').value);
+    get('optical').disabled = !aligned || !data.optical_policies.includes(get('policy').value);
+    get('policy').disabled = !aligned
+}
+
+function bounds() {
+    let a = data.library[get('archive').value];
+    let max = a.room_frame ? Math.max(sim?.elapsed || 0, data.ref.trace.at(-1)[0]) : Math.max(0, ...Object.values(a.traces).map(v => v.at(-1)?.[0] || 0));
+    get('time').max = max;
+    if (follow) get('time').value = a.room_frame && sim ? sim.elapsed : max;
+    draw()
+}
+async function refresh() {
+    let v = ++version;
+    runs = await api('/api/runs');
+    if (v !== version) return;
+    let sel = get('run'),
+        old = sel.value;
+    sel.replaceChildren(...runs.map(r => new Option((r.scanner_profile ? '화각 + LiDAR 수신 특성' : r.optical_profile ? '실물 설정 + 화각' : r.hardware_parity ? '실물 설정' : '초기 비교') + ' · ' + (r.scene === 'departure' ? '출발 주변 재관측' : r.scene === 'returns' ? '반복 반사' : '책상만') + ' · ' + r.id.slice(12) + (r.time_limit_s < 600 ? ' · 첫 ' + r.time_limit_s + '초 진단' : ''), r.id)));
+    if (requestedRun && runs.some(r => r.id === requestedRun)) {
+        sel.value = requestedRun;
+        requestedRun = null
+    } else if (runs.some(r => r.id === old)) sel.value = old;
+    else if (runs.length) sel.selectedIndex = runs.length - 1;
+    let next = sel.value ? await api('/api/run?id=' + encodeURIComponent(sel.value)) : null;
+    if (v !== version) return;
+    sim = next;
+    bounds()
+}
+function policyName(workspace) {
+    const labels={'v15240':'1.5.2.40 · 상자 안전 관찰','v15241':'1.5.2.41 · 미탐색 구역 이동','v15243':'1.5.2.43.1 · 출발 회전 지도 갱신','v15244':'1.5.2.44 · 상자 관찰 이어보기','v15245':'1.5.2.45 · 중앙 우선','v15247':'1.5.2.47 · 벽 진입','v15248':'1.5.2.48 · 벽 이탈'};
+    return labels[workspace.split('_')[0]] || workspace
+}
+function archiveTime(id) {
+    const m = id.match(/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})/);
+    if (!m) return id;
+    const stamp=new Date(m[1]+'-'+m[2]+'-'+m[3]+'T'+m[4]+':'+m[5]+':'+m[6]+'Z');
+    return stamp.toLocaleString('ko-KR',{timeZone:'Asia/Seoul',month:'numeric', day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false})+' KST'
+}
+async function init() {
+    data = await api('/api/setup');
+    let a = get('archive');
+    for (let [id, r] of Object.entries(data.library)) a.add(new Option(archiveTime(id) + ' · ' + policyName(r.workspace) + ' · SLAM ' + r.slam + 'm', id));
+    const archive = new URLSearchParams(location.search).get("archive");
+    a.value = data.library[archive] ? archive : data.ref.run;
+    for (let id of data.policies) {
+        const r = data.library[id];
+        get('policy').add(new Option(policyName(r.workspace) + ' · ' + r.slam + 'm', id))
+    }
+    get('policy').value = data.ref.run;
+    get('policy').onchange = () => {
+        get('optical').value = data.scanner_policies.includes(get('policy').value) ? 'scanner' : String(data.optical_policies.includes(get('policy').value));
+        draw()
+    };
+    get('optical').value = data.scanner_policies.includes(data.ref.run) ? 'scanner' : String(data.optical_policies.includes(data.ref.run));
+    get('evidence').textContent = '동일 크기의 책상 16개, 다리 64개. 실물 SLAM에서 대응시킨 다리 ' + data.fit.anchor_count + '곳의 위치 RMS 오차 ' + fmt(data.fit.anchor_rmse_m * 100, 'cm') + '. 책상 다리 대조를 켜면 갈색 사각형은 모델 다리, 파란 원은 실물 SLAM에서 대응시킨 점입니다. 실물에서 위치를 복원한 마커는 ' + Object.keys(data.ref.markers).map(x => 'ID ' + x).join(', ') + '입니다. 추가 장애물의 높이와 미발견 마커 위치는 미확인입니다. 보관된 가중치는 해시로 확인했습니다. 당시 소스 커밋은 기록에 없습니다.';
+    await refresh();
+    setInterval(() => refresh().catch(e => get('status').textContent = '기록 갱신 실패 ' + e), 6000)
+}
+function setLink() {
+    const url = new URL(location.href);
+    url.searchParams.set('archive', get('archive').value);
+    if (get('run').value) url.searchParams.set('run', get('run').value);
+    history.replaceState(null, '', url)
+}
+get('archive').onchange = () => {
+    setLink();
+    follow = true;
+    bounds()
+};
+get('run').onchange = () => { setLink(); refresh() };
+get('time').oninput = () => {
+    follow = false;
+    draw()
+};
+for (let k of ['proxies', 'odom', 'slam', 'legs','hyp']) get(k).onchange = draw;
+get('play').onclick = () => {
+    playing = !playing;
+    follow = false;
+    get('play').textContent = playing ? '일시정지' : '재생';
+    if (playing && +get('time').value >= +get('time').max - 1) get('time').value = 0
+};
+setInterval(() => {
+    if (playing) {
+        let t = get('time');
+        t.value = Math.min(+t.max, +t.value + .5);
+        draw();
+        if (+t.value >= +t.max) get('play').click()
+    }
+}, 500);
+get('start').onclick = async () => {
+    let r = await fetch('/api/run', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            scene: get('scene').value,
+            policy: get('policy').value,
+            optical: !get('optical').disabled && get('optical').value !== 'false',
+            scanner: !get('optical').disabled && get('optical').value === 'scanner'
+        })
+    });
+    let j = await r.json();
+    get('status').textContent = j.error || '새 시뮬을 시작했습니다. ' + j.id;
+    await refresh()
+};
+init().catch(e => get('status').textContent = '기록을 읽을 수 없습니다. ' + e)
+</script></html>
