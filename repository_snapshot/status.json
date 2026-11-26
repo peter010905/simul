@@ -12,7 +12,21 @@
     "heldout_f1": 0.9313929313929314,
     "result": "experiments/2026-11-26_yolo_cnn_v100/artifacts/comparison.json",
     "real_robot_deployed": false,
-    "marker_ids_or_navigation_validated": false
+    "marker_ids_or_navigation_validated": false,
+    "local_physical_replay": {
+      "frames": 257,
+      "reviewed_markers": 197,
+      "oblique_markers": 16,
+      "blurred_markers": 59,
+      "correct_by_model": {
+        "yolo_plain": 0,
+        "yolo_augmented": 6,
+        "cnn_plain": 0,
+        "cnn_augmented": 0
+      },
+      "oblique_or_blurred_correct": 0,
+      "result": "experiments/2026-11-26_yolo_cnn_v100/artifacts/real-replay.json"
+    }
   },
   "paired_wall_7_103": {
     "report": "experiments/2026-11-19_pair_7_103/README.md",
