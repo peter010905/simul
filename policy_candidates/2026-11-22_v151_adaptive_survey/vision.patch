@@ -1,0 +1,161 @@
+--- a/small_wall_cues.py
++++ b/small_wall_cues.py
+@@ -39,3 +39,82 @@
+                 continue
+             hits.append((u,v,short,named))
+     return sorted(hits,key=lambda h:(h[3],h[2]),reverse=True)[:8]
++
++
++def usable_named_quad(quad, width, height):
++    points = quad.reshape(4, 2)
++    return bool(np.all(points >= 4) and np.all(points <= [width-5, height-5]))
++
++
++def anonymous_center(hit, decoded):
++    point = (float(hit[0]), float(hit[1]))
++    return all(cv2.pointPolygonTest(quad.reshape(4, 2), point, False) < 0 for quad in decoded)
++
++
++def fragment_quads(points):
++    """Retain the measured rectangle and test either missing end of a short axis."""
++    quad = cv2.boxPoints(cv2.minAreaRect(points))
++    edges = np.roll(quad, -1, axis=0) - quad
++    lengths = np.linalg.norm(edges[:2], axis=1)
++    short_index = int(np.argmin(lengths))
++    short, long = min(lengths), max(lengths)
++    if short < .5 * long or long < 6 or short >= 10 or short < 3:
++        return
++    if short >= 6:
++        yield quad
++    if long >= 10 or long - short < .75:
++        return
++    first = np.roll(quad, -short_index, axis=0)
++    extension = edges[short_index] * ((long - short) / short)
++    for side, delta in (([0, 3], -extension), ([1, 2], extension)):
++        proposal = first.copy()
++        proposal[side] += delta
++        yield proposal
++
++
++def fragment_candidates(gray, existing, decoded):
++    """Find small dark printed fragments even when ArUco returned no quad.
++
++    One local min/max pass and up to two connected components per image
++    sector. All geometric completions undergo the native printed-pattern
++    test against the original, unfilled pixels.
++    """
++    if len(existing) >= 8:
++        return []
++    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (15, 15))
++    low, high = cv2.erode(gray, kernel), cv2.dilate(gray, kernel)
++    contrast = cv2.subtract(high, low)
++    dark = cv2.bitwise_and(cv2.compare(gray, cv2.addWeighted(low, .75, high, .25, 0), cv2.CMP_LE),
++                           cv2.compare(contrast, 35, cv2.CMP_GE))
++    _, labels, stats, centers = cv2.connectedComponentsWithStats(dark, connectivity=8)
++    x, y, w, h, area = stats[1:].T
++    # A six-pixel tag at 45 degrees can occupy a larger axis-aligned box.
++    valid = (w >= 4) & (h >= 4) & (w <= 22) & (h <= 22) & (area >= 14)
++    ids = np.flatnonzero(valid) + 1
++    if not len(ids):
++        return []
++    height, width = gray.shape
++    px, py = centers[ids].astype(int).T
++    # Limit fragmentation/textured-background work independently in each sector.
++    quality = contrast[py, px].astype(float) * np.minimum(w[ids-1], h[ids-1]) / np.maximum(w[ids-1], h[ids-1])
++    sectors = np.minimum(3, 4 * py // height) * 4 + np.minimum(3, 4 * px // width)
++    eligible = np.ones(len(ids), dtype=bool)
++    if len(decoded):
++        occupied = np.zeros_like(gray)
++        for quad in decoded:
++            cv2.fillConvexPoly(occupied, np.rint(quad.reshape(4, 2)).astype(np.int32), 255)
++        eligible &= occupied[py, px] == 0
++    for u, v, _, _ in existing:
++        eligible &= (np.abs(centers[ids, 0]-u) >= 4) | (np.abs(centers[ids, 1]-v) >= 4)
++    proposals = []
++    for sector in np.unique(sectors[eligible]):
++        members = np.flatnonzero(eligible & (sectors == sector))
++        for i in members[np.argsort(-quality[members], kind='stable')[:2]]:
++            component = ids[i]
++            left, top, cols, rows, _ = stats[component]
++            ys, xs = np.where(labels[top:top+rows, left:left+cols] == component)
++            points = np.column_stack((xs + left, ys + top)).astype(np.float32)
++            proposals.extend(fragment_quads(points))
++    added = candidates(gray, (), proposals)
++    return [hit for hit in added if anonymous_center(hit, decoded)
++            and all(abs(hit[0]-h[0]) >= 4 or abs(hit[1]-h[1]) >= 4 for h in existing)][:8-len(existing)]
+--- a/marker_pair.py
++++ b/marker_pair.py
+@@ -68,6 +68,12 @@
+         recovered = decode_rejected(image, quad)
+         if recovered is not None:
+             results.append(recovered)
++    if small is not None:
++        from osp_mission.small_wall_cues import anonymous_center, fragment_candidates, usable_named_quad
++        height, width = image.shape
++        named = [quad for quad, _ in results if usable_named_quad(quad, width, height)]
++        small[:] = [hit for hit in small if anonymous_center(hit, named)]
++        small.extend(fragment_candidates(image, small, named))
+     if not results:
+         return [], None
+     return [quad for quad, _ in results], np.array([[ident] for _, ident in results])
+--- a/hybrid.py
++++ b/hybrid.py
+@@ -15,17 +15,18 @@
+ from osp_mission import dock_geometry
+ from osp_mission.wall_route import yaw,camera_pose
+ from osp_mission.thorough_borders import borders
++from osp_mission.small_wall_cues import anonymous_center
+ from osp_mission.hybrid_geometry import preview_geometry
+ from osp_mission.general_surface import GeneralSurfaceFollowup
+
+
+-def publish_print(node, msg, image):
++def publish_print(node, msg, image, decoded=()):
+     """Use only measured RGB outlines, exposure-time geometry, and synchronized range."""
+     cal = preview_geometry(node.info)
+     if cal is node.info and (msg.width,msg.height)==(250,250):
+         return
+     stamp = Time.from_msg(msg.header.stamp)
+-    outlines=borders(image)
++    outlines=[hit for hit in borders(image) if anonymous_center(hit, decoded)]
+     if not outlines:
+         return
+     transform=node.tf.lookup_transform(node.p('odom_frame'),msg.header.frame_id,stamp)
+--- a/detector.py
++++ b/detector.py
+@@ -22,6 +22,7 @@
+ from osp_mission.hybrid_geometry import preview_geometry
+ from osp_mission.marker_relook import VisualRange, sight_in_odom
+ from osp_mission.marker_pair import SeparateMarkers, decode
++from osp_mission.small_wall_cues import usable_named_quad
+ from osp_mission.landmark_identity import resolved_ids
+ from osp_mission.provisional_marker_cues import ProvisionalMarkerCues
+ from osp_mission.landmark_reacquisition import ObservationConsensus
+@@ -187,12 +188,13 @@
+             accepted_quads={}
+             processed=copy.deepcopy(self.info);processed.header=msg.header
+             processed.k=list(k)
++            named = [quad for quad in corners if usable_named_quad(quad, msg.width, msg.height)]
++            try:
++                from osp_mission.hybrid import publish_print
++                publish_print(self,msg,image,named)
++            except Exception as exc:
++                self.get_logger().debug(f'Anonymous print projection unavailable: {exc}')
+             if ids is None:
+-                try:
+-                    from osp_mission.hybrid import publish_print
+-                    publish_print(self,msg,image)
+-                except Exception as exc:
+-                    self.get_logger().debug(f'Anonymous print projection unavailable: {exc}')
+                 return
+             # CameraInfo distortion is applied before back projection.
+             for c,ident in zip(corners,ids.flatten()):
+@@ -205,7 +207,7 @@
+                     if provisional:
+                         self.reject(ident,'small')
+                         if edges.min()<10.:continue
+-                    if np.any(c[0][:,0]<4) or np.any(c[0][:,1]<4) or np.any(c[0][:,0]>msg.width-5) or np.any(c[0][:,1]>msg.height-5): self.reject(ident,'border');continue
++                    if not usable_named_quad(c, msg.width, msg.height): self.reject(ident,'border');continue
+                     uv=c[0].mean(axis=0)
+                     normalized=cv2.undistortPoints(np.array([[uv]],dtype=np.float64),
+                         np.array(k).reshape(3,3),np.array(self.info.d))[0,0]

@@ -1,0 +1,142 @@
+{
+  "version": "1.3.0",
+  "base_version": "1.2",
+  "scope": "offline callback and recorded scan comparison",
+  "physical_v1_3_drive_test": false,
+  "scene_navigation_success_measured": false,
+  "navigation": [
+    {
+      "run": "20261120T090343-e869961b00",
+      "stationary_cancellations": 4,
+      "baseline_recovery_requests": 0,
+      "candidate_recovery_requests": 4,
+      "recorded_scans_allowing_retreat": 4,
+      "first_cancellation_allows_retreat": true
+    },
+    {
+      "run": "20261120T090758-e7754bde54",
+      "stationary_cancellations": 3,
+      "baseline_recovery_requests": 0,
+      "candidate_recovery_requests": 3,
+      "recorded_scans_allowing_retreat": 1,
+      "first_cancellation_allows_retreat": true
+    }
+  ],
+  "hardware_signal_episodes": [
+    {
+      "run": "20261120T082711-6afe5aee72",
+      "episodes": [
+        {
+          "first": 1795163423.7896345,
+          "last": 1795163423.9817612,
+          "samples": 2,
+          "initial_types": [
+            3
+          ],
+          "types": [
+            3
+          ],
+          "frames": [
+            "right_wheel"
+          ],
+          "clear": 1795163424.1574912,
+          "duration_to_clear_s": 0.3678567409515381
+        },
+        {
+          "first": 1795163425.2771792,
+          "last": 1795163429.7626276,
+          "samples": 29,
+          "initial_types": [
+            0,
+            3
+          ],
+          "types": [
+            0,
+            2,
+            3
+          ],
+          "frames": [
+            "base_link",
+            "cliff_front_left",
+            "cliff_front_right",
+            "cliff_side_left",
+            "cliff_side_right",
+            "left_wheel",
+            "right_wheel"
+          ],
+          "first_critical": 1795163425.3265388
+        }
+      ]
+    },
+    {
+      "run": "20261120T083101-045c05ddd5",
+      "episodes": [
+        {
+          "first": 1795163601.8295045,
+          "last": 1795163604.4692109,
+          "samples": 25,
+          "initial_types": [
+            3
+          ],
+          "types": [
+            0,
+            2,
+            3
+          ],
+          "frames": [
+            "base_link",
+            "cliff_front_left",
+            "cliff_front_right",
+            "cliff_side_left",
+            "cliff_side_right",
+            "left_wheel",
+            "right_wheel"
+          ],
+          "first_critical": 1795163601.9629767,
+          "clear": 1795163604.4872515,
+          "duration_to_clear_s": 2.6577470302581787
+        }
+      ]
+    },
+    {
+      "run": "20261120T090343-e869961b00",
+      "episodes": [
+        {
+          "first": 1795165648.1457784,
+          "last": 1795165649.474629,
+          "samples": 13,
+          "initial_types": [
+            2,
+            3
+          ],
+          "types": [
+            0,
+            2,
+            3
+          ],
+          "frames": [
+            "base_link",
+            "cliff_front_left",
+            "cliff_front_right",
+            "cliff_side_left",
+            "cliff_side_right",
+            "left_wheel",
+            "right_wheel"
+          ],
+          "first_critical": 1795165648.1457784,
+          "clear": 1795165649.5057077,
+          "duration_to_clear_s": 1.3599293231964111
+        }
+      ]
+    },
+    {
+      "run": "20261120T090758-e7754bde54",
+      "episodes": []
+    }
+  ],
+  "validation": {
+    "targeted_runtime_tests_passed": 19,
+    "board_and_session_tests_passed": 64,
+    "unchanged_preexisting_test_failures": 7
+  }
+}

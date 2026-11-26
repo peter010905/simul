@@ -1,0 +1,13 @@
+{
+  "version": "1.5.0",
+  "base": "Mixed v1.2 default speed",
+  "production_promoted": false,
+  "physical_camera_settings_changed": false,
+  "profiles": {
+    "balanced": {"width": 480, "height": 480, "fps": 5},
+    "glance": {"width": 480, "height": 480, "fps": 10},
+    "detail": {"width": 640, "height": 640, "fps": 5}
+  },
+  "frozen_controls": {"mppi_forward_m_s": 0.25, "smoother_forward_m_s": 0.27, "angular_rad_s": 0.5},
+  "marker_confirmation": {"minimum_pixels": 18, "minimum_frames": 3, "sensor_proof_radius_m": 1.3}
+}

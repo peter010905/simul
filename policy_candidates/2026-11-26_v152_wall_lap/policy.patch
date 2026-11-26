@@ -1,0 +1,215 @@
+--- a/src/osp_mission/osp_mission/hybrid.py
++++ b/src/osp_mission/osp_mission/hybrid.py
+@@ -60,6 +60,7 @@
+         self.used = []
+         self.white_used = []
+         self.defer_white = False
++        self.white_hold_seconds = 90.
+ 
+     def observe(self, evidence, now):
+         stamp = float(evidence['stamp'])
+@@ -83,7 +84,7 @@
+         if white_leg and self.defer_white:
+             for row in self.tracks:
+                 if row.get('white_leg') and now-row['stamp'] <= .6:
+-                    row['held_until'] = row['stamp']+90.
++                    row['held_until'] = row['stamp']+self.white_hold_seconds
+ 
+     def choose(self, grid, cost, pose, transform, targets, now, veto, *, white_filter=None, excluded_zone=None):
+         if transform is None:
+@@ -171,7 +172,9 @@
+     def has_fresh_print(self, owner):
+         stamp = owner.get_clock().now().nanoseconds/1e9
+         service = getattr(getattr(self, 'schedule', None), 'continuity', None)
+-        protected = service is not None and service.protecting(owner.now()-owner.started)
++        lap = getattr(getattr(self,'schedule',None),'wall_lap',None)
++        protected = ((service is not None and service.protecting(owner.now()-owner.started))
++                     or (lap is not None and lap.phase == 'perimeter'))
+         return any(row['count'] >= 3 and 0 <= stamp-row['stamp'] <= 1.
+                    and not (protected and row.get('white_leg'))
+                    for row in self.memory.tracks)
+--- a/src/osp_mission/osp_mission/center_wall.py
++++ b/src/osp_mission/osp_mission/center_wall.py
+@@ -18,6 +18,7 @@
+ from osp_mission.box_batch import BoxBatch
+ from osp_mission.box_continuity import BoxContinuity
+ from osp_mission.interior_priority import InteriorPriority, hinted
++from osp_mission.wall_lap import WallLap
+ from osp_mission.region_transit import RegionTransit, route_connected
+ from osp_mission.box_access import box_routes
+ from osp_mission.box_face_recovery import BoxFaceRecovery
+@@ -131,6 +132,8 @@
+         self.batch = BoxBatch()
+         self.continuity = BoxContinuity()
+         self.interior_priority = InteriorPriority()
++        self.wall_lap = WallLap()
++        self.chair_surface_contains = lambda point: False
+         self.region_transit = RegionTransit()
+         self.exploration_routes = None
+         self.local_box_cost = None
+@@ -154,6 +157,7 @@
+         self.counts = {}
+ 
+     def decide(self, grid, costmap, pose, transform, viewed, elapsed, duration, veto, choices=(), fitted=(), probe_only=False, pending_approach=None):
++        self.wall_lap.expire(elapsed,duration)
+         self.exploration_routes = None
+         if transform is None or viewed is None or viewed.shape != (4,)+grid.cells.shape:
+             return None
+@@ -347,7 +351,8 @@
+         self.counts['small_return_cells'] = int(self.small_returns.cells.sum())
+         ordered = sorted(candidates['interior'], key=self.batch.rank)
+         before_chair_strip = len(ordered)
+-        ordered = [item for item in ordered if not self.glass_wall.skip_generic(item[1])]
++        ordered = [item for item in ordered if not self.glass_wall.skip_generic(item[1])
++                   and not self.chair_surface_contains(item[1]['surface_map'])]
+         self.counts['glass_chair_skipped'] = before_chair_strip - len(ordered)
+         self.counts['interior'] = len(ordered)
+         for _, goal in ordered:
+@@ -373,6 +378,14 @@
+                 self.phase = 'wall' if clue.get('weak_wall') else 'interior'
+                 self.reason = 'wall_marker_evidence'
+                 return clue
++            if self.wall_lap.phase == 'perimeter':
++                lap = self.wall_lap.choose(grid, box_distances, pose, transform, elapsed, duration, veto)
++                if lap is not None:
++                    self.phase,self.reason='wall','quick_perimeter_pass'
++                    return lap
++                if self.wall_lap.phase == 'perimeter':
++                    self.reason='waiting_for_safe_perimeter'
++                    return None
+             resumed = self.continuity.choose(ordered, elapsed, duration-elapsed, grid, box_safe)
+             if resumed is not None:
+                 self.phase = 'interior'
+@@ -410,6 +423,9 @@
+             self.reason = ('inspect_visible_box' if preferred.get('batch_box') is not None or
+                            preferred.get('fitted_face') is not None else 'interior_first_exploration')
+             return preferred
++        if self.wall_lap.phase == 'interior':
++            self.reason='interior_tasks_temporarily_unavailable'
++            return None
+         # Only when useful interior tasks are exhausted may ordinary wall
+         # coverage reopen space or obtain another image bearing.
+         alternative = self.survey.choose(grid, costmap, nav, reachable, distances, pose, transform,
+@@ -598,6 +614,7 @@
+                 np.linalg.norm(anchor-p)<radius and math.cos(normal_yaw-a)>.70]
+ 
+     def dispatched(self, goal, elapsed):
++        self.wall_lap.dispatched(goal)
+         self.continuity.dispatched(dict(goal, face_dispatch_elapsed=elapsed), elapsed)
+         self.region_transit.dispatched(goal, elapsed, self.joint.robot_xy)
+         if 'current_wall_pose_odom' in goal:
+--- a/src/osp_mission/osp_mission/phased_hybrid.py
++++ b/src/osp_mission/osp_mission/phased_hybrid.py
+@@ -60,7 +60,8 @@
+ 
+         cue = self.memory.choose(grid,cost,pose,transform,owner.targets,clock,veto,white_filter=white_filter,
+                                  excluded_zone=small_returns.matches)
+-        protected = self.schedule.continuity.protecting(now-owner.started)
++        lap_active = self.schedule.wall_lap.phase == 'perimeter'
++        protected = self.schedule.continuity.protecting(now-owner.started) or lap_active
+         if cue is not None and cue.get('white_leg') and (
+                 protected or selected is not None and selected.get('r32_kind') == 'interior_surface'):
+             cue = None
+@@ -101,6 +102,7 @@
+         def reject_exploration(point):
+             return chair_strip.band_contains(point) or ends.contains(point)
+         self.schedule.chair_band_contains = reject_exploration
++        self.schedule.chair_surface_contains = chair_strip.includes
+         self.schedule.local_box_cost = None
+         local = self.local_cost
+         if local is not None and local.header.frame_id in ('odom', owner.p('map_frame')):
+@@ -116,7 +118,7 @@
+         if goal is not None and 'routed_approach_m' in goal:
+             return goal
+         if cue is not None and cue.get('white_leg') and goal is not None and (
+-                goal.get('r32_kind') == 'interior_surface' or any(
++                goal.get('wall_lap') or goal.get('r32_kind') == 'interior_surface' or any(
+                 key in goal for key in ('bearing_advance_id','distant_hint_id','weak_wall'))):
+             return goal
+         if cue is not None:
+@@ -124,6 +126,12 @@
+             return cue
+         if print_only:
+             return goal
++        if goal is None and self.schedule.wall_lap.phase == 'perimeter':
++            self.band_rejected_selected = True
++            return None
++        if goal is None and selected is not None and selected['features'][1] < .15:
++            self.band_rejected_selected = True
++            selected = None
+         routes = self.schedule.exploration_routes
+         if goal is not None and not route_connected(grid, routes, goal):
+             goal = None
+@@ -181,6 +189,7 @@
+                    bearing_progress_m=goal.get('bearing_progress_m'),
+                    surface=goal.get('surface_map'), fitted_face=goal.get('fitted_face'),
+                    face_aim_map=goal.get('face_aim_map'),
++                   wall_lap=self.schedule.wall_lap.report(),
+                    interior_priority=bool(goal.get('interior_priority')),
+                    known_wall_distance_m=goal.get('known_wall_distance_m'),
+                    interior_priority_score=goal.get('interior_priority_score'),
+--- a/src/osp_mission/osp_mission/mission.py
++++ b/src/osp_mission/osp_mission/mission.py
+@@ -175,7 +175,9 @@
+     def on_anonymous_print(self,msg):
+         if self.state=='running':
+             try:
+-                self.hybrid.memory.defer_white = self.hybrid.schedule.continuity.protecting(self.now()-self.started)
++                lap = self.hybrid.schedule.wall_lap.phase == 'perimeter'
++                self.hybrid.memory.defer_white = lap or self.hybrid.schedule.continuity.protecting(self.now()-self.started)
++                self.hybrid.memory.white_hold_seconds = 180. if lap else 90.
+                 self.hybrid.memory.observe(json.loads(msg.data),self.get_clock().now().nanoseconds/1e9)
+             except (ValueError,TypeError,KeyError):
+                 return
+@@ -538,6 +540,9 @@
+         if priority(reason) <= priority(previous):
+             return
+         self.cancel_reason = reason
++        lap = getattr(getattr(getattr(self,'hybrid',None),'schedule',None),'wall_lap',None)
++        if lap is not None:
++            lap.interrupted()
+         schedule = getattr(getattr(self, 'hybrid', None), 'schedule', None)
+         if schedule is not None:
+             schedule.region_transit.interrupt(reason)
+@@ -670,7 +675,9 @@
+                 schedule.box_recovery.navigation_result(result.status, self.cancel_reason, self.now()-self.started)
+                 schedule.region_transit.navigation_finished()
+             if getattr(self,'exploration_memory',None) is not None:self.exploration_memory.completed(result.status==4,self.now())
+-            self.excluded.append(self.destination); self.scan_after=result.status==4
++            lap = getattr(schedule,'wall_lap',None)
++            self.excluded.append(self.destination)
++            self.scan_after = result.status==4 and not (lap is not None and lap.last_was_lap)
+             if result.status!=4 and getattr(self,'marker_look',None) is not None:self.marker_look.clear('navigation_failed')
+             if result.status!=4 and getattr(self,'face_look',None) is not None:self.face_look.clear('navigation_failed')
+         elif self.kind=='spin' and result.status!=4:
+@@ -741,7 +748,10 @@
+     def tick(self):
+         if getattr(self,'nav2_state',None) is not None:self.nav2_state.poll()
+         if getattr(self,'drive_state',None) is not None:self.drive_state.poll()
+-        self.status.publish(String(data=json.dumps({'state':self.state,'approached_ids':self.approach.report()['verified_ids'] if getattr(self,'approach',None) is not None else [],'targets':len(self.targets),'visual_ids':sorted(getattr(self,'visual_ids',())),'collisions':self.collision_count,
++        lap_status = getattr(getattr(getattr(self,'hybrid',None),'schedule',None),'wall_lap',None)
++        if lap_status is not None and self.state == 'running':
++            lap_status.expire(self.now()-self.started,self.p('duration'))
++        self.status.publish(String(data=json.dumps({'wall_lap':lap_status.report() if lap_status else None,'state':self.state,'approached_ids':self.approach.report()['verified_ids'] if getattr(self,'approach',None) is not None else [],'targets':len(self.targets),'visual_ids':sorted(getattr(self,'visual_ids',())),'collisions':self.collision_count,
+             **outcome_status(self),
+             'active_action':getattr(self,'kind','') if self.goal_handle or self.pending else '',
+             'readiness_reason':getattr(self,'last_readiness_reason',''),
+@@ -766,6 +776,7 @@
+             if self.hybrid is not None:
+                 elapsed = self.now() - self.started
+                 self.hybrid.schedule.survey.position(visit.x, visit.y, elapsed)
++                self.hybrid.schedule.wall_lap.position(visit.x, visit.y, elapsed)
+                 self.hybrid.schedule.joint.position(visit.x, visit.y, elapsed)
+             flow=getattr(self,'navigation_flow',None)
+             if flow is not None and getattr(self,'kind','')=='nav' and (self.goal_handle or self.pending):
+@@ -850,7 +861,9 @@
+         bearing_fresh=guard is not None and guard.bearing is not None and now-guard.bearing[0]<=2.
+         protected=any(getattr(getattr(self,name,None),'pending',None) is not None for name in ('marker_look','face_look'))
+         active_motion = bool(self.goal_handle or self.pending)
+-        can_pause_for_survey = not active_motion or flow is None or flow.allow_mid_route_wall_inspection
++        lap = getattr(getattr(getattr(self,'hybrid',None),'schedule',None),'wall_lap',None)
++        can_pause_for_survey = ((lap is None or lap.phase != 'perimeter')
++                               and (not active_motion or flow is None or flow.allow_mid_route_wall_inspection))
+         periodic_due = bool(guard is not None and can_pause_for_survey and guard.due(now))
+         wall=getattr(self,'wall_look',None)
+         wall_due=(wall is not None and can_pause_for_survey and self.hybrid is not None and self.hybrid.schedule.phase=="wall" and not protected and not bearing_fresh and not guard.phase

@@ -1,0 +1,58 @@
+--- a/center_wall.py
++++ b/center_wall.py
+@@ -13,6 +13,7 @@
+ from osp_mission.cluster_exit import ClusterExit
+ from osp_mission.box_batch import BoxBatch
+ from osp_mission.wall_bearings import WallBearings
++from osp_mission.wall_sections import WallSections
+
+
+ def partly_mapped_objects(labels, boxes, floor, resolution):
+@@ -115,6 +116,7 @@
+         self.batch = BoxBatch()
+         self.cluster = ClusterExit()
+         self.weak = WallBearings()
++        self.wall_sections = WallSections()
+         self.weak_known = []
+         self.weak_clock = 0.
+         self.counts = {}
+@@ -123,6 +125,7 @@
+         if transform is None or viewed is None or viewed.shape != (4,)+grid.cells.shape:
+             return None
+         samples = surface_cells(grid, pose)
++        self.wall_sections.observe(samples, grid, viewed, transform)
+         reachable, distances = grid.reachable(pose[:2], .32)
+         nav = r32.connected_nav_cells(costmap, pose)
+         self.counts = {'interior': 0, 'wall': 0}
+@@ -243,6 +246,10 @@
+             if goal is not None:
+                 self.phase,self.reason = 'wall','persistent_small_wall_candidate'
+                 return goal
++        wall = self.wall_sections.choose(candidates['wall'], distances, grid, elapsed, duration, has_interior=bool(fresh))
++        if wall is not None:
++            self.phase, self.reason = 'wall', 'camera_unseen_wall_section_due'
++            return wall
+         if crowded and not boxes:
+             if outside:
+                 self.phase, self.reason = 'interior', 'inspect_other_surface'
+@@ -297,6 +304,7 @@
+     def dispatched(self, goal, elapsed):
+         self.on_weak_route = bool(goal.get('weak_wall'))
+         self.weak.dispatched(goal)
++        self.wall_sections.dispatched(goal, elapsed)
+         self.on_cluster_exit = bool(goal.get('cluster_exit'))
+         self.cluster.dispatched(goal,elapsed)
+         self.batch.dispatched(goal)
+--- a/phased_hybrid.py
++++ b/phased_hybrid.py
+@@ -73,7 +73,9 @@
+         elapsed = owner.now()-owner.started
+         self.schedule.dispatched(goal,elapsed)
+         self.next_box_probe = owner.now()+3. if (goal.get('r32_kind')=='wall_surface' or goal.get('cluster_exit')) else float('inf')
+-        row = dict(elapsed=elapsed,phase=self.schedule.phase,reason=self.schedule.reason,
++        if 'wall_section' in goal:
++            self.next_box_probe = float('inf')
++        row = dict(wall_direction=goal.get('wall_direction'),wall_camera_fraction=goal.get('wall_camera_fraction'),wall_section=goal.get('wall_section'),wall_wait_s=goal.get('wall_wait_s'),elapsed=elapsed,phase=self.schedule.phase,reason=self.schedule.reason,
+                    available=self.schedule.counts,kind=goal.get('r32_kind','flow_or_marker'),
+                    cluster_exit=bool(goal.get('cluster_exit')),
+                    crowded_centers=[list(c) for c in self.schedule.cluster.crowded_centers(elapsed)],

@@ -1,0 +1,61 @@
+--- a/mission.py
++++ b/mission.py
+@@ -519,6 +519,46 @@
+             a=math.atan2(2*(q.w*q.z+q.x*q.y),1-2*(q.y*q.y+q.z*q.z))
+             return t.transform.translation.x,t.transform.translation.y,a
+         except Exception:return None
++    def open_escape(self, step=.6, need=.9, half_width=math.radians(15), every=20.):
++        """.59: send a Nav2 goal `step` m toward the scan direction with the most free range
++        (at least `need` m within +-15 deg). Nav2 plans and collision-checks the motion."""
++        if self.now()-getattr(self, 'last_open_escape', -100.) < every:
++            return False
++        scan = getattr(self, 'latest_scan', None)
++        if scan is None:
++            return False
++        try:
++            ts = self.tf.lookup_transform(self.p('base_frame'), scan.header.frame_id, Time())
++            tm = self.tf.lookup_transform(self.p('map_frame'), self.p('base_frame'), Time())
++        except Exception:
++            return False
++        def yaw_of(q):
++            return math.atan2(2*(q.w*q.z+q.x*q.y), 1-2*(q.y*q.y+q.z*q.z))
++        ranges = np.asarray(scan.ranges, dtype=float)
++        ranges = np.where(np.isinf(ranges) & (ranges > 0), scan.range_max, ranges)
++        ranges = np.where(np.isfinite(ranges) & (ranges >= scan.range_min), ranges, np.nan)
++        angles = scan.angle_min + np.arange(len(ranges))*scan.angle_increment + yaw_of(ts.transform.rotation)
++        best = None
++        for centre in np.linspace(-math.pi, math.pi, 36, endpoint=False):
++            sector = np.abs(np.arctan2(np.sin(angles-centre), np.cos(angles-centre))) < half_width
++            values = ranges[sector]
++            if not sector.any() or np.isnan(values).all():
++                continue
++            free = float(np.nanmin(values))
++            if best is None or free > best[0]:
++                best = (free, float(centre))
++        if best is None or best[0] < need:
++            return False
++        heading = yaw_of(tm.transform.rotation) + best[1]
++        x = tm.transform.translation.x + step*math.cos(heading)
++        y = tm.transform.translation.y + step*math.sin(heading)
++        self.last_open_escape = self.now()
++        self.get_logger().warning(f'No reachable goal and rear blocked; stepping {step:.1f} m toward open direction ({best[0]:.1f} m free)')
++        g = NavigateToPose.Goal(); g.pose.header.frame_id = self.p('map_frame'); g.pose.header.stamp = self.get_clock().now().to_msg()
++        g.pose.pose.position.x = x; g.pose.pose.position.y = y
++        g.pose.pose.orientation.z = math.sin(heading/2); g.pose.pose.orientation.w = math.cos(heading/2)
++        self.send(self.nav, g, 'nav')
++        return True
+     def publish_known_obstacles(self):
+         if self.known_dock_pose(self.p('map_frame')) is None:return
+         header=Header(frame_id='std_dock_link',stamp=self.get_clock().now().to_msg())
+@@ -1093,6 +1133,11 @@
+             # Retry old frontiers after scanning rather than finishing before the deadline.
+             self.excluded=self.excluded[-5:]
+             self.empty_plans=getattr(self,'empty_plans',0)+1
++            if self.empty_plans>=3 and not self.rear_clear and self.open_escape():
++                # .59: no reachable goal and no room to back up. Let Nav2 drive a short
++                # step toward the most open scan direction instead of waiting.
++                self.empty_plans=0
++                return
+             if self.empty_plans>=3:
+                 # A scan cannot reconnect an inflated start indefinitely. Try
+                 # the existing scan-checked backup recovery instead of spinning.

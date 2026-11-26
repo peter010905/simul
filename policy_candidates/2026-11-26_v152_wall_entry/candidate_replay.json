@@ -1,0 +1,296 @@
+[
+  {
+    "snapshot": "0000.npz",
+    "elapsed": 9.14,
+    "safe_start": true,
+    "connected": 3506,
+    "perimeter": {
+      "phase": "perimeter",
+      "reason": "entering_measured_wall",
+      "path_m": 0.0,
+      "confirmed_stops": 0,
+      "turn_rad": 0.0,
+      "boundary_support": 0.265,
+      "chair_cells": 21,
+      "entered_wall": false,
+      "nearest_edge_unmeasured": true,
+      "safe_wall_candidates": 55
+    },
+    "goal": {
+      "x": -0.21121405623196066,
+      "y": -0.7316684186513001,
+      "yaw": -1.3258176636680326,
+      "scan_angle": 0.0,
+      "distance": 0.9500000141561031,
+      "stationary": false,
+      "face_inspection": false,
+      "r32_kind": "wall_lap",
+      "wall_lap": true,
+      "lap_pose_odom": [
+        -0.25760387418953146,
+        -0.782854137682726
+      ],
+      "lap_normal_odom": -2.9524202135996354,
+      "lap_advance_m": 0.6449747564414281,
+      "lap_wall_distance_m": 1.2,
+      "wall_entry": true
+    },
+    "boundary_cells": 1306,
+    "supported_cells": 346,
+    "full_selector_kind": "wall_lap",
+    "full_selector_reason": "quick_perimeter_pass",
+    "wall_choices": 0
+  },
+  {
+    "snapshot": "0001.npz",
+    "elapsed": 13.58,
+    "safe_start": true,
+    "connected": 3704,
+    "perimeter": {
+      "phase": "perimeter",
+      "reason": "entering_measured_wall",
+      "path_m": 0.0,
+      "confirmed_stops": 0,
+      "turn_rad": 0.0,
+      "boundary_support": 0.32,
+      "chair_cells": 0,
+      "entered_wall": false,
+      "nearest_edge_unmeasured": true,
+      "safe_wall_candidates": 44
+    },
+    "goal": {
+      "x": -0.21121405623196066,
+      "y": -0.7537934411110523,
+      "yaw": -1.3258176636680326,
+      "scan_angle": 0.0,
+      "distance": 0.9500000141561031,
+      "stationary": false,
+      "face_inspection": false,
+      "r32_kind": "wall_lap",
+      "wall_lap": true,
+      "lap_pose_odom": [
+        -0.3019176710370888,
+        -0.7880906168214027
+      ],
+      "lap_normal_odom": -3.029325780662335,
+      "lap_advance_m": 0.6742640787592649,
+      "lap_wall_distance_m": 1.2,
+      "wall_entry": true
+    },
+    "boundary_cells": 1131,
+    "supported_cells": 362,
+    "full_selector_kind": "wall_lap",
+    "full_selector_reason": "quick_perimeter_pass",
+    "wall_choices": 0
+  },
+  {
+    "snapshot": "0002.npz",
+    "elapsed": 16.62,
+    "safe_start": true,
+    "connected": 3877,
+    "perimeter": {
+      "phase": "perimeter",
+      "reason": "entering_measured_wall",
+      "path_m": 0.0,
+      "confirmed_stops": 0,
+      "turn_rad": 0.0,
+      "boundary_support": 0.263,
+      "chair_cells": 44,
+      "entered_wall": false,
+      "nearest_edge_unmeasured": true,
+      "safe_wall_candidates": 65
+    },
+    "goal": {
+      "x": -0.21121405623196066,
+      "y": -0.712946876722812,
+      "yaw": -1.3258176636680326,
+      "scan_angle": 0.0,
+      "distance": 0.9000000134110451,
+      "stationary": false,
+      "face_inspection": false,
+      "r32_kind": "wall_lap",
+      "wall_lap": true,
+      "lap_pose_odom": [
+        -0.2914971483274971,
+        -0.7068020195882515
+      ],
+      "lap_normal_odom": -3.0432474781651,
+      "lap_advance_m": 0.6121320434774518,
+      "lap_wall_distance_m": 1.2,
+      "wall_entry": true
+    },
+    "boundary_cells": 1077,
+    "supported_cells": 283,
+    "full_selector_kind": "wall_lap",
+    "full_selector_reason": "quick_perimeter_pass",
+    "wall_choices": 0
+  },
+  {
+    "snapshot": "0003.npz",
+    "elapsed": 18.11,
+    "safe_start": true,
+    "connected": 3873,
+    "perimeter": {
+      "phase": "perimeter",
+      "reason": "entering_measured_wall",
+      "path_m": 0.0,
+      "confirmed_stops": 0,
+      "turn_rad": 0.0,
+      "boundary_support": 0.263,
+      "chair_cells": 44,
+      "entered_wall": false,
+      "nearest_edge_unmeasured": true,
+      "safe_wall_candidates": 65
+    },
+    "goal": {
+      "x": -0.21121405623196066,
+      "y": -0.712946876722812,
+      "yaw": -1.3258176636680326,
+      "scan_angle": 0.0,
+      "distance": 0.9000000134110451,
+      "stationary": false,
+      "face_inspection": false,
+      "r32_kind": "wall_lap",
+      "wall_lap": true,
+      "lap_pose_odom": [
+        -0.2914971483274971,
+        -0.7068020195882515
+      ],
+      "lap_normal_odom": -3.0432474781651,
+      "lap_advance_m": 0.6121320434774518,
+      "lap_wall_distance_m": 1.2,
+      "wall_entry": true
+    },
+    "boundary_cells": 1077,
+    "supported_cells": 283,
+    "full_selector_kind": "wall_lap",
+    "full_selector_reason": "quick_perimeter_pass",
+    "wall_choices": 0
+  },
+  {
+    "snapshot": "0004.npz",
+    "elapsed": 20.62,
+    "safe_start": true,
+    "connected": 3873,
+    "perimeter": {
+      "phase": "perimeter",
+      "reason": "entering_measured_wall",
+      "path_m": 0.0,
+      "confirmed_stops": 0,
+      "turn_rad": 0.0,
+      "boundary_support": 0.263,
+      "chair_cells": 44,
+      "entered_wall": false,
+      "nearest_edge_unmeasured": true,
+      "safe_wall_candidates": 65
+    },
+    "goal": {
+      "x": -0.21121405623196066,
+      "y": -0.712946876722812,
+      "yaw": -1.3258176636680326,
+      "scan_angle": 0.0,
+      "distance": 0.9000000134110451,
+      "stationary": false,
+      "face_inspection": false,
+      "r32_kind": "wall_lap",
+      "wall_lap": true,
+      "lap_pose_odom": [
+        -0.2914971483274971,
+        -0.7068020195882515
+      ],
+      "lap_normal_odom": -3.0432474781651,
+      "lap_advance_m": 0.6121320434774518,
+      "lap_wall_distance_m": 1.2,
+      "wall_entry": true
+    },
+    "boundary_cells": 1077,
+    "supported_cells": 283,
+    "full_selector_kind": "wall_lap",
+    "full_selector_reason": "quick_perimeter_pass",
+    "wall_choices": 0
+  },
+  {
+    "snapshot": "0005.npz",
+    "elapsed": 23.13,
+    "safe_start": true,
+    "connected": 3873,
+    "perimeter": {
+      "phase": "perimeter",
+      "reason": "entering_measured_wall",
+      "path_m": 0.0,
+      "confirmed_stops": 0,
+      "turn_rad": 0.0,
+      "boundary_support": 0.263,
+      "chair_cells": 44,
+      "entered_wall": false,
+      "nearest_edge_unmeasured": true,
+      "safe_wall_candidates": 65
+    },
+    "goal": {
+      "x": -0.21121405623196066,
+      "y": -0.712946876722812,
+      "yaw": -1.3258176636680326,
+      "scan_angle": 0.0,
+      "distance": 0.9000000134110451,
+      "stationary": false,
+      "face_inspection": false,
+      "r32_kind": "wall_lap",
+      "wall_lap": true,
+      "lap_pose_odom": [
+        -0.2914971483274971,
+        -0.7068020195882515
+      ],
+      "lap_normal_odom": -3.0432474781651,
+      "lap_advance_m": 0.6121320434774518,
+      "lap_wall_distance_m": 1.2,
+      "wall_entry": true
+    },
+    "boundary_cells": 1077,
+    "supported_cells": 283,
+    "full_selector_kind": "wall_lap",
+    "full_selector_reason": "quick_perimeter_pass",
+    "wall_choices": 0
+  },
+  {
+    "snapshot": "0006.npz",
+    "elapsed": 37.1,
+    "safe_start": true,
+    "connected": 4982,
+    "perimeter": {
+      "phase": "perimeter",
+      "reason": "entering_measured_wall",
+      "path_m": 0.0,
+      "confirmed_stops": 0,
+      "turn_rad": 0.0,
+      "boundary_support": 0.298,
+      "chair_cells": 0,
+      "entered_wall": false,
+      "nearest_edge_unmeasured": false,
+      "safe_wall_candidates": 82
+    },
+    "goal": {
+      "x": -0.2159627260504271,
+      "y": -0.6878832089078843,
+      "yaw": -1.446441332248135,
+      "scan_angle": 0.0,
+      "distance": 0.7000000104308128,
+      "stationary": false,
+      "face_inspection": false,
+      "r32_kind": "wall_lap",
+      "wall_lap": true,
+      "lap_pose_odom": [
+        -0.3816929372545254,
+        -0.6679689525225322
+      ],
+      "lap_normal_odom": -3.195200332734641,
+      "lap_advance_m": 0.794974758676652,
+      "lap_wall_distance_m": 1.2,
+      "wall_entry": true
+    },
+    "boundary_cells": 1119,
+    "supported_cells": 333,
+    "full_selector_kind": "wall_lap",
+    "full_selector_reason": "quick_perimeter_pass",
+    "wall_choices": 0
+  }
+]

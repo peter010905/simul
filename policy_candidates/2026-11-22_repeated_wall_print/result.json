@@ -1,0 +1,167 @@
+[
+  {
+    "run": "v151-survey-focus-track-m1398584497-23239317248697326",
+    "recorded_frames": 1515,
+    "frames_with_calibration": 1515,
+    "raw_small_decodes_before_registration": 100,
+    "wall_hits": 0,
+    "hints": [],
+    "bearing_only_looks": [
+      {
+        "id": 679,
+        "t": 121.30799999999999,
+        "eye": [
+          -3.255111718731401,
+          -9.493222525455783
+        ],
+        "ray": [
+          0.9433173972404751,
+          0.331891982523615
+        ],
+        "host": "wall_south_recess",
+        "error_deg": 0.2467449969786384,
+        "correct_direction": true
+      },
+      {
+        "id": 818,
+        "t": 214.108,
+        "eye": [
+          1.9196101723134111,
+          -11.326550582155267
+        ],
+        "ray": [
+          0.9971817218858289,
+          -0.07502408637773153
+        ],
+        "host": "movable_1",
+        "error_deg": 0.7894634753569305,
+        "correct_direction": true
+      }
+    ],
+    "native_distant_choices": 0
+  },
+  {
+    "run": "v151-survey-focus-track-m417608489-197242287164937263",
+    "recorded_frames": 3000,
+    "frames_with_calibration": 3000,
+    "raw_small_decodes_before_registration": 49,
+    "wall_hits": 1,
+    "hints": [],
+    "bearing_only_looks": [
+      {
+        "id": 768,
+        "t": 111.292,
+        "eye": [
+          9.805637364882871,
+          2.190467397739297
+        ],
+        "ray": [
+          0.7453720253421409,
+          -0.6666487409703515
+        ],
+        "host": "wall_west",
+        "error_deg": 1.133521667059738,
+        "correct_direction": true
+      },
+      {
+        "id": 382,
+        "t": 258.692,
+        "eye": [
+          4.425606769342984,
+          -4.27669945157315
+        ],
+        "ray": [
+          -0.352726772399554,
+          0.9357263617279323
+        ],
+        "host": null,
+        "correct_direction": false
+      }
+    ],
+    "native_distant_choices": 0
+  },
+  {
+    "run": "v151-survey-focus-track-m550866253-188862315828381463",
+    "recorded_frames": 1707,
+    "frames_with_calibration": 1707,
+    "raw_small_decodes_before_registration": 150,
+    "wall_hits": 9,
+    "hints": [
+      {
+        "id": 418,
+        "t": 191.972,
+        "xy": [
+          13.576837998961594,
+          -0.24984993869873504
+        ],
+        "pixels": 9.0,
+        "request_s": 210.076,
+        "wall_match": true,
+        "location_error_m": 0.15113157135901276
+      }
+    ],
+    "bearing_only_looks": [
+      {
+        "id": 282,
+        "t": 15.971999999999998,
+        "eye": [
+          1.7365953712375592,
+          -0.1388897629529464
+        ],
+        "ray": [
+          -0.513848239579415,
+          0.8578811028814752
+        ],
+        "host": "movable_3",
+        "error_deg": 0.022306526305373425,
+        "correct_direction": true
+      },
+      {
+        "id": 418,
+        "t": 191.972,
+        "eye": [
+          9.901270876259954,
+          0.17466325474797248
+        ],
+        "ray": [
+          0.9933965060465546,
+          -0.11473178188495917
+        ],
+        "host": "wall_north",
+        "error_deg": 0.43495694635722315,
+        "correct_direction": true
+      },
+      {
+        "id": 347,
+        "t": 200.172,
+        "eye": [
+          10.556905562737443,
+          0.4296287082301397
+        ],
+        "ray": [
+          0.1202097446373597,
+          0.9927485166416622
+        ],
+        "host": "movable_1",
+        "error_deg": 0.011964270278698607,
+        "correct_direction": true
+      },
+      {
+        "id": 347,
+        "t": 305.372,
+        "eye": [
+          8.924818116259019,
+          -0.08606533380600798
+        ],
+        "ray": [
+          0.32349094471780393,
+          0.9462312659628103
+        ],
+        "host": "movable_1",
+        "error_deg": 0.076397112517873,
+        "correct_direction": true
+      }
+    ],
+    "native_distant_choices": 0
+  }
+]

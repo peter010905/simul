@@ -27,6 +27,9 @@ def boxes(scene, height):
         for link in model.findall("link"):
             lx, lz, la = local_pose(link)
             for col in link.findall("collision"):
+                # Collision-only glass is invisible to the GPU LiDAR, as in the room.
+                if col.get("name", "").startswith("glass"):
+                    continue
                 size = col.findtext("geometry/box/size")
                 if not size:
                     continue

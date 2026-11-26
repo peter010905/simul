@@ -1,0 +1,57 @@
+{
+  "scope": "Recorded SLAM and costmap geometry; only the historically selected box center is seeded. Reconstructed generic face candidates. No actual Nav2 planning or new driving.",
+  "checks": [
+    {
+      "snapshot": "0042.npz",
+      "elapsed": 347.9,
+      "recorded_box": [
+        -57.19877652712359,
+        22.698720518804745
+      ],
+      "regenerated_views": 9,
+      "local_cost_used": true,
+      "transform_source": "paired_audit_and_odom",
+      "tour_faces": 2,
+      "tour_walk_m": 4.4
+    },
+    {
+      "snapshot": "0052.npz",
+      "elapsed": 454.43,
+      "recorded_box": [
+        -54.98667780763528,
+        19.603323965268654
+      ],
+      "regenerated_views": 8,
+      "local_cost_used": true,
+      "transform_source": "paired_audit_and_odom",
+      "tour_faces": 4,
+      "tour_walk_m": 4.4
+    },
+    {
+      "snapshot": "0054.npz",
+      "elapsed": 462.4,
+      "recorded_box": [
+        -54.98667780763528,
+        19.603323965268654
+      ],
+      "regenerated_views": 7,
+      "local_cost_used": true,
+      "transform_source": "paired_audit_and_odom",
+      "tour_faces": 3,
+      "tour_walk_m": 3.45
+    },
+    {
+      "snapshot": "0056.npz",
+      "elapsed": 478.48,
+      "recorded_box": [
+        -54.98667780763528,
+        19.603323965268654
+      ],
+      "regenerated_views": 10,
+      "local_cost_used": true,
+      "transform_source": "paired_audit_and_odom",
+      "tour_faces": 3,
+      "tour_walk_m": 3.0
+    }
+  ]
+}

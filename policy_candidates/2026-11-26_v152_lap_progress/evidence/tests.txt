@@ -1,0 +1,5 @@
+=========================== short test summary info ============================
+FAILED 2026-11-26_v152_interior_first/test_interior_priority.py::test_nearby_fresh_box_is_serviced_before_an_ordinary_wall_or_frontier
+FAILED 2026-11-26_v152_pending_marker/test_pending_marker.py::test_first_plan_during_handoff_already_has_a_focus
+FAILED 2026-11-26_v152_wall_lap/test_wall_lap.py::test_unreachable_boundary_finishes_without_a_forced_unsafe_goal
+3 failed, 67 passed in 1.15s

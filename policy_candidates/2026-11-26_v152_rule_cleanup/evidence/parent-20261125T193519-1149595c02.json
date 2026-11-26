@@ -1,0 +1,175 @@
+{
+  "run": "20261125T193519-1149595c02",
+  "physical_drive": false,
+  "evidence": "stateless_recorded_map_and_costmap_selector_replay",
+  "limitations": [
+    "veto/history and tracked objects not reconstructed",
+    "no Nav2 action feasibility proof",
+    "not a marker-detection or closed-loop success measurement"
+  ],
+  "selected": 12,
+  "samples": 12,
+  "unsafe_endpoints": 0,
+  "reasons": {
+    "quick_perimeter_pass": 12
+  },
+  "median_ms": 53.9735,
+  "rows": [
+    {
+      "snapshot": "0000.npz",
+      "elapsed": 8.926,
+      "transform_source": "recorded_tf",
+      "selector_ms": 18.097,
+      "reason": "quick_perimeter_pass",
+      "kind": "wall_lap",
+      "goal_xy": [
+        -2.262446595713463,
+        1.0235422225699957
+      ],
+      "normal_endpoint_safe": true
+    },
+    {
+      "snapshot": "0001.npz",
+      "elapsed": 16.46,
+      "transform_source": "recorded_tf",
+      "selector_ms": 22.685,
+      "reason": "quick_perimeter_pass",
+      "kind": "wall_lap",
+      "goal_xy": [
+        -1.914299773763366,
+        0.799947205016794
+      ],
+      "normal_endpoint_safe": true
+    },
+    {
+      "snapshot": "0003.npz",
+      "elapsed": 29.133,
+      "transform_source": "recorded_tf",
+      "selector_ms": 62.402,
+      "reason": "quick_perimeter_pass",
+      "kind": "wall_lap",
+      "goal_xy": [
+        -2.356844813652858,
+        -1.4773402166962493
+      ],
+      "normal_endpoint_safe": true
+    },
+    {
+      "snapshot": "0005.npz",
+      "elapsed": 45.09,
+      "transform_source": "recorded_tf",
+      "selector_ms": 45.594,
+      "reason": "quick_perimeter_pass",
+      "kind": "wall_lap",
+      "goal_xy": [
+        -2.231910143615941,
+        -2.4515183343414324
+      ],
+      "normal_endpoint_safe": true
+    },
+    {
+      "snapshot": "0006.npz",
+      "elapsed": 61.02,
+      "transform_source": "recorded_tf",
+      "selector_ms": 64.09,
+      "reason": "quick_perimeter_pass",
+      "kind": "wall_lap",
+      "goal_xy": [
+        -3.91110561684199,
+        -2.6125848608564324
+      ],
+      "normal_endpoint_safe": true
+    },
+    {
+      "snapshot": "0008.npz",
+      "elapsed": 69.06,
+      "transform_source": "recorded_tf",
+      "selector_ms": 56.367,
+      "reason": "quick_perimeter_pass",
+      "kind": "wall_lap",
+      "goal_xy": [
+        -6.143151449349038,
+        -2.574638591977508
+      ],
+      "normal_endpoint_safe": true
+    },
+    {
+      "snapshot": "0010.npz",
+      "elapsed": 73.033,
+      "transform_source": "recorded_tf",
+      "selector_ms": 57.606,
+      "reason": "quick_perimeter_pass",
+      "kind": "wall_lap",
+      "goal_xy": [
+        -6.143151449349038,
+        -2.574638591977508
+      ],
+      "normal_endpoint_safe": true
+    },
+    {
+      "snapshot": "0012.npz",
+      "elapsed": 77.008,
+      "transform_source": "recorded_tf",
+      "selector_ms": 54.195,
+      "reason": "quick_perimeter_pass",
+      "kind": "wall_lap",
+      "goal_xy": [
+        -6.143151449349038,
+        -2.574638591977508
+      ],
+      "normal_endpoint_safe": true
+    },
+    {
+      "snapshot": "0013.npz",
+      "elapsed": 79.515,
+      "transform_source": "recorded_tf",
+      "selector_ms": 55.46,
+      "reason": "quick_perimeter_pass",
+      "kind": "wall_lap",
+      "goal_xy": [
+        -6.143151449349038,
+        -2.574638591977508
+      ],
+      "normal_endpoint_safe": true
+    },
+    {
+      "snapshot": "0015.npz",
+      "elapsed": 83.517,
+      "transform_source": "recorded_tf",
+      "selector_ms": 53.752,
+      "reason": "quick_perimeter_pass",
+      "kind": "wall_lap",
+      "goal_xy": [
+        -6.143151449349038,
+        -2.574638591977508
+      ],
+      "normal_endpoint_safe": true
+    },
+    {
+      "snapshot": "0017.npz",
+      "elapsed": 88.51,
+      "transform_source": "recorded_tf",
+      "selector_ms": 53.472,
+      "reason": "quick_perimeter_pass",
+      "kind": "wall_lap",
+      "goal_xy": [
+        -6.143151449349038,
+        -2.574638591977508
+      ],
+      "normal_endpoint_safe": true
+    },
+    {
+      "snapshot": "0019.npz",
+      "elapsed": 92.506,
+      "transform_source": "recorded_tf",
+      "selector_ms": 53.536,
+      "reason": "quick_perimeter_pass",
+      "kind": "wall_lap",
+      "goal_xy": [
+        -6.143151449349038,
+        -2.574638591977508
+      ],
+      "normal_endpoint_safe": true
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "baseline": {
+    "run": "adaptive-track-vmlvzdTW",
+    "world_sha256": "40a3fcac54161bce7797041a45de1815b54cf4f065868f3fdd072cbe12b40c84",
+    "scene_sha256": "abc17fb888eb3b719832a0499360ce56dc9648478b43c75b0af67cdd73680b3f",
+    "start": [
+      8.600000000000001,
+      3.2,
+      2.4675453840569013
+    ],
+    "policy_revision": "flow_v3_r32_adaptive_ws",
+    "ids": [
+      7,
+      32,
+      103
+    ],
+    "within_and_read": [
+      7,
+      32,
+      103
+    ],
+    "success": true,
+    "reason": "all_registered_and_within_1.5m",
+    "completion_s": 553.44,
+    "observed_s": 553.44,
+    "path_m": 77.644,
+    "min_distances": {
+      "7": 0.6214513860347032,
+      "32": 0.6709664421052831,
+      "103": 0.8842309668540436
+    },
+    "bumper": 0,
+    "dispatched": 32,
+    "nav_sends": 31,
+    "goal_switches": 30,
+    "perception_preemptions_to_different_goal": 2,
+    "midroute_switch_requests": 2,
+    "nav_cancels": {
+      "marker_hint": 2,
+      "navigation_stalled": 2
+    },
+    "candidate_approaches": 0,
+    "unproductive_approaches": 0,
+    "off_target_gt": 0,
+    "approach_audit": [],
+    "candidate_stationary_looks": 0,
+    "multiview_goals": 0,
+    "quality_relooks": 0,
+    "rgb_at_last_goal": null,
+    "exposures_at_last_goal": null,
+    "unexpected_fallbacks": 0,
+    "simulation_clock_start": 4.568,
+    "registered_at": {
+      "32": 48.932,
+      "103": 450.432,
+      "7": 553.432
+    }
+  },
+  "candidate": {
+    "run": "nbv-local-track-vmlvzdTW",
+    "world_sha256": "40a3fcac54161bce7797041a45de1815b54cf4f065868f3fdd072cbe12b40c84",
+    "scene_sha256": "abc17fb888eb3b719832a0499360ce56dc9648478b43c75b0af67cdd73680b3f",
+    "start": [
+      8.600000000000001,
+      3.2,
+      2.4675453840569013
+    ],
+    "policy_revision": "marker_nbv_local_v1_1",
+    "ids": [
+      7,
+      32,
+      103
+    ],
+    "within_and_read": [
+      7,
+      32,
+      103
+    ],
+    "success": true,
+    "reason": "all_registered_and_within_1.5m",
+    "completion_s": 468.02,
+    "observed_s": 468.024,
+    "path_m": 63.8,
+    "min_distances": {
+      "7": 1.140575355175,
+      "32": 0.5982725752567036,
+      "103": 0.9596261682914091
+    },
+    "bumper": 0,
+    "dispatched": 33,
+    "nav_sends": 28,
+    "goal_switches": 27,
+    "perception_preemptions_to_different_goal": 5,
+    "midroute_switch_requests": 5,
+    "nav_cancels": {
+      "marker_hint": 5,
+      "navigation_stalled": 1,
+      "nav2_unavailable": 1
+    },
+    "candidate_approaches": 0,
+    "unproductive_approaches": 0,
+    "off_target_gt": 0,
+    "approach_audit": [],
+    "candidate_stationary_looks": 5,
+    "multiview_goals": 7,
+    "quality_relooks": 0,
+    "rgb_at_last_goal": {
+      "observations": 81,
+      "bearing_only": 80,
+      "found": 9,
+      "strengthened": 13,
+      "lost": 9,
+      "registered": 3
+    },
+    "exposures_at_last_goal": 847,
+    "unexpected_fallbacks": 0,
+    "simulation_clock_start": 3.5,
+    "registered_at": {
+      "32": 35.0,
+      "103": 411.0,
+      "7": 468.0
+    }
+  }
+}

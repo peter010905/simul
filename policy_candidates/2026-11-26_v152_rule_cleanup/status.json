@@ -1,0 +1,24 @@
+{
+  "version": "1.5.2.49-work-coordinator",
+  "parent": "1.5.2.48",
+  "workspace": "v15249_work_coordinator_lidar5_640_1126_ws",
+  "regression_checks": 48,
+  "saved_map_comparisons": 36,
+  "unsafe_generated_endpoints": 0,
+  "closed_loop_gazebo": false,
+  "physical_drive": false,
+  "board_default_changed": false,
+  "sources": {
+    "interior_priority.py": "ed6c417d523cfa13c0b898370532f5641a3ef811ab08eaaf7b27d7c52d6b26e8",
+    "edge_policy.py": "e6d6dde59bbef09d1c1e1b129a593dfe009372afd482577b47c1e0db3901db34",
+    "regional_surface.py": "d619692ed3c0bfe8b8e8a8f15a37d93478f5b469da183bdafcf00e87cb60a887",
+    "marker_focus.py": "25ea38ce5e84c140586c6b06b6ce1f730626caafdb2ddfde1c4448ac1982d863",
+    "visual_survey.py": "3c1834da246d3f2dad12430b265ec8d2b8f061c4a0f30fdce6ca8cf548bf6f25",
+    "box_continuity.py": "ac23b8ea7324ef9531d8c484cb67a64a4afefb20fe7462b95c69c6e0100b87e0",
+    "center_wall.py": "7d74ea15f1bcaa95a6ecfbc9c4f7a57901e64c94cce84d7d6a439a746f36ebd1",
+    "work_rules.py": "e2d90c8a49e714e41a3f03e62d25b0b9e5aa0091da777e48f48a5d9eb2e66f45",
+    "phased_hybrid.py": "3fc2fdbe9c9e49fa0e89df5ea64df13c1beafa00fe26f59a93bbc029ae0f9bfb",
+    "mission.py": "aaf3e3762dcbdfe1866c4ebac31e66a1f6477dd7863e0b859684b57aeca9988a",
+    "marker_approach.py": "5d94d42d91f920f5d63c8f8680a461afb66fedad5c2bd095f549b52834e90669"
+  }
+}

@@ -1,0 +1,135 @@
+--- a/marker_pair.py
++++ b/marker_pair.py
+@@ -40,8 +40,9 @@
+     return area > 0
+ 
+ 
+-def decode(image, dictionary, small=None):
++def decode(image, dictionary, small=None, tiny=None):
+     results = []
++    tiny_examined = 0
+     for scale in (1, 2):
+         frame = image if scale == 1 else cv2.resize(
+             image, None, fx=scale, fy=scale, interpolation=cv2.INTER_CUBIC)
+@@ -57,6 +58,14 @@
+             quad = quad / scale
+             # Measure on native pixels even for a proposal from the larger image.
+             edge = np.linalg.norm(quad[0] - np.roll(quad[0], 1, axis=0), axis=1).min()
++            if tiny is not None and scale == 1 and 8 <= edge < 10:
++                tiny_examined += 1
++                from osp_mission.small_wall_cues import usable_named_quad
++                h, w = image.shape
++                if (tiny_examined <= 5 and usable_named_quad(quad,w,h)
++                        and printed_pattern_matches(image,quad,int(ident),dictionary)):
++                    u,v = quad[0].mean(axis=0)
++                    tiny.append((int(ident),float(u),float(v),float(edge)))
+             if edge < 10 or not printed_pattern_matches(image, quad, int(ident), dictionary):
+                 continue
+             if scale == 2 and any(overlapping(quad, other) for other, _ in results):
+@@ -74,6 +83,9 @@
+         named = [quad for quad, _ in results if usable_named_quad(quad, width, height)]
+         small[:] = [hit for hit in small if anonymous_center(hit, named)]
+         small.extend(fragment_candidates(image, small, named))
++    if tiny is not None and (results or tiny_examined > 5):
++        # Existing higher-resolution observations own this exposure.
++        tiny.clear()
+     if not results:
+         return [], None
+     return [quad for quad, _ in results], np.array([[ident] for _, ident in results])
+--- a/detector.py
++++ b/detector.py
+@@ -171,8 +171,9 @@
+             k=preview_geometry(self.info).k
+             if not np.isfinite(k).all() or k[0]<=0 or k[4]<=0 or self.info.width!=msg.width or self.info.height!=msg.height: return
+             small=[]
+-            corners,ids=decode(image,self.dictionary,small)
+-            if small:
++            tiny=[]
++            corners,ids=decode(image,self.dictionary,small,tiny)
++            if small or tiny:
+                 try:
+                     from osp_mission.wall_route import camera_pose
+                     stamp=Time.from_msg(msg.header.stamp)
+@@ -181,8 +182,15 @@
+                     if camera is not None:
+                         cal=preview_geometry(self.info)
+                         bearings=[(camera[2]-math.atan2(u-cal.k[2],cal.k[0]),size) for u,_,size,_ in small]
++                        tiny_rays=[]
++                        if tiny:
++                            uv=np.array([[[u,v]] for _,u,v,_ in tiny],dtype=np.float64)
++                            rays=cv2.undistortPoints(uv,np.array(k).reshape(3,3),np.array(self.info.d))
++                            tiny_rays=[(ident,camera[2]-math.atan(float(ray[0,0])),edge,2*v/(msg.height-1)-1)
++                                       for (ident,_,v,edge),ray in zip(tiny,rays)]
+                         self.small_wall_pub.publish(String(data=json.dumps(dict(stamp=stamp.nanoseconds/1e9,
+-                            origin=camera[:2], bearings=bearings, camera_yaw=camera[2],
++                            origin=camera[:2], bearings=bearings, camera_yaw=camera[2], tiny_decodes=tiny_rays,
++                            exposure_frame=msg.header.frame_id,
+                             image_xy=[(2*u/(msg.width-1)-1,2*v/(msg.height-1)-1) for u,v,_,_ in small]))))
+                 except Exception as exc:
+                     self.get_logger().debug(f'Small wall cue projection unavailable: {exc}')
+--- a/mission.py
++++ b/mission.py
+@@ -132,6 +132,8 @@
+             self.create_subscription(OccupancyGrid,'global_costmap/costmap',self.hybrid.drive.update_costmap,qos_profile_sensor_data)
+             from osp_mission.edge_watch import EdgeWatch
+             self.edge_watch = EdgeWatch()
++            from osp_mission.tiny_named_relook import TinyNamedRelook
++            self.tiny_named_relook=TinyNamedRelook()
+             self.create_subscription(String,'mission/small_wall_bearings',self.on_small_wall,10)
+             self.create_subscription(String,'mission/anonymous_print',self.on_anonymous_print,10)
+             self.create_subscription(String,'mission/anonymous_glance',self.on_anonymous_glance,10)
+@@ -167,7 +169,29 @@
+                     return
+                 hits = [(*map(float,b), *map(float,xy)) for b,xy in zip(cue['bearings'],cue['image_xy'])]
+                 watch = self.edge_watch
+-                req = watch.offer(float(cue['stamp']), now, origin, float(cue['camera_yaw']), hits)
++                req = watch.offer(float(cue['stamp']), now, origin, float(cue['camera_yaw']), hits) if hits else None
++                named=None
++                if req is None and cue.get('tiny_decodes'):
++                    tracker=getattr(self,'tiny_named_relook',None)
++                    if (tracker is not None and getattr(self,'batch_approach_id',None) not in self.targets
++                            and self.now()-self.near_pass.policy.last_started >= 15.):
++                        named=tracker.offer(float(cue['stamp']),now,origin,float(cue['camera_yaw']),
++                                            cue['tiny_decodes'],set(self.targets)|self.visual_ids,watch.accepted)
++                        if named is not None:
++                            from osp_mission.tiny_named_relook import aligned_turn
++                            from osp_mission.wall_route import camera_pose
++                            try:
++                                transform=self.tf.lookup_transform(self.p('odom_frame'),cue['exposure_frame'],Time())
++                                received=Time.from_msg(transform.header.stamp).nanoseconds/1e9
++                                pose=camera_pose(transform.transform)
++                                if pose is None or not -.1<=now-received<=.5 or math.dist(origin,pose[:2])>.22:
++                                    return
++                                ident,proposed=named
++                                angle=aligned_turn(proposed[2],float(cue['camera_yaw']),pose[2])
++                                if angle is not None:
++                                    req=(*proposed[:3],angle)
++                            except Exception as exc:
++                                self.get_logger().debug(f'Tiny relook pose unavailable: {exc}')
+                 if req is None:
+                     return
+                 if (self.p('duration')-(self.now()-self.started) < 8 or self.contact_inspection.pressed
+@@ -178,7 +202,10 @@
+                     return
+                 if self.on_anonymous_glance(String(data=json.dumps(dict(stamp=cue['stamp'], angle=req[3])))):
+                     watch.commit(req)
+-                    self.get_logger().info(f'Accepted tiny edge glance {math.degrees(req[3]):.1f} deg')
++                    if named is not None:
++                        self.tiny_named_relook.last_glance=(self.now(),req[1],req[2])
++                    source=f'subthreshold print {ident}' if named is not None else 'tiny edge'
++                    self.get_logger().info(f'Accepted {source} glance {math.degrees(req[3]):.1f} deg')
+         except (KeyError,ValueError,TypeError):
+             return
+ 
+--- a/near_pass_runtime.py
++++ b/near_pass_runtime.py
+@@ -48,6 +48,9 @@
+             choice=self.policy.choose(data,grid.info.resolution,origin,camera,(base.x,base.y),
+                 viewed,*calibration,odom,owner.now(),elapsed,owner.p('duration')-elapsed)
+             if choice is None:return
++            tracker=getattr(owner,'tiny_named_relook',None)
++            if tracker and tracker.near_pass_covered(owner.now(),odom[:2],choice['odom_yaw']):
++                return
+             self.policy.reserve(choice,owner.now())
+             self.task=dict(phase='cancel_nav',resume_goal=copy.deepcopy(owner.active_goal),
+                 desired_odom_yaw=choice['odom_yaw'],started=owner.now(),

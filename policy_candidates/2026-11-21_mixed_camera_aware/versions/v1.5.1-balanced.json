@@ -1,0 +1,32 @@
+{
+  "version": "v1.5.1-balanced",
+  "policy_base": "Mixed v1.2",
+  "profile": {
+    "width": 480,
+    "height": 480,
+    "fps": 5
+  },
+  "features": [
+    "camera_work",
+    "camera_multiview",
+    "consistent_camera_geometry",
+    "sensor_history",
+    "motion_compensated_scan"
+  ],
+  "source": "policy_candidates/2026-11-21_mixed_exposure_sync",
+  "simulation_only": true,
+  "production_promoted": false,
+  "minimum_marker_pixels": 18,
+  "confirmations": 3,
+  "sensor_proof_radius_m": 1.3,
+  "mppi_forward_m_s": 0.25,
+  "smoother_forward_m_s": 0.27,
+  "maximum_angular_rad_s": 0.5,
+  "native_validation": "5/5 including 3 untouched final maps",
+  "native_validation_summary": {
+    "n": 5,
+    "strict_successes": 5,
+    "bumps": 0
+  },
+  "selected_simulation_default": true
+}

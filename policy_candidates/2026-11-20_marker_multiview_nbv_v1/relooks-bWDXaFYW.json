@@ -1,0 +1,10 @@
+[
+  {
+    "t": 543.404,
+    "closest_bearing_id": 7,
+    "angle_error_deg": 0.65,
+    "any_marker_within_12deg": true,
+    "range_m": 1.3946068248037113,
+    "observations": 3
+  }
+]

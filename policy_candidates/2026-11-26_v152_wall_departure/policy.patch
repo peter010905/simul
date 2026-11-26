@@ -1,0 +1,192 @@
+--- a/src/osp_mission/osp_mission/center_wall.py
++++ b/src/osp_mission/osp_mission/center_wall.py
+@@ -200,7 +200,8 @@
+         self.thin_obstacles.update(grid)
+         thin_skipped = 0
+         clearance = distance_cells * grid.resolution
+-        box_safe, box_distances = box_routes(grid, costmap, nav, reachable, pose, transform, self.local_box_cost)
++        box_safe, box_distances = box_routes(grid, costmap, nav, reachable, pose, transform, self.local_box_cost,
++                                               departure=np.isfinite(distances))
+         self.exploration_routes = box_distances
+         choices = tuple(goal for goal in choices if route_connected(grid, box_distances, goal))
+         candidates = {'interior': [], 'wall': []}
+--- a/src/osp_mission/osp_mission/box_access.py
++++ b/src/osp_mission/osp_mission/box_access.py
+@@ -7,9 +7,12 @@
+ from osp_mission.adaptive_faces import indices
+ 
+ 
+-def box_routes(grid, cost, nav, safe, pose, transform, local=None):
++def box_routes(grid, cost, nav, safe, pose, transform, local=None, *, departure=None):
+     joint = np.zeros_like(safe)
+-    rr, cc = np.where(safe)
++    # Reuse Grid.reachable's bounded, non-decreasing-clearance departure path.
++    # Global/local masks still veto every cell. Endpoints keep their own .32m check.
++    traversable = safe if departure is None else safe | departure
++    rr, cc = np.where(traversable)
+     ox, oy, angle = grid.origin
+     c, s = math.cos(angle), math.sin(angle)
+     u, v = (cc+.5)*grid.resolution, (rr+.5)*grid.resolution
+--- a/src/osp_mission/osp_mission/wall_lap.py
++++ b/src/osp_mission/osp_mission/wall_lap.py
+@@ -57,6 +57,8 @@
+         self.chair_cells=0
+         self.anchor_was_unknown=False
+         self.candidate_count=0
++        self.tangent_odom=None
++        self.selection_mode='none'
+         self.visited=[]
+ 
+     def finish(self, reason):
+@@ -97,6 +99,8 @@
+         self.last_was_lap=bool(goal.get('wall_lap'))
+         self.active=self.phase=='perimeter' and self.last_was_lap
+         self.goal=dict(goal) if self.active else None
++        if self.active:
++            self.tangent_odom=goal.get('lap_tangent_odom',self.tangent_odom)
+ 
+     def expire(self, elapsed, duration):
+         budget=min(self.maximum_seconds,self.budget_fraction*duration,max(0.,duration-240.))
+@@ -135,54 +139,89 @@
+         near=int(measured[np.argmin(np.linalg.norm(world[measured]-pose[:2],axis=1))])
+         self.candidate_count=0
+         step=max(1,round(.15/grid.resolution))
++        free=(grid.cells>=0)&(grid.cells<=25)
++        clearance=ndimage.distance_transform_edt(np.pad(free,1))[1:-1,1:-1]*grid.resolution
++        lines=cv2.HoughLinesP(np.uint8(grid.cells>=65)*255,1,math.pi/180,
++                             threshold=max(8,round(.6/grid.resolution)),
++                             minLineLength=1.2/grid.resolution,maxLineGap=.4/grid.resolution)
++        guides=[]
++        for x1,y1,x2,y2 in (() if lines is None else lines[:,0]):
++            a,b=grid.world(y1,x1),grid.world(y2,x2)
++            length=float(np.linalg.norm(b-a))
++            if length>=1.2:
++                guides.append((a,(b-a)/length,length))
++        reference_angle=(self.tangent_odom-transform[2] if self.tangent_odom is not None else pose[2] if len(pose)>2 else 0.)
++        reference=np.array([math.cos(reference_angle),math.sin(reference_angle)])
+         best=None
+-        for i in range(0,len(points),step):
+-            advance=float((arc[i]-arc[near]) % perimeter)
+-            if not supported[i]:
+-                continue
+-            entering=self.entry is None
+-            if not entering and not .8 <= advance <= 4.0:
+-                continue
+-            if entering and np.linalg.norm(world[i]-pose[:2]) > 4.:
+-                continue
+-            tangent=world[(i+4)%len(world)]-world[(i-4)%len(world)]
+-            norm=np.linalg.norm(tangent)
+-            if norm < .05:
+-                continue
+-            tangent/=norm
+-            normal=np.array([-tangent[1],tangent[0]])
+-            plus=grid.index(*(world[i]+.4*normal))
+-            if not grid.inside(*plus) or not floor[plus]:
+-                normal=-normal
+-            for stand in (.9,1.2,1.5):
+-                point=world[i]+stand*normal
+-                cell=grid.index(*point)
+-                if (not grid.inside(*cell) or not floor[cell]
+-                        or not np.isfinite(distances[cell])):
+-                    continue
+-                walk=float(distances[cell])
+-                if not .65 <= walk <= min(5.5,.20*(budget-elapsed+8.)):
+-                    continue
+-                yaw=math.atan2(tangent[1],tangent[0])
+-                goal=dict(x=float(point[0]),y=float(point[1]),yaw=yaw,scan_angle=0.,
+-                          features=np.array([0.,0.,walk,0.,0.]),distance=walk,
+-                          stationary=False,face_inspection=False,r32_kind='wall_lap',wall_lap=True,
+-                          lap_pose_odom=odom_point(point,transform).tolist(),
+-                          lap_normal_odom=math.atan2(normal[1],normal[0])+transform[2],
+-                          lap_advance_m=advance,lap_wall_distance_m=stand)
+-                if veto(goal):
+-                    continue
+-                repeat=any(math.dist(goal['lap_pose_odom'],p)<.8 for p in self.visited[-8:])
+-                self.candidate_count+=1
+-                if entering:
+-                    # Reach a measured wall safely first. An endpoint also
+-                    # advances along it when it offers a short connected route.
+-                    forward=float((point-np.asarray(pose[:2]))@tangent)
+-                    score=walk+.5*abs(forward-1.2)+.4*abs(stand-1.2)+2.*repeat
+-                else:
+-                    score=abs(advance-self.spacing)+.35*walk+.4*abs(stand-1.2)+2.*repeat
+-                if best is None or score<best[0]:
+-                    best=score,goal
++        self.selection_mode='none'
++        for metric in (False,True):
++            for i in range(0,len(points),step):
++                advance=float((arc[i]-arc[near]) % perimeter)
++                if not supported[i]:
++                    continue
++                entering=self.entry is None
++                if not entering and not metric and not .8 <= advance <= 4.0:
++                    continue
++                if entering and np.linalg.norm(world[i]-pose[:2]) > 4.:
++                    continue
++                tangent=world[(i+4)%len(world)]-world[(i-4)%len(world)]
++                norm=np.linalg.norm(tangent)
++                if norm < .05:
++                    continue
++                tangent/=norm
++                nearby=[]
++                for anchor,direction,length in guides:
++                    projection=float((world[i]-anchor)@direction)
++                    residual=float(np.linalg.norm(world[i]-(anchor+np.clip(projection,0,length)*direction)))
++                    if -.25<=projection<=length+.25 and residual<=.45:
++                        nearby.append((residual+.05/length,direction))
++                if nearby:
++                    tangent=min(nearby,key=lambda pair:pair[0])[1]
++                normal=np.array([-tangent[1],tangent[0]])
++                plus=grid.index(*(world[i]+.4*normal))
++                if not grid.inside(*plus) or not floor[plus]:
++                    normal=-normal
++                tangent=np.array([normal[1],-normal[0]])
++                if metric and float(tangent@reference)<-.70:
++                    continue
++                for stand in (.9,1.2,1.5):
++                    point=world[i]+stand*normal
++                    cell=grid.index(*point)
++                    if (not grid.inside(*cell) or not floor[cell]
++                            or clearance[cell]<.32 or not np.isfinite(distances[cell])):
++                        continue
++                    walk=float(distances[cell])
++                    if not .65 <= walk <= min(5.5,.20*(budget-elapsed+8.)):
++                        continue
++                    displacement=point-np.asarray(pose[:2])
++                    if metric and (float(displacement@reference)<-.30 or float(displacement@tangent)<.55):
++                        continue
++                    yaw=math.atan2(tangent[1],tangent[0])
++                    goal=dict(x=float(point[0]),y=float(point[1]),yaw=yaw,scan_angle=0.,
++                              features=np.array([0.,0.,walk,0.,0.]),distance=walk,
++                              stationary=False,face_inspection=False,r32_kind='wall_lap',wall_lap=True,
++                              lap_pose_odom=odom_point(point,transform).tolist(),
++                              lap_normal_odom=math.atan2(normal[1],normal[0])+transform[2],
++                              lap_tangent_odom=yaw+transform[2],
++                              lap_advance_m=advance,lap_wall_distance_m=stand)
++                    if veto(goal):
++                        continue
++                    repeat=any(math.dist(goal['lap_pose_odom'],p)<.8 for p in self.visited[-8:])
++                    self.candidate_count+=1
++                    if entering:
++                        # Reach a measured wall safely first. An endpoint also
++                        # advances along it when it offers a short connected route.
++                        forward=float((point-np.asarray(pose[:2]))@tangent)
++                        score=walk+.5*abs(forward-1.2)+.4*abs(stand-1.2)+2.*repeat
++                    elif metric:
++                        score=abs(walk-self.spacing)+.3*walk+.5*(1.-float(tangent@reference))+2.*repeat
++                    else:
++                        score=abs(advance-self.spacing)+.35*walk+.4*abs(stand-1.2)+2.*repeat
++                    if best is None or score<best[0]:
++                        best=score,goal
++                        self.selection_mode='metric_wall' if metric else 'contour'
++            if best is not None:
++                break
+         if best is not None:
+             self.missing_since=None
+             self.reason='entering_measured_wall' if self.entry is None else 'following_measured_wall'
+@@ -198,4 +237,4 @@
+                     confirmed_stops=len(self.normals),turn_rad=round(self.turn,2),
+                     boundary_support=round(self.last_support,3),chair_cells=self.chair_cells,
+                     entered_wall=self.entry is not None,nearest_edge_unmeasured=self.anchor_was_unknown,
+-                    safe_wall_candidates=self.candidate_count)
++                    safe_wall_candidates=self.candidate_count,selection_mode=self.selection_mode)

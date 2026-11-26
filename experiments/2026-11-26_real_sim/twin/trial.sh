@@ -15,6 +15,7 @@ test ! -e "$output"
 mkdir -p "$output"
 mark_exit() {
   code=$?
+  [[ -n "${follower_pid:-}" ]] && kill "$follower_pid" 2>/dev/null
   if [[ ! -s "$output/metrics.json" ]]; then
     printf '{"observer_exit":%d}\n' "$code" > "$output/failure.tmp"
     mv "$output/failure.tmp" "$output/failure.json"
@@ -49,4 +50,8 @@ export CAMERA_BENCH_WIDTH=250 CAMERA_BENCH_HEIGHT=250 CAMERA_BENCH_FPS=10 CAMERA
 export CAMERA_BENCH_HELPERS="$team/tools/team_sim/helpers" CAMERA_BENCH_CARDS="$output/cards" SURVEY_EXPERIMENTS="$team/experiments"
 export ROS_LOG_DIR="$output/ros_logs" ROS_HOME="$output/ros_home" OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1
 mkdir -p "$CAMERA_BENCH_CARDS"
+if grep -q '<model name="follower"' "$fixture/world/osp_studio.sdf"; then
+  python3 -u "$(dirname "$(realpath "$0")")/follower.py" "$(basename "$fixture")" > "$output/follower.log" 2>&1 &
+  follower_pid=$!
+fi
 python3 -u "$team/tools/team_sim/observer.py"

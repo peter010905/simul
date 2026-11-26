@@ -1,0 +1,661 @@
+{
+ "run": "20261125T193519-1149595c02",
+ "rows": [
+  {
+   "snapshot": "0000.npz",
+   "elapsed": 8.9,
+   "robot_odom": [
+    -2.56,
+    1.3
+   ],
+   "actual_goal": [
+    -2.63,
+    0.55
+   ],
+   "travel_deg": null,
+   "parent": {
+    "reason": "entering_measured_wall",
+    "mode": "contour",
+    "goal_odom": [
+     -2.27,
+     0.98
+    ],
+    "yaw_deg": 19.6,
+    "yaw_vs_move_deg": 67.3
+   },
+   "candidate": {
+    "reason": "entering_measured_wall",
+    "mode": "contour",
+    "goal_odom": [
+     -2.65,
+     0.71
+    ],
+    "yaw_deg": -86.2,
+    "yaw_vs_move_deg": 12.2
+   }
+  },
+  {
+   "snapshot": "0001.npz",
+   "elapsed": 16.5,
+   "robot_odom": [
+    -2.62,
+    0.66
+   ],
+   "actual_goal": [
+    -2.55,
+    -1.25
+   ],
+   "travel_deg": -95.5,
+   "parent": {
+    "reason": "following_measured_wall",
+    "mode": "contour",
+    "goal_odom": [
+     -2.75,
+     -1.37
+    ],
+    "yaw_deg": 115.5,
+    "ahead_m": 2.04,
+    "yaw_vs_travel_deg": 149.0,
+    "yaw_vs_move_deg": 150.8
+   },
+   "candidate": {
+    "reason": "following_measured_wall",
+    "mode": "contour",
+    "goal_odom": [
+     -2.75,
+     -1.37
+    ],
+    "yaw_deg": -64.5,
+    "ahead_m": 2.04,
+    "yaw_vs_travel_deg": 31.0,
+    "yaw_vs_move_deg": 29.2
+   }
+  },
+  {
+   "snapshot": "0002.npz",
+   "elapsed": 25.1,
+   "robot_odom": [
+    -2.81,
+    -1.35
+   ],
+   "actual_goal": [
+    -2.26,
+    -2.38
+   ],
+   "travel_deg": -95.4,
+   "parent": {
+    "reason": "following_measured_wall",
+    "mode": "contour",
+    "goal_odom": [
+     -2.61,
+     -2.25
+    ],
+    "yaw_deg": 91.6,
+    "ahead_m": 0.87,
+    "yaw_vs_travel_deg": 173.1,
+    "yaw_vs_move_deg": 168.9
+   },
+   "candidate": {
+    "reason": "following_measured_wall",
+    "mode": "contour",
+    "goal_odom": [
+     -2.61,
+     -2.25
+    ],
+    "yaw_deg": -88.4,
+    "ahead_m": 0.87,
+    "yaw_vs_travel_deg": 6.9,
+    "yaw_vs_move_deg": 11.1
+   }
+  },
+  {
+   "snapshot": "0003.npz",
+   "elapsed": 29.1,
+   "robot_odom": [
+    -2.69,
+    -2.26
+   ],
+   "actual_goal": [
+    -1.64,
+    -2.44
+   ],
+   "travel_deg": -82.1,
+   "parent": {
+    "reason": "following_measured_wall",
+    "mode": "contour",
+    "goal_odom": [
+     -1.96,
+     -2.54
+    ],
+    "yaw_deg": -0.1,
+    "ahead_m": 0.37,
+    "yaw_vs_travel_deg": 82.1,
+    "yaw_vs_move_deg": 20.9
+   },
+   "candidate": {
+    "reason": "following_measured_wall",
+    "mode": "metric_wall",
+    "goal_odom": [
+     -3.32,
+     -2.57
+    ],
+    "yaw_deg": -180.1,
+    "ahead_m": 0.22,
+    "yaw_vs_travel_deg": 97.9,
+    "yaw_vs_move_deg": 26.0
+   }
+  },
+  {
+   "snapshot": "0004.npz",
+   "elapsed": 38.5,
+   "robot_odom": [
+    -2.03,
+    -2.56
+   ],
+   "actual_goal": [
+    -2.92,
+    -2.45
+   ],
+   "travel_deg": -24.9,
+   "parent": {
+    "reason": "following_measured_wall",
+    "mode": "contour",
+    "goal_odom": [
+     -3.11,
+     -2.5
+    ],
+    "yaw_deg": 0.1,
+    "ahead_m": -1.0,
+    "yaw_vs_travel_deg": 24.9,
+    "yaw_vs_move_deg": 176.8
+   },
+   "candidate": {
+    "reason": "following_measured_wall",
+    "mode": "contour",
+    "goal_odom": [
+     -3.11,
+     -2.5
+    ],
+    "yaw_deg": -179.9,
+    "ahead_m": -1.0,
+    "yaw_vs_travel_deg": 155.1,
+    "yaw_vs_move_deg": 3.2
+   }
+  },
+  {
+   "snapshot": "0005.npz",
+   "elapsed": 45.1,
+   "robot_odom": [
+    -3.26,
+    -2.27
+   ],
+   "actual_goal": [
+    -5.37,
+    -2.79
+   ],
+   "travel_deg": 166.7,
+   "parent": {
+    "reason": "following_measured_wall",
+    "mode": "contour",
+    "goal_odom": [
+     -4.55,
+     -2.47
+    ],
+    "yaw_deg": 2.2,
+    "ahead_m": 1.21,
+    "yaw_vs_travel_deg": 164.5,
+    "yaw_vs_move_deg": 173.6
+   },
+   "candidate": {
+    "reason": "following_measured_wall",
+    "mode": "contour",
+    "goal_odom": [
+     -4.55,
+     -2.47
+    ],
+    "yaw_deg": -177.8,
+    "ahead_m": 1.21,
+    "yaw_vs_travel_deg": 15.5,
+    "yaw_vs_move_deg": 6.4
+   }
+  },
+  {
+   "snapshot": "0006.npz",
+   "elapsed": 61.0,
+   "robot_odom": [
+    -6.05,
+    -2.56
+   ],
+   "actual_goal": null,
+   "travel_deg": -174.2,
+   "parent": {
+    "reason": "following_measured_wall",
+    "mode": "contour",
+    "goal_odom": [
+     -7.39,
+     -2.86
+    ],
+    "yaw_deg": 4.5,
+    "ahead_m": 1.36,
+    "yaw_vs_travel_deg": 178.7,
+    "yaw_vs_move_deg": 171.6
+   },
+   "candidate": {
+    "reason": "following_measured_wall",
+    "mode": "contour",
+    "goal_odom": [
+     -7.39,
+     -2.86
+    ],
+    "yaw_deg": -175.5,
+    "ahead_m": 1.36,
+    "yaw_vs_travel_deg": 1.3,
+    "yaw_vs_move_deg": 8.4
+   }
+  },
+  {
+   "snapshot": "0007.npz",
+   "elapsed": 65.0,
+   "robot_odom": [
+    -6.07,
+    -2.56
+   ],
+   "actual_goal": null,
+   "travel_deg": null,
+   "parent": {
+    "reason": "following_measured_wall",
+    "mode": "metric_wall",
+    "goal_odom": [
+     -3.25,
+     -1.72
+    ],
+    "yaw_deg": 94.3,
+    "yaw_vs_move_deg": 77.7
+   },
+   "candidate": {
+    "reason": "following_measured_wall",
+    "mode": "metric_wall",
+    "goal_odom": [
+     -7.41,
+     -1.54
+    ],
+    "yaw_deg": 157.7,
+    "yaw_vs_move_deg": 15.0
+   }
+  },
+  {
+   "snapshot": "0008.npz",
+   "elapsed": 69.1,
+   "robot_odom": [
+    -6.05,
+    -2.56
+   ],
+   "actual_goal": null,
+   "travel_deg": null,
+   "parent": {
+    "reason": "following_measured_wall",
+    "mode": "metric_wall",
+    "goal_odom": [
+     -6.91,
+     0.42
+    ],
+    "yaw_deg": 166.6,
+    "yaw_vs_move_deg": 60.5
+   },
+   "candidate": {
+    "reason": "following_measured_wall",
+    "mode": "metric_wall",
+    "goal_odom": [
+     -7.6,
+     -2.11
+    ],
+    "yaw_deg": 129.7,
+    "yaw_vs_move_deg": 34.2
+   }
+  },
+  {
+   "snapshot": "0009.npz",
+   "elapsed": 70.5,
+   "robot_odom": [
+    -6.05,
+    -2.56
+   ],
+   "actual_goal": null,
+   "travel_deg": null,
+   "parent": {
+    "reason": "following_measured_wall",
+    "mode": "metric_wall",
+    "goal_odom": [
+     -6.91,
+     0.42
+    ],
+    "yaw_deg": 166.6,
+    "yaw_vs_move_deg": 60.5
+   },
+   "candidate": {
+    "reason": "following_measured_wall",
+    "mode": "metric_wall",
+    "goal_odom": [
+     -7.6,
+     -2.11
+    ],
+    "yaw_deg": 129.7,
+    "yaw_vs_move_deg": 34.2
+   }
+  },
+  {
+   "snapshot": "0010.npz",
+   "elapsed": 73.0,
+   "robot_odom": [
+    -6.05,
+    -2.56
+   ],
+   "actual_goal": null,
+   "travel_deg": null,
+   "parent": {
+    "reason": "following_measured_wall",
+    "mode": "metric_wall",
+    "goal_odom": [
+     -6.91,
+     0.42
+    ],
+    "yaw_deg": 166.6,
+    "yaw_vs_move_deg": 60.5
+   },
+   "candidate": {
+    "reason": "following_measured_wall",
+    "mode": "metric_wall",
+    "goal_odom": [
+     -7.6,
+     -2.11
+    ],
+    "yaw_deg": 129.7,
+    "yaw_vs_move_deg": 34.2
+   }
+  },
+  {
+   "snapshot": "0011.npz",
+   "elapsed": 75.5,
+   "robot_odom": [
+    -6.05,
+    -2.56
+   ],
+   "actual_goal": null,
+   "travel_deg": null,
+   "parent": {
+    "reason": "following_measured_wall",
+    "mode": "metric_wall",
+    "goal_odom": [
+     -6.91,
+     0.42
+    ],
+    "yaw_deg": 166.6,
+    "yaw_vs_move_deg": 60.5
+   },
+   "candidate": {
+    "reason": "following_measured_wall",
+    "mode": "metric_wall",
+    "goal_odom": [
+     -7.6,
+     -2.11
+    ],
+    "yaw_deg": 129.7,
+    "yaw_vs_move_deg": 34.2
+   }
+  },
+  {
+   "snapshot": "0012.npz",
+   "elapsed": 77.0,
+   "robot_odom": [
+    -6.05,
+    -2.56
+   ],
+   "actual_goal": null,
+   "travel_deg": null,
+   "parent": {
+    "reason": "following_measured_wall",
+    "mode": "metric_wall",
+    "goal_odom": [
+     -6.91,
+     0.42
+    ],
+    "yaw_deg": 166.6,
+    "yaw_vs_move_deg": 60.5
+   },
+   "candidate": {
+    "reason": "following_measured_wall",
+    "mode": "metric_wall",
+    "goal_odom": [
+     -7.6,
+     -2.11
+    ],
+    "yaw_deg": 129.7,
+    "yaw_vs_move_deg": 34.2
+   }
+  },
+  {
+   "snapshot": "0013.npz",
+   "elapsed": 79.5,
+   "robot_odom": [
+    -6.05,
+    -2.56
+   ],
+   "actual_goal": null,
+   "travel_deg": null,
+   "parent": {
+    "reason": "following_measured_wall",
+    "mode": "metric_wall",
+    "goal_odom": [
+     -6.91,
+     0.42
+    ],
+    "yaw_deg": 166.6,
+    "yaw_vs_move_deg": 60.5
+   },
+   "candidate": {
+    "reason": "following_measured_wall",
+    "mode": "metric_wall",
+    "goal_odom": [
+     -7.6,
+     -2.11
+    ],
+    "yaw_deg": 129.7,
+    "yaw_vs_move_deg": 34.2
+   }
+  },
+  {
+   "snapshot": "0014.npz",
+   "elapsed": 82.0,
+   "robot_odom": [
+    -6.05,
+    -2.56
+   ],
+   "actual_goal": null,
+   "travel_deg": null,
+   "parent": {
+    "reason": "following_measured_wall",
+    "mode": "metric_wall",
+    "goal_odom": [
+     -6.91,
+     0.42
+    ],
+    "yaw_deg": 166.6,
+    "yaw_vs_move_deg": 60.5
+   },
+   "candidate": {
+    "reason": "following_measured_wall",
+    "mode": "metric_wall",
+    "goal_odom": [
+     -7.6,
+     -2.11
+    ],
+    "yaw_deg": 129.7,
+    "yaw_vs_move_deg": 34.2
+   }
+  },
+  {
+   "snapshot": "0015.npz",
+   "elapsed": 83.5,
+   "robot_odom": [
+    -6.05,
+    -2.56
+   ],
+   "actual_goal": null,
+   "travel_deg": null,
+   "parent": {
+    "reason": "following_measured_wall",
+    "mode": "metric_wall",
+    "goal_odom": [
+     -6.91,
+     0.42
+    ],
+    "yaw_deg": 166.6,
+    "yaw_vs_move_deg": 60.5
+   },
+   "candidate": {
+    "reason": "following_measured_wall",
+    "mode": "metric_wall",
+    "goal_odom": [
+     -7.6,
+     -2.11
+    ],
+    "yaw_deg": 129.7,
+    "yaw_vs_move_deg": 34.2
+   }
+  },
+  {
+   "snapshot": "0016.npz",
+   "elapsed": 86.0,
+   "robot_odom": [
+    -6.05,
+    -2.56
+   ],
+   "actual_goal": null,
+   "travel_deg": null,
+   "parent": {
+    "reason": "following_measured_wall",
+    "mode": "metric_wall",
+    "goal_odom": [
+     -6.91,
+     0.42
+    ],
+    "yaw_deg": 166.6,
+    "yaw_vs_move_deg": 60.5
+   },
+   "candidate": {
+    "reason": "following_measured_wall",
+    "mode": "metric_wall",
+    "goal_odom": [
+     -7.6,
+     -2.11
+    ],
+    "yaw_deg": 129.7,
+    "yaw_vs_move_deg": 34.2
+   }
+  },
+  {
+   "snapshot": "0017.npz",
+   "elapsed": 88.5,
+   "robot_odom": [
+    -6.05,
+    -2.56
+   ],
+   "actual_goal": null,
+   "travel_deg": null,
+   "parent": {
+    "reason": "following_measured_wall",
+    "mode": "metric_wall",
+    "goal_odom": [
+     -6.91,
+     0.42
+    ],
+    "yaw_deg": 166.6,
+    "yaw_vs_move_deg": 60.5
+   },
+   "candidate": {
+    "reason": "following_measured_wall",
+    "mode": "metric_wall",
+    "goal_odom": [
+     -7.6,
+     -2.11
+    ],
+    "yaw_deg": 129.7,
+    "yaw_vs_move_deg": 34.2
+   }
+  },
+  {
+   "snapshot": "0018.npz",
+   "elapsed": 90.0,
+   "robot_odom": [
+    -6.05,
+    -2.56
+   ],
+   "actual_goal": null,
+   "travel_deg": null,
+   "parent": {
+    "reason": "following_measured_wall",
+    "mode": "metric_wall",
+    "goal_odom": [
+     -6.91,
+     0.42
+    ],
+    "yaw_deg": 166.6,
+    "yaw_vs_move_deg": 60.5
+   },
+   "candidate": {
+    "reason": "following_measured_wall",
+    "mode": "metric_wall",
+    "goal_odom": [
+     -7.6,
+     -2.11
+    ],
+    "yaw_deg": 129.7,
+    "yaw_vs_move_deg": 34.2
+   }
+  },
+  {
+   "snapshot": "0019.npz",
+   "elapsed": 92.5,
+   "robot_odom": [
+    -6.05,
+    -2.56
+   ],
+   "actual_goal": null,
+   "travel_deg": null,
+   "parent": {
+    "reason": "following_measured_wall",
+    "mode": "metric_wall",
+    "goal_odom": [
+     -6.91,
+     0.42
+    ],
+    "yaw_deg": 166.6,
+    "yaw_vs_move_deg": 60.5
+   },
+   "candidate": {
+    "reason": "following_measured_wall",
+    "mode": "metric_wall",
+    "goal_odom": [
+     -7.6,
+     -2.11
+    ],
+    "yaw_deg": 129.7,
+    "yaw_vs_move_deg": 34.2
+   }
+  }
+ ],
+ "summary": {
+  "parent": {
+   "goals": 20,
+   "behind_travel": 1,
+   "reversed_heading": 5,
+   "mean_yaw_vs_move_deg": 86.7
+  },
+  "candidate": {
+   "goals": 20,
+   "behind_travel": 1,
+   "reversed_heading": 0,
+   "mean_yaw_vs_move_deg": 26.1
+  }
+ }
+}

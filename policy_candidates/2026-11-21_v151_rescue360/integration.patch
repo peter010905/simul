@@ -1,0 +1,174 @@
+--- a/mission.py
++++ b/mission.py
+@@ -59,7 +59,9 @@
+         super().__init__('mission')
+         for k,v in {'duration':600.,'output_dir':str(Path.home()/'simul/results'),
+                     'map_frame':'map','base_frame':'base_link','odom_frame':'odom','scan_topic':'scan',
+-                    'undock':False,'policy_file':'','planner':'legacy','require_drive_controller':False,'planner_start_ignore_radius_m':0.,'navigation_flow_enabled':True,'allow_mid_route_wall_inspection':False}.items(): self.declare_parameter(k,v)
++                    'undock':False,'policy_file':'','planner':'legacy','require_drive_controller':False,'planner_start_ignore_radius_m':0.,'navigation_flow_enabled':True,'allow_mid_route_wall_inspection':False,'rescue_after_s':360.,
++                    'rescue_travel_speed':.20,'rescue_spin_rate':.5,
++                    'rescue_spin_accel':1.,'rescue_settle_s':1.5}.items(): self.declare_parameter(k,v)
+         self.p=lambda k:self.get_parameter(k).value
+         self.tf=Buffer(); self.listener=TransformListener(self.tf,self)
+         self.inspect=self.p('planner')=='inspection'
+@@ -128,6 +130,8 @@
+         from osp_mission.phased_hybrid import PhasedHybrid as Hybrid
+         self.contact_pending=False
+         self.hybrid=Hybrid() if self.edge_mode else None
++        from osp_mission.rescue360 import Rescue360
++        self.rescue=Rescue360(self) if self.edge_mode else None
+         if self.hybrid is not None:
+             self.create_subscription(OccupancyGrid,'global_costmap/costmap',self.hybrid.drive.update_costmap,qos_profile_sensor_data)
+             self.create_subscription(String,'mission/small_wall_bearings',self.on_small_wall,10)
+@@ -171,6 +175,9 @@
+                 return
+
+     def observation_turn(self):
++        rescue=getattr(self,'rescue',None)
++        if rescue is not None and rescue.spin_pending:
++            return 2*math.pi
+         look=getattr(self,'marker_look',None)
+         directed=look.consume() if look is not None else None
+         if directed is not None:return directed
+@@ -525,6 +532,13 @@
+                 self.finish('undock_result_error')
+             return
+         if self.state!='running': return
++        rescue=getattr(self,'rescue',None)
++        if rescue is not None:
++            rescue.outcome(self.kind,result.status,self.cancel_reason,getattr(self,'spin_progress',0.))
++        if self.cancel_reason=='rescue_phase_due' and result.status==5:
++            self.scan_after=False
++            self.plan_after=self.now()
++            return
+         guard=getattr(self,'contact_inspection',None)
+         if guard is not None and guard.action:
+             self.contact_pending=False
+@@ -695,6 +709,12 @@
+         if not self.ready():
+             if self.goal_handle or self.pending:self.cancel_action(self.last_readiness_reason)
+             self.zero(); return
++        rescue=getattr(self,'rescue',None)
++        if rescue is not None:
++            if rescue.transition():return
++            if rescue.waiting():
++                self.zero()
++                return
+         flow=getattr(self,'navigation_flow',None)
+         if getattr(self,'near_pass',None) is not None:self.near_pass.poll()
+         guard=getattr(self,'contact_inspection',None)
+@@ -784,6 +804,7 @@
+         if self.scan_after:
+             self.scan_after=False; goal=Spin.Goal()
+             protected_look=any(getattr(getattr(self,name,None),'pending',None) is not None for name in ('marker_look','face_look'))
++            if rescue is not None and rescue.spin_pending:protected_look=True
+             goal.target_yaw=self.observation_turn()
+             if guard is not None:
+                 if not protected_look:
+@@ -801,13 +822,17 @@
+                 if goal.target_yaw or bearing_fresh or wall_due or self.initial_scan:
+                     guard.looked(now)
+             self.initial_scan=False; goal.time_allowance.sec=15
++            if rescue is not None and rescue.spin_pending:
++                goal.time_allowance.sec=math.ceil(rescue.rotation_s+3.)
+             self.get_logger().info(f'Bounded observation turn: {math.degrees(goal.target_yaw):.0f} deg')
+             if abs(goal.target_yaw)<1e-6:
+                 if flow is None:self.plan_after=self.now()+1.5;self.zero();return
+                 if protected_look:
+                     flow.begin_settle(self.now(),self.camera_diagnostics['accepted']);self.zero();return
+                 flow.skipped_zero_turns+=1
+-            else:self.send(self.spin,goal,'spin');return
++            else:
++                if rescue is not None and rescue.spin_pending:rescue.spin_sent()
++                self.send(self.spin,goal,'spin');return
+         self.marker_look.clear('replan')
+         if getattr(self,'face_look',None) is not None:self.face_look.clear('replan')
+         tr=self.tf.lookup_transform(self.p('map_frame'),self.p('base_frame'),Time())
+@@ -836,6 +861,7 @@
+             calibration=getattr(self,'inspection_camera',None)
+             option_settings['inspection_focal']=calibration[0] if calibration is not None else 0.
+             option_settings['start_ignore_radius']=getattr(self,'planner_start_ignore_radius_m',0.)
++            if rescue is not None and rescue.active:option_settings['full_scans']=True
+         if self.edge_mode and getattr(self,'wall_look',None) is not None:
+             option_settings['return_paths']=True
+         choices,previous=self.policy_options(data,m.info.resolution,(m.info.origin.position.x,m.info.origin.position.y),
+@@ -883,11 +909,14 @@
+         if hybrid is not None:
+             try:
+                 combined=hybrid.select(self,selected,data,viewed,(tr.transform.translation.x,tr.transform.translation.y,heading),memory_transform,choices=choices)
++                if rescue is not None and rescue.active and combined is None:selected=None
+                 if combined is not None and combined is not selected:
+                     choices.append(combined)
+                     selected=combined
+             except Exception as exc:
+                 self.get_logger().warning(f'Hybrid proposal unavailable, using Flow choice: {exc}')
++                if rescue is not None and rescue.active:
++                    self.zero();self.plan_after=self.now()+2.;return
+         try:
+             save_policy_audit(self.p('output_dir'), self.policy_decisions, self.now()-self.started,
+                 self.p('planner'), data, m.info.resolution,
+@@ -898,6 +927,11 @@
+         except Exception as exc:
+             self.get_logger().warning(f'Could not save policy input audit: {exc}')
+         if selected is None:
++            if rescue is not None and rescue.active:
++                remaining=self.p('duration')-(self.now()-self.started)
++                if remaining<rescue.rotation_s+self.p('rescue_settle_s')+3.:
++                    self.finish('rescue_budget_exhausted');return
++                self.zero();self.plan_after=self.now()+1.;return
+             # Retry old frontiers after scanning rather than finishing before the deadline.
+             self.excluded=self.excluded[-5:]
+             self.empty_plans=getattr(self,'empty_plans',0)+1
+@@ -930,7 +964,7 @@
+         if getattr(self,'near_pass',None) is not None:
+             # Preserve confirmed markers and print revisits. A box/face
+             # transit may pause for another visible side and resume.
+-            self.near_pass.protected_navigation=any(k in selected for k in ('approach_id','focus_id','print_point'))
++            self.near_pass.protected_navigation=bool(selected.get('rescue360')) or any(k in selected for k in ('approach_id','focus_id','print_point'))
+             self.near_pass.inspectable_route=False  # The phase scheduler owns surface observations.
+         if flow is not None:flow.selected(selected,memory_transform)
+         self.marker_look.select(selected,memory_transform)
+--- a/phased_hybrid.py
++++ b/phased_hybrid.py
+@@ -23,13 +23,14 @@
+                print_only=False, box_probe=False, choices=()):
+         if selected and any(k in selected for k in ('approach_id','focus_id')):
+             return selected
++        rescue=getattr(owner,'rescue',None)
+         msg = self.drive.costmap
+         clock = owner.get_clock().now().nanoseconds/1e9
+         if msg is None or msg.header.frame_id != owner.p('map_frame') or transform is None:
+-            return selected
++            return None if rescue is not None and rescue.active else selected
+         age = clock-Time.from_msg(msg.header.stamp).nanoseconds/1e9
+         if not -.1 <= age <= 3.:
+-            return selected
++            return None if rescue is not None and rescue.active else selected
+         cost = grid_from_message(msg)
+         mapped = grid_from_message(owner.map)
+         grid = r32.Grid(data,mapped.resolution,mapped.origin)
+@@ -40,6 +41,9 @@
+                     or (not goal.get('stationary') and any(
+                         np.hypot(goal['x']-x,goal['y']-y)<.45 for x,y in owner.excluded[-8:])))
+
++        rescue=getattr(owner,'rescue',None)
++        if rescue is not None and rescue.active and not print_only:
++            return rescue.choose(choices,pose,transform,grid,cost,r32.connected_nav_cells(cost,pose),veto,owner.weights)
+         cue = self.memory.choose(grid,cost,pose,transform,owner.targets,clock,veto)
+         if cue is not None or (print_only and not box_probe):
+             return cue
+@@ -68,7 +72,14 @@
+             return goal
+         return selected
+
++    def should_interrupt(self,owner):
++        rescue=getattr(owner,'rescue',None)
++        if rescue is not None and rescue.active:return False
++        return super().should_interrupt(owner)
++
+     def dispatched(self,owner,goal):
++        rescue=getattr(owner,'rescue',None)
++        if rescue is not None:rescue.dispatched(goal)
+         super().dispatched(owner,goal)
+         elapsed = owner.now()-owner.started
+         self.schedule.dispatched(goal,elapsed)

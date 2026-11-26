@@ -1,0 +1,23 @@
+{
+  "version": "v1.2-balanced",
+  "profile": {
+    "width": 480,
+    "height": 480,
+    "fps": 5
+  },
+  "policy_base": "Mixed v1.2",
+  "camera_aware_improvements": false,
+  "simulation_only": true,
+  "production_promoted": false,
+  "minimum_marker_pixels": 18,
+  "confirmations": 3,
+  "mppi_forward_m_s": 0.25,
+  "smoother_forward_m_s": 0.27,
+  "maximum_angular_rad_s": 0.5,
+  "native_validation_summary": {
+    "n": 2,
+    "strict_successes": 2,
+    "bumps": 0
+  },
+  "selected_simulation_default": false
+}

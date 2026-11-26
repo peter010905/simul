@@ -1,0 +1,212 @@
+--- a/center_wall.py
++++ b/center_wall.py
+@@ -222,6 +222,9 @@
+                         best = score,goal
+             if best is not None:
+                 candidates[kind].append(best)
++        if hasattr(self,'collect'):
++            return self.collect(grid,costmap,pose,transform,viewed,elapsed,duration,veto,choices,
++                                samples,candidates,distances,clearance,nav)
+         self.counts = {k:len(v) for k,v in candidates.items()}
+         ordered = sorted(candidates['interior'], key=self.batch.rank)
+         deferred = [item for item in ordered if item[1]['completed_box']]
+--- a/edge_policy.py
++++ b/edge_policy.py
+@@ -65,6 +65,9 @@
+         self.geometry=None;self.viewed=None;self.counts=None
+         self.last_stamp=-float('inf');self.data=None;self.faces=None
+         self.normal_cache=AxisNormalCache()
++        self.min_edge_px=18.
++        self.marker_width_m=.08
++        self.min_frames=3
+
+     def grid(self,data,resolution,origin):
+         geometry=(data.shape,resolution,tuple(origin))
+@@ -99,20 +102,24 @@
+         relative=(np.arctan2(-dy,-dx)-camera[2]+math.pi)%(2*math.pi)-math.pi
+         reliable=hit[f['y'],f['x']]&(lengths*resolution>.25)&(incidence>.6)
+         reliable &= np.abs(relative)<horizontal_fov/2
+-        reliable &= lengths*resolution<readable_distance(focal)*incidence
++        reliable &= lengths*resolution<(.85*focal*self.marker_width_m/self.min_edge_px)*incidence
+         reliable &= lengths*resolution*np.cos(relative)<8.
++        if getattr(self,'optical_plane',None) is not None:
++            from osp_mission.global_coverage import in_image
++            wx=origin[0]+resolution*f['px']; wy=origin[1]+resolution*f['py']
++            reliable &= in_image(wx,wy,camera,self.optical_plane)
+         indices=np.flatnonzero(reliable)
+         clear=visible(data,camera_y,camera_x,f['py'][indices],f['px'][indices])
+         indices=indices[clear];side,y,x=f['side'][indices],f['y'][indices],f['x'][indices]
+-        self.counts[side,y,x]=np.minimum(self.counts[side,y,x]+1,3)
+-        self.viewed[side,y,x]=self.counts[side,y,x]>=3
+-
+-
+-def options(data,resolution,origin,robot,heading=0.,visits=(),viewed=None,return_paths=False,point_sampler=None,collect_faces=False,full_scans=False,inspection_focal=None,start_ignore_radius=0.):
++        self.counts[side,y,x]=np.minimum(self.counts[side,y,x]+1,self.min_frames)
++        self.viewed[side,y,x]=self.counts[side,y,x]>=self.min_frames
++
++
++def options(data,resolution,origin,robot,heading=0.,visits=(),viewed=None,return_paths=False,point_sampler=None,collect_faces=False,full_scans=False,inspection_focal=None,start_ignore_radius=0.,coverage_size=.08,coverage_pixels=18.):
+     # Native mission always supplies calibration (zero until available).
+     # Keep the old bare options API for offline callers.
+     start_ignore_radius=validate_radius(start_ignore_radius)
+-    max_readable=3.7 if inspection_focal is None else readable_distance(inspection_focal)
++    max_readable=3.7 if inspection_focal is None else .85*inspection_focal*coverage_size/coverage_pixels
+     free=data==0;occupied=data>50;unknown=data<0
+     clearance=distance_transform_edt(~occupied)*resolution
+     safe=free&(clearance>=.32)
+--- a/mission.py
++++ b/mission.py
+@@ -59,7 +59,9 @@
+         super().__init__('mission')
+         for k,v in {'duration':600.,'output_dir':str(Path.home()/'simul/results'),
+                     'map_frame':'map','base_frame':'base_link','odom_frame':'odom','scan_topic':'scan',
+-                    'undock':False,'policy_file':'','planner':'legacy','require_drive_controller':False,'planner_start_ignore_radius_m':0.,'navigation_flow_enabled':True,'allow_mid_route_wall_inspection':False}.items(): self.declare_parameter(k,v)
++                    'undock':False,'policy_file':'','planner':'legacy','require_drive_controller':False,'planner_start_ignore_radius_m':0.,'navigation_flow_enabled':True,'allow_mid_route_wall_inspection':False,
++                    'coverage_marker_width_m':.08,'coverage_min_edge_px':18.,'coverage_frames':3,
++                    'coverage_face_fraction':.70,'coverage_height_m':.45,'survey_after_markers':True}.items(): self.declare_parameter(k,v)
+         self.p=lambda k:self.get_parameter(k).value
+         self.tf=Buffer(); self.listener=TransformListener(self.tf,self)
+         self.inspect=self.p('planner')=='inspection'
+@@ -125,9 +127,16 @@
+         self.goal_handle=None; self.pending=False; self.excluded=[]; self.action_start=0.; self.scan_after=True
+         self.started=0.; self.save_proc=None; self.serialize_future=None; self.save_deadline=0.
+         self.policy_decisions=0
+-        from osp_mission.phased_hybrid import PhasedHybrid as Hybrid
+         self.contact_pending=False
+-        self.hybrid=Hybrid() if self.edge_mode else None
++        from osp_mission.coverage_runtime import CoverageHybrid
++        self.hybrid=CoverageHybrid(self) if self.edge_mode else None
++        if self.edge_mode:
++            self.coverage.marker_width_m=self.p('coverage_marker_width_m')
++            self.coverage.min_edge_px=self.p('coverage_min_edge_px')
++            self.coverage.min_frames=self.p('coverage_frames')
++            if not (0 < self.coverage.marker_width_m and 0 < self.coverage.min_edge_px
++                    and 1 <= self.coverage.min_frames <= 250 and 0 < self.p('coverage_face_fraction') <= 1):
++                raise ValueError('Invalid camera coverage configuration')
+         if self.hybrid is not None:
+             self.create_subscription(OccupancyGrid,'global_costmap/costmap',self.hybrid.drive.update_costmap,qos_profile_sensor_data)
+             self.create_subscription(String,'mission/small_wall_bearings',self.on_small_wall,10)
+@@ -346,9 +355,14 @@
+             endpoints=np.column_stack((tr.transform.translation.x+ranges[valid]*np.cos(angles[valid]),
+                                        tr.transform.translation.y+ranges[valid]*np.sin(angles[valid])))
+             grid=self.map;data=np.asarray(grid.data).reshape(grid.info.height,grid.info.width)
++            if self.edge_mode:
++                from osp_mission.global_coverage import optical_plane
++                self.coverage.optical_plane=optical_plane(m,camera.transform,yaw,self.p('coverage_height_m'))
+             self.coverage.observe(data,grid.info.resolution,(grid.info.origin.position.x,grid.info.origin.position.y),
+                 (camera.transform.translation.x,camera.transform.translation.y,yaw),endpoints,
+                 stamp.nanoseconds/1e9,m.k[0],2*math.atan(m.width/(2*m.k[0])))
++            if self.hybrid is not None:
++                self.hybrid.calibrated(m,(camera.transform.translation.x,camera.transform.translation.y,yaw))
+             self.last_camera=time.monotonic()
+             self.last_camera_stamp=stamp.nanoseconds
+             self.camera_diagnostics['coverage_updates']+=1
+@@ -479,6 +493,7 @@
+         if math.isfinite(distance):self.spin_progress=distance
+     def cancel_action(self,reason):
+         if self.cancel_reason:return
++        self.cancel_started=self.now()
+         self.cancel_reason=reason
+         self.get_logger().warning(f'Cancel {self.kind}: {reason}')
+         if self.goal_handle:self.goal_handle.cancel_goal_async()
+@@ -495,6 +510,7 @@
+             if self.kind=='undock':self.finish('undock_request_failed')
+             return
+         if not handle.accepted:
++            if getattr(self,'hybrid',None) is not None and self.kind=='nav':self.hybrid.schedule.outcome(6,'action_rejected',self.now()-self.started)
+             if guard is not None and guard.action:
+                 guard.result(False,self.now());self.contact_pending=False;return
+             self.contact_pending=False
+@@ -525,6 +541,8 @@
+                 self.finish('undock_result_error')
+             return
+         if self.state!='running': return
++        if getattr(self,'hybrid',None) is not None and self.kind=='nav':
++            self.hybrid.schedule.outcome(result.status,getattr(self,'cancel_reason',''),self.now()-self.started)
+         guard=getattr(self,'contact_inspection',None)
+         if guard is not None and guard.action:
+             self.contact_pending=False
+@@ -606,6 +624,7 @@
+         if getattr(self,'marker_look',None) is not None:self.marker_look.clear('mission_finished')
+         if getattr(self,'face_look',None) is not None:self.face_look.clear('mission_finished')
+         if getattr(self,'near_pass',None) is not None:self.near_pass.abort('mission_finished')
++        if getattr(self,'hybrid',None) is not None:self.hybrid.finish(reason)
+         self.reason=reason; self.elapsed=self.now()-self.started; self.state='saving'
+         if self.goal_handle: self.goal_handle.cancel_goal_async()
+         self.zero()
+@@ -688,7 +707,7 @@
+             except Exception as exc:
+                 self.get_logger().debug(f'Approach pose unavailable: {exc}')
+         if getattr(self,'known_obstacles',None) is not None:self.publish_known_obstacles()
+-        if getattr(self,'approach',None) is not None and self.approach.complete(self.targets): self.finish('all_targets_found'); return
++        if getattr(self,'approach',None) is not None and self.approach.complete(self.targets) and not self.p('survey_after_markers'): self.finish('all_targets_found'); return
+         if self.now()-self.started>=self.p('duration'): self.finish('timeout'); return
+         # Create 3 owns the undock motion and its hazard checks. Its action does
+         # not require camera coverage, SLAM or Nav2 readiness to remain active.
+@@ -697,6 +716,9 @@
+             elif self.now()-self.action_start>65:self.cancel_action('undock_timeout')
+             return
+         if getattr(self,'pending_camera',None) is not None:self.observe_camera()
++        if (getattr(self,'kind','')=='nav' and (self.goal_handle or self.pending) and self.cancel_reason=='nav2_unavailable'
++                and self.now()-getattr(self,'cancel_started',self.now())>12.):
++            self.finish('nav2_cancellation_unacknowledged');return
+         if not self.ready():
+             if self.goal_handle or self.pending:self.cancel_action(self.last_readiness_reason)
+             self.zero(); return
+@@ -820,6 +842,11 @@
+                     flow.begin_settle(self.now(),self.camera_diagnostics['accepted']);self.zero();return
+                 flow.skipped_zero_turns+=1
+             else:self.send(self.spin,goal,'spin');return
++        if getattr(getattr(self,'hybrid',None),'pending_plan',False):
++            paths=self.hybrid.schedule.paths
++            paths.poll(self.now())
++            if paths.round and not paths.round['done'] and not self.readable_cue and not getattr(self,'registered_pending',set()) and not self.marker_focus.hints:
++                return
+         self.marker_look.clear('replan')
+         if getattr(self,'face_look',None) is not None:self.face_look.clear('replan')
+         tr=self.tf.lookup_transform(self.p('map_frame'),self.p('base_frame'),Time())
+@@ -846,6 +873,7 @@
+         option_settings={'preferred_clearance':self.surface_settings['view_standoff']} if self.surface_settings else {}
+         if self.edge_mode:
+             calibration=getattr(self,'inspection_camera',None)
++            option_settings.update(coverage_size=self.coverage.marker_width_m,coverage_pixels=self.coverage.min_edge_px)
+             option_settings['inspection_focal']=calibration[0] if calibration is not None else 0.
+             option_settings['start_ignore_radius']=getattr(self,'planner_start_ignore_radius_m',0.)
+         if self.edge_mode and getattr(self,'wall_look',None) is not None:
+@@ -895,11 +923,18 @@
+         if hybrid is not None:
+             try:
+                 combined=hybrid.select(self,selected,data,viewed,(tr.transform.translation.x,tr.transform.translation.y,heading),memory_transform,choices=choices)
++                if hybrid.pending_plan:
++                    self.plan_after=self.now()+.5;return
++                if hybrid.owns_choice and combined is None:selected=None
+                 if combined is not None and combined is not selected:
+                     choices.append(combined)
+                     selected=combined
+             except Exception as exc:
+-                self.get_logger().warning(f'Hybrid proposal unavailable, using Flow choice: {exc}')
++                self.get_logger().error(f'Global coverage selection failed: {exc}')
++                hybrid.schedule.selection_errors+=1
++                if hybrid.schedule.selection_errors>=3:self.finish('coverage_selection_error')
++                self.plan_after=self.now()+2.
++                return
+         try:
+             save_policy_audit(self.p('output_dir'), self.policy_decisions, self.now()-self.started,
+                 self.p('planner'), data, m.info.resolution,
+@@ -910,6 +945,16 @@
+         except Exception as exc:
+             self.get_logger().warning(f'Could not save policy input audit: {exc}')
+         if selected is None:
++            if hybrid is not None:
++                s=hybrid.schedule
++                age=self.now()-self.started
++                waiting=any(f.state=='BLOCKED' and f.probes<2 or f.state=='FAILED' and f.failures<3
++                            for f in s.tasks.by_key.values())
++                if (s.idle_from is not None and age-s.idle_from>=50 and s.frontier_count==0 and not waiting
++                        and not self.readable_cue and not getattr(self,'registered_pending',set())
++                        and not any(not self.approach.verified(i) for i in self.targets)
++                        and not any(s.weak_clock-t.last<5 for t in s.weak.tracks if t.stable() and not t.used)):
++                    self.finish('no_actionable_surface_or_frontier');return
+             # Retry old frontiers after scanning rather than finishing before the deadline.
+             self.excluded=self.excluded[-5:]
+             self.empty_plans=getattr(self,'empty_plans',0)+1

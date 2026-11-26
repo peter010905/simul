@@ -1,0 +1,18 @@
+{
+  "version": "1.5.2.50-lap-progress",
+  "parent": "1.5.2.49",
+  "workspace": "v15250_lap_progress_lidar5_640_1126_ws",
+  "changed_sources": ["wall_lap.py", "hybrid.py"],
+  "regression_checks": {"passed": 67, "failed_same_as_parent": 3},
+  "real_map_replay": {
+    "20261125T195126-1cce5b818a": {"reversed_heading": [7, 1], "mean_yaw_vs_move_deg": [123.3, 29.0]},
+    "20261125T194849-e789097e4b": {"reversed_heading": [5, 0], "mean_yaw_vs_move_deg": [134.1, 32.9]},
+    "20261125T193519-1149595c02": {"reversed_heading": [5, 0], "mean_yaw_vs_move_deg": [86.7, 26.1]}
+  },
+  "synthetic_lap": {"reversed_headings": [120, 0], "turn_at_stops_rad": [433.15, 108.8], "revisits": [13, 0]},
+  "white_leg_looks_logged_vs_allowed": {"20261125T195426-a84b4e02f7": [19, 6], "20261125T192556-c3556b08ef": [3, 3]},
+  "closed_loop_gazebo": false,
+  "physical_drive": false,
+  "board_default_changed": false,
+  "board_option_added": false
+}

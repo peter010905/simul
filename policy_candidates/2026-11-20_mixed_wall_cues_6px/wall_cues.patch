@@ -1,0 +1,152 @@
+--- marker_pair.py
++++ marker_pair.py
+@@ -40,7 +40,7 @@
+     return area > 0
+ 
+ 
+-def decode(image, dictionary):
++def decode(image, dictionary, small=None):
+     results = []
+     for scale in (1, 2):
+         frame = image if scale == 1 else cv2.resize(
+@@ -48,6 +48,9 @@
+         corners, ids, rejected = cv2.aruco.detectMarkers(frame, dictionary)
+         if scale == 1:
+             native_rejected = rejected
++            if small is not None:
++                from osp_mission.small_wall_cues import candidates
++                small.extend(candidates(image, corners, rejected))
+         if ids is None:
+             continue
+         for quad, ident in zip(corners, ids.ravel()):
+--- detector.py
++++ detector.py
+@@ -41,6 +41,7 @@
+         from osp_mission.hybrid_passing import PassingGlance
+         self.print_glance=PassingGlance()
+         self.glance_pub=self.create_publisher(String,'mission/anonymous_glance',10)
++        self.small_wall_pub=self.create_publisher(String,'mission/small_wall_bearings',10)
+         self.print_pub=self.create_publisher(String,'mission/anonymous_print',10)
+         self.candidate_pub=self.create_publisher(String,'mission/marker_candidates',10)
+         self.confirmation_guard=ObservationConsensus()
+@@ -101,7 +102,22 @@
+             image=self.bridge.imgmsg_to_cv2(msg,'mono8')
+             k=self.info.k
+             if not np.isfinite(k).all() or k[0]<=0 or k[4]<=0 or self.info.width!=msg.width or self.info.height!=msg.height: return
+-            corners,ids=decode(image,self.dictionary)
++            small=[]
++            corners,ids=decode(image,self.dictionary,small)
++            if small:
++                try:
++                    from osp_mission.hybrid_geometry import preview_geometry
++                    from osp_mission.wall_route import camera_pose
++                    stamp=Time.from_msg(msg.header.stamp)
++                    tr=self.tf.lookup_transform(self.p('odom_frame'),msg.header.frame_id,stamp)
++                    camera=camera_pose(tr.transform)
++                    if camera is not None:
++                        cal=preview_geometry(self.info)
++                        bearings=[(camera[2]-math.atan2(u-cal.k[2],cal.k[0]),size) for u,_,size,_ in small]
++                        self.small_wall_pub.publish(String(data=json.dumps(dict(stamp=stamp.nanoseconds/1e9,
++                            origin=camera[:2], bearings=bearings))))
++                except Exception as exc:
++                    self.get_logger().debug(f'Small wall cue projection unavailable: {exc}')
+             accepted_quads={}
+             processed=copy.deepcopy(self.info);processed.header=msg.header
+             self.processed_camera.publish(processed)
+--- mission.py
++++ mission.py
+@@ -127,6 +127,7 @@
+         self.hybrid=Hybrid() if self.edge_mode else None
+         if self.hybrid is not None:
+             self.create_subscription(OccupancyGrid,'global_costmap/costmap',self.hybrid.drive.update_costmap,qos_profile_sensor_data)
++            self.create_subscription(String,'mission/small_wall_bearings',self.on_small_wall,10)
+             self.create_subscription(String,'mission/anonymous_print',self.on_anonymous_print,10)
+             self.create_subscription(String,'mission/anonymous_glance',self.on_anonymous_glance,10)
+         self.create_timer(.5,self.tick)
+@@ -144,6 +145,19 @@
+             if abs(angle)<=math.radians(6.01) and -.1<=self.get_clock().now().nanoseconds/1e9-e['stamp']<=.5:
+                 guard.bearing=(now,angle)
+         except (TypeError,ValueError,KeyError):
++            return
++
++    def on_small_wall(self, msg):
++        if self.state != 'running':
++            return
++        try:
++            cue = json.loads(msg.data)
++            now = self.get_clock().now().nanoseconds/1e9
++            origin = tuple(map(float, cue['origin']))
++            if len(origin) == 2:
++                for angle,size in cue['bearings'][:8]:
++                    self.hybrid.schedule.weak.observe(float(cue['stamp']),now,origin,float(angle),float(size))
++        except (KeyError,ValueError,TypeError):
+             return
+ 
+     def on_anonymous_print(self,msg):
+--- phased_hybrid.py
++++ phased_hybrid.py
+@@ -56,6 +56,8 @@
+         centers = [track.center for track in self.box_views.tracks if track.confirmed]
+         verified = [odom_point(point, transform) for ident, point in owner.targets.items()
+                     if owner.approach.verified(ident, point)]
++        self.schedule.weak_known = [odom_point(point,transform) for point in owner.targets.values()]
++        self.schedule.weak_clock = clock
+         self.schedule.batch.update(centers, verified, odom_point(pose[:2], transform))
+         goal = self.schedule.decide(grid,cost,pose,transform,viewed,
+                                     now-owner.started,owner.p('duration'),veto,choices,fitted,probe_only=print_only)
+@@ -70,7 +72,7 @@
+         self.next_box_probe = owner.now()+3. if goal.get('r32_kind')=='wall_surface' else float('inf')
+         row = dict(elapsed=elapsed,phase=self.schedule.phase,reason=self.schedule.reason,
+                    available=self.schedule.counts,kind=goal.get('r32_kind','flow_or_marker'),
+-                   local_batch=goal.get('local_batch'), completed_box=goal.get('completed_box'),
++                   weak_wall=bool(goal.get('weak_wall')),local_batch=goal.get('local_batch'), completed_box=goal.get('completed_box'),
+                    batch_box=goal.get('batch_box'), marker_id=goal.get('approach_id',goal.get('focus_id')),
+                    surface=goal.get('surface_map'), fitted_face=goal.get('fitted_face'),
+                    standoff_m=goal.get('standoff_m'), clearance_m=goal.get('clearance_m'))
+--- center_wall.py
++++ center_wall.py
+@@ -11,6 +11,7 @@
+ from osp_mission.edge_policy import DIRECTIONS
+ from osp_mission.tracked_faces import TrackedFaces
+ from osp_mission.box_batch import BoxBatch
++from osp_mission.wall_bearings import WallBearings
+ 
+ 
+ def partly_mapped_objects(labels, boxes, floor, resolution):
+@@ -111,6 +112,9 @@
+         self.history = deque(maxlen=200)
+         self.tracked_faces = TrackedFaces()
+         self.batch = BoxBatch()
++        self.weak = WallBearings()
++        self.weak_known = []
++        self.weak_clock = 0.
+         self.counts = {}
+ 
+     def decide(self, grid, costmap, pose, transform, viewed, elapsed, duration, veto, choices=(), fitted=(), probe_only=False):
+@@ -218,8 +222,16 @@
+         deferred = [item for item in ordered if item[1]['completed_box']]
+         candidates['interior'] = [item for item in ordered if not item[1]['completed_box']]
+         fresh = [item for item in candidates['interior'] if not item[1]['previous_attempts']]
++        boxes = [item for item in fresh if item[1].get('batch_box') is not None]
+         if probe_only:
+-            return fresh[0][1] if fresh else None
++            preferred = boxes if getattr(self,'on_weak_route',False) else fresh
++            return preferred[0][1] if preferred else None
++        if not boxes:
++            goal = self.weak.choose(candidates['wall'],grid,transform,self.weak_known,
++                                    self.weak_clock,duration-elapsed)
++            if goal is not None:
++                self.phase,self.reason = 'wall','persistent_small_wall_candidate'
++                return goal
+         wall_reserve = min(.15*duration, 12. + 5.*self.counts['wall'])
+         frontier = None if fresh else discovery_frontier(choices, costmap, nav, veto)
+         if fresh or (frontier is not None and duration-elapsed > wall_reserve):
+@@ -258,6 +270,8 @@
+                 np.linalg.norm(anchor-p)<radius and math.cos(normal_yaw-a)>.70]
+ 
+     def dispatched(self, goal, elapsed):
++        self.on_weak_route = bool(goal.get('weak_wall'))
++        self.weak.dispatched(goal)
+         self.batch.dispatched(goal)
+         if 'surface_odom' in goal:
+             anchor = np.asarray(goal['surface_odom'])

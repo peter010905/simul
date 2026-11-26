@@ -1,0 +1,53 @@
+--- a/mission.py
++++ b/mission.py
+@@ -109,7 +109,9 @@
+             self.create_subscription(Odometry,'wheel/odom',self.on_wheel_odom,qos_profile_sensor_data)
+         self.serializer=self.create_client(SerializePoseGraph,'slam_toolbox/serialize_map')
+         self.stop=self.create_publisher(TwistStamped,'cmd_vel',10)
+-        self.known_obstacles=self.create_publisher(PointCloud2,'mission/known_obstacles',qos_profile_sensor_data) if self.p('undock') else None
++        # .58: always available; besides the dock it carries remembered bump contacts.
++        self.known_obstacles=self.create_publisher(PointCloud2,'mission/known_obstacles',qos_profile_sensor_data)
++        self.bump_points=[]
+         self.status=self.create_publisher(String,'mission/status',10)
+         qos=QoSProfile(depth=1,durability=DurabilityPolicy.TRANSIENT_LOCAL,reliability=ReliabilityPolicy.RELIABLE)
+         self.create_subscription(OccupancyGrid,'map',self.on_map,qos)
+@@ -291,6 +293,7 @@
+                 if guard is not None and self.state=='running' else False)
+         if bump and self.state=='running' and (rising or (guard is None and self.now()-self.last_bump>2.)):
+             self.collision_count+=1; self.last_bump=self.now()
++            self.remember_bump([d.header.frame_id for d in m.detections if d.type==1])
+             # Create 3 owns undocking. Other actions must not keep pushing or
+             # start a scan while still in contact with an obstacle.
+             if getattr(self,'marker_look',None) is not None:self.marker_look.clear('bump_contact')
+@@ -519,7 +522,31 @@
+             a=math.atan2(2*(q.w*q.z+q.x*q.y),1-2*(q.y*q.y+q.z*q.z))
+             return t.transform.translation.x,t.transform.translation.y,a
+         except Exception:return None
++    def remember_bump(self, frames):
++        """.58: obstacles below the LiDAR plane are seen only by the bumper. Remember the
++        contact (front arc 0.22 m from the base, +-0.10 m wide) in the map frame so the
++        costmaps keep it (topic mission/known_obstacles is already a marking source)."""
++        try:
++            tr=self.tf.lookup_transform(self.p('map_frame'),self.p('base_frame'),Time())
++        except Exception:
++            return
++        q=tr.transform.rotation
++        yaw=math.atan2(2*(q.w*q.z+q.x*q.y),1-2*(q.y*q.y+q.z*q.z))
++        x0,y0=tr.transform.translation.x,tr.transform.translation.y
++        side=0.
++        names=' '.join(frames)
++        if 'left' in names and 'right' not in names: side=math.radians(40)
++        elif 'right' in names and 'left' not in names: side=-math.radians(40)
++        a=yaw+side
++        for lateral in (-.10,0.,.10):
++            self.bump_points.append((x0+.22*math.cos(a)-lateral*math.sin(a),
++                                     y0+.22*math.sin(a)+lateral*math.cos(a),.05))
++        self.bump_points=self.bump_points[-90:]
+     def publish_known_obstacles(self):
++        if self.bump_points:
++            header=Header(frame_id=self.p('map_frame'),stamp=self.get_clock().now().to_msg())
++            self.known_obstacles.publish(point_cloud2.create_cloud_xyz32(header,self.bump_points))
++            return
+         if self.known_dock_pose(self.p('map_frame')) is None:return
+         header=Header(frame_id='std_dock_link',stamp=self.get_clock().now().to_msg())
+         self.known_obstacles.publish(point_cloud2.create_cloud_xyz32(header,dock_geometry.points()))

@@ -1,0 +1,84 @@
+--- a/src/osp_mission/osp_mission/wall_lap.py
++++ b/src/osp_mission/osp_mission/wall_lap.py
+@@ -55,6 +55,8 @@
+         self.missing_since=None
+         self.last_support=0.
+         self.chair_cells=0
++        self.anchor_was_unknown=False
++        self.candidate_count=0
+         self.visited=[]
+ 
+     def finish(self, reason):
+@@ -112,8 +114,7 @@
+         if boundary is None:
+             if self.missing_since is None:
+                 self.missing_since=elapsed
+-            if elapsed-self.missing_since>=12.:
+-                self.finish('no_connected_measured_boundary')
++            self.reason='waiting_for_measured_wall_entry'
+             return None
+         points,floor,supported,self.chair_cells=boundary
+         self.last_support=float(supported.mean())
+@@ -123,12 +124,26 @@
+         arc=np.r_[0.,np.cumsum(lengths[:-1])]
+         perimeter=float(lengths.sum())
+         self.perimeter_m=perimeter
+-        near=int(np.argmin(np.linalg.norm(world-pose[:2],axis=1)))
++        nearest=int(np.argmin(np.linalg.norm(world-pose[:2],axis=1)))
++        self.anchor_was_unknown=not bool(supported[nearest])
++        measured=np.flatnonzero(supported)
++        if not len(measured):
++            self.reason='waiting_for_measured_wall_entry'
++            return None
++        # An unfinished map has nearby unknown edges. They cannot anchor
++        # progress along an actually observed wall several contour-metres away.
++        near=int(measured[np.argmin(np.linalg.norm(world[measured]-pose[:2],axis=1))])
++        self.candidate_count=0
+         step=max(1,round(.15/grid.resolution))
+         best=None
+         for i in range(0,len(points),step):
+             advance=float((arc[i]-arc[near]) % perimeter)
+-            if not supported[i] or not .8 <= advance <= 4.0:
++            if not supported[i]:
++                continue
++            entering=self.entry is None
++            if not entering and not .8 <= advance <= 4.0:
++                continue
++            if entering and np.linalg.norm(world[i]-pose[:2]) > 4.:
+                 continue
+             tangent=world[(i+4)%len(world)]-world[(i-4)%len(world)]
+             norm=np.linalg.norm(tangent)
+@@ -158,19 +173,29 @@
+                 if veto(goal):
+                     continue
+                 repeat=any(math.dist(goal['lap_pose_odom'],p)<.8 for p in self.visited[-8:])
+-                score=abs(advance-self.spacing)+.35*walk+.4*abs(stand-1.2)+2.*repeat
++                self.candidate_count+=1
++                if entering:
++                    # Reach a measured wall safely first. An endpoint also
++                    # advances along it when it offers a short connected route.
++                    forward=float((point-np.asarray(pose[:2]))@tangent)
++                    score=walk+.5*abs(forward-1.2)+.4*abs(stand-1.2)+2.*repeat
++                else:
++                    score=abs(advance-self.spacing)+.35*walk+.4*abs(stand-1.2)+2.*repeat
+                 if best is None or score<best[0]:
+                     best=score,goal
+         if best is not None:
+             self.missing_since=None
++            self.reason='entering_measured_wall' if self.entry is None else 'following_measured_wall'
++            best[1]['wall_entry']=self.entry is None
+             return best[1]
+         if self.missing_since is None:
+             self.missing_since=elapsed
+-        elif elapsed-self.missing_since>=12.:
+-            self.finish('no_safe_perimeter_goal')
++        self.reason='waiting_for_safe_wall_entry' if self.entry is None else 'waiting_for_safe_wall_continuation'
+         return None
+ 
+     def report(self):
+         return dict(phase=self.phase,reason=self.reason,path_m=round(self.path,2),
+                     confirmed_stops=len(self.normals),turn_rad=round(self.turn,2),
+-                    boundary_support=round(self.last_support,3),chair_cells=self.chair_cells)
++                    boundary_support=round(self.last_support,3),chair_cells=self.chair_cells,
++                    entered_wall=self.entry is not None,nearest_edge_unmeasured=self.anchor_was_unknown,
++                    safe_wall_candidates=self.candidate_count)

@@ -1,0 +1,150 @@
+--- osp_mission/mission.py
++++ osp_mission/mission.py
+@@ -48,6 +48,7 @@
+ from osp_mission.surface_sweep import SurfaceSweep
+ from osp_mission.wall_route import penalize_routes
+ from osp_mission.contact_inspection import ContactInspection
++from osp_mission.stall_recovery import StallPause
+ from osp_mission.transit_control import TransitFlow
+ from osp_mission.exploration_memory import ExplorationMemory
+ from osp_mission.near_pass_runtime import NearPassRuntime
+@@ -59,7 +60,7 @@
+         super().__init__('mission')
+         for k,v in {'duration':600.,'output_dir':str(Path.home()/'simul/results'),
+                     'map_frame':'map','base_frame':'base_link','odom_frame':'odom','scan_topic':'scan',
+-                    'undock':False,'policy_file':'','planner':'legacy','require_drive_controller':False,'planner_start_ignore_radius_m':0.,'navigation_flow_enabled':True,'allow_mid_route_wall_inspection':False}.items(): self.declare_parameter(k,v)
++                    'undock':False,'policy_file':'','planner':'legacy','require_drive_controller':False,'planner_start_ignore_radius_m':0.,'navigation_flow_enabled':True,'allow_mid_route_wall_inspection':False,'stall_recovery_enabled':False}.items(): self.declare_parameter(k,v)
+         self.p=lambda k:self.get_parameter(k).value
+         self.tf=Buffer(); self.listener=TransformListener(self.tf,self)
+         self.inspect=self.p('planner')=='inspection'
+@@ -81,6 +82,8 @@
+         self.near_pass=NearPassRuntime(self)
+         self.wall_look=SurfaceSweep()
+         self.contact_inspection=ContactInspection()
++        self.motor_stall = StallPause() if self.p("stall_recovery_enabled") else None
++        self.stall_velocity = None
+         self.visual_ids = set()
+         self.readable_cue = None
+         self.readable_turn = False
+@@ -260,7 +263,43 @@
+             self.readable_turn = True
+         return True
+
++    def hold_motor_stall(self):
++        guard = getattr(self, 'motor_stall', None)
++        if guard is None or not guard.paused:
++            return False
++        self.zero()
++        if self.goal_handle or self.pending:
++            self.cancel_action('motor_stall')
++            return True
++        velocity = self.stall_velocity
++        stationary = (velocity is not None and self.sensor_fresh(self.wheel_stamp)
++                      and all(math.isfinite(v) for v in velocity)
++                      and abs(velocity[0]) < .003 and abs(velocity[1]) < .01)
++        if self.ready() and guard.resume(self.now(), stationary):
++            self.recovery_pending = True
++            self.resume_action = None
++            self.scan_after = False
++            self.get_logger().warning('Motor stall cleared with fresh hazards and stationary odometry; checking safe retreat')
++        return True
++
+     def on_hazard(self,m):
++        stall = getattr(self, 'motor_stall', None)
++        if stall is not None and self.state == 'running':
++            was_paused = stall.paused
++            types = [d.type for d in m.detections]
++            if set(types) & {2, 3, 4} or self.sensor_fresh(Time.from_msg(m.header.stamp).nanoseconds / 1e9):
++                stall.update(types, self.now())
++            if stall.paused:
++                self.zero()
++                self.resume_action = None
++                self.scan_after = False
++                if not was_paused:
++                    self.marker_look.clear('motor_stall')
++                    self.face_look.clear('motor_stall')
++                    self.near_pass.abort('motor_stall')
++                    self.get_logger().warning('Drive hazard: canceling motion and waiting for a fresh clear signal')
++                if self.goal_handle or self.pending:
++                    self.cancel_action('motor_stall')
+         bump=any(d.type==1 for d in m.detections)
+         guard=getattr(self,'contact_inspection',None)
+         rising=(guard.hazard([d.header.frame_id for d in m.detections if d.type==1],self.now())
+@@ -281,6 +320,8 @@
+             self.zero()
+     def on_map(self,m): self.map=m
+     def on_wheel_odom(self,m):
++        if getattr(self, 'motor_stall', None) is not None:
++            self.stall_velocity = (m.twist.twist.linear.x, m.twist.twist.angular.z)
+         self.wheel_stamp=Time.from_msg(m.header.stamp).nanoseconds/1e9
+     def on_scan(self,m):
+         self.last_scan=time.monotonic()
+@@ -579,6 +620,14 @@
+             self.excluded.append(self.destination); self.scan_after=result.status==4
+             if result.status!=4 and getattr(self,'marker_look',None) is not None:self.marker_look.clear('navigation_failed')
+             if result.status!=4 and getattr(self,'face_look',None) is not None:self.face_look.clear('navigation_failed')
++            if result.status != 4 and (result.status == 6 or getattr(self, 'cancel_reason', '')
++                                      in ('navigation_stalled', 'action_timeout', 'motor_stall')):
++                self.recovery_pending = True
++                self.resume_action = None
++                self.scan_after = False
++                self.get_logger().warning('Navigation failed; checking scan-verified retreat before replanning')
++        elif self.kind=='spin' and getattr(self, 'cancel_reason', '') == 'motor_stall':
++            self.recovery_pending=True; self.scan_after=False
+         elif self.kind=='spin' and result.status!=4:
+             self.spin_blocked_until=self.now()+30.; self.scan_after=False; self.recovery_pending=True
+             self.get_logger().warning('Spin blocked; suppressing retries for 30 s and checking a safe retreat')
+@@ -636,7 +685,7 @@
+         report={'face_directed_look':self.face_look.report(),'marker_directed_look':self.marker_look.report(),'graph_landmark_update':self.graph_landmark_update,'near_pass_inspection':self.near_pass.policy.report(),'marker_focus_profile':dict(
+                     desired_edge_pixels=getattr(getattr(self,'marker_focus',None),'desired_edge_pixels',None),
+                     uncertain_view_penalty_s=getattr(getattr(self,'marker_focus',None),'uncertain_view_penalty_s',None)),
+-                'approach':self.approach.report(),'reason':self.reason,'elapsed_seconds':self.elapsed,'targets':len(self.targets),'visual_ids':sorted(getattr(self,'visual_ids',())),'collisions':self.collision_count,
++                'approach':self.approach.report(),'reason':self.reason,'elapsed_seconds':self.elapsed,'targets':len(self.targets),'visual_ids':sorted(getattr(self,'visual_ids',())),'motor_stall_recovery':self.motor_stall.report() if getattr(self,'motor_stall',None) else {},'collisions':self.collision_count,
+                 'files':{p:(self.output/p).exists() for p in files},'map_saver_exit':self.save_proc.poll(),
+                 'undock':self.undock_diagnostics,'last_readiness_reason':self.last_readiness_reason,
+                 'sensor_interruptions':self.sensor_interruptions,'camera_diagnostics':self.camera_diagnostics}
+@@ -647,7 +696,7 @@
+     def tick(self):
+         if getattr(self,'nav2_state',None) is not None:self.nav2_state.poll()
+         if getattr(self,'drive_state',None) is not None:self.drive_state.poll()
+-        self.status.publish(String(data=json.dumps({'state':self.state,'approached_ids':self.approach.report()['verified_ids'] if getattr(self,'approach',None) is not None else [],'targets':len(self.targets),'visual_ids':sorted(getattr(self,'visual_ids',())),'collisions':self.collision_count,
++        self.status.publish(String(data=json.dumps({'state':self.state,'approached_ids':self.approach.report()['verified_ids'] if getattr(self,'approach',None) is not None else [],'targets':len(self.targets),'visual_ids':sorted(getattr(self,'visual_ids',())),'motor_stall_recovery':self.motor_stall.report() if getattr(self,'motor_stall',None) else {},'collisions':self.collision_count,
+             **outcome_status(self),
+             'active_action':getattr(self,'kind','') if self.goal_handle or self.pending else '',
+             'readiness_reason':getattr(self,'last_readiness_reason',''),
+@@ -685,6 +734,7 @@
+         if getattr(self,'known_obstacles',None) is not None:self.publish_known_obstacles()
+         if getattr(self,'approach',None) is not None and self.approach.complete(self.targets): self.finish('all_targets_found'); return
+         if self.now()-self.started>=self.p('duration'): self.finish('timeout'); return
++        if getattr(self, 'motor_stall', None) is not None and self.hold_motor_stall():return
+         # Create 3 owns the undock motion and its hazard checks. Its action does
+         # not require camera coverage, SLAM or Nav2 readiness to remain active.
+         if getattr(self,'kind','')=='undock' and (self.goal_handle or self.pending):
+@@ -779,7 +829,9 @@
+             self.recovery_pending=False
+             if self.rear_clear and self.backup.server_is_ready() and self.now()-self.last_recovery>=15. and (flow is None or flow.backup_allowed(self.now())):
+                 self.last_recovery=self.now(); goal=BackUp.Goal(); goal.target.x=.20; goal.speed=.08; goal.time_allowance.sec=8
++                self.get_logger().warning('Safe retreat: 0.20 m at 0.08 m/s, then select a new goal')
+                 self.send(self.backup,goal,'backup'); return
++            self.get_logger().warning(f'Retreat deferred: rear_clear={self.rear_clear}, server_ready={self.backup.server_is_ready()}, cooldown_s={max(0., 15.-(self.now()-self.last_recovery)):.1f}')
+         if self.scan_after and self.now()<self.spin_blocked_until: self.scan_after=False
+         if self.scan_after:
+             self.scan_after=False; goal=Spin.Goal()
+--- launch/robot.launch.py
++++ launch/robot.launch.py
+@@ -75,6 +75,7 @@
+             'planner_start_ignore_radius_m':float(value('planner_start_ignore_radius_m')),
+             'navigation_flow_enabled':value('navigation_flow_enabled')=='true',
+             'allow_mid_route_wall_inspection':value('allow_mid_route_wall_inspection')=='true',
++            'stall_recovery_enabled':value('stall_recovery_enabled')=='true',
+             'base_frame':value('base_frame'),'scan_topic':planning_scan,'policy_file':value('policy_file'),'planner':value('planner')}])]
+
+     if guarded:
+@@ -99,6 +100,6 @@
+         'resume_pose':'0,0,0','resolution':'0.05','base_frame':'base_link','scan_topic':'scan',
+         'rgb_topic':'oakd/rgb/preview/image_raw','depth_topic':'unused_depth',
+         'camera_info_topic':'oakd/rgb/preview/camera_info','duration':'600.0',
+-        'policy_file':'','planner':'legacy','nav2_params':'','output_dir':str(Path.home()/'simul/results'),'undock':'false','rviz':'true','require_drive_controller':'false','planner_start_ignore_radius_m':'0.0','body_scan_filter':'true','navigation_flow_enabled':'true','allow_mid_route_wall_inspection':'false','forward_045':'false'}
++        'policy_file':'','planner':'legacy','nav2_params':'','output_dir':str(Path.home()/'simul/results'),'undock':'false','rviz':'true','require_drive_controller':'false','planner_start_ignore_radius_m':'0.0','body_scan_filter':'true','navigation_flow_enabled':'true','allow_mid_route_wall_inspection':'false','forward_045':'false','stall_recovery_enabled':'false'}
+     choices={'slam_mode':['async','sync'],'session':['new','continue','localization']}
+     return LaunchDescription([DeclareLaunchArgument(k,default_value=v,**({'choices':choices[k]} if k in choices else {})) for k,v in defaults.items()]+[OpaqueFunction(function=setup)])

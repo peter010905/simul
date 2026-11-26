@@ -1,0 +1,70 @@
+--- a/experiments/2026-11-19_random_track/run.sh
++++ b/experiments/2026-11-19_random_track/run.sh
+@@ -6,9 +6,38 @@
+ mode="${1:-pair}"
+-case "$mode" in flow|mixed|center|adaptive|r32|pair|compare-mixed) ;; *) echo 'Choose pair, compare-mixed, r32, mixed, center, adaptive or flow' >&2; exit 2 ;; esac
++case "$mode" in flow|mixed|center|adaptive|shared|r32|pair|compare-mixed) ;; *) echo 'Choose pair, compare-mixed, r32, mixed, center, adaptive, shared or flow' >&2; exit 2 ;; esac
+ mkdir -p "$runs/.layouts"
++# Pair trials reserve both slots. A single shared-face run can use the second
++# simulation domain when another observer is positively identified on 174.
++domain=174
+ exec 9>"$runs/.domain.lock"
++exec 8>"$runs/.second-domain.lock"
+ if [[ "$mode" == compare-mixed ]]; then
+     flock 9
++    flock 8
++elif flock -n 9; then
++    if [[ "$mode" == pair ]]; then
++        flock -n 8 || { echo 'A track trial is already running' >&2; exit 75; }
++    fi
++elif [[ "$mode" == shared ]] && flock -n 8 && python3 - <<'PYTHON'
++from pathlib import Path
++import sys
++
++domains = []
++for proc in Path('/proc').glob('[0-9]*'):
++    try:
++        command = (proc/'cmdline').read_bytes().split(bytes([0]))
++        if not any(arg.endswith((b'/measure_video.py', b'/measure.py')) for arg in command):
++            continue
++        env = dict(pair.split(b'=',1) for pair in (proc/'environ').read_bytes().split(bytes([0])) if b'=' in pair)
++        if env.get(b'BENCH_RUN'):
++            domains.append((env.get(b'ROS_DOMAIN_ID'),env.get(b'ROS_LOCALHOST_ONLY')))
++    except (PermissionError, FileNotFoundError, ProcessLookupError):
++        continue
++sys.exit(0 if domains == [(b'174',b'1')] else 1)
++PYTHON
++then
++    domain=175
+ else
+-    flock -n 9 || { echo 'A track trial is already running' >&2; exit 75; }
++    echo 'A track trial is already running' >&2
++    exit 75
+ fi
+@@ -38,2 +67,6 @@
+         fi
++    elif [[ "$BENCH_POLICY" == shared ]]; then
++        source "$HOME/flow_v3_r32_shared_face_final_ws/install/setup.bash"
++        python3 -c 'from ament_index_python.packages import get_package_share_directory as share; from osp_mission import center_wall; from osp_mission.tracked_faces import TrackedFaces; assert "/flow_v3_r32_shared_face_final_ws/" in share("osp_mission") and center_wall.TrackedFaces is TrackedFaces'
++        echo 'flow_v3_r32_shared_face_final_ws' > "$BENCH_RUN/policy_revision.txt"
+     elif [[ "$BENCH_POLICY" == adaptive ]]; then
+@@ -93,3 +126,3 @@
+ else
+-    drive "$mode" 174
++    drive "$mode" "$domain"
+ fi
+--- a/experiments/2026-11-19_corridor_box/compare_board.py
++++ b/experiments/2026-11-19_corridor_box/compare_board.py
+@@ -178,3 +178,3 @@
+                 return self.send(400, {'error': '잘못된 정책'})
+-            if policy not in ('flow','mixed','center','adaptive','r32','pair'):
++            if policy not in ('flow','mixed','center','adaptive','shared','r32','pair'):
+                 return self.send(400, {'error': '알 수 없는 정책'})
+--- a/experiments/2026-11-19_corridor_box/adapt_board_ui.py
++++ b/experiments/2026-11-19_corridor_box/adapt_board_ui.py
+@@ -34,2 +34,5 @@
+         app = app.replace(anchor, anchor + '<option value="adaptive">Mixed · 공간 맞춤 면 관찰</option>')
++    if '<option value="shared">' not in app:
++        anchor = '<option value="adaptive">Mixed · 공간 맞춤 면 관찰</option>'
++        app = app.replace(anchor, anchor + '<option value="shared">Mixed · 상자 면 관찰 이력 공유</option>')
+     return app

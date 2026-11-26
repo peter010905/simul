@@ -1,0 +1,207 @@
+{
+  "scope": "Matched saved SLAM, costmaps and processed CameraInfo. Historically selected box centers seeded. Recorded small-wall bearings and native ID bearings replayed. Other tracking and visit history start empty. Continuation neutralized to compare the scheduler. No closed-loop driving or Nav2 action verification.",
+  "checks": [
+    {
+      "snapshot": "0007.npz",
+      "elapsed": 63.7,
+      "recorded_box": null,
+      "historical_reason": "region_resume",
+      "proposed_kind": "interior_surface",
+      "proposed_reason": "regional_camera_gain_per_route",
+      "proposed_xy": [
+        -49.60563984741012,
+        16.557016751284362
+      ],
+      "proposed_box": null,
+      "camera_calibration_recorded": true,
+      "regenerated_views": 0,
+      "local_cost_used": true,
+      "transform_source": "paired_audit_and_odom",
+      "tour_faces": 0,
+      "tour_walk_m": null
+    },
+    {
+      "snapshot": "0026.npz",
+      "elapsed": 217.35,
+      "recorded_box": null,
+      "historical_reason": "unobserved_wall_reserved",
+      "proposed_kind": "wall_surface",
+      "proposed_reason": "unobserved_wall_reserved",
+      "proposed_xy": [
+        -54.09411477181486,
+        23.262297217586966
+      ],
+      "proposed_box": null,
+      "camera_calibration_recorded": true,
+      "regenerated_views": 0,
+      "local_cost_used": true,
+      "transform_source": "paired_audit_and_odom",
+      "tour_faces": 0,
+      "tour_walk_m": null
+    },
+    {
+      "snapshot": "0040.npz",
+      "elapsed": 338.93,
+      "recorded_box": null,
+      "historical_reason": "regional_camera_gain_per_route",
+      "proposed_kind": "wall_surface",
+      "proposed_reason": "unobserved_wall_reserved",
+      "proposed_xy": [
+        -54.87614179590122,
+        23.91359508968357
+      ],
+      "proposed_box": null,
+      "camera_calibration_recorded": true,
+      "regenerated_views": 0,
+      "local_cost_used": true,
+      "transform_source": "paired_audit_and_odom",
+      "tour_faces": 0,
+      "tour_walk_m": null
+    },
+    {
+      "snapshot": "0042.npz",
+      "elapsed": 347.9,
+      "recorded_box": [
+        -57.19877652712359,
+        22.698720518804745
+      ],
+      "historical_reason": "regional_camera_gain_per_route",
+      "proposed_kind": "wall_surface",
+      "proposed_reason": "unobserved_wall_reserved",
+      "proposed_xy": [
+        -54.6514570758488,
+        23.73609016254989
+      ],
+      "proposed_box": null,
+      "camera_calibration_recorded": true,
+      "regenerated_views": 9,
+      "local_cost_used": true,
+      "transform_source": "paired_audit_and_odom",
+      "tour_faces": 2,
+      "tour_walk_m": 4.4
+    },
+    {
+      "snapshot": "0047.npz",
+      "elapsed": 403.4,
+      "recorded_box": null,
+      "historical_reason": "regional_camera_gain_per_route",
+      "proposed_kind": "wall_surface",
+      "proposed_reason": "unobserved_wall_reserved",
+      "proposed_xy": [
+        -53.89718029435776,
+        22.573015306389145
+      ],
+      "proposed_box": null,
+      "camera_calibration_recorded": true,
+      "regenerated_views": 0,
+      "local_cost_used": true,
+      "transform_source": "paired_audit_and_odom",
+      "tour_faces": 0,
+      "tour_walk_m": null
+    },
+    {
+      "snapshot": "0052.npz",
+      "elapsed": 454.43,
+      "recorded_box": [
+        -54.98667780763528,
+        19.603323965268654
+      ],
+      "historical_reason": "regional_camera_gain_per_route",
+      "proposed_kind": "wall_surface",
+      "proposed_reason": "unobserved_wall_reserved",
+      "proposed_xy": [
+        -53.83975541149165,
+        22.730059432886247
+      ],
+      "proposed_box": null,
+      "camera_calibration_recorded": true,
+      "regenerated_views": 8,
+      "local_cost_used": true,
+      "transform_source": "paired_audit_and_odom",
+      "tour_faces": 4,
+      "tour_walk_m": 4.4
+    },
+    {
+      "snapshot": "0054.npz",
+      "elapsed": 462.4,
+      "recorded_box": [
+        -54.98667780763528,
+        19.603323965268654
+      ],
+      "historical_reason": "continue_local_surface_group",
+      "proposed_kind": "wall_surface",
+      "proposed_reason": "unobserved_wall_reserved",
+      "proposed_xy": [
+        -54.092551209860595,
+        22.595612779143977
+      ],
+      "proposed_box": null,
+      "camera_calibration_recorded": true,
+      "regenerated_views": 7,
+      "local_cost_used": true,
+      "transform_source": "paired_audit_and_odom",
+      "tour_faces": 3,
+      "tour_walk_m": 3.45
+    },
+    {
+      "snapshot": "0056.npz",
+      "elapsed": 478.48,
+      "recorded_box": [
+        -54.98667780763528,
+        19.603323965268654
+      ],
+      "historical_reason": "continue_local_surface_group",
+      "proposed_kind": "wall_surface",
+      "proposed_reason": "unobserved_wall_reserved",
+      "proposed_xy": [
+        -53.5281099459563,
+        22.038844955131257
+      ],
+      "proposed_box": null,
+      "camera_calibration_recorded": true,
+      "regenerated_views": 10,
+      "local_cost_used": true,
+      "transform_source": "paired_audit_and_odom",
+      "tour_faces": 3,
+      "tour_walk_m": 3.0
+    },
+    {
+      "snapshot": "0059.npz",
+      "elapsed": 501.92,
+      "recorded_box": null,
+      "historical_reason": "persistent_small_wall_candidate",
+      "proposed_kind": "wall_surface",
+      "proposed_reason": "unobserved_wall_reserved",
+      "proposed_xy": [
+        -52.96723937822199,
+        22.337694576453522
+      ],
+      "proposed_box": null,
+      "camera_calibration_recorded": true,
+      "regenerated_views": 0,
+      "local_cost_used": true,
+      "transform_source": "paired_audit_and_odom",
+      "tour_faces": 0,
+      "tour_walk_m": null
+    },
+    {
+      "snapshot": "0060.npz",
+      "elapsed": 528.45,
+      "recorded_box": null,
+      "historical_reason": "regional_camera_gain_per_route",
+      "proposed_kind": "wall_surface",
+      "proposed_reason": "unobserved_wall_reserved",
+      "proposed_xy": [
+        -58.22560106560192,
+        15.1578044584001
+      ],
+      "proposed_box": null,
+      "camera_calibration_recorded": true,
+      "regenerated_views": 0,
+      "local_cost_used": true,
+      "transform_source": "paired_audit_and_odom",
+      "tour_faces": 0,
+      "tour_walk_m": null
+    }
+  ]
+}

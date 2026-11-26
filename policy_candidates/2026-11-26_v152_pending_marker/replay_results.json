@@ -1,0 +1,83 @@
+{
+  "run": "20261125T171523-c383cb3a86",
+  "source": "physical rosbag JPEG preview and saved robot planning snapshot",
+  "comparison": "same frames and map; counterfactual planner timing; no new robot drive",
+  "baseline": {
+    "frames": 2597,
+    "shape": [
+      250,
+      250
+    ],
+    "anonymous_small_frames": 10,
+    "decoded_below_10": {},
+    "decoded_at_least_10": {
+      "42": 19
+    },
+    "candidate_id": 42,
+    "candidate_px": 15.033296585083008,
+    "candidate_capture_s": 178.7713963985443,
+    "snapshot": "0016.npz",
+    "focus": [
+      {
+        "age_s": 0.15,
+        "id": null,
+        "travel_m": null
+      },
+      {
+        "age_s": 0.5,
+        "id": null,
+        "travel_m": null
+      },
+      {
+        "age_s": 0.99,
+        "id": null,
+        "travel_m": null
+      },
+      {
+        "age_s": 1.2,
+        "id": 42,
+        "travel_m": 1.225
+      }
+    ]
+  },
+  "candidate": {
+    "frames": 2597,
+    "shape": [
+      250,
+      250
+    ],
+    "anonymous_small_frames": 10,
+    "decoded_below_10": {
+      "1023": 1
+    },
+    "decoded_at_least_10": {
+      "42": 19
+    },
+    "candidate_id": 42,
+    "candidate_px": 15.033296585083008,
+    "candidate_capture_s": 178.7713963985443,
+    "snapshot": "0016.npz",
+    "focus": [
+      {
+        "age_s": 0.15,
+        "id": 42,
+        "travel_m": 1.225
+      },
+      {
+        "age_s": 0.5,
+        "id": 42,
+        "travel_m": 1.225
+      },
+      {
+        "age_s": 0.99,
+        "id": 42,
+        "travel_m": 1.225
+      },
+      {
+        "age_s": 1.2,
+        "id": 42,
+        "travel_m": 1.225
+      }
+    ]
+  }
+}

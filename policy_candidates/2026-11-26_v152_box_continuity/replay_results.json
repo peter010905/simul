@@ -1,0 +1,42 @@
+{
+  "run": "20261125T174857-2f02f6e167",
+  "scope": "historical interruption timing and ledger counterfactual; recorded trajectory unchanged; resume regeneration tested on synthetic safe grid",
+  "historical_goals": 65,
+  "historical_white_goals": 34,
+  "interior_white_interruptions_checked": 3,
+  "checks": [
+    {
+      "face_selected_s": 412.887,
+      "interrupted_s": 422.611,
+      "next_historical_reason": "white_leg_candidate",
+      "white_interrupt_allowed": false,
+      "stronger_pattern_interrupt_allowed": true,
+      "interrupted_history_count": 0,
+      "resume_available": true
+    },
+    {
+      "face_selected_s": 462.409,
+      "interrupted_s": 471.583,
+      "next_historical_reason": "white_leg_candidate",
+      "white_interrupt_allowed": false,
+      "stronger_pattern_interrupt_allowed": true,
+      "interrupted_history_count": 0,
+      "resume_available": true
+    },
+    {
+      "face_selected_s": 478.49,
+      "interrupted_s": 492.116,
+      "next_historical_reason": "white_leg_candidate",
+      "white_interrupt_allowed": false,
+      "stronger_pattern_interrupt_allowed": true,
+      "interrupted_history_count": 0,
+      "resume_available": true
+    }
+  ],
+  "synthetic_64_legs": {
+    "faces": 4,
+    "walk_m": 33.5,
+    "processing_ms_median": 10.07417499931762,
+    "observed_motion": false
+  }
+}

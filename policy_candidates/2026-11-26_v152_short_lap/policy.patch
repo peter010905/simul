@@ -1,0 +1,13 @@
+--- a/center_wall.py
++++ b/center_wall.py
+@@ -135,7 +135,9 @@
+         self.work = FaceWork()
+         self.interior_priority = InteriorPriority()
+         # .51: about four minutes for one lap (the .50 Gazebo lap needed 3.2-3.3 min).
+-        self.wall_lap = WallLap(budget_fraction=.40, maximum_seconds=240.)
++        # .57: 150 s lap. With the wall look (.55/.56) wall prints were registered at
++        # 88-160 s in most Gazebo runs while laps ran to 240 s, delaying box search.
++        self.wall_lap = WallLap(budget_fraction=.25, maximum_seconds=150.)
+         self.chair_surface_contains = lambda point: False
+         self.region_transit = RegionTransit()
+         self.exploration_routes = None

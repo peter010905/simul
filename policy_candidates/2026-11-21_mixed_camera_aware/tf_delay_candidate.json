@@ -1,0 +1,40 @@
+{
+  "delay_s": 0.12,
+  "duration_wall_s": 4.007727847994829,
+  "registered_ids": [
+    42
+  ],
+  "accepted": 19,
+  "frames_processed": 38,
+  "diagnostics": {
+    "frames": 38,
+    "decoded": {
+      "42": 38
+    },
+    "small": 0,
+    "border": 0,
+    "no_range": 0,
+    "horizontal": 0,
+    "inconsistent": 0,
+    "accepted": 19,
+    "errors": 0,
+    "last_error": ""
+  },
+  "queue": {
+    "received": 39,
+    "replaced": 0,
+    "expired": 0,
+    "future": 0,
+    "duplicate": 0,
+    "tf_waits": 148,
+    "processed": 38,
+    "clock_resets": 0
+  },
+  "timing": {
+    "samples": 38,
+    "capture_age_p95_s": 0.19121074676513672,
+    "callback_wall_p95_s": 0.014091976998315658,
+    "processed_fps_ros": 9.948732144330462
+  },
+  "scope": "Synthetic ArUco/depth/TF ROS integration, not Gazebo navigation or physical hardware"
+}

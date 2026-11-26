@@ -1,0 +1,82 @@
+--- a/osp_mission/followthrough.py
++++ b/osp_mission/followthrough.py
+@@ -6,4 +6,5 @@
+ 
+ from osp_mission.box_views import local_boxes, odom_point
++from osp_mission.enclosed_surface import continuation
+ 
+ 
+@@ -31,5 +32,5 @@
+ 
+ 
+-def isolated_fit(grid, pose, anchor, known_center):
++def nearby_fits(grid, pose, anchor):
+     choices=[]
+     for center,faces in local_boxes(grid,pose):
+@@ -38,4 +39,10 @@
+         if distance<=radius+max(.15,3*grid.resolution):
+             choices.append((distance,center,faces))
++    return choices
++
++
++def isolated_fit(grid, pose, anchor, known_center, choices=None):
++    if choices is None:
++        choices=nearby_fits(grid,pose,anchor)
+     if len(choices)!=1:
+         return None
+@@ -107,5 +114,8 @@
+             return np.array([math.cos(a)*dx+math.sin(a)*dy,-math.sin(a)*dx+math.cos(a)*dy])
+         anchor=mapped(seed['anchor'])
+-        box=isolated_fit(grid,pose,anchor,mapped(seed['center']) if seed['center'] is not None else None)
++        choices=nearby_fits(grid,pose,anchor)
++        if not choices:
++            return continuation(self,grid,pose,transform,anchor,eligible['interior'],elapsed,budget,done,active_center)
++        box=isolated_fit(grid,pose,anchor,mapped(seed['center']) if seed['center'] is not None else None,choices)
+         if box is None:
+             return None
+--- a/osp_mission/marker_approach.py
++++ b/osp_mission/marker_approach.py
+@@ -15,3 +15,6 @@
+ 
+-    def __init__(self):
++    def __init__(self, expected_marker_count=3):
++        if type(expected_marker_count) is not int or not 0 <= expected_marker_count <= 1024:
++            raise ValueError('expected_marker_count must be 0 (undisclosed) or a valid roster size')
++        self.expected_marker_count = expected_marker_count
+         self.hints = {}
+@@ -106,6 +109,7 @@
+     def complete(self, targets):
+-        return len(targets) == 3 and all(self.verified(i, point) for i, point in targets.items())
++        return (self.expected_marker_count > 0 and len(targets) == self.expected_marker_count
++                and all(self.verified(i, point) for i, point in targets.items()))
+ 
+     def report(self):
+-        return dict(required_actual_radius_m=1.5, operating_radius_m=self.radius,
++        return dict(expected_marker_count=self.expected_marker_count, required_actual_radius_m=1.5, operating_radius_m=self.radius,
+                     near_confirmations=self.near,
+--- a/osp_mission/mission.py
++++ b/osp_mission/mission.py
+@@ -59,3 +59,3 @@
+         super().__init__('mission')
+-        for k,v in {'duration':600.,'output_dir':str(Path.home()/'simul/results'),
++        for k,v in {'duration':600.,'expected_marker_count':3,'output_dir':str(Path.home()/'simul/results'),
+                     'map_frame':'map','base_frame':'base_link','odom_frame':'odom','scan_topic':'scan',
+@@ -120,3 +120,3 @@
+         self.create_service(Trigger,'mission/stop',self.abort)
+-        self.approach=MarkerApproach()
++        self.approach=MarkerApproach(self.p('expected_marker_count'))
+         self.graph_observations=[]
+--- a/launch/robot.launch.py
++++ b/launch/robot.launch.py
+@@ -6,2 +6,3 @@
+ from launch import LaunchDescription
++from launch.substitutions import EnvironmentVariable
+ from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, OpaqueFunction, GroupAction, RegisterEventHandler, LogInfo, SetEnvironmentVariable
+@@ -72,2 +73,3 @@
+         Node(package='osp_mission',executable='mission',output='screen',parameters=[{'use_sim_time':sim,
++            'expected_marker_count':int(value('expected_marker_count')),
+             'duration':float(value('duration')),'output_dir':value('output_dir'),'undock':value('undock')=='true',
+@@ -101,2 +103,3 @@
+         'camera_info_topic':'oakd/rgb/preview/camera_info','duration':'600.0',
++        'expected_marker_count':EnvironmentVariable('OSP_PUBLIC_MARKER_COUNT',default_value='3'),
+         'policy_file':'','planner':'legacy','nav2_params':'','output_dir':str(Path.home()/'simul/results'),'undock':'false','rviz':'true','require_drive_controller':'false','planner_start_ignore_radius_m':'0.0','body_scan_filter':'true','navigation_flow_enabled':'true','allow_mid_route_wall_inspection':'false','forward_045':'false'}

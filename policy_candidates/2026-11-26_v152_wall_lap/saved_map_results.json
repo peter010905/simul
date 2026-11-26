@@ -1,0 +1,309 @@
+{
+  "scope": "Matched saved SLAM, costmaps and processed CameraInfo. Per-snapshot fresh policy state; lap progress is not carried across snapshots. Historically selected box centers seeded. Recorded small-wall bearings and native ID bearings replayed. Other tracking and visit history start empty. Continuation neutralized to compare the scheduler. No closed-loop driving or Nav2 action verification.",
+  "checks": [
+    {
+      "snapshot": "0007.npz",
+      "elapsed": 63.7,
+      "recorded_box": null,
+      "historical_reason": "region_resume",
+      "proposed_kind": "wall_lap",
+      "wall_lap": {
+        "phase": "perimeter",
+        "reason": "initial_pass",
+        "path_m": 0.0,
+        "confirmed_stops": 0,
+        "turn_rad": 0.0,
+        "boundary_support": 0.511,
+        "chair_cells": 44
+      },
+      "proposed_reason": "quick_perimeter_pass",
+      "proposed_xy": [
+        -47.09129995995782,
+        16.696356585465004
+      ],
+      "proposed_box": null,
+      "camera_calibration_recorded": true,
+      "regenerated_views": 0,
+      "local_cost_used": true,
+      "transform_source": "paired_audit_and_odom",
+      "tour_faces": 0,
+      "tour_walk_m": null
+    },
+    {
+      "snapshot": "0026.npz",
+      "elapsed": 217.35,
+      "recorded_box": null,
+      "historical_reason": "unobserved_wall_reserved",
+      "proposed_kind": "interior_frontier",
+      "wall_lap": {
+        "phase": "interior",
+        "reason": "perimeter_time_budget",
+        "path_m": 0.0,
+        "confirmed_stops": 0,
+        "turn_rad": 0.0,
+        "boundary_support": 0.0,
+        "chair_cells": 0
+      },
+      "proposed_reason": "interior_first_exploration",
+      "proposed_xy": [
+        -58.703838365482056,
+        22.170187470120318
+      ],
+      "proposed_box": null,
+      "camera_calibration_recorded": true,
+      "regenerated_views": 0,
+      "local_cost_used": true,
+      "transform_source": "paired_audit_and_odom",
+      "tour_faces": 0,
+      "tour_walk_m": null
+    },
+    {
+      "snapshot": "0040.npz",
+      "elapsed": 338.93,
+      "recorded_box": null,
+      "historical_reason": "regional_camera_gain_per_route",
+      "proposed_kind": "interior_surface",
+      "wall_lap": {
+        "phase": "interior",
+        "reason": "perimeter_time_budget",
+        "path_m": 0.0,
+        "confirmed_stops": 0,
+        "turn_rad": 0.0,
+        "boundary_support": 0.0,
+        "chair_cells": 0
+      },
+      "proposed_reason": "interior_first_exploration",
+      "proposed_xy": [
+        -56.468407911652186,
+        22.520187487256653
+      ],
+      "proposed_box": null,
+      "camera_calibration_recorded": true,
+      "regenerated_views": 0,
+      "local_cost_used": true,
+      "transform_source": "paired_audit_and_odom",
+      "tour_faces": 0,
+      "tour_walk_m": null
+    },
+    {
+      "snapshot": "0042.npz",
+      "elapsed": 347.9,
+      "recorded_box": [
+        -57.19877652712359,
+        22.698720518804745
+      ],
+      "historical_reason": "regional_camera_gain_per_route",
+      "proposed_kind": "interior_surface",
+      "wall_lap": {
+        "phase": "interior",
+        "reason": "perimeter_time_budget",
+        "path_m": 0.0,
+        "confirmed_stops": 0,
+        "turn_rad": 0.0,
+        "boundary_support": 0.0,
+        "chair_cells": 0
+      },
+      "proposed_reason": "inspect_visible_box",
+      "proposed_xy": [
+        -56.468407911652186,
+        22.520187487256653
+      ],
+      "proposed_box": [
+        -57.19877652712359,
+        22.698720518804745
+      ],
+      "camera_calibration_recorded": true,
+      "regenerated_views": 9,
+      "local_cost_used": true,
+      "transform_source": "paired_audit_and_odom",
+      "tour_faces": 2,
+      "tour_walk_m": 4.4
+    },
+    {
+      "snapshot": "0047.npz",
+      "elapsed": 403.4,
+      "recorded_box": null,
+      "historical_reason": "regional_camera_gain_per_route",
+      "proposed_kind": "interior_surface",
+      "wall_lap": {
+        "phase": "interior",
+        "reason": "perimeter_time_budget",
+        "path_m": 0.0,
+        "confirmed_stops": 0,
+        "turn_rad": 0.0,
+        "boundary_support": 0.0,
+        "chair_cells": 0
+      },
+      "proposed_reason": "interior_first_exploration",
+      "proposed_xy": [
+        -50.89997263851202,
+        21.311408064654223
+      ],
+      "proposed_box": null,
+      "camera_calibration_recorded": true,
+      "regenerated_views": 0,
+      "local_cost_used": true,
+      "transform_source": "paired_audit_and_odom",
+      "tour_faces": 0,
+      "tour_walk_m": null
+    },
+    {
+      "snapshot": "0052.npz",
+      "elapsed": 454.43,
+      "recorded_box": [
+        -54.98667780763528,
+        19.603323965268654
+      ],
+      "historical_reason": "regional_camera_gain_per_route",
+      "proposed_kind": "interior_surface",
+      "wall_lap": {
+        "phase": "interior",
+        "reason": "perimeter_time_budget",
+        "path_m": 0.0,
+        "confirmed_stops": 0,
+        "turn_rad": 0.0,
+        "boundary_support": 0.0,
+        "chair_cells": 0
+      },
+      "proposed_reason": "inspect_visible_box",
+      "proposed_xy": [
+        -54.031368018619986,
+        18.133399325567726
+      ],
+      "proposed_box": [
+        -54.98667780763528,
+        19.603323965268654
+      ],
+      "camera_calibration_recorded": true,
+      "regenerated_views": 8,
+      "local_cost_used": true,
+      "transform_source": "paired_audit_and_odom",
+      "tour_faces": 4,
+      "tour_walk_m": 4.4
+    },
+    {
+      "snapshot": "0054.npz",
+      "elapsed": 462.4,
+      "recorded_box": [
+        -54.98667780763528,
+        19.603323965268654
+      ],
+      "historical_reason": "continue_local_surface_group",
+      "proposed_kind": "interior_surface",
+      "wall_lap": {
+        "phase": "interior",
+        "reason": "perimeter_time_budget",
+        "path_m": 0.0,
+        "confirmed_stops": 0,
+        "turn_rad": 0.0,
+        "boundary_support": 0.0,
+        "chair_cells": 0
+      },
+      "proposed_reason": "inspect_visible_box",
+      "proposed_xy": [
+        -54.031368018619986,
+        18.133399325567726
+      ],
+      "proposed_box": [
+        -54.98667780763528,
+        19.603323965268654
+      ],
+      "camera_calibration_recorded": true,
+      "regenerated_views": 7,
+      "local_cost_used": true,
+      "transform_source": "paired_audit_and_odom",
+      "tour_faces": 3,
+      "tour_walk_m": 3.45
+    },
+    {
+      "snapshot": "0056.npz",
+      "elapsed": 478.48,
+      "recorded_box": [
+        -54.98667780763528,
+        19.603323965268654
+      ],
+      "historical_reason": "continue_local_surface_group",
+      "proposed_kind": "interior_surface",
+      "wall_lap": {
+        "phase": "interior",
+        "reason": "perimeter_time_budget",
+        "path_m": 0.0,
+        "confirmed_stops": 0,
+        "turn_rad": 0.0,
+        "boundary_support": 0.0,
+        "chair_cells": 0
+      },
+      "proposed_reason": "inspect_visible_box",
+      "proposed_xy": [
+        -53.85636803389368,
+        18.85839934233153
+      ],
+      "proposed_box": [
+        -54.98667780763528,
+        19.603323965268654
+      ],
+      "camera_calibration_recorded": true,
+      "regenerated_views": 10,
+      "local_cost_used": true,
+      "transform_source": "paired_audit_and_odom",
+      "tour_faces": 3,
+      "tour_walk_m": 3.0
+    },
+    {
+      "snapshot": "0059.npz",
+      "elapsed": 501.92,
+      "recorded_box": null,
+      "historical_reason": "persistent_small_wall_candidate",
+      "proposed_kind": "wall_surface",
+      "wall_lap": {
+        "phase": "interior",
+        "reason": "perimeter_time_budget",
+        "path_m": 0.0,
+        "confirmed_stops": 0,
+        "turn_rad": 0.0,
+        "boundary_support": 0.0,
+        "chair_cells": 0
+      },
+      "proposed_reason": "wall_marker_evidence",
+      "proposed_xy": [
+        -59.4478300832598,
+        16.552356106351706
+      ],
+      "proposed_box": null,
+      "camera_calibration_recorded": true,
+      "regenerated_views": 0,
+      "local_cost_used": true,
+      "transform_source": "paired_audit_and_odom",
+      "tour_faces": 0,
+      "tour_walk_m": null
+    },
+    {
+      "snapshot": "0060.npz",
+      "elapsed": 528.45,
+      "recorded_box": null,
+      "historical_reason": "regional_camera_gain_per_route",
+      "proposed_kind": "wall_surface",
+      "wall_lap": {
+        "phase": "interior",
+        "reason": "perimeter_time_budget",
+        "path_m": 0.0,
+        "confirmed_stops": 0,
+        "turn_rad": 0.0,
+        "boundary_support": 0.0,
+        "chair_cells": 0
+      },
+      "proposed_reason": "wall_marker_evidence",
+      "proposed_xy": [
+        -59.51970285212305,
+        16.658207018626232
+      ],
+      "proposed_box": null,
+      "camera_calibration_recorded": true,
+      "regenerated_views": 0,
+      "local_cost_used": true,
+      "transform_source": "paired_audit_and_odom",
+      "tour_faces": 0,
+      "tour_walk_m": null
+    }
+  ]
+}

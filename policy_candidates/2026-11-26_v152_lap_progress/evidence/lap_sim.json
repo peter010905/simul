@@ -1,0 +1,334 @@
+{
+ "cases": {
+  "plain@1.5,3.5": {
+   "parent": {
+    "goals": 13,
+    "backtracks": 3,
+    "revisits": 1,
+    "reversed_headings": 9,
+    "turn_at_stops_rad": 31.52,
+    "path_m": 22.8,
+    "turn_rad": -4.73,
+    "end_phase": "interior",
+    "end_reason": "closed_perimeter_pass",
+    "sim_elapsed_s": 169.8
+   },
+   "candidate": {
+    "goals": 11,
+    "backtracks": 2,
+    "revisits": 0,
+    "reversed_headings": 0,
+    "turn_at_stops_rad": 6.98,
+    "path_m": 21.97,
+    "turn_rad": -4.73,
+    "end_phase": "interior",
+    "end_reason": "closed_perimeter_pass",
+    "sim_elapsed_s": 152.7
+   }
+  },
+  "plain@7.5,2.0": {
+   "parent": {
+    "goals": 11,
+    "backtracks": 3,
+    "revisits": 1,
+    "reversed_headings": 6,
+    "turn_at_stops_rad": 24.26,
+    "path_m": 22.79,
+    "turn_rad": -6.28,
+    "end_phase": "interior",
+    "end_reason": "closed_perimeter_pass",
+    "sim_elapsed_s": 155.7
+   },
+   "candidate": {
+    "goals": 15,
+    "backtracks": 4,
+    "revisits": 0,
+    "reversed_headings": 0,
+    "turn_at_stops_rad": 6.59,
+    "path_m": 23.91,
+    "turn_rad": -6.27,
+    "end_phase": "interior",
+    "end_reason": "closed_perimeter_pass",
+    "sim_elapsed_s": 181.5
+   }
+  },
+  "plain@4.5,5.6": {
+   "parent": {
+    "goals": 11,
+    "backtracks": 2,
+    "revisits": 1,
+    "reversed_headings": 6,
+    "turn_at_stops_rad": 24.39,
+    "path_m": 22.6,
+    "turn_rad": -6.28,
+    "end_phase": "interior",
+    "end_reason": "closed_perimeter_pass",
+    "sim_elapsed_s": 155.0
+   },
+   "candidate": {
+    "goals": 13,
+    "backtracks": 3,
+    "revisits": 0,
+    "reversed_headings": 0,
+    "turn_at_stops_rad": 6.66,
+    "path_m": 23.19,
+    "turn_rad": -6.33,
+    "end_phase": "interior",
+    "end_reason": "closed_perimeter_pass",
+    "sim_elapsed_s": 172.0
+   }
+  },
+  "chairs@1.5,3.5": {
+   "parent": {
+    "goals": 18,
+    "backtracks": 3,
+    "revisits": 1,
+    "reversed_headings": 11,
+    "turn_at_stops_rad": 42.41,
+    "path_m": 23.35,
+    "turn_rad": -4.71,
+    "end_phase": "interior",
+    "end_reason": "perimeter_time_budget",
+    "sim_elapsed_s": 188.0
+   },
+   "candidate": {
+    "goals": 17,
+    "backtracks": 3,
+    "revisits": 0,
+    "reversed_headings": 0,
+    "turn_at_stops_rad": 9.66,
+    "path_m": 25.62,
+    "turn_rad": -6.28,
+    "end_phase": "interior",
+    "end_reason": "perimeter_time_budget",
+    "sim_elapsed_s": 192.0
+   }
+  },
+  "chairs@7.5,2.0": {
+   "parent": {
+    "goals": 17,
+    "backtracks": 2,
+    "revisits": 2,
+    "reversed_headings": 12,
+    "turn_at_stops_rad": 40.67,
+    "path_m": 25.35,
+    "turn_rad": -6.28,
+    "end_phase": "interior",
+    "end_reason": "perimeter_time_budget",
+    "sim_elapsed_s": 191.2
+   },
+   "candidate": {
+    "goals": 18,
+    "backtracks": 1,
+    "revisits": 0,
+    "reversed_headings": 0,
+    "turn_at_stops_rad": 10.03,
+    "path_m": 23.34,
+    "turn_rad": -7.85,
+    "end_phase": "interior",
+    "end_reason": "perimeter_time_budget",
+    "sim_elapsed_s": 183.2
+   }
+  },
+  "chairs@4.5,5.6": {
+   "parent": {
+    "goals": 17,
+    "backtracks": 2,
+    "revisits": 2,
+    "reversed_headings": 12,
+    "turn_at_stops_rad": 40.37,
+    "path_m": 24.55,
+    "turn_rad": -6.77,
+    "end_phase": "interior",
+    "end_reason": "perimeter_time_budget",
+    "sim_elapsed_s": 187.8
+   },
+   "candidate": {
+    "goals": 16,
+    "backtracks": 2,
+    "revisits": 0,
+    "reversed_headings": 0,
+    "turn_at_stops_rad": 9.37,
+    "path_m": 24.18,
+    "turn_rad": -6.28,
+    "end_phase": "interior",
+    "end_reason": "perimeter_time_budget",
+    "sim_elapsed_s": 182.0
+   }
+  },
+  "dense@1.5,3.5": {
+   "parent": {
+    "goals": 19,
+    "backtracks": 1,
+    "revisits": 0,
+    "reversed_headings": 13,
+    "turn_at_stops_rad": 45.23,
+    "path_m": 23.16,
+    "turn_rad": -6.28,
+    "end_phase": "interior",
+    "end_reason": "perimeter_time_budget",
+    "sim_elapsed_s": 190.2
+   },
+   "candidate": {
+    "goals": 19,
+    "backtracks": 2,
+    "revisits": 0,
+    "reversed_headings": 0,
+    "turn_at_stops_rad": 11.79,
+    "path_m": 21.65,
+    "turn_rad": -4.71,
+    "end_phase": "interior",
+    "end_reason": "perimeter_time_budget",
+    "sim_elapsed_s": 185.0
+   }
+  },
+  "dense@7.5,2.0": {
+   "parent": {
+    "goals": 20,
+    "backtracks": 2,
+    "revisits": 0,
+    "reversed_headings": 13,
+    "turn_at_stops_rad": 46.57,
+    "path_m": 22.88,
+    "turn_rad": -6.28,
+    "end_phase": "interior",
+    "end_reason": "perimeter_time_budget",
+    "sim_elapsed_s": 191.5
+   },
+   "candidate": {
+    "goals": 19,
+    "backtracks": 1,
+    "revisits": 0,
+    "reversed_headings": 0,
+    "turn_at_stops_rad": 13.1,
+    "path_m": 22.31,
+    "turn_rad": -6.28,
+    "end_phase": "interior",
+    "end_reason": "perimeter_time_budget",
+    "sim_elapsed_s": 187.8
+   }
+  },
+  "dense@4.5,5.6": {
+   "parent": {
+    "goals": 19,
+    "backtracks": 2,
+    "revisits": 1,
+    "reversed_headings": 13,
+    "turn_at_stops_rad": 44.66,
+    "path_m": 23.17,
+    "turn_rad": -6.25,
+    "end_phase": "interior",
+    "end_reason": "perimeter_time_budget",
+    "sim_elapsed_s": 188.8
+   },
+   "candidate": {
+    "goals": 18,
+    "backtracks": 2,
+    "revisits": 0,
+    "reversed_headings": 0,
+    "turn_at_stops_rad": 12.31,
+    "path_m": 22.06,
+    "turn_rad": -6.36,
+    "end_phase": "interior",
+    "end_reason": "perimeter_time_budget",
+    "sim_elapsed_s": 183.0
+   }
+  },
+  "notched@1.5,3.5": {
+   "parent": {
+    "goals": 14,
+    "backtracks": 2,
+    "revisits": 2,
+    "reversed_headings": 9,
+    "turn_at_stops_rad": 32.98,
+    "path_m": 22.8,
+    "turn_rad": -6.28,
+    "end_phase": "interior",
+    "end_reason": "closed_perimeter_pass",
+    "sim_elapsed_s": 170.2
+   },
+   "candidate": {
+    "goals": 13,
+    "backtracks": 2,
+    "revisits": 0,
+    "reversed_headings": 0,
+    "turn_at_stops_rad": 7.84,
+    "path_m": 22.63,
+    "turn_rad": -6.28,
+    "end_phase": "interior",
+    "end_reason": "closed_perimeter_pass",
+    "sim_elapsed_s": 161.7
+   }
+  },
+  "notched@7.5,2.0": {
+   "parent": {
+    "goals": 13,
+    "backtracks": 3,
+    "revisits": 1,
+    "reversed_headings": 8,
+    "turn_at_stops_rad": 29.95,
+    "path_m": 23.03,
+    "turn_rad": -6.28,
+    "end_phase": "interior",
+    "end_reason": "closed_perimeter_pass",
+    "sim_elapsed_s": 164.5
+   },
+   "candidate": {
+    "goals": 15,
+    "backtracks": 4,
+    "revisits": 0,
+    "reversed_headings": 0,
+    "turn_at_stops_rad": 7.14,
+    "path_m": 24.06,
+    "turn_rad": -6.25,
+    "end_phase": "interior",
+    "end_reason": "closed_perimeter_pass",
+    "sim_elapsed_s": 182.8
+   }
+  },
+  "notched@4.5,5.6": {
+   "parent": {
+    "goals": 13,
+    "backtracks": 2,
+    "revisits": 1,
+    "reversed_headings": 8,
+    "turn_at_stops_rad": 30.14,
+    "path_m": 22.56,
+    "turn_rad": -6.28,
+    "end_phase": "interior",
+    "end_reason": "closed_perimeter_pass",
+    "sim_elapsed_s": 163.0
+   },
+   "candidate": {
+    "goals": 14,
+    "backtracks": 3,
+    "revisits": 0,
+    "reversed_headings": 0,
+    "turn_at_stops_rad": 7.33,
+    "path_m": 23.28,
+    "turn_rad": -6.28,
+    "end_phase": "interior",
+    "end_reason": "closed_perimeter_pass",
+    "sim_elapsed_s": 166.0
+   }
+  }
+ },
+ "totals": {
+  "parent": {
+   "goals": 185,
+   "backtracks": 27,
+   "revisits": 13,
+   "reversed_headings": 120,
+   "turn_at_stops_rad": 433.15,
+   "path_m": 279.04
+  },
+  "candidate": {
+   "goals": 188,
+   "backtracks": 29,
+   "revisits": 0,
+   "reversed_headings": 0,
+   "turn_at_stops_rad": 108.8,
+   "path_m": 278.2
+  }
+ }
+}

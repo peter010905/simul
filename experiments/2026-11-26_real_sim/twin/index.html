@@ -189,7 +189,7 @@ svg text {
     }
 }
 </style><main><header><h1>실물 · Gazebo 경로 비교</h1><span>ROS 2 Jazzy &nbsp; / &nbsp; TurtleBot4</span></header>
-<div class="card top"><div><label>실물 주행 기록 <select id="archive"></select></label></div><div class="row"><label>정책 <select id="policy"></select></label><label>시뮬 배치 <select id="scene"><option value="departure">책상 + 출발 주변 재관측 반사</option><option value="returns">책상 + 반복 반사</option><option value="desks">책상만</option></select></label><label>카메라 <select id="optical"><option id="scanner-option" value="scanner">실물 화각 + LiDAR 수신 특성</option><option value="true">실물 화각 보정</option><option value="false">기본 화각</option></select></label><button class="primary" id="start">시뮬 주행 시작</button></div></div>
+<div class="card top"><div><label>실물 주행 기록 <select id="archive"></select></label></div><div class="row"><label>정책 <select id="policy"></select></label><label>시뮬 배치 <select id="scene"><option value="room">실물 SLAM 벽 + 유리·의자 (짧은 변)</option><option value="departure">책상 + 출발 주변 재관측 반사</option><option value="returns">책상 + 반복 반사</option><option value="desks">책상만</option></select></label><label>카메라 <select id="optical"><option id="scanner-option" value="scanner">실물 화각 + LiDAR 수신 특성</option><option value="true">실물 화각 보정</option><option value="false">기본 화각</option></select></label><button class="primary" id="start">시뮬 주행 시작</button></div></div>
 <label id="hyp-wrap" hidden><input id="hyp" type="checkbox">다른 주행의 추정 위치를 시험장 위에 표시</label><div id="status" role="status"></div><div class="grid"><section class="card"><div class="top"><h2 id="viewtitle">주행 경로</h2><select id="run" aria-label="비교할 시뮬 실행"></select></div>
 <svg id="map" class="track" viewBox="-11 -7 22 14" role="img" aria-label="실물과 시뮬 경로 및 책상 배치"></svg>
 <div class="row legend sub"><span><i class="dot real"></i>실물 SLAM</span><span><i class="dot sim"></i>Gazebo 실제 위치</span><label><input type="checkbox" id="slam" checked>실물 SLAM</label><label><input type="checkbox" id="legs">책상 다리 대조</label><label><input type="checkbox" id="odom">바퀴 주행 기록</label><label><input id="proxies" type="checkbox" checked>반복 반사</label></div>
@@ -301,18 +301,34 @@ function draw() {
         odom = selected.traces['/odom'] || [];
     if (aligned || estimated) {
         m.setAttribute('viewBox', '-11 -7 22 14');
-        el('path', {
+        const room = data.room_shell && (sim ? sim.scene === 'room' : get('scene').value === 'room');
+        if (room) {
+            el('rect', {x: -9.8, y: -6.8, width: 20.1, height: 13.6, fill: '#fffdf9'});
+            for (let a of data.room_shell.walls) rect(a.x, a.y, a.sx, a.sy, '#9b8a6e');
+            for (let g of data.room_shell.glass) el('line', {x1: g.x, x2: g.x, y1: -g.y[1], y2: -g.y[0], stroke: '#3aa3e3', 'stroke-width': .08});
+            if (sim?.room_chairs) for (let c of sim.room_chairs) rect(c.x, c.y, .44, .44, '#c0504dc0', c.yaw);
+            else for (let c of data.room_shell.chairs) rect(c.x, c.y, c.sx, c.sy, '#c0504d90');
+            for (let o of sim?.room_objects || []) rect(o.x, o.y, o.sx, o.sy, '#e6a03c', o.yaw);
+            for (let w of sim?.chair_walls || []) if (t >= w.t) {
+                el('line', {x1: w.a[0], y1: -w.a[1], x2: w.b[0], y2: -w.b[1], stroke: '#1565c0', 'stroke-width': .09, 'stroke-dasharray': '.3 .15'});
+                el('text', {x: (w.a[0] + w.b[0]) / 2 + .15, y: -(w.a[1] + w.b[1]) / 2, 'font-size': .3, fill: '#1565c0'}).textContent = '알고리즘 의자 벽 (' + w.t + '초)'
+            }
+            for (let t of sim?.room_targets || []) {
+                el('circle', {cx: t.x, cy: -t.y, r: .12, fill: '#287647'});
+                el('text', {x: t.x + .15, y: -t.y, 'font-size': .3, fill: '#174a29'}).textContent = 'ID ' + t.id
+            }
+        } else el('path', {
             d: 'M -10 -5.6 H 10 V 5.6 H 5.75 V 6.2 H -1.65 V 5.6 H -10 Z',
             fill: '#fffdf9',
             stroke: '#89928a',
             'stroke-width': .07
         });
         const layer = data.slam_layer;
-        if (get('slam').checked && layer) {
+        if (get('slam').checked && layer && !room) {
             m.setAttribute('viewBox', [layer.x,layer.y,layer.width,layer.height].join(' '));
             el('image', {...layer, href:'/registered-slam.png', preserveAspectRatio:'none', 'image-rendering':'pixelated'})
         }
-        for (let a of data.tables) {
+        for (let a of (sim?.room_tables || data.tables)) {
             rect(a.x, a.y, a.sx, a.sy, get('legs').checked ? '#c4aa8350' : '#c4aa83', a.yaw);
             if (get('legs').checked) {
                 for (let i of [-1,1]) for (let j of [-1,1]) {
@@ -328,7 +344,7 @@ function draw() {
         }
         if (aligned && get('proxies').checked && (sim?.scene === 'returns' || sim?.scene === 'departure'))
             for (let a of (sim.scene === 'departure' ? data.departure_returns : data.returns) || []) rect(a.x, a.y, a.sx, a.sy, '#738078');
-        for (let [id, p] of Object.entries(aligned ? data.ref.markers : {})) {
+        for (let [id, p] of Object.entries(aligned && !sim?.room_targets ? data.ref.markers : {})) {
             el('circle', {
                 cx: p[0],
                 cy: -p[1],
@@ -436,7 +452,7 @@ async function refresh() {
     if (v !== version) return;
     let sel = get('run'),
         old = sel.value;
-    sel.replaceChildren(...runs.map(r => new Option((r.scanner_profile ? '화각 + LiDAR 수신 특성' : r.optical_profile ? '실물 설정 + 화각' : r.hardware_parity ? '실물 설정' : '초기 비교') + ' · ' + (r.scene === 'departure' ? '출발 주변 재관측' : r.scene === 'returns' ? '반복 반사' : '책상만') + ' · ' + r.id.slice(12) + (r.time_limit_s < 600 ? ' · 첫 ' + r.time_limit_s + '초 진단' : ''), r.id)));
+    sel.replaceChildren(...runs.map(r => new Option((r.scanner_profile ? '화각 + LiDAR 수신 특성' : r.optical_profile ? '실물 설정 + 화각' : r.hardware_parity ? '실물 설정' : '초기 비교') + ' · ' + (r.scene === 'room' ? (r.layout_seed ? '무작위 물체 seed ' + r.layout_seed : '실물 SLAM 벽·유리·의자') : r.scene === 'departure' ? '출발 주변 재관측' : r.scene === 'returns' ? '반복 반사' : '책상만') + ' · ' + r.id.slice(12) + (r.time_limit_s < 600 ? ' · 첫 ' + r.time_limit_s + '초 진단' : ''), r.id)));
     if (requestedRun && runs.some(r => r.id === requestedRun)) {
         sel.value = requestedRun;
         requestedRun = null
@@ -448,7 +464,7 @@ async function refresh() {
     bounds()
 }
 function policyName(workspace) {
-    const labels={'v15240':'1.5.2.40 · 상자 안전 관찰','v15241':'1.5.2.41 · 미탐색 구역 이동','v15243':'1.5.2.43.1 · 출발 회전 지도 갱신','v15244':'1.5.2.44 · 상자 관찰 이어보기','v15245':'1.5.2.45 · 중앙 우선','v15247':'1.5.2.47 · 벽 진입','v15248':'1.5.2.48 · 벽 이탈'};
+    const labels={'v15240':'1.5.2.40 · 상자 안전 관찰','v15241':'1.5.2.41 · 미탐색 구역 이동','v15243':'1.5.2.43.1 · 출발 회전 지도 갱신','v15244':'1.5.2.44 · 상자 관찰 이어보기','v15245':'1.5.2.45 · 중앙 우선','v15247':'1.5.2.47 · 벽 진입','v15248':'1.5.2.48 · 벽 이탈','v15250':'1.5.2.50 · 벽 순회 방향 정렬 (실물 기록 없음)','v15251':'1.5.2.51 · 의자 벽 (실물 기록 없음)','v15252':'1.5.2.52 · 순회 연결·관찰 상한 (실물 기록 없음)','v15253':'1.5.2.53 · 10초 탈출·의심 구역 회피 (실물 기록 없음)','v15254':'1.5.2.54 · 순회 중 상자 들르기 (실물 기록 없음)','v15255':'1.5.2.55 · 순회 중 벽 보기 (실물 기록 없음)','v15256':'1.5.2.56 · 벽 보기 단순화 (실물 기록 없음)','v15257':'1.5.2.57 · 짧은 벽 순회 (실물 기록 없음)','v15258':'1.5.2.58 · 범퍼 접촉 기억 (실물 기록 없음)','v15259':'1.5.2.59 · 막힌 자리 탈출 (실물 기록 없음)','v15260':'1.5.2.60 · 비스듬한 상자 면 (실물 기록 없음)'};
     return labels[workspace.split('_')[0]] || workspace
 }
 function archiveTime(id) {
@@ -464,7 +480,7 @@ async function init() {
     const archive = new URLSearchParams(location.search).get("archive");
     a.value = data.library[archive] ? archive : data.ref.run;
     for (let id of data.policies) {
-        const r = data.library[id];
+        const r = data.library[id] || data.policy_info[id];
         get('policy').add(new Option(policyName(r.workspace) + ' · ' + r.slam + 'm', id))
     }
     get('policy').value = data.ref.run;

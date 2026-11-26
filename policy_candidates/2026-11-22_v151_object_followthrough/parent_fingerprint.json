@@ -1,0 +1,23 @@
+{
+  "version": "1.5.1-adaptive-survey-r2",
+  "parent": "1.5.1-balanced",
+  "changed_source_sha256": {
+    "_r32_navigation_core.py": "3b86c91dfebdef4099d8bc237ffa8a2c359fd6f3316127342567a97688b9f5b8",
+    "box_batch.py": "a89d6d0bc81e13fe1eda9cb4d299e18d72b62e9b7f159e44243e5cd55c4356ba",
+    "center_wall.py": "c1a831900c9093000137ecbafc22652fe2852352da547bdf333f1b3d0e7a45db",
+    "deferred_views.py": "40b9b8c45a68c5179de34684f7c4aae5d8e935b505d70e8bd2d2f4022d72d65a",
+    "detector.py": "5243f14a1a29433eb6daec18339347926af92a1c2f2996bec190d9fd31e7564e",
+    "edge_watch.py": "440200cae1593af154e131b405816b21e6cae095f8aee990584919e08cfe7e80",
+    "hybrid.py": "9ec34fa1c2bdce2d1a618080f66110c80bf4ef6ec0283ed21cf0450d72a7ab5b",
+    "marker_pair.py": "c604785a9af47fe53207af52aba7c9652d6e104e40eb758c6268c67c72a33183",
+    "mission.py": "a52d70396713cb3bf0b680c24c477e5d920793702fa2dfd1f24331f05b443064",
+    "phased_hybrid.py": "7fd93c399adce085019b82258d09ec79c23a62d17488814fc341efb0f9bc19f9",
+    "small_wall_cues.py": "55323975898f2226360bbab17fa4c6d57ef35671d2760fa9ebcbff192652cac6",
+    "survey.py": "477b4defebf2d6f0281b72a6e7954cc58f9685f839152c02d23b71be1a9997f8",
+    "survey_distance.py": "af702da477f09e1a73abe6d35cb168107259f42999f8a043dea8f63de4a8b6a4"
+  },
+  "external_config_sha256": {
+    "policy.json": "ca67b32c20a17e74e0bc8292b117240e19d80f24137cbf092d473a743be5eb36",
+    "nav2_hardware_profile.yaml": "937d1448aa1d511c2c3eb34ca0b6656ee610e068285cd88d94a03179ae56cf06"
+  }
+}

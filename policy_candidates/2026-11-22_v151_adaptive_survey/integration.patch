@@ -1,0 +1,181 @@
+--- a/phased_hybrid.py
++++ b/phased_hybrid.py
+@@ -62,6 +62,7 @@
+         self.schedule.cluster.observed = [track.center for track in self.box_views.tracks
+             if track.confirmed and (len(track.seen) >= 2 or
+                                     tuple(track.center) in self.schedule.batch.completed)]
++        self.schedule.survey.camera = getattr(owner, 'inspection_camera', None)
+         goal = self.schedule.decide(grid,cost,pose,transform,viewed,
+                                     now-owner.started,owner.p('duration'),veto,choices,fitted,probe_only=print_only)
+         if goal is not None:
+@@ -73,6 +74,8 @@
+         elapsed = owner.now()-owner.started
+         self.schedule.dispatched(goal,elapsed)
+         self.next_box_probe = owner.now()+3. if (goal.get('r32_kind')=='wall_surface' or goal.get('cluster_exit')) else float('inf')
++        if goal.get('adaptive_survey'):
++            self.next_box_probe = float('inf')
+         row = dict(elapsed=elapsed,phase=self.schedule.phase,reason=self.schedule.reason,
+                    available=self.schedule.counts,kind=goal.get('r32_kind','flow_or_marker'),
+                    cluster_exit=bool(goal.get('cluster_exit')),
+@@ -81,6 +84,8 @@
+                    batch_box=goal.get('batch_box'), marker_id=goal.get('approach_id',goal.get('focus_id')),
+                    surface=goal.get('surface_map'), fitted_face=goal.get('fitted_face'),
+                    standoff_m=goal.get('standoff_m'), clearance_m=goal.get('clearance_m'))
++        row.update({key: value for key, value in goal.items() if key.startswith('survey_')})
++        row['reopened_face'] = bool(goal.get('reopened_face'))
+         try:
+             with (Path(owner.p('output_dir'))/'center_wall.jsonl').open('a') as out:
+                 out.write(json.dumps(row,allow_nan=False)+'\n')
+--- a/center_wall.py
++++ b/center_wall.py
+@@ -13,6 +13,8 @@
+ from osp_mission.cluster_exit import ClusterExit
+ from osp_mission.box_batch import BoxBatch
+ from osp_mission.wall_bearings import WallBearings
++from osp_mission.survey import AdaptiveSurvey
++from osp_mission.deferred_views import DeferredViews
+
+
+ def partly_mapped_objects(labels, boxes, floor, resolution):
+@@ -115,6 +117,8 @@
+         self.batch = BoxBatch()
+         self.cluster = ClusterExit()
+         self.weak = WallBearings()
++        self.survey = AdaptiveSurvey()
++        self.revisits = DeferredViews()
+         self.weak_known = []
+         self.weak_clock = 0.
+         self.counts = {}
+@@ -128,6 +132,7 @@
+         self.counts = {'interior': 0, 'wall': 0}
+         clearance = clearance_grid(grid)
+         candidates = {'interior': [], 'wall': []}
++        self.revisits.update_geometry(grid, costmap, nav, distances, clearance, transform)
+         self.tracked_faces.update(fitted, transform, elapsed)
+         start = grid.index(*pose[:2])
+         if not grid.inside(*start) or clearance[start] < .32:
+@@ -139,7 +144,9 @@
+                     continue
+                 anchor = odom_point(face, transform)
+                 attempts = self.attempts('interior', anchor, normal_yaw, .50)
+-                if len(attempts) >= 2 or (attempts and elapsed-attempts[-1] < 45.):
++                check_view = self.revisits.view_filter('interior', anchor, normal_yaw, .50,
++                                                       attempts, elapsed, veto)
++                if check_view is None:
+                     continue
+                 tangent = np.array([-normal[1], normal[0]])
+                 half_width = max(abs((p-center) @ tangent) for p, _ in faces)
+@@ -148,7 +155,7 @@
+                               normal_odom=normal_yaw, surface_odom=anchor.tolist(), surface_map=face.tolist(),
+                               features=np.zeros(5), previous_attempts=len(attempts))
+                 view = inspection_pose(grid, costmap, nav, distances, clearance, face, normal,
+-                                       half_width, pose, fields, veto, visibility_offset=.12)
++                                       half_width, pose, fields, check_view, visibility_offset=.12)
+                 if view:
+                     candidates['interior'].append(view)
+         # Compare generic and fitted faces together, including completed boxes.
+@@ -177,14 +184,16 @@
+                 history_point = owner_face.anchor if owner_face is not None else anchor
+                 history_yaw = owner_face.yaw if owner_face is not None else normal_yaw
+             attempts = self.attempts(kind, history_point, history_yaw, radius)
+-            if len(attempts)>=2 or (attempts and elapsed-attempts[-1]<45.):
++            check_view = self.revisits.view_filter(kind, history_point, history_yaw, radius,
++                                                 attempts, elapsed, veto)
++            if check_view is None:
+                 continue
+             if kind == 'interior':
+                 fields = dict(r32_kind='interior_surface', surface_odom=history_point.tolist(),
+                               normal_odom=history_yaw, surface_map=face.tolist(), previous_attempts=len(attempts),
+                               features=np.zeros(5), stationary=False, face_inspection=True, scan_angle=math.radians(36))
+                 view = inspection_pose(grid, costmap, nav, distances, clearance, face, normal,
+-                                       .5*len(cells)*grid.resolution, pose, fields, veto)
++                                       .5*len(cells)*grid.resolution, pose, fields, check_view)
+                 if view:
+                     candidates[kind].append(view)
+                 continue
+@@ -207,7 +216,7 @@
+                                 r32_kind=kind+'_surface', surface_odom=anchor.tolist(),
+                                 normal_odom=normal_yaw, surface_map=face.tolist(),
+                                 previous_attempts=len(attempts))
+-                    if veto(goal):
++                    if check_view(goal):
+                         continue
+                     score = distances[cell] + .5*abs(stand-.67) + .3*abs(shift) + 2.*len(attempts)
+                     if kind=='wall' and self.wall_anchor is not None:
+@@ -237,6 +246,11 @@
+                 return boxes[0][1] if boxes else None
+             preferred = boxes if getattr(self,'on_weak_route',False) else fresh
+             return preferred[0][1] if preferred else None
++        choice = self.survey.choose(self, grid, costmap, nav, distances, clearance, pose, transform,
++                                    viewed, samples, candidates, choices, elapsed, duration, veto)
++        if choice is not None:
++            self.phase, self.reason, goal = choice
++            return goal
+         if not boxes:
+             goal = self.weak.choose(candidates['wall'],grid,transform,self.weak_known,
+                                     self.weak_clock,duration-elapsed)
+@@ -295,6 +309,8 @@
+                 np.linalg.norm(anchor-p)<radius and math.cos(normal_yaw-a)>.70]
+
+     def dispatched(self, goal, elapsed):
++        self.survey.dispatched(goal, elapsed, self.phase)
++        self.revisits.dispatched(self.phase, goal, elapsed)
+         self.on_weak_route = bool(goal.get('weak_wall'))
+         self.weak.dispatched(goal)
+         self.on_cluster_exit = bool(goal.get('cluster_exit'))
+--- a/hybrid.py
++++ b/hybrid.py
+@@ -80,7 +80,8 @@
+                 and not any(np.linalg.norm(r['point']-p)<.55 for p,_ in self.used)]
+         if not recent:
+             return None
+-        connected,distances=r32.nav_goal_reachability(grid,cost,pose,grid.reachable(pose[:2],.32))
++        safe, distances = grid.reachable(pose[:2], .32)
++        connected = r32.connected_nav_cells(cost, pose)
+         best=None
+         for r in recent:
+             point=np.asarray(in_map(('odom',*r['point']),transform))
+@@ -100,7 +101,11 @@
+                 if not stay and on_view_side and np.linalg.norm(robot-point)-standoff<.25:
+                     continue
+                 cell=grid.index(*position)
+-                if not grid.inside(*cell) or not connected[cell] or not np.isfinite(distances[cell]):
++                if not grid.inside(*cell) or not safe[cell] or not np.isfinite(distances[cell]):
++                    continue
++                # Match nav_goal_reachability's lookup at the SLAM cell centre.
++                nav_cell = cost.index(*grid.world(*cell))
++                if not cost.inside(*nav_cell) or not connected[nav_cell]:
+                     continue
+                 end=grid.index(*(point+.20*(position-point)/np.linalg.norm(position-point)))
+                 if not visible(grid.cells,*cell,np.array([end[0]]),np.array([end[1]]))[0]:
+@@ -112,7 +117,7 @@
+                           print_odom=r['point'].tolist())
+                 if veto(goal):
+                     continue
+-                score=distances[cell]*grid.resolution + abs(standoff-1.2)
++                score = distances[cell] + abs(standoff-1.2)
+                 if best is None or score<best[0]:
+                     best=score,goal
+         return best[1] if best else None
+--- a/_r32_navigation_core.py
++++ b/_r32_navigation_core.py
+@@ -177,17 +177,8 @@
+             while endpoint is not None:
+                 traversable[endpoint] = True
+                 endpoint = previous[endpoint]
+-        distances = np.full(safe.shape, np.inf)
+-        distances[row, col] = 0
+-        queue = deque([(row, col)])
+-        # Four-connected paths avoid diagonal corner cutting.
+-        while queue:
+-            r, c = queue.popleft()
+-            for nr, nc in ((r-1,c), (r+1,c), (r,c-1), (r,c+1)):
+-                if self.inside(nr, nc) and traversable[nr,nc] and np.isinf(distances[nr,nc]):
+-                    distances[nr,nc] = distances[r,c]+self.resolution
+-                    queue.append((nr,nc))
+-        return safe, distances
++        from osp_mission.survey_distance import path_distances
++        return safe, path_distances(traversable, (row, col), self.resolution)
+
+     def line_clear(self, start, target, allow_unknown=False):
+         a, b = np.array(start), np.array(target)

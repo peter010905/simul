@@ -1,0 +1,2 @@
+20261125T195426-a84b4e02f7 logged white-leg decisions 19 -> allowed by .50 6 of 39 decisions; allowed at [9, 11, 19, 214, 218, 230]
+20261125T192556-c3556b08ef logged white-leg decisions 3 -> allowed by .50 3 of 7 decisions; allowed at [37, 46, 79]

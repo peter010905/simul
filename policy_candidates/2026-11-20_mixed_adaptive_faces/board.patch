@@ -1,0 +1,53 @@
+--- a/experiments/2026-11-19_corridor_box/compare_board.py
++++ b/experiments/2026-11-19_corridor_box/compare_board.py
+@@ -177,5 +177,5 @@
+             except (ValueError, KeyError, TypeError):
+                 return self.send(400, {'error': '잘못된 정책'})
+-            if policy not in ('flow','mixed','center','r32','pair'):
++            if policy not in ('flow','mixed','center','adaptive','r32','pair'):
+                 return self.send(400, {'error': '알 수 없는 정책'})
+             reference_dir = ''
+@@ -183,4 +183,7 @@
+                 run_id = request['layout_run_id']
+                 reference = board.get(run_id) if isinstance(run_id, str) else None
++                if reference is None and isinstance(run_id, str):
++                    board.discover()
++                    reference = board.get(run_id)
+                 if not reference or '-track-' not in reference.label:
+                     return self.send(400, {'error': '기준 트랙을 찾을 수 없습니다.'})
+@@ -195,5 +198,6 @@
+             except subprocess.TimeoutExpired:
+                 threading.Thread(target=process.wait, daemon=True).start()
+-                return self.send(202, {'message': '새 무작위 트랙을 준비하고 있습니다.'})
++                message = '같은 맵에서 주행을 준비하고 있습니다.' if reference_dir else '새 무작위 트랙을 준비하고 있습니다.'
++                return self.send(202, {'message': message})
+             return self.send(409, {'error': '이미 주행 중입니다.'} if code==75 else {'error': '실행 기록을 확인해 주세요.'})
+
+--- a/experiments/2026-11-19_corridor_box/adapt_board_ui.py
++++ b/experiments/2026-11-19_corridor_box/adapt_board_ui.py
+@@ -30,4 +30,7 @@
+     app = app.replace('<option value="center">Mixed · 가운데 장애물 → 벽</option>',
+                       '<option value="center">Mixed · 장애물 우선 v2</option>')
++    if '<option value="adaptive">' not in app:
++        anchor = '<option value="center">Mixed · 장애물 우선 v2</option>'
++        app = app.replace(anchor, anchor + '<option value="adaptive">Mixed · 공간 맞춤 면 관찰</option>')
+     return app
+
+--- a/experiments/2026-11-19_random_track/run.sh
++++ b/experiments/2026-11-19_random_track/run.sh
+@@ -5,5 +5,5 @@
+ runs="${TRACK_RUNS:-$HOME/track-recordings}"
+ mode="${1:-pair}"
+-case "$mode" in flow|mixed|center|r32|pair|compare-mixed) ;; *) echo 'Choose pair, compare-mixed, r32, mixed, center or flow' >&2; exit 2 ;; esac
++case "$mode" in flow|mixed|center|adaptive|r32|pair|compare-mixed) ;; *) echo 'Choose pair, compare-mixed, r32, mixed, center, adaptive or flow' >&2; exit 2 ;; esac
+ mkdir -p "$runs/.layouts"
+ exec 9>"$runs/.domain.lock"
+@@ -37,4 +37,8 @@
+             basename "$TRACK_MIXED_OVERLAY" > "$BENCH_RUN/policy_revision.txt"
+         fi
++    elif [[ "$BENCH_POLICY" == adaptive ]]; then
++        source "$HOME/flow_v3_r32_adaptive_ws/install/setup.bash"
++        python3 -c 'from ament_index_python.packages import get_package_share_directory as share; from osp_mission.adaptive_faces import inspection_pose; assert "/flow_v3_r32_adaptive_ws/" in share("osp_mission")'
++        echo 'flow_v3_r32_adaptive_ws' > "$BENCH_RUN/policy_revision.txt"
+     elif [[ "$BENCH_POLICY" == center ]]; then
+         source "$HOME/flow_v3_r32_center_v2_ws/install/setup.bash"

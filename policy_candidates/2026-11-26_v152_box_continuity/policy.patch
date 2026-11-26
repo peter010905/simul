@@ -1,0 +1,216 @@
+--- a/src/osp_mission/osp_mission/box_batch.py
++++ b/src/osp_mission/osp_mission/box_batch.py
+@@ -33,4 +33,7 @@
+         return (goal['completed_box'], not batch, 'fitted_face' not in goal, distance)
+ 
+     def dispatched(self, goal):
+-        self.active = goal.get('batch_box')
++        if goal.get('batch_box') is not None:
++            self.active = goal['batch_box']
++        elif not any(k in goal for k in ('print_point','focus_id','approach_id')):
++            self.active = None
+--- a/src/osp_mission/osp_mission/center_wall.py
++++ b/src/osp_mission/osp_mission/center_wall.py
+@@ -16,6 +16,7 @@
+ from osp_mission.white_legs import ThinObstacles
+ from osp_mission.small_return_filter import SmallReturns
+ from osp_mission.box_batch import BoxBatch
++from osp_mission.box_continuity import BoxContinuity
+ from osp_mission.region_transit import RegionTransit, route_connected
+ from osp_mission.box_access import box_routes
+ from osp_mission.box_face_recovery import BoxFaceRecovery
+@@ -127,6 +128,7 @@
+         self.history = deque(maxlen=200)
+         self.tracked_faces = TrackedFaces()
+         self.batch = BoxBatch()
++        self.continuity = BoxContinuity()
+         self.region_transit = RegionTransit()
+         self.exploration_routes = None
+         self.local_box_cost = None
+@@ -351,6 +353,12 @@
+                 goal['recovery_view_odom'] = odom_point((goal['x'], goal['y']), transform).tolist()
+         robot = odom_point(pose[:2], transform)
+         mode = None if probe_only else self.region_transit.mode(elapsed, robot, self.survey.trail)
++        if not probe_only:
++            resumed = self.continuity.choose(ordered, elapsed, duration-elapsed, grid, box_safe)
++            if resumed is not None:
++                self.phase = 'interior'
++                self.reason = 'resume_interrupted_face' if resumed.get('box_face_resume') else 'finish_current_box'
++                return resumed
+         if not probe_only and mode != 'resume':
+             recovery = self.box_recovery.choose(grid, costmap, box_safe, nav, box_distances, clearance,
+                 pose, transform, veto, ordered, elapsed, duration, self.glass_wall.in_zone)
+@@ -544,11 +552,26 @@
+                     current_wall_pose_odom=here.tolist())
+         return goal if veto(look) else look
+ 
++    def face_result(self, kind, status, reason, elapsed):
++        undone = self.continuity.result(kind, status, reason, elapsed)
++        if undone is None:
++            return
++        # Only undo the exact dispatch that was interrupted before its sweep.
++        anchor = np.asarray(undone['surface_odom'])
++        stamp = undone['face_dispatch_elapsed']
++        self.history = deque((r for r in self.history if not (
++            r[0] == 'interior' and r[3] == stamp and np.linalg.norm(r[1]-anchor) < .01)), maxlen=200)
++        key = undone.get('region_face')
++        if key in self.joint.attempted:
++            self.joint.attempted.discard(key)
++            self.joint.stops = max(0, self.joint.stops-1)
++
+     def attempts(self, kind, anchor, normal_yaw, radius):
+         return [t for k,p,a,t in self.history if k == kind and
+                 np.linalg.norm(anchor-p)<radius and math.cos(normal_yaw-a)>.70]
+ 
+     def dispatched(self, goal, elapsed):
++        self.continuity.dispatched(dict(goal, face_dispatch_elapsed=elapsed), elapsed)
+         self.region_transit.dispatched(goal, elapsed, self.joint.robot_xy)
+         if 'current_wall_pose_odom' in goal:
+             self.last_wall_look_pose = tuple(goal['current_wall_pose_odom'])
+--- a/src/osp_mission/osp_mission/face_directed_look.py
++++ b/src/osp_mission/osp_mission/face_directed_look.py
+@@ -17,7 +17,12 @@
+         except (OSError,ValueError) as exc:self.owner.get_logger().warning(str(exc))
+ 
+     def clear(self,reason):
+-        if self.pending is not None:self.event('cleared',reason=reason)
++        if self.pending is not None:
++            self.event('cleared',reason=reason)
++            if reason in ('action_request_error','action_rejected','action_result_error'):
++                schedule = getattr(getattr(self.owner,'hybrid',None),'schedule',None)
++                if schedule is not None:
++                    schedule.face_result('nav',6,reason,self.owner.now()-self.owner.started)
+         self.pending=None
+ 
+     def select(self,selected,map_to_odom):
+@@ -45,6 +50,9 @@
+             turn=max(-2*math.pi/3,min(2*math.pi/3,turn))
+         except Exception as exc:
+             self.unavailable+=1;self.event('unavailable',reason=str(exc));return 0.
++        schedule = getattr(getattr(self.owner,'hybrid',None),'schedule',None)
++        if schedule is not None:
++            schedule.continuity.begin_sweep(turn,self.owner.now()-self.owner.started)
+         self.executed+=1;self.event('consumed',turn_rad=turn,**task)
+         self.owner.get_logger().info(f'Planned face inspection turn: {math.degrees(turn):.2f} deg')
+         return turn
+--- a/src/osp_mission/osp_mission/hybrid.py
++++ b/src/osp_mission/osp_mission/hybrid.py
+@@ -59,6 +59,7 @@
+         self.tracks = []
+         self.used = []
+         self.white_used = []
++        self.defer_white = False
+ 
+     def observe(self, evidence, now):
+         stamp = float(evidence['stamp'])
+@@ -66,7 +67,7 @@
+         if (point.shape!=(2,) or observer.shape!=(2,) or not np.isfinite([*point,*observer,stamp]).all()
+                 or not -.1<=now-stamp<=.5 or not .7<=np.linalg.norm(point-observer)<=8):
+             return
+-        self.tracks = [r for r in self.tracks if now-r['stamp']<=45]
++        self.tracks = [r for r in self.tracks if now-r['stamp']<=45 or now<=r.get('held_until',-math.inf)]
+         white_leg = evidence.get('white_leg') is True
+         matching = (r for r in self.tracks if r.get('white_leg', False) == white_leg)
+         nearest = min(matching,key=lambda r:np.linalg.norm(point-r['point']),default=None)
+@@ -79,13 +80,17 @@
+         else:
+             self.tracks.append(dict(point=point,observer=observer,stamp=stamp,count=1,white_leg=white_leg))
+             self.tracks=self.tracks[-48:]
++        if white_leg and self.defer_white:
++            for row in self.tracks:
++                if row.get('white_leg') and now-row['stamp'] <= .6:
++                    row['held_until'] = row['stamp']+90.
+ 
+     def choose(self, grid, cost, pose, transform, targets, now, veto, *, white_filter=None, excluded_zone=None):
+         if transform is None:
+             return None
+         self.used=[r for r in self.used if now-r[1]<180]
+         self.white_used=[r for r in self.white_used if now-r[1]<180]
+-        recent=[r for r in self.tracks if r['count']>=3 and 0<=now-r['stamp']<=30
++        recent=[r for r in self.tracks if r['count']>=3 and 0<=now-r['stamp'] and (now-r['stamp']<=30 or now<=r.get('held_until',-math.inf))
+                 and not any(np.linalg.norm(r['point']-p)<.75 for p,_ in self.used)
+                 and not (r.get('white_leg') and any(np.linalg.norm(r['point']-p)<.75 for p,_ in self.white_used))]
+         if not recent:
+@@ -165,7 +170,10 @@
+ 
+     def has_fresh_print(self, owner):
+         stamp = owner.get_clock().now().nanoseconds/1e9
++        service = getattr(getattr(self, 'schedule', None), 'continuity', None)
++        protected = service is not None and service.protecting(owner.now()-owner.started)
+         return any(row['count'] >= 3 and 0 <= stamp-row['stamp'] <= 1.
++                   and not (protected and row.get('white_leg'))
+                    for row in self.memory.tracks)
+ 
+     def should_interrupt(self,owner):
+--- a/src/osp_mission/osp_mission/mission.py
++++ b/src/osp_mission/osp_mission/mission.py
+@@ -175,6 +175,7 @@
+     def on_anonymous_print(self,msg):
+         if self.state=='running':
+             try:
++                self.hybrid.memory.defer_white = self.hybrid.schedule.continuity.protecting(self.now()-self.started)
+                 self.hybrid.memory.observe(json.loads(msg.data),self.get_clock().now().nanoseconds/1e9)
+             except (ValueError,TypeError,KeyError):
+                 return
+@@ -602,6 +603,9 @@
+                 self.finish('undock_result_error')
+             return
+         if self.state!='running': return
++        schedule = getattr(getattr(self, 'hybrid', None), 'schedule', None)
++        if schedule is not None:
++            schedule.face_result(self.kind, result.status, self.cancel_reason, self.now()-self.started)
+         guard=getattr(self,'contact_inspection',None)
+         if guard is not None and guard.action:
+             self.contact_pending=False
+--- a/src/osp_mission/osp_mission/phased_hybrid.py
++++ b/src/osp_mission/osp_mission/phased_hybrid.py
+@@ -60,6 +60,12 @@
+ 
+         cue = self.memory.choose(grid,cost,pose,transform,owner.targets,clock,veto,white_filter=white_filter,
+                                  excluded_zone=small_returns.matches)
++        protected = self.schedule.continuity.protecting(now-owner.started)
++        if cue is not None and cue.get('white_leg') and (
++                protected or selected is not None and selected.get('r32_kind') == 'interior_surface'):
++            cue = None
++        if print_only and protected and cue is None:
++            return None
+         if print_only and (cue is not None or not box_probe or self.schedule.region_transit.active):
+             return cue
+         if print_only:
+@@ -109,8 +115,9 @@
+                                     pending_approach=(owner.approach, owner.targets, clock))
+         if goal is not None and 'routed_approach_m' in goal:
+             return goal
+-        if cue is not None and cue.get('white_leg') and goal is not None and any(
+-                key in goal for key in ('bearing_advance_id','distant_hint_id','weak_wall')):
++        if cue is not None and cue.get('white_leg') and goal is not None and (
++                goal.get('r32_kind') == 'interior_surface' or any(
++                key in goal for key in ('bearing_advance_id','distant_hint_id','weak_wall'))):
+             return goal
+         if cue is not None:
+             self.schedule.reason = 'white_leg_candidate' if cue.get('white_leg') else 'local_print_candidate'
+@@ -143,6 +150,15 @@
+         if 'routed_offset' in goal:
+             owner.approach.routed_dispatched(goal, owner.now())
+         self.schedule.dispatched(goal,elapsed)
++        events = self.schedule.continuity.events
++        if events:
++            try:
++                with (Path(owner.p('output_dir'))/'box_continuity.jsonl').open('a') as stream:
++                    for event in events:
++                        stream.write(json.dumps(event)+'\n')
++                events.clear()
++            except OSError as exc:
++                owner.get_logger().warning(str(exc))
+         self.next_box_probe = owner.now()+3. if (goal.get('r32_kind')=='wall_surface' or goal.get('cluster_exit')) else float('inf')
+         if goal.get('survey_escape') or 'distant_hint_id' in goal or 'survey_wall' in goal:
+             self.next_box_probe = float('inf')
+@@ -165,6 +181,8 @@
+                    bearing_progress_m=goal.get('bearing_progress_m'),
+                    surface=goal.get('surface_map'), fitted_face=goal.get('fitted_face'),
+                    face_aim_map=goal.get('face_aim_map'),
++                   box_face_resume=bool(goal.get('box_face_resume')),
++                   box_face_continuation=bool(goal.get('box_face_continuation')),
+                    local_box_cost_used=self.schedule.local_box_cost is not None,
+                    box_recovery_walk_m=goal.get('box_recovery_walk_m'),
+                    box_recovery_same_face=goal.get('box_recovery_same_face'),

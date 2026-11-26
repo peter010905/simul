@@ -1,0 +1,218 @@
+--- /private/tmp/claude-501/-Users-hwang-kyutae/747e16af-fbfa-4417-aaf7-6f2b6bd315da/scratchpad/v49/osp_mission/osp_mission/hybrid.py	2026-11-26 04:14:35
++++ hybrid.py	2026-11-26 06:47:29
+@@ -61,7 +61,32 @@
+         self.white_used = []
+         self.defer_white = False
+         self.white_hold_seconds = 90.
++        # .50: real runs read no ID from 19 white-leg looks in 600 s. A leg
++        # already looked at stays used for the mission; consecutive looks that
++        # add no marker pause further white-leg cues.
++        self.white_radius_m = 1.0
++        self.white_streak_limit = 3
++        self.white_pause_s = 150.
++        self.white_streak = 0
++        self.white_targets_seen = 0
++        self.white_block_until = -math.inf
+ 
++    def white_dispatched(self, now, target_count):
++        if target_count > self.white_targets_seen:
++            self.white_streak = 0
++        self.white_targets_seen = max(self.white_targets_seen, target_count)
++        self.white_streak += 1
++        if self.white_streak >= self.white_streak_limit:
++            self.white_block_until = now + self.white_pause_s
++            self.white_streak = 0
++
++    def white_allowed(self, now, target_count):
++        if target_count > self.white_targets_seen:
++            self.white_targets_seen = target_count
++            self.white_streak = 0
++            self.white_block_until = -math.inf
++        return now >= self.white_block_until
++
+     def observe(self, evidence, now):
+         stamp = float(evidence['stamp'])
+         point,observer = (np.asarray(evidence[k],dtype=float) for k in ('point','observer'))
+@@ -90,10 +115,11 @@
+         if transform is None:
+             return None
+         self.used=[r for r in self.used if now-r[1]<180]
+-        self.white_used=[r for r in self.white_used if now-r[1]<180]
++        white_ok=self.white_allowed(now,len(targets))
+         recent=[r for r in self.tracks if r['count']>=3 and 0<=now-r['stamp'] and (now-r['stamp']<=30 or now<=r.get('held_until',-math.inf))
+                 and not any(np.linalg.norm(r['point']-p)<.75 for p,_ in self.used)
+-                and not (r.get('white_leg') and any(np.linalg.norm(r['point']-p)<.75 for p,_ in self.white_used))]
++                and not (r.get('white_leg') and (not white_ok or any(
++                    np.linalg.norm(r['point']-p)<self.white_radius_m for p,_ in self.white_used)))]
+         if not recent:
+             return None
+         safe, distances = grid.reachable(pose[:2], .32)
+@@ -281,7 +307,10 @@
+             self.seen_boxes.append((goal['box_odom'],self.last_box))
+         if 'print_odom' in goal:
+             used = self.memory.white_used if goal.get('white_leg') else self.memory.used
+-            used.append((np.asarray(goal['print_odom']), owner.get_clock().now().nanoseconds/1e9))
++            stamp = owner.get_clock().now().nanoseconds/1e9
++            used.append((np.asarray(goal['print_odom']), stamp))
++            if goal.get('white_leg'):
++                self.memory.white_dispatched(stamp, len(getattr(owner,'targets',None) or {}))
+         kind=goal.get('r32_kind','print' if 'print_point' in goal else
+                       'approach' if 'approach_id' in goal else 'focus' if 'focus_id' in goal else 'flow')
+         try:
+--- /private/tmp/claude-501/-Users-hwang-kyutae/747e16af-fbfa-4417-aaf7-6f2b6bd315da/scratchpad/v49/osp_mission/osp_mission/wall_lap.py	2026-11-26 04:42:28
++++ wall_lap.py	2026-11-26 06:52:46
+@@ -1,4 +1,11 @@
+-"""A bounded coarse perimeter pass on measured walls, then interior-only discovery."""
++"""A bounded coarse perimeter pass on measured walls, then interior-only discovery.
++
++.50: lap goal headings follow the contour travel direction (they pointed
++backwards before); after wall entry every continuation (contour or metric)
++must advance in space along the previous lap direction, and a credited lap stop is never
++selected again. A lap that cannot continue hands over to interior discovery
++instead of idling until the perimeter time budget expires.
++"""
+ import math
+ import cv2
+ import numpy as np
+@@ -37,10 +44,16 @@
+ 
+ 
+ class WallLap:
+-    def __init__(self, budget_fraction=.30, maximum_seconds=180., waypoint_spacing=2.3):
++    def __init__(self, budget_fraction=.30, maximum_seconds=180., waypoint_spacing=2.3,
++                 entry_wait_s=30., continuation_wait_s=15., revisit_radius_m=.8):
+         self.budget_fraction=budget_fraction
+         self.maximum_seconds=maximum_seconds
+         self.spacing=waypoint_spacing
++        self.entry_wait_s=entry_wait_s
++        self.continuation_wait_s=continuation_wait_s
++        self.revisit_radius_m=revisit_radius_m
++        self.backward_rejected=0
++        self.revisit_rejected=0
+         self.phase='perimeter'
+         self.reason='initial_pass'
+         self.active=False
+@@ -108,6 +121,16 @@
+             self.finish('perimeter_time_budget')
+         return budget
+ 
++    def _wait(self, elapsed, reason):
++        if self.missing_since is None:
++            self.missing_since=elapsed
++        self.reason=reason
++        limit=self.entry_wait_s if self.entry is None else self.continuation_wait_s
++        if elapsed-self.missing_since>=limit:
++            self.finish('no_safe_perimeter_goal' if self.entry is None
++                        else 'perimeter_continuation_unavailable')
++        return None
++
+     def choose(self, grid, distances, pose, transform, elapsed, duration, veto):
+         if self.phase != 'perimeter':
+             return None
+@@ -116,10 +139,7 @@
+             return None
+         boundary=measured_perimeter(grid,pose)
+         if boundary is None:
+-            if self.missing_since is None:
+-                self.missing_since=elapsed
+-            self.reason='waiting_for_measured_wall_entry'
+-            return None
++            return self._wait(elapsed,'waiting_for_measured_wall_entry')
+         points,floor,supported,self.chair_cells=boundary
+         self.last_support=float(supported.mean())
+         world=np.array([grid.world(r,c) for c,r in points])
+@@ -132,8 +152,7 @@
+         self.anchor_was_unknown=not bool(supported[nearest])
+         measured=np.flatnonzero(supported)
+         if not len(measured):
+-            self.reason='waiting_for_measured_wall_entry'
+-            return None
++            return self._wait(elapsed,'waiting_for_measured_wall_entry')
+         # An unfinished map has nearby unknown edges. They cannot anchor
+         # progress along an actually observed wall several contour-metres away.
+         near=int(measured[np.argmin(np.linalg.norm(world[measured]-pose[:2],axis=1))])
+@@ -154,6 +173,9 @@
+         reference=np.array([math.cos(reference_angle),math.sin(reference_angle)])
+         best=None
+         self.selection_mode='none'
++        self.backward_rejected=self.revisit_rejected=0
++        # A reference exists after entry: the last dispatched lap tangent.
++        forward_required=self.entry is not None
+         for metric in (False,True):
+             for i in range(0,len(points),step):
+                 advance=float((arc[i]-arc[near]) % perimeter)
+@@ -169,6 +191,8 @@
+                 if norm < .05:
+                     continue
+                 tangent/=norm
++                # Direction of increasing contour arc, i.e. of positive advance.
++                travel=tangent.copy()
+                 nearby=[]
+                 for anchor,direction,length in guides:
+                     projection=float((world[i]-anchor)@direction)
+@@ -182,7 +206,14 @@
+                 if not grid.inside(*plus) or not floor[plus]:
+                     normal=-normal
+                 tangent=np.array([normal[1],-normal[0]])
+-                if metric and float(tangent@reference)<-.70:
++                # .50: the fixed-handedness tangent pointed against the travel
++                # direction on real contours (goal yaw 180 deg from motion), so
++                # every stop ended facing backwards and the metric fallback used
++                # a reversed reference. Orient it along the contour travel.
++                if float(tangent@travel)<0.:
++                    tangent=-tangent
++                if (metric or forward_required) and float(tangent@reference)<-.70:
++                    self.backward_rejected+=1
+                     continue
+                 for stand in (.9,1.2,1.5):
+                     point=world[i]+stand*normal
+@@ -195,7 +226,14 @@
+                         continue
+                     displacement=point-np.asarray(pose[:2])
+                     if metric and (float(displacement@reference)<-.30 or float(displacement@tangent)<.55):
++                        self.backward_rejected+=1
+                         continue
++                    # Contour advance already moves along the arc; this bound only
++                    # rejects real spatial reversals while allowing the standoff
++                    # shift of an inside corner.
++                    if forward_required and not metric and float(displacement@reference)<-.80:
++                        self.backward_rejected+=1
++                        continue
+                     yaw=math.atan2(tangent[1],tangent[0])
+                     goal=dict(x=float(point[0]),y=float(point[1]),yaw=yaw,scan_angle=0.,
+                               features=np.array([0.,0.,walk,0.,0.]),distance=walk,
+@@ -204,9 +242,13 @@
+                               lap_normal_odom=math.atan2(normal[1],normal[0])+transform[2],
+                               lap_tangent_odom=yaw+transform[2],
+                               lap_advance_m=advance,lap_wall_distance_m=stand)
++                    near_visit=any(math.dist(goal['lap_pose_odom'],p)<self.revisit_radius_m for p in self.visited)
++                    if near_visit and not entering:
++                        self.revisit_rejected+=1
++                        continue
+                     if veto(goal):
+                         continue
+-                    repeat=any(math.dist(goal['lap_pose_odom'],p)<.8 for p in self.visited[-8:])
++                    repeat=near_visit
+                     self.candidate_count+=1
+                     if entering:
+                         # Reach a measured wall safely first. An endpoint also
+@@ -227,14 +269,14 @@
+             self.reason='entering_measured_wall' if self.entry is None else 'following_measured_wall'
+             best[1]['wall_entry']=self.entry is None
+             return best[1]
+-        if self.missing_since is None:
+-            self.missing_since=elapsed
+-        self.reason='waiting_for_safe_wall_entry' if self.entry is None else 'waiting_for_safe_wall_continuation'
+-        return None
++        return self._wait(elapsed,'waiting_for_safe_wall_entry' if self.entry is None
++                          else 'waiting_for_safe_wall_continuation')
+ 
+     def report(self):
+         return dict(phase=self.phase,reason=self.reason,path_m=round(self.path,2),
+                     confirmed_stops=len(self.normals),turn_rad=round(self.turn,2),
+                     boundary_support=round(self.last_support,3),chair_cells=self.chair_cells,
+                     entered_wall=self.entry is not None,nearest_edge_unmeasured=self.anchor_was_unknown,
+-                    safe_wall_candidates=self.candidate_count,selection_mode=self.selection_mode)
++                    safe_wall_candidates=self.candidate_count,selection_mode=self.selection_mode,
++                    backward_rejected=self.backward_rejected,revisit_rejected=self.revisit_rejected,
++                    waiting_since_s=None if self.missing_since is None else round(self.missing_since,1))

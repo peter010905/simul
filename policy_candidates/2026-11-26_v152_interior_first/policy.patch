@@ -1,0 +1,71 @@
+--- a/src/osp_mission/osp_mission/center_wall.py
++++ b/src/osp_mission/osp_mission/center_wall.py
+@@ -17,6 +17,7 @@
+ from osp_mission.small_return_filter import SmallReturns
+ from osp_mission.box_batch import BoxBatch
+ from osp_mission.box_continuity import BoxContinuity
++from osp_mission.interior_priority import InteriorPriority, hinted
+ from osp_mission.region_transit import RegionTransit, route_connected
+ from osp_mission.box_access import box_routes
+ from osp_mission.box_face_recovery import BoxFaceRecovery
+@@ -129,6 +130,7 @@
+         self.tracked_faces = TrackedFaces()
+         self.batch = BoxBatch()
+         self.continuity = BoxContinuity()
++        self.interior_priority = InteriorPriority()
+         self.region_transit = RegionTransit()
+         self.exploration_routes = None
+         self.local_box_cost = None
+@@ -354,6 +356,23 @@
+         robot = odom_point(pose[:2], transform)
+         mode = None if probe_only else self.region_transit.mode(elapsed, robot, self.survey.trail)
+         if not probe_only:
++            # Preserve the complete existing wall candidate set for measured
++            # marker bearings, including surfaces normally omitted from coverage.
++            self.survey.progress(samples, grid, viewed, transform, pose, elapsed, DIRECTIONS)
++            clue = self.bearing_advance.choose(grid, costmap, reachable, nav, distances, pose, transform,
++                self.survey.known, self.weak_clock, duration-elapsed, veto,
++                expected_count=pending_approach[0].expected_marker_count if pending_approach else 0)
++            if clue is None:
++                clue = self.weak.choose(weak_walls, grid, transform, self.weak_known,
++                    self.weak_clock, duration-elapsed, self.survey.camera, self.survey.reference_m)
++            if clue is None:
++                proposal = self.survey.choose(grid, costmap, nav, reachable, distances, pose, transform,
++                    candidates['wall'], ordered, elapsed, duration, veto)
++                clue = proposal if hinted(proposal) else None
++            if clue is not None:
++                self.phase = 'wall' if clue.get('weak_wall') else 'interior'
++                self.reason = 'wall_marker_evidence'
++                return clue
+             resumed = self.continuity.choose(ordered, elapsed, duration-elapsed, grid, box_safe)
+             if resumed is not None:
+                 self.phase = 'interior'
+@@ -384,7 +403,15 @@
+                 return boxes[0][1] if boxes else None
+             preferred = boxes if getattr(self,'on_weak_route',False) else fresh
+             return preferred[0][1] if preferred else None
+-        self.survey.progress(samples, grid, viewed, transform, pose, elapsed, DIRECTIONS)
++        preferred = self.interior_priority.choose(grid, box_distances, transform, ordered, choices,
++            weak_walls, self.survey.visited_positions(elapsed), duration-elapsed, veto)
++        if preferred is not None:
++            self.phase = 'interior'
++            self.reason = ('inspect_visible_box' if preferred.get('batch_box') is not None or
++                           preferred.get('fitted_face') is not None else 'interior_first_exploration')
++            return preferred
++        # Only when useful interior tasks are exhausted may ordinary wall
++        # coverage reopen space or obtain another image bearing.
+         alternative = self.survey.choose(grid, costmap, nav, reachable, distances, pose, transform,
+                                          candidates['wall'], fresh, elapsed, duration, veto)
+         reserved = alternative if alternative is not None and 'survey_wall' in alternative else None
+--- a/src/osp_mission/osp_mission/phased_hybrid.py
++++ b/src/osp_mission/osp_mission/phased_hybrid.py
+@@ -181,6 +181,9 @@
+                    bearing_progress_m=goal.get('bearing_progress_m'),
+                    surface=goal.get('surface_map'), fitted_face=goal.get('fitted_face'),
+                    face_aim_map=goal.get('face_aim_map'),
++                   interior_priority=bool(goal.get('interior_priority')),
++                   known_wall_distance_m=goal.get('known_wall_distance_m'),
++                   interior_priority_score=goal.get('interior_priority_score'),
+                    box_face_resume=bool(goal.get('box_face_resume')),
+                    box_face_continuation=bool(goal.get('box_face_continuation')),
+                    local_box_cost_used=self.schedule.local_box_cost is not None,

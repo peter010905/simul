@@ -1,0 +1,65 @@
+--- a/osp_mission/mission.py
++++ b/osp_mission/mission.py
+@@ -50,7 +50,7 @@
+ from osp_mission.contact_inspection import ContactInspection
+ from osp_mission.transit_control import TransitFlow
+ from osp_mission.exploration_memory import ExplorationMemory
+-from osp_mission.near_pass_runtime import NearPassRuntime
++from osp_mission.wall_transit_runtime import WallTransitRuntime as NearPassRuntime
+ from osp_mission.general_route import inspectable_route
+ 
+ 
+@@ -546,6 +546,7 @@
+                 flow=getattr(self,'navigation_flow',None)
+                 if flow is not None:flow.record_navigation_result(result.status,'bump_contact',self.now())
+             return
++        if getattr(self,'near_pass',None) is not None and self.near_pass.completed(result.status,self.kind,getattr(self,'cancel_reason','')):return
+         if self.cancel_reason == 'readable_marker' and result.status in (4,5):
+             self.face_look.clear('readable_marker')
+             self.scan_after = False
+@@ -557,7 +558,6 @@
+             self.scan_after = False
+             self.plan_after = self.now()
+             return
+-        if getattr(self,'near_pass',None) is not None and self.near_pass.completed(result.status,self.kind,getattr(self,'cancel_reason','')):return
+         sensor_reasons={'processed_camera_stale','scan_stale','map_unavailable','map_to_base_tf_unavailable','nav2_unavailable','drive_unavailable'}
+         if result.status==5 and getattr(self,'cancel_reason','') in sensor_reasons and self.kind in ('nav','spin'):
+             goal=copy.deepcopy(self.active_goal)
+@@ -931,7 +931,7 @@
+             # Preserve confirmed markers and print revisits. A box/face
+             # transit may pause for another visible side and resume.
+             self.near_pass.protected_navigation=any(k in selected for k in ('approach_id','focus_id','print_point'))
+-            self.near_pass.inspectable_route=False  # The phase scheduler owns surface observations.
++            self.near_pass.inspectable_route=inspectable_route(selected)
+         if flow is not None:flow.selected(selected,memory_transform)
+         self.marker_look.select(selected,memory_transform)
+         self.face_look.select(selected,memory_transform)
+--- a/osp_mission/center_wall.py
++++ b/osp_mission/center_wall.py
+@@ -237,12 +237,17 @@
+                 return boxes[0][1] if boxes else None
+             preferred = boxes if getattr(self,'on_weak_route',False) else fresh
+             return preferred[0][1] if preferred else None
+-        if not boxes:
++        wall_reserve = min(.15*duration, 12. + 5.*self.counts['wall'])
++        if not boxes or duration-elapsed <= wall_reserve:
+             goal = self.weak.choose(candidates['wall'],grid,transform,self.weak_known,
+                                     self.weak_clock,duration-elapsed)
+             if goal is not None:
+                 self.phase,self.reason = 'wall','persistent_small_wall_candidate'
+                 return goal
++        if candidates['wall'] and duration-elapsed <= wall_reserve:
++            self.phase, self.reason = 'wall', 'remaining_time_for_mapped_walls'
++            self.idle_since = None
++            return min(candidates['wall'], key=lambda item: item[0])[1]
+         if crowded and not boxes:
+             if outside:
+                 self.phase, self.reason = 'interior', 'inspect_other_surface'
+@@ -257,7 +262,6 @@
+                 return dict(frontier, cluster_exit=True)
+         if crowded and boxes:
+             fresh = outside
+-        wall_reserve = min(.15*duration, 12. + 5.*self.counts['wall'])
+         frontier = None if fresh else discovery_frontier(choices, costmap, nav, veto)
+         if fresh or (frontier is not None and duration-elapsed > wall_reserve):
+             if self.phase == 'wall':

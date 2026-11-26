@@ -1,0 +1,99 @@
+--- a/mission.py
++++ b/mission.py
+@@ -798,7 +798,23 @@
+         if (self.pending or self.goal_handle) and self.cancel_started is not None:
+             if self.now()-self.cancel_started >= 8.:
+                 self.zero()
+-                self.finish('action_cancel_unconfirmed')
++                # .52: a late cancel response (slow simulator or loaded robot computer)
++                # abandons the stale action instead of ending the mission. Three such
++                # events within 90 s still stop the mission as before.
++                late = [t for t in getattr(self, 'late_cancels', []) if self.now()-t < 90.] + [self.now()]
++                self.late_cancels = late
++                if len(late) >= 3:
++                    self.finish('action_cancel_unconfirmed')
++                    return
++                self.get_logger().warning(f'Cancel of {self.kind} unconfirmed after 8 s; abandoning it')
++                self.action_generation += 1
++                self.goal_handle = None
++                self.pending = False
++                self.cancel_started = None
++                self.cancel_reason = ''
++                flow = getattr(self, 'navigation_flow', None)
++                if flow is not None and getattr(self, 'kind', '') == 'nav':
++                    flow.record_navigation_result(6, 'cancel_unconfirmed', self.now())
+                 return
+         # Create 3 owns the undock motion and its hazard checks. Its action does
+         # not require camera coverage, SLAM or Nav2 readiness to remain active.
+--- a/work_rules.py
++++ b/work_rules.py
+@@ -13,6 +13,7 @@
+     face_retry_s: float = 45.
+     face_retries_per_geometry: int = 2
+     face_retries_total: int = 6
++    face_reconsiderations: int = 2  # .52: map-change resets of one face's failure count
+     same_face_m: float = .50
+     same_box_m: float = .40
+     direction_cosine: float = .70
+@@ -61,8 +62,9 @@
+     def probe(self, point, yaw, geometry):
+         row = self.row(point, yaw)
+         old = row['geometry']
+-        if old is not None and (len(old) != len(geometry) or
+-                sum(a != b for a,b in zip(old,geometry)) >= max(3, math.ceil(.08*len(geometry)))):
++        if (old is not None and row['reconsiderations'] < RULES.face_reconsiderations and
++                (len(old) != len(geometry) or
++                 sum(a != b for a,b in zip(old,geometry)) >= max(3, math.ceil(.08*len(geometry))))):
+             row['failures'] = []
+             row['status'] = 'PENDING'
+             row['reconsiderations'] += 1
+--- a/wall_lap.py
++++ b/wall_lap.py
+@@ -54,6 +54,8 @@
+         self.sparse=None
+         self.sparse_spacing=4.5
+         self.sparse_stops=0
++        # .52: callable(point)->point|None placing chair-face stops in front of the wall.
++        self.project=None
+         self.entry_wait_s=entry_wait_s
+         self.continuation_wait_s=continuation_wait_s
+         self.revisit_radius_m=revisit_radius_m
+@@ -222,6 +224,10 @@
+                     continue
+                 for stand in (.9,1.2,1.5):
+                     point=world[i]+stand*normal
++                    if self.project is not None:
++                        shifted=self.project(point)
++                        if shifted is not None:
++                            point=np.asarray(shifted,float)
+                     cell=grid.index(*point)
+                     if (not grid.inside(*cell) or not floor[cell]
+                             or clearance[cell]<.32 or not np.isfinite(distances[cell])):
+--- a/chair_band.py
++++ b/chair_band.py
+@@ -235,3 +235,15 @@
+     def contains(self, point, margin=0.):
+         q = np.asarray(point)
+         return any((q - p) @ n >= -margin for p, n in self.walls.values())
++
++    def project(self, point, standoff=1.0):
++        """Move a point that lies within `standoff` of a committed wall (or beyond it)
++        to `standoff` in front of that wall. Returns None when no wall applies."""
++        q = np.asarray(point, float)
++        moved = None
++        for p, n in self.walls.values():
++            depth = float((q - p) @ n)
++            if depth > -standoff:
++                q = q - n * (depth + standoff)
++                moved = q
++        return moved
+--- a/phased_hybrid.py
++++ b/phased_hybrid.py
+@@ -53,6 +53,7 @@
+             self.chair_wall_errors += 1
+         walls = self.chair_walls
+         self.schedule.wall_lap.sparse = lambda point: walls.contains(point, 1.6)
++        self.schedule.wall_lap.project = lambda point: walls.project(point, 1.0)
+ 
+         def veto(goal):
+             if walls.contains((goal['x'], goal['y']), .3):

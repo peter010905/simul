@@ -1,0 +1,125 @@
+--- a/center_wall.py
++++ b/center_wall.py
+@@ -13,6 +13,7 @@
+ from osp_mission.cluster_exit import ClusterExit
+ from osp_mission.box_batch import BoxBatch
+ from osp_mission.wall_bearings import WallBearings
++from osp_mission.region_wall import RegionWall
+
+
+ def partly_mapped_objects(labels, boxes, floor, resolution):
+@@ -110,6 +111,7 @@
+         self.reason = 'mission_start'
+         self.idle_since = None
+         self.wall_anchor = None
++        self.regions = RegionWall()
+         self.history = deque(maxlen=200)
+         self.tracked_faces = TrackedFaces()
+         self.batch = BoxBatch()
+@@ -152,7 +154,7 @@
+                 if view:
+                     candidates['interior'].append(view)
+         # Compare generic and fitted faces together, including completed boxes.
+-        for (kind, _, side, _, _), cells in samples.items():
++        for (kind, component, side, _, _), cells in samples.items():
+             if probe_only and kind != 'interior':
+                 continue
+             # Keep one-off scan speckles out of each inspection target.
+@@ -206,7 +208,8 @@
+                                 distance=float(np.linalg.norm(point-pose[:2])), features=np.zeros(5),
+                                 r32_kind=kind+'_surface', surface_odom=anchor.tolist(),
+                                 normal_odom=normal_yaw, surface_map=face.tolist(),
+-                                previous_attempts=len(attempts))
++                                previous_attempts=len(attempts), wall_line=(component, side),
++                                unseen_wall_m=min(.75,len(remaining)*grid.resolution), wall_walk_m=float(distances[cell]))
+                     if veto(goal):
+                         continue
+                     score = distances[cell] + .5*abs(stand-.67) + .3*abs(shift) + 2.*len(attempts)
+@@ -224,6 +227,12 @@
+         deferred = [item for item in ordered if item[1]['completed_box']]
+         candidates['interior'] = [item for item in ordered if not item[1]['completed_box']]
+         fresh = [item for item in candidates['interior'] if not item[1]['previous_attempts']]
++        if not probe_only:
++            self.regions.observe(samples, grid, transform, viewed, elapsed, fresh)
++        if self.regions.cool:
++            candidates['interior'] = [item for item in candidates['interior'] if not self.regions.deferred(item[1])]
++            deferred = [item for item in deferred if not self.regions.deferred(item[1])]
++            fresh = [item for item in fresh if not self.regions.deferred(item[1])]
+         boxes = [item for item in fresh if item[1].get('batch_box') is not None]
+         crowded = self.cluster.crowded_centers(elapsed)
+         if crowded:
+@@ -238,12 +247,19 @@
+             preferred = boxes if getattr(self,'on_weak_route',False) else fresh
+             return preferred[0][1] if preferred else None
+         wall_reserve = min(.15*duration, 12. + 5.*self.counts['wall'])
+-        if not boxes or duration-elapsed <= wall_reserve:
+-            goal = self.weak.choose(candidates['wall'],grid,transform,self.weak_known,
+-                                    self.weak_clock,duration-elapsed)
+-            if goal is not None:
+-                self.phase,self.reason = 'wall','persistent_small_wall_candidate'
+-                return goal
++        weak = self.weak.choose(candidates['wall'],grid,transform,self.weak_known,
++                                self.weak_clock,duration-elapsed)
++        wall = self.regions.choose(candidates['wall'], elapsed, duration, weak)
++        if wall is not None:
++            self.phase, self.reason = 'wall', wall['strip_reason']
++            return wall
++        if self.regions.cool and not fresh:
++            remote = (c for c in choices if all(np.linalg.norm(odom_point((c['x'],c['y']),transform)-center) >= 2.5
++                      for center, _, _ in self.regions.cool))
++            frontier = discovery_frontier(remote,costmap,nav,veto)
++            if frontier is not None:
++                self.phase, self.reason = 'interior', 'frontier_outside_low_yield_region'
++                return dict(frontier,cluster_exit=True)
+         if candidates['wall'] and duration-elapsed <= wall_reserve:
+             self.phase, self.reason = 'wall', 'remaining_time_for_mapped_walls'
+             self.idle_since = None
+@@ -299,6 +315,7 @@
+                 np.linalg.norm(anchor-p)<radius and math.cos(normal_yaw-a)>.70]
+
+     def dispatched(self, goal, elapsed):
++        self.regions.dispatched(goal, elapsed)
+         self.on_weak_route = bool(goal.get('weak_wall'))
+         self.weak.dispatched(goal)
+         self.on_cluster_exit = bool(goal.get('cluster_exit'))
+--- a/phased_hybrid.py
++++ b/phased_hybrid.py
+@@ -73,7 +73,9 @@
+         elapsed = owner.now()-owner.started
+         self.schedule.dispatched(goal,elapsed)
+         self.next_box_probe = owner.now()+3. if (goal.get('r32_kind')=='wall_surface' or goal.get('cluster_exit')) else float('inf')
+-        row = dict(elapsed=elapsed,phase=self.schedule.phase,reason=self.schedule.reason,
++        if goal.get('region_wall'):
++            self.next_box_probe = float('inf')
++        row = dict(region=self.schedule.regions.audit, elapsed=elapsed,phase=self.schedule.phase,reason=self.schedule.reason,
+                    available=self.schedule.counts,kind=goal.get('r32_kind','flow_or_marker'),
+                    cluster_exit=bool(goal.get('cluster_exit')),
+                    crowded_centers=[list(c) for c in self.schedule.cluster.crowded_centers(elapsed)],
+--- a/mission.py
++++ b/mission.py
+@@ -547,6 +547,11 @@
+                 if flow is not None:flow.record_navigation_result(result.status,'bump_contact',self.now())
+             return
+         if getattr(self,'near_pass',None) is not None and self.near_pass.completed(result.status,self.kind,getattr(self,'cancel_reason','')):return
++        if self.cancel_reason == 'wall_region_due' and self.kind == 'nav' and result.status in (4,5):
++            self.face_look.clear('wall_region_due')
++            self.scan_after = False
++            self.plan_after = self.now()
++            return
+         if self.cancel_reason == 'readable_marker' and result.status in (4,5):
+             self.face_look.clear('readable_marker')
+             self.scan_after = False
+@@ -728,6 +733,13 @@
+                   and wall.check(self,now))
+         if self.goal_handle or self.pending:
+             hybrid=getattr(self,'hybrid',None)
++            regions = getattr(getattr(hybrid, 'schedule', None), 'regions', None)
++            if (regions is not None and self.kind=='nav' and self.goal_handle and not self.cancel_reason
++                    and not self.contact_pending and not self.recovery_pending and not guard.phase and not bearing_fresh
++                    and not self.near_pass.protected_navigation and not self.near_pass.task
++                    and not self.marker_look.pending and regions.due_in_transit(now-self.started)):
++                self.cancel_action('wall_region_due')
++                return
+             if (hybrid is not None and self.kind=='nav' and not protected and not self.cancel_reason
+                     and not self.contact_pending and not self.recovery_pending and not guard.phase
+                     and not bearing_fresh and now>=self.spin_blocked_until

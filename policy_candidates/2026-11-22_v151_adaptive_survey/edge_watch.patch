@@ -1,0 +1,115 @@
+--- a/mission.py
++++ b/mission.py
+@@ -130,6 +130,8 @@
+         self.hybrid=Hybrid() if self.edge_mode else None
+         if self.hybrid is not None:
+             self.create_subscription(OccupancyGrid,'global_costmap/costmap',self.hybrid.drive.update_costmap,qos_profile_sensor_data)
++            from osp_mission.edge_watch import EdgeWatch
++            self.edge_watch = EdgeWatch()
+             self.create_subscription(String,'mission/small_wall_bearings',self.on_small_wall,10)
+             self.create_subscription(String,'mission/anonymous_print',self.on_anonymous_print,10)
+             self.create_subscription(String,'mission/anonymous_glance',self.on_anonymous_glance,10)
+@@ -147,6 +149,7 @@
+             angle=float(e['angle'])
+             if abs(angle)<=math.radians(6.01) and -.1<=self.get_clock().now().nanoseconds/1e9-e['stamp']<=.5:
+                 guard.bearing=(now,angle)
++                return True
+         except (TypeError,ValueError,KeyError):
+             return
+
+@@ -160,6 +163,22 @@
+             if len(origin) == 2:
+                 for angle,size in cue['bearings'][:8]:
+                     self.hybrid.schedule.weak.observe(float(cue['stamp']),now,origin,float(angle),float(size))
++                if 'image_xy' not in cue or len(cue['image_xy']) != len(cue['bearings']):
++                    return
++                hits = [(*map(float,b), *map(float,xy)) for b,xy in zip(cue['bearings'],cue['image_xy'])]
++                watch = self.edge_watch
++                req = watch.offer(float(cue['stamp']), now, origin, float(cue['camera_yaw']), hits)
++                if req is None:
++                    return
++                if (self.p('duration')-(self.now()-self.started) < 8 or self.contact_inspection.pressed
++                        or self.contact_inspection.action or self.cancel_reason or self.readable_cue
++                        or getattr(self,'registered_pending',None) or self.near_pass.task
++                        or getattr(self,'edge_hazard_active',True)
++                        or ((self.goal_handle or self.pending) and self.kind != 'nav')):
++                    return
++                if self.on_anonymous_glance(String(data=json.dumps(dict(stamp=cue['stamp'], angle=req[3])))):
++                    watch.commit(req)
++                    self.get_logger().info(f'Accepted tiny edge glance {math.degrees(req[3]):.1f} deg')
+         except (KeyError,ValueError,TypeError):
+             return
+
+@@ -261,6 +280,7 @@
+         return True
+
+     def on_hazard(self,m):
++        self.edge_hazard_active = bool(m.detections)
+         bump=any(d.type==1 for d in m.detections)
+         guard=getattr(self,'contact_inspection',None)
+         rising=(guard.hazard([d.header.frame_id for d in m.detections if d.type==1],self.now())
+--- a/detector.py
++++ b/detector.py
+@@ -182,7 +182,8 @@
+                         cal=preview_geometry(self.info)
+                         bearings=[(camera[2]-math.atan2(u-cal.k[2],cal.k[0]),size) for u,_,size,_ in small]
+                         self.small_wall_pub.publish(String(data=json.dumps(dict(stamp=stamp.nanoseconds/1e9,
+-                            origin=camera[:2], bearings=bearings))))
++                            origin=camera[:2], bearings=bearings, camera_yaw=camera[2],
++                            image_xy=[(2*u/(msg.width-1)-1,2*v/(msg.height-1)-1) for u,v,_,_ in small]))))
+                 except Exception as exc:
+                     self.get_logger().debug(f'Small wall cue projection unavailable: {exc}')
+             accepted_quads={}
+--- /dev/null
++++ b/edge_watch.py
+@@ -0,0 +1,50 @@
++"""A bounded glance at a tiny cue leaving the image; never proposes a destination."""
++import math
++
++
++class EdgeWatch:
++    def __init__(self):
++        self.previous = None
++        self.accepted = []
++
++    def offer(self, stamp, now, origin, camera_yaw, hits):
++        if not all(math.isfinite(v) for v in (*origin, stamp, now, camera_yaw)):
++            return None
++        if not -.1 <= now-stamp <= .5 or len(origin) != 2 or len(hits) > 8:
++            return None
++        old = self.previous
++        if old and stamp <= old[0]:
++            return None
++        rows = [tuple(h) for h in hits if len(h) == 4 and all(map(math.isfinite,h))
++                and 6 <= h[1] < 10 and .6 <= abs(h[2]) <= 1 and abs(h[3]) <= 1]
++        self.previous = stamp, tuple(origin), rows
++        if not old or not .075 <= stamp-old[0] <= .4 or math.dist(origin,old[1]) > .22:
++            return None
++        if len(self.accepted) >= 2 or (self.accepted and now-self.accepted[-1][0] < 30):
++            return None
++        matches = []
++        for bearing,size,x,y in rows:
++            if abs(x) < .82:
++                continue
++            compatible = [(s,px,py) for b,s,px,py in old[2]
++                          if abs(math.remainder(bearing-b, 2*math.pi)) <= math.radians(2.2)
++                          and x*px > 0 and abs(y-py) <= .10 and .64 <= size/s <= 1.56]
++            if len(compatible) != 1:
++                continue
++            last_size,last_x,_ = compatible[0]
++            if max(size,last_size) < 8 or abs(x)-abs(last_x) < .04:
++                continue
++            angle = math.remainder(bearing-camera_yaw, 2*math.pi)
++            if angle*x >= 0 or abs(angle) < math.radians(6):
++                continue
++            matches.append((bearing,math.copysign(math.radians(6),angle)))
++        if len(matches) != 1:
++            return None
++        bearing,angle = matches[0]
++        if any(math.dist(origin,p)<.8 and abs(math.remainder(bearing-b,2*math.pi)) < math.radians(12)
++               for _,p,b in self.accepted):
++            return None
++        return (now,tuple(origin),bearing,angle)
++
++    def commit(self, request):
++        self.accepted.append(request[:3])

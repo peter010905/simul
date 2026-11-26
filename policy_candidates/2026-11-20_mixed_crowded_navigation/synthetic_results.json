@@ -1,0 +1,34 @@
+{
+  "validation": "synthetic map and real Mission callback execution; no physical robot",
+  "failed_goals_added_to_permanent_visit_history": {
+    "baseline": 3,
+    "candidate": 0
+  },
+  "failed_surface_attempts_still_counting_after_80s": {
+    "baseline": 2,
+    "candidate": 0
+  },
+  "incompatible_passages": {
+    "slam_individually_reachable": true,
+    "nav2_individually_reachable": true,
+    "candidate_accepts_target": false,
+    "alternate_common_goal_exists": true
+  },
+  "common_graph_extra_computation": {
+    "shape": [
+      300,
+      400
+    ],
+    "resolution_m": 0.05,
+    "samples": 12,
+    "median_ms": 94.08930549989236,
+    "p95_ms": 99.25679025013778,
+    "measured_while_gazebo_running": true
+  },
+  "preserved_baseline_source_sha256": {
+    "mission.py": "b106da76116d03039d195d43f2d0ee4a1254fbdb6e2d6cbf27b41851a4d936b0",
+    "center_wall.py": "362cf58362335676d259ea4e998cd41aa1ef9dc4a478786de663510ec49987a5",
+    "phased_hybrid.py": "f5cfa2e454ee3cc1a6ccddaf22689b1f2c127655a362170b72fdbd288bef64c7",
+    "transit_control.py": "62f0c4f49e9f3d652746f34e28fe23b3b9ac0c0c9316c684e2bb7d041b7141cd"
+  }
+}

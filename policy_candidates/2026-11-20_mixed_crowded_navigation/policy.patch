@@ -1,0 +1,169 @@
+--- osp_mission/mission.py
++++ osp_mission/mission.py
+@@ -51,4 +51,7 @@
+ from osp_mission.stall_recovery import StallPause
+ from osp_mission.transit_control import TransitFlow
++from osp_mission.crowded_navigation import CommonRoutes, CrowdedFlow
++from osp_mission.r32_drive import grid_from_message
++from osp_mission import _r32_navigation_core as r32
+ from osp_mission.exploration_memory import ExplorationMemory
+ from osp_mission.near_pass_runtime import NearPassRuntime
+@@ -89,5 +92,6 @@
+         self.readable_turn = False
+         self.create_subscription(String,'mission/marker_bearing',self.on_marker_bearing,10)
+-        self.navigation_flow=(TransitFlow(bool(self.p('allow_mid_route_wall_inspection'))) if self.p('navigation_flow_enabled') else None)
++        self.crowded_routes=None
++        self.navigation_flow=((CrowdedFlow if self.edge_mode else TransitFlow)(bool(self.p('allow_mid_route_wall_inspection'))) if self.p('navigation_flow_enabled') else None)
+         if self.edge_mode:
+             self.create_subscription(String,'mission/marker_observations',self.on_marker_hint,10)
+@@ -181,4 +185,7 @@
+         directed=face.consume() if face is not None else None
+         if directed is not None:return directed
++        crowded_turn=getattr(self,'crowded_survey_angle',0.)
++        self.crowded_survey_angle=0.
++        if crowded_turn:return crowded_turn
+         # Older planners keep a bounded inspection; edge planners use camera evidence.
+         if not self.edge_mode:
+@@ -544,5 +551,6 @@
+             if getattr(self,'near_pass',None) is not None and self.near_pass.rejected(self.kind):return
+             if self.kind=='nav':
+-                self.excluded.append(self.destination)
++                schedule=getattr(getattr(self,'hybrid',None),'schedule',None)
++                if schedule is not None:schedule.navigation_result(6,'action_rejected',self.now()-self.started)
+                 flow=getattr(self,'navigation_flow',None)
+                 if flow is not None:flow.record_navigation_result(6,'action_rejected',self.now())
+@@ -567,4 +575,7 @@
+             return
+         if self.state!='running': return
++        schedule=getattr(getattr(self,'hybrid',None),'schedule',None)
++        if self.kind=='nav' and schedule is not None:
++            schedule.navigation_result(result.status,getattr(self,'cancel_reason',''),self.now()-self.started)
+         guard=getattr(self,'contact_inspection',None)
+         if guard is not None and guard.action:
+@@ -584,5 +595,4 @@
+             self.recovery_pending=self.kind!='backup';self.plan_after=self.now()+.5
+             if self.kind=='nav':
+-                self.excluded.append(self.destination)
+                 flow=getattr(self,'navigation_flow',None)
+                 if flow is not None:flow.record_navigation_result(result.status,'bump_contact',self.now())
+@@ -618,5 +628,6 @@
+             if flow is not None:flow.record_navigation_result(result.status,getattr(self,'cancel_reason',''),self.now())
+             if getattr(self,'exploration_memory',None) is not None:self.exploration_memory.completed(result.status==4,self.now())
+-            self.excluded.append(self.destination); self.scan_after=result.status==4
++            if result.status==4:self.excluded.append(self.destination)
++            self.scan_after=result.status==4
+             if result.status!=4 and getattr(self,'marker_look',None) is not None:self.marker_look.clear('navigation_failed')
+             if result.status!=4 and getattr(self,'face_look',None) is not None:self.face_look.clear('navigation_failed')
+@@ -720,5 +731,5 @@
+             self.exploration_memory.observe(visit.x,visit.y,self.now())
+             flow=getattr(self,'navigation_flow',None)
+-            if flow is not None and getattr(self,'kind','')=='nav' and (self.goal_handle or self.pending):
++            if flow is not None:
+                 flow.observe_position(visit.x,visit.y,self.now())
+                 if isinstance(flow, TransitFlow):
+@@ -884,4 +895,17 @@
+                 if 0<=row<data.shape[0] and 0<=col<data.shape[1]: viewed[row,col]=True
+         q=tr.transform.rotation; heading=math.atan2(2*(q.w*q.z+q.x*q.y),1-2*(q.y*q.y+q.z*q.z))
++        if isinstance(flow,CrowdedFlow):
++            self.crowded_routes=None
++            costmap=getattr(getattr(getattr(self,'hybrid',None),'drive',None),'costmap',None)
++            if costmap is not None and costmap.header.frame_id==self.p('map_frame'):
++                age=self.get_clock().now().nanoseconds/1e9-Time.from_msg(costmap.header.stamp).nanoseconds/1e9
++                if -.1<=age<=3.:
++                    mapped=grid_from_message(m)
++                    try:
++                        self.crowded_routes=CommonRoutes(r32.Grid(data,mapped.resolution,mapped.origin),
++                            grid_from_message(costmap),(tr.transform.translation.x,tr.transform.translation.y,heading),
++                            getattr(self,'planner_start_ignore_radius_m',0.))
++                    except (ValueError,IndexError) as exc:
++                        self.get_logger().warning(f'Common-route geometry unavailable: {exc}')
+         option_settings={'preferred_clearance':self.surface_settings['view_standoff']} if self.surface_settings else {}
+         if self.edge_mode:
+@@ -941,4 +965,7 @@
+             except Exception as exc:
+                 self.get_logger().warning(f'Hybrid proposal unavailable, using Flow choice: {exc}')
++        if isinstance(flow,CrowdedFlow):
++            selected=flow.resolve(selected,choices,self.crowded_routes,memory_transform,self.now(),self.weights,self.policy_choose)
++            if selected is not None and not any(selected is c for c in choices):choices.append(selected)
+         try:
+             save_policy_audit(self.p('output_dir'), self.policy_decisions, self.now()-self.started,
+@@ -951,4 +978,13 @@
+             self.get_logger().warning(f'Could not save policy input audit: {exc}')
+         if selected is None:
++            if isinstance(flow,CrowdedFlow):
++                self.scan_after=False
++                if self.now()>=self.spin_blocked_until and flow.survey_allowed():
++                    self.crowded_survey_angle=math.pi/3
++                    self.scan_after=True
++                else:
++                    self.plan_after=self.now()+2.
++                self.get_logger().warning(f'Planning deferred: {flow.planning_reason}; waiting for a shared-safe observation or reposition')
++                self.zero();return
+             # Retry old frontiers after scanning rather than finishing before the deadline.
+             self.excluded=self.excluded[-5:]
+@@ -967,4 +1003,7 @@
+             return
+         self.empty_plans=0
++        self.crowded_survey_angle=0.
++        if isinstance(flow,CrowdedFlow) and selected.get('crowded_reposition'):
++            flow.dispatched_reposition(selected,memory_transform)
+         if hybrid is not None:
+             hybrid.dispatched(self,selected)
+--- osp_mission/center_wall.py
++++ osp_mission/center_wall.py
+@@ -119,6 +119,12 @@
+         self.weak_clock = 0.
+         self.counts = {}
++        self.elapsed = 0.
++        self.pending_attempt = None
++        self.failed_attempts = {}
+
+     def decide(self, grid, costmap, pose, transform, viewed, elapsed, duration, veto, choices=(), fitted=(), probe_only=False):
++        self.elapsed = elapsed
++        retained = {row[3] for row in self.history}
++        self.failed_attempts = {t:expiry for t,expiry in self.failed_attempts.items() if t in retained}
+         if transform is None or viewed is None or viewed.shape != (4,)+grid.cells.shape:
+             return None
+@@ -291,9 +297,25 @@
+         return best[1] if best else None
+
++    def navigation_result(self, status, reason, elapsed):
++        self.elapsed = elapsed
++        stamp = self.pending_attempt
++        if stamp is None:
++            return
++        if status==4:
++            self.failed_attempts.pop(stamp,None)
++        else:
++            self.failed_attempts[stamp] = elapsed+45.
++        sensor_pause = status==5 and reason in ('processed_camera_stale','scan_stale','map_unavailable',
++            'map_to_base_tf_unavailable','nav2_unavailable','drive_unavailable')
++        if not sensor_pause:
++            self.pending_attempt = None
++
+     def attempts(self, kind, anchor, normal_yaw, radius):
+         return [t for k,p,a,t in self.history if k == kind and
++                (t not in self.failed_attempts or self.elapsed < self.failed_attempts[t]) and
+                 np.linalg.norm(anchor-p)<radius and math.cos(normal_yaw-a)>.70]
+
+     def dispatched(self, goal, elapsed):
++        self.pending_attempt = None
+         self.on_weak_route = bool(goal.get('weak_wall'))
+         self.weak.dispatched(goal)
+@@ -305,4 +327,5 @@
+             normal = goal['normal_odom']
+             self.history.append((self.phase,anchor,normal,elapsed))
++            self.pending_attempt = elapsed
+             if self.phase=='wall':
+                 self.wall_anchor = anchor,normal
+--- osp_mission/phased_hybrid.py
++++ osp_mission/phased_hybrid.py
+@@ -37,5 +37,7 @@
+
+         def veto(goal):
+-            return ((owner.navigation_flow and owner.navigation_flow.blocked(goal,transform,now))
++            routes=getattr(owner,'crowded_routes',None)
++            return ((routes is not None and not routes.allows(goal))
++                    or (owner.navigation_flow and owner.navigation_flow.blocked(goal,transform,now))
+                     or (not goal.get('stationary') and any(
+                         np.hypot(goal['x']-x,goal['y']-y)<.45 for x,y in owner.excluded[-8:])))

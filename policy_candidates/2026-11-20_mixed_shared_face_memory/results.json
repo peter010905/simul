@@ -1,0 +1,236 @@
+{
+  "success_definition": "Distinct ID saved and robot within 1.5 m of every registered marker in Gazebo ground truth",
+  "baseline_runs": [
+    {
+      "seed": 3131517562,
+      "run": "adaptive-track-bWDXaFYW",
+      "sim_s": 449.93600000000004,
+      "reason": "all_registered_and_within_1.5m",
+      "hosts": {
+        "103": "aisle_box_c",
+        "32": "aisle_box_w",
+        "7": "wall_north"
+      },
+      "registered": [
+        7,
+        32,
+        103
+      ],
+      "registered_and_within_s": {
+        "32": 350.436,
+        "7": 366.936,
+        "103": 449.936
+      },
+      "minimum_m": {
+        "103": 0.6458706875196761,
+        "32": 0.557616234315968,
+        "7": 0.9554036448915312
+      },
+      "bumper": 0
+    },
+    {
+      "seed": 4194831511,
+      "run": "adaptive-track-vmlvzdTW",
+      "sim_s": 553.44,
+      "reason": "all_registered_and_within_1.5m",
+      "hosts": {
+        "7": "perimeter_box_e",
+        "32": "aisle_box_s",
+        "103": "wall_north"
+      },
+      "registered": [
+        7,
+        32,
+        103
+      ],
+      "registered_and_within_s": {
+        "32": 48.94,
+        "103": 486.08,
+        "7": 553.44
+      },
+      "minimum_m": {
+        "7": 0.6214513860347032,
+        "32": 0.6709664421052831,
+        "103": 0.8842309668540436
+      },
+      "bumper": 0
+    },
+    {
+      "seed": 3375966989,
+      "run": "adaptive-track-nXtllEXS",
+      "sim_s": 600.0,
+      "reason": "common_time_limit",
+      "hosts": {
+        "7": "aisle_box_s",
+        "32": "perimeter_box_e",
+        "103": "wall_west"
+      },
+      "registered": [
+        32
+      ],
+      "registered_and_within_s": {
+        "32": 94.296
+      },
+      "minimum_m": {
+        "7": 12.580716937981968,
+        "32": 0.6176626056532991,
+        "103": 14.220515652804528
+      },
+      "bumper": 0
+    }
+  ],
+  "shared_runs": [
+    {
+      "seed": 3131517562,
+      "run": "shared-track-VDiWOjnw",
+      "sim_s": 231.608,
+      "reason": "all_registered_and_within_1.5m",
+      "hosts": {
+        "103": "aisle_box_c",
+        "32": "aisle_box_w",
+        "7": "wall_north"
+      },
+      "registered": [
+        7,
+        32,
+        103
+      ],
+      "registered_and_within_s": {
+        "7": 137.608,
+        "32": 210.108,
+        "103": 231.608
+      },
+      "minimum_m": {
+        "103": 0.8587986845648883,
+        "32": 0.5799342742783484,
+        "7": 1.0732118154586006
+      },
+      "bumper": 0
+    },
+    {
+      "seed": 1738834717,
+      "run": "shared-track-spjbfI5O",
+      "sim_s": 600.0,
+      "reason": "common_time_limit",
+      "hosts": {
+        "103": "perimeter_box_e",
+        "32": "aisle_box_s",
+        "7": "wall_west"
+      },
+      "registered": [
+        32,
+        103
+      ],
+      "registered_and_within_s": {
+        "103": 181.596,
+        "32": 243.596
+      },
+      "minimum_m": {
+        "103": 0.5663660118695854,
+        "32": 0.6177823685792659,
+        "7": 10.073225255177382
+      },
+      "bumper": 0
+    },
+    {
+      "seed": 4043387270,
+      "run": "shared-track-wK13S60d",
+      "sim_s": 600.0,
+      "reason": "common_time_limit",
+      "hosts": {
+        "103": "aisle_box_c",
+        "7": "aisle_box_w",
+        "32": "wall_north"
+      },
+      "registered": [
+        32,
+        103
+      ],
+      "registered_and_within_s": {
+        "103": 222.736,
+        "32": 281.776
+      },
+      "minimum_m": {
+        "103": 0.5948314819705914,
+        "7": 0.9346003228746036,
+        "32": 0.9426169780945669
+      },
+      "bumper": 0
+    },
+    {
+      "seed": 2536958923,
+      "run": "shared-track-fuAePeEx",
+      "sim_s": 349.396,
+      "reason": "all_registered_and_within_1.5m",
+      "hosts": {
+        "32": "aisle_box_s",
+        "103": "aisle_box_c",
+        "7": "wall_north"
+      },
+      "registered": [
+        7,
+        32,
+        103
+      ],
+      "registered_and_within_s": {
+        "7": 118.396,
+        "32": 205.216,
+        "103": 349.396
+      },
+      "minimum_m": {
+        "32": 0.5803095779753514,
+        "103": 1.4987513557341303,
+        "7": 0.8318284600775431
+      },
+      "bumper": 0
+    },
+    {
+      "seed": 3055713613,
+      "run": "shared-track-7MgfZqWs",
+      "sim_s": 600.0,
+      "reason": "common_time_limit",
+      "hosts": {
+        "32": "aisle_box_c",
+        "103": "perimeter_box_e",
+        "7": "wall_east"
+      },
+      "registered": [
+        7,
+        32,
+        103
+      ],
+      "registered_and_within_s": {
+        "103": 165.024,
+        "32": 214.704
+      },
+      "minimum_m": {
+        "32": 0.5832346944456593,
+        "103": 0.7445743133339908,
+        "7": 4.741066068661441
+      },
+      "bumper": 0
+    }
+  ],
+  "matched_world_sha256": "2a85e52b6a66e5cc17b68dcf770271c89d6fdbc101a729af7de3cf254f7b4791",
+  "matched_box_goals": [
+    12,
+    4
+  ],
+  "matched_box_dwell_s": [
+    176.3,
+    52.38
+  ],
+  "baseline_all_three": 2,
+  "shared_all_three": 2,
+  "shared_on_fresh_maps_all_three": 1,
+  "shared_bumpers": 0,
+  "regression_tests": 14,
+  "offline_duplicate_goals_dropped": [
+    7,
+    8,
+    9,
+    10,
+    12,
+    13
+  ]
+}

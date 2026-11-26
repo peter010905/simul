@@ -1,0 +1,102 @@
+{
+  "validation": "new short Gazebo integration trial; one fixed scene, sequential runs, not a marker-search benchmark",
+  "duration_sim_s": 90,
+  "domain": 182,
+  "physical_drive": false,
+  "maximum_concurrent_gazebo": 1,
+  "scenario_sha256": "f6b84a7a0fc5c29cd96a6cd5d666aa6fa7c265b06699a6932acdf057c673c66b",
+  "transport": "rmw_cyclonedds_cpp, same existing localhost profile for all measured runs",
+  "initial_fastdds_attempts": "SLAM readiness not achieved; excluded from driving comparison",
+  "controller_velocity_limits": {
+    "forward_m_s": 0.3,
+    "angular_rad_s": 0.5
+  },
+  "limitations": [
+    "One short trial per revision; no statistical performance claim",
+    "Travel and displacement are odometry measurements, not ground truth",
+    "No physical robot run; 10-minute marker completion and real escape success unverified"
+  ],
+  "runs": [
+    {
+      "label": "baseline_v131_cyclone",
+      "role": "baseline",
+      "elapsed_sim_s": 90.215,
+      "path_length_odom_m": 0.9626153585512105,
+      "stopped_s": 14.484000000000018,
+      "in_place_rotation_s": 65.72599999999997,
+      "translating_s": 10.936000000000003,
+      "maximum_odom_displacement_m": 0.6854010773728247,
+      "collisions": 0,
+      "stalls_cancelled": 4,
+      "approached_ids": [],
+      "readable_ids": [],
+      "termination_reason": "timeout",
+      "selected_goal_kinds": {
+        "interior_frontier": 3,
+        "interior_surface": 2
+      },
+      "observed_surface_cells": 38
+    },
+    {
+      "label": "candidate_v140_cyclone",
+      "role": "superseded_prototype",
+      "elapsed_sim_s": 90.176,
+      "path_length_odom_m": 0.7720050438465329,
+      "stopped_s": 32.06399999999999,
+      "in_place_rotation_s": 50.886,
+      "translating_s": 8.129999999999992,
+      "maximum_odom_displacement_m": 0.6038637014378687,
+      "collisions": 0,
+      "stalls_cancelled": 5,
+      "approached_ids": [],
+      "readable_ids": [],
+      "termination_reason": "timeout",
+      "selected_goal_kinds": {
+        "interior_frontier": 2,
+        "crowded_reposition": 5
+      },
+      "observed_surface_cells": 80
+    },
+    {
+      "label": "candidate_v140_revision2",
+      "role": "final_candidate",
+      "elapsed_sim_s": 90.103,
+      "path_length_odom_m": 0.9528886877008332,
+      "stopped_s": 16.207000000000015,
+      "in_place_rotation_s": 63.80399999999998,
+      "translating_s": 10.86,
+      "maximum_odom_displacement_m": 0.7037234887406615,
+      "collisions": 0,
+      "stalls_cancelled": 4,
+      "approached_ids": [],
+      "readable_ids": [],
+      "termination_reason": "timeout",
+      "selected_goal_kinds": {
+        "interior_frontier": 2,
+        "crowded_reposition": 2,
+        "interior_surface": 1
+      },
+      "observed_surface_cells": 43
+    },
+    {
+      "label": "candidate_v140_final",
+      "role": "superseded_prototype",
+      "elapsed_sim_s": 90.048,
+      "path_length_odom_m": 0.9962075965293831,
+      "stopped_s": 42.501999999999995,
+      "in_place_rotation_s": 37.577,
+      "translating_s": 10.857000000000003,
+      "maximum_odom_displacement_m": 0.31638316448460074,
+      "collisions": 0,
+      "stalls_cancelled": 5,
+      "approached_ids": [],
+      "readable_ids": [],
+      "termination_reason": "timeout",
+      "selected_goal_kinds": {
+        "interior_frontier": 2,
+        "crowded_reposition": 5
+      },
+      "observed_surface_cells": 55
+    }
+  ]
+}

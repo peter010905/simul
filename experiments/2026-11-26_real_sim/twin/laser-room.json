@@ -1,0 +1,35 @@
+{
+  "startup": {
+    "scans": 8,
+    "rays": 5760,
+    "real_valid": 0.5505208333333333,
+    "model_valid": 0.9425347222222222,
+    "real_p90_m": 5.039999961853027,
+    "model_p90_m": 10.359150490908771,
+    "common_mae_m": 0.6999575017035696,
+    "within_20cm_on_common": 0.7034460954789756,
+    "model_farther_over_50cm": 0.07915484074424471
+  },
+  "drive": {
+    "scans": 105,
+    "rays": 75600,
+    "real_valid": 0.4523280423280423,
+    "model_valid": 0.953584656084656,
+    "real_p90_m": 7.25600004196167,
+    "model_p90_m": 9.039597316037641,
+    "common_mae_m": 0.9506206265609475,
+    "within_20cm_on_common": 0.5126500353024241,
+    "model_farther_over_50cm": 0.09895894256638203
+  },
+  "held_startup_4_to_8": {
+    "scans": 4,
+    "rays": 2880,
+    "real_valid": 0.5607638888888888,
+    "model_valid": 0.9447916666666667,
+    "real_p90_m": 4.479999828338628,
+    "model_p90_m": 10.444734067430717,
+    "common_mae_m": 0.6943624125114074,
+    "within_20cm_on_common": 0.7188854489164087,
+    "model_farther_over_50cm": 0.0761609907120743
+  }
+}

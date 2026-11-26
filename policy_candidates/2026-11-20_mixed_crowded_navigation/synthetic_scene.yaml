@@ -1,0 +1,23 @@
+seed: 11201400
+randomize: false
+start: [2.7, 2.5, 0.0]
+arena:
+  width_m: 7.0
+  height_m: 5.0
+  polygon: [[0,0],[7,0],[7,5],[0,5]]
+  walls:
+  - {x: 3.5, y: 0, sx: 7.04, sy: 0.14, height: 1.4, yaw: 0}
+  - {x: 3.5, y: 5, sx: 7.04, sy: 0.14, height: 1.4, yaw: 0}
+  - {x: 0, y: 2.5, sx: 5.04, sy: 0.14, height: 1.4, yaw: 1.5707963268}
+  - {x: 7, y: 2.5, sx: 5.04, sy: 0.14, height: 1.4, yaw: 1.5707963268}
+obstacles:
+- {type: box, x: 3.5, y: 2.5, sx: 0.15, sy: 1.7, height: 0.9}
+- {type: box, x: 2.75, y: 1.65, sx: 1.65, sy: 0.15, height: 0.9}
+- {type: box, x: 2.75, y: 3.35, sx: 1.65, sy: 0.15, height: 0.9}
+- {type: box, x: 5.1, y: 1.4, sx: 0.6, sy: 0.6, height: 0.8}
+- {type: box, x: 5.3, y: 3.6, sx: 0.7, sy: 0.7, height: 0.8}
+- {type: cylinder, x: 1.2, y: 4.0, radius: 0.22, height: 0.75}
+targets:
+- {id: 7, x: 6.9, y: 2.5, yaw: 3.1415926536, size: 0.18}
+- {id: 103, x: 4.79, y: 1.4, yaw: 3.1415926536, size: 0.18}
+- {id: 32, x: 5.3, y: 3.24, yaw: -1.5707963268, size: 0.18}

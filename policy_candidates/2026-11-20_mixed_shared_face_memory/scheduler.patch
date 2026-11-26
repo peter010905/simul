@@ -1,0 +1,59 @@
+--- center_wall.py
++++ center_wall.py
+@@ -9,6 +9,7 @@
+ from osp_mission.adaptive_faces import clearance_grid, inspection_pose
+ from osp_mission.box_views import odom_point
+ from osp_mission.edge_policy import DIRECTIONS
++from osp_mission.tracked_faces import TrackedFaces
+
+
+ def partly_mapped_objects(labels, boxes, floor, resolution):
+@@ -107,6 +108,7 @@
+         self.idle_since = None
+         self.wall_anchor = None
+         self.history = deque(maxlen=200)
++        self.tracked_faces = TrackedFaces()
+         self.counts = {}
+
+     def decide(self, grid, costmap, pose, transform, viewed, elapsed, duration, veto, choices=(), fitted=(), probe_only=False):
+@@ -119,6 +121,7 @@
+         clearance = clearance_grid(grid)
+         candidates = {'interior': [], 'wall': []}
+         fitted_fresh = []
++        self.tracked_faces.update(fitted, transform, elapsed)
+         start = grid.index(*pose[:2])
+         if not grid.inside(*start) or clearance[start] < .32:
+             fitted = ()
+@@ -134,7 +137,7 @@
+                 tangent = np.array([-normal[1], normal[0]])
+                 half_width = max(abs((p-center) @ tangent) for p, _ in faces)
+                 fields = dict(r32_kind='interior_surface', box_view_scope='fitted_face',
+-                              fitted_face=side+1, face_inspection=True, stationary=False, scan_angle=0.,
++                              fitted_face=side+1, face_inspection=True, stationary=False, scan_angle=math.radians(24),
+                               normal_odom=normal_yaw, surface_odom=anchor.tolist(), surface_map=face.tolist(),
+                               features=np.zeros(5), previous_attempts=len(attempts))
+                 view = inspection_pose(grid, costmap, nav, distances, clearance, face, normal,
+@@ -165,12 +168,20 @@
+             normal_yaw = math.atan2(normal[1],normal[0])+transform[2]
+             anchor = odom_point(face,transform)
+             radius = .5 if kind == 'interior' else .85
+-            attempts = self.attempts(kind, anchor, normal_yaw, radius)
++            history_point, history_yaw = anchor, normal_yaw
++            if kind == 'interior' and self.tracked_faces.boxes:
++                sample = self.tracked_faces.representative(grid, remaining, dy, dx, transform, normal_yaw)
++                if sample is None:
++                    continue
++                face, anchor, owner_face = sample
++                history_point = owner_face.anchor if owner_face is not None else anchor
++                history_yaw = owner_face.yaw if owner_face is not None else normal_yaw
++            attempts = self.attempts(kind, history_point, history_yaw, radius)
+             if len(attempts)>=2 or (attempts and elapsed-attempts[-1]<45.):
+                 continue
+             if kind == 'interior':
+-                fields = dict(r32_kind='interior_surface', surface_odom=anchor.tolist(),
+-                              normal_odom=normal_yaw, surface_map=face.tolist(), previous_attempts=len(attempts),
++                fields = dict(r32_kind='interior_surface', surface_odom=history_point.tolist(),
++                              normal_odom=history_yaw, surface_map=face.tolist(), previous_attempts=len(attempts),
+                               features=np.zeros(5), stationary=False, face_inspection=True, scan_angle=math.radians(36))
+                 view = inspection_pose(grid, costmap, nav, distances, clearance, face, normal,
+                                        .5*len(cells)*grid.resolution, pose, fields, veto)

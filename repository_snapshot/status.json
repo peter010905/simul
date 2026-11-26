@@ -1,4 +1,92 @@
 {
+  "mixed_v15251_v15260_candidates": {
+    "date": "2026-11-27",
+    "physical_drive": false,
+    "board_default_changed": false,
+    "board_experimental_option": "v1.5.2.57 short-lap (LiDAR 5 m)",
+    "candidates": {
+      "1.5.2.51": "chair_wall",
+      "1.5.2.52": "robust_lap",
+      "1.5.2.53": "unstick",
+      "1.5.2.54": "lap_detour (dropped)",
+      "1.5.2.55": "wall_look",
+      "1.5.2.56": "wall_look_simple",
+      "1.5.2.57": "short_lap",
+      "1.5.2.58": "bump_memory",
+      "1.5.2.59": "open_escape",
+      "1.5.2.60": "box_angle"
+    },
+    "sim_results": {
+      "v15257_fixed_desks": "all-3 11/15, prints 40/45, median 304 s, 0 bumps",
+      "v15257_perturbed": "all-3 8/18, prints 39/54, median 348 s, 25 bumps (low debris)",
+      "v15259_vs_v15257": "3304 0->3, 3101 2->3, 3302 1->1"
+    },
+    "in_progress": "demo room + random start (3501-3516): .57/.59/.60; follower runs (3601-3612)",
+    "release": "https://github.com/peter010905/simul/releases/tag/policy-v1.5.2.57"
+  },
+  "marker_yolo_cnn_v100_20261126": {
+    "scope": "offline_public_synthetic_marker_localization",
+    "models": [
+      "yolo_plain",
+      "yolo_augmented",
+      "cnn_plain",
+      "cnn_augmented"
+    ],
+    "heldout_frames": 1000,
+    "selected_offline_candidate": "yolo_plain",
+    "heldout_f1": 0.9313929313929314,
+    "result": "experiments/2026-11-26_yolo_cnn_v100/artifacts/comparison.json",
+    "real_robot_deployed": false,
+    "marker_ids_or_navigation_validated": false,
+    "manual_gazebo_board": {
+      "ros_domain": 86,
+      "camera_resolution": [
+        250,
+        250
+      ],
+      "models": [
+        "cnn_augmented",
+        "yolo_augmented"
+      ],
+      "same_display_frame_for_both_models": true,
+      "visual_prompt_paper": {
+        "model": "yoloe-26n-seg",
+        "score_threshold": 0.05,
+        "same_camera_frame": true,
+        "aruco_comparison": [
+          "whole_frame",
+          "paper_region"
+        ],
+        "observation_only": true
+      },
+      "manual_rotation_and_stop_verified": true,
+      "code": "experiments/2026-11-26_yolo_cnn_v100/live"
+    },
+    "local_physical_replay": {
+      "frames": 257,
+      "reviewed_markers": 197,
+      "oblique_markers": 16,
+      "blurred_markers": 59,
+      "correct_by_model": {
+        "yolo_plain": 0,
+        "yolo_augmented": 6,
+        "cnn_plain": 0,
+        "cnn_augmented": 0
+      },
+      "oblique_or_blurred_correct": 0,
+      "result": "experiments/2026-11-26_yolo_cnn_v100/artifacts/real-replay.json",
+      "candidate_replay": {
+        "maximum_candidates_per_frame": 5,
+        "minimum_target_area_coverage": 0.8,
+        "maximum_candidate_to_marker_area_ratio": 6,
+        "top_model": "cnn_augmented",
+        "markers_recovered": 188,
+        "oblique_recovered": 11,
+        "blurred_recovered": 55,
+        "result": "experiments/2026-11-26_yolo_cnn_v100/artifacts/real-candidate-replay.json"
+      }
+    }
+  },
   "classroom_twin_20261126": {
     "physical_drive": false,
     "archived_real_runs": 8,
@@ -9,6 +97,81 @@
     "code_and_metrics": "experiments/2026-11-26_real_sim/twin",
     "matched_policy": "v1.5.2.43.1",
     "trajectory_equivalence_validated": false
+  },
+  "mixed_v15250_lap_progress": {
+    "version": "1.5.2.50-lap-progress",
+    "parent": "1.5.2.49",
+    "workspace": "v15250_lap_progress_lidar5_640_1126_ws",
+    "changed_sources": [
+      "wall_lap.py",
+      "hybrid.py"
+    ],
+    "regression_checks": {
+      "passed": 67,
+      "failed_same_as_parent": 3
+    },
+    "real_map_replay": {
+      "20261125T195126-1cce5b818a": {
+        "reversed_heading": [
+          7,
+          1
+        ],
+        "mean_yaw_vs_move_deg": [
+          123.3,
+          29.0
+        ]
+      },
+      "20261125T194849-e789097e4b": {
+        "reversed_heading": [
+          5,
+          0
+        ],
+        "mean_yaw_vs_move_deg": [
+          134.1,
+          32.9
+        ]
+      },
+      "20261125T193519-1149595c02": {
+        "reversed_heading": [
+          5,
+          0
+        ],
+        "mean_yaw_vs_move_deg": [
+          86.7,
+          26.1
+        ]
+      }
+    },
+    "synthetic_lap": {
+      "reversed_headings": [
+        120,
+        0
+      ],
+      "turn_at_stops_rad": [
+        433.15,
+        108.8
+      ],
+      "revisits": [
+        13,
+        0
+      ]
+    },
+    "white_leg_looks_logged_vs_allowed": {
+      "20261125T195426-a84b4e02f7": [
+        19,
+        6
+      ],
+      "20261125T192556-c3556b08ef": [
+        3,
+        3
+      ]
+    },
+    "closed_loop_gazebo": false,
+    "physical_drive": false,
+    "board_default_changed": false,
+    "board_option_added": false,
+    "evidence_type": "offline_replay_and_kinematic_simulation",
+    "report": "policy_candidates/2026-11-26_v152_lap_progress/README.md"
   },
   "real_sim_20261126": {
     "physical_drive": false,
@@ -27,6 +190,130 @@
     "physical_table_leg_count": null,
     "focused_checks": 12,
     "report": "experiments/2026-11-26_real_sim/README.md"
+  },
+  "mixed_v15248_wall_departure": {
+    "parent": "1.5.2.47",
+    "board_action": "start-wall-departure",
+    "workspace": "v15248_wall_departure_lidar5_640_1124_ws",
+    "new_physical_drive": false,
+    "waiting_map_snapshots": 14,
+    "replay_wall_goals": 14,
+    "policy_checks": 67,
+    "report": "policy_candidates/2026-11-26_v152_wall_departure/README.md"
+  },
+  "mixed_v15247_wall_entry": {
+    "parent": "1.5.2.46",
+    "board_action": "start-wall-entry",
+    "new_physical_drive": true,
+    "failed_initial_snapshots": 7,
+    "replay_wall_goals": 7,
+    "policy_checks": 63,
+    "board_checks": 61,
+    "report": "policy_candidates/2026-11-26_v152_wall_entry/README.md",
+    "initial_wall_entry_observed": true,
+    "physical_run": "20261125T193519-1149595c02",
+    "full_lap_verified": false
+  },
+  "mixed_v15246_wall_lap": {
+    "parent": "1.5.2.45",
+    "board_action": "start-wall-lap",
+    "workspace": "v15246_wall_lap_r2_lidar5_640_1124_ws",
+    "new_physical_drive": false,
+    "closed_loop_gazebo": false,
+    "safe_grid_route_checks": 2,
+    "policy_checks": 62,
+    "board_checks": 63,
+    "report": "policy_candidates/2026-11-26_v152_wall_lap/README.md"
+  },
+  "mixed_v15245_interior_first": {
+    "parent": "1.5.2.44-lidar5",
+    "physical_candidate_drive": false,
+    "board_action": "start-interior-first",
+    "report": "policy_candidates/2026-11-26_v152_interior_first/README.md",
+    "same_map_snapshots": 10,
+    "internal_choices": 8,
+    "wall_cue_choices": 2
+  },
+  "physical_lidar5": {
+    "policies": [
+      "1.5.2.40",
+      "1.5.2.44"
+    ],
+    "slam_max_laser_range_m": 5.0,
+    "previous_12m_options_preserved": true,
+    "launch_config_verified": true,
+    "new_physical_drive": false
+  },
+  "mixed_v15244_box_continuity": {
+    "parent": "1.5.2.43.1",
+    "board_action": "start-box-continuity",
+    "runtime_workspace": "v15244_box_continuity_r1_640_1124_ws",
+    "physical_candidate_drive": false,
+    "report": "policy_candidates/2026-11-26_v152_box_continuity/README.md"
+  },
+  "mixed_v15243_1_sweep_mapping": {
+    "parent": "1.5.2.43",
+    "board_action": "start-sweep-mapping",
+    "physical_candidate_drive": false,
+    "comparison": "experiments/2026-11-26_start_slam/comparison.json"
+  },
+  "mixed_v15243_pending_marker": {
+    "parent": "1.5.2.42-safe-frontier",
+    "board_action": "start-pending-marker",
+    "closed_loop_candidate_drive": false,
+    "comparison": "policy_candidates/2026-11-26_v152_pending_marker/replay_results.json"
+  },
+  "mixed_v15241_region_transit": {
+    "parent": "1.5.2.40",
+    "physical_log_runs": 7,
+    "additional_balanced_run": 1,
+    "closed_loop_candidate_drive": false,
+    "board_action": "start-region-transit",
+    "report": "experiments/2026-11-26_physical_regions/README.md"
+  },
+  "mixed_v15232_glass_chair_zone": {
+    "version": "1.5.2.32-glass-wall",
+    "parent": "1.5.2.31-start-sweep",
+    "physical_board_action": "start-glass-wall",
+    "physical_drive": false,
+    "production_promoted": false,
+    "build": "passed in separate ROS workspace",
+    "offline_saved_map_replay": {
+      "source": "20261125T134527-d85699bcbd decision 0036.npz",
+      "annotation": "approximate operator image regions; not a mapped live session",
+      "wall_groups_before_after": [
+        238,
+        182
+      ],
+      "interior_groups_before_after": [
+        498,
+        293
+      ]
+    },
+    "report": "policy_candidates/2026-11-25_v152_glass_wall/README.md"
+  },
+  "mixed_v15231_chair_clutter": {
+    "version": "1.5.2.31-chair-clutter",
+    "parent": "1.5.2.31-start-sweep",
+    "fixture_seed": 4101,
+    "camera": [
+      640,
+      480,
+      5
+    ],
+    "verified_markers": 3,
+    "expected_markers": 3,
+    "goal_complete_by_s": 453.0,
+    "bumps": 1,
+    "strict": false,
+    "physical_drive": true,
+    "physical_contacts_before_stop": 4,
+    "physical_stationary_verified": true,
+    "physical_board_action": "start-chair31",
+    "physical_board_quarantined": false,
+    "physical_board_warning": "Four real bumper contacts; candidate selectable by user request",
+    "production_promoted": false,
+    "report": "experiments/2026-11-24_chair_clutter/README.md"
   },
   "mixed_v15231_start_sweep": {
     "version": "1.5.2.31-start-sweep",
@@ -108,6 +395,288 @@
     "physical_drive": false,
     "production_promoted": false,
     "report": "policy_candidates/2026-11-24_v152_open_regions/README.md"
+  },
+  "mixed_v15213_box_tour": {
+    "version": "1.5.2.13-box-tour",
+    "baseline": "1.5.2.11-weak-wall-priority",
+    "seed": 2445263333,
+    "baseline_marker_verifications": [
+      1,
+      3
+    ],
+    "candidate_marker_verifications": 1,
+    "candidate_elapsed_s": 600.0,
+    "candidate_bumps": 0,
+    "production_promoted": false,
+    "report": "policy_candidates/2026-11-23_v152_box_tour/README.md"
+  },
+  "mixed_v15212_box_pass": {
+    "version": "1.5.2.12-box-pass",
+    "baseline": "1.5.2.11-weak-wall-priority",
+    "phase": "three_matched_five_box_runs_complete",
+    "production_promoted": false,
+    "physical_drive": false,
+    "seeds": [
+      1665805887,
+      2445263333,
+      832004347
+    ],
+    "strict_complete_baseline_to_candidate": [
+      1,
+      2
+    ],
+    "box_markers_baseline_to_candidate": [
+      4,
+      5
+    ],
+    "wall_markers_baseline_to_candidate": [
+      2,
+      3
+    ],
+    "bumps_baseline_to_candidate": [
+      0,
+      0
+    ],
+    "report": "policy_candidates/2026-11-23_v152_box_pass/README.md"
+  },
+  "mixed_v15211_weak_wall_priority": {
+    "version": "1.5.2.11-weak-wall-priority",
+    "phase": "three_box_fixtures_plus_two_random_stress_runs_complete",
+    "production_promoted": false,
+    "physical_drive": false,
+    "distinct_frozen_worlds": 5,
+    "strict_complete": 5,
+    "markers_verified": 15,
+    "markers_expected": 15,
+    "bumps": 0,
+    "completion_s": [
+      271.496,
+      243.816,
+      396.136,
+      389.492,
+      137.436
+    ],
+    "report": "experiments/2026-11-23_weak_wall_priority/README.md",
+    "candidate": "policy_candidates/2026-11-23_v152_weak_wall_priority/README.md"
+  },
+  "physical_focus_camera_check": {
+    "frame_size": [
+      480,
+      480
+    ],
+    "fps_setting": 5,
+    "processed_frames": 120,
+    "measured_seconds": 24.01,
+    "processed_p95_ms": 210.6,
+    "processed_above_650ms": 0,
+    "measured_travel_from_odometry_m": 2.28,
+    "comparison_360_measured": false
+  },
+  "physical_policy_selector": {
+    "port": 8767,
+    "mode": "hardware",
+    "policies_added": [
+      "Mixed v1.5.2.1 Focus Continuity",
+      "Mixed v1.5.1-balanced"
+    ],
+    "hardware_board_ui_verified": true,
+    "motion_command_sent": false
+  },
+  "mixed_v1521_focus_continuity": {
+    "phase": "previous_five_world_comparison_superseded_by_spread_three",
+    "production_promoted": false,
+    "hardware_drive": false,
+    "source_sha256": "dfd33c79d93498337a7f4257900f724894e7b5048f2dfee67a39ab395b3691bd",
+    "distinct_worlds": 5,
+    "development": 1,
+    "untuned": 4,
+    "known_count": 3,
+    "box_count": 5,
+    "jazzy_callback_and_safety_tests_passed": 65,
+    "parent_regressions_reproduced": 2,
+    "policy": "policy_candidates/2026-11-22_v152_focus_continuity/README.md",
+    "registration": "experiments/2026-11-22_random_exam/focus-enrollment.json",
+    "board": "experiments/2026-11-22_random_exam/box-only/focus-board.json"
+  },
+  "mixed_v152_visual_survey": {
+    "phase": "previous_five_world_queue_closed_after_first_pair",
+    "production_promoted": false,
+    "camera": [
+      "480x480",
+      5
+    ],
+    "independent_worlds": 5,
+    "additional_poses": 1,
+    "policy": "policy_candidates/2026-11-22_v151_visual_survey/README.md",
+    "registration": "experiments/2026-11-22_random_exam/box-only/enrollment.json",
+    "obstacles_per_world": 5,
+    "obstacle_geometry": "original exam rectangular boxes",
+    "prior_mixed_geometry": "archived separately after seven recorded episodes",
+    "completed_old_diagnostic_pair": true
+  },
+  "mixed_v151_rescue360": {
+    "version": "1.5.1-rescue360",
+    "baseline": "1.5.1-balanced",
+    "phase": "pilot_verified_formal_five_running",
+    "passed_tests": 52,
+    "preexisting_parent_test_failures": 1,
+    "production_promoted": false,
+    "report": "experiments/2026-11-21_v151_rescue360/README.md"
+  },
+  "mixed_v151_perimeter_survey": {
+    "version": "1.5.1-perimeter-survey",
+    "baseline": "1.5.1-balanced",
+    "phase": "native_comparison_started",
+    "passed_tests": 55,
+    "preexisting_parent_test_failures": 1,
+    "production_promoted": false,
+    "report": "experiments/2026-11-21_v151_perimeter_survey/README.md"
+  },
+  "mixed_v151_object_survey": {
+    "version": "1.5.1-object-survey",
+    "baseline": "1.5.1-balanced",
+    "phase": "native_comparison_queued",
+    "passed_tests": 50,
+    "preexisting_parent_test_failures": 1,
+    "production_promoted": false,
+    "report": "experiments/2026-11-21_v151_object_survey/README.md"
+  },
+  "mixed_v151_wall_balance": {
+    "version": "1.5.1-wall-balance",
+    "parent": "1.5.1-balanced",
+    "stage": "native_comparison_queued",
+    "passed_tests": 32,
+    "production_promoted": false,
+    "report": "experiments/2026-11-21_v151_wall_balance/README.md"
+  },
+  "mixed_v151_wall_sections": {
+    "parent": "1.5.1-balanced",
+    "version": "1.5.1-wall-sections",
+    "phase": "offline_policy_replay",
+    "simulated_new_paths": 0,
+    "production_promoted": false,
+    "passed_tests": 30,
+    "report": "experiments/2026-11-21_v151_wall_sections/README.md"
+  },
+  "mixed_crowded_navigation": {
+    "version": "1.4.0",
+    "base": "1.3.1",
+    "baseline_preserved": true,
+    "production_promoted": false,
+    "report": "policy_candidates/2026-11-20_mixed_crowded_navigation/README.md",
+    "workspace": "flow_v3_r32_crowded_ws",
+    "board_action": "start-crowded",
+    "maximum_forward_m_s": 0.3,
+    "maximum_angular_rad_s": 0.5,
+    "physical_drive_test": false,
+    "targeted_ros_tests_passed": 62,
+    "host_board_session_tests_passed": 74,
+    "preexisting_test_failures_separated": true,
+    "validation": "synthetic geometry, real Mission callbacks, and short new Gazebo trial",
+    "gazebo_report": "policy_candidates/2026-11-20_mixed_crowded_navigation/gazebo_comparison.json",
+    "gazebo_escape_improvement_demonstrated": false,
+    "selected_gazebo_revision": "candidate_v140_revision2"
+  },
+  "mixed_smooth_030": {
+    "version": "1.3.1",
+    "report": "policy_candidates/2026-11-20_mixed_smooth_030/README.md",
+    "base": "1.3.0",
+    "maximum_forward_m_s": 0.3,
+    "maximum_angular_rad_s": 0.5,
+    "physical_drive_test": false,
+    "targeted_tests_passed": 21
+  },
+  "mixed_stall_recovery": {
+    "version": "1.3.0",
+    "report": "policy_candidates/2026-11-20_mixed_stall_recovery/README.md",
+    "baseline": "v1.2",
+    "physical_drive_test": false,
+    "validation": "recorded callback and scan replay",
+    "stall_cancellations": 7,
+    "baseline_recovery_requests": 0,
+    "candidate_recovery_requests": 7,
+    "recorded_rear_clear_states": 5
+  },
+  "mixed_marker_relook": {
+    "report": "policy_candidates/2026-11-20_mixed_marker_relook/README.md",
+    "validation": "offline detector replay and expanded installed Nav2 launch",
+    "physical_drive_test": false,
+    "replays": [
+      {
+        "frames": 2612,
+        "frame": "odom",
+        "baseline_ids": [],
+        "candidate_ids": [
+          5
+        ]
+      },
+      {
+        "frames": 2413,
+        "frame": "map",
+        "baseline_ids": [
+          42
+        ],
+        "candidate_ids": [
+          42
+        ]
+      }
+    ],
+    "forward_controller_limits_m_s": [
+      0.25,
+      0.45
+    ],
+    "forward_smoother_limits_m_s": [
+      0.27,
+      0.45
+    ]
+  },
+  "mixed_shared_face_memory": {
+    "stage": "five_gazebo_runs_completed",
+    "report": "policy_candidates/2026-11-20_mixed_shared_face_memory/README.md",
+    "matched_seed": 3131517562,
+    "baseline_random_trials": 3,
+    "baseline_random_all_three": 2,
+    "matched_box_goals": [
+      12,
+      4
+    ],
+    "matched_box_dwell_2m_s": [
+      176.3,
+      52.38
+    ],
+    "matched_sim_times_s": [
+      449.936,
+      231.608
+    ],
+    "offline_checks": 14,
+    "physical_drive": false,
+    "shared_gazebo_trials": 5,
+    "shared_all_three": 2,
+    "fresh_maps_all_three": 1,
+    "fresh_maps": 4,
+    "bumper_events": 0
+  },
+  "mixed_adaptive_faces": {
+    "stage": "same_map_gazebo_and_recorded_geometry",
+    "report": "policy_candidates/2026-11-20_mixed_adaptive_faces/README.md",
+    "gazebo_seed": 546568814,
+    "baseline_sim_s": 600.0,
+    "baseline_registered_and_approached": [
+      7,
+      32
+    ],
+    "candidate_sim_s": 210.964,
+    "candidate_registered_and_approached": [
+      7,
+      32,
+      103
+    ],
+    "bumper_events": [
+      0,
+      0
+    ],
+    "replayed_faces_with_navfn_paths": 4,
+    "physical_trial": false
   },
   "r32_resume": {
     "upstream": "5e9533380aa9233d22656862b2c1b42ce2cdcbf3",
@@ -1776,5 +2345,412 @@
     "synthetic_four_face_check": true,
     "synthetic_blocked_route_check": true,
     "physical_trial": false
+  },
+  "mixed_thorough": {
+    "report": "policy_candidates/2026-11-19_mixed_thorough/README.md",
+    "workspace": "flow_v3_r32_thorough_ws",
+    "hardware_board": true,
+    "rgb_replay_frames": 727,
+    "original_candidate_frames": 80,
+    "thorough_candidate_frames": 84,
+    "original_near_decoded_frames": 57,
+    "candidate_near_decoded_frames": 59,
+    "synthetic_regressions_passed": 4,
+    "physical_trial": true,
+    "latest_run": "20261119T110237-11c9096872",
+    "latest_run_phase": "stop_unverified",
+    "latest_run_elapsed_s": 607.299,
+    "latest_run_goals": 40,
+    "latest_run_mid_route_side_looks": 0,
+    "stop_later_verified": true
+  },
+  "mixed_corner_first": {
+    "report": "policy_candidates/2026-11-19_mixed_corner_first/README.md",
+    "workspace": "flow_v3_r32_corner_ws",
+    "hardware_board": true,
+    "recent_run_decision_maps": 2,
+    "recent_map_corner_hypotheses": 1,
+    "recent_map_offline_glance_goals": 1,
+    "synthetic_regressions_passed": 4,
+    "physical_trial": false
+  },
+  "mixed_side_pass": {
+    "report": "policy_candidates/2026-11-19_mixed_side_pass/README.md",
+    "workspace": "flow_v3_r32_side_ws",
+    "hardware_board": true,
+    "offline_decision_maps": 40,
+    "offline_side_opportunity_maps": 2,
+    "board_tests_passed": 23,
+    "session_tests_passed": 26,
+    "physical_trial": false
+  },
+  "mixed_general_surface": {
+    "report": "policy_candidates/2026-11-19_mixed_general_surface/README.md",
+    "workspace": "flow_v3_r32_general_ws",
+    "hardware_board": true,
+    "offline_decision_maps": 40,
+    "offline_old_static_candidate_maps": 2,
+    "offline_new_static_candidate_maps": 29,
+    "offline_front_dwell_candidate_maps": 15,
+    "synthetic_regressions_passed": 4,
+    "physical_trial": false
+  },
+  "mixed_center_first": {
+    "workspace": "flow_v3_r32_center_ws",
+    "report": "policy_candidates/2026-11-19_mixed_center_first/README.md",
+    "physical_trial": false,
+    "short_log_snapshot_count": 7,
+    "short_log_interior_choices": 5,
+    "long_log_snapshot_count": 40,
+    "long_log_interior_choices": 33,
+    "long_log_wall_choices": 1,
+    "long_log_first_wall_elapsed_s": 533,
+    "synthetic_tests_passed": 5
+  },
+  "mixed_v151_adaptive_survey": {
+    "version": "1.5.1-adaptive-survey-r2",
+    "parent": "1.5.1-balanced",
+    "phase": "native_comparison_complete",
+    "development_track_cases": 5,
+    "new_topologies": 2,
+    "frozen_camera": [
+      480,
+      480,
+      5
+    ],
+    "physical_drive": false,
+    "production_promoted": false,
+    "report": "experiments/2026-11-22_v151_adaptive_survey/README.md",
+    "new_tests_passed": 26,
+    "shared_regression_passed": 99,
+    "shared_regression_same_failed": 10,
+    "r2_development_regression_bound": "experiments/2026-11-22_v151_adaptive_survey/development/first-two-bound.json",
+    "paired_native": {
+      "regression": {
+        "baseline": {
+          "wall_reg": 3,
+          "box_reg": 9,
+          "wall_near": 3,
+          "box_near": 9,
+          "strict": 3,
+          "bumps": 0,
+          "duplicate_selections": 1,
+          "mean_elapsed_s": 489.6336,
+          "mean_distance_m": 83.77781194727584,
+          "mean_stopped_s": 38.58800000000004,
+          "n": 5
+        },
+        "candidate": {
+          "wall_reg": 4,
+          "box_reg": 4,
+          "wall_near": 4,
+          "box_near": 4,
+          "strict": 1,
+          "bumps": 0,
+          "duplicate_selections": 0,
+          "mean_elapsed_s": 546.3936,
+          "mean_distance_m": 91.46161048341727,
+          "mean_stopped_s": 49.49200000000007,
+          "n": 5
+        }
+      },
+      "heldout": {
+        "baseline": {
+          "wall_reg": 2,
+          "box_reg": 4,
+          "wall_near": 2,
+          "box_near": 4,
+          "strict": 2,
+          "bumps": 0,
+          "duplicate_selections": 0,
+          "mean_elapsed_s": 154.018,
+          "mean_distance_m": 20.79930016265123,
+          "mean_stopped_s": 16.959999999999965,
+          "n": 2
+        },
+        "candidate": {
+          "wall_reg": 2,
+          "box_reg": 3,
+          "wall_near": 2,
+          "box_near": 3,
+          "strict": 1,
+          "bumps": 0,
+          "duplicate_selections": 0,
+          "mean_elapsed_s": 369.0,
+          "mean_distance_m": 46.43731845026653,
+          "mean_stopped_s": 59.190000000000104,
+          "n": 2
+        }
+      }
+    }
+  },
+  "mixed_v151_object_followthrough": {
+    "phase": "staged_conditional_screen",
+    "version": "1.5.1-object-followthrough",
+    "parent": "1.5.1-adaptive-survey-r2",
+    "new_and_parent_tests_passed": 32,
+    "physical_drive": false,
+    "production_promoted": false,
+    "dev_counterexample_m": 1.6,
+    "strict_development_win_required_before_continuing": true
+  },
+  "latest_r32_common_comparison": {
+    "upstream": "d8704f6",
+    "completed_maps": 5,
+    "all_registered": 4,
+    "strict_confirmed": 2,
+    "terminal_censored": 2,
+    "known_failed": 1,
+    "report": "experiments/2026-11-22_latest_r32_compare/README.md"
+  },
+  "mixed_v151_tiny_named_relook": {
+    "version": "1.5.1-tiny-named-relook-r4",
+    "parent": "1.5.1-object-followthrough-r3",
+    "phase": "installed_waiting_for_development_track",
+    "jazzy_targeted_tests_passed": 39,
+    "promotion": false,
+    "hardware_drive": false,
+    "report": "policy_candidates/2026-11-22_v151_tiny_named_relook/README.md",
+    "stage": "experiments/2026-11-22_v151_adaptive_survey/development/r4-jazzy-stage.json"
+  },
+  "mixed_v151_exam_track": {
+    "screenshot_layout": "uFjtqfyJ",
+    "pictured_seed": 2983619014,
+    "pictured_boxes": 4,
+    "same_room_random_boxes": 5,
+    "pictured_world_sha256": "589d152dcfef420f6fda37fccdc30c3d73e9f90ebbdab8359d04bf94a5538b1a",
+    "fixed_room_sha256": "beff18e9879eaa96cc036e4967575987282c1d951f6d9488b145e4d59f080c6f",
+    "phase": "superseded_before_first_episode_fixed_host_roster",
+    "supplemental_custom_room_service": "disabled_before_any_blind_episode",
+    "production_promoted": false,
+    "report": "experiments/2026-11-22_exam_track_validation/README.md",
+    "enrollment_sha256": "25f13541aebb0ee6754a80cebccf13e412c3d28510439ea5a088a985e5dbc8f1",
+    "pictured_and_random_layouts": 5,
+    "finalist_planned_pairs": 9,
+    "no_finalist_pictured_pairs": 2,
+    "paired_episodes_at_enrollment": 0,
+    "enrollment_receipt": "experiments/2026-11-22_exam_track_validation/enrollment_receipt.json",
+    "formal_episodes": 0
+  },
+  "mixed_v151_random_exam": {
+    "policy": "Mixed v1.5.1 surface-followthrough R5",
+    "baseline": "Mixed v1.5.1-balanced",
+    "official_room": "8780 uFjtqfyJ",
+    "source_sha256": "eb144ce44ef1d2fb5ffeb158d80e012f97eb9fbce273ebfcbf9505932073fee2",
+    "shell_sha256": "8f4a4d592addbb191c7ea4df4777972f4a5200565da094c66cc5317591d0a8be",
+    "registration_sha256": "b286ead54801b00a326b6b5c3f319fba0808f22d715bea6d6ccc7e525b32ffee",
+    "protocol_sha256": "a6b9665f1c34e79e72fdd666d568e68ebe0d71e8e0365934a882c81dd880560f",
+    "phase": "completed_paired_native",
+    "independent_worlds": 5,
+    "paired_repeats": 1,
+    "known_marker_count": 3,
+    "native_policy_tests": 46,
+    "native_fixture_and_scoring_tests": 5,
+    "hardware_drive": false,
+    "production_promoted": false,
+    "report": "experiments/2026-11-22_random_exam/README.md",
+    "enrollment": "experiments/2026-11-22_random_exam/enrollment.json",
+    "case_of_missed_reachable_print": "experiments/2026-11-22_random_exam/face-443.json",
+    "viewer_distance_audit": {
+      "path": "experiments/2026-11-22_random_exam/board-distance-audit.json",
+      "episodes": 8,
+      "max_display_difference_m": 0.020874404646207267,
+      "source": "native Gazebo trajectory"
+    },
+    "enrolled_print_geometry": {
+      "worlds": 12,
+      "prints": 35,
+      "visible_at_enrolled_pose": 35,
+      "connected_on_40cm_grid": 35,
+      "source": "experiments/2026-11-22_random_exam/geometric-witnesses.json"
+    },
+    "missed_column_case": "experiments/2026-11-22_random_exam/pillar-995.json",
+    "paired_comparison": "experiments/2026-11-22_random_exam/results/surface-r5/RESULTS.md",
+    "valid_pairs": 6,
+    "first_five_layouts": {
+      "baseline": {
+        "runs": 5,
+        "strict": 4,
+        "registered": 14,
+        "all_markers": 15,
+        "verified": 14,
+        "wall_verified": 9,
+        "walls": 10,
+        "obstacle_verified": 5,
+        "obstacles": 5,
+        "bumps": 0,
+        "false_registered_instances": 0,
+        "mean_time_with_failures_at_limit_s": 364.5576,
+        "mean_actual_mission_s": 364.93760000000003,
+        "mean_travel_m": 53.40284303444275
+      },
+      "candidate": {
+        "runs": 5,
+        "strict": 1,
+        "registered": 11,
+        "all_markers": 15,
+        "verified": 11,
+        "wall_verified": 8,
+        "walls": 10,
+        "obstacle_verified": 3,
+        "obstacles": 5,
+        "bumps": 0,
+        "false_registered_instances": 0,
+        "mean_time_with_failures_at_limit_s": 527.6600000000001,
+        "mean_actual_mission_s": 527.7672,
+        "mean_travel_m": 86.85064104876433
+      }
+    },
+    "videos_verified": 12,
+    "random_layout_optical_check": {
+      "report": "experiments/2026-11-22_random_exam/fixture-visibility.json",
+      "original_blind_spots": 9,
+      "same_draws_visible": 585,
+      "same_draws_total": 585,
+      "additional_layouts": 192,
+      "additional_visible": 575,
+      "additional_total": 575,
+      "existing_jazzy_worlds_reproduced": 12,
+      "policy_performance_measurement": false
+    },
+    "shared_board_controls": {
+      "url": "http://192.168.252.2:8780/",
+      "modes": {
+        "exam-official-balanced": 3,
+        "exam-official-print": 3,
+        "exam-balanced": 3,
+        "exam-print": 3,
+        "exam-print-unknown": 0
+      },
+      "furniture": "fixed",
+      "legacy_tracks_available": true,
+      "busy_http_status": 409,
+      "source": "experiments/2026-11-22_random_exam/board_run.py",
+      "default_mode": "exam-official-balanced",
+      "official_public_marker_count": 3,
+      "official_desks": 14,
+      "official_legs": 56,
+      "shuffled_modes": [
+        "exam-balanced",
+        "exam-print",
+        "exam-print-unknown"
+      ]
+    },
+    "official_fixed_exam": {
+      "status": "registered",
+      "registration": "experiments/2026-11-22_random_exam/official-fixed/enrollment.json",
+      "public_marker_count": 3,
+      "original_furniture": true,
+      "independent_layouts": 5,
+      "repeat_pairs": 1
+    },
+    "distant_hint_screen": {
+      "state": "heldout_replay",
+      "development_marker": 798,
+      "development_real_registration_s": 598.296,
+      "first_offline_hint_s": 40.324,
+      "first_hint_error_m": 0.029466034493241765,
+      "independent_layouts_planned": 3,
+      "validated_closed_loop": false
+    }
+  },
+  "mixed_v151_balanced_print_relook": {
+    "policy": "Mixed v1.5.1-balanced + edge print relook",
+    "baseline": "Mixed v1.5.1-balanced",
+    "source_sha256": "5152baac3122da4e09fd15e982509df78bfee74891827d8374a11d201d12a0bb",
+    "registration_sha256": "d59b3f98f7050938be366b7158f44b8ef346b1c200d968f189d12f100cd57e66",
+    "protocol_sha256": "8a129e478a7989589c91ff5d5d94aeccafa996e97cb85f90664320ec982e5453",
+    "phase": "native_campaign_enrolled",
+    "official_room": "8780 uFjtqfyJ",
+    "known_marker_count": 3,
+    "all_furniture_shuffled": true,
+    "independent_layouts": 5,
+    "extra_repeat_pairs": 1,
+    "new_jazzy_tests_passed": 8,
+    "shared_tests": {
+      "passed_each": 54,
+      "same_failures_each": 3
+    },
+    "hardware_drive": false,
+    "production_promoted": false,
+    "enrollment": "experiments/2026-11-22_random_exam/balanced_print/enrollment.json",
+    "all_original_ids_offline": "experiments/2026-11-22_random_exam/balanced_print/dictionary_results.json",
+    "portable_random_exam": {
+      "venue": "8780 original SDF shell",
+      "furniture": "fixed",
+      "marker_count_modes": {
+        "unknown": [
+          1,
+          5
+        ],
+        "three": 3
+      },
+      "preflight_tests_jazzy": 3,
+      "native_worlds_reproduced": 2,
+      "completed_native_scores_replayed": 4,
+      "unknown_count_stress_enrollment": "experiments/2026-11-22_random_exam/balanced_print/undisclosed_enrollment.json",
+      "enrollment_sha256": "0564b657073bf7046765bcec1cb2a60e718b9b57ed21dfc603df06813ce09c3d",
+      "default_public_marker_count": 3,
+      "stress_furniture_option": "--tables shuffle"
+    },
+    "undisclosed_runtime_state": "superseded_before_start",
+    "shuffled_comparison_scope": "supplementary, original desks moved",
+    "shuffled_phase": "closed_at_rule_clarification",
+    "shuffled_pairs_completed": 4,
+    "shuffled_reference": "experiments/2026-11-22_random_exam/results/shuffled-prefix/RESULTS.md"
+  },
+  "spread_three_focus_exam": {
+    "phase": "complete",
+    "worlds": 3,
+    "known_count": 3,
+    "boxes": 3,
+    "obstacle_prints": 2,
+    "outer_wall_prints": 1,
+    "camera": "480x480 @ 5 Hz",
+    "source_sha256": "dfd33c79d93498337a7f4257900f724894e7b5048f2dfee67a39ab395b3691bd",
+    "native_simulation": true,
+    "production_promoted": false,
+    "registration": "experiments/2026-11-22_random_exam/spread-three/enrollment.json",
+    "actual_runs": 3,
+    "valid": 3,
+    "summary": {
+      "runs": 3,
+      "strict": 2,
+      "registered": 8,
+      "all_markers": 9,
+      "verified": 8,
+      "wall_verified": 2,
+      "walls": 3,
+      "obstacle_verified": 6,
+      "obstacles": 6,
+      "bumps": 0,
+      "false_registered_instances": 0,
+      "mean_time_with_failures_at_limit_s": 414.5173333333333,
+      "mean_actual_mission_s": 414.8333333333333,
+      "mean_travel_m": 64.87636744708796
+    },
+    "release_clips_verified": 3,
+    "remaining_runs": 0,
+    "results": "experiments/2026-11-22_random_exam/spread-three/RESULTS.md"
+  },
+  "grouped_8780_experiments": {
+    "group_by": "recorded policy source identity or legacy revision",
+    "url": "http://192.168.252.2:8780/",
+    "shared_archive": true,
+    "desktop_video_test": true,
+    "mobile_width_px": 390,
+    "filtered_archive_restored": true
+  },
+  "mixed_v15249_work_coordinator": {
+    "version": "1.5.2.49-work-coordinator",
+    "parent": "1.5.2.48",
+    "workspace": "v15249_work_coordinator_lidar5_640_1126_ws",
+    "regression_checks": 48,
+    "saved_map_comparisons": 36,
+    "unsafe_generated_endpoints": 0,
+    "closed_loop_gazebo": false,
+    "physical_drive": false,
+    "board_default_changed": false,
+    "report": "policy_candidates/2026-11-26_v152_rule_cleanup/README.md"
   }
 }

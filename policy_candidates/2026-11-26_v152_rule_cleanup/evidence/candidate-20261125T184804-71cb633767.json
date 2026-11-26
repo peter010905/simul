@@ -1,0 +1,177 @@
+{
+  "run": "20261125T184804-71cb633767",
+  "physical_drive": false,
+  "evidence": "stateless_recorded_map_and_costmap_selector_replay",
+  "limitations": [
+    "veto/history and tracked objects not reconstructed",
+    "no Nav2 action feasibility proof",
+    "not a marker-detection or closed-loop success measurement"
+  ],
+  "selected": 12,
+  "samples": 12,
+  "unsafe_endpoints": 0,
+  "reasons": {
+    "quick_perimeter_pass": 5,
+    "interior_first_exploration": 3,
+    "regional_camera_gain_per_route": 4
+  },
+  "median_ms": 154.64749999999998,
+  "rows": [
+    {
+      "snapshot": "0000.npz",
+      "elapsed": 8.745,
+      "transform_source": "paired_map_pose_and_odometry",
+      "selector_ms": 37.922,
+      "reason": "quick_perimeter_pass",
+      "kind": "wall_lap",
+      "goal_xy": [
+        -0.3173781299084766,
+        -0.4076281399308
+      ],
+      "normal_endpoint_safe": true
+    },
+    {
+      "snapshot": "0005.npz",
+      "elapsed": 38.692,
+      "transform_source": "paired_map_pose_and_odometry",
+      "selector_ms": 51.326,
+      "reason": "quick_perimeter_pass",
+      "kind": "wall_lap",
+      "goal_xy": [
+        -0.15357910292481436,
+        -0.40264028336637375
+      ],
+      "normal_endpoint_safe": true
+    },
+    {
+      "snapshot": "0010.npz",
+      "elapsed": 68.822,
+      "transform_source": "paired_map_pose_and_odometry",
+      "selector_ms": 57.418,
+      "reason": "quick_perimeter_pass",
+      "kind": "wall_lap",
+      "goal_xy": [
+        -1.0550336096031399,
+        4.381778607289588
+      ],
+      "normal_endpoint_safe": true
+    },
+    {
+      "snapshot": "0015.npz",
+      "elapsed": 103.074,
+      "transform_source": "paired_map_pose_and_odometry",
+      "selector_ms": 160.433,
+      "reason": "quick_perimeter_pass",
+      "kind": "wall_lap",
+      "goal_xy": [
+        0.3512867123004744,
+        6.120040886728617
+      ],
+      "normal_endpoint_safe": true
+    },
+    {
+      "snapshot": "0020.npz",
+      "elapsed": 158.07,
+      "transform_source": "paired_map_pose_and_odometry",
+      "selector_ms": 178.941,
+      "reason": "quick_perimeter_pass",
+      "kind": "wall_lap",
+      "goal_xy": [
+        0.28639361890489756,
+        6.233328487402487
+      ],
+      "normal_endpoint_safe": true
+    },
+    {
+      "snapshot": "0025.npz",
+      "elapsed": 186.506,
+      "transform_source": "paired_map_pose_and_odometry",
+      "selector_ms": 100.814,
+      "reason": "interior_first_exploration",
+      "kind": "interior_frontier",
+      "goal_xy": [
+        4.449819192807712,
+        3.2828824570568944
+      ],
+      "normal_endpoint_safe": true
+    },
+    {
+      "snapshot": "0030.npz",
+      "elapsed": 262.731,
+      "transform_source": "paired_map_pose_and_odometry",
+      "selector_ms": 117.03,
+      "reason": "interior_first_exploration",
+      "kind": "interior_frontier",
+      "goal_xy": [
+        2.049819157044925,
+        -6.728456012886429
+      ],
+      "normal_endpoint_safe": true
+    },
+    {
+      "snapshot": "0035.npz",
+      "elapsed": 312.781,
+      "transform_source": "paired_map_pose_and_odometry",
+      "selector_ms": 159.065,
+      "reason": "regional_camera_gain_per_route",
+      "kind": "interior_surface",
+      "goal_xy": [
+        3.374819182749428,
+        -7.758053845265386
+      ],
+      "normal_endpoint_safe": true
+    },
+    {
+      "snapshot": "0040.npz",
+      "elapsed": 357.753,
+      "transform_source": "paired_map_pose_and_odometry",
+      "selector_ms": 159.987,
+      "reason": "regional_camera_gain_per_route",
+      "kind": "interior_surface",
+      "goal_xy": [
+        2.849819180886783,
+        -4.14463629334311
+      ],
+      "normal_endpoint_safe": true
+    },
+    {
+      "snapshot": "0045.npz",
+      "elapsed": 461.835,
+      "transform_source": "paired_map_pose_and_odometry",
+      "selector_ms": 167.91,
+      "reason": "interior_first_exploration",
+      "kind": "interior_frontier",
+      "goal_xy": [
+        6.409264277514147,
+        4.779912174496095
+      ],
+      "normal_endpoint_safe": true
+    },
+    {
+      "snapshot": "0050.npz",
+      "elapsed": 500.34,
+      "transform_source": "paired_map_pose_and_odometry",
+      "selector_ms": 164.286,
+      "reason": "regional_camera_gain_per_route",
+      "kind": "interior_surface",
+      "goal_xy": [
+        4.909264267083334,
+        5.6549121934950755
+      ],
+      "normal_endpoint_safe": true
+    },
+    {
+      "snapshot": "0055.npz",
+      "elapsed": 570.324,
+      "transform_source": "paired_map_pose_and_odometry",
+      "selector_ms": 150.23,
+      "reason": "regional_camera_gain_per_route",
+      "kind": "interior_surface",
+      "goal_xy": [
+        4.659264239516186,
+        0.6049121063232828
+      ],
+      "normal_endpoint_safe": true
+    }
+  ]
+}

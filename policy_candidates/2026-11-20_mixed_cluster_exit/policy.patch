@@ -1,0 +1,90 @@
+--- center_wall.py
++++ center_wall.py
+@@ -10,6 +10,7 @@
+ from osp_mission.box_views import odom_point
+ from osp_mission.edge_policy import DIRECTIONS
+ from osp_mission.tracked_faces import TrackedFaces
++from osp_mission.cluster_exit import ClusterExit
+ from osp_mission.box_batch import BoxBatch
+ from osp_mission.wall_bearings import WallBearings
+
+@@ -112,6 +113,7 @@
+         self.history = deque(maxlen=200)
+         self.tracked_faces = TrackedFaces()
+         self.batch = BoxBatch()
++        self.cluster = ClusterExit()
+         self.weak = WallBearings()
+         self.weak_known = []
+         self.weak_clock = 0.
+@@ -223,7 +225,16 @@
+         candidates['interior'] = [item for item in ordered if not item[1]['completed_box']]
+         fresh = [item for item in candidates['interior'] if not item[1]['previous_attempts']]
+         boxes = [item for item in fresh if item[1].get('batch_box') is not None]
++        crowded = self.cluster.crowded_centers(elapsed)
++        if crowded:
++            outside = [item for item in fresh if not self.cluster.local_fragment(item[1], crowded)]
++            # Keep genuine box evidence ahead of the weak wall cue, including close neighbours.
++            boxes = [item for item in outside if item[1].get('batch_box') is not None]
+         if probe_only:
++            if crowded:
++                fresh = outside
++            if getattr(self, 'on_cluster_exit', False):
++                return boxes[0][1] if boxes else None
+             preferred = boxes if getattr(self,'on_weak_route',False) else fresh
+             return preferred[0][1] if preferred else None
+         if not boxes:
+@@ -232,6 +243,20 @@
+             if goal is not None:
+                 self.phase,self.reason = 'wall','persistent_small_wall_candidate'
+                 return goal
++        if crowded and not boxes:
++            if outside:
++                self.phase, self.reason = 'interior', 'inspect_other_surface'
++                return outside[0][1]
++            # Keep the original frontier gain, safety, reachability and failed-goal filters.
++            remote = (c for c in choices if all(np.linalg.norm(odom_point((c['x'], c['y']), transform)-center) >= 2.4
++                                           for center in crowded))
++            frontier = discovery_frontier(remote, costmap, nav, veto)
++            if frontier is not None and duration-elapsed > min(.15*duration, 12. + 5.*self.counts['wall']):
++                self.phase, self.reason = 'interior', 'discover_beyond_inspected_boxes'
++                self.idle_since, self.wall_anchor = None, None
++                return dict(frontier, cluster_exit=True)
++        if crowded and boxes:
++            fresh = outside
+         wall_reserve = min(.15*duration, 12. + 5.*self.counts['wall'])
+         frontier = None if fresh else discovery_frontier(choices, costmap, nav, veto)
+         if fresh or (frontier is not None and duration-elapsed > wall_reserve):
+@@ -272,6 +297,8 @@
+     def dispatched(self, goal, elapsed):
+         self.on_weak_route = bool(goal.get('weak_wall'))
+         self.weak.dispatched(goal)
++        self.on_cluster_exit = bool(goal.get('cluster_exit'))
++        self.cluster.dispatched(goal,elapsed)
+         self.batch.dispatched(goal)
+         if 'surface_odom' in goal:
+             anchor = np.asarray(goal['surface_odom'])
+--- phased_hybrid.py
++++ phased_hybrid.py
+@@ -59,6 +59,9 @@
+         self.schedule.weak_known = [odom_point(point,transform) for point in owner.targets.values()]
+         self.schedule.weak_clock = clock
+         self.schedule.batch.update(centers, verified, odom_point(pose[:2], transform))
++        self.schedule.cluster.observed = [track.center for track in self.box_views.tracks
++            if track.confirmed and (len(track.seen) >= 2 or
++                                    tuple(track.center) in self.schedule.batch.completed)]
+         goal = self.schedule.decide(grid,cost,pose,transform,viewed,
+                                     now-owner.started,owner.p('duration'),veto,choices,fitted,probe_only=print_only)
+         if goal is not None:
+@@ -69,9 +72,11 @@
+         super().dispatched(owner,goal)
+         elapsed = owner.now()-owner.started
+         self.schedule.dispatched(goal,elapsed)
+-        self.next_box_probe = owner.now()+3. if goal.get('r32_kind')=='wall_surface' else float('inf')
++        self.next_box_probe = owner.now()+3. if (goal.get('r32_kind')=='wall_surface' or goal.get('cluster_exit')) else float('inf')
+         row = dict(elapsed=elapsed,phase=self.schedule.phase,reason=self.schedule.reason,
+                    available=self.schedule.counts,kind=goal.get('r32_kind','flow_or_marker'),
++                   cluster_exit=bool(goal.get('cluster_exit')),
++                   crowded_centers=[list(c) for c in self.schedule.cluster.crowded_centers(elapsed)],
+                    weak_wall=bool(goal.get('weak_wall')),local_batch=goal.get('local_batch'), completed_box=goal.get('completed_box'),
+                    batch_box=goal.get('batch_box'), marker_id=goal.get('approach_id',goal.get('focus_id')),
+                    surface=goal.get('surface_map'), fitted_face=goal.get('fitted_face'),

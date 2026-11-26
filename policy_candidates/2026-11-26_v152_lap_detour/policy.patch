@@ -1,0 +1,29 @@
+--- a/center_wall.py
++++ b/center_wall.py
+@@ -135,7 +135,9 @@
+         self.work = FaceWork()
+         self.interior_priority = InteriorPriority()
+         # .51: about four minutes for one lap (the .50 Gazebo lap needed 3.2-3.3 min).
+-        self.wall_lap = WallLap(budget_fraction=.40, maximum_seconds=240.)
++        # .54: 3.0 m between lap stops (2.3 m before) means fewer stop-and-look pauses.
++        self.wall_lap = WallLap(budget_fraction=.40, maximum_seconds=240., waypoint_spacing=3.0)
++        self.lap_detours = 0
+         self.chair_surface_contains = lambda point: False
+         self.region_transit = RegionTransit()
+         self.exploration_routes = None
+@@ -396,6 +398,15 @@
+                 self.reason = 'wall_marker_evidence'
+                 return clue
+             if self.wall_lap.phase == 'perimeter':
++                # .54: a box face within 2 m of route is served during the lap instead
++                # of after it (two of three prints are on boxes). Box visit and return
++                # limits still apply; at most four detours per lap.
++                near = [(walk, g) for walk, g in ordered if walk <= 2.0 and not g.get('completed_box')
++                        and self.continuity.available(g, elapsed)]
++                if near and self.lap_detours < 4:
++                    self.lap_detours += 1
++                    self.phase, self.reason = 'interior', 'lap_box_detour'
++                    return dict(min(near, key=lambda row: row[0])[1], lap_box_detour=True)
+                 lap = self.wall_lap.choose(grid, box_distances, pose, transform, elapsed, duration, veto)
+                 if lap is not None:
+                     self.phase,self.reason='wall','quick_perimeter_pass'

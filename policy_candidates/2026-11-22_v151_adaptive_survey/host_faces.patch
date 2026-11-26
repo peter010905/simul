@@ -1,0 +1,89 @@
+--- a/phased_hybrid.py
++++ b/phased_hybrid.py
+@@ -58,7 +58,14 @@
+                     if owner.approach.verified(ident, point)]
+         self.schedule.weak_known = [odom_point(point,transform) for point in owner.targets.values()]
+         self.schedule.weak_clock = clock
+-        self.schedule.batch.update(centers, verified, odom_point(pose[:2], transform))
++        coverage = []
++        for center, faces, seen in fitted:
++            # Refit in current map axes, compare in odom with timestamped camera records.
++            normals = [np.arctan2(n[1], n[0]) + transform[2] for _, n in faces]
++            complete = len(normals) == 4 and all(
++                any(np.cos(a - b) >= np.cos(np.deg2rad(35.)) for b in seen) for a in normals)
++            coverage.append((odom_point(center, transform), complete))
++        self.schedule.batch.update(centers, verified, odom_point(pose[:2], transform), coverage)
+         self.schedule.cluster.observed = [track.center for track in self.box_views.tracks
+             if track.confirmed and (len(track.seen) >= 2 or
+                                     tuple(track.center) in self.schedule.batch.completed)]
+--- a/box_batch.py
++++ b/box_batch.py
+@@ -6,13 +6,26 @@
+     def __init__(self):
+         self.centers = []
+         self.completed = set()
++        self.tagged = set()
+         self.active = None
+         self.robot = None
+
+-    def update(self, centers, verified, robot):
++    def update(self, centers, verified, robot, coverage=()):
+         self.centers = [tuple(p) for p in centers]
+         self.robot = robot
+-        self.completed = {box for p in verified if (box := self.owner(p)) is not None}
++        self.tagged = {box for p in verified if (box := self.owner(p)) is not None}
++        previous = self.completed
++        # Carry evidence only across an unambiguous match to the same short-lived fit.
++        self.completed = {box for old in previous if (box := self.owner(old)) is not None
++                          and math.dist(box, old) < .30}
++        for center, all_faces_seen in coverage:
++            box = self.owner(center)
++            if box is None:
++                continue
++            if all_faces_seen:
++                self.completed.add(box)
++            else:
++                self.completed.discard(box)
+
+     def owner(self, point):
+         near = sorted((math.dist(point, c), c) for c in self.centers if math.dist(point, c) <= .75)
+@@ -29,6 +42,7 @@
+         batch = near and same and not goal['previous_attempts'] and distance <= 3.5
+         goal['batch_box'] = box
+         goal['completed_box'] = box is not None and box in self.completed
++        goal['tagged_box'] = box is not None and box in self.tagged
+         goal['local_batch'] = batch
+         return (goal['completed_box'], not batch, 'fitted_face' not in goal, distance)
+
+--- a/survey.py
++++ b/survey.py
+@@ -210,6 +210,9 @@
+                             value += .65
+                         if view.goal.get('local_batch'):
+                             value += .45
++                        if view.goal.get('tagged_box'):
++                            # One verified ID lowers urgency but leaves other faces eligible.
++                            value *= .85
+                         if schedule.cluster.local_fragment(view.goal, crowded):
+                             value *= .45
+                     # A bounded travel/overlap cost allows low-density parts of a
+--- a/center_wall.py
++++ b/center_wall.py
+@@ -230,7 +230,6 @@
+                 candidates[kind].append(best)
+         self.counts = {k:len(v) for k,v in candidates.items()}
+         ordered = sorted(candidates['interior'], key=self.batch.rank)
+-        deferred = [item for item in ordered if item[1]['completed_box']]
+         candidates['interior'] = [item for item in ordered if not item[1]['completed_box']]
+         fresh = [item for item in candidates['interior'] if not item[1]['previous_attempts']]
+         boxes = [item for item in fresh if item[1].get('batch_box') is not None]
+@@ -299,9 +298,6 @@
+                   and elapsed>=min(60.,duration*.22)):
+                 self.phase,self.reason = 'wall','no_reachable_interior_views'
+         best = min(candidates[self.phase],key=lambda x:x[0],default=None)
+-        if best is None and deferred and not probe_only:
+-            self.phase, self.reason = 'interior', 'completed_box_fallback'
+-            return deferred[0][1]
+         return best[1] if best else None
+
+     def attempts(self, kind, anchor, normal_yaw, radius):

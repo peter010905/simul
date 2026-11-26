@@ -19,7 +19,69 @@ SCENES = {
     "desks": "scene16-metric",
     "returns": "scene16-parity",
     "departure": "scene16-departure",
+    "room": "scene16-room",
 }
+
+
+def chair_walls_world(run):
+    """Chair walls the policy committed (SLAM map frame) drawn in the Gazebo frame.
+
+    The map->world transform is a 2D rigid fit between the robot positions stored in the
+    policy decision snapshots (map frame) and the evaluator trajectory at the same times.
+    Returns [{"t": first commit time, "a": [x, y], "b": [x, y]}].
+    """
+    import numpy as np
+
+    log = run / "native/center_wall.jsonl"
+    snaps = sorted((run / "native/policy_decisions").glob("*.npz"))
+    if not log.is_file() or len(snaps) < 3:
+        return []
+    first = {}
+    for line in log.read_text().splitlines():
+        try:
+            row = json.loads(line)
+        except ValueError:
+            continue
+        for w in row.get("chair_walls") or []:
+            key = (round(w[2], 1), round(w[3], 1))
+            first.setdefault(key, (row["elapsed"], w))
+            first[key] = (first[key][0], w)  # latest refined position, first time
+    if not first:
+        return []
+    times, world = [], []
+    with (run / "trajectory.csv").open() as stream:
+        for r in csv.DictReader(stream):
+            try:
+                times.append(float(r["elapsed_sim_s"]))
+                world.append((float(r["world_x"]), float(r["world_y"])))
+            except (TypeError, ValueError, KeyError):
+                continue
+    if len(times) < 10:
+        return []
+    times, world = np.array(times), np.array(world)
+    src, dst = [], []
+    for f in snaps[:: max(1, len(snaps) // 30)]:
+        z = np.load(f)
+        t = float(z["elapsed"])
+        k = int(np.searchsorted(times, t))
+        if 0 < k < len(times) and abs(times[k] - t) < 1.0:
+            src.append(np.asarray(z["robot"], float)[:2])
+            dst.append(world[k])
+    if len(src) < 3:
+        return []
+    src, dst = np.array(src), np.array(dst)
+    ms, md = src.mean(0), dst.mean(0)
+    u, _, vt = np.linalg.svd((src - ms).T @ (dst - md))
+    rot = (u @ vt).T
+    if np.linalg.det(rot) < 0:
+        return []
+    out = []
+    for t, w in first.values():
+        p = rot @ (np.array(w[:2]) - ms) + md
+        n = rot @ np.array(w[2:])
+        tangent = np.array([-n[1], n[0]])
+        out.append(dict(t=round(t, 1), a=(p - 7 * tangent).tolist(), b=(p + 7 * tangent).tolist()))
+    return out
 
 
 class Board:
@@ -59,12 +121,35 @@ class Board:
                 result = trial(p, self.ref)
                 scene = (p / "world").resolve().parent.name
                 result["scene"] = (
-                    "departure"
+                    "room"
+                    if scene == "scene16-room" or scene.startswith(("seed-", "probe-"))
+                    else "departure"
                     if scene == "scene16-departure"
                     else "returns"
                     if scene in ("scene16-returns", "scene16-parity")
                     else "desks"
                 )
+                if result["scene"] == "room" and (p / "scene.json").is_file():
+                    # Evaluator-side display of the sampled layout (never given to a policy).
+                    layout = json.loads((p / "scene.json").read_text())
+                    result["room_objects"] = layout.get("obstacles", [])
+                    result["room_targets"] = [
+                        dict(id=t["id"], x=t["x"], y=t["y"]) for t in layout.get("targets", [])
+                    ]
+                    result["layout_seed"] = layout.get("seed")
+                    demo = p / "run/simulation/demo_layout.json"
+                    if demo.is_file():
+                        result["room_tables"] = json.loads(demo.read_text()).get("tables")
+                    world = p / "world/osp_studio.sdf"
+                    if world.is_file():
+                        import xml.etree.ElementTree as ET
+                        seats = []
+                        for col in ET.parse(world).iter("collision"):
+                            if col.get("name", "").endswith(("_seat_collision", "_body_collision")):
+                                x, y, _, _, _, yaw = map(float, col.findtext("pose").split())
+                                seats.append(dict(x=x, y=y, yaw=yaw))
+                        result["room_chairs"] = seats
+                    result["chair_walls"] = chair_walls_world(p)
                 protocol = p / "provenance.json"
                 proof = json.loads(protocol.read_text()) if protocol.exists() else {}
                 result["policy_run"] = proof.get("policy_run", self.ref["run"])
@@ -315,10 +400,17 @@ class Handler(BaseHTTPRequestHandler):
                     slam_layer=b.read("registered-slam.json")
                     if (b.root / "registered-slam.json").is_file()
                     else None,
+                    room_shell=b.read("scene16-room/room_shell.json")
+                    if (b.root / "scene16-room/room_shell.json").is_file()
+                    else None,
                     departure_returns=b.read("scene16-departure/returns.json")
                     if (b.root / "scene16-departure/returns.json").is_file()
                     else None,
                     policies=list(b.read("stages.json")),
+                    policy_info={
+                        k: dict(workspace=Path(v["parent"]).name, slam=v["slam"])
+                        for k, v in b.read("stages.json").items()
+                    },
                     reference_goals=b.read("reference-goals.json")
                     if (b.root / "reference-goals.json").is_file()
                     else [],

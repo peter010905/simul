@@ -1,0 +1,51 @@
+--- a/survey.py
++++ b/survey.py
+@@ -6,6 +6,7 @@
+ import numpy as np
+
+ from osp_mission.edge_policy import readable_distance
++from osp_mission.followthrough import FollowThrough
+
+
+ def odom_xy(point, transform):
+@@ -33,6 +34,7 @@
+     """The task owner retains Nav2, action lifecycle, hazards and marker interrupts."""
+
+     def __init__(self):
++        self.follow = FollowThrough()
+         self.camera = None
+         self.waiting = {}
+         self.routes = deque(maxlen=96)
+@@ -154,6 +156,13 @@
+
+         surfaces = self.samples(grid, viewed, samples)
+         period = min(90., max(20., .15 * duration))
++        local = self.follow.choose(grid, pose, transform, eligible, self.waiting, period, elapsed, remaining)
++        if local is not None:
++            option, details = local
++            wall, interior = self.gains(option.goal, grid, surfaces, read, fov)
++            phase, reason, goal = self.result(option, 'nearby_distinct_object_face', wall, interior, 0., elapsed)
++            goal.update(details)
++            return phase, reason, goal
+         ranked = []
+         for kind, options in eligible.items():
+             if not options:
+@@ -253,6 +262,7 @@
+         return ('wall' if option.kind == 'wall' else 'interior', reason, goal)
+
+     def dispatched(self, goal, elapsed, phase):
++        self.follow.dispatched(goal, elapsed)
+         kind = goal.get('survey_kind')
+         if kind is not None:
+             self.waiting[kind] = elapsed
+--- a/center_wall.py
++++ b/center_wall.py
+@@ -249,6 +249,8 @@
+                                     viewed, samples, candidates, choices, elapsed, duration, veto)
+         if choice is not None:
+             self.phase, self.reason, goal = choice
++            if goal.get('survey_kind') == 'interior':
++                goal['survey_nav_odom'] = odom_point((goal['x'],goal['y']),transform).tolist()
+             return goal
+         if not boxes:
+             goal = self.weak.choose(candidates['wall'],grid,transform,self.weak_known,

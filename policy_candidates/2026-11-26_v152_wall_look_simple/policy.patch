@@ -1,0 +1,25 @@
+--- a/wall_lap.py
++++ b/wall_lap.py
+@@ -56,6 +56,7 @@
+         self.sparse_stops=0
+         # .52: callable(point)->point|None placing chair-face stops in front of the wall.
+         self.project=None
++        self.look_toward_wall=math.radians(45.)  # 45+90 at an inside corner stays within 135 deg
+         self.entry_wait_s=entry_wait_s
+         self.continuation_wait_s=continuation_wait_s
+         self.revisit_radius_m=revisit_radius_m
+@@ -246,7 +247,13 @@
+                         self.backward_rejected+=1
+                         continue
+                     yaw=math.atan2(tangent[1],tangent[0])
+-                    goal=dict(x=float(point[0]),y=float(point[1]),yaw=yaw,scan_angle=0.,
++                    # .55: arrive turned toward the wall by look_toward_wall so the camera
++                    # covers the wall section ahead. The progress reference stays the travel
++                    # tangent. With a heading along the wall a wall print never entered the
++                    # image (0 of ~250 nearby samples in two Gazebo layouts).
++                    look=(math.cos(self.look_toward_wall)*tangent-math.sin(self.look_toward_wall)*normal)
++                    look_yaw=math.atan2(look[1],look[0])
++                    goal=dict(x=float(point[0]),y=float(point[1]),yaw=look_yaw,scan_angle=0.,
+                               features=np.array([0.,0.,walk,0.,0.]),distance=walk,
+                               stationary=False,face_inspection=False,r32_kind='wall_lap',wall_lap=True,
+                               lap_pose_odom=odom_point(point,transform).tolist(),

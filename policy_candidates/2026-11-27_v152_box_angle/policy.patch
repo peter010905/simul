@@ -1,0 +1,57 @@
+--- a/src/osp_mission/osp_mission/_r32_navigation_core.py	2026-11-27 02:26:34
++++ b/src/osp_mission/osp_mission/_r32_navigation_core.py	2026-11-27 02:28:15
+@@ -273,8 +273,32 @@
+     if np.isfinite(score[i]):
+         return (*points[i],0.0,'coverage')
+     return None
++
+ 
++def edge_fraction(points, angle, band=.06):
++    """Share of cells lying on the border of the rectangle aligned with angle."""
++    c, s = math.cos(angle), math.sin(angle)
++    projected = points @ np.array([[c, -s], [s, c]])
++    lo, hi = projected.min(axis=0), projected.max(axis=0)
++    near = np.minimum(projected-lo, hi-projected).min(axis=1) <= band
++    return float(near.mean())
+ 
++
++def box_axis(points, room_angle):
++    """Faces of one obstacle: LiDAR sees surfaces, so the right rectangle has its cells on
++    its border. Keep the room axis unless another angle fits clearly better."""
++    if len(points) < 12:
++        return room_angle
++    angles = np.radians(np.arange(90))
++    scores = [edge_fraction(points, a) for a in angles]
++    best = int(np.argmax(scores))
++    if room_angle is None:
++        return float(angles[best])
++    if scores[best] >= edge_fraction(points, room_angle)+.15:
++        return float(angles[best])
++    return room_angle
++
++
+ def surface_samples(grid,box_faces=None,include_thin=False):
+     """Mapped wall segments plus inferred faces of small obstacles, in map coordinates."""
+     import cv2
+@@ -311,14 +335,17 @@
+             continue
+         points = np.float32([grid.world(r,c) for r,c in zip(rows,cols)])
+         center,size,angle = cv2.minAreaRect(points)
+-        if room_angle is not None:
+-            basis = np.array([[math.cos(room_angle),-math.sin(room_angle)],
+-                              [math.sin(room_angle),math.cos(room_angle)]])
++        # A box turned away from the room axis keeps its own faces (v1.5.2.60).
++        axis = box_axis(points, room_angle)
++        if axis is not None:
++            room_angle_used = axis
++            basis = np.array([[math.cos(axis),-math.sin(axis)],
++                              [math.sin(axis),math.cos(axis)]])
+             projected = points @ basis
+             lo,hi = projected.min(axis=0),projected.max(axis=0)
+             center = basis @ ((lo+hi)/2)
+             size = hi-lo
+-            angle = math.degrees(room_angle)
++            angle = math.degrees(room_angle_used)
+         if (not include_thin and max(size) < .3) or max(size) > 2.8:
+             continue
+         center = np.array(center)

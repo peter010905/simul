@@ -1,16 +1,119 @@
+**수동 Gazebo 마커 대시보드:** 방향키와 화면 버튼으로 조작하며 전방 카메라와 같은 프레임의 CNN·YOLO 후보 점수를 확인한다. YOLOE 종이 후보와 전체 화면·후보 영역의 ArUco ID도 표시할 수 있다. [실행 방법](experiments/2026-11-26_yolo_cnn_v100/README.md#gazebo-수동-주행-대시보드)
+
+**실물 영상 마커 후보 재생:** Mac에서 실물 257프레임을 평가했다. 후속 관찰용 영역을 프레임당 상위 5개 남겼을 때 CNN 증강형이 검토된 마커 188/197개를 포함했다. 비스듬한 마커는 11/16개, 흐린 마커는 55/59개였다. [후보 회수율과 정밀 검출 비교](experiments/2026-11-26_yolo_cnn_v100/README.md)
+
 **실물 시험장 경로 비교 보드**에는 동일 크기 책상 16개와 다리 64개를 배치했다. 실물 주행 8회와 독립 Gazebo 주행을 같은 경과 시간에 볼 수 있다. 등록한 정책은 같은 출발 자세에서 실행하며 궤적 재현 오차를 따로 측정한다. [보드와 검증 결과](experiments/2026-11-26_real_sim/twin/README.md)
 
 **실물 로그 기반 시뮬 보정 1차**는 실물 8회의 실제 250×250·10fps 영상과 720빔·약 8.11Hz LiDAR 조건을 별도 시뮬 사본으로 재현했다. SLAM 5m·12m 설정을 분리하고, 지도 반복 발행이 아닌 실제 LiDAR 재관측으로 장애물 후보를 추렸다. 같은 시험장 Gazebo 센서 비교가 통과했으며 탐색 완주 성능 비교는 아직 수행하지 않았다. [측정과 검증 범위](experiments/2026-11-26_real_sim/README.md)
 
+**Mixed v1.5.2.51~.60 · 실험판 묶음 (2026-11-27)**은 모두 실물 기록이 없는 후보다. 실물 보드의 기본 선택은 바꾸지 않았다. .57만 실물 보드에 실험 선택지로 올라가 있다. 각 폴더의 README에 근거와 검증이 있다.
+- `.51` 의자 벽: 짧은 변 의자무리를 지도에서 판별해 벽으로 처리한다.
+- `.52` 의자 모퉁이에서 순회 연결.
+- `.53` 10초 갇힘 탈출.
+- `.55` / `.56` 순회 중 벽 쪽 45° 보기.
+- `.57` 벽 순회 150초.
+- `.58` 범퍼 접촉 기억.
+- `.59` 막힌 자리에서 열린 쪽으로 이동.
+- `.60` 비스듬한 상자의 면 방향을 바로 잡는다.
+
+방 재현 시뮬레이터는 [experiments/2026-11-26_real_sim/twin](experiments/2026-11-26_real_sim/twin)에 있다. `random_room.py`에는 `--demo`, `--random-start`, `--follower` 옵션이 있다. Gazebo 무작위 배치 결과는 다음과 같다.
+- `.57`: 책상 고정 배치에서 마커 3개를 모두 찾은 비율 73%, 책상을 흔든 배치에서 44%.
+- `.59`: 구석에 갇힌 seed 3304에서 0개였던 결과가 3개로 올랐다.
+- 실행 패키지: [GitHub Release policy-v1.5.2.57](https://github.com/peter010905/simul/releases/tag/policy-v1.5.2.57).
+
+**Mixed v1.5.2.50 · 벽 순회 방향 정렬**은 .46~.48 실물 로그에서 찾은 문제를 고친 실험판이다. 순회 목표 방향이 실제 이동 방향과 약 180° 반대였고, 이 뒤집힌 방향이 다음 목표를 고르는 기준으로도 쓰여 목표가 뒤로 바뀌었다. 접선 부호를 바로잡았고, 진입 30초·연속 15초 대기 제한과 흰 다리 반복 보기 한도를 추가했다. 실물 지도 3회 재생에서 방향 역전이 17회에서 1회로 줄었다. 새 Gazebo와 실물 주행은 미검증이다. [원인과 재생 결과](policy_candidates/2026-11-26_v152_lap_progress/README.md)
+
+**Mixed v1.5.2.48 · 벽띠 연속 순회**는 의자 돌출을 긴 벽 방향으로 정리하고, 기존의 짧은 출발 연결 경로가 결합 지도에서 누락되던 오류를 수정했다. 실제 대기 지도 14곳에서 다음 벽 목표가 생성됐으며, 새 실물 주행은 미검증이다. [원인과 검증 결과](policy_candidates/2026-11-26_v152_wall_departure/README.md)
+
+**Mixed v1.5.2.47 · 실측 벽 진입·순회**는 바로 옆의 벽을 두고도 순회 목표가 누락됐던 초기 기준점 선택을 수정했다. 실패했던 실물 지도 7곳 모두에서 안전한 벽 진입 목표가 생성됐다. 새 실물 주행은 미검증이다. [원인과 재생 결과](policy_candidates/2026-11-26_v152_wall_entry/README.md)
+
+**Mixed v1.5.2.46 · 빠른 벽 순회 → 가운데 박스**는 출발 후 관측된 벽·의자 띠를 따라 빠르게 순회한 뒤 가운데의 박스와 미탐색 공간을 선택한다. 두 안전 격자 경로 시험에서 순회 후 가운데로 전환됐으며, 실제 새 주행 성능은 미측정이다. [설계와 검증 범위](policy_candidates/2026-11-26_v152_wall_lap/README.md)
+
+**Mixed v1.5.2.45 · 가운데 박스 우선**은 벽 마커 단서를 먼저 확인하고, 평소에는 가까운 박스의 미관찰 면과 내부 미탐색 공간을 선택한다. 같은 실물 지도 10개 시점에서 내부 목표 8곳과 벽 단서 2곳을 선택했다. 새 실물 주행 성능은 미측정이다. [설계와 비교 범위](policy_candidates/2026-11-26_v152_interior_first/README.md)
+
+**Mixed v1.5.2.44 · 박스 관찰 이어보기**는 흰색 후보를 보관하며 진행 중인 박스 면 관찰을 이어가고, 중단된 면을 최신 안전 관찰점으로 재개한다. 책상 다리를 포함한 안전 경로 비용으로 남은 면의 순서를 고른다. [변경과 검증 범위](policy_candidates/2026-11-26_v152_box_continuity/README.md)
+
+**Mixed v1.5.2.43.1 · 출발 회전 지도 갱신**은 실물 출발 회전에서 LiDAR 관측을 지도에 누적한다. 정지했던 주행의 LiDAR와 좌표를 재생하고 원래 후보 8개에 같은 충돌 여유를 적용한 결과, 경로가 연결된 후보가 0개에서 5개로 늘었다. [실물 정지 및 재생 결과](experiments/2026-11-26_start_slam/comparison.json)
+
+**Mixed v1.5.2.43 · 7px 후보 재관찰**은 .42를 기반으로 한 실물 보드 실험판이다. 같은 ID와 위치가 반복 확인되면 재관찰 대상으로 올린다. 42번 실물 로그에서 후보가 들어온 지 0.15초인 조건을 재현했을 때 1.22m 이동할 관찰점을 선택했다. 새 실물 접근 성공률은 미측정이다. [재생 비교 결과](policy_candidates/2026-11-26_v152_pending_marker/replay_results.json)
+
+**Mixed v1.5.2.41 · 단서 확인 후 미탐색 복귀**는 .40에서 분리한 실험판이다. 실제 주행 7회의 구역 반복을 분석하고, 마커 단서 처리 후의 목적지 재개와 실물 Nav2 지역 지도의 높이 범위를 검증했다. [실물 로그와 비교 범위](experiments/2026-11-26_physical_regions/README.md)
+
 **Mixed v1.5.2.31 · Start Sweep**는 출발 전 한 바퀴 관찰하고, 등록 마커가 붙은 것으로 확인한 상자의 남은 면을 탐색 후보에서 제외한다. 새 시험장 배치 세 곳에서 3/3회 완주했고 벽 3/3개와 상자 6/6개에 근접했다. [출발 회전·상자 제외 기록과 시험 결과](policy_candidates/2026-11-24_v152_start_sweep/README.md)
 
 실물 보드에 .31 선택지를 추가했다. 의자 92개 배치에서 시뮬 센서 설정을 복구한 뒤 벽 1/1개, 상자 0/2개를 등록·접근했다. [의자 시험 진단](experiments/2026-11-24_focus_multimap/v15231_chairs4101.json)
+
+별도 의자용 후보는 같은 배치에서 마커 3/3개를 453초에 등록·1.5m 접근했지만 범퍼 접촉이 1회 있어 실물용으로 승격하지 않았다. [결과와 영상 위치](experiments/2026-11-24_chair_clutter/README.md)
 
 **Mixed v1.5.2.30 · Single Read**는 영상에서 읽은 ID와 같은 프레임의 로봇 측정 거리가 1.5m 이내이면 한 번으로 근접 완료를 기록한다. 751번 배치에서 기존 .29는 600초에 2/3, .30은 513.0초에 3/3이었다. 새 배치 두 곳을 포함한 완주는 2/3회였다. [세 배치의 결과와 설치 방법](policy_candidates/2026-11-24_v152_single_read/README.md)
 
 **Mixed v1.5.2.29 · Final Bearing**은 640×480·5fps 시험장 네 배치 모두에서 세 마커의 ID와 1.5m 근접을 확인했다. 같은 네 배치에서 원본 Focus Continuity는 세 배치를 완주했다. 누적 이동은 306.8m에서 260.5m로 줄었지만 상자 다섯 개 배치에서는 28.4초 늦었다. [배치별 결과와 검증 범위](experiments/2026-11-24_focus_multimap/README.md)
 
 **Mixed v1.5.2.17 · 미탐색 구역:** 640×480·5fps, 고정 책상 시험장 시드 `417608489`에서 벽·상자 마커 3/3을 593.8초에 1.5m 안에서 확인했다. 69.8m, 범퍼 0회, 오등록 0회다. 검증은 한 배치에서 완료했다. [구역 선택 방식과 비교](policy_candidates/2026-11-24_v152_open_regions/README.md)
+
+**Mixed v1.5.2.13 · 상자 면 방문 순서:** 상자 5개 맵 `2445263333`에서 한 상자의 남은 면을 연속 목표로 보냈다. 600초 동안 벽 1개를 확인했고 범퍼 접촉은 0회였다. [기준 두 주행과 비교](policy_candidates/2026-11-23_v152_box_tour/README.md)
+
+**Mixed v1.5.2.12 · 상자 옆면 재확인:** 같은 상자 5개 맵 세 곳에서 v1.5.2.11 대비 상자 마커 4→5개, 벽 마커 2→3개를 1.5m 안에서 확인했다. 범퍼 접촉은 두 판 모두 0회였고, 한 배치에서 벽 접근이 193초 늦어 후보로 보존했다. [변경과 비교 결과](policy_candidates/2026-11-23_v152_box_pass/README.md)
+
+**먼 벽 단서 우선 검증 후보 Mixed v1.5.2.11:** 상자 3개 비교 배치 3회와 별도 무작위 스트레스 배치 2회에서 매번 마커 3/3개를 실제 1.5m 안에서 확인했고 범퍼 접촉은 0회였다. 기존 실물 정책은 유지한다. [변경 근거와 다섯 배치 검증](experiments/2026-11-23_weak_wall_priority/README.md)
+
+실물 OAK-D 480×480·5fps에서 Focus 탐지기가 실제 주행 중 24초 동안 원본 120장을 처리했다. 보드는 JPEG 미리보기를 표시하고 구동 감독 노드는 수신한 원본을 탐지기에 전달한다. 이 구간의 촬영부터 처리 알림까지 지연은 95백분위 211ms였다.
+
+실물 주행은 8767 보드에서 **Mixed v1.5.2.1 · Focus Continuity** 또는 **Mixed v1.5.1-balanced**를 선택한 뒤 구동합니다. [실물 보드](http://192.168.252.2:8767/) · [실물 구동 절차](dashboard/ROBOT_BOARD.md)
+
+[8780 실제 시험장 · 장애물과 마커 무작위 배치 비교](experiments/2026-11-22_random_exam/README.md) · [새 탐색 후보 R5](policy_candidates/2026-11-22_v151_surface_followthrough/README.md) · [이전 고정 배치 7쌍 결과·주행 영상](experiments/2026-11-22_v151_adaptive_survey/README.md)
+
+Mixed v1.5.2.1 분산 시험을 세 회차에서 마쳤습니다. 상자 마커 6/6장, 외곽 벽 마커 2/3장에 등록 후 1.5m 이내로 접근했습니다. 세 장을 모두 확인한 엄격 완주는 2/3회, 범퍼 접촉은 0회였습니다. [회차별 경로·영상·판정](experiments/2026-11-22_random_exam/spread-three/RESULTS.md)
+
+8780 실험 보드는 정책 버전별로 주행 기록을 모은다. 상단에서 현재 주행을 확인하고, 버전을 펼쳐 맵·영상·마커별 접근 기록을 볼 수 있다. `보관함`에서 예전 실험을 복원할 수 있다. [실험 보드](http://192.168.252.2:8780/)
+
+8780 시뮬 보드에서 **Mixed v1.5.2.1 · 마커 재관찰 유지**를 별도로 선택할 수 있습니다. 이미 접근 중인 마커가 다시 보이면 그 관측을 반영하면서 접근을 이어갑니다. 기존 Balanced와 Visual Survey도 같은 상자 배치로 비교할 수 있습니다. [재현 로그와 정책](policy_candidates/2026-11-22_v152_focus_continuity/README.md)
+
+8780 시험장은 고정 책상 사이에 원래 시험장과 같은 파란 사각 상자 5개를 놓습니다. 상자의 위치와 방향, 마커 3개의 번호와 부착면, 로봇의 출발 자세를 매번 추첨합니다. Mixed v1.5.1-balanced와 벽·군집 탐색 후보인 Mixed v1.5.2 Visual Survey를 비교할 다섯 배치를 등록했고 첫 배치를 주행한 뒤 분산 시험으로 전환했습니다. [시험 배치](experiments/2026-11-22_random_exam/box-only/five-box-worlds.png) · [정책](policy_candidates/2026-11-22_v151_visual_survey/README.md)
+
+공유 보드 기본값은 **실제 시험 · 고정 책상 · 상자 5개 · 마커 3개**입니다. 책상 14개와 다리 56개는 원래 자리에 있고, 상자 배치, 마커의 번호·위치·부착면, 로봇을 놓는 위치와 방향을 매번 새로 뽑습니다. 로봇은 출발 전에 마커가 총 3개라는 사실만 압니다. [공유 보드](http://192.168.252.2:8780/) · [팀 실행 방법](docs/team-policy-lab/README.md#공유-시험장에서-새-배치-실행)
+
+시험장 생성기는 벽 몰딩 뒤에 숨은 마커를 다시 배치합니다. 별도의 무작위 장면 192개에서 575장 모두에 실제 시뮬 도형의 가림을 통과한 관찰 위치가 있었습니다. [배치 검사 결과](experiments/2026-11-22_random_exam/fixture-visibility.json)
+
+R5 비교의 독립 배치 다섯 곳에서 근거리 확인은 Balanced 14/15장, R5 11/15장이었다. 전체 마커를 확인한 배치는 각각 4/5, 1/5였다. [시험장 비교 결과와 영상](experiments/2026-11-22_random_exam/results/surface-r5/RESULTS.md)
+
+[Balanced · 스친 마커 재관찰](policy_candidates/2026-11-22_v151_balanced_print_relook/README.md) · [책상까지 전부 재배치한 5개 독립 시험](experiments/2026-11-22_random_exam/balanced_print/enrollment.json)
+
+팀 실행기에서 시드를 생략하면 고정 책상 시험장의 새로운 배치를 받습니다. 첫 주행이 출력한 시드를 두 번째 정책에 넣으면 같은 마커와 장애물을 재현합니다. [팀 대시보드 실행법](docs/team-policy-lab/README.md)
+
+[팀원용 진행 보고·대시보드 실험 안내](docs/team-policy-lab/README.md) · [팀 공유 메시지](docs/team-policy-lab/TEAM_MESSAGE.md)
+
+**Mixed v1.5.1-rescue360**는 6분 이후 전 방향의 카메라 미관찰 표면과 미지 공간 정보량으로 이동·360도 관찰 목표를 고르는 별도 시뮬레이션 후보입니다. [구조와 검증](experiments/2026-11-21_v151_rescue360/README.md)
+
+**Mixed v1.5.1-perimeter-survey**는 외곽의 미관찰 벽을 이어서 보고 가까운 상자 관찰 후 돌아오는 별도 시뮬레이션 후보입니다. [동일 5맵 검증](experiments/2026-11-21_v151_perimeter_survey/README.md)
+
+**Mixed v1.5.1-object-survey**는 상자의 네 면을 확인하면 일반 탐색에서 제외하고 미방문 구역으로 이동하는 별도 시뮬레이션 후보입니다. [동일 5맵 검증](experiments/2026-11-21_v151_object_survey/README.md)
+
+**Mixed v1.5.1-wall-balance**는 방향별 미관찰 벽과 대기시간을 함께 반영하는 별도 시뮬레이션 후보입니다. [동일 5맵 비교](experiments/2026-11-21_v151_wall_balance/README.md)
+
+**Mixed v1.5.1-wall-sections**는 지도 정보량이 낮은 미관찰 벽의 대기시간을 따로 셉니다. 저장한 두 주행의 선택 재생과 112602 동쪽 벽 촬영 기회를 확인했습니다. [분석과 검증 범위](experiments/2026-11-21_v151_wall_sections/README.md)
+
+밀집 구간에서 후보 소진·반복 실패를 줄이는 **별도 실험판 Mixed v1.4.0**을 추가했습니다. v1.2·v1.3.1은 보존합니다. [변경 근거와 검증 범위](policy_candidates/2026-11-20_mixed_crowded_navigation/README.md)
+
+실물 보드의 **Mixed v1.3.1 부드러운 주행·회전**은 전진 상한 0.30 m/s와 일치시킨 가속·감속 설정을 사용합니다. [설정과 검증 범위](policy_candidates/2026-11-20_mixed_smooth_030/README.md)
+
+실물 보드에 **Mixed v1.3 막힘·스톨 복구**를 별도 추가했습니다. 정체 시 안전 후진 검토와 짧은 모터 스톨의 정지·해제 확인을 연결합니다. [변경·검증·실물 미검증 범위](policy_candidates/2026-11-20_mixed_stall_recovery/README.md)
+
+실물 대시보드의 **Mixed v1.2 판독 마커 재관찰**은 기본판과 전진 상한 0.45 m/s판 중 선택할 수 있습니다. 놓쳤던 실물 녹화에서 등록 ID가 0개에서 5번 한 개로 바뀌었습니다. [재생 결과와 실험 범위](policy_candidates/2026-11-20_mixed_marker_relook/README.md)
+
+[Mixed · 상자 면 관찰 이력 공유](policy_candidates/2026-11-20_mixed_shared_face_memory/README.md)는 같은 상자의 중복 관찰 목표를 12회에서 4회로 줄였다. 같은 Gazebo 맵에서 세 마커 등록·접근에 걸린 시간은 449.9초에서 231.6초로 줄었고, 범퍼는 모두 0회였다. 수정판 추가 5회 중 2회에서 세 마커를 모두 등록하고 접근했다.
+
+[Mixed · 공간 맞춤 면 관찰](policy_candidates/2026-11-20_mixed_adaptive_faces/README.md)은 같은 Gazebo 맵에서 세 마커를 210.964초에 등록하고 모두 1.5m 이내로 접근했다. 이전 버전은 600초에 두 개를 찾았고 범퍼 감지는 두 회차 모두 0회였다.
+
+[Mixed · 가운데 장애물 → 벽](policy_candidates/2026-11-19_mixed_center_first/README.md)은 가운데 물체의 접근 가능한 면을 먼저 조사한 뒤 외곽 벽으로 넘어가는 실험 정책입니다.
+
+**2026-11-19 Mixed 일반 장애물 집중 탐색 후보:** 상자 형태가 아니어도 미관찰 표면을 한 번 보고 짧게 멈추거나 회전합니다. 관찰 후 남은 면은 안전한 위치가 있을 때만 제한적으로 다시 봅니다. 마지막 실물 기록의 저장 지도 40장에 대한 정적 비교는 기존 2장·새 후보 29장입니다. 실제 주행 결과는 아닙니다. [구현·검증 범위](policy_candidates/2026-11-19_mixed_general_surface/README.md).
+
+**2026-11-19 Mixed 이동 중 옆면 관찰 후보:** 한 면으로 이동할 때 가까운 다른 미관찰 면을 잠깐 살피고 원래 경로로 돌아오도록 별도 버전을 만들었습니다. 기존 실행에서 막혀 있던 두 정책 조건을 함께 수정했고, 정지 확인 상태도 안정된 오도메트리로 갱신합니다. 새 버전 실물 주행은 미실시입니다. [충돌 진단·검증 범위](policy_candidates/2026-11-19_mixed_side_pass/README.md).
+
+**2026-11-19 Mixed 각진 구조 우선 후보:** 사진처럼 벽에 붙은 직각 돌출부를 지도에서 임시 사각형으로 추적하고, 접근 가능한 면을 차례로 보거나 성긴 지도에서는 코너를 향해 제자리 관찰합니다. 최근 실물 지도 2장 중 1장에서 코너 후보와 오프라인 제자리 관찰 목표가 나왔습니다. 새 후보의 실물 주행은 미실시입니다. [근거·안전 조건](policy_candidates/2026-11-19_mixed_corner_first/README.md).
+
+**2026-11-19 Mixed 꼼꼼 탐색 후보:** 기존 Mixed를 유지하고 작은 가장자리 테두리와 지나친 후보 복귀, 부분적으로만 접근 가능한 상자 면 관찰을 별도 버전에 적용했습니다. 기존 실물 영상 727프레임 재생에서 후보 프레임 80→84, ArUco 판독 위치와 겹친 프레임 57→59입니다. 이후 약 42초 실물 주행은 정지 확인 실패로 끝나 완주 성능을 평가할 수 없습니다. [변경과 검증](policy_candidates/2026-11-19_mixed_thorough/README.md).
 
 **2026-11-19 Mixed 상자 전면 관찰 후보:** 실물 보드의 Mixed 버튼을 별도 빌드 `flow_v3_r32_full_box_ws`에 연결했습니다. 확인된 상자에서 네 면의 안전 관측점과 연결 경로가 모두 있는 경우만 차례로 살펴봅니다. 모의 격자에서 네 면 선택과 막힌 경로의 거부를 확인했으며 실물 주행 성능은 아직 측정하지 않았습니다. [구현·검증 범위](policy_candidates/2026-11-19_mixed_full_box/README.md).
 
@@ -493,7 +596,7 @@ python3 scripts/publish_simulation_videos.py --upload
 
 ## 저장된 Gazebo 영상
 
-[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 342개
+[GitHub Release에서 다운로드](https://github.com/peter010905/simul/releases/tag/simulation-videos-2026-11) · 검증된 영상 364개
 
 아래 성공 여부는 당시 평가 결과이며, 현재 기준의 독립 완주율을 뜻하지 않습니다. 환경 오류로 종료한 영상은 정책 학습 표본에서 제외합니다.
 
@@ -501,6 +604,28 @@ python3 scripts/publish_simulation_videos.py --upload
 
 | 영상 | 당시 평가 | 실제 1.5m 접근 | 시간(시뮬레이션 초) |
 |---|---|---|---:|
+| [v152-final-spread-three-1122__v151-survey-focus-track-m1398584497-23239317248697326.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/v152-final-spread-three-1122__v151-survey-focus-track-m1398584497-23239317248697326.mp4) | 성공 | 확인 | 302.97999999999996 |
+| [v152-final-spread-three-1122__v151-survey-focus-track-m417608489-197242287164937263.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/v152-final-spread-three-1122__v151-survey-focus-track-m417608489-197242287164937263.mp4) | 실패 | 미달 | 600.0 |
+| [v152-final-spread-three-1122__v151-survey-focus-track-m550866253-188862315828381463.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/v152-final-spread-three-1122__v151-survey-focus-track-m550866253-188862315828381463.mp4) | 성공 | 확인 | 341.52 |
+| [v152-box-only-five-1122__v151-survey-baseline-track-m2712767296-310707902702518823.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/v152-box-only-five-1122__v151-survey-baseline-track-m2712767296-310707902702518823.mp4) | 실패 | 미달 | 600.0 |
+| [v152-box-only-five-1122__v151-survey-candidate-track-m2712767296-310707902702518823.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/v152-box-only-five-1122__v151-survey-candidate-track-m2712767296-310707902702518823.mp4) | 실패 | 미달 | 600.02 |
+| [v152-real-box-overlap-1122__v151-survey-baseline-track-m2526510905-830680071594266066.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/v152-real-box-overlap-1122__v151-survey-baseline-track-m2526510905-830680071594266066.mp4) | 실패 | 미달 | 600.02 |
+| [v152-real-box-overlap-1122__v151-survey-candidate-track-m2526510905-830680071594266066.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/v152-real-box-overlap-1122__v151-survey-candidate-track-m2526510905-830680071594266066.mp4) | 실패 | 미달 | 600.0 |
+| [v151-official-fixed-three-1122__v151-survey-baseline-track-m1817236217-363576232554625330.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/v151-official-fixed-three-1122__v151-survey-baseline-track-m1817236217-363576232554625330.mp4) | 실패 | 미달 | 600.0 |
+| [v151-official-fixed-three-1122__v151-survey-baseline-track-m2946727794-532698735965463242.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/v151-official-fixed-three-1122__v151-survey-baseline-track-m2946727794-532698735965463242.mp4) | 실패 | 미달 | 600.0 |
+| [v151-official-fixed-three-1122__v151-survey-baseline-track-m3477870352-512600683753105860.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/v151-official-fixed-three-1122__v151-survey-baseline-track-m3477870352-512600683753105860.mp4) | 성공 | 확인 | 392.104 |
+| [v151-official-fixed-three-1122__v151-survey-candidate-track-m1817236217-363576232554625330.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/v151-official-fixed-three-1122__v151-survey-candidate-track-m1817236217-363576232554625330.mp4) | 실패 | 미달 | 600.0079999999999 |
+| [v151-official-fixed-three-1122__v151-survey-candidate-track-m2293287138-103833294022221927.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/v151-official-fixed-three-1122__v151-survey-candidate-track-m2293287138-103833294022221927.mp4) | 성공 | 확인 | 533.7800000000001 |
+| [v151-official-fixed-three-1122__v151-survey-candidate-track-m2946727794-532698735965463242.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/v151-official-fixed-three-1122__v151-survey-candidate-track-m2946727794-532698735965463242.mp4) | 실패 | 미달 | 600.024 |
+| [v151-official-fixed-three-1122__v151-survey-candidate-track-m3477870352-512600683753105860.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/v151-official-fixed-three-1122__v151-survey-candidate-track-m3477870352-512600683753105860.mp4) | 성공 | 확인 | 391.98 |
+| [v151-random-shuffled-balanced-print-1122__v151-survey-baseline-track-m1506996263-758615926508713792.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/v151-random-shuffled-balanced-print-1122__v151-survey-baseline-track-m1506996263-758615926508713792.mp4) | 성공 | 확인 | 168.584 |
+| [v151-random-shuffled-balanced-print-1122__v151-survey-baseline-track-m1565135385-716985422643685146.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/v151-random-shuffled-balanced-print-1122__v151-survey-baseline-track-m1565135385-716985422643685146.mp4) | 실패 | 미달 | 600.0200000000001 |
+| [v151-random-shuffled-balanced-print-1122__v151-survey-baseline-track-m2164651793-904460405419145261.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/v151-random-shuffled-balanced-print-1122__v151-survey-baseline-track-m2164651793-904460405419145261.mp4) | 성공 | 확인 | 197.608 |
+| [v151-random-shuffled-balanced-print-1122__v151-survey-baseline-track-m3818821658-1021171615408980175.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/v151-random-shuffled-balanced-print-1122__v151-survey-baseline-track-m3818821658-1021171615408980175.mp4) | 성공 | 확인 | 434.82 |
+| [v151-random-shuffled-balanced-print-1122__v151-survey-candidate-track-m1506996263-758615926508713792.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/v151-random-shuffled-balanced-print-1122__v151-survey-candidate-track-m1506996263-758615926508713792.mp4) | 성공 | 확인 | 190.596 |
+| [v151-random-shuffled-balanced-print-1122__v151-survey-candidate-track-m1565135385-716985422643685146.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/v151-random-shuffled-balanced-print-1122__v151-survey-candidate-track-m1565135385-716985422643685146.mp4) | 성공 | 확인 | 127.344 |
+| [v151-random-shuffled-balanced-print-1122__v151-survey-candidate-track-m2164651793-904460405419145261.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/v151-random-shuffled-balanced-print-1122__v151-survey-candidate-track-m2164651793-904460405419145261.mp4) | 성공 | 확인 | 276.5 |
+| [v151-random-shuffled-balanced-print-1122__v151-survey-candidate-track-m3818821658-1021171615408980175.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/v151-random-shuffled-balanced-print-1122__v151-survey-candidate-track-m3818821658-1021171615408980175.mp4) | 성공 | 확인 | 431.8 |
 | [fix_v10_escape_regression3__9802005.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fix_v10_escape_regression3__9802005.mp4) | 성공 | 확인 | 335.45 |
 | [fix_v10_escape_regression3__9802009.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fix_v10_escape_regression3__9802009.mp4) | 성공 | 확인 | 345.245 |
 | [fix_v10_escape_regression3__9802018.mp4](https://github.com/peter010905/simul/releases/download/simulation-videos-2026-11/fix_v10_escape_regression3__9802018.mp4) | 실패 | 확인 | 600.477 |
@@ -1279,3 +1404,7 @@ Mac 시계를 보정하고 VM은 로봇의 유선 NTP 서버를 참조하도록 
 별도 ROS 도메인 184에서 전체 383개 테스트와 대시보드 8개 테스트가 통과했습니다. 새 후보의
 실물/새 Gazebo 주행은 하지 않았으므로 정지 빈도 감소와 마커 과제 성능 향상을 입증한 결과는
 아닙니다. [원인·변경·검증 범위](repository_snapshot/motion_flow_v3_20261117.json)에 구분했습니다.
+
+## v1.5.2.49 Work Coordinator 실험판
+
+기존 .48을 보존한 별도 규칙 정리판이다. 지역 복귀/탈출을 가리던 조기 반환, 성공점 제외, 중간 후보 횟수 소모, 박스 예산 우회와 실패 면 재평가를 정리했다. 48개 검사와 5m 실물 저장 지도 36개 비교를 수행했다. 새 폐루프 Gazebo/실물 주행 성능은 미검증이며 보드 기본값은 변경하지 않았다. [변경과 검증 기록](policy_candidates/2026-11-26_v152_rule_cleanup/README.md).

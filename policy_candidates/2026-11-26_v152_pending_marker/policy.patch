@@ -1,0 +1,174 @@
+--- a/src/osp_mission/osp_mission/detector.py
++++ b/src/osp_mission/osp_mission/detector.py
+@@ -24,7 +24,7 @@
+ from osp_mission.marker_pair import SeparateMarkers, decode
+ from osp_mission.edge_print import edge_print
+ from osp_mission.landmark_identity import resolved_ids
+-from osp_mission.provisional_marker_cues import ProvisionalMarkerCues
++from osp_mission.provisional_marker_cues import MIN_CANDIDATE_EDGE_PX, ProvisionalMarkerCues
+ from osp_mission.landmark_reacquisition import ObservationConsensus
+ 
+ 
+@@ -249,7 +249,7 @@
+                     provisional = edges.min()<self.p('min_marker_pixels')
+                     if provisional:
+                         self.reject(ident,'small')
+-                        if edges.min()<10.:continue
++                        if edges.min() < MIN_CANDIDATE_EDGE_PX:continue
+                     if np.any(c[0][:,0]<4) or np.any(c[0][:,1]<4) or np.any(c[0][:,0]>msg.width-5) or np.any(c[0][:,1]>msg.height-5): self.reject(ident,'border');continue
+                     uv=c[0].mean(axis=0)
+                     normalized=cv2.undistortPoints(np.array([[uv]],dtype=np.float64),
+@@ -280,6 +280,9 @@
+                             self.diagnostics['multiview_ranges'] = self.diagnostics.get('multiview_ranges', 0) + 1
+                     if xyz is None:
+                         self.reject(ident,'no_range')
++                        if edges.min() < 10.:
++                            # Unranged tiny quads already feed the anonymous wall-bearing tracker.
++                            continue
+                         if any(i == ident and np.array_equal(q, c) for i, q, _ in native):
+                             try:
+                                 optical = self.tf.lookup_transform(self.p('odom_frame'), frame, stamp).transform
+--- a/src/osp_mission/osp_mission/marker_focus.py
++++ b/src/osp_mission/osp_mission/marker_focus.py
+@@ -39,14 +39,21 @@
+                                 provisional=bool(evidence.get('provisional',False)))
+         return True
+ 
+-    def request_interrupt(self, ident, confirmed, now):
++    def request_interrupt(self, ident, confirmed, now, *, deferred=False):
+         """Pause an underway navigation once per fresh, unconfirmed image ID."""
+         hint = self.hints.get(ident)
+         if hint is None or ident in confirmed or ident in self.interruptions:
+             return False
+         if len(self.interruptions) >= 6 or self.attempts.get(ident, 0) >= 2:
+             return False
+-        if (hint['count'] >= 3 and not hint.get('provisional',False)) or not 0. <= now-hint['stamp'] <= .75:
++        # Only a ranged provisional track has already passed the detector's
++        # multi-frame gate. Retain its wake-up through a brief action handoff.
++        provisional = hint.get('provisional', False)
++        max_age = 8. if provisional and deferred else .75
++        if deferred and (not provisional or hint.get('evaluated') or
++                         now-self.last_attempt.get(ident, -math.inf) < 30.):
++            return False
++        if (hint['count'] >= 3 and not provisional) or not 0. <= now-hint['stamp'] <= max_age:
+             return False
+         if not .7 <= np.linalg.norm(hint['observer']-hint['point']) <= 5.5:
+             return False
+@@ -61,8 +68,11 @@
+         for ident, hint in self.hints.items():
+             age = now-hint['stamp']
+             # Let the normal publication of three confirmations settle first.
+-            if ident in confirmed or (hint['count'] >= 3 and not hint.get('provisional',False)) or not 1. <= age <= 600.:
++            provisional = hint.get('provisional', False)
++            min_age = 0. if provisional else 1.
++            if ident in confirmed or (hint['count'] >= 3 and not provisional) or not min_age <= age <= 600.:
+                 continue
++            hint['evaluated'] = True
+             if self.attempts.get(ident, 0) >= 4 or now-self.last_attempt.get(ident, -math.inf) < 30.:
+                 continue
+             target = hint['point']
+--- a/src/osp_mission/osp_mission/marker_pair.py
++++ b/src/osp_mission/osp_mission/marker_pair.py
+@@ -1,6 +1,7 @@
+ """Verify small Original tags and retain independently observed neighbours."""
+ import itertools
+ from osp_mission.warped_marker import decode_rejected
++from osp_mission.provisional_marker_cues import MIN_CANDIDATE_EDGE_PX
+ 
+ import cv2
+ import numpy as np
+@@ -57,7 +58,7 @@
+             quad = quad / scale
+             # Measure on native pixels even for a proposal from the larger image.
+             edge = np.linalg.norm(quad[0] - np.roll(quad[0], 1, axis=0), axis=1).min()
+-            if edge < 10 or not printed_pattern_matches(image, quad, int(ident), dictionary):
++            if edge < MIN_CANDIDATE_EDGE_PX or not printed_pattern_matches(image, quad, int(ident), dictionary):
+                 continue
+             if scale == 1 and native is not None:
+                 native.append((int(ident), quad, float(edge)))
+--- a/src/osp_mission/osp_mission/mission.py
++++ b/src/osp_mission/osp_mission/mission.py
+@@ -446,20 +446,34 @@
+             if not accepted:
+                 return
+             ident=int(evidence['id'])
+-            look=getattr(getattr(self,'marker_look',None),'pending',None)
+-            # Evidence has already updated the track. An action dedicated to this
+-            # same ID must be able to reach its planned camera viewpoint.
+-            if look and look.get('kind') in ('focus','approach') and look.get('id')==ident:
+-                return
+-            if (self.state=='running' and getattr(self,'kind','')=='nav'
+-                    and (self.goal_handle or self.pending) and not self.cancel_reason
+-                    and self.marker_focus.request_interrupt(ident,self.targets,self.get_clock().now().nanoseconds/1e9)):
+-                self.get_logger().info(f"Pausing navigation to verify accepted marker {evidence['id']}")
+-                self.cancel_action('marker_hint');self.zero()
++            if evidence.get('provisional') and self.state == 'running':
++                self.get_logger().info(f"Ranged marker candidate {ident}, {evidence.get('min_edge_pixels')} px, queued for a closer view")
++            Mission.interrupt_for_hint(self, (ident,), deferred=False)
+         except (KeyError,TypeError,ValueError):
+             return
+         except Exception as exc:
+             self.get_logger().debug(f'Marker follow-up unavailable: {exc}')
++
++    def interrupt_for_hint(self, identities, *, deferred):
++        if (self.state != 'running' or getattr(self, 'kind', '') != 'nav'
++                or not (self.goal_handle or self.pending) or self.cancel_reason
++                or getattr(self, 'recovery_pending', False) or getattr(self, 'contact_pending', False)):
++            return False
++        guard = getattr(self, 'contact_inspection', None)
++        look = getattr(getattr(self, 'marker_look', None), 'pending', None)
++        if ((guard and (guard.phase or guard.pressed or guard.action))
++                or (look and look.get('kind') in ('focus', 'approach'))
++                or getattr(self, 'batch_approach_id', None) in self.targets):
++            return False
++        clock = self.get_clock().now().nanoseconds/1e9
++        for ident in identities:
++            if self.marker_focus.request_interrupt(ident, self.targets, clock, deferred=deferred):
++                self.get_logger().info(f"Pausing navigation for marker {ident}, deferred={deferred}")
++                self.cancel_action('marker_hint')
++                self.zero()
++                return True
++        return False
++
+     def sensor_fresh(self,stamp):
+         # ROS time advances with physics in simulation; wall time would falsely
+         # cancel actions at low real-time factors. Hardware uses ROS system time.
+@@ -823,6 +837,9 @@
+                         self.cancel_action('registered_marker')
+                         return
+         if getattr(self, 'readable_cue', None) and self.follow_readable_cue(now):
++            return
++        focus = getattr(self, 'marker_focus', None)
++        if focus and Mission.interrupt_for_hint(self, focus.hints, deferred=True):
+             return
+         if getattr(self, 'near_pass', None) is not None and self.near_pass.request_print():
+             return
+@@ -971,7 +988,7 @@
+                 (tr.transform.translation.x,tr.transform.translation.y),heading,choices,self.targets,self.get_clock().now().nanoseconds/1e9)
+             if focus is not None:
+                 selected=focus;choices.append(focus)
+-                self.get_logger().info(f"Following up accepted marker {focus['focus_id']}; three-frame confirmation still required")
++                self.get_logger().info(f"Following up accepted marker {focus['focus_id']}; seeking a readable close view")
+                 audit=Path(self.p('output_dir'))/'marker_followups.jsonl'
+                 try:
+                     with audit.open('a') as stream:
+--- a/src/osp_mission/osp_mission/provisional_marker_cues.py
++++ b/src/osp_mission/osp_mission/provisional_marker_cues.py
+@@ -1,5 +1,8 @@
+ """Stable small image detections may request inspection, never ID recognition."""
+ import numpy as np
++
++
++MIN_CANDIDATE_EDGE_PX = 7.
+ 
+ 
+ class ProvisionalMarkerCues:
+@@ -11,7 +14,7 @@
+         point = np.asarray(point, dtype=float)
+         if point.shape != (3,) or not np.isfinite([*point, stamp, pixels]).all():
+             return False
+-        if not 10. <= pixels < 18.:
++        if not MIN_CANDIDATE_EDGE_PX <= pixels < 18.:
+             return False
+         old = self.history.get(ident)
+         if old is not None and stamp <= old['stamp']:

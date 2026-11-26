@@ -1,0 +1,164 @@
+--- center_wall.py
++++ center_wall.py
+@@ -10,6 +10,7 @@
+ from osp_mission.box_views import odom_point
+ from osp_mission.edge_policy import DIRECTIONS
+ from osp_mission.tracked_faces import TrackedFaces
++from osp_mission.box_batch import BoxBatch
+ 
+ 
+ def partly_mapped_objects(labels, boxes, floor, resolution):
+@@ -109,6 +110,7 @@
+         self.wall_anchor = None
+         self.history = deque(maxlen=200)
+         self.tracked_faces = TrackedFaces()
++        self.batch = BoxBatch()
+         self.counts = {}
+ 
+     def decide(self, grid, costmap, pose, transform, viewed, elapsed, duration, veto, choices=(), fitted=(), probe_only=False):
+@@ -120,7 +122,6 @@
+         self.counts = {'interior': 0, 'wall': 0}
+         clearance = clearance_grid(grid)
+         candidates = {'interior': [], 'wall': []}
+-        fitted_fresh = []
+         self.tracked_faces.update(fitted, transform, elapsed)
+         start = grid.index(*pose[:2])
+         if not grid.inside(*start) or clearance[start] < .32:
+@@ -144,14 +145,7 @@
+                                        half_width, pose, fields, veto, visibility_offset=.12)
+                 if view:
+                     candidates['interior'].append(view)
+-                    if not attempts:
+-                        fitted_fresh.append(view)
+-        if fitted_fresh:
+-            self.counts = {'interior': len(fitted_fresh), 'wall': None}
+-            if not probe_only:
+-                self.phase, self.reason = 'interior', 'unseen_fitted_face'
+-                self.wall_anchor = self.idle_since = None
+-            return min(fitted_fresh,key=lambda item:item[0])[1]
++        # Compare generic and fitted faces together, including completed boxes.
+         for (kind, _, side, _, _), cells in samples.items():
+             if probe_only and kind != 'interior':
+                 continue
+@@ -220,9 +214,12 @@
+             if best is not None:
+                 candidates[kind].append(best)
+         self.counts = {k:len(v) for k,v in candidates.items()}
++        ordered = sorted(candidates['interior'], key=self.batch.rank)
++        deferred = [item for item in ordered if item[1]['completed_box']]
++        candidates['interior'] = [item for item in ordered if not item[1]['completed_box']]
+         fresh = [item for item in candidates['interior'] if not item[1]['previous_attempts']]
+         if probe_only:
+-            return min(fresh,key=lambda item:item[0])[1] if fresh else None
++            return fresh[0][1] if fresh else None
+         wall_reserve = min(.15*duration, 12. + 5.*self.counts['wall'])
+         frontier = None if fresh else discovery_frontier(choices, costmap, nav, veto)
+         if fresh or (frontier is not None and duration-elapsed > wall_reserve):
+@@ -232,7 +229,7 @@
+             self.idle_since = None
+             if fresh:
+                 self.reason = 'unseen_reachable_object'
+-                return min(fresh,key=lambda item:item[0])[1]
++                return fresh[0][1]
+             if not candidates['interior']:
+                 self.reason = 'explore_open_frontier'
+                 return frontier
+@@ -251,6 +248,9 @@
+                   and elapsed>=min(60.,duration*.22)):
+                 self.phase,self.reason = 'wall','no_reachable_interior_views'
+         best = min(candidates[self.phase],key=lambda x:x[0],default=None)
++        if best is None and deferred and not probe_only:
++            self.phase, self.reason = 'interior', 'completed_box_fallback'
++            return deferred[0][1]
+         return best[1] if best else None
+ 
+     def attempts(self, kind, anchor, normal_yaw, radius):
+@@ -258,6 +258,7 @@
+                 np.linalg.norm(anchor-p)<radius and math.cos(normal_yaw-a)>.70]
+ 
+     def dispatched(self, goal, elapsed):
++        self.batch.dispatched(goal)
+         if 'surface_odom' in goal:
+             anchor = np.asarray(goal['surface_odom'])
+             normal = goal['normal_odom']
+--- phased_hybrid.py
++++ phased_hybrid.py
+@@ -53,6 +53,10 @@
+                 track = self.box_views.nearest(odom_point(center, transform))
+                 if track is not None and track.confirmed:
+                     fitted.append((center, faces, track.seen))
++        centers = [track.center for track in self.box_views.tracks if track.confirmed]
++        verified = [odom_point(point, transform) for ident, point in owner.targets.items()
++                    if owner.approach.verified(ident, point)]
++        self.schedule.batch.update(centers, verified, odom_point(pose[:2], transform))
+         goal = self.schedule.decide(grid,cost,pose,transform,viewed,
+                                     now-owner.started,owner.p('duration'),veto,choices,fitted,probe_only=print_only)
+         if goal is not None:
+@@ -66,6 +70,8 @@
+         self.next_box_probe = owner.now()+3. if goal.get('r32_kind')=='wall_surface' else float('inf')
+         row = dict(elapsed=elapsed,phase=self.schedule.phase,reason=self.schedule.reason,
+                    available=self.schedule.counts,kind=goal.get('r32_kind','flow_or_marker'),
++                   local_batch=goal.get('local_batch'), completed_box=goal.get('completed_box'),
++                   batch_box=goal.get('batch_box'), marker_id=goal.get('approach_id',goal.get('focus_id')),
+                    surface=goal.get('surface_map'), fitted_face=goal.get('fitted_face'),
+                    standoff_m=goal.get('standoff_m'), clearance_m=goal.get('clearance_m'))
+         try:
+--- mission.py
++++ mission.py
+@@ -324,8 +324,12 @@
+ 
+     def on_targets(self,m):
+         if self.state in ('idle','saving','done'): return
++        previous = set(self.targets)
+         self.targets={a.id:(a.pose.position.x,a.pose.position.y) for a in m.markers if a.ns=='point'}
+         if getattr(self,'approach',None) is not None:self.approach.reconcile_targets(self.targets)
++        self.registered_pending = ((getattr(self, 'registered_pending', set()) | (set(self.targets) - previous))
++                                   & set(self.targets))
++
+     def on_marker_hint(self,m):
+         try:
+             evidence=json.loads(m.data)
+@@ -474,6 +478,12 @@
+                 self.excluded.append(self.destination)
+                 flow=getattr(self,'navigation_flow',None)
+                 if flow is not None:flow.record_navigation_result(result.status,'bump_contact',self.now())
++            return
++        if self.cancel_reason == 'registered_marker' and self.kind in ('nav','spin') and result.status in (4,5):
++            self.marker_look.clear('registered_marker')
++            self.face_look.clear('registered_marker')
++            self.scan_after = False
++            self.plan_after = self.now()
+             return
+         if getattr(self,'near_pass',None) is not None and self.near_pass.completed(result.status,self.kind,getattr(self,'cancel_reason','')):return
+         sensor_reasons={'processed_camera_stale','scan_stale','map_unavailable','map_to_base_tf_unavailable','nav2_unavailable','drive_unavailable'}
+@@ -617,6 +627,22 @@
+         if getattr(self,'near_pass',None) is not None:self.near_pass.poll()
+         guard=getattr(self,'contact_inspection',None)
+         now=self.now()
++        pending_ids = getattr(self, 'registered_pending', set())
++        if pending_ids and not self.contact_pending and not self.recovery_pending and not (guard and guard.phase):
++            unresolved = {i for i in pending_ids if not self.approach.verified(i)}
++            busy = self.goal_handle or self.pending
++            current = getattr(self, 'batch_approach_id', None)
++            # Continue an actual validated approach. Ordinary inspection and focus may yield.
++            if not busy or (self.kind in ('nav','spin') and not self.cancel_reason):
++                pending_ids.clear()
++                if unresolved and (current not in self.targets or self.approach.verified(current)):
++                    self.scan_after = False
++                    self.resume_action = None
++                    self.plan_after = now
++                    self.get_logger().info(f'Reassessing exploration for registered IDs {sorted(unresolved)}')
++                    if busy:
++                        self.cancel_action('registered_marker')
++                        return
+         bearing_fresh=guard is not None and guard.bearing is not None and now-guard.bearing[0]<=2.
+         protected=any(getattr(getattr(self,name,None),'pending',None) is not None for name in ('marker_look','face_look'))
+         wall=getattr(self,'wall_look',None)
+@@ -834,6 +860,7 @@
+         if flow is not None:flow.selected(selected,memory_transform)
+         self.marker_look.select(selected,memory_transform)
+         self.face_look.select(selected,memory_transform)
++        self.batch_approach_id = selected.get('approach_id')
+         self.next_scan_angle=selected.get('scan_angle',2*math.pi/3)
+         if selected.get('stationary'):
+             self.scan_after=True;self.zero();return

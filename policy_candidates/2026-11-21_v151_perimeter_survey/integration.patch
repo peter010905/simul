@@ -1,0 +1,122 @@
+--- a/adaptive_faces.py
++++ b/adaptive_faces.py
+@@ -18,11 +18,12 @@
+
+
+ def inspection_pose(grid, cost, nav, distances, clearance, face, normal, half_width,
+-                    pose, goal_fields, veto, visibility_offset=.06):
++                    pose, goal_fields, veto, visibility_offset=.06,
++                    minimum_standoff=.40, maximum_standoff=1.5, preferred_standoff=.85):
+     # Search the camera sector in metric coordinates, independently for each
+     # face. Clearance to both boundaries shapes the valid interval at each offset.
+     step = max(.05, grid.resolution)
+-    stand, shift = np.meshgrid(np.arange(.40, 1.501, step), np.arange(-.50, .501, step*2))
++    stand, shift = np.meshgrid(np.arange(minimum_standoff, maximum_standoff+step*.1, step), np.arange(-.50, .501, step*2))
+     stand, shift = stand.ravel(), shift.ravel()
+     length = np.hypot(stand, shift)
+     # Project both ends of the fitted face into a camera aimed at its centre.
+@@ -39,7 +40,7 @@
+     room = clearance[rows[ids], cols[ids]]
+     walk = distances[rows[ids], cols[ids]]
+     legal = (room >= .32) & np.isfinite(walk) & nav[cr[ids], cc[ids]]
+-    score = walk*.24 + 2.8*np.maximum(0., .70-room) + .6*abs(stand[ids]-.85) + .35*abs(shift[ids])
++    score = walk*.24 + 2.8*np.maximum(0., .70-room) + .6*abs(stand[ids]-preferred_standoff) + .35*abs(shift[ids])
+     for i in ids[legal][np.argsort(score[legal], kind='stable')]:
+         point = points[i]
+         heading = math.atan2(face[1]-point[1], face[0]-point[0])
+--- a/center_wall.py
++++ b/center_wall.py
+@@ -219,6 +219,15 @@
+                         best = score,goal
+             if best is not None:
+                 candidates[kind].append(best)
++        if hasattr(self,'survey') and not probe_only:
++            goal=self.survey.choose(grid,costmap,pose,transform,viewed,elapsed,duration,veto,choices,
++                                    samples,candidates,distances,clearance,nav,fitted)
++            self.counts = {k:len(v) for k,v in candidates.items()}
++            if goal is not None:
++                self.phase='interior'
++                self.reason=self.survey.last_reason
++                return goal
++            return None
+         self.counts = {k:len(v) for k,v in candidates.items()}
+         ordered = sorted(candidates['interior'], key=self.batch.rank)
+         deferred = [item for item in ordered if item[1]['completed_box']]
+@@ -285,7 +294,7 @@
+                   and elapsed>=min(60.,duration*.22)):
+                 self.phase,self.reason = 'wall','no_reachable_interior_views'
+         best = min(candidates[self.phase],key=lambda x:x[0],default=None)
+-        if best is None and deferred and not probe_only:
++        if best is None and deferred and not probe_only and not hasattr(self,'survey'):
+             self.phase, self.reason = 'interior', 'completed_box_fallback'
+             return deferred[0][1]
+         return best[1] if best else None
+--- a/phased_hybrid.py
++++ b/phased_hybrid.py
+@@ -64,9 +64,7 @@
+                                     tuple(track.center) in self.schedule.batch.completed)]
+         goal = self.schedule.decide(grid,cost,pose,transform,viewed,
+                                     now-owner.started,owner.p('duration'),veto,choices,fitted,probe_only=print_only)
+-        if goal is not None:
+-            return goal
+-        return selected
++        return goal
+
+     def dispatched(self,owner,goal):
+         super().dispatched(owner,goal)
+--- a/mission.py
++++ b/mission.py
+@@ -125,7 +125,7 @@
+         self.goal_handle=None; self.pending=False; self.excluded=[]; self.action_start=0.; self.scan_after=True
+         self.started=0.; self.save_proc=None; self.serialize_future=None; self.save_deadline=0.
+         self.policy_decisions=0
+-        from osp_mission.phased_hybrid import PhasedHybrid as Hybrid
++        from osp_mission.survey_hybrid import SurveyHybrid as Hybrid
+         self.contact_pending=False
+         self.hybrid=Hybrid() if self.edge_mode else None
+         if self.hybrid is not None:
+@@ -495,6 +495,9 @@
+             if self.kind=='undock':self.finish('undock_request_failed')
+             return
+         if not handle.accepted:
++            hybrid=getattr(self,'hybrid',None)
++            if hybrid is not None and self.kind=='nav':
++                hybrid.schedule.survey.outcome(6,'action_rejected',self.now()-self.started)
+             if guard is not None and guard.action:
+                 guard.result(False,self.now());self.contact_pending=False;return
+             self.contact_pending=False
+@@ -525,6 +528,9 @@
+                 self.finish('undock_result_error')
+             return
+         if self.state!='running': return
++        hybrid=getattr(self,'hybrid',None)
++        if hybrid is not None and self.kind=='nav':
++            hybrid.schedule.survey.outcome(result.status,self.cancel_reason,self.now()-self.started)
+         guard=getattr(self,'contact_inspection',None)
+         if guard is not None and guard.action:
+             self.contact_pending=False
+@@ -601,6 +607,8 @@
+         if getattr(self,'marker_look',None) is not None:self.marker_look.clear('mission_finished')
+         if getattr(self,'face_look',None) is not None:self.face_look.clear('mission_finished')
+         if getattr(self,'near_pass',None) is not None:self.near_pass.abort('mission_finished')
++        hybrid=getattr(self,'hybrid',None)
++        if hybrid is not None:hybrid.audit(self,'finish')
+         self.reason=reason; self.elapsed=self.now()-self.started; self.state='saving'
+         if self.goal_handle: self.goal_handle.cancel_goal_async()
+         self.zero()
+@@ -883,11 +891,14 @@
+         if hybrid is not None:
+             try:
+                 combined=hybrid.select(self,selected,data,viewed,(tr.transform.translation.x,tr.transform.translation.y,heading),memory_transform,choices=choices)
++                if combined is None:selected=None
+                 if combined is not None and combined is not selected:
+                     choices.append(combined)
+                     selected=combined
+             except Exception as exc:
+-                self.get_logger().warning(f'Hybrid proposal unavailable, using Flow choice: {exc}')
++                self.get_logger().error(f'Object survey proposal unavailable: {exc}')
++                self.plan_after=self.now()+2.
++                return
+         try:
+             save_policy_audit(self.p('output_dir'), self.policy_decisions, self.now()-self.started,
+                 self.p('planner'), data, m.info.resolution,

@@ -1,0 +1,42 @@
+[
+  {
+    "t": 211.0,
+    "closest_bearing_id": 32,
+    "angle_error_deg": 1.03,
+    "any_marker_within_12deg": true,
+    "range_m": null,
+    "observations": 8
+  },
+  {
+    "t": 214.5,
+    "closest_bearing_id": 32,
+    "angle_error_deg": 0.12,
+    "any_marker_within_12deg": true,
+    "range_m": null,
+    "observations": 8
+  },
+  {
+    "t": 232.0,
+    "closest_bearing_id": 32,
+    "angle_error_deg": 0.5,
+    "any_marker_within_12deg": true,
+    "range_m": null,
+    "observations": 8
+  },
+  {
+    "t": 266.0,
+    "closest_bearing_id": 32,
+    "angle_error_deg": 0.75,
+    "any_marker_within_12deg": true,
+    "range_m": null,
+    "observations": 3
+  },
+  {
+    "t": 268.5,
+    "closest_bearing_id": 32,
+    "angle_error_deg": 1.17,
+    "any_marker_within_12deg": true,
+    "range_m": null,
+    "observations": 4
+  }
+]

@@ -1,0 +1,231 @@
+{
+ "20261125T030519-9c75fa0d69": {
+  "snapshots": 25,
+  "last_t": 371.4,
+  "commit_t": [],
+  "committed_max_drift_m": null
+ },
+ "20261125T031709-4399e975f0": {
+  "snapshots": 7,
+  "last_t": 83.1,
+  "commit_t": [],
+  "committed_max_drift_m": null
+ },
+ "20261125T032022-0672253f7a": {
+  "snapshots": 34,
+  "last_t": 552.1,
+  "commit_t": [],
+  "committed_max_drift_m": null
+ },
+ "20261125T034954-e49208a3af": {
+  "snapshots": 5,
+  "last_t": 48.5,
+  "commit_t": [],
+  "committed_max_drift_m": null
+ },
+ "20261125T035239-e7270746e4": {
+  "snapshots": 35,
+  "last_t": 520.8,
+  "commit_t": [
+   198.3
+  ],
+  "committed_max_drift_m": 0.02
+ },
+ "20261125T131121-1de6d9ff25": {
+  "snapshots": 18,
+  "last_t": 225.4,
+  "commit_t": [
+   104.4
+  ],
+  "committed_max_drift_m": 0.3
+ },
+ "20261125T133347-c5471f4393": {
+  "snapshots": 40,
+  "last_t": 582.0,
+  "commit_t": [
+   90.7
+  ],
+  "committed_max_drift_m": 0.14
+ },
+ "20261125T134527-d85699bcbd": {
+  "snapshots": 37,
+  "last_t": 540.0,
+  "commit_t": [
+   168.7,
+   529.0
+  ],
+  "committed_max_drift_m": 0.07
+ },
+ "20261125T143641-dbc3d520a4": {
+  "snapshots": 40,
+  "last_t": 539.7,
+  "commit_t": [
+   199.5,
+   442.1
+  ],
+  "committed_max_drift_m": 0.12
+ },
+ "20261125T145833-bda4dc7f20": {
+  "snapshots": 57,
+  "last_t": 598.8,
+  "commit_t": [
+   426.8,
+   567.8
+  ],
+  "committed_max_drift_m": 0.45
+ },
+ "20261125T152442-b9df13aa92": {
+  "snapshots": 54,
+  "last_t": 592.3,
+  "commit_t": [
+   366.2,
+   366.2
+  ],
+  "committed_max_drift_m": 0.17
+ },
+ "20261125T154530-b6056dd6d1": {
+  "snapshots": 17,
+  "last_t": 174.6,
+  "commit_t": [],
+  "committed_max_drift_m": null
+ },
+ "20261125T155129-3fdf62e791": {
+  "snapshots": 55,
+  "last_t": 595.9,
+  "commit_t": [
+   100.6,
+   223.3
+  ],
+  "committed_max_drift_m": 0.64
+ },
+ "20261125T161127-32f900b10d": {
+  "snapshots": 32,
+  "last_t": 332.5,
+  "commit_t": [
+   285.5
+  ],
+  "committed_max_drift_m": 0.05
+ },
+ "20261125T163015-a940f1f528": {
+  "snapshots": 71,
+  "last_t": 596.8,
+  "commit_t": [
+   251.3,
+   293.2
+  ],
+  "committed_max_drift_m": 0.56
+ },
+ "20261125T165202-662e78a865": {
+  "snapshots": 52,
+  "last_t": 467.7,
+  "commit_t": [
+   105.9,
+   311.1
+  ],
+  "committed_max_drift_m": 0.58
+ },
+ "20261125T170312-25f86d73db": {
+  "snapshots": 21,
+  "last_t": 262.0,
+  "commit_t": [],
+  "committed_max_drift_m": null
+ },
+ "20261125T171523-c383cb3a86": {
+  "snapshots": 20,
+  "last_t": 238.8,
+  "commit_t": [
+   165.6,
+   220.7
+  ],
+  "committed_max_drift_m": 0.14
+ },
+ "20261125T173927-4c13e323fd": {
+  "snapshots": 11,
+  "last_t": 29.9,
+  "commit_t": [],
+  "committed_max_drift_m": null
+ },
+ "20261125T174857-2f02f6e167": {
+  "snapshots": 68,
+  "last_t": 585.3,
+  "commit_t": [
+   214.9,
+   245.4
+  ],
+  "committed_max_drift_m": 0.3,
+  "committed_room_x": {
+   "91": -7.69,
+   "111": 7.41
+  }
+ },
+ "20261125T181421-93511bca29": {
+  "snapshots": 14,
+  "last_t": 64.4,
+  "commit_t": [],
+  "committed_max_drift_m": null
+ },
+ "20261125T181634-65b7c22b0a": {
+  "snapshots": 37,
+  "last_t": 313.7,
+  "commit_t": [
+   99.2
+  ],
+  "committed_max_drift_m": 0.08
+ },
+ "20261125T182719-5f14de4dad": {
+  "snapshots": 60,
+  "last_t": 492.9,
+  "commit_t": [
+   129.9
+  ],
+  "committed_max_drift_m": 0.18
+ },
+ "20261125T184804-71cb633767": {
+  "snapshots": 56,
+  "last_t": 570.3,
+  "commit_t": [
+   78.3
+  ],
+  "committed_max_drift_m": 0.12
+ },
+ "20261125T192438-fe80b580e2": {
+  "snapshots": 4,
+  "last_t": 28.1,
+  "commit_t": [],
+  "committed_max_drift_m": null
+ },
+ "20261125T192556-c3556b08ef": {
+  "snapshots": 12,
+  "last_t": 82.2,
+  "commit_t": [],
+  "committed_max_drift_m": null
+ },
+ "20261125T193519-1149595c02": {
+  "snapshots": 20,
+  "last_t": 92.5,
+  "commit_t": [
+   61.0
+  ],
+  "committed_max_drift_m": 0.16
+ },
+ "20261125T194849-e789097e4b": {
+  "snapshots": 21,
+  "last_t": 115.3,
+  "commit_t": [],
+  "committed_max_drift_m": null
+ },
+ "20261125T195126-1cce5b818a": {
+  "snapshots": 10,
+  "last_t": 148.3,
+  "commit_t": [],
+  "committed_max_drift_m": null
+ },
+ "20261125T195426-a84b4e02f7": {
+  "snapshots": 39,
+  "last_t": 354.9,
+  "commit_t": [
+   143.9
+  ],
+  "committed_max_drift_m": 0.19
+ }
+}

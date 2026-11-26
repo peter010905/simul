@@ -1,0 +1,59 @@
+--- a/mission.py
++++ b/mission.py
+@@ -816,6 +816,33 @@
+                 if flow is not None and getattr(self, 'kind', '') == 'nav':
+                     flow.record_navigation_result(6, 'cancel_unconfirmed', self.now())
+                 return
++        # .53: no progress while driving. If the robot moves less than 0.10 m over 10 s
++        # while navigation goals are active (goals may be replaced meanwhile), cancel and
++        # run the existing scan-checked backup at once. Stationary looks and spins reset it.
++        if getattr(self, 'kind', '') == 'nav' and (self.goal_handle or self.pending) and not self.recovery_pending:
++            try:
++                tr = self.tf.lookup_transform(self.p('map_frame'), self.p('base_frame'), Time())
++                xy = (tr.transform.translation.x, tr.transform.translation.y)
++            except Exception:
++                xy = None
++            if xy is not None:
++                now = self.now()
++                hist = [h for h in getattr(self, 'stuck_history', []) if now-h[0] <= 10.5] + [(now, xy)]
++                self.stuck_history = hist
++                if (now-hist[0][0] >= 10. and max(math.dist(hist[0][1], h[1]) for h in hist) < .10
++                        and now-getattr(self, 'last_unstick', -100.) >= 12.):
++                    self.last_unstick = now
++                    self.unstick_events = getattr(self, 'unstick_events', 0)+1
++                    self.stuck_history = []
++                    flow = getattr(self, 'navigation_flow', None)
++                    if flow is not None:
++                        flow.record_navigation_result(6, 'no_progress_10s', now)
++                    self.get_logger().warning('No progress for 10 s while driving; backing out')
++                    self.cancel_action('no_progress_10s')
++                    self.recovery_pending = True
++                    self.last_recovery = -100.
++        elif getattr(self, 'kind', '') != 'nav':
++            self.stuck_history = []
+         # Create 3 owns the undock motion and its hazard checks. Its action does
+         # not require camera coverage, SLAM or Nav2 readiness to remain active.
+         if getattr(self,'kind','')=='undock' and (self.goal_handle or self.pending):
+--- a/chair_band.py
++++ b/chair_band.py
+@@ -247,3 +247,8 @@
+                 q = q - n * (depth + standoff)
+                 moved = q
+         return moved
++
++    def suspected(self, point, margin=0.3):
++        """True beyond a detected but not yet committed chair wall (seen once)."""
++        q = np.asarray(point, float)
++        return any((q - p) @ n >= -margin for p, n in self.pending.values())
+--- a/phased_hybrid.py
++++ b/phased_hybrid.py
+@@ -56,7 +56,8 @@
+         self.schedule.wall_lap.project = lambda point: walls.project(point, 1.0)
+ 
+         def veto(goal):
+-            if walls.contains((goal['x'], goal['y']), .3):
++            # .53: a band detected once is avoided until the next update confirms or drops it.
++            if walls.contains((goal['x'], goal['y']), .3) or walls.suspected((goal['x'], goal['y']), .3):
+                 return True
+             return ((owner.navigation_flow and owner.navigation_flow.blocked(goal,transform,now))
+                     or (not goal.get('stationary') and any(
