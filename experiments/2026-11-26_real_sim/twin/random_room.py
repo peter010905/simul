@@ -485,7 +485,7 @@ def static_model(world, name, x, y, yaw, size, colour, cylinder=False):
                 ET.SubElement(mat, k).text = colour
 
 
-def sample_cables(world, layout, rng):
+def sample_cables(world, layout, rng, add=True):
     """Round power cables (1 cm across) lying on the floor under desks: below the LiDAR
     plane, visible to the camera, low enough to drive over."""
     cables = []
@@ -500,6 +500,8 @@ def sample_cables(world, layout, rng):
             length = float(rng.uniform(.8, 2.5))
             yaw = float(rng.uniform(-math.pi, math.pi))
             cables.append(dict(x=x, y=y, yaw=yaw, length=length))
+            if not add:
+                continue  # draws kept so the rest of the layout matches the cabled seed
             m = ET.SubElement(world, "model", name=f"cable_{len(cables)}")
             ET.SubElement(m, "static").text = "true"
             ET.SubElement(m, "pose").text = f"{x} {y} .005 0 {math.pi / 2} {yaw}"
@@ -542,7 +544,7 @@ def sample_wall_clutter(world, walls, rng, start):
     return items
 
 
-def build(base, dest, seed, count_range, clutter=False, desk_jitter=True, debris=True, bumps=True, demo=False, random_start=False, follower=False):
+def build(base, dest, seed, count_range, clutter=False, desk_jitter=True, debris=True, bumps=True, demo=False, random_start=False, follower=False, cabled=False):
     rng = np.random.default_rng(seed)
     tree = ET.parse(base / "world/osp_studio.sdf")
     world = tree.find("world")
@@ -572,7 +574,9 @@ def build(base, dest, seed, count_range, clutter=False, desk_jitter=True, debris
     if demo:
         # Demo room: desks, glass-end chairs and the task boxes only, plus cables under the
         # desks and a few objects along the long walls.
-        cables = sample_cables(world, layout, rng)
+        cables = sample_cables(world, layout, rng, add=cabled)
+        if not cabled:
+            cables = []
         wall_clutter = sample_wall_clutter(world, walls, rng, start)
     chair_mask = np.zeros(SHAPE, bool)
     for x, y, yaw in chairs:
@@ -812,6 +816,7 @@ if __name__ == "__main__":
     p.add_argument("--fixed-desks", action="store_true", help="keep the fitted desk geometry")
     p.add_argument("--no-debris", action="store_true", help="no small floor clutter")
     p.add_argument("--flat-walls", action="store_true", help="no random wall protrusions")
+    p.add_argument("--cables", action="store_true", help="demo room: round cables under the desks")
     p.add_argument("--follower", action="store_true", help="add a person that trails the robot (follower.py)")
     p.add_argument("--random-start", action="store_true", help="random robot start position and heading")
     p.add_argument("--demo", action="store_true",
@@ -821,4 +826,4 @@ if __name__ == "__main__":
     a = p.parse_args()
     build(a.base, a.dest, a.seed, (a.min_objects, a.max_objects + 1), clutter=a.clutter_chairs,
           desk_jitter=not a.fixed_desks, debris=not (a.no_debris or a.demo),
-          bumps=not (a.flat_walls or a.demo), demo=a.demo, random_start=a.random_start, follower=a.follower)
+          bumps=not (a.flat_walls or a.demo), demo=a.demo, random_start=a.random_start, follower=a.follower, cabled=a.cables)
