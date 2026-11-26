@@ -1,0 +1,17 @@
+{
+  "experiment": "marker_yolo_cnn_v100_20261126",
+  "state": "four_candidates_trained_and_heldout_evaluated",
+  "remote_root": "/home/adminuser/marker_yolo_cnn_20261126",
+  "gpus": ["Tesla V100-PCIE-32GB:0", "Tesla V100-PCIE-32GB:1", "Tesla V100-PCIE-32GB:2", "Tesla V100-PCIE-32GB:3"],
+  "train_frames": 10000,
+  "calibration_frames": 500,
+  "sealed_test_frames": 1000,
+  "extra_augmented_train_frames": 5000,
+  "physical_robot_changed": false,
+  "dashboard_changed": false,
+  "deployed": false,
+  "selected_offline_locator": "yolo-plain",
+  "selected_offline_locator_f1": 0.9313929313929314,
+  "synthetic_heldout_only": true,
+  "real_camera_transfer_rejected_by_auto_review": true
+}

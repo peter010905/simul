@@ -1,0 +1,587 @@
+{
+  "dataset_revision": "7506a466db549c3ca1e187299316196acca2819c",
+  "train_frames": 10000,
+  "calibration_frames": 500,
+  "test_frames": 1000,
+  "augmented_train_frames": 5000,
+  "image_size": [
+    640,
+    480
+  ],
+  "iou_threshold": 0.5,
+  "models": {
+    "yolo-plain": {
+      "calibration": {
+        "kind": "yolo",
+        "variant": "plain",
+        "split": "calibration_500",
+        "selected": {
+          "threshold": 0.45,
+          "overall": {
+            "tp": 458,
+            "fp": 25,
+            "fn": 37,
+            "frames": 500,
+            "gt": 495,
+            "negative_frames": 65,
+            "false_positive_negative_frames": 1,
+            "precision": 0.94824016563147,
+            "recall": 0.9252525252525252,
+            "f1": 0.9366053169734151,
+            "median_ms": 15.795794548466802,
+            "p95_ms": 16.232043778290972
+          },
+          "by_tag": {
+            "occlusion": {
+              "gt": 152,
+              "found": 139,
+              "recall": 0.9144736842105263
+            },
+            "low_contrast": {
+              "gt": 288,
+              "found": 264,
+              "recall": 0.9166666666666666
+            },
+            "rotation_perspective": {
+              "gt": 283,
+              "found": 259,
+              "recall": 0.9151943462897526
+            },
+            "small_scale": {
+              "gt": 179,
+              "found": 165,
+              "recall": 0.9217877094972067
+            },
+            "blur": {
+              "gt": 270,
+              "found": 248,
+              "recall": 0.9185185185185185
+            }
+          }
+        }
+      },
+      "test": {
+        "kind": "yolo",
+        "variant": "plain",
+        "split": "held_out_1000",
+        "threshold": 0.45,
+        "overall": {
+          "tp": 896,
+          "fp": 37,
+          "fn": 95,
+          "frames": 1000,
+          "gt": 991,
+          "negative_frames": 134,
+          "false_positive_negative_frames": 5,
+          "precision": 0.9603429796355841,
+          "recall": 0.9041372351160444,
+          "f1": 0.9313929313929314,
+          "median_ms": 16.239055490586907,
+          "p95_ms": 16.6702423884999
+        },
+        "by_tag": {
+          "low_contrast": {
+            "gt": 554,
+            "found": 492,
+            "recall": 0.8880866425992779
+          },
+          "rotation_perspective": {
+            "gt": 577,
+            "found": 528,
+            "recall": 0.9150779896013865
+          },
+          "blur": {
+            "gt": 486,
+            "found": 437,
+            "recall": 0.8991769547325102
+          },
+          "occlusion": {
+            "gt": 301,
+            "found": 269,
+            "recall": 0.893687707641196
+          },
+          "small_scale": {
+            "gt": 337,
+            "found": 305,
+            "recall": 0.9050445103857567
+          }
+        }
+      },
+      "weight_sha256": "714b18dce9de36d11ecb580530b9aa90383a18a0c03ea21bc42036c7fe73022f",
+      "weight_bytes": 5490330,
+      "epochs_run": 13,
+      "best_validation_map50_95_epoch": 7
+    },
+    "yolo-augmented": {
+      "calibration": {
+        "kind": "yolo",
+        "variant": "augmented",
+        "split": "calibration_500",
+        "selected": {
+          "threshold": 0.35000000000000003,
+          "overall": {
+            "tp": 452,
+            "fp": 11,
+            "fn": 43,
+            "frames": 500,
+            "gt": 495,
+            "negative_frames": 65,
+            "false_positive_negative_frames": 1,
+            "precision": 0.9762419006479481,
+            "recall": 0.9131313131313131,
+            "f1": 0.9436325678496869,
+            "median_ms": 17.164538498036563,
+            "p95_ms": 17.550254432717338
+          },
+          "by_tag": {
+            "low_contrast": {
+              "gt": 288,
+              "found": 261,
+              "recall": 0.90625
+            },
+            "occlusion": {
+              "gt": 152,
+              "found": 138,
+              "recall": 0.9078947368421053
+            },
+            "rotation_perspective": {
+              "gt": 283,
+              "found": 257,
+              "recall": 0.9081272084805654
+            },
+            "small_scale": {
+              "gt": 179,
+              "found": 167,
+              "recall": 0.9329608938547486
+            },
+            "blur": {
+              "gt": 270,
+              "found": 244,
+              "recall": 0.9037037037037037
+            }
+          }
+        }
+      },
+      "test": {
+        "kind": "yolo",
+        "variant": "augmented",
+        "split": "held_out_1000",
+        "threshold": 0.35000000000000003,
+        "overall": {
+          "tp": 878,
+          "fp": 22,
+          "fn": 113,
+          "frames": 1000,
+          "gt": 991,
+          "negative_frames": 134,
+          "false_positive_negative_frames": 1,
+          "precision": 0.9755555555555555,
+          "recall": 0.8859737638748738,
+          "f1": 0.928609201480698,
+          "median_ms": 15.09763696230948,
+          "p95_ms": 15.21084662526846
+        },
+        "by_tag": {
+          "rotation_perspective": {
+            "gt": 577,
+            "found": 511,
+            "recall": 0.8856152512998267
+          },
+          "low_contrast": {
+            "gt": 554,
+            "found": 485,
+            "recall": 0.8754512635379061
+          },
+          "blur": {
+            "gt": 486,
+            "found": 429,
+            "recall": 0.8827160493827161
+          },
+          "occlusion": {
+            "gt": 301,
+            "found": 259,
+            "recall": 0.8604651162790697
+          },
+          "small_scale": {
+            "gt": 337,
+            "found": 297,
+            "recall": 0.8813056379821959
+          }
+        }
+      },
+      "weight_sha256": "56b566de6de5977b919f0162f5d278e97caa6d5dc1349b49e8d53ebab7004721",
+      "weight_bytes": 5490266,
+      "epochs_run": 12,
+      "best_validation_map50_95_epoch": 6
+    },
+    "cnn-plain": {
+      "calibration": {
+        "kind": "cnn",
+        "variant": "plain",
+        "split": "calibration_500",
+        "selected": {
+          "threshold": 0.9500000000000001,
+          "overall": {
+            "tp": 342,
+            "fp": 110,
+            "fn": 153,
+            "frames": 500,
+            "gt": 495,
+            "negative_frames": 65,
+            "false_positive_negative_frames": 5,
+            "precision": 0.7566371681415929,
+            "recall": 0.6909090909090909,
+            "f1": 0.7222808870116156,
+            "median_ms": 68.62518051639199,
+            "p95_ms": 207.19922730349933
+          },
+          "by_tag": {
+            "low_contrast": {
+              "gt": 288,
+              "found": 182,
+              "recall": 0.6319444444444444
+            },
+            "rotation_perspective": {
+              "gt": 283,
+              "found": 186,
+              "recall": 0.657243816254417
+            },
+            "occlusion": {
+              "gt": 152,
+              "found": 87,
+              "recall": 0.5723684210526315
+            },
+            "small_scale": {
+              "gt": 179,
+              "found": 126,
+              "recall": 0.7039106145251397
+            },
+            "blur": {
+              "gt": 270,
+              "found": 171,
+              "recall": 0.6333333333333333
+            }
+          }
+        }
+      },
+      "test": {
+        "kind": "cnn",
+        "variant": "plain",
+        "split": "held_out_1000",
+        "threshold": 0.9500000000000001,
+        "overall": {
+          "tp": 696,
+          "fp": 244,
+          "fn": 295,
+          "frames": 1000,
+          "gt": 991,
+          "negative_frames": 134,
+          "false_positive_negative_frames": 0,
+          "precision": 0.7404255319148936,
+          "recall": 0.7023208879919274,
+          "f1": 0.7208700155359917,
+          "median_ms": 71.56474853400141,
+          "p95_ms": 207.61376282898706
+        },
+        "by_tag": {
+          "low_contrast": {
+            "gt": 554,
+            "found": 356,
+            "recall": 0.6425992779783394
+          },
+          "rotation_perspective": {
+            "gt": 577,
+            "found": 401,
+            "recall": 0.6949740034662045
+          },
+          "blur": {
+            "gt": 486,
+            "found": 326,
+            "recall": 0.6707818930041153
+          },
+          "occlusion": {
+            "gt": 301,
+            "found": 188,
+            "recall": 0.6245847176079734
+          },
+          "small_scale": {
+            "gt": 337,
+            "found": 252,
+            "recall": 0.7477744807121661
+          }
+        }
+      },
+      "weight_sha256": "35caad4b283715d6c6c0cd8a387ea3abb48629b2d92cb909e161cb59ab576452",
+      "weight_bytes": 264325,
+      "initial_calibration": {
+        "kind": "cnn",
+        "variant": "plain",
+        "split": "calibration_500",
+        "selected": {
+          "threshold": 0.9995,
+          "overall": {
+            "tp": 338,
+            "fp": 190,
+            "fn": 157,
+            "frames": 500,
+            "gt": 495,
+            "negative_frames": 65,
+            "false_positive_negative_frames": 8,
+            "precision": 0.6401515151515151,
+            "recall": 0.6828282828282828,
+            "f1": 0.6608015640273704,
+            "median_ms": 70.96208853181452,
+            "p95_ms": 213.75634723226537
+          },
+          "by_tag": {
+            "low_contrast": {
+              "gt": 288,
+              "found": 183,
+              "recall": 0.6354166666666666
+            },
+            "rotation_perspective": {
+              "gt": 283,
+              "found": 186,
+              "recall": 0.657243816254417
+            },
+            "occlusion": {
+              "gt": 152,
+              "found": 88,
+              "recall": 0.5789473684210527
+            },
+            "small_scale": {
+              "gt": 179,
+              "found": 125,
+              "recall": 0.6983240223463687
+            },
+            "blur": {
+              "gt": 270,
+              "found": 166,
+              "recall": 0.6148148148148148
+            }
+          }
+        }
+      },
+      "mining": {
+        "frames": 3000,
+        "contours": 2962885,
+        "eligible": 2867529,
+        "mined": 6665
+      }
+    },
+    "cnn-augmented": {
+      "calibration": {
+        "kind": "cnn",
+        "variant": "augmented",
+        "split": "calibration_500",
+        "selected": {
+          "threshold": 0.98,
+          "overall": {
+            "tp": 319,
+            "fp": 53,
+            "fn": 176,
+            "frames": 500,
+            "gt": 495,
+            "negative_frames": 65,
+            "false_positive_negative_frames": 1,
+            "precision": 0.8575268817204301,
+            "recall": 0.6444444444444445,
+            "f1": 0.7358708189158016,
+            "median_ms": 70.16039598966017,
+            "p95_ms": 215.82731285016035
+          },
+          "by_tag": {
+            "rotation_perspective": {
+              "gt": 283,
+              "found": 176,
+              "recall": 0.6219081272084805
+            },
+            "low_contrast": {
+              "gt": 288,
+              "found": 167,
+              "recall": 0.5798611111111112
+            },
+            "occlusion": {
+              "gt": 152,
+              "found": 79,
+              "recall": 0.5197368421052632
+            },
+            "small_scale": {
+              "gt": 179,
+              "found": 121,
+              "recall": 0.6759776536312849
+            },
+            "blur": {
+              "gt": 270,
+              "found": 156,
+              "recall": 0.5777777777777777
+            }
+          }
+        }
+      },
+      "test": {
+        "kind": "cnn",
+        "variant": "augmented",
+        "split": "held_out_1000",
+        "threshold": 0.98,
+        "overall": {
+          "tp": 657,
+          "fp": 143,
+          "fn": 334,
+          "frames": 1000,
+          "gt": 991,
+          "negative_frames": 134,
+          "false_positive_negative_frames": 0,
+          "precision": 0.82125,
+          "recall": 0.6629667003027245,
+          "f1": 0.7336683417085427,
+          "median_ms": 78.42843706021085,
+          "p95_ms": 221.58482489758165
+        },
+        "by_tag": {
+          "rotation_perspective": {
+            "gt": 577,
+            "found": 374,
+            "recall": 0.6481802426343154
+          },
+          "low_contrast": {
+            "gt": 554,
+            "found": 328,
+            "recall": 0.592057761732852
+          },
+          "blur": {
+            "gt": 486,
+            "found": 300,
+            "recall": 0.6172839506172839
+          },
+          "occlusion": {
+            "gt": 301,
+            "found": 170,
+            "recall": 0.5647840531561462
+          },
+          "small_scale": {
+            "gt": 337,
+            "found": 239,
+            "recall": 0.7091988130563798
+          }
+        }
+      },
+      "weight_sha256": "e4db45bda676928b3d2afa5574465fe2919298939f99a5c20fda6dd919e0c002",
+      "weight_bytes": 264325,
+      "initial_calibration": {
+        "kind": "cnn",
+        "variant": "augmented",
+        "split": "calibration_500",
+        "selected": {
+          "threshold": 0.9999,
+          "overall": {
+            "tp": 305,
+            "fp": 96,
+            "fn": 190,
+            "frames": 500,
+            "gt": 495,
+            "negative_frames": 65,
+            "false_positive_negative_frames": 5,
+            "precision": 0.7605985037406484,
+            "recall": 0.6161616161616161,
+            "f1": 0.6808035714285714,
+            "median_ms": 75.96861699130386,
+            "p95_ms": 224.21275640372184
+          },
+          "by_tag": {
+            "rotation_perspective": {
+              "gt": 283,
+              "found": 169,
+              "recall": 0.5971731448763251
+            },
+            "occlusion": {
+              "gt": 152,
+              "found": 72,
+              "recall": 0.47368421052631576
+            },
+            "low_contrast": {
+              "gt": 288,
+              "found": 155,
+              "recall": 0.5381944444444444
+            },
+            "small_scale": {
+              "gt": 179,
+              "found": 116,
+              "recall": 0.6480446927374302
+            },
+            "blur": {
+              "gt": 270,
+              "found": 148,
+              "recall": 0.5481481481481482
+            }
+          }
+        }
+      },
+      "mining": {
+        "frames": 3000,
+        "contours": 2962885,
+        "eligible": 2867529,
+        "mined": 8249
+      }
+    }
+  },
+  "paired": {
+    "yolo_augmented_minus_plain": {
+      "first": "yolo_plain",
+      "second": "yolo_augmented",
+      "frames": 1000,
+      "delta_f1_second_minus_first": -0.0027837299122334125,
+      "frame_bootstrap_95_percentile_interval": [
+        -0.012422422337614758,
+        0.006588983907267317
+      ],
+      "interpretation": "paired image bootstrap on this supplied synthetic test set; not independent real-scene uncertainty"
+    },
+    "cnn_augmented_minus_plain": {
+      "first": "cnn_plain",
+      "second": "cnn_augmented",
+      "frames": 1000,
+      "delta_f1_second_minus_first": 0.012798326172550945,
+      "frame_bootstrap_95_percentile_interval": [
+        -0.0017058219831284109,
+        0.025922335591817555
+      ],
+      "interpretation": "paired image bootstrap on this supplied synthetic test set; not independent real-scene uncertainty"
+    },
+    "yolo_plain_minus_cnn_augmented": {
+      "first": "cnn_augmented",
+      "second": "yolo_plain",
+      "frames": 1000,
+      "delta_f1_second_minus_first": 0.19772458968438877,
+      "frame_bootstrap_95_percentile_interval": [
+        0.17526289793202354,
+        0.22136087923350542
+      ],
+      "interpretation": "paired image bootstrap on this supplied synthetic test set; not independent real-scene uncertainty"
+    }
+  },
+  "cnn_proposals": {
+    "plain_train": {
+      "frames": 10000,
+      "boxes": 9983,
+      "boxes_with_contour": 9023,
+      "positive_patches": 9023,
+      "negative_patches": 30000
+    },
+    "augmented_train_extra": {
+      "frames": 5000,
+      "boxes": 4668,
+      "boxes_with_contour": 3785,
+      "positive_patches": 3785,
+      "negative_patches": 15000
+    },
+    "calibration": {
+      "frames": 500,
+      "boxes": 495,
+      "boxes_with_contour": 440,
+      "positive_patches": 440,
+      "negative_patches": 1500
+    }
+  },
+  "scope": "offline synthetic marker localization; no ID decoding, physical deployment, range, or mapping"
+}
