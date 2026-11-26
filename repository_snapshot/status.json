@@ -36,6 +36,20 @@
         "blurred_recovered": 55,
         "result": "experiments/2026-11-26_yolo_cnn_v100/artifacts/real-candidate-replay.json"
       }
+    },
+    "manual_gazebo_board": {
+      "ros_domain": 86,
+      "camera_resolution": [
+        250,
+        250
+      ],
+      "models": [
+        "cnn_augmented",
+        "yolo_augmented"
+      ],
+      "same_display_frame_for_both_models": true,
+      "manual_rotation_and_stop_verified": true,
+      "code": "experiments/2026-11-26_yolo_cnn_v100/live"
     }
   },
   "paired_wall_7_103": {

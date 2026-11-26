@@ -103,3 +103,15 @@ CNN 증강형의 상위 5개는 257장에 후보 1,285개를 냈고 검토된 �
 ```bash
 python score_candidates.py --predictions "$results_dir/predictions.jsonl" --output "$results_dir/candidates.json"
 ```
+
+## Gazebo 수동 주행 대시보드
+
+Mac의 [수동 주행 화면](http://127.0.0.1:8792/)은 복원 시험장을 별도 Gazebo 세션으로 실행한다. 방향키, W/A/S/D, 화면의 화살표로 조작하고 Space 또는 정지 버튼으로 멈춘다. 화면에 표시되는 250×250 영상, CNN 증강형 및 YOLO11n 증강형의 후보 상위 5개는 모두 같은 카메라 메시지에서 나온다. 추론 중 새 영상이 들어오면 다음 요청에서 최신 프레임을 받는다. 모델별 점수는 서로 보정된 확률이 아니다.
+
+VM 실행 폴더에 `live/start_vm.sh`, `live/bridge.py`, `live/cyclone.xml`을 복사하고, Mac과 VM에 동일한 임시 `bridge-token` 파일을 권한 600으로 둔다. 토큰은 `python3 -c 'import secrets; print(secrets.token_hex(32))'`로 만든다. VM에서 `bash start_vm.sh`를 실행하고 Mac에서는 Ultralytics 8.4.219, PyTorch와 OpenCV가 설치된 환경에서 다음 명령을 실행한다.
+
+```bash
+python live/board.py --token-file /path/to/bridge-token
+```
+
+Gazebo는 `osp-jazzy`의 ROS 도메인 86과 독립 Gazebo 파티션에서 실행한다. 브리지 포트는 VM 호스트 전용 주소에 바인딩되고, 대시보드는 Mac의 루프백 주소에 바인딩된다. 조작 신호가 끊기면 300ms 안에 명령이 만료된다. 시작, 종료, 셋업 로그는 각 실행 폴더에 남고 종료할 때 이 세션이 만든 프로세스 그룹만 정리한다.
