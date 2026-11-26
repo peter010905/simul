@@ -99,7 +99,7 @@ class BoxContinuity:
         if self.box is not None and 0 <= elapsed-self.entered < RULES.box_visit_s:
             options = [(walk,g) for walk,g in ranked if g.get('batch_box') is not None
                        and math.dist(self.box,g['batch_box']) < .4 and not g.get('completed_box')
-                       and not g.get('previous_attempts') and not self.recently_swept(g,elapsed)
+                       and not g.get('previous_attempts')
                        and walk <= min(3.5,.20*(min(remaining,RULES.box_visit_s-(elapsed-self.entered))-8))]
             if options:
                 tour = short_tour(options, grid, safe, min(remaining,RULES.box_visit_s-(elapsed-self.entered)))

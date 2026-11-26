@@ -1,14 +1,42 @@
-18a19
->         self.swept = []     # faces already swept from their standoff: (goal, elapsed)
-58a60
->             self.swept = [(g,t) for g,t in self.swept if not same_face(g,goal)][-11:]+[(goal,elapsed)]
-79a82,86
->     def recently_swept(self, goal, elapsed):
->         # A face swept from its standoff yields nothing new on an immediate repeat.
->         hold = RULES.box_visit_s+RULES.box_return_cooldown_s
->         return any(same_face(g,goal) and 0 <= elapsed-t < hold for g,t in self.swept)
-> 
-95c102
-<                        and not g.get('previous_attempts')
----
->                        and not g.get('previous_attempts') and not self.recently_swept(g,elapsed)
+--- a/box_continuity.py
++++ b/box_continuity.py
+@@ -16,6 +16,7 @@
+         self.entered = -math.inf
+         self.started = -math.inf
+         self.events = []
++        self.swept = []     # faces already swept from their standoff: (goal, elapsed)
+ 
+     def event(self, event, elapsed, **fields):
+         self.events.append(dict(event=event, elapsed=elapsed, **fields))
+@@ -56,6 +57,7 @@
+         self.sweeping = False
+         if status == 4:
+             self.event('sweep_finished', elapsed, surface=goal['surface_odom'])
++            self.swept = [(g,t) for g,t in self.swept if not same_face(g,goal)][-11:]+[(goal,elapsed)]
+             return None
+         if reason not in ('marker_hint', 'readable_marker', 'registered_marker', 'inspection_due'):
+             self.event('face_failed', elapsed, reason=reason, surface=goal['surface_odom'])
+@@ -77,6 +79,11 @@
+         age = elapsed-self.entered
+         return age < RULES.box_visit_s or age >= RULES.box_visit_s+RULES.box_return_cooldown_s
+ 
++    def recently_swept(self, goal, elapsed):
++        # A face swept from its standoff yields nothing new on an immediate repeat.
++        hold = RULES.box_visit_s+RULES.box_return_cooldown_s
++        return any(same_face(g,goal) and 0 <= elapsed-t < hold for g,t in self.swept)
++
+     def choose(self, ranked, elapsed, remaining, grid, safe):
+         ranked = [(walk,g) for walk,g in ranked if self.available(g,elapsed)]
+         self.suspended = [(g,t) for g,t in self.suspended if 0 <= elapsed-t <= 90.]
+--- a/center_wall.py
++++ b/center_wall.py
+@@ -408,7 +408,8 @@
+         # Region resume/escape and object service share this single arbitration.
+         crowded = self.cluster.crowded_centers(elapsed)
+         ranked = [(walk,g) for walk,g in ordered
+-                  if not g.get('completed_box') and self.continuity.available(g,elapsed)]
++                  if not g.get('completed_box') and self.continuity.available(g,elapsed)
++                  and not self.continuity.recently_swept(g,elapsed)]
+         if crowded:
+             ranked = [(walk,g) for walk,g in ranked if not self.cluster.local_fragment(g,crowded)]
+         if probe_only:
