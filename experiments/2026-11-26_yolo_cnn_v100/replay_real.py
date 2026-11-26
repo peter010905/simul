@@ -106,7 +106,10 @@ def main():
     parser.add_argument("--positive-pool", type=Path, required=True)
     parser.add_argument("--blur-labels", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--cnn-score-floor", type=float, default=0.05)
     args = parser.parse_args()
+    if not 0 <= args.cnn_score_floor <= 1:
+        parser.error("--cnn-score-floor must be in [0, 1]")
     args.output.mkdir(parents=True, exist_ok=True)
     cv2.setNumThreads(2)
     torch.set_num_threads(4)
@@ -141,7 +144,7 @@ def main():
             for name, model in models.items():
                 start = time.perf_counter()
                 hits = (infer_yolo(model, image) if name.startswith("yolo")
-                        else infer_cnn(model, gray, "cpu"))
+                        else infer_cnn(model, gray, "cpu", score_floor=args.cnn_score_floor))
                 row["models"][name] = {"hits": hits, "ms": (time.perf_counter() - start) * 1000}
             rows.append(row)
             log.write(json.dumps(row) + "\n")
@@ -156,6 +159,7 @@ def main():
         "resolution_frames": {f"{w}x{h}": sum(row["shape"] == [h, w] for row in rows)
                               for h, w in sorted({tuple(row["shape"]) for row in rows})},
         "iou": 0.5,
+        "cnn_score_floor": args.cnn_score_floor,
         "all_frames_have_exhaustive_labels": False,
         "dataset_sha256": {name: hashlib.sha256(path.read_bytes()).hexdigest()
                            for name, path in (("reviewed_regions", args.reviewed_regions),

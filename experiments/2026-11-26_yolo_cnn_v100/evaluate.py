@@ -35,7 +35,7 @@ def match(hits,gt,threshold):
     return dict(tp=len(used_g),fp=len(hits)-len(used_h),fn=len(gt)-len(used_g),matched_gt=sorted(used_g))
 
 
-def infer_cnn(model,gray,device):
+def infer_cnn(model,gray,device,score_floor=.05):
     from candidate import proposals,crop
     regions,_=proposals(gray)
     hits=[]
@@ -46,7 +46,7 @@ def infer_cnn(model,gray,device):
             x=torch.from_numpy(batch[:,None].copy()).to(device,dtype=torch.float32)/255
             prob=torch.sigmoid(model(x)).cpu().numpy()
             for region,score in zip(sub,prob):
-                if score>=.05:hits.append(dict(box=list(region.box),score=float(score)))
+                if score>=score_floor:hits.append(dict(box=list(region.box),score=float(score)))
     return nms(hits)
 
 

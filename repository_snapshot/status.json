@@ -25,7 +25,17 @@
         "cnn_augmented": 0
       },
       "oblique_or_blurred_correct": 0,
-      "result": "experiments/2026-11-26_yolo_cnn_v100/artifacts/real-replay.json"
+      "result": "experiments/2026-11-26_yolo_cnn_v100/artifacts/real-replay.json",
+      "candidate_replay": {
+        "maximum_candidates_per_frame": 5,
+        "minimum_target_area_coverage": 0.8,
+        "maximum_candidate_to_marker_area_ratio": 6,
+        "top_model": "cnn_augmented",
+        "markers_recovered": 188,
+        "oblique_recovered": 11,
+        "blurred_recovered": 55,
+        "result": "experiments/2026-11-26_yolo_cnn_v100/artifacts/real-candidate-replay.json"
+      }
     }
   },
   "paired_wall_7_103": {

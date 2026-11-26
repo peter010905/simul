@@ -1,0 +1,613 @@
+{
+  "frames": 257,
+  "minimum_marker_area_coverage": 0.8,
+  "maximum_candidate_to_marker_area_ratio": 6,
+  "yolo_inference_score_floor": 0.001,
+  "cnn_inference_score_floor": 0,
+  "models": {
+    "yolo-plain": {
+      "original_threshold": {
+        "groups": {
+          "all": {
+            "found": 32,
+            "total": 197
+          },
+          "oblique": {
+            "found": 2,
+            "total": 16
+          },
+          "visible_blur": {
+            "found": 4,
+            "total": 59
+          },
+          "oblique_and_blur": {
+            "found": 1,
+            "total": 3
+          }
+        },
+        "selected_candidates": 56,
+        "mean_candidates_per_frame": 0.2178988326848249,
+        "reviewed_nonmarker_regions": 68,
+        "reviewed_nonmarker_regions_covered": 0,
+        "threshold": 0.45
+      },
+      "top_k": {
+        "1": {
+          "groups": {
+            "all": {
+              "found": 63,
+              "total": 197
+            },
+            "oblique": {
+              "found": 4,
+              "total": 16
+            },
+            "visible_blur": {
+              "found": 6,
+              "total": 59
+            },
+            "oblique_and_blur": {
+              "found": 1,
+              "total": 3
+            }
+          },
+          "selected_candidates": 215,
+          "mean_candidates_per_frame": 0.8365758754863813,
+          "reviewed_nonmarker_regions": 68,
+          "reviewed_nonmarker_regions_covered": 0
+        },
+        "3": {
+          "groups": {
+            "all": {
+              "found": 74,
+              "total": 197
+            },
+            "oblique": {
+              "found": 8,
+              "total": 16
+            },
+            "visible_blur": {
+              "found": 8,
+              "total": 59
+            },
+            "oblique_and_blur": {
+              "found": 1,
+              "total": 3
+            }
+          },
+          "selected_candidates": 522,
+          "mean_candidates_per_frame": 2.0311284046692606,
+          "reviewed_nonmarker_regions": 68,
+          "reviewed_nonmarker_regions_covered": 0
+        },
+        "5": {
+          "groups": {
+            "all": {
+              "found": 77,
+              "total": 197
+            },
+            "oblique": {
+              "found": 9,
+              "total": 16
+            },
+            "visible_blur": {
+              "found": 8,
+              "total": 59
+            },
+            "oblique_and_blur": {
+              "found": 1,
+              "total": 3
+            }
+          },
+          "selected_candidates": 708,
+          "mean_candidates_per_frame": 2.754863813229572,
+          "reviewed_nonmarker_regions": 68,
+          "reviewed_nonmarker_regions_covered": 0
+        }
+      },
+      "top_5_area_sensitivity": {
+        "4": {
+          "groups": {
+            "all": {
+              "found": 74,
+              "total": 197
+            },
+            "oblique": {
+              "found": 7,
+              "total": 16
+            },
+            "visible_blur": {
+              "found": 7,
+              "total": 59
+            },
+            "oblique_and_blur": {
+              "found": 1,
+              "total": 3
+            }
+          },
+          "selected_candidates": 708,
+          "mean_candidates_per_frame": 2.754863813229572,
+          "reviewed_nonmarker_regions": 68,
+          "reviewed_nonmarker_regions_covered": 0
+        },
+        "8": {
+          "groups": {
+            "all": {
+              "found": 79,
+              "total": 197
+            },
+            "oblique": {
+              "found": 11,
+              "total": 16
+            },
+            "visible_blur": {
+              "found": 10,
+              "total": 59
+            },
+            "oblique_and_blur": {
+              "found": 3,
+              "total": 3
+            }
+          },
+          "selected_candidates": 708,
+          "mean_candidates_per_frame": 2.754863813229572,
+          "reviewed_nonmarker_regions": 68,
+          "reviewed_nonmarker_regions_covered": 0
+        }
+      }
+    },
+    "yolo-augmented": {
+      "original_threshold": {
+        "groups": {
+          "all": {
+            "found": 37,
+            "total": 197
+          },
+          "oblique": {
+            "found": 2,
+            "total": 16
+          },
+          "visible_blur": {
+            "found": 7,
+            "total": 59
+          },
+          "oblique_and_blur": {
+            "found": 1,
+            "total": 3
+          }
+        },
+        "selected_candidates": 49,
+        "mean_candidates_per_frame": 0.19066147859922178,
+        "reviewed_nonmarker_regions": 68,
+        "reviewed_nonmarker_regions_covered": 0,
+        "threshold": 0.35000000000000003
+      },
+      "top_k": {
+        "1": {
+          "groups": {
+            "all": {
+              "found": 122,
+              "total": 197
+            },
+            "oblique": {
+              "found": 5,
+              "total": 16
+            },
+            "visible_blur": {
+              "found": 21,
+              "total": 59
+            },
+            "oblique_and_blur": {
+              "found": 1,
+              "total": 3
+            }
+          },
+          "selected_candidates": 232,
+          "mean_candidates_per_frame": 0.9027237354085603,
+          "reviewed_nonmarker_regions": 68,
+          "reviewed_nonmarker_regions_covered": 2
+        },
+        "3": {
+          "groups": {
+            "all": {
+              "found": 142,
+              "total": 197
+            },
+            "oblique": {
+              "found": 6,
+              "total": 16
+            },
+            "visible_blur": {
+              "found": 27,
+              "total": 59
+            },
+            "oblique_and_blur": {
+              "found": 1,
+              "total": 3
+            }
+          },
+          "selected_candidates": 473,
+          "mean_candidates_per_frame": 1.8404669260700388,
+          "reviewed_nonmarker_regions": 68,
+          "reviewed_nonmarker_regions_covered": 3
+        },
+        "5": {
+          "groups": {
+            "all": {
+              "found": 144,
+              "total": 197
+            },
+            "oblique": {
+              "found": 8,
+              "total": 16
+            },
+            "visible_blur": {
+              "found": 27,
+              "total": 59
+            },
+            "oblique_and_blur": {
+              "found": 1,
+              "total": 3
+            }
+          },
+          "selected_candidates": 536,
+          "mean_candidates_per_frame": 2.085603112840467,
+          "reviewed_nonmarker_regions": 68,
+          "reviewed_nonmarker_regions_covered": 3
+        }
+      },
+      "top_5_area_sensitivity": {
+        "4": {
+          "groups": {
+            "all": {
+              "found": 138,
+              "total": 197
+            },
+            "oblique": {
+              "found": 3,
+              "total": 16
+            },
+            "visible_blur": {
+              "found": 27,
+              "total": 59
+            },
+            "oblique_and_blur": {
+              "found": 1,
+              "total": 3
+            }
+          },
+          "selected_candidates": 536,
+          "mean_candidates_per_frame": 2.085603112840467,
+          "reviewed_nonmarker_regions": 68,
+          "reviewed_nonmarker_regions_covered": 3
+        },
+        "8": {
+          "groups": {
+            "all": {
+              "found": 146,
+              "total": 197
+            },
+            "oblique": {
+              "found": 10,
+              "total": 16
+            },
+            "visible_blur": {
+              "found": 29,
+              "total": 59
+            },
+            "oblique_and_blur": {
+              "found": 3,
+              "total": 3
+            }
+          },
+          "selected_candidates": 536,
+          "mean_candidates_per_frame": 2.085603112840467,
+          "reviewed_nonmarker_regions": 68,
+          "reviewed_nonmarker_regions_covered": 3
+        }
+      }
+    },
+    "cnn-plain": {
+      "original_threshold": {
+        "groups": {
+          "all": {
+            "found": 0,
+            "total": 197
+          },
+          "oblique": {
+            "found": 0,
+            "total": 16
+          },
+          "visible_blur": {
+            "found": 0,
+            "total": 59
+          },
+          "oblique_and_blur": {
+            "found": 0,
+            "total": 3
+          }
+        },
+        "selected_candidates": 0,
+        "mean_candidates_per_frame": 0.0,
+        "reviewed_nonmarker_regions": 68,
+        "reviewed_nonmarker_regions_covered": 0,
+        "threshold": 0.9500000000000001
+      },
+      "top_k": {
+        "1": {
+          "groups": {
+            "all": {
+              "found": 149,
+              "total": 197
+            },
+            "oblique": {
+              "found": 1,
+              "total": 16
+            },
+            "visible_blur": {
+              "found": 42,
+              "total": 59
+            },
+            "oblique_and_blur": {
+              "found": 1,
+              "total": 3
+            }
+          },
+          "selected_candidates": 257,
+          "mean_candidates_per_frame": 1.0,
+          "reviewed_nonmarker_regions": 68,
+          "reviewed_nonmarker_regions_covered": 2
+        },
+        "3": {
+          "groups": {
+            "all": {
+              "found": 167,
+              "total": 197
+            },
+            "oblique": {
+              "found": 1,
+              "total": 16
+            },
+            "visible_blur": {
+              "found": 51,
+              "total": 59
+            },
+            "oblique_and_blur": {
+              "found": 1,
+              "total": 3
+            }
+          },
+          "selected_candidates": 771,
+          "mean_candidates_per_frame": 3.0,
+          "reviewed_nonmarker_regions": 68,
+          "reviewed_nonmarker_regions_covered": 4
+        },
+        "5": {
+          "groups": {
+            "all": {
+              "found": 173,
+              "total": 197
+            },
+            "oblique": {
+              "found": 1,
+              "total": 16
+            },
+            "visible_blur": {
+              "found": 55,
+              "total": 59
+            },
+            "oblique_and_blur": {
+              "found": 1,
+              "total": 3
+            }
+          },
+          "selected_candidates": 1285,
+          "mean_candidates_per_frame": 5.0,
+          "reviewed_nonmarker_regions": 68,
+          "reviewed_nonmarker_regions_covered": 5
+        }
+      },
+      "top_5_area_sensitivity": {
+        "4": {
+          "groups": {
+            "all": {
+              "found": 162,
+              "total": 197
+            },
+            "oblique": {
+              "found": 1,
+              "total": 16
+            },
+            "visible_blur": {
+              "found": 51,
+              "total": 59
+            },
+            "oblique_and_blur": {
+              "found": 1,
+              "total": 3
+            }
+          },
+          "selected_candidates": 1285,
+          "mean_candidates_per_frame": 5.0,
+          "reviewed_nonmarker_regions": 68,
+          "reviewed_nonmarker_regions_covered": 5
+        },
+        "8": {
+          "groups": {
+            "all": {
+              "found": 174,
+              "total": 197
+            },
+            "oblique": {
+              "found": 1,
+              "total": 16
+            },
+            "visible_blur": {
+              "found": 56,
+              "total": 59
+            },
+            "oblique_and_blur": {
+              "found": 1,
+              "total": 3
+            }
+          },
+          "selected_candidates": 1285,
+          "mean_candidates_per_frame": 5.0,
+          "reviewed_nonmarker_regions": 68,
+          "reviewed_nonmarker_regions_covered": 5
+        }
+      }
+    },
+    "cnn-augmented": {
+      "original_threshold": {
+        "groups": {
+          "all": {
+            "found": 0,
+            "total": 197
+          },
+          "oblique": {
+            "found": 0,
+            "total": 16
+          },
+          "visible_blur": {
+            "found": 0,
+            "total": 59
+          },
+          "oblique_and_blur": {
+            "found": 0,
+            "total": 3
+          }
+        },
+        "selected_candidates": 0,
+        "mean_candidates_per_frame": 0.0,
+        "reviewed_nonmarker_regions": 68,
+        "reviewed_nonmarker_regions_covered": 0,
+        "threshold": 0.98
+      },
+      "top_k": {
+        "1": {
+          "groups": {
+            "all": {
+              "found": 158,
+              "total": 197
+            },
+            "oblique": {
+              "found": 1,
+              "total": 16
+            },
+            "visible_blur": {
+              "found": 46,
+              "total": 59
+            },
+            "oblique_and_blur": {
+              "found": 1,
+              "total": 3
+            }
+          },
+          "selected_candidates": 257,
+          "mean_candidates_per_frame": 1.0,
+          "reviewed_nonmarker_regions": 68,
+          "reviewed_nonmarker_regions_covered": 0
+        },
+        "3": {
+          "groups": {
+            "all": {
+              "found": 181,
+              "total": 197
+            },
+            "oblique": {
+              "found": 6,
+              "total": 16
+            },
+            "visible_blur": {
+              "found": 55,
+              "total": 59
+            },
+            "oblique_and_blur": {
+              "found": 1,
+              "total": 3
+            }
+          },
+          "selected_candidates": 771,
+          "mean_candidates_per_frame": 3.0,
+          "reviewed_nonmarker_regions": 68,
+          "reviewed_nonmarker_regions_covered": 2
+        },
+        "5": {
+          "groups": {
+            "all": {
+              "found": 188,
+              "total": 197
+            },
+            "oblique": {
+              "found": 11,
+              "total": 16
+            },
+            "visible_blur": {
+              "found": 55,
+              "total": 59
+            },
+            "oblique_and_blur": {
+              "found": 1,
+              "total": 3
+            }
+          },
+          "selected_candidates": 1285,
+          "mean_candidates_per_frame": 5.0,
+          "reviewed_nonmarker_regions": 68,
+          "reviewed_nonmarker_regions_covered": 5
+        }
+      },
+      "top_5_area_sensitivity": {
+        "4": {
+          "groups": {
+            "all": {
+              "found": 176,
+              "total": 197
+            },
+            "oblique": {
+              "found": 6,
+              "total": 16
+            },
+            "visible_blur": {
+              "found": 51,
+              "total": 59
+            },
+            "oblique_and_blur": {
+              "found": 1,
+              "total": 3
+            }
+          },
+          "selected_candidates": 1285,
+          "mean_candidates_per_frame": 5.0,
+          "reviewed_nonmarker_regions": 68,
+          "reviewed_nonmarker_regions_covered": 5
+        },
+        "8": {
+          "groups": {
+            "all": {
+              "found": 189,
+              "total": 197
+            },
+            "oblique": {
+              "found": 11,
+              "total": 16
+            },
+            "visible_blur": {
+              "found": 56,
+              "total": 59
+            },
+            "oblique_and_blur": {
+              "found": 1,
+              "total": 3
+            }
+          },
+          "selected_candidates": 1285,
+          "mean_candidates_per_frame": 5.0,
+          "reviewed_nonmarker_regions": 68,
+          "reviewed_nonmarker_regions_covered": 5
+        }
+      }
+    }
+  }
+}
