@@ -10,6 +10,8 @@ import math
 import sys
 from pathlib import Path
 
+from campaign_report import resolve
+
 
 def segment_distance(p, c):
     x, y, yaw, L = c["x"], c["y"], c["yaw"], c["length"]
@@ -53,10 +55,11 @@ def main():
     for run in sorted(glob.glob(str(root / "**" / pattern / "trajectory.csv"), recursive=True)):
         run = Path(run).parent
         try:
-            scene = json.loads((run / "scene.json").read_text())
+            path = resolve(str(run / "scene.json"), str(root))
+            scene = json.loads(Path(path).read_text()) if path else {}
             rows = [(float(r["elapsed_sim_s"]), float(r["world_x"]), float(r["world_y"]))
                     for r in csv.DictReader(open(run / "trajectory.csv"))]
-        except (OSError, ValueError, KeyError):
+        except (OSError, ValueError, KeyError, TypeError):
             continue
         found = stalls(rows)
         if found:

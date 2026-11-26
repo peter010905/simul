@@ -1,0 +1,14 @@
+18a19
+>         self.swept = []     # faces already swept from their standoff: (goal, elapsed)
+58a60
+>             self.swept = [(g,t) for g,t in self.swept if not same_face(g,goal)][-11:]+[(goal,elapsed)]
+79a82,86
+>     def recently_swept(self, goal, elapsed):
+>         # A face swept from its standoff yields nothing new on an immediate repeat.
+>         hold = RULES.box_visit_s+RULES.box_return_cooldown_s
+>         return any(same_face(g,goal) and 0 <= elapsed-t < hold for g,t in self.swept)
+> 
+95c102
+<                        and not g.get('previous_attempts')
+---
+>                        and not g.get('previous_attempts') and not self.recently_swept(g,elapsed)

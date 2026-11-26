@@ -13,6 +13,21 @@ import os
 import sys
 
 
+def resolve(path, root):
+    """scene.json may be a symlink to the container path /home/ubuntu/classroom-twin/...;
+    on the V100 host that tree lives under the board root."""
+    if os.path.exists(path):
+        return path
+    if os.path.islink(path):
+        target = os.readlink(path)
+        marker = "/classroom-twin/"
+        if marker in target:
+            alt = os.path.join(root, target.split(marker, 1)[1])
+            if os.path.exists(alt):
+                return alt
+    return None
+
+
 def rows(root):
     for r in sorted(glob.glob(os.path.join(root, "trial-track-rand-*"))):
         if not os.path.isdir(r):
@@ -23,8 +38,11 @@ def rows(root):
         if not os.path.exists(metrics):
             yield dict(run=name, seed=seed, policy=policy, ok=False)
             continue
+        scene_path = resolve(os.path.join(r, "scene.json"), root)
+        if scene_path is None:
+            continue
         m = json.load(open(metrics))
-        scene = json.load(open(os.path.join(r, "scene.json")))
+        scene = json.load(open(scene_path))
         place = {b["name"]: b.get("placement", "?") for b in scene.get("obstacles", [])}
         prints = []
         for t in scene["targets"]:
