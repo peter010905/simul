@@ -1,0 +1,127 @@
+diff -u a/box_continuity.py b/box_continuity.py
+--- a/box_continuity.py	2026-11-27 20:13:51
++++ b/box_continuity.py	2026-11-27 20:13:51
+@@ -13,6 +13,13 @@
+     return math.dist((a['x'], a['y']), (b['x'], b['y'])) < radius
+ 
+ 
++def same_side(a, b):
++    """.63: same tracked box and same face direction, from any standoff."""
++    return (a.get('batch_box') is not None and b.get('batch_box') is not None
++            and math.dist(a['batch_box'], b['batch_box']) < RULES.same_box_m
++            and math.cos(a['normal_odom']-b['normal_odom']) > RULES.direction_cosine)
++
++
+ class BoxContinuity:
+     def __init__(self):
+         self.active = None
+@@ -23,6 +30,7 @@
+         self.started = -math.inf
+         self.events = []
+         self.swept = []     # faces already swept from their standoff: (goal, elapsed)
++        self.sides = []     # .63: every swept box side, kept for the whole mission
+ 
+     def event(self, event, elapsed, **fields):
+         self.events.append(dict(event=event, elapsed=elapsed, **fields))
+@@ -64,6 +72,8 @@
+         if status == 4:
+             self.event('sweep_finished', elapsed, surface=goal['surface_odom'])
+             self.swept = [(g,t) for g,t in self.swept if not same_face(g,goal)][-11:]+[(goal,elapsed)]
++            if goal.get('batch_box') is not None and not self.side_swept(goal):
++                self.sides = self.sides[-47:]+[goal]
+             return None
+         if reason not in ('marker_hint', 'readable_marker', 'registered_marker', 'inspection_due'):
+             self.event('face_failed', elapsed, reason=reason, surface=goal['surface_odom'])
+@@ -91,6 +101,17 @@
+         return any(same_face(g,goal) and 0 <= elapsed-t < hold and same_view(g,goal)
+                    for g,t in self.swept)
+ 
++    def side_swept(self, goal):
++        return any(same_side(g, goal) for g in self.sides)
++
++    def unswept_first(self, ranked):
++        """Finish a box: while it still offers a face direction never swept, drop its swept ones."""
++        fresh = [g['batch_box'] for _, g in ranked
++                 if g.get('batch_box') is not None and not self.side_swept(g)]
++        return [(walk, g) for walk, g in ranked
++                if not (self.side_swept(g)
++                        and any(math.dist(g['batch_box'], box) < RULES.same_box_m for box in fresh))]
++
+     def choose(self, ranked, elapsed, remaining, grid, safe):
+         ranked = [(walk,g) for walk,g in ranked if self.available(g,elapsed)]
+         self.suspended = [(g,t) for g,t in self.suspended if 0 <= elapsed-t <= 90.]
+@@ -106,7 +127,8 @@
+         if self.box is not None and 0 <= elapsed-self.entered < RULES.box_visit_s:
+             options = [(walk,g) for walk,g in ranked if g.get('batch_box') is not None
+                        and math.dist(self.box,g['batch_box']) < .4 and not g.get('completed_box')
+-                       and not g.get('previous_attempts')
++                       and (not g.get('previous_attempts')
++                            or (g['previous_attempts'] <= 1 and not self.side_swept(g)))
+                        and walk <= min(3.5,.20*(min(remaining,RULES.box_visit_s-(elapsed-self.entered))-8))]
+             if options:
+                 tour = short_tour(options, grid, safe, min(remaining,RULES.box_visit_s-(elapsed-self.entered)))
+diff -u a/center_wall.py b/center_wall.py
+--- a/center_wall.py	2026-11-27 20:13:51
++++ b/center_wall.py	2026-11-27 20:13:51
+@@ -88,6 +88,24 @@
+     return frontier
+ 
+ 
++def wall_sized_distance(grid, length=2.0):
++    """.63: metres from each cell to occupied structure at least `length` long (no box is)."""
++    occupied, _ = ndimage.label(grid.cells >= 65, structure=np.ones((3, 3)))
++    spans = ndimage.find_objects(occupied)
++    long_ids = [i+1 for i, s in enumerate(spans) if s is not None
++                and max(s[0].stop-s[0].start, s[1].stop-s[1].start)*grid.resolution >= length]
++    if not long_ids:
++        return None
++    return ndimage.distance_transform_edt(~np.isin(occupied, long_ids))*grid.resolution
++
++
++def on_wall(grid, wall_distance, point, margin=.20):
++    if wall_distance is None:
++        return False
++    cell = grid.index(*point)
++    return bool(grid.inside(*cell) and wall_distance[cell] <= margin)
++
++
+ def surface_cells(grid, pose, marked=None, targets=None):
+     """Separate occupied islands inside explored free space from its exterior."""
+     data = grid.cells
+@@ -256,6 +274,8 @@
+         wall_normals = None if probe_only or self.survey.camera is None else self.survey.normals.update(grid.cells,grid.resolution)
+         wall_limit = self.survey.coverage_limit()
+         standoffs = self.survey.standoffs()
++        wall_distance = wall_sized_distance(grid)
++        on_wall_skipped = 0
+         for (kind, component, side, _, _), cells in samples.items():
+             if kind == 'interior' and component in self.marked_boxes.by_component:
+                 self.marked_boxes.skipped += 1
+@@ -272,6 +292,11 @@
+             if kind == 'interior' and self.thin_obstacles.near(grid.world(row, col), 0.):
+                 thin_skipped += 1
+                 continue
++            # .63: a generic interior sample on a measured wall is wall surface, not a box face.
++            # Fitted box faces are exempt, so a target box standing against a wall stays a task.
++            if kind == 'interior' and on_wall(grid, wall_distance, grid.world(row, col)):
++                on_wall_skipped += 1
++                continue
+             dy,dx = DIRECTIONS[side]
+             face = grid.world(row+.5*dy, col+.5*dx)
+             normal = (grid.world(row+dy,col+dx)-grid.world(row,col))/grid.resolution
+@@ -366,6 +391,7 @@
+         self.counts['automatic_end_wall_skipped'] = len(weak_walls)-len(ordinary_walls)
+         self.counts['marker_cooled'] = marker_cooled
+         self.counts['thin_surface_skipped'] = thin_skipped
++        self.counts['on_wall_skipped'] = on_wall_skipped
+         self.counts['small_return_groups_skipped'] = small_groups_skipped
+         self.counts['small_return_cells'] = int(self.small_returns.cells.sum())
+         ordered = sorted(candidates['interior'], key=self.batch.rank)
+@@ -410,6 +436,7 @@
+         ranked = [(walk,g) for walk,g in ordered
+                   if not g.get('completed_box') and self.continuity.available(g,elapsed)
+                   and not self.continuity.recently_swept(g,elapsed)]
++        ranked = self.continuity.unswept_first(ranked)
+         if crowded:
+             ranked = [(walk,g) for walk,g in ranked if not self.cluster.local_fragment(g,crowded)]
+         if probe_only:
