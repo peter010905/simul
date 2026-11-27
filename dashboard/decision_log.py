@@ -161,6 +161,12 @@ class DecisionLog:
         if event == 'mission_started' and raw is not None:
             self.mission_start = raw
         t = None if raw is None or self.mission_start is None else raw - self.mission_start
+        out = self._session_entry(event, row, t)
+        for entry in out:
+            entry['raw'] = raw          # placed once the mission start is known
+        return out
+
+    def _session_entry(self, event, row, t):
         if event == 'bumper_recovery':
             return [_entry(t, 'warn', f"범퍼 접촉 {row.get('contacts', '?')}회",
                            '미션을 멈추고 뒤로 물러난 뒤 다시 계획')]
@@ -176,6 +182,10 @@ class DecisionLog:
         for name, handler in zip(FILES, (self._decision, self._face, self._look, self._session)):
             for row in self._lines(name):
                 self.entries.extend(handler(row))
+        if self.mission_start is not None:
+            for entry in self.entries:
+                if entry['t'] is None and entry.get('raw') is not None:
+                    entry['t'] = round(entry['raw'] - self.mission_start, 1)
         self.entries.sort(key=lambda e: (e['t'] is None, e['t'] if e['t'] is not None else 0.))
         del self.entries[:-self.limit]
 

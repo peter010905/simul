@@ -72,7 +72,8 @@ function renderDecisions(log){
   for(const e of entries){
     const li=document.createElement('li');li.className='kind-'+(e.kind||'decision');
     const time=document.createElement('time');
-    time.textContent=e.t===null||e.t===undefined?'—':(e.repeat?`${clockTime(e.t)}–${clockTime(e.t_last)}`:clockTime(e.t));
+    const at=v=>Number(v)<0?'-'+clockTime(-v):clockTime(v);
+    time.textContent=e.t===null||e.t===undefined?'—':(e.repeat?`${at(e.t)}–${at(e.t_last)}`:at(e.t));
     const title=document.createElement('strong');title.textContent=e.title+(e.repeat?` ×${e.repeat}`:'');
     const detail=document.createElement('span');detail.textContent=e.detail||'';
     li.append(time,title,detail);list.append(li);
