@@ -1,0 +1,335 @@
+--- a/src/osp_mission/launch/robot.launch.py
++++ b/src/osp_mission/launch/robot.launch.py
+@@ -11,6 +11,7 @@
+ from launch.event_handlers import OnProcessExit
+ from osp_mission.transport_config import image_environment
+ from osp_mission.body_scan_filter import route_costmap_scans
++from osp_mission.local_floor import configure_local_floor
+
+
+ def setup(context):
+@@ -41,7 +42,7 @@
+
+     nav2_params=value('nav2_params') or str(pkg/'config/nav2.yaml')
+     flow_enabled = value('navigation_flow_enabled') == 'true'
+-    if flow_enabled or filtering:
++    if flow_enabled or filtering or not sim:
+         nav_config = yaml.safe_load(Path(nav2_params).read_text())
+         if filtering:
+             nav_config = route_costmap_scans(nav_config, raw_scan, planning_scan)
+@@ -58,6 +59,7 @@
+                 velocity['min_velocity'][2] = -0.80
+                 nav_config['behavior_server']['ros__parameters']['max_rotational_vel'] = 0.80
+         if not sim:
++            configure_local_floor(nav_config)
+             layer = nav_config['local_costmap']['local_costmap']['ros__parameters'].get('voxel_layer', {})
+             if layer.get('plugin') == 'nav2_costmap_2d::VoxelLayer' and layer.get('z_voxels') == 16:
+                 layer['z_resolution'] = max(layer.get('z_resolution', .05), .075)
+@@ -93,6 +95,7 @@
+             'planner_start_ignore_radius_m':float(value('planner_start_ignore_radius_m')),
+             'navigation_flow_enabled':value('navigation_flow_enabled')=='true',
+             'allow_mid_route_wall_inspection':value('allow_mid_route_wall_inspection')=='true',
++            'floor_relative_costmap':not sim,
+             'base_frame':value('base_frame'),'scan_topic':planning_scan,'policy_file':value('policy_file'),'planner':value('planner')}])]
+
+     if guarded:
+--- a/src/osp_mission/osp_mission/mission.py
++++ b/src/osp_mission/osp_mission/mission.py
+@@ -22,7 +22,7 @@
+ from nav_msgs.msg import OccupancyGrid, Odometry
+ from sensor_msgs.msg import CameraInfo, LaserScan, PointCloud2
+ from sensor_msgs_py import point_cloud2
+-from irobot_create_msgs.msg import HazardDetectionVector
++from irobot_create_msgs.msg import HazardDetection, HazardDetectionVector
+ from visualization_msgs.msg import MarkerArray
+ from geometry_msgs.msg import TwistStamped
+ from nav2_msgs.action import NavigateToPose, Spin, BackUp
+@@ -50,6 +50,10 @@
+ from osp_mission.wall_route import penalize_routes
+ from osp_mission.contact_inspection import ContactInspection
+ from osp_mission.transit_control import TransitFlow
++from osp_mission.body_scan_filter import FOOTPRINT
++from osp_mission.escape_control import DriveProgress, ReverseLimit, escape_headings
++from osp_mission.local_floor import floor_transform
++from tf2_ros import TransformBroadcaster
+ from osp_mission.exploration_memory import ExplorationMemory
+ from osp_mission.action_priority import SENSOR_REASONS, priority
+ from osp_mission.near_pass_runtime import NearPassRuntime
+@@ -60,11 +64,16 @@
+     def __init__(self):
+         super().__init__('mission')
+         for k,v in {'duration':600.,'expected_marker_count':3,'output_dir':str(Path.home()/'simul/results'),
+-                    'map_frame':'map','base_frame':'base_link','odom_frame':'odom','scan_topic':'scan',
++                    'map_frame':'map','base_frame':'base_link','odom_frame':'odom','scan_topic':'scan','floor_relative_costmap':False,
+                     'survey_reference_marker_m':.14,'survey_readable_pixels':18.,'survey_distant_enabled':True,
+                     'undock':False,'policy_file':'','planner':'legacy','require_drive_controller':False,'planner_start_ignore_radius_m':0.,'navigation_flow_enabled':True,'allow_mid_route_wall_inspection':False}.items(): self.declare_parameter(k,v)
+         self.p=lambda k:self.get_parameter(k).value
+         self.tf=Buffer(); self.listener=TransformListener(self.tf,self)
++        self.drive_progress = None
++        self.reverse_limit = ReverseLimit()
++        if self.p('floor_relative_costmap'):
++            self.floor_broadcaster = TransformBroadcaster(self)
++            self.create_subscription(Odometry, 'odom', self.on_floor_odom, qos_profile_sensor_data)
+         self.inspect=self.p('planner')=='inspection'
+         self.directional=self.p('planner')=='directional'
+         self.edge_mode=self.p('planner')=='edge'
+@@ -282,6 +291,17 @@
+         return True
+
+     def on_hazard(self,m):
++        now = self.now()
++        limited = any(d.type == HazardDetection.BACKUP_LIMIT for d in m.detections)
++        limiter = getattr(self, 'reverse_limit', None)
++        if limiter is not None and (limited or limiter.latched):
++            limiter.report(limited, now)
++        guard = getattr(self, 'contact_inspection', None)
++        if (limited and self.state == 'running' and getattr(self, 'kind', '') == 'backup'
++                and (self.goal_handle or self.pending) and not self.cancel_reason
++                and not (guard and guard.action)):
++            self.cancel_action('base_backup_limit')
++            self.zero()
+         if getattr(self, 'near_pass', None) is not None:
+             self.near_pass.print_hazard = bool(m.detections)
+             self.near_pass.hazard_received = self.now()
+@@ -304,6 +324,11 @@
+             else:self.contact_pending=False
+             self.zero()
+     def on_map(self,m): self.map=m
++    def on_floor_odom(self, msg):
++        transform = floor_transform(msg, self.p('odom_frame'), self.p('base_frame'))
++        if transform is not None:
++            self.floor_broadcaster.sendTransform(transform)
++
+     def on_wheel_odom(self,m):
+         self.wheel_stamp=Time.from_msg(m.header.stamp).nanoseconds/1e9
+     def on_scan(self,m):
+@@ -519,52 +544,62 @@
+             a=math.atan2(2*(q.w*q.z+q.x*q.y),1-2*(q.y*q.y+q.z*q.z))
+             return t.transform.translation.x,t.transform.translation.y,a
+         except Exception:return None
+-    def open_escape(self, step=.6, need=.9, half_width=math.radians(15), every=20.):
+-        """.59: send a Nav2 goal `step` m toward the scan direction with the most free range
+-        (at least `need` m within +-15 deg). Nav2 plans and collision-checks the motion."""
+-        if self.now()-getattr(self, 'last_open_escape', -100.) < every:
++    def can_retreat(self, now):
++        flow = self.navigation_flow
++        return (self.rear_clear and self.sensor_fresh(self.scan_stamp) and not self.reverse_limit.latched
++                and self.backup.server_is_ready() and now - self.last_recovery >= 15.
++                and (flow is None or flow.backup_allowed(now)))
++
++    def open_escape(self, memory_transform, step=.6, need=.9, every=20.):
++        now = self.now()
++        if now - getattr(self, 'last_open_escape', -100.) < every or not self.nav.server_is_ready():
+             return False
+-        scan = getattr(self, 'latest_scan', None)
+-        if scan is None:
++        scan = self.latest_scan
++        if scan is None or not self.sensor_fresh(self.scan_stamp):
+             return False
+         try:
+-            ts = self.tf.lookup_transform(self.p('base_frame'), scan.header.frame_id, Time())
+-            tm = self.tf.lookup_transform(self.p('map_frame'), self.p('base_frame'), Time())
++            ts = self.tf.lookup_transform(self.p('base_frame'), scan.header.frame_id,
++                                          Time.from_msg(scan.header.stamp)).transform
++            tm = self.tf.lookup_transform(self.p('map_frame'), self.p('base_frame'), Time()).transform
+         except Exception:
+             return False
+-        def yaw_of(q):
+-            return math.atan2(2*(q.w*q.z+q.x*q.y), 1-2*(q.y*q.y+q.z*q.z))
+-        ranges = np.asarray(scan.ranges, dtype=float)
+-        ranges = np.where(np.isinf(ranges) & (ranges > 0), scan.range_max, ranges)
+-        ranges = np.where(np.isfinite(ranges) & (ranges >= scan.range_min), ranges, np.nan)
+-        angles = scan.angle_min + np.arange(len(ranges))*scan.angle_increment + yaw_of(ts.transform.rotation)
+-        best = None
+-        for centre in np.linspace(-math.pi, math.pi, 36, endpoint=False):
+-            sector = np.abs(np.arctan2(np.sin(angles-centre), np.cos(angles-centre))) < half_width
+-            values = ranges[sector]
+-            if not sector.any() or np.isnan(values).all():
++
++        def yaw(q):
++            return math.atan2(2*(q.w*q.z + q.x*q.y), 1-2*(q.y*q.y + q.z*q.z))
++
++        sensor = ts.translation.x, ts.translation.y, yaw(ts.rotation)
++        radius = max(math.hypot(x, y) for x, y in FOOTPRINT)
++        flow = self.navigation_flow
++        for turn in escape_headings(scan, sensor, radius, step, need):
++            heading = yaw(tm.rotation) + turn
++            x = tm.translation.x + step*math.cos(heading)
++            y = tm.translation.y + step*math.sin(heading)
++            target = {'x': x, 'y': y}
++            if flow is not None and flow.blocked(target, memory_transform, now):
+                 continue
+-            free = float(np.nanmin(values))
+-            if best is None or free > best[0]:
+-                best = (free, float(centre))
+-        if best is None or best[0] < need:
+-            return False
+-        heading = yaw_of(tm.transform.rotation) + best[1]
+-        x = tm.transform.translation.x + step*math.cos(heading)
+-        y = tm.transform.translation.y + step*math.sin(heading)
+-        self.last_open_escape = self.now()
+-        self.get_logger().warning(f'No reachable goal and rear blocked; stepping {step:.1f} m toward open direction ({best[0]:.1f} m free)')
+-        g = NavigateToPose.Goal(); g.pose.header.frame_id = self.p('map_frame'); g.pose.header.stamp = self.get_clock().now().to_msg()
+-        g.pose.pose.position.x = x; g.pose.pose.position.y = y
+-        g.pose.pose.orientation.z = math.sin(heading/2); g.pose.pose.orientation.w = math.cos(heading/2)
+-        self.send(self.nav, g, 'nav')
+-        return True
++            goal = NavigateToPose.Goal()
++            goal.pose.header.frame_id = self.p('map_frame')
++            goal.pose.header.stamp = self.get_clock().now().to_msg()
++            goal.pose.pose.position.x, goal.pose.pose.position.y = x, y
++            goal.pose.pose.orientation.z = math.sin(heading/2)
++            goal.pose.pose.orientation.w = math.cos(heading/2)
++            if flow is not None:
++                flow.selected(target, memory_transform)
++            self.last_open_escape = now
++            self.get_logger().info(f'Nav2 escape {step:.2f} m at {math.degrees(turn):.0f} deg')
++            self.send(self.nav, goal, 'nav')
++            return True
++        self.get_logger().info('No scan-supported escape with swept clearance outside recent failures',
++                               throttle_duration_sec=5.)
++        return False
++
+     def publish_known_obstacles(self):
+         if self.known_dock_pose(self.p('map_frame')) is None:return
+         header=Header(frame_id='std_dock_link',stamp=self.get_clock().now().to_msg())
+         self.known_obstacles.publish(point_cloud2.create_cloud_xyz32(header,dock_geometry.points()))
+     def send(self,client,goal,kind):
+         self.readable_turn = False
++        self.drive_progress = DriveProgress() if kind == 'nav' else None
+         self.pending=True; self.action_start=self.now(); self.kind=kind;self.cancel_reason='';self.cancel_started=None
+         self.active_goal=copy.deepcopy(goal);self.spin_progress=0.;self.action_generation+=1
+         generation=self.action_generation
+@@ -731,7 +766,9 @@
+                 flow.begin_settle(self.now(),self.camera_diagnostics['accepted']);self.plan_after=self.now()
+         elif self.kind=='backup':
+             flow=getattr(self,'navigation_flow',None)
+-            if flow is not None:flow.backup_result(result.status,self.now())
++            limit_acknowledged = self.cancel_reason == 'base_backup_limit' and result.status == 5
++            if flow is not None and not limit_acknowledged:
++                flow.backup_result(result.status, self.now())
+             self.scan_after=False; self.plan_after=self.now()+1.
+         elif self.kind=='undock':
+             self.undock_diagnostics={'status':int(result.status),'is_docked':bool(result.result.is_docked),
+@@ -808,9 +845,14 @@
+         if self.state=='saving': self.save_tick(); return
+         if self.state=='done': self.zero(); return
+         if self.state!='running': return
++        progress_pose = None
+         try:
+             pose=self.tf.lookup_transform('odom',self.p('base_frame'),Time()).transform
+             visit=pose.translation
++            q = pose.rotation
++            heading = math.atan2(2*(q.w*q.z + q.x*q.y), 1-2*(q.y*q.y + q.z*q.z))
++            progress_pose = (visit.x, visit.y, heading)
++            self.reverse_limit.odometry(progress_pose, self.now())
+             if hasattr(self,'contact_inspection'):
+                 self.contact_inspection.position=(visit.x,visit.y)
+             self.exploration_memory.observe(visit.x,visit.y,self.now())
+@@ -856,33 +898,22 @@
+                 if flow is not None and getattr(self, 'kind', '') == 'nav':
+                     flow.record_navigation_result(6, 'cancel_unconfirmed', self.now())
+                 return
+-        # .53: no progress while driving. If the robot moves less than 0.10 m over 10 s
+-        # while navigation goals are active (goals may be replaced meanwhile), cancel and
+-        # run the existing scan-checked backup at once. Stationary looks and spins reset it.
+-        if getattr(self, 'kind', '') == 'nav' and (self.goal_handle or self.pending) and not self.recovery_pending:
+-            try:
+-                tr = self.tf.lookup_transform(self.p('map_frame'), self.p('base_frame'), Time())
+-                xy = (tr.transform.translation.x, tr.transform.translation.y)
+-            except Exception:
+-                xy = None
+-            if xy is not None:
+-                now = self.now()
+-                hist = [h for h in getattr(self, 'stuck_history', []) if now-h[0] <= 10.5] + [(now, xy)]
+-                self.stuck_history = hist
+-                if (now-hist[0][0] >= 10. and max(math.dist(hist[0][1], h[1]) for h in hist) < .10
+-                        and now-getattr(self, 'last_unstick', -100.) >= 12.):
+-                    self.last_unstick = now
+-                    self.unstick_events = getattr(self, 'unstick_events', 0)+1
+-                    self.stuck_history = []
+-                    flow = getattr(self, 'navigation_flow', None)
+-                    if flow is not None:
+-                        flow.record_navigation_result(6, 'no_progress_10s', now)
+-                    self.get_logger().warning('No progress for 10 s while driving; backing out')
+-                    self.cancel_action('no_progress_10s')
+-                    self.recovery_pending = True
+-                    self.last_recovery = -100.
+-        elif getattr(self, 'kind', '') != 'nav':
+-            self.stuck_history = []
++        watch = getattr(self, 'drive_progress', None)
++        if (watch is not None and self.goal_handle and not self.cancel_reason
++                and not self.recovery_pending):
++            now = self.now()
++            if (watch.stalled(now, progress_pose)
++                    and now - getattr(self, 'last_unstick', -100.) >= 12.):
++                self.last_unstick = now
++                self.unstick_events = getattr(self, 'unstick_events', 0) + 1
++                self.get_logger().warning('Active Nav2 goal has made no progress for 10 s')
++                self.cancel_action('no_progress_10s')
++                self.zero()
++                self.recovery_pending = True
++                # The normal action result owns the failure exclusion and the
++                # existing backup cooldown still applies.
++        elif watch is not None:
++            watch.reset()
+         # Create 3 owns the undock motion and its hazard checks. Its action does
+         # not require camera coverage, SLAM or Nav2 readiness to remain active.
+         if getattr(self,'kind','')=='undock' and (self.goal_handle or self.pending):
+@@ -1007,8 +1038,12 @@
+         if flow is not None and flow.waiting_for_frames(self.now(),self.camera_diagnostics['accepted']):self.zero();return
+         if self.recovery_pending:
+             self.recovery_pending=False
+-            if self.rear_clear and self.backup.server_is_ready() and self.now()-self.last_recovery>=15. and (flow is None or flow.backup_allowed(self.now())):
+-                self.last_recovery=self.now(); goal=BackUp.Goal(); goal.target.x=.20; goal.speed=.08; goal.time_allowance.sec=8
++            if self.can_retreat(now):
++                self.last_recovery = now
++                goal = BackUp.Goal()
++                goal.target.x = .10
++                goal.speed = .08
++                goal.time_allowance.sec = 8
+                 self.send(self.backup,goal,'backup'); return
+         if self.scan_after and self.now()<self.spin_blocked_until: self.scan_after=False
+         if self.scan_after:
+@@ -1133,15 +1168,7 @@
+             # Retry old frontiers after scanning rather than finishing before the deadline.
+             self.excluded=self.excluded[-5:]
+             self.empty_plans=getattr(self,'empty_plans',0)+1
+-            flow = getattr(self, 'navigation_flow', None)
+-            backup_possible = (self.rear_clear and self.backup.server_is_ready()
+-                               and self.now()-self.last_recovery >= 15.
+-                               and (flow is None or flow.backup_allowed(self.now())))
+-            if self.empty_plans>=3 and not backup_possible and self.open_escape():
+-                # .59: no reachable goal and no room to back up. Let Nav2 drive a short
+-                # step toward the most open scan direction instead of waiting.
+-                # .67: also when a backup would not run (cooldown, flow block, no server);
+-                # on 2026-11-27 the robot repeated "checking safe backup" for 50 s.
++            if self.empty_plans>=3 and not self.can_retreat(now) and self.open_escape(memory_transform):
+                 self.empty_plans=0
+                 return
+             if self.empty_plans>=3:
+--- a/src/osp_mission/osp_mission/phased_hybrid.py
++++ b/src/osp_mission/osp_mission/phased_hybrid.py
+@@ -1,4 +1,5 @@
+ """Preserve marker priority while scheduling inspection of interior and wall surfaces."""
++from osp_mission.local_floor import FLOOR_FRAME
+ import json
+ from pathlib import Path
+
+@@ -120,10 +121,14 @@
+         self.schedule.chair_surface_contains = chair_strip.includes
+         self.schedule.local_box_cost = None
+         local = self.local_cost
+-        if local is not None and local.header.frame_id in ('odom', owner.p('map_frame')):
++        # The floor frame differs from odom only in Z. The box planner consumes XY.
++        local_frame = local.header.frame_id if local is not None else None
++        if local_frame == FLOOR_FRAME:
++            local_frame = 'odom'
++        if local_frame in ('odom', owner.p('map_frame')):
+             local_age = clock-Time.from_msg(local.header.stamp).nanoseconds/1e9
+             if -.1 <= local_age <= 1.5:
+-                self.schedule.local_box_cost = (local.header.frame_id, grid_from_message(local))
++                self.schedule.local_box_cost = (local_frame, grid_from_message(local))
+         if selected is not None and reject_exploration((selected['x'], selected['y'])):
+             self.band_rejected_selected = True
+             selected = None

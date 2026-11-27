@@ -1,4 +1,13 @@
 {
+  "mixed_v152671_floor_recovery": {
+    "parent": "1.5.2.67-wall-jogs",
+    "version": "1.5.2.67.1-floor-recovery",
+    "board_action": "start-floor-recovery",
+    "regression_tests": 8,
+    "validation": "isolated Nav2 costmap replay and policy regression tests",
+    "physical_drive_validated": false,
+    "board_default_changed": false
+  },
   "mixed_v15251_v15260_candidates": {
     "date": "2026-11-27",
     "physical_drive": false,
