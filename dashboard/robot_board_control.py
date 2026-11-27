@@ -112,6 +112,12 @@ LABELS["prepare-box-safe-views"] = LABELS["start-box-safe-views"]
 # Both commands use the same frozen runtime and camera profile.
 for suffix, workspace, label in (
     ("safe-frontier", "v15242_safe_frontier_640_1124_ws", "Mixed v1.5.2.42 · 안전한 미탐색 복귀"),
+    ("unswept-sides", "v15263_unswept_sides_lidar5_640_1127_ws", "Mixed v1.5.2.63 · 안 본 상자 면 먼저·벽 표면 제외 · LiDAR 5m (실험 · 시뮬 검증 중)"),
+    ("same-view", "v15262_same_view_lidar5_640_1127_ws", "Mixed v1.5.2.62 · 같은 자리 반복 관찰 금지 · LiDAR 5m (실험)"),
+    ("swept-face", "v15261_swept_face_lidar5_640_1127_ws", "Mixed v1.5.2.61 · 훑은 면 잠시 제외 · LiDAR 5m (실험)"),
+    ("box-angle", "v15260_box_angle_lidar5_640_1127_ws", "Mixed v1.5.2.60 · 비스듬한 상자 면 방향 · LiDAR 5m (실험)"),
+    ("open-escape", "v15259_open_escape_lidar5_640_1127_ws", "Mixed v1.5.2.59 · 막힌 자리 열린 쪽 탈출 · LiDAR 5m (실험)"),
+    ("bump-memory", "v15258_bump_memory_lidar5_640_1127_ws", "Mixed v1.5.2.58 · 범퍼 접촉 기억 · LiDAR 5m (실험)"),
     ("short-lap", "v15257_short_lap_lidar5_640_1126_ws", "Mixed v1.5.2.57 · 벽 보기 + 짧은 순회 · LiDAR 5m (실험)"),
     ("wall-departure", "v15248_wall_departure_lidar5_640_1124_ws", "Mixed v1.5.2.48 · 벽띠 연속 순회 · LiDAR 5m (실험)"),
     ("wall-entry", "v15247_wall_entry_lidar5_640_1124_ws", "Mixed v1.5.2.47 · 실측 벽 진입·순회 · LiDAR 5m (실험)"),
