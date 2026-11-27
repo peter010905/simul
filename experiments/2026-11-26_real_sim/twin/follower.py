@@ -1,5 +1,8 @@
 """Simulation-only walker that follows the robot from a distance (a person trailing it).
 
+If the robot stands still for 10 s the person walks away (hidden) and comes back on the
+trail after the robot has moved 3 m, so a stopped robot is not boxed in forever.
+
 Started by trial.sh when the world contains a model named "follower". It reads the
 robot's ground-truth pose from Gazebo and moves the kinematic follower along the
 robot's own trail, 1.5-3 m behind it, at walking speed. It never talks to the policy.
@@ -20,6 +23,8 @@ WORLD = "osp_studio"
 SPEED = 0.7          # m/s, sim time
 MIN_GAP = 1.0        # never closer to the robot than this
 HIDDEN = (0.0, 0.0, -5.0)
+STEP_AWAY_S = 10.0   # a person does not stand behind a stopped robot forever: leave after this
+RETURN_M = 3.0       # and come back on the trail once the robot has moved this far
 
 
 def gz_partition(timeout=300):
@@ -48,6 +53,8 @@ class Follower:
         self.node = Node()
         self.robot = None
         self.pending = None
+        self.still_since = None     # (t, xy) where the robot stopped
+        self.away_from = None       # robot position when the follower left
 
     def gap(self, t):
         return 2.25 + 0.75 * math.sin(t / 40.0 + self.phase)
@@ -75,6 +82,17 @@ class Follower:
             return
         dt = 0.0 if self.last_t is None else max(0.0, t - self.last_t)
         self.last_t = t
+        if self.still_since is None or math.dist(self.still_since[1], xy) > 0.15:
+            self.still_since = (t, xy)
+        if self.away_from is not None:
+            if math.dist(self.away_from, xy) < RETURN_M:
+                return
+            self.away_from, self.position = None, None   # re-enters behind on the trail
+        elif self.position is not None and t - self.still_since[0] > STEP_AWAY_S:
+            self.away_from, self.position = xy, None
+            self.send(HIDDEN, 0.0, t)
+            print(f"follower: robot still {STEP_AWAY_S:.0f}s at t={t:.0f}, stepping away", flush=True)
+            return
         goal = self.target(t)
         if goal is None:
             if self.position is None:
