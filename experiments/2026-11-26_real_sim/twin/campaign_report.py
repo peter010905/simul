@@ -28,11 +28,11 @@ def resolve(path, root):
     return None
 
 
-def rows(root):
+def rows(root, prefixes=("",)):
     for r in sorted(glob.glob(os.path.join(root, "trial-track-rand-*"))):
-        if not os.path.isdir(r):
-            continue
         name = os.path.basename(r)[len("trial-track-rand-"):]
+        if not os.path.isdir(r) or not name.startswith(tuple(prefixes)):
+            continue
         seed, policy = name.split("-", 1)
         metrics = os.path.join(r, "metrics.json")
         if not os.path.exists(metrics):
