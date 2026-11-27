@@ -183,6 +183,11 @@ FOCUS_CAMERA_ACTIONS |= {f"{operation}-{suffix}" for operation in ("start", "pre
 # Packages from other lineages: relay one RGB copy (640x480 needs it on the 100 Mbps link) but keep
 # their own runtime settings (no three-marker or distant-hint environment).
 CAMERA_RELAY_ACTIONS = {"start-v155-far-wall-slot", "prepare-v155-far-wall-slot"}
+# Board-wide top-speed choice for the next preparation. "Fast" adds --forward-045: the launch file
+# raises the MPPI vx_max and the velocity smoother limit to 0.45 m/s (Create 3 tops out near
+# 0.46 m/s). It needs the Mixed MPPI controller, so it applies only to these lineages.
+SPEED_ACTIONS = {"speed-fast": True, "speed-normal": False}
+SPEED_M_S = {False: 0.30, True: 0.45}
 
 
 def valid_request(headers, token):
@@ -243,6 +248,7 @@ class BoardControl:
         self.lock = threading.RLock()
         self.start_process = self.stop_process = None
         self.start_log = self.stop_log = None
+        self.fast_speed = False
         self.started_at = 0.
         self.selected = None
         # Keep legacy API-only actions out of the operator menu.
@@ -325,7 +331,8 @@ class BoardControl:
         workspace = self.workspace
         preparing = action.startswith("prepare-")
         share_camera = action in FOCUS_CAMERA_ACTIONS or action in CAMERA_RELAY_ACTIONS
-        forward_045 = action == "start-marker-relook-045"
+        forward_045 = action == "start-marker-relook-045" or (
+            getattr(self, "fast_speed", False) and (action in FOCUS_CAMERA_ACTIONS or action in CAMERA_RELAY_ACTIONS))
         recover_stall = action in ("start-stall-recovery", "start-crowded")
         native = action in ("start-upstream-r32", "prepare-upstream-r32")
         side_inspection = action in ("start-side", "start-general")
@@ -451,6 +458,7 @@ class BoardControl:
                 except (OSError, ValueError, KeyError):
                     pass
             return dict(policy=LABELS.get(selected), enabled=True, token=self.token, phase=phase, detail=detail,
+                        fast_speed=self.fast_speed, speed_m_s=SPEED_M_S[self.fast_speed],
                         can_start=not busy, can_go=phase == "prepared" and alive,
                         can_stop=True, policies=self.policies, events=events[-8:], timing=timing,
                         glass_wall_segments=glass_segments, glass_wall_zones=glass_zones)
@@ -462,6 +470,9 @@ class BoardControl:
                 if self.snapshot()["phase"] != "prepared" or not state.get("output"):
                     raise RuntimeError("준비가 완료된 실물 세션이 없습니다.")
                 (Path(state["output"]) / "go.request").touch(exist_ok=False)
+                return self.snapshot()
+            if action in SPEED_ACTIONS:
+                self.fast_speed = SPEED_ACTIONS[action]
                 return self.snapshot()
             if action in START_WORKSPACES:
                 if not self.snapshot()["can_start"]:
