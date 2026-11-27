@@ -544,7 +544,7 @@ def sample_wall_clutter(world, walls, rng, start):
     return items
 
 
-def build(base, dest, seed, count_range, clutter=False, desk_jitter=True, debris=True, bumps=True, demo=False, random_start=False, follower=False, cabled=False):
+def build(base, dest, seed, count_range, clutter=False, desk_jitter=True, debris=True, bumps=True, demo=False, random_start=False, follower=False, cabled=False, center_start=False):
     rng = np.random.default_rng(seed)
     tree = ET.parse(base / "world/osp_studio.sdf")
     world = tree.find("world")
@@ -594,6 +594,10 @@ def build(base, dest, seed, count_range, clutter=False, desk_jitter=True, debris
         # glass-end chairs, facing any direction (the middle of the room included).
         clear = ndimage.distance_transform_edt(~occ0) * RES
         ok = reachable(occ0, start) & (clear >= .6) & (_CHAIR_CLEARANCE >= 1.0)
+        if center_start:
+            # The middle of the room: at least 2.5 m from both long walls (wall_* only).
+            wall_clear = ndimage.distance_transform_edt(~static_occupancy(world, layout, prefix="wall_")) * RES
+            ok &= wall_clear >= 2.5
         cells_ok = np.argwhere(ok)
         i, j = cells_ok[int(rng.integers(len(cells_ok)))]
         start = [float(LOW[0] + (i + .5) * RES), float(LOW[1] + (j + .5) * RES)]
@@ -819,6 +823,7 @@ if __name__ == "__main__":
     p.add_argument("--cables", action="store_true", help="demo room: round cables under the desks")
     p.add_argument("--follower", action="store_true", help="add a person that trails the robot (follower.py)")
     p.add_argument("--random-start", action="store_true", help="random robot start position and heading")
+    p.add_argument("--center-start", action="store_true", help="with --random-start: start >= 2.5 m from the long walls")
     p.add_argument("--demo", action="store_true",
                    help="demo room: desks, glass-end chairs, task boxes, cables under desks, wall-side objects")
     p.add_argument("--clutter-chairs", action="store_true",
@@ -826,4 +831,5 @@ if __name__ == "__main__":
     a = p.parse_args()
     build(a.base, a.dest, a.seed, (a.min_objects, a.max_objects + 1), clutter=a.clutter_chairs,
           desk_jitter=not a.fixed_desks, debris=not (a.no_debris or a.demo),
-          bumps=not (a.flat_walls or a.demo), demo=a.demo, random_start=a.random_start, follower=a.follower, cabled=a.cables)
+          bumps=not (a.flat_walls or a.demo), demo=a.demo, random_start=a.random_start or a.center_start, follower=a.follower, cabled=a.cables,
+          center_start=a.center_start)
