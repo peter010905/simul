@@ -11,7 +11,8 @@ class CameraSharingTest(unittest.TestCase):
         self.assertEqual(missing, [])
 
     def test_v155_relays_camera_without_lineage_settings(self):
-        for action in ('prepare-v155-far-wall-slot', 'start-v155-far-wall-slot'):
+        for action in ('prepare-v155-far-wall-slot', 'start-v155-far-wall-slot',
+                       'prepare-v157-frontier-tour', 'start-v157-frontier-tour'):
             self.assertIn('--share-camera', control.BoardControl.command(
                 type('C', (), dict(workspace=control.Path('/w/x'), repo=control.Path('/r'), domain=4,
                                    ntp_server='n', duration=600.))(), action))

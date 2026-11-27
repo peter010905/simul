@@ -118,6 +118,7 @@ for suffix, workspace, label in (
     ("wall-jogs", "v15267_wall_jogs_lidar5_640_1127_ws", "Mixed v1.5.2.67 · 긴 벽 단차 면 + 막힘 탈출 · LiDAR 5m (실험 · 시뮬 검증 중)"),
     ("wall-jogs-12m", "v15267_wall_jogs_lidar12_640_1128_ws", "Mixed v1.5.2.67 · 긴 벽 단차 면 + 막힘 탈출 · SLAM 12m (실험)"),
     ("face-normals", "v15266_face_normals_lidar5_640_1127_ws", "Mixed v1.5.2.66 · 면 방향 보정 + 벽에서 떨어져 주행 · LiDAR 5m (실험 · 시뮬 검증 중)"),
+    ("v157-frontier-tour", "v157_frontier_tour_lidar12_1128_ws", "v1.5.7 · 새 바닥까지 도는 순회 슬롯 · SLAM 12m (RSH-17 릴리스 패키지 · 실험)"),
     ("v155-far-wall-slot", "v155_far_wall_slot_lidar12_1127_ws", "v1.5.5 · 먼 벽 슬롯 · SLAM 12m (RSH-17 릴리스 패키지 · 실험)"),
     ("wall-time", "v15265_wall_time_lidar5_640_1127_ws", "Mixed v1.5.2.65 · 흰 다리 끔 + 벽 순회 연장 · LiDAR 5m (실험 · 시뮬 검증 중)"),
     ("lap-resume", "v15264_lap_resume_lidar5_640_1127_ws", "Mixed v1.5.2.64 · 끊긴 벽 정지점 재개 · LiDAR 5m (실험 · 시뮬 검증 중)"),
@@ -182,7 +183,8 @@ FOCUS_CAMERA_ACTIONS |= {f"{operation}-{suffix}" for operation in ("start", "pre
     "contact-escape", "thin-obstacles")}
 # Packages from other lineages: relay one RGB copy (640x480 needs it on the 100 Mbps link) but keep
 # their own runtime settings (no three-marker or distant-hint environment).
-CAMERA_RELAY_ACTIONS = {"start-v155-far-wall-slot", "prepare-v155-far-wall-slot"}
+CAMERA_RELAY_ACTIONS = {f"{operation}-{suffix}" for operation in ("start", "prepare")
+                        for suffix in ("v155-far-wall-slot", "v157-frontier-tour")}
 # Board-wide top-speed choice for the next preparation. "Fast" adds --forward-045: the launch file
 # raises the MPPI vx_max and the velocity smoother limit to 0.45 m/s (Create 3 tops out near
 # 0.46 m/s). It needs the Mixed MPPI controller, so it applies only to these lineages.
