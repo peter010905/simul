@@ -112,6 +112,8 @@ LABELS["prepare-box-safe-views"] = LABELS["start-box-safe-views"]
 # Both commands use the same frozen runtime and camera profile.
 for suffix, workspace, label in (
     ("safe-frontier", "v15242_safe_frontier_640_1124_ws", "Mixed v1.5.2.42 · 안전한 미탐색 복귀"),
+    ("face-normals", "v15266_face_normals_lidar5_640_1127_ws", "Mixed v1.5.2.66 · 면 방향 보정 + 벽에서 떨어져 주행 · LiDAR 5m (실험 · 시뮬 검증 중)"),
+    ("v155-far-wall-slot", "v155_far_wall_slot_lidar12_1127_ws", "v1.5.5 · 먼 벽 슬롯 · SLAM 12m (RSH-17 릴리스 패키지 · 실험)"),
     ("wall-time", "v15265_wall_time_lidar5_640_1127_ws", "Mixed v1.5.2.65 · 흰 다리 끔 + 벽 순회 연장 · LiDAR 5m (실험 · 시뮬 검증 중)"),
     ("lap-resume", "v15264_lap_resume_lidar5_640_1127_ws", "Mixed v1.5.2.64 · 끊긴 벽 정지점 재개 · LiDAR 5m (실험 · 시뮬 검증 중)"),
     ("unswept-sides", "v15263_unswept_sides_lidar5_640_1127_ws", "Mixed v1.5.2.63 · 안 본 상자 면 먼저·벽 표면 제외 · LiDAR 5m (실험 · 시뮬 검증 중)"),
@@ -171,7 +173,10 @@ FOCUS_CAMERA_ACTIONS = {"start-focus", "prepare-focus", "start-wall-first", "pre
 # 640x480 stream reached each subscriber separately and went stale (2026-11-27).
 FOCUS_CAMERA_ACTIONS |= {f"{operation}-{suffix}" for operation in ("start", "prepare") for suffix in (
     "short-lap", "bump-memory", "open-escape", "box-angle", "swept-face", "same-view", "far-wall",
-    "unswept-sides", "lap-resume", "wall-time")}
+    "unswept-sides", "lap-resume", "wall-time", "face-normals")}
+# Packages from other lineages: relay one RGB copy (640x480 needs it on the 100 Mbps link) but keep
+# their own runtime settings (no three-marker or distant-hint environment).
+CAMERA_RELAY_ACTIONS = {"start-v155-far-wall-slot", "prepare-v155-far-wall-slot"}
 
 
 def valid_request(headers, token):
@@ -313,7 +318,7 @@ class BoardControl:
     def command(self, action):
         workspace = self.workspace
         preparing = action.startswith("prepare-")
-        share_camera = action in FOCUS_CAMERA_ACTIONS
+        share_camera = action in FOCUS_CAMERA_ACTIONS or action in CAMERA_RELAY_ACTIONS
         forward_045 = action == "start-marker-relook-045"
         recover_stall = action in ("start-stall-recovery", "start-crowded")
         native = action in ("start-upstream-r32", "prepare-upstream-r32")
@@ -352,7 +357,8 @@ class BoardControl:
                    OPENBLAS_NUM_THREADS="1", OMP_NUM_THREADS="1")
         if action in FOCUS_CAMERA_ACTIONS:
             env.update(OSP_PUBLIC_MARKER_COUNT="3", OSP_SURVEY_DISTANT_HINTS="false")
-        if action in FOCUS_CAMERA_ACTIONS or action in ("start-balanced", "prepare-balanced"):
+        if (action in FOCUS_CAMERA_ACTIONS or action in CAMERA_RELAY_ACTIONS
+                or action in ("start-balanced", "prepare-balanced")):
             env["OSP_SHARE_CAMERA"] = "1"
         with path.open("wb") as output:
             process = subprocess.Popen(self.command(action), cwd=self.repo, env=env,
