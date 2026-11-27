@@ -113,7 +113,10 @@ LABELS["prepare-box-safe-views"] = LABELS["start-box-safe-views"]
 for suffix, workspace, label in (
     ("safe-frontier", "v15242_safe_frontier_640_1124_ws", "Mixed v1.5.2.42 · 안전한 미탐색 복귀"),
     ("floor-recovery", "v152671_floor_recovery_lidar5_640_1127_ws", "Mixed v1.5.2.67.1 · 로컬 장애물 지도·탈출 보정 · LiDAR 5m (실험)"),
+    ("thin-obstacles", "v15269_thin_obstacles_lidar5_640_1128_ws", "Mixed v1.5.2.69 · 다리 장애물 기억 + 붙음 탈출 · LiDAR 5m (실험)"),
+    ("contact-escape", "v15268_contact_escape_lidar5_640_1128_ws", "Mixed v1.5.2.68 · 장애물 붙음 탈출 · LiDAR 5m (실험)"),
     ("wall-jogs", "v15267_wall_jogs_lidar5_640_1127_ws", "Mixed v1.5.2.67 · 긴 벽 단차 면 + 막힘 탈출 · LiDAR 5m (실험 · 시뮬 검증 중)"),
+    ("wall-jogs-12m", "v15267_wall_jogs_lidar12_640_1128_ws", "Mixed v1.5.2.67 · 긴 벽 단차 면 + 막힘 탈출 · SLAM 12m (실험)"),
     ("face-normals", "v15266_face_normals_lidar5_640_1127_ws", "Mixed v1.5.2.66 · 면 방향 보정 + 벽에서 떨어져 주행 · LiDAR 5m (실험 · 시뮬 검증 중)"),
     ("v155-far-wall-slot", "v155_far_wall_slot_lidar12_1127_ws", "v1.5.5 · 먼 벽 슬롯 · SLAM 12m (RSH-17 릴리스 패키지 · 실험)"),
     ("wall-time", "v15265_wall_time_lidar5_640_1127_ws", "Mixed v1.5.2.65 · 흰 다리 끔 + 벽 순회 연장 · LiDAR 5m (실험 · 시뮬 검증 중)"),
@@ -175,7 +178,8 @@ FOCUS_CAMERA_ACTIONS = {"start-focus", "prepare-focus", "start-wall-first", "pre
 # 640x480 stream reached each subscriber separately and went stale (2026-11-27).
 FOCUS_CAMERA_ACTIONS |= {f"{operation}-{suffix}" for operation in ("start", "prepare") for suffix in (
     "short-lap", "bump-memory", "open-escape", "box-angle", "swept-face", "same-view", "far-wall",
-    "unswept-sides", "lap-resume", "wall-time", "face-normals", "wall-jogs", "floor-recovery")}
+    "unswept-sides", "lap-resume", "wall-time", "face-normals", "wall-jogs", "wall-jogs-12m", "floor-recovery",
+    "contact-escape", "thin-obstacles")}
 # Packages from other lineages: relay one RGB copy (640x480 needs it on the 100 Mbps link) but keep
 # their own runtime settings (no three-marker or distant-hint environment).
 CAMERA_RELAY_ACTIONS = {"start-v155-far-wall-slot", "prepare-v155-far-wall-slot"}
