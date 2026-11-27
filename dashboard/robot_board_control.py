@@ -166,6 +166,12 @@ FOCUS_CAMERA_ACTIONS = {"start-focus", "prepare-focus", "start-wall-first", "pre
                         "start-wall-lap", "prepare-wall-lap",
                         "start-wall-entry", "prepare-wall-entry",
                         "start-wall-departure", "prepare-wall-departure"}
+# .57 and later LiDAR 5 m Mixed menus belong to the same lineage: one RGB copy over the wired link
+# (relayed to the detector on the VM), three public markers, distant hints off. Without the relay a
+# 640x480 stream reached each subscriber separately and went stale (2026-11-27).
+FOCUS_CAMERA_ACTIONS |= {f"{operation}-{suffix}" for operation in ("start", "prepare") for suffix in (
+    "short-lap", "bump-memory", "open-escape", "box-angle", "swept-face", "same-view", "far-wall",
+    "unswept-sides", "lap-resume", "wall-time")}
 
 
 def valid_request(headers, token):
