@@ -1,0 +1,28 @@
+--- a/box_continuity.py
++++ b/box_continuity.py
+@@ -7,6 +7,12 @@
+ 
+ 
+ 
++def same_view(a, b, radius=.35):
++    if not all(k in a and k in b for k in ('x', 'y')):
++        return True
++    return math.dist((a['x'], a['y']), (b['x'], b['y'])) < radius
++
++
+ class BoxContinuity:
+     def __init__(self):
+         self.active = None
+@@ -80,9 +86,10 @@
+         return age < RULES.box_visit_s or age >= RULES.box_visit_s+RULES.box_return_cooldown_s
+ 
+     def recently_swept(self, goal, elapsed):
+-        # A face swept from its standoff yields nothing new on an immediate repeat.
++        # Sweeping a face again from the same standoff yields nothing new; another view may.
+         hold = RULES.box_visit_s+RULES.box_return_cooldown_s
+-        return any(same_face(g,goal) and 0 <= elapsed-t < hold for g,t in self.swept)
++        return any(same_face(g,goal) and 0 <= elapsed-t < hold and same_view(g,goal)
++                   for g,t in self.swept)
+ 
+     def choose(self, ranked, elapsed, remaining, grid, safe):
+         ranked = [(walk,g) for walk,g in ranked if self.available(g,elapsed)]
