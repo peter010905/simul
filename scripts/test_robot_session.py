@@ -3,6 +3,7 @@ import json
 import math
 from pathlib import Path
 import subprocess
+import tempfile
 from types import SimpleNamespace
 import unittest
 from unittest.mock import Mock, patch
@@ -11,6 +12,16 @@ import robot_session as session
 
 
 class StartSafetyTest(unittest.TestCase):
+    def test_workspace_nav2_override_is_opt_in(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            workspace = Path(temporary)
+            args = SimpleNamespace(repo=Path('/repo'), workspace=workspace, duration=600)
+            shared = '/repo/robot_profiles/wired_flow_v3/nav2_hardware_profile.yaml'
+            self.assertIn('nav2_params:=' + shared, session.launch_command(args, Path('/trial')))
+            (workspace / 'nav2_override.yaml').write_text('x: 1\n')
+            self.assertIn('nav2_params:=' + str(workspace / 'nav2_override.yaml'),
+                          session.launch_command(args, Path('/trial')))
+
     def test_upstream_status_separates_discovery_approach_and_stop(self):
         targets = [dict(id=i, x=.1, y=.5, confirmed=i != 8, approached=i in (7, 8)) for i in (7, 8, 103)]
         packet = dict(state='FINISHED', reason='operator_stop', targets=targets, stop_confirmed=True)

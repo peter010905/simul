@@ -230,6 +230,13 @@ def upstream_config(workspace):
     return workspace / "install/osp_project/share/osp_project/resources/mission_r32_hardware.yaml"
 
 
+def nav2_profile(args):
+    """A workspace may carry its own Nav2 file (opt-in); every other workspace uses the shared one."""
+    workspace = getattr(args, "workspace", None)
+    override = Path(workspace) / "nav2_override.yaml" if workspace else None
+    return override if override is not None and override.is_file() else args.repo / "robot_profiles/wired_flow_v3/nav2_hardware_profile.yaml"
+
+
 def runtime_check(args):
     from ament_index_python.packages import get_package_prefix
     native = getattr(args, "runtime", "flow") == "upstream-r32"
@@ -238,7 +245,7 @@ def runtime_check(args):
     if Path(get_package_prefix(package)).resolve() != expected.resolve():
         raise RuntimeError("Wrong " + package + " overlay; source the prepared workspace")
     files = [upstream_config(args.workspace)] if native else [
-        args.repo / "robot_profiles/wired_flow_v3/nav2_hardware_profile.yaml",
+        nav2_profile(args),
         args.repo / "policy_releases/2026-11-13_face_intent_v2/policy.json"]
     for path in [args.workspace / "install/setup.bash", *files]:
         if not path.is_file():
@@ -259,7 +266,7 @@ def launch_command(args, output):
             "rviz:=false", "planner:=edge", "planner_start_ignore_radius_m:=0.30",
             "navigation_flow_enabled:=true", "allow_mid_route_wall_inspection:=false",
             "undock:=false", "duration:=" + str(args.duration),
-            "nav2_params:=" + str(args.repo / "robot_profiles/wired_flow_v3/nav2_hardware_profile.yaml"),
+            "nav2_params:=" + str(nav2_profile(args)),
             "policy_file:=" + str(args.repo / "policy_releases/2026-11-13_face_intent_v2/policy.json"),
             "output_dir:=" + str(output)]
 
