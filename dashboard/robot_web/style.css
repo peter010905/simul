@@ -15,3 +15,14 @@ dl{display:grid;grid-template-columns:1fr auto;gap:9px 16px;margin:15px 0 0}dt{c
 @media(max-width:1050px){.summary{grid-template-columns:repeat(2,minmax(0,1fr))}.visuals{grid-template-columns:1fr}.details{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:650px){header,main{padding-left:15px;padding-right:15px}.summary,.details{grid-template-columns:1fr}.card{padding:17px}.connection{font-size:10px}.heading{gap:10px}.mark{width:42px;height:42px;font-size:12px}h1{font-size:19px}footer{display:block}}
 @media(max-width:650px){.robot-controls{align-items:stretch;flex-direction:column;gap:12px}.control-buttons button{flex:1 1 44%;min-width:0;padding:12px 8px}}
+
+.decisions{margin-top:16px}
+.decision-log{list-style:none;margin:8px 0 0;padding:0;max-height:380px;overflow-y:auto;font-size:13px}
+.decision-log li{display:grid;grid-template-columns:7.5em 13em 1fr;gap:8px;padding:5px 4px;border-bottom:1px solid rgba(127,127,127,.18);align-items:baseline}
+.decision-log li.empty{display:block;color:#888}
+.decision-log time{font-variant-numeric:tabular-nums;color:#888}
+.decision-log .kind-phase strong{color:#2f6fdb}
+.decision-log .kind-warn strong{color:#d0342c}
+.decision-log .kind-found strong{color:#1f9d55}
+.decision-log .kind-face strong,.decision-log .kind-session strong{font-weight:500}
+@media (max-width:640px){.decision-log li{grid-template-columns:6.5em 1fr}.decision-log li span{grid-column:1/-1}}

@@ -57,7 +57,29 @@ function image(id,empty,ready,age,limit,path){
   const label=id==='map-image'?$('map-age'):id==='camera-image'?$('camera-age'):null;
   if(label){label.textContent=sec(age);label.classList.toggle('stale',age===undefined||age>limit)}
 }
+let decisionSignature='';
+function renderDecisions(log){
+  const list=$('decision-log'),entries=log?.entries||[];
+  $('decision-run').textContent=log?.error?'기록 읽기 오류':log?.run?`주행 ${log.run}`:'기록 대기';
+  const signature=JSON.stringify([log?.run,entries.length,entries[0]]);
+  if(signature===decisionSignature)return;
+  decisionSignature=signature;
+  list.replaceChildren();
+  if(!entries.length){
+    const li=document.createElement('li');li.className='empty';
+    li.textContent='주행이 시작되면 정책의 결정이 여기에 쌓입니다.';list.append(li);return;
+  }
+  for(const e of entries){
+    const li=document.createElement('li');li.className='kind-'+(e.kind||'decision');
+    const time=document.createElement('time');
+    time.textContent=e.t===null||e.t===undefined?'—':(e.repeat?`${clockTime(e.t)}–${clockTime(e.t_last)}`:clockTime(e.t));
+    const title=document.createElement('strong');title.textContent=e.title+(e.repeat?` ×${e.repeat}`:'');
+    const detail=document.createElement('span');detail.textContent=e.detail||'';
+    li.append(time,title,detail);list.append(li);
+  }
+}
 function render(data){
+  renderDecisions(data.decision_log);
   const ages=data.ages_s||{},status=data.status||{},scan=data.scan||{},cell=data.start_cell||{};
   const sim=data.mode==='simulation';
   const statusLimit=sim?10:3,visualLimit=sim?15:5;

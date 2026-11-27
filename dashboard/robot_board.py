@@ -103,9 +103,30 @@ def run(args):
     from map_observer import render_map
     from robot_board_core import map_cell, scan_summary, mission_display
     from robot_board_control import BoardControl
+    from decision_log import DecisionLog, artifacts_dir
     control = (BoardControl(HERE.parent, args.control_workspace, args.domain,
                             args.control_ntp_server, args.control_duration)
                if args.enable_control else None)
+
+    decisions = DecisionLog()
+    decisions_lock = threading.Lock()
+    session_file = Path.home()/'.local/state/osp-robot'/('domain-'+str(args.domain))/'session.json'
+
+    def decision_timeline(status, discovered):
+        """What the policy did and why, read from the current run's artifacts (never written)."""
+        try:
+            state = json.loads(session_file.read_text())
+        except (OSError, ValueError):
+            state = {}
+        with decisions_lock:
+            try:
+                decisions.follow(artifacts_dir(state, HERE.parent/'run_logs/robot'))
+                decisions.poll()
+                if status.get('state') == 'running':
+                    decisions.note_markers(discovered, status.get('elapsed_seconds'))
+                return decisions.snapshot()
+            except Exception as exc:  # the timeline must never break the live board
+                return {'run': None, 'entries': [], 'error': repr(exc)}
 
     class Monitor(Node):
         def __init__(self):
@@ -372,6 +393,7 @@ def run(args):
                     'latest_discovery': latest_discovery,
                     'plans': plans, 'camera_ready': camera_ready, 'map_ready': map_ready,
                     'scan_ready': scan_ready,
+                    'decision_log': decision_timeline(status, discovered_ids),
                     'read_only': control is None,
                     'control': control.snapshot() if control else {'enabled': False}}
 

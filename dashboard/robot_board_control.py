@@ -112,6 +112,8 @@ LABELS["prepare-box-safe-views"] = LABELS["start-box-safe-views"]
 # Both commands use the same frozen runtime and camera profile.
 for suffix, workspace, label in (
     ("safe-frontier", "v15242_safe_frontier_640_1124_ws", "Mixed v1.5.2.42 · 안전한 미탐색 복귀"),
+    ("wall-time", "v15265_wall_time_lidar5_640_1127_ws", "Mixed v1.5.2.65 · 흰 다리 끔 + 벽 순회 연장 · LiDAR 5m (실험 · 시뮬 검증 중)"),
+    ("lap-resume", "v15264_lap_resume_lidar5_640_1127_ws", "Mixed v1.5.2.64 · 끊긴 벽 정지점 재개 · LiDAR 5m (실험 · 시뮬 검증 중)"),
     ("unswept-sides", "v15263_unswept_sides_lidar5_640_1127_ws", "Mixed v1.5.2.63 · 안 본 상자 면 먼저·벽 표면 제외 · LiDAR 5m (실험 · 시뮬 검증 중)"),
     ("far-wall", "v152621_far_wall_lidar5_640_1127_ws", "Mixed v1.5.2.62.1 · 벽에서 떨어져 주행 · LiDAR 5m (실험)"),
     ("same-view", "v15262_same_view_lidar5_640_1127_ws", "Mixed v1.5.2.62 · 같은 자리 반복 관찰 금지 · LiDAR 5m (실험)"),

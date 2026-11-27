@@ -33,6 +33,11 @@
       <article class="card visual"><div class="section-heading"><div><span class="label">SLAM + NAV2</span><h2>지도와 계획 경로</h2></div><div class="map-tools"><button id="map-fullscreen" type="button">전체 화면</button><span id="map-age" class="age">대기</span></div></div><div id="map-frame" class="frame"><img id="map-image" alt="로봇 위치와 Nav2 경로가 표시된 실시간 지도"><span id="map-empty" class="placeholder">/map 및 map→base_link TF 대기 중</span></div><div class="legend"><span><i class="robot"></i>로봇</span><span><i class="global"></i>전역 경로</span><span><i class="local"></i>로컬 경로</span></div></article>
       <article class="card visual"><div class="section-heading"><div><span class="label">OAK-D RGB</span><h2>실제 로봇 시점</h2></div><span id="camera-age" class="age">대기</span></div><div class="frame camera"><img id="camera-image" alt="로봇 OAK-D 실시간 카메라"><span id="camera-empty" class="placeholder">RGB 프레임 대기 중</span></div><p class="note">화면이 멈추면 오른쪽 수신 시각이 오래된 값으로 바뀝니다.</p></article>
     </section>
+    <section class="card decisions" aria-label="정책 결정 기록">
+      <div class="section-heading"><div><span class="label">정책 결정 기록</span><h2>언제 · 무엇을 · 왜</h2></div><span id="decision-run" class="age">기록 대기</span></div>
+      <ol id="decision-log" class="decision-log"><li class="empty">주행이 시작되면 정책의 결정이 여기에 쌓입니다.</li></ol>
+      <p class="note">주행 기록 파일(center_wall · box_continuity · 마커 확인 · 세션 이벤트)을 읽어 보여 줍니다. 같은 결정이 이어지면 한 줄로 묶고 횟수를 표시합니다. 시각은 미션 시작 기준입니다.</p>
+    </section>
     <section class="details">
       <article class="card"><span class="label">LiDAR 자체 반사 확인</span><h2>원본 / 필터</h2><div class="scan-frame"><img id="scan-image" alt="로봇 몸체 기준 근접 LiDAR 반사점"><span id="scan-empty">LiDAR / TF 대기 중</span></div><p class="scan-legend"><span>● 유지된 반사</span><span>● 몸체 내부 제거</span><span>● 로봇 중심</span></p><dl id="scan-details"></dl><p class="note">근접 거리는 LiDAR 기준입니다. 필터 제거 수는 동일 시각 프레임에서만 계산합니다.</p></article>
       <article class="card"><span class="label">주행 상태</span><h2>Nav2 · 행동</h2><dl id="nav-details"></dl></article>
