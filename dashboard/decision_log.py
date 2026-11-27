@@ -16,6 +16,7 @@ DECISIONS = {
     'finish_current_box': ('상자', '같은 상자의 남은 면을 보러 이동'),
     'resume_interrupted_face': ('상자', '끊겼던 상자 면을 다시 보러 이동'),
     'box_safe_retry': ('상자', '막혔던 상자 면을 다른 자리에서 재시도'),
+    'wall_step_face': ('벽 단차', '긴 벽의 기둥·들어간 곳 면을 보러 이동'),
     'accepted_marker_followup': ('마커', '카메라에 보인 마커를 더 가까이서 확인'),
     'verified_marker_approach': ('마커', '확인된 마커에 1.5 m 안으로 접근'),
     'route_to_confirmed_print_side': ('마커', '확인된 마커 앞쪽으로 경로 이동'),
