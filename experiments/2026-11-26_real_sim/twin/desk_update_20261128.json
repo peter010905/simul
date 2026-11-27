@@ -1,0 +1,73 @@
+{
+ "source": "2026-11-27 physical SLAM maps (7 full-room runs), occupancy evidence at model legs",
+ "offsets_m": {
+  "table_middle_1": [
+   0.005,
+   -0.187
+  ],
+  "table_middle_2": [
+   0.005,
+   -0.187
+  ],
+  "table_middle_3": [
+   0.005,
+   -0.187
+  ],
+  "table_middle_4": [
+   0.017,
+   0.239
+  ],
+  "table_middle_5": [
+   0.017,
+   0.239
+  ],
+  "table_middle_6": [
+   0.017,
+   0.239
+  ],
+  "table_north_4": [
+   0.109,
+   0.06
+  ],
+  "table_north_5": [
+   0.203,
+   0.037
+  ],
+  "table_south_2": [
+   0.233,
+   0.115
+  ],
+  "table_south_3": [
+   0.181,
+   0.074
+  ],
+  "table_south_4": [
+   0.032,
+   0.086
+  ],
+  "table_south_5": [
+   -0.117,
+   0.035
+  ]
+ },
+ "elements_moved": {
+  "table_north_4": 10,
+  "table_north_5": 10,
+  "table_south_2": 10,
+  "table_south_3": 10,
+  "table_south_4": 10,
+  "table_south_5": 10,
+  "table_middle_1": 10,
+  "table_middle_2": 10,
+  "table_middle_3": 10,
+  "table_middle_4": 10,
+  "table_middle_5": 10,
+  "table_middle_6": 10
+ },
+ "unchanged": [
+  "table_north_1",
+  "table_north_2",
+  "table_north_3",
+  "table_south_1"
+ ]
+}
