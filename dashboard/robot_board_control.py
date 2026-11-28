@@ -113,7 +113,6 @@ LABELS["prepare-box-safe-views"] = LABELS["start-box-safe-views"]
 for suffix, workspace, label in (
     ("safe-frontier", "v15242_safe_frontier_640_1124_ws", "Mixed v1.5.2.42 · 안전한 미탐색 복귀"),
     ("floor-recovery", "v152671_floor_recovery_lidar5_640_1127_ws", "Mixed v1.5.2.67.1 · 로컬 장애물 지도·탈출 보정 · LiDAR 5m (실험)"),
-    ("lap-contour", "v152721_lap_contour_lidar5_640_1128_ws", "Mixed v1.5.2.72.1 · 벽 순회 방향 고정 + 먼 마커 + 상자 한 바퀴 · LiDAR 5m (실험 · 시뮬 검증 중)"),
     ("far-marker", "v15271_far_marker_lidar5_640_1128_ws", "Mixed v1.5.2.71 · 먼 마커 따라가기 + 상자 한 바퀴 · LiDAR 5m (실험 · .67 기반)"),
     ("thin-obstacles", "v15269_thin_obstacles_lidar5_640_1128_ws", "Mixed v1.5.2.69 · 다리 장애물 기억 + 붙음 탈출 · LiDAR 5m (실험 · 실물 제자리 회전 문제)"),
     ("contact-escape", "v15268_contact_escape_lidar5_640_1128_ws", "Mixed v1.5.2.68 · 장애물 붙음 탈출 · LiDAR 5m (실험)"),
@@ -182,7 +181,7 @@ FOCUS_CAMERA_ACTIONS = {"start-focus", "prepare-focus", "start-wall-first", "pre
 FOCUS_CAMERA_ACTIONS |= {f"{operation}-{suffix}" for operation in ("start", "prepare") for suffix in (
     "short-lap", "bump-memory", "open-escape", "box-angle", "swept-face", "same-view", "far-wall",
     "unswept-sides", "lap-resume", "wall-time", "face-normals", "wall-jogs", "wall-jogs-12m", "floor-recovery",
-    "contact-escape", "thin-obstacles", "far-marker", "lap-contour")}
+    "contact-escape", "thin-obstacles", "far-marker")}
 # Packages from other lineages: relay one RGB copy (640x480 needs it on the 100 Mbps link) but keep
 # their own runtime settings (no three-marker or distant-hint environment).
 CAMERA_RELAY_ACTIONS = {f"{operation}-{suffix}" for operation in ("start", "prepare")
